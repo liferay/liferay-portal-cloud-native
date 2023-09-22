@@ -84,12 +84,12 @@ public class UploadLayoutPageTemplateEntryPreviewMVCActionCommand
 				UploadPortletRequest uploadPortletRequest)
 			throws PortalException {
 
-			long layoutPageTemplateEntryId = ParamUtil.getLong(
-				uploadPortletRequest, "layoutPageTemplateEntryId");
-
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)uploadPortletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
+
+			long layoutPageTemplateEntryId = ParamUtil.getLong(
+				uploadPortletRequest, "layoutPageTemplateEntryId");
 
 			_layoutPageTemplateEntryModelResourcePermission.check(
 				themeDisplay.getPermissionChecker(), layoutPageTemplateEntryId,
