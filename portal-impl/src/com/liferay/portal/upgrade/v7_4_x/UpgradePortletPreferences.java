@@ -96,10 +96,10 @@ public class UpgradePortletPreferences extends UpgradeProcess {
 		}
 
 		for (Preference preference : preferenceMap.values()) {
+			int index = 0;
+
 			Set<String> valuesSet = new LinkedHashSet<>(
 				Arrays.asList(preference.getValues()));
-
-			int index = 0;
 
 			for (String value : valuesSet) {
 				String largeValue = null;
