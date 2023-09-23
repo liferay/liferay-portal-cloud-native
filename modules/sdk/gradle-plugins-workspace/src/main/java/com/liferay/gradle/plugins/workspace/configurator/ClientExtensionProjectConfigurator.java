@@ -828,7 +828,7 @@ public class ClientExtensionProjectConfigurator
 						if (logger.isInfoEnabled()) {
 							logger.info(
 								StringBundler.concat(
-									"Injecting Liferay Routes configuration ",
+									"Injecting Liferay routes configuration ",
 									"paths as environment variables into the ",
 									"process invoked by the task ",
 									task.getPath()));
