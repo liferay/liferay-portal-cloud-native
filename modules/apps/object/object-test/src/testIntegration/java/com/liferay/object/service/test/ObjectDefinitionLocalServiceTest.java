@@ -2000,7 +2000,7 @@ public class ObjectDefinitionLocalServiceTest {
 
 		_objectDefinitionLocalService.deleteObjectDefinition(objectDefinition1);
 
-		// After Update a modifiable system object definition check its
+		// After update, a modifiable system object definition check its
 		// properties
 
 		ObjectDefinition objectDefinition2 =
@@ -2048,7 +2048,7 @@ public class ObjectDefinitionLocalServiceTest {
 
 		_objectDefinitionLocalService.deleteObjectDefinition(objectDefinition2);
 
-		// After Update an unmodifiable system object definition check its
+		// After update, an unmodifiable system object definition check its
 		// properties
 
 		objectDefinition2 =
