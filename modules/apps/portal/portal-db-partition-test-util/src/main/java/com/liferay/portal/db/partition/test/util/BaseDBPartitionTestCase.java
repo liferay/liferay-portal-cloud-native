@@ -275,12 +275,12 @@ public abstract class BaseDBPartitionTestCase {
 
 				preparedStatement2.executeUpdate();
 
-				for (int i = 0; i < ROLES.length; i++) {
+				for (int i = 0; i < ROLE_NAMES.length; i++) {
 					preparedStatement3.setLong(1, 0);
 					preparedStatement3.setLong(2, 0);
 					preparedStatement3.setLong(3, i + 1);
 					preparedStatement3.setLong(4, companyId);
-					preparedStatement3.setString(5, ROLES[i]);
+					preparedStatement3.setString(5, ROLE_NAMES[i]);
 					preparedStatement3.setLong(6, 1);
 
 					preparedStatement3.executeUpdate();
@@ -377,7 +377,9 @@ public abstract class BaseDBPartitionTestCase {
 
 	protected static final long[] COMPANY_IDS = {123456789L, 987654321L};
 
-	protected static final String[] ROLES = {"Administrator", "Owner", "User"};
+	protected static final String[] ROLE_NAMES = {
+		"Administrator", "Owner", "User"
+	};
 
 	protected static final String TEST_CONTROL_TABLE_NAME = "TestControlTable";
 
