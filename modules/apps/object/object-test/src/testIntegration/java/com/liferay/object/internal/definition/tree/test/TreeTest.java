@@ -44,11 +44,12 @@ public class TreeTest {
 
 	@Test
 	public void testIterator() throws Exception {
+
+		// Breadth first iterator
+
 		Tree tree = TreeTestUtil.createTree(
 			_objectDefinitionLocalService, _objectRelationshipLocalService,
 			_treeFactory);
-
-		// Breadth first iterator
 
 		_testIterator(
 			Arrays.asList("A", "AA", "AB", "AAA", "AAB"),
