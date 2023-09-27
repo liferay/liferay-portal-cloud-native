@@ -281,10 +281,9 @@ public class APIEndpointRelevantObjectEntryModelListener
 
 			throw new ObjectEntryValuesException.InvalidObjectField(
 				null,
-				"Path parameter must be an id, external reference code or " +
+				"Path parameter must be an external reference code, ID, or " +
 					"unique field",
-				"path-parameter-must-be-an-id-external-reference-code-or-" +
-					"unique-field");
+				"path-parameter-must-be-an-external-reference-code,-id,-or-unique-field");
 		}
 
 		ObjectField objectField = _objectFieldLocalService.getObjectField(
