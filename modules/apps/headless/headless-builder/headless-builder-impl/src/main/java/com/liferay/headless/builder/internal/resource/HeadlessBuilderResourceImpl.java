@@ -129,8 +129,7 @@ public class HeadlessBuilderResourceImpl {
 				endpoint.getRetrieveType(),
 				APIApplication.Endpoint.RetrieveType.SINGLE_ELEMENT)) {
 
-			throw new InvalidParameterException(
-				"There is no Path Parameter indicated");
+			throw new InvalidParameterException("Path parameter is missing");
 		}
 
 		if (endpoint.getResponseSchema() == null) {

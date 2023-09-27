@@ -256,7 +256,7 @@ public class APIEndpointRelevantObjectEntryModelListenerTest
 				"status", "BAD_REQUEST"
 			).put(
 				"title",
-				"Path parameter must be an id, external reference code or " +
+				"Path parameter must be an external reference code, ID, or " +
 					"unique field."
 			).toString(),
 			HTTPTestUtil.invokeToJSONObject(
@@ -323,7 +323,7 @@ public class APIEndpointRelevantObjectEntryModelListenerTest
 				"status", "BAD_REQUEST"
 			).put(
 				"title",
-				"Single element ID endpoint can not be scoped by group."
+				"Single element ID endpoint cannot be scoped by group."
 			).toString(),
 			HTTPTestUtil.invokeToJSONObject(
 				JSONUtil.put(
