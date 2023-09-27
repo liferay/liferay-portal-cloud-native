@@ -42,46 +42,46 @@ public class EndpointHelper {
 			APIApplication.Schema schema, String scopeKey)
 		throws Exception {
 
-		Set<String> relationshipsNames = new HashSet<>();
-
 		ObjectEntry objectEntry = null;
+
+		Set<String> relationshipsNames = new HashSet<>();
 
 		for (APIApplication.Property property : schema.getProperties()) {
 			relationshipsNames.addAll(property.getObjectRelationshipNames());
 		}
 
 		if (Objects.equals(
-				pathParameter, HeadlessBuilderConstants.PATH_PARAMETER_ID)) {
-
-			objectEntry = _objectEntryHelper.getObjectEntry(
-				companyId, ListUtil.fromCollection(relationshipsNames),
-				GetterUtil.getLong(pathParameterValue),
-				schema.getMainObjectDefinitionExternalReferenceCode());
-		}
-		else if (Objects.equals(
-					pathParameter,
-					HeadlessBuilderConstants.PATH_PARAMETER_ERC)) {
+				pathParameter,
+				HeadlessBuilderConstants.PATH_PARAMETER_ERC)) {
 
 			objectEntry = _objectEntryHelper.getObjectEntry(
 				companyId, ListUtil.fromCollection(relationshipsNames),
 				schema.getMainObjectDefinitionExternalReferenceCode(),
 				pathParameterValue, scopeKey);
 		}
+		else if (Objects.equals(
+					pathParameter,
+					HeadlessBuilderConstants.PATH_PARAMETER_ID)) {
+
+			objectEntry = _objectEntryHelper.getObjectEntry(
+				companyId, ListUtil.fromCollection(relationshipsNames),
+				GetterUtil.getLong(pathParameterValue),
+				schema.getMainObjectDefinitionExternalReferenceCode());
+		}
 		else {
+			String filterString = StringBundler.concat(
+				pathParameter, " eq '", pathParameterValue, "'");
+
 			List<ObjectEntry> objectEntries =
 				_objectEntryHelper.getObjectEntries(
-					companyId,
-					StringBundler.concat(
-						pathParameter, " eq '", pathParameterValue, "'"),
+					companyId, filterString,
 					ListUtil.fromCollection(relationshipsNames),
 					schema.getMainObjectDefinitionExternalReferenceCode(),
 					scopeKey);
 
 			if (objectEntries.isEmpty()) {
 				throw new NoSuchObjectEntryException(
-					StringBundler.concat(
-						"No ObjectEntry exists with the key {", pathParameter,
-						"=", pathParameterValue, "}"));
+					"No object entry exists with the filter " + filterString);
 			}
 
 			objectEntry = objectEntries.get(0);
