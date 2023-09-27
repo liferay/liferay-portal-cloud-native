@@ -210,6 +210,20 @@ public class SystemObjectDefinitionManagerPortalInstanceLifecycleListener
 					"class.name", objectDefinition.getClassName()
 				).build());
 
+			JaxRsApplicationDescriptor jaxRsApplicationDescriptor =
+				systemObjectDefinitionManager.getJaxRsApplicationDescriptor();
+
+			_bundleContext.registerService(
+				RESTContextPathResolver.class,
+				new RESTContextPathResolverImpl(
+					"/o/" + jaxRsApplicationDescriptor.getRESTContextPath(),
+					_objectScopeProviderRegistry.getObjectScopeProvider(
+						objectDefinition.getScope()),
+					true),
+				HashMapDictionaryBuilder.<String, Object>put(
+					"model.class.name", objectDefinition.getClassName()
+				).build());
+
 			_objectRelatedModelsProviderRegistrarHelper.register(
 				_bundleContext, objectDefinition,
 				new SystemObjectMtoMObjectRelatedModelsProviderImpl(
@@ -227,20 +241,6 @@ public class SystemObjectDefinitionManagerPortalInstanceLifecycleListener
 					_persistedModelLocalServiceRegistry,
 					systemObjectDefinitionManager,
 					_systemObjectDefinitionManagerRegistry));
-
-			JaxRsApplicationDescriptor jaxRsApplicationDescriptor =
-				systemObjectDefinitionManager.getJaxRsApplicationDescriptor();
-
-			_bundleContext.registerService(
-				RESTContextPathResolver.class,
-				new RESTContextPathResolverImpl(
-					"/o/" + jaxRsApplicationDescriptor.getRESTContextPath(),
-					_objectScopeProviderRegistry.getObjectScopeProvider(
-						objectDefinition.getScope()),
-					true),
-				HashMapDictionaryBuilder.<String, Object>put(
-					"model.class.name", objectDefinition.getClassName()
-				).build());
 		}
 		catch (PortalException portalException) {
 			_log.error(portalException);
