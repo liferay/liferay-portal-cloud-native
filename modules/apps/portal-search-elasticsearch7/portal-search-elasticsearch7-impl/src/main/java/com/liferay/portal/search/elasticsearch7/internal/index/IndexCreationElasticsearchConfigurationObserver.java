@@ -107,8 +107,7 @@ public class IndexCreationElasticsearchConfigurationObserver
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Unable to load current Elasticsearch Configuration " +
-							"data",
+						"Unable to read Elasticsearch configuration",
 						exception);
 				}
 			}
@@ -125,8 +124,7 @@ public class IndexCreationElasticsearchConfigurationObserver
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to write current Elasticsearch Configuration data",
-					exception);
+					"Unable to update Elasticsearch configuration", exception);
 			}
 		}
 	}
