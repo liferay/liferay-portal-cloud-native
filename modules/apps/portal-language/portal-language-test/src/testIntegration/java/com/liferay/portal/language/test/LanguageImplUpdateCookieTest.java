@@ -88,7 +88,6 @@ public class LanguageImplUpdateCookieTest {
 		}
 
 		Assert.assertEquals(1, total);
-
 		Assert.assertNotEquals(0, validCookie.getMaxAge());
 		Assert.assertEquals(
 			LocaleUtil.toLanguageId(locale), validCookie.getValue());
