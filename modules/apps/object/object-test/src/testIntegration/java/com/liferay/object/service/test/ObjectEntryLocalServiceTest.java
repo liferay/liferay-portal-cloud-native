@@ -639,102 +639,6 @@ public class ObjectEntryLocalServiceTest {
 		}
 	}
 
-	private void _testAddObjectEntryAsDraft() throws Exception {
-		_objectDefinition.setEnableObjectEntryDraft(true);
-
-		_objectDefinition =
-			_objectDefinitionLocalService.updateObjectDefinition(
-				_objectDefinition);
-
-		Map<String, Serializable> values1 =
-			HashMapBuilder.<String, Serializable>put(
-				"emailAddressRequired", RandomTestUtil.randomString()
-			).put(
-				"firstName", RandomTestUtil.randomString()
-			).build();
-
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
-		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
-
-		ObjectEntry objectEntry = _objectEntryLocalService.addObjectEntry(
-			TestPropsValues.getUserId(), 0,
-			_objectDefinition.getObjectDefinitionId(), values1, serviceContext);
-
-		Assert.assertEquals(
-			WorkflowConstants.STATUS_DRAFT, objectEntry.getStatus());
-
-		long objectEntryId1 = objectEntry.getObjectEntryId();
-
-		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
-
-		AssertUtils.assertFailure(
-			ObjectEntryValuesException.Required.class,
-			"No value was provided for required object field " +
-				"\"listTypeEntryKeyRequired\"",
-			() -> _objectEntryLocalService.updateObjectEntry(
-				TestPropsValues.getUserId(), objectEntryId1, values1,
-				serviceContext));
-
-		Map<String, Serializable> values2 =
-			HashMapBuilder.<String, Serializable>put(
-				"emailAddressRequired", RandomTestUtil.randomString()
-			).put(
-				"firstName", RandomTestUtil.randomString()
-			).put(
-				"listTypeEntryKeyRequired", "listTypeEntryKey1"
-			).build();
-
-		objectEntry = _objectEntryLocalService.updateObjectEntry(
-			TestPropsValues.getUserId(), objectEntryId1, values2,
-			serviceContext);
-
-		Assert.assertEquals(
-			WorkflowConstants.STATUS_APPROVED, objectEntry.getStatus());
-
-		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
-
-		AssertUtils.assertFailure(
-			ObjectEntryStatusException.class, null,
-			() -> _objectEntryLocalService.updateObjectEntry(
-				TestPropsValues.getUserId(), objectEntryId1, values2,
-				serviceContext));
-
-		objectEntry = _objectEntryLocalService.addObjectEntry(
-			TestPropsValues.getUserId(), 0,
-			_objectDefinition.getObjectDefinitionId(), values2, serviceContext);
-
-		_objectDefinition.setEnableObjectEntryDraft(false);
-
-		_objectDefinition =
-			_objectDefinitionLocalService.updateObjectDefinition(
-				_objectDefinition);
-
-		objectEntry = _objectEntryLocalService.getObjectEntry(
-			objectEntry.getObjectEntryId());
-
-		Assert.assertEquals(
-			WorkflowConstants.STATUS_DRAFT, objectEntry.getStatus());
-
-		long objectEntryId2 = objectEntry.getObjectEntryId();
-
-		AssertUtils.assertFailure(
-			ObjectEntryStatusException.class, null,
-			() -> _objectEntryLocalService.updateObjectEntry(
-				TestPropsValues.getUserId(), objectEntryId2, values2,
-				serviceContext));
-
-		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
-
-		objectEntry = _objectEntryLocalService.updateObjectEntry(
-			TestPropsValues.getUserId(), objectEntryId2, values2,
-			serviceContext);
-
-		Assert.assertEquals(
-			WorkflowConstants.STATUS_APPROVED, objectEntry.getStatus());
-	}
-
 	@Test
 	public void testAddObjectEntryWithEncryptedObjectField() throws Exception {
 		String key = ObjectFieldTestUtil.generateKey("AES");
@@ -2719,6 +2623,102 @@ public class ObjectEntryLocalServiceTest {
 		return _objectDefinitionLocalService.publishCustomObjectDefinition(
 			TestPropsValues.getUserId(),
 			objectDefinition.getObjectDefinitionId());
+	}
+
+	private void _testAddObjectEntryAsDraft() throws Exception {
+		_objectDefinition.setEnableObjectEntryDraft(true);
+
+		_objectDefinition =
+			_objectDefinitionLocalService.updateObjectDefinition(
+				_objectDefinition);
+
+		Map<String, Serializable> values1 =
+			HashMapBuilder.<String, Serializable>put(
+				"emailAddressRequired", RandomTestUtil.randomString()
+			).put(
+				"firstName", RandomTestUtil.randomString()
+			).build();
+
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext();
+
+		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
+
+		ObjectEntry objectEntry = _objectEntryLocalService.addObjectEntry(
+			TestPropsValues.getUserId(), 0,
+			_objectDefinition.getObjectDefinitionId(), values1, serviceContext);
+
+		Assert.assertEquals(
+			WorkflowConstants.STATUS_DRAFT, objectEntry.getStatus());
+
+		long objectEntryId1 = objectEntry.getObjectEntryId();
+
+		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
+
+		AssertUtils.assertFailure(
+			ObjectEntryValuesException.Required.class,
+			"No value was provided for required object field " +
+				"\"listTypeEntryKeyRequired\"",
+			() -> _objectEntryLocalService.updateObjectEntry(
+				TestPropsValues.getUserId(), objectEntryId1, values1,
+				serviceContext));
+
+		Map<String, Serializable> values2 =
+			HashMapBuilder.<String, Serializable>put(
+				"emailAddressRequired", RandomTestUtil.randomString()
+			).put(
+				"firstName", RandomTestUtil.randomString()
+			).put(
+				"listTypeEntryKeyRequired", "listTypeEntryKey1"
+			).build();
+
+		objectEntry = _objectEntryLocalService.updateObjectEntry(
+			TestPropsValues.getUserId(), objectEntryId1, values2,
+			serviceContext);
+
+		Assert.assertEquals(
+			WorkflowConstants.STATUS_APPROVED, objectEntry.getStatus());
+
+		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
+
+		AssertUtils.assertFailure(
+			ObjectEntryStatusException.class, null,
+			() -> _objectEntryLocalService.updateObjectEntry(
+				TestPropsValues.getUserId(), objectEntryId1, values2,
+				serviceContext));
+
+		objectEntry = _objectEntryLocalService.addObjectEntry(
+			TestPropsValues.getUserId(), 0,
+			_objectDefinition.getObjectDefinitionId(), values2, serviceContext);
+
+		_objectDefinition.setEnableObjectEntryDraft(false);
+
+		_objectDefinition =
+			_objectDefinitionLocalService.updateObjectDefinition(
+				_objectDefinition);
+
+		objectEntry = _objectEntryLocalService.getObjectEntry(
+			objectEntry.getObjectEntryId());
+
+		Assert.assertEquals(
+			WorkflowConstants.STATUS_DRAFT, objectEntry.getStatus());
+
+		long objectEntryId2 = objectEntry.getObjectEntryId();
+
+		AssertUtils.assertFailure(
+			ObjectEntryStatusException.class, null,
+			() -> _objectEntryLocalService.updateObjectEntry(
+				TestPropsValues.getUserId(), objectEntryId2, values2,
+				serviceContext));
+
+		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
+
+		objectEntry = _objectEntryLocalService.updateObjectEntry(
+			TestPropsValues.getUserId(), objectEntryId2, values2,
+			serviceContext);
+
+		Assert.assertEquals(
+			WorkflowConstants.STATUS_APPROVED, objectEntry.getStatus());
 	}
 
 	private void _testScope(long groupId, String scope, boolean expectSuccess)
