@@ -672,31 +672,27 @@ public class GetEntryRenderDataMVCResourceCommand
 
 			JSONArray jsonArray = _jsonFactory.createJSONArray();
 
-			List<SegmentsExperience> modifiableSegmentsExperiences =
-				new ArrayList<>(
-					_segmentsExperienceLocalService.dslQuery(
-						DSLQueryFactoryUtil.select(
-							SegmentsExperienceTable.INSTANCE
-						).from(
-							SegmentsExperienceTable.INSTANCE
-						).where(
-							SegmentsExperienceTable.INSTANCE.plid.eq(
-								ctEntry.getModelClassPK())
-						)));
+			List<SegmentsExperience> segmentsExperiences = new ArrayList<>(
+				_segmentsExperienceLocalService.dslQuery(
+					DSLQueryFactoryUtil.select(
+						SegmentsExperienceTable.INSTANCE
+					).from(
+						SegmentsExperienceTable.INSTANCE
+					).where(
+						SegmentsExperienceTable.INSTANCE.plid.eq(
+							ctEntry.getModelClassPK())
+					)));
 
-			modifiableSegmentsExperiences.sort(
+			segmentsExperiences.sort(
 				Comparator.comparingInt(SegmentsExperienceModel::getPriority));
 
 			SegmentsExperience highestPrioritySegmentsExperience =
-				modifiableSegmentsExperiences.get(
-					modifiableSegmentsExperiences.size() - 1);
+				segmentsExperiences.get(segmentsExperiences.size() - 1);
 
 			long highestPrioritySegmentsExperienceId =
 				highestPrioritySegmentsExperience.getSegmentsExperienceId();
 
-			for (SegmentsExperience segmentsExperience :
-					modifiableSegmentsExperiences) {
-
+			for (SegmentsExperience segmentsExperience : segmentsExperiences) {
 				jsonArray.put(
 					JSONUtil.put(
 						"active",
