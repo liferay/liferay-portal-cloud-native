@@ -1003,24 +1003,7 @@ public class ObjectEntryLocalServiceTest {
 				null, objectValidationRuleResults.get(3));
 		}
 
-		// Validation rules should not run when adding object entry as draft
-
-		_objectDefinition.setEnableObjectEntryDraft(true);
-
-		_objectDefinitionLocalService.updateObjectDefinition(_objectDefinition);
-
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
-		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
-
-		_objectEntryLocalService.addObjectEntry(
-			TestPropsValues.getUserId(), 0,
-			_objectDefinition.getObjectDefinitionId(), values, serviceContext);
-
-		_assertCount(5);
-
-		// Deactivate object validation rule
+		// Disable object validation rule 4
 
 		objectValidationRule4.setActive(false);
 
@@ -1041,6 +1024,23 @@ public class ObjectEntryLocalServiceTest {
 			).put(
 				"time", dateTimeFormatter.format(LocalDateTime.now())
 			).build());
+
+		_assertCount(5);
+
+		// Skip object validation rules
+
+		_objectDefinition.setEnableObjectEntryDraft(true);
+
+		_objectDefinitionLocalService.updateObjectDefinition(_objectDefinition);
+
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext();
+
+		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
+
+		_objectEntryLocalService.addObjectEntry(
+			TestPropsValues.getUserId(), 0,
+			_objectDefinition.getObjectDefinitionId(), values, serviceContext);
 
 		_assertCount(6);
 	}
