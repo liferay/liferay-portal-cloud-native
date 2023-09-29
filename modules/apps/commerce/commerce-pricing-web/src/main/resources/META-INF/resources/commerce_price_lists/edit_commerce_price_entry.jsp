@@ -13,14 +13,12 @@ CommercePriceEntryDisplayContext commercePriceEntryDisplayContext = (CommercePri
 CommercePriceEntry commercePriceEntry = commercePriceEntryDisplayContext.getCommercePriceEntry();
 
 long commercePriceEntryId = commercePriceEntryDisplayContext.getCommercePriceEntryId();
-
-CPInstance cpInstance = commercePriceEntry.getCPInstance();
 %>
 
 <portlet:actionURL name="/commerce_price_list/edit_commerce_price_entry" var="editCommercePriceEntryActionURL" />
 
 <liferay-frontend:side-panel-content
-	title='<%= LanguageUtil.format(request, "edit-x", cpInstance.getSku()) %>'
+	title='<%= LanguageUtil.get(request, "edit-price") %>'
 >
 	<aui:form action="<%= editCommercePriceEntryActionURL %>" method="post" name="fm">
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
