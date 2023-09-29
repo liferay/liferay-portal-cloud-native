@@ -10,7 +10,6 @@ import com.liferay.frontend.data.set.filter.FDSFilter;
 import com.liferay.frontend.data.set.filter.SelectionFDSFilterItem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -45,8 +44,7 @@ public class UserSelectionFDSFilter extends BaseSelectionFDSFilter {
 			new ArrayList<>();
 
 		for (Map.Entry<String, Object> entry : _usersMap.entrySet()) {
-			HashMap<String, String> user =
-				(HashMap<String, String>)entry.getValue();
+			Map<String, String> user = (Map<String, String>)entry.getValue();
 
 			selectionFDSFilterItems.add(
 				new SelectionFDSFilterItem(
