@@ -40,10 +40,9 @@ public class DDLRecordSetTableReferenceDefinitionTest
 	public void setUp() throws Exception {
 		super.setUp();
 
+		_ddlRecordSetTestHelper = new DDLRecordSetTestHelper(group);
 		_ddmStructure = DDMStructureTestUtil.addStructure(
 			group.getGroupId(), DDLRecordSet.class.getName());
-
-		_ddlRecordSetTestHelper = new DDLRecordSetTestHelper(group);
 	}
 
 	@Override
