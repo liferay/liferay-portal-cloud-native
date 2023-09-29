@@ -29,7 +29,7 @@ DisplayPageManagementToolbarDisplayContext displayPageManagementToolbarDisplayCo
 
 <c:if test='<%= FeatureFlagManagerUtil.isEnabled("LPS-189856") %>'>
 	<div class="closed sidenav-container sidenav-right" id="<portlet:namespace />infoPanelId">
-	<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= true %>" id="/layout_page_template_admin/info_panel" var="sidebarPanelURL" />
+		<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= true %>" id="/layout_page_template_admin/info_panel" var="sidebarPanelURL" />
 
 		<liferay-frontend:sidebar-panel
 			resourceURL="<%= sidebarPanelURL %>"
@@ -40,97 +40,97 @@ DisplayPageManagementToolbarDisplayContext displayPageManagementToolbarDisplayCo
 		</liferay-frontend:sidebar-panel>
 </c:if>
 
-		<clay:container-fluid
-			cssClass="container-view sidenav-content"
+<clay:container-fluid
+	cssClass="container-view sidenav-content"
+>
+	<portlet:actionURL name="/layout_page_template_admin/delete_layout_page_template_entry" var="deleteDisplayPageURL">
+		<portlet:param name="redirect" value="<%= currentURL %>" />
+	</portlet:actionURL>
+
+	<aui:form action="<%= deleteDisplayPageURL %>" cssClass="container-fluid container-fluid-max-xl" name="fm">
+		<liferay-ui:error key="<%= RequiredLayoutPageTemplateEntryException.class.getName() %>" message="you-cannot-delete-display-page-templates-that-are-used-by-one-or-more-items.-please-view-the-usages-and-try-to-unassign-them" />
+
+		<liferay-ui:success key="displayPageTemplateDeleted" message='<%= GetterUtil.getString(MultiSessionMessages.get(renderRequest, "displayPageTemplateDeleted")) %>' />
+
+		<c:if test='<%= FeatureFlagManagerUtil.isEnabled("LPS-189856") %>'>
+			<liferay-site-navigation:breadcrumb
+				breadcrumbEntries="<%= displayPageDisplayContext.getLayoutPageTemplateBreadcrumbEntries() %>"
+			/>
+		</c:if>
+
+		<liferay-ui:search-container
+			id="displayPages"
+			searchContainer="<%= displayPageDisplayContext.getDisplayPagesSearchContainer() %>"
 		>
-			<portlet:actionURL name="/layout_page_template_admin/delete_layout_page_template_entry" var="deleteDisplayPageURL">
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-			</portlet:actionURL>
+			<liferay-ui:search-container-row
+				className="Object"
+				modelVar="object"
+			>
 
-			<aui:form action="<%= deleteDisplayPageURL %>" cssClass="container-fluid container-fluid-max-xl" name="fm">
-				<liferay-ui:error key="<%= RequiredLayoutPageTemplateEntryException.class.getName() %>" message="you-cannot-delete-display-page-templates-that-are-used-by-one-or-more-items.-please-view-the-usages-and-try-to-unassign-them" />
+				<%
+				LayoutPageTemplateCollection curLayoutPageTemplateCollection = null;
+				LayoutPageTemplateEntry curLayoutPageTemplateEntry = null;
 
-				<liferay-ui:success key="displayPageTemplateDeleted" message='<%= GetterUtil.getString(MultiSessionMessages.get(renderRequest, "displayPageTemplateDeleted")) %>' />
+				Object result = row.getObject();
 
-				<c:if test='<%= FeatureFlagManagerUtil.isEnabled("LPS-189856") %>'>
-					<liferay-site-navigation:breadcrumb
-						breadcrumbEntries="<%= displayPageDisplayContext.getLayoutPageTemplateBreadcrumbEntries() %>"
-					/>
-				</c:if>
+				if (result instanceof LayoutPageTemplateEntry) {
+					curLayoutPageTemplateEntry = (LayoutPageTemplateEntry)result;
+				}
+				else {
+					curLayoutPageTemplateCollection = (LayoutPageTemplateCollection)result;
+				}
+				%>
 
-				<liferay-ui:search-container
-					id="displayPages"
-					searchContainer="<%= displayPageDisplayContext.getDisplayPagesSearchContainer() %>"
-				>
-					<liferay-ui:search-container-row
-						className="Object"
-						modelVar="object"
-					>
+				<c:choose>
+					<c:when test="<%= curLayoutPageTemplateCollection != null %>">
 
 						<%
-						LayoutPageTemplateCollection curLayoutPageTemplateCollection = null;
-						LayoutPageTemplateEntry curLayoutPageTemplateEntry = null;
-
-						Object result = row.getObject();
-
-						if (result instanceof LayoutPageTemplateEntry) {
-							curLayoutPageTemplateEntry = (LayoutPageTemplateEntry)result;
-						}
-						else {
-							curLayoutPageTemplateCollection = (LayoutPageTemplateCollection)result;
-						}
+						row.setCssClass("card-page-item card-page-item-directory " + row.getCssClass());
 						%>
 
-						<c:choose>
-							<c:when test="<%= curLayoutPageTemplateCollection != null %>">
+						<liferay-ui:search-container-column-text
+							colspan="<%= 2 %>"
+						>
+							<clay:horizontal-card
+								horizontalCard="<%= new DisplayPageTemplateCollectionHorizontalCard (curLayoutPageTemplateCollection, renderRequest, renderResponse, searchContainer.getRowChecker()) %>"
+								propsTransformer="js/propsTransformers/LayoutPageTemplateCollectionPropsTransformer"
+							/>
+						</liferay-ui:search-container-column-text>
+					</c:when>
+					<c:when test="<%= curLayoutPageTemplateEntry != null %>">
 
-								<%
-								row.setCssClass("card-page-item card-page-item-directory " + row.getCssClass());
-								%>
+						<%
+						row.setData(
+							HashMapBuilder.<String, Object>put(
+								"actions", displayPageManagementToolbarDisplayContext.getAvailableActions(curLayoutPageTemplateEntry)
+							).build());
+						%>
 
-								<liferay-ui:search-container-column-text
-									colspan="<%= 2 %>"
-								>
-									<clay:horizontal-card
-										horizontalCard="<%= new DisplayPageTemplateCollectionHorizontalCard (curLayoutPageTemplateCollection, renderRequest, renderResponse, searchContainer.getRowChecker()) %>"
-										propsTransformer="js/propsTransformers/LayoutPageTemplateCollectionPropsTransformer"
-									/>
-								</liferay-ui:search-container-column-text>
-							</c:when>
-							<c:when test="<%= curLayoutPageTemplateEntry != null %>">
-
-								<%
-								row.setData(
+						<liferay-ui:search-container-column-text>
+							<clay:vertical-card
+								additionalProps='<%=
 									HashMapBuilder.<String, Object>put(
-										"actions", displayPageManagementToolbarDisplayContext.getAvailableActions(curLayoutPageTemplateEntry)
-									).build());
-								%>
+										"changeContentTypeURL", displayPageDisplayContext.getChangeContentTypeURL(curLayoutPageTemplateEntry)
+									).put(
+										"mappingTypes", displayPageDisplayContext.getMappingTypesJSONArray()
+									).build()
+								%>'
+								propsTransformer="js/propsTransformers/DisplayPageDropdownPropsTransformer"
+								verticalCard="<%= new DisplayPageVerticalCard(curLayoutPageTemplateEntry, renderRequest, renderResponse, searchContainer.getRowChecker()) %>"
+							/>
+						</liferay-ui:search-container-column-text>
+					</c:when>
+				</c:choose>
+			</liferay-ui:search-container-row>
 
-								<liferay-ui:search-container-column-text>
-									<clay:vertical-card
-										additionalProps='<%=
-											HashMapBuilder.<String, Object>put(
-												"changeContentTypeURL", displayPageDisplayContext.getChangeContentTypeURL(curLayoutPageTemplateEntry)
-											).put(
-												"mappingTypes", displayPageDisplayContext.getMappingTypesJSONArray()
-											).build()
-										%>'
-										propsTransformer="js/propsTransformers/DisplayPageDropdownPropsTransformer"
-										verticalCard="<%= new DisplayPageVerticalCard(curLayoutPageTemplateEntry, renderRequest, renderResponse, searchContainer.getRowChecker()) %>"
-									/>
-								</liferay-ui:search-container-column-text>
-							</c:when>
-						</c:choose>
-					</liferay-ui:search-container-row>
-
-					<liferay-ui:search-iterator
-						displayStyle="icon"
-						markupView="lexicon"
-						resultRowSplitter="<%= displayPageDisplayContext.isSearch() ? null : new LayoutPageTemplateResultRowSplitter() %>"
-					/>
-				</liferay-ui:search-container>
-			</aui:form>
-		</clay:container-fluid>
+			<liferay-ui:search-iterator
+				displayStyle="icon"
+				markupView="lexicon"
+				resultRowSplitter="<%= displayPageDisplayContext.isSearch() ? null : new LayoutPageTemplateResultRowSplitter() %>"
+			/>
+		</liferay-ui:search-container>
+	</aui:form>
+</clay:container-fluid>
 
 <c:if test='<%= FeatureFlagManagerUtil.isEnabled("LPS-189856") %>'>
 	</div>
