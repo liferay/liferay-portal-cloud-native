@@ -54,6 +54,9 @@ public interface CommercePriceEntry
 	public CommercePriceList getCommercePriceList()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	public com.liferay.commerce.product.model.CPInstance getCPInstance()
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	public com.liferay.commerce.currency.model.CommerceMoney
 			getPriceCommerceMoney(long commerceCurrencyId)
 		throws com.liferay.portal.kernel.exception.PortalException;

@@ -85,6 +85,7 @@ public interface CommercePriceEntryLocalService
 	public CommercePriceEntry addCommercePriceEntry(
 		CommercePriceEntry commercePriceEntry);
 
+	@Indexable(type = IndexableType.REINDEX)
 	public CommercePriceEntry addCommercePriceEntry(
 			String externalReferenceCode, long cProductId,
 			String cpInstanceUuid, long commercePriceListId, BigDecimal price,
