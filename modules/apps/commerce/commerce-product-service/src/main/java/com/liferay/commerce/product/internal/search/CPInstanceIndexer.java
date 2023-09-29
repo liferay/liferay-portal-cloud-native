@@ -243,7 +243,6 @@ public class CPInstanceIndexer extends BaseIndexer<CPInstance> {
 		document.addKeyword(CPField.UNSPSC, cpInstance.getUnspsc());
 		document.addText(Field.CONTENT, cpInstance.getSku());
 		document.addText(Field.NAME, cpDefinition.getName());
-		document.addKeyword(Field.STATUS, cpInstance.getStatus());
 
 		List<String> languageIds =
 			_cpDefinitionLocalService.getCPDefinitionLocalizationLanguageIds(
