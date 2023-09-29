@@ -161,10 +161,6 @@ public class EditCommercePriceEntryMVCActionCommand
 			long commercePriceEntryId, ActionRequest actionRequest)
 		throws Exception {
 
-		CommercePriceEntry commercePriceEntry =
-			_commercePriceEntryService.getCommercePriceEntry(
-				commercePriceEntryId);
-
 		boolean bulkPricing = ParamUtil.getBoolean(
 			actionRequest, "bulkPricing");
 		boolean overrideDiscount = ParamUtil.getBoolean(
@@ -218,9 +214,10 @@ public class EditCommercePriceEntryMVCActionCommand
 			actionRequest, "price", BigDecimal.ZERO);
 		boolean priceOnApplication = ParamUtil.getBoolean(
 			actionRequest, "priceOnApplication");
-		String unitOfMeasureKey = ParamUtil.getString(
-			actionRequest, "unitOfMeasureKey",
-			commercePriceEntry.getUnitOfMeasureKey());
+
+		CommercePriceEntry commercePriceEntry =
+			_commercePriceEntryService.getCommercePriceEntry(
+				commercePriceEntryId);
 
 		if (priceOnApplication) {
 			bulkPricing = commercePriceEntry.isBulkPricing();
@@ -238,7 +235,8 @@ public class EditCommercePriceEntryMVCActionCommand
 			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
 			displayDateMinute, expirationDateMonth, expirationDateDay,
 			expirationDateYear, expirationDateHour, expirationDateMinute,
-			neverExpire, price, priceOnApplication, unitOfMeasureKey,
+			neverExpire, price, priceOnApplication,
+			commercePriceEntry.getUnitOfMeasureKey(),
 			ServiceContextFactory.getInstance(
 				CommercePriceEntry.class.getName(), actionRequest));
 	}
