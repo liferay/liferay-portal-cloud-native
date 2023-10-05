@@ -26,13 +26,11 @@ import org.osgi.framework.FrameworkUtil;
  */
 public class FeatureFlagTestHelper {
 
-	public static final String FAKE_PREFIX = "FAKE-";
+	public static final String FEATURE_FLAG_KEY_1 = "FAKE-123";
 
-	public static final String FEATURE_FLAG_KEY_1 = FAKE_PREFIX + "123";
+	public static final String FEATURE_FLAG_KEY_2 = "FAKE-456";
 
-	public static final String FEATURE_FLAG_KEY_2 = FAKE_PREFIX + "456";
-
-	public static final String FEATURE_FLAG_KEY_SYSTEM = FAKE_PREFIX + "000";
+	public static final String FEATURE_FLAG_KEY_SYSTEM = "FAKE-000";
 
 	public FeatureFlagTestHelper() throws Exception {
 		Bundle bundle = FrameworkUtil.getBundle(FeatureFlagTestHelper.class);
