@@ -135,8 +135,8 @@ public class SCIMClientOAuth2ApplicationConfigurationFactory {
 				_oAuth2ApplicationLocalService.addOAuth2Application(
 					companyId, user.getUserId(), user.getScreenName(),
 					ListUtil.fromArray(GrantType.JWT_BEARER),
-					"client_secret_post", clientCredentialUser.getUserId(), clientId,
-					ClientProfile.HEADLESS_SERVER.id(),
+					"client_secret_post", clientCredentialUser.getUserId(),
+					clientId, ClientProfile.HEADLESS_SERVER.id(),
 					OAuth2SecureRandomGenerator.generateClientSecret(), null,
 					Collections.emptyList(), null, 0, null,
 					scimClientOAuth2ApplicationConfiguration.applicationName(),
