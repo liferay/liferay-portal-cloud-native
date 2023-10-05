@@ -92,7 +92,7 @@ public class FeatureFlagTestHelper {
 	}
 
 	public void setFeatureFlagValue(
-		long companyId, boolean enabled, String featureFlagKey) {
+		long companyId, String featureFlagKey, boolean enabled) {
 
 		ReflectionTestUtil.invoke(
 			_featureFlagsBagProviderObject, "setEnabled",

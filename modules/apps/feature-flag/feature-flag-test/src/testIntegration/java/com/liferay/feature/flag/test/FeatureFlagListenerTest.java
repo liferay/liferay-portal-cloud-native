@@ -90,8 +90,8 @@ public class FeatureFlagListenerTest {
 					_valueSystem));
 
 			_featureFlagTestHelper.setFeatureFlagValue(
-				CompanyConstants.SYSTEM, !_valueSystem,
-				FeatureFlagTestHelper.FEATURE_FLAG_KEY_SYSTEM);
+				CompanyConstants.SYSTEM,
+				FeatureFlagTestHelper.FEATURE_FLAG_KEY_SYSTEM, !_valueSystem);
 
 			testFeatureFlagListener.assertInvocations(
 				_valuesToString(
@@ -117,13 +117,13 @@ public class FeatureFlagListenerTest {
 					_value2));
 
 			_featureFlagTestHelper.setFeatureFlagValue(
-				_companyId, !_value1, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1);
+				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1, !_value1);
 
 			_featureFlagTestHelper.setFeatureFlagValue(
-				_companyId, !_value2, FeatureFlagTestHelper.FEATURE_FLAG_KEY_2);
+				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_2, !_value2);
 
 			_featureFlagTestHelper.setFeatureFlagValue(
-				_companyId, _value1, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1);
+				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1, _value1);
 
 			testFeatureFlagListener.assertInvocations(
 				_valuesToString(
@@ -171,11 +171,11 @@ public class FeatureFlagListenerTest {
 					_value1));
 
 			_featureFlagTestHelper.setFeatureFlagValue(
-				_companyId, !_value1, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1);
+				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1, !_value1);
 
 			_featureFlagTestHelper.setFeatureFlagValue(
-				_companyId, RandomTestUtil.randomBoolean(),
-				FeatureFlagTestHelper.FEATURE_FLAG_KEY_2);
+				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_2,
+				RandomTestUtil.randomBoolean());
 
 			testFeatureFlagListener.assertInvocations(
 				_valuesToString(
@@ -202,17 +202,17 @@ public class FeatureFlagListenerTest {
 					_valueSystem));
 
 			_featureFlagTestHelper.setFeatureFlagValue(
-				_companyId, !_value1, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1);
+				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1, !_value1);
 
 			_featureFlagTestHelper.setFeatureFlagValue(
-				_companyId, !_value2, FeatureFlagTestHelper.FEATURE_FLAG_KEY_2);
+				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_2, !_value2);
 
 			_featureFlagTestHelper.setFeatureFlagValue(
-				_companyId, _value1, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1);
+				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1, _value1);
 
 			_featureFlagTestHelper.setFeatureFlagValue(
-				CompanyConstants.SYSTEM, !_valueSystem,
-				FeatureFlagTestHelper.FEATURE_FLAG_KEY_SYSTEM);
+				CompanyConstants.SYSTEM,
+				FeatureFlagTestHelper.FEATURE_FLAG_KEY_SYSTEM, !_valueSystem);
 
 			testFeatureFlagListener.assertInvocations(
 				_valuesToString(
@@ -288,7 +288,7 @@ public class FeatureFlagListenerTest {
 		public void onValue(
 			long companyId, String featureFlagKey, boolean enabled) {
 
-			if (featureFlagKey.startsWith(FeatureFlagTestHelper.FAKE_PREFIX)) {
+			if (featureFlagKey.startsWith("FAKE-")) {
 				_strings.add(
 					_valuesToString(companyId, featureFlagKey, enabled));
 			}
