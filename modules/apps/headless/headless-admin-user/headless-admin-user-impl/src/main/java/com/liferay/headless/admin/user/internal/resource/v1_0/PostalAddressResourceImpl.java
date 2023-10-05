@@ -131,6 +131,7 @@ public class PostalAddressResourceImpl extends BasePostalAddressResourceImpl {
 		throws Exception {
 
 		Address address = _addressLocalService.getAddress(postalAddressId);
+
 		Country country = null;
 
 		if (postalAddress.getAddressCountry() != null) {
@@ -141,17 +142,16 @@ public class PostalAddressResourceImpl extends BasePostalAddressResourceImpl {
 
 		if (postalAddress.getAddressRegion() != null) {
 			if (country == null) {
-				throw new BadRequestException(
-					"To change the Region the Country must be defined");
+				throw new BadRequestException("Country is not specified");
 			}
 
 			address.setRegionId(_getRegionId(postalAddress, country));
 		}
 
 		if (postalAddress.getAddressType() != null) {
-			ListType type = _getType(postalAddress);
+			ListType listType = _getListType(postalAddress);
 
-			address.setListTypeId(type.getListTypeId());
+			address.setListTypeId(listType.getListTypeId());
 		}
 
 		if (postalAddress.getAddressLocality() != null) {
@@ -210,7 +210,7 @@ public class PostalAddressResourceImpl extends BasePostalAddressResourceImpl {
 
 		long regionId = _getRegionId(postalAddress, country);
 
-		ListType type = _getType(postalAddress);
+		ListType listType = _getListType(postalAddress);
 
 		Address address = _addressLocalService.addAddress(
 			null, contextUser.getUserId(), AccountEntry.class.getName(),
@@ -219,7 +219,7 @@ public class PostalAddressResourceImpl extends BasePostalAddressResourceImpl {
 			postalAddress.getStreetAddressLine2(),
 			postalAddress.getStreetAddressLine3(),
 			postalAddress.getAddressLocality(), postalAddress.getPostalCode(),
-			regionId, country.getCountryId(), type.getListTypeId(), false,
+			regionId, country.getCountryId(), listType.getListTypeId(), false,
 			postalAddress.getPrimary(), postalAddress.getPhoneNumber(),
 			ServiceContextFactory.getInstance(contextHttpServletRequest));
 
@@ -240,7 +240,7 @@ public class PostalAddressResourceImpl extends BasePostalAddressResourceImpl {
 
 		long regionId = _getRegionId(postalAddress, country);
 
-		ListType type = _getType(postalAddress);
+		ListType listType = _getListType(postalAddress);
 
 		address = _addressLocalService.updateAddress(
 			address.getAddressId(), postalAddress.getName(),
@@ -248,7 +248,7 @@ public class PostalAddressResourceImpl extends BasePostalAddressResourceImpl {
 			postalAddress.getStreetAddressLine2(),
 			postalAddress.getStreetAddressLine3(),
 			postalAddress.getAddressLocality(), postalAddress.getPostalCode(),
-			regionId, country.getCountryId(), type.getListTypeId(),
+			regionId, country.getCountryId(), listType.getListTypeId(),
 			address.isMailing(), postalAddress.getPrimary(),
 			postalAddress.getPhoneNumber());
 
@@ -325,16 +325,16 @@ public class PostalAddressResourceImpl extends BasePostalAddressResourceImpl {
 		return region.getRegionId();
 	}
 
-	private ListType _getType(PostalAddress postalAddress) {
-		ListType type = _listTypeLocalService.getListType(
+	private ListType _getListType(PostalAddress postalAddress) {
+		ListType listType = _listTypeLocalService.getListType(
 			postalAddress.getAddressType(),
 			"com.liferay.account.model.AccountEntry.address");
 
-		if (type == null) {
+		if (listType == null) {
 			throw new BadRequestException("Type not found");
 		}
 
-		return type;
+		return listType;
 	}
 
 	@Reference
