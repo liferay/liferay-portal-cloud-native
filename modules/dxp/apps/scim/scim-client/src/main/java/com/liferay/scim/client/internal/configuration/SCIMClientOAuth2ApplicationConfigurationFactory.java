@@ -97,7 +97,7 @@ public class SCIMClientOAuth2ApplicationConfigurationFactory {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"Removed OAuth2Application: " + _oAuth2Application.getName());
+				"Removed OAuth2 application: " + _oAuth2Application.getName());
 		}
 	}
 
@@ -145,7 +145,7 @@ public class SCIMClientOAuth2ApplicationConfigurationFactory {
 
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Created OAuth2Application: " +
+					"Created OAuth2 application: " +
 						oAuth2Application.getName());
 			}
 		}
