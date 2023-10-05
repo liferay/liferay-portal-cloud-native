@@ -80,11 +80,11 @@ export default function EditEndpointConfiguration({
 	};
 
 	const endpointFiltersInstruction = Liferay.Language.get(
-		'type-any-filter-using-odata-language'
+		'add-a-filter-using-odata'
 	);
 
 	const endpointSortInstruction = Liferay.Language.get(
-		'type-any-sort-using-odata-language'
+		'add-a-sort-using-odata'
 	);
 
 	return (
@@ -115,10 +115,10 @@ export default function EditEndpointConfiguration({
 						<span
 							data-tooltip-align="top"
 							title={`${Liferay.Language.get(
-								'there-is-a-limit-of-1000-characters-in-odata-language'
+								'odata-cannot-exceed-1000-characters'
 							)} ${sub(
 								Liferay.Language.get(
-									'remember-not-to-include-the-x'
+									'remember-not-to-include-x'
 								),
 								'?filter='
 							)}`}
@@ -173,10 +173,10 @@ export default function EditEndpointConfiguration({
 						<span
 							data-tooltip-align="top"
 							title={`${Liferay.Language.get(
-								'there-is-a-limit-of-1000-characters-in-odata-language'
+								'odata-cannot-exceed-1000-characters'
 							)} ${sub(
 								Liferay.Language.get(
-									'remember-not-to-include-the-x'
+									'remember-not-to-include-x'
 								),
 								'?sort='
 							)}`}
