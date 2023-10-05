@@ -990,15 +990,6 @@ public class GroupModelImpl extends BaseModelImpl<Group> implements GroupModel {
 			return;
 		}
 
-		if (!Objects.equals(
-				LocaleUtil.toLanguageId(defaultLocale),
-				getDefaultLanguageId()) &&
-			Validator.isNull(nameMap.get(defaultLocale)) &&
-			Validator.isNotNull(getName(getDefaultLanguageId()))) {
-
-			nameMap.put(defaultLocale, getName(getDefaultLanguageId()));
-		}
-
 		setName(
 			LocalizationUtil.updateLocalization(
 				nameMap, getName(), "Name",
