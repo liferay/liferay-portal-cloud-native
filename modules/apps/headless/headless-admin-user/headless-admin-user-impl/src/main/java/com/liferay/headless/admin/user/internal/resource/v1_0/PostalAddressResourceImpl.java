@@ -140,6 +140,10 @@ public class PostalAddressResourceImpl extends BasePostalAddressResourceImpl {
 			address.setCountryId(country.getCountryId());
 		}
 
+		if (postalAddress.getAddressLocality() != null) {
+			address.setCity(postalAddress.getAddressLocality());
+		}
+
 		if (postalAddress.getAddressRegion() != null) {
 			if (country == null) {
 				throw new BadRequestException("Country is not specified");
@@ -152,10 +156,6 @@ public class PostalAddressResourceImpl extends BasePostalAddressResourceImpl {
 			ListType listType = _getListType(postalAddress);
 
 			address.setListTypeId(listType.getListTypeId());
-		}
-
-		if (postalAddress.getAddressLocality() != null) {
-			address.setCity(postalAddress.getAddressLocality());
 		}
 
 		if (postalAddress.getName() != null) {
