@@ -2744,8 +2744,6 @@ paths:
                                 type: array
             tags: ["PostalAddress"]
         post:
-            description:
-                Adds a postal address for the account. County, Region and type must exist.
             operationId: postAccountPostalAddress
             parameters:
                 - in: path
@@ -4124,9 +4122,6 @@ paths:
                                 $ref: "#/components/schemas/PostalAddress"
             tags: ["PostalAddress"]
         patch:
-            description:
-                Updates the postal address of the Account with information sent in the request body. Only the provided
-                fields are updated.
             operationId: patchPostalAddress
             parameters:
                 - in: path
@@ -4154,10 +4149,6 @@ paths:
                                 $ref: "#/components/schemas/PostalAddress"
             tags: ["PostalAddress"]
         put:
-            # @review
-            description:
-                Replaces the Postal Address with information sent in the request body. Any missing fields are deleted
-                unless they are required.
             operationId: putPostalAddress
             parameters:
                 - in: path
