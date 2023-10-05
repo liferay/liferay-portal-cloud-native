@@ -218,7 +218,7 @@ public class PartnerCommandLineRunner implements CommandLineRunner {
 		).exchangeStrategies(
 			ExchangeStrategies.builder(
 			).codecs(
-				configurer -> configurer.defaultCodecs(
+				clientCodecConfigurer -> clientCodecConfigurer.defaultCodecs(
 				).maxInMemorySize(
 					5 * 1024 * 1024
 				)
