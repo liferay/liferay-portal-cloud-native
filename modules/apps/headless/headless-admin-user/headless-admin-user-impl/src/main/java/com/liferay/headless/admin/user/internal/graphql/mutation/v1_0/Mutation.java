@@ -1262,9 +1262,7 @@ public class Mutation {
 					accountId, callbackURL, contentType, fieldNames));
 	}
 
-	@GraphQLField(
-		description = "Adds a postal address for the account. County, Region and type must exist."
-	)
+	@GraphQLField
 	public PostalAddress createAccountPostalAddress(
 			@GraphQLName("accountId") Long accountId,
 			@GraphQLName("postalAddress") PostalAddress postalAddress)
@@ -1338,9 +1336,7 @@ public class Mutation {
 					callbackURL, object));
 	}
 
-	@GraphQLField(
-		description = "Updates the postal address of the Account with information sent in the request body. Only the provided fields are updated."
-	)
+	@GraphQLField
 	public PostalAddress patchPostalAddress(
 			@GraphQLName("postalAddressId") Long postalAddressId,
 			@GraphQLName("postalAddress") PostalAddress postalAddress)
@@ -1353,9 +1349,7 @@ public class Mutation {
 				postalAddressId, postalAddress));
 	}
 
-	@GraphQLField(
-		description = "Replaces the Postal Address with information sent in the request body. Any missing fields are deleted unless they are required."
-	)
+	@GraphQLField
 	public PostalAddress updatePostalAddress(
 			@GraphQLName("postalAddressId") Long postalAddressId,
 			@GraphQLName("postalAddress") PostalAddress postalAddress)
