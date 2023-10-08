@@ -146,8 +146,9 @@ public class UserReindexerPerformanceOfLargeUserGroupInManySitesTest {
 	}
 
 	@Test
-	public void testReindexUserNumberAboveParameterLimitation()
-		throws Exception {
+	public void testReindexGreaterThanDatabaseMaxParameters() throws Exception {
+
+		// See portal property "database.max.parameters[sqlserver]""
 
 		reindex(TestPropsValues.getCompanyId(), new long[3000]);
 	}
