@@ -282,7 +282,6 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 				layoutPageTemplateCollection.getType());
 		}
 
-		layoutPageTemplateCollection.setModifiedDate(new Date());
 		layoutPageTemplateCollection.setLayoutPageTemplateCollectionKey(
 			_generateLayoutPageTemplateCollectionKey(
 				layoutPageTemplateCollection.getGroupId(), name,
