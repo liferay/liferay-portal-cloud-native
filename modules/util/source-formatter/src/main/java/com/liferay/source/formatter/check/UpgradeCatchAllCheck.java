@@ -90,37 +90,39 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 	}
 
 	private String _addOrReplaceParameters(
-		String newMethodCall, List<String> parameterList,
-		List<String> parametersOrder) {
+		String newMethodCall, List<String> parameterNames,
+		List<String> newParameterNames) {
 
-		String prefix = "param#";
-
-		List<String> newParameterList = new ArrayList<>();
-
-		StringBundler sb = new StringBundler(2 + parametersOrder.size());
+		StringBundler sb = new StringBundler(2 + newParameterNames.size());
 
 		sb.append(newMethodCall);
 
-		for (String parameterOrder : parametersOrder) {
-			if (parameterOrder.contains(prefix)) {
-				String parameterIndex = parameterOrder.substring(
-					parameterOrder.indexOf(CharPool.POUND) + 1,
-					parameterOrder.lastIndexOf(CharPool.POUND));
+		List<String> interpolatedNewParameterNames = new ArrayList<>();
 
-				newParameterList.add(
+		for (String newParameterName : newParameterNames) {
+			String prefix = "param#";
+
+			if (newParameterName.contains(prefix)) {
+				int index = GetterUtil.getInteger(
+					newParameterName.substring(
+						newParameterName.indexOf(CharPool.POUND) + 1,
+						newParameterName.lastIndexOf(CharPool.POUND)));
+
+				interpolatedNewParameterNames.add(
 					StringUtil.replace(
-						parameterOrder,
-						prefix + parameterIndex + CharPool.POUND,
-						parameterList.get(
-							GetterUtil.getInteger(parameterIndex))));
+						newParameterName,
+						prefix + index + CharPool.POUND,
+						parameterNames.get(index)));
 			}
 			else {
-				newParameterList.add(parameterOrder);
+				interpolatedNewParameterNames.add(newParameterName);
 			}
 		}
 
 		sb.append(
-			StringUtil.merge(newParameterList, StringPool.COMMA_AND_SPACE));
+			StringUtil.merge(
+				interpolatedNewParameterNames, StringPool.COMMA_AND_SPACE));
+
 		sb.append(StringPool.CLOSE_PARENTHESIS);
 
 		return sb.toString();
@@ -251,20 +253,26 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 		String methodCall = JavaSourceUtil.getMethodCall(
 			javaMethodContent, matcher.start());
 
-		List<String> parameterList = JavaSourceUtil.getParameterList(
+		// e.g. classNames, fileName, from, javaMethodContent, jsonObject,
+		// matcher newContent, to
+
+		List<String> parameterNames = JavaSourceUtil.getParameterList(
 			methodCall);
 
-		List<String> parametersTypes = JavaSourceUtil.getParameterList(from);
+		// e.g. String[], String, String, String, JSONObject, Matcher, String,
+		// String
 
-		if (parameterList.size() != parametersTypes.size()) {
+		List<String> parameterTypes = JavaSourceUtil.getParameterList(from);
+
+		if (parameterNames.size() != parameterTypes.size()) {
 			return newContent;
 		}
 
 		if (fileName.endsWith(".java") &&
 			!hasParameterTypes(
 				javaMethodContent, javaMethodContent,
-				ArrayUtil.toStringArray(parameterList),
-				ArrayUtil.toStringArray(parametersTypes))) {
+				ArrayUtil.toStringArray(parameterNames),
+				ArrayUtil.toStringArray(parameterTypes))) {
 
 			StringBundler sb = new StringBundler(6);
 
@@ -295,8 +303,6 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 			return newContent;
 		}
 
-		List<String> parametersOrder = JavaSourceUtil.getParameterList(to);
-
 		String newMethodCall = to.substring(
 			0, to.indexOf(CharPool.OPEN_PARENTHESIS) + 1);
 
@@ -306,7 +312,7 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 		}
 
 		newMethodCall = _addOrReplaceParameters(
-			newMethodCall, parameterList, parametersOrder);
+			newMethodCall, parameterNames, JavaSourceUtil.getParameterList(to));
 
 		return StringUtil.replaceFirst(newContent, methodCall, newMethodCall);
 	}
