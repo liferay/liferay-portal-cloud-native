@@ -17,8 +17,8 @@
 	},
 	{
 		"classNames": [
-			"AssetVocabularyService",
-			"AssetVocabularyLocalService"
+			"AssetVocabularyLocalService",
+			"AssetVocabularyService"
 		],
 		"from": "searchVocabularies(long, long, String, int, int)",
 		"issueKey": "LPS-189866",
