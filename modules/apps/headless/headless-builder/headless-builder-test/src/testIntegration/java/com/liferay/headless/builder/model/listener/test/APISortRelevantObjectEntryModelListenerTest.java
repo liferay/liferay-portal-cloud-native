@@ -69,26 +69,6 @@ public class APISortRelevantObjectEntryModelListenerTest extends BaseTestCase {
 				"headless-builder/sorts", Http.Method.POST
 			).toString(),
 			JSONCompareMode.LENIENT);
-
-		JSONAssert.assertEquals(
-			JSONUtil.put(
-				"status", "BAD_REQUEST"
-			).put(
-				"title", "An API sort must be related to an API endpoint."
-			).toString(),
-			HTTPTestUtil.invokeToJSONObject(
-				JSONUtil.put(
-					"objectFieldERC", RandomTestUtil.randomString()
-				).put(
-					"oDataSort", "test:desc"
-				).put(
-					"r_apiEndpointToAPISorts_c_apiEndpointId",
-					RandomTestUtil.randomLong()
-				).toString(),
-				"headless-builder/sorts", Http.Method.POST
-			).toString(),
-			JSONCompareMode.LENIENT);
-
 		JSONAssert.assertEquals(
 			JSONUtil.put(
 				"status", "BAD_REQUEST"
@@ -103,6 +83,24 @@ public class APISortRelevantObjectEntryModelListenerTest extends BaseTestCase {
 				).put(
 					"r_apiEndpointToAPISorts_c_apiEndpointERC",
 					_API_ENDPOINT_ERC
+				).toString(),
+				"headless-builder/sorts", Http.Method.POST
+			).toString(),
+			JSONCompareMode.LENIENT);
+		JSONAssert.assertEquals(
+			JSONUtil.put(
+				"status", "BAD_REQUEST"
+			).put(
+				"title", "An API sort must be related to an API endpoint."
+			).toString(),
+			HTTPTestUtil.invokeToJSONObject(
+				JSONUtil.put(
+					"objectFieldERC", RandomTestUtil.randomString()
+				).put(
+					"oDataSort", "test:desc"
+				).put(
+					"r_apiEndpointToAPISorts_c_apiEndpointId",
+					RandomTestUtil.randomLong()
 				).toString(),
 				"headless-builder/sorts", Http.Method.POST
 			).toString(),
