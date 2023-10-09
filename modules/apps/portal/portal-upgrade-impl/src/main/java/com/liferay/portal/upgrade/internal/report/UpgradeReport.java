@@ -455,8 +455,8 @@ public class UpgradeReport {
 	private File _getReportFile() {
 		File reportsDir = null;
 
-		if (!Validator.isBlank(PropsValues.UPGRADE_REPORT_DIRECTORY)) {
-			reportsDir = new File(PropsValues.UPGRADE_REPORT_DIRECTORY);
+		if (!Validator.isBlank(PropsValues.UPGRADE_REPORT_DIR)) {
+			reportsDir = new File(PropsValues.UPGRADE_REPORT_DIR);
 
 			if (!reportsDir.exists() && !reportsDir.mkdir()) {
 				reportsDir = null;
@@ -464,7 +464,7 @@ public class UpgradeReport {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Failed to generate the upgrade report at " +
-							PropsValues.UPGRADE_REPORT_DIRECTORY);
+							PropsValues.UPGRADE_REPORT_DIR);
 				}
 			}
 		}

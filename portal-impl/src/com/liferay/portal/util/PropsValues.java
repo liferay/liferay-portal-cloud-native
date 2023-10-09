@@ -2382,8 +2382,8 @@ public class PropsValues {
 		GetterUtil.getBoolean(
 			PropsUtil.get(PropsKeys.UPGRADE_LOG_CONTEXT_ENABLED));
 
-	public static final String UPGRADE_REPORT_DIRECTORY = GetterUtil.getString(
-		PropsUtil.get(PropsKeys.UPGRADE_REPORT_DIRECTORY));
+	public static final String UPGRADE_REPORT_DIR = GetterUtil.getString(
+		PropsUtil.get(PropsKeys.UPGRADE_REPORT_DIR));
 
 	public static final long UPGRADE_REPORT_DL_STORAGE_SIZE_TIMEOUT =
 		GetterUtil.getLong(
