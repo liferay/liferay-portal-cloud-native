@@ -646,7 +646,7 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 	}
 
 	private String _getReportContent() throws Exception {
-		File reportsDir;
+		File reportsDir = null;
 
 		if (Validator.isBlank(_upgradeReportDir)) {
 			reportsDir = new File(getFilePath(), "reports");
