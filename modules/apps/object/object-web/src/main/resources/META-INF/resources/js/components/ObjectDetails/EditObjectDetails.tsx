@@ -147,7 +147,7 @@ export default function EditObjectDetails({
 				if (!publishResponse.ok) {
 					openToast({
 						message: Liferay.Language.get(
-							'the-object-definition-has-already-been-published'
+							'the-object-definition-is-already-published'
 						),
 						type: 'danger',
 					});
