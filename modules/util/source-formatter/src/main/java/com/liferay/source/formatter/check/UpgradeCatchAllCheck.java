@@ -83,7 +83,7 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 				throw new UpgradeCatchAllException(
 					"Unable to process pattern " +
 						jsonObject.getString("from") +
-							" or there is no test associated to it");
+							" or there is no test associated with it");
 			}
 		}
 
