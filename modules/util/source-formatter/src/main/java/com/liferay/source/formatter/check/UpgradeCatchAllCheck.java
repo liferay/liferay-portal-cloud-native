@@ -61,8 +61,6 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws Exception {
 
-		String newContent = content;
-
 		JSONArray jsonArray = _getReplacementsJSONArray("replacements.json");
 
 		for (int i = 0; i < jsonArray.length(); i++) {
@@ -72,18 +70,16 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 				continue;
 			}
 
-			String actualContent = newContent;
+			String oldContent = content;
 
 			if (fileName.endsWith(".java")) {
-				newContent = _formatJava(newContent, fileName, jsonObject);
+				content = _formatJava(content, fileName, jsonObject);
 			}
 			else {
-				newContent = _formatGeneral(newContent, fileName, jsonObject);
+				content = _formatGeneral(content, fileName, jsonObject);
 			}
 
-			if (_testMode && _firstExecution &&
-				actualContent.equals(newContent)) {
-
+			if (_testMode && _firstExecution && oldContent.equals(content)) {
 				throw new UpgradeCatchAllException(
 					"Unable to process pattern " +
 						jsonObject.getString("from") +
@@ -93,7 +89,7 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 
 		_firstExecution = false;
 
-		return newContent;
+		return content;
 	}
 
 	private static String _getMessage(JSONObject jsonObject) {
