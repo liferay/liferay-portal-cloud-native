@@ -122,8 +122,8 @@ public class LayoutUtilityPageEntryStagedModelDataHandler
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							StringBundler.concat(
-								"Unable to import LayoutUtilityPageEntry with ",
-								"External Reference Code: ",
+								"Unable to import layout utility page entry ",
+								"with external reference code ",
 								importedLayoutUtilityPageEntry.
 									getExternalReferenceCode()));
 					}
