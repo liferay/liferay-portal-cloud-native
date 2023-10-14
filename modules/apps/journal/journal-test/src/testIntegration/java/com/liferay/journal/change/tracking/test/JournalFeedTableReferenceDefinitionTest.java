@@ -51,13 +51,12 @@ public class JournalFeedTableReferenceDefinitionTest
 		_ddmStructure = DDMStructureTestUtil.addStructure(
 			group.getGroupId(), JournalArticle.class.getName());
 
-		_ddmRendererTemplate = DDMTemplateTestUtil.addTemplate(
-			group.getGroupId(), _ddmStructure.getStructureId(),
-			PortalUtil.getClassNameId(JournalArticle.class));
-
 		_ddmTemplate = DDMTemplateTestUtil.addTemplate(
 			group.getGroupId(), _ddmStructure.getStructureId(),
 			_portal.getClassNameId(JournalArticle.class));
+		_rendererDDMTemplate = DDMTemplateTestUtil.addTemplate(
+			group.getGroupId(), _ddmStructure.getStructureId(),
+			PortalUtil.getClassNameId(JournalArticle.class));
 
 		_layout = LayoutTestUtil.addTypeContentLayout(group);
 	}
@@ -68,10 +67,10 @@ public class JournalFeedTableReferenceDefinitionTest
 			group.getGroupId(), _layout.getPlid(),
 			RandomTestUtil.randomString(), _ddmStructure.getStructureId(),
 			_ddmTemplate.getTemplateKey(),
-			_ddmRendererTemplate.getTemplateKey());
+			_rendererDDMTemplate.getTemplateKey());
 	}
 
-	private DDMTemplate _ddmRendererTemplate;
+	private DDMTemplate _rendererDDMTemplate;
 	private DDMStructure _ddmStructure;
 	private DDMTemplate _ddmTemplate;
 	private Layout _layout;
