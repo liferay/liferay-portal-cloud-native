@@ -111,6 +111,60 @@ public class BuildArchiverUtil {
 		return true;
 	}
 
+	private static Boolean _call(
+		JenkinsMaster jenkinsMaster, String groovyScript, File outputDir) {
+
+		try {
+			String response = JenkinsResultsParserUtil.executeJenkinsScript(
+				jenkinsMaster.getName(), groovyScript, true);
+
+			if (response == null) {
+				return false;
+			}
+
+			response = response.trim();
+
+			if (response.isEmpty()) {
+				return false;
+			}
+
+			File file = new File(
+				outputDir, jenkinsMaster.getName() + "_builds.json");
+
+			if (file.exists()) {
+				String fileContent = JenkinsResultsParserUtil.read(file);
+
+				if ((fileContent != null) &&
+					(fileContent.equals(response) ||
+					 (fileContent.length() > response.length()))) {
+
+					System.out.println(
+						"Complete data for " + file + " already exists");
+
+					return false;
+				}
+			}
+
+			if (isValidJSON(response)) {
+				System.out.println(
+					"Writing CI data for " + jenkinsMaster.getName() + " to: " +
+						file);
+
+				JenkinsResultsParserUtil.write(file, response);
+
+				return true;
+			}
+		}
+		catch (Exception exception) {
+			System.out.println(
+				"Unable to get data for " + jenkinsMaster.getName());
+
+			exception.printStackTrace();
+		}
+
+		return false;
+	}
+
 	private static void _recordGroovyScriptResponses(
 		List<JenkinsMaster> jenkinsMasters, final String groovyScript,
 		final File outputDir) {
@@ -122,60 +176,7 @@ public class BuildArchiverUtil {
 
 				@Override
 				public Boolean call() {
-					try {
-						String response =
-							JenkinsResultsParserUtil.executeJenkinsScript(
-								jenkinsMaster.getName(), groovyScript, true);
-
-						if (response == null) {
-							return false;
-						}
-
-						response = response.trim();
-
-						if (response.isEmpty()) {
-							return false;
-						}
-
-						File file = new File(
-							outputDir,
-							jenkinsMaster.getName() + "_builds.json");
-
-						if (file.exists()) {
-							String fileContent = JenkinsResultsParserUtil.read(
-								file);
-
-							if ((fileContent != null) &&
-								(fileContent.equals(response) ||
-								 (fileContent.length() > response.length()))) {
-
-								System.out.println(
-									"Complete data for " + file +
-										" already exists");
-
-								return false;
-							}
-						}
-
-						if (isValidJSON(response)) {
-							System.out.println(
-								"Writing CI data for " +
-									jenkinsMaster.getName() + " to: " + file);
-
-							JenkinsResultsParserUtil.write(file, response);
-
-							return true;
-						}
-					}
-					catch (Exception exception) {
-						System.out.println(
-							"Unable to get data for " +
-								jenkinsMaster.getName());
-
-						exception.printStackTrace();
-					}
-
-					return false;
+					return _call(jenkinsMaster, groovyScript, outputDir);
 				}
 
 			};
