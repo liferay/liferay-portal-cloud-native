@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.model.change.tracking.CTModel;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
@@ -56,7 +55,7 @@ public class JournalFeedTableReferenceDefinitionTest
 			_portal.getClassNameId(JournalArticle.class));
 		_rendererDDMTemplate = DDMTemplateTestUtil.addTemplate(
 			group.getGroupId(), _ddmStructure.getStructureId(),
-			PortalUtil.getClassNameId(JournalArticle.class));
+			_portal.getClassNameId(JournalArticle.class));
 
 		_layout = LayoutTestUtil.addTypeContentLayout(group);
 	}
