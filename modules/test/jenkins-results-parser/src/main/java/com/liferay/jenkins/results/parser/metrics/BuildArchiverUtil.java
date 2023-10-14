@@ -31,7 +31,7 @@ import org.json.JSONObject;
 public class BuildArchiverUtil {
 
 	public static void archive(
-		String startDate, String endDate, String outputDirPath) {
+		String startDateString, String endDateString, String outputDirPath) {
 
 		try {
 			String groovyScript = JenkinsResultsParserUtil.readInputStream(
@@ -40,11 +40,11 @@ public class BuildArchiverUtil {
 
 			groovyScript = groovyScript.replaceFirst(
 				"new Date\\(\\)",
-				"Date.parse(\"yyyyMMdd hh:mm:ss\", \"" + endDate +
+				"Date.parse(\"yyyyMMdd hh:mm:ss\", \"" + endDateString +
 					" 00:00:00\")");
 			groovyScript = groovyScript.replaceFirst(
 				"startDate\\.format\\(\"yyyyMMdd\"\\) \\+ \"",
-				"\"" + startDate);
+				"\"" + startDateString);
 
 			System.out.println(groovyScript);
 
@@ -59,7 +59,7 @@ public class BuildArchiverUtil {
 		}
 	}
 
-	public static void archiveOneDay(String startDate) {
+	public static void archiveOneDay(String startDateString) {
 		String outputDirPath = null;
 
 		try {
@@ -75,20 +75,24 @@ public class BuildArchiverUtil {
 			outputDirPath = _DEFAULT_OUTPUT_DIR_PATH;
 		}
 
-		archiveOneDay(startDate, outputDirPath);
+		archiveOneDay(startDateString, outputDirPath);
 	}
 
-	public static void archiveOneDay(String startDate, String outputDirPath) {
+	public static void archiveOneDay(
+		String startDateString, String outputDirPath) {
+
 		LocalDateTime localDateTime = LocalDateTime.parse(
-			startDate + " 00:00:00",
+			startDateString + " 00:00:00",
 			DateTimeFormatter.ofPattern("yyyyMMdd HH:mm:ss"));
 
 		localDateTime = localDateTime.plusDays(1);
 
-		String endDate = localDateTime.format(
+		String endDateString = localDateTime.format(
 			DateTimeFormatter.ofPattern("yyyyMMdd"));
 
-		archive(startDate, endDate, outputDirPath + "/" + startDate + "/");
+		archive(
+			startDateString, endDateString,
+			outputDirPath + "/" + startDateString + "/");
 	}
 
 	public static boolean isValidJSON(String json) {
