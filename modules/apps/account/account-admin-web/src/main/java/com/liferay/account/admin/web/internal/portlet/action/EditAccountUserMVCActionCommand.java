@@ -81,16 +81,14 @@ public class EditAccountUserMVCActionCommand
 
 		Contact accountUserContact = accountUser.getContact();
 
-		long companyId = _portal.getCompanyId(actionRequest);
-
 		accountUserContact.setPrefixListTypeId(
 			_getListTypeId(
-				companyId, actionRequest, "prefixListTypeValue",
-				ListTypeConstants.CONTACT_PREFIX));
+				accountUser.getCompanyId(), actionRequest,
+				"prefixListTypeValue", ListTypeConstants.CONTACT_PREFIX));
 		accountUserContact.setSuffixListTypeId(
 			_getListTypeId(
-				companyId, actionRequest, "suffixListTypeValue",
-				ListTypeConstants.CONTACT_SUFFIX));
+				accountUser.getCompanyId(), actionRequest,
+				"suffixListTypeValue", ListTypeConstants.CONTACT_SUFFIX));
 
 		_contactLocalService.updateContact(accountUserContact);
 	}
