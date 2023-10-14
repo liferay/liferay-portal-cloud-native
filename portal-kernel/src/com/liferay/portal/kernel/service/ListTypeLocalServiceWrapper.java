@@ -271,6 +271,11 @@ public class ListTypeLocalServiceWrapper
 		return _listTypeLocalService.getListType(companyId, name, type);
 	}
 
+	@Override
+	public long getListTypeId(long companyId, String name, String type) {
+		return _listTypeLocalService.getListTypeId(companyId, name, type);
+	}
+
 	/**
 	 * Returns a range of all the list types.
 	 *

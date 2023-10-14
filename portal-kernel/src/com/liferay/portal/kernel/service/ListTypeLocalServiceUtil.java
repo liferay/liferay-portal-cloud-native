@@ -240,6 +240,10 @@ public class ListTypeLocalServiceUtil {
 		return getService().getListType(companyId, name, type);
 	}
 
+	public static long getListTypeId(long companyId, String name, String type) {
+		return getService().getListTypeId(companyId, name, type);
+	}
+
 	/**
 	 * Returns a range of all the list types.
 	 *

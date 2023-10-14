@@ -211,6 +211,9 @@ public interface ListTypeLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ListType getListType(long companyId, String name, String type);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getListTypeId(long companyId, String name, String type);
+
 	/**
 	 * Returns a range of all the list types.
 	 *

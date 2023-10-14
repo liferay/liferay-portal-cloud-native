@@ -38,6 +38,13 @@ public class ListTypeServiceWrapper
 	}
 
 	@Override
+	public long getListTypeId(
+		long companyId, java.lang.String name, java.lang.String type) {
+
+		return _listTypeService.getListTypeId(companyId, name, type);
+	}
+
+	@Override
 	public java.util.List<com.liferay.portal.kernel.model.ListType>
 		getListTypes(long companyId, java.lang.String type) {
 

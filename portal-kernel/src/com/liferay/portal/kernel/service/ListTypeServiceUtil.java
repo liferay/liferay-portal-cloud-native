@@ -39,6 +39,10 @@ public class ListTypeServiceUtil {
 		return getService().getListType(companyId, name, type);
 	}
 
+	public static long getListTypeId(long companyId, String name, String type) {
+		return getService().getListTypeId(companyId, name, type);
+	}
+
 	public static List<ListType> getListTypes(long companyId, String type) {
 		return getService().getListTypes(companyId, type);
 	}
