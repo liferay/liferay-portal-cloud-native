@@ -2052,10 +2052,12 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		RandomTestUtil.randomString();
 
 	private static final String _API_APPLICATION_PATH_1 =
-		StringPool.SLASH + RandomTestUtil.randomString();
+		StringPool.SLASH +
+			StringUtil.toLowerCase(RandomTestUtil.randomString());
 
 	private static final String _API_APPLICATION_PATH_2 =
-		StringPool.SLASH + RandomTestUtil.randomString();
+		StringPool.SLASH +
+			StringUtil.toLowerCase(RandomTestUtil.randomString());
 
 	private static final String _API_ENDPOINT_ERC_1 =
 		RandomTestUtil.randomString();
