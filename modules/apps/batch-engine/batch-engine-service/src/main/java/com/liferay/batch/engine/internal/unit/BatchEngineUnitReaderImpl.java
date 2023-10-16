@@ -138,10 +138,10 @@ public class BatchEngineUnitReaderImpl implements BatchEngineUnitReader {
 
 		List<URL> entryURLs = _loadEntryURLs(bundle);
 
-		boolean needSave = false;
+		boolean save = false;
 
 		if (entryURLs == null) {
-			needSave = true;
+			save = true;
 
 			entryURLs = Collections.list(
 				bundle.findEntries(batchPath, "*", true));
@@ -178,7 +178,7 @@ public class BatchEngineUnitReaderImpl implements BatchEngineUnitReader {
 				batchEngineUnits, featureFlagURLs, urls);
 		}
 
-		if (needSave) {
+		if (save) {
 			_saveEntryURLs(bundle, featureFlagURLs);
 		}
 
