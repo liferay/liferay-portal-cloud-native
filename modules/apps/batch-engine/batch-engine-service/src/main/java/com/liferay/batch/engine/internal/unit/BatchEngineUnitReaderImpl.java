@@ -215,32 +215,33 @@ public class BatchEngineUnitReaderImpl implements BatchEngineUnitReader {
 	private List<URL> _loadEntryURLs(Bundle bundle) {
 		File file = bundle.getDataFile("entryURLs.data");
 
-		if (file.exists()) {
-			try {
-				Deserializer deserializer = new Deserializer(
-					ByteBuffer.wrap(FileUtil.getBytes(file)));
+		if (!file.exists()) {
+			return null;
+		}
 
-				if (deserializer.readLong() == bundle.getLastModified()) {
-					int size = deserializer.readInt();
+		try {
+			Deserializer deserializer = new Deserializer(
+				ByteBuffer.wrap(FileUtil.getBytes(file)));
 
-					List<URL> urls = new ArrayList<>();
+			if (deserializer.readLong() == bundle.getLastModified()) {
+				int size = deserializer.readInt();
 
-					for (int i = 0; i < size; i++) {
-						String featureFlagKey = deserializer.readString();
-						String path = deserializer.readString();
+				List<URL> urls = new ArrayList<>();
 
-						if (!_isFeatureFlagDisabled(featureFlagKey)) {
-							urls.add(bundle.getEntry(path));
-						}
+				for (int i = 0; i < size; i++) {
+					String featureFlagKey = deserializer.readString();
+					String path = deserializer.readString();
+
+					if (!_isFeatureFlagDisabled(featureFlagKey)) {
+						urls.add(bundle.getEntry(path));
 					}
-
-					return urls;
 				}
+
+				return urls;
 			}
-			catch (IOException ioException) {
-				_log.error(
-					"Unable to read batch engine entry urls", ioException);
-			}
+		}
+		catch (IOException ioException) {
+			_log.error("Unable to read batch engine entry urls", ioException);
 		}
 
 		return null;
