@@ -135,6 +135,7 @@ public class BatchEngineUnitReaderImpl implements BatchEngineUnitReader {
 		Map<String, List<URL>> classicBundleBatchEngineUnitURLs =
 			new HashMap<>();
 		List<BatchEngineUnit> batchEngineUnits = new ArrayList<>();
+		List<Map.Entry<String, URL>> featureFlagURLs = new ArrayList<>();
 
 		List<URL> entryURLs = _loadEntryURLs(bundle);
 
@@ -146,8 +147,6 @@ public class BatchEngineUnitReaderImpl implements BatchEngineUnitReader {
 			entryURLs = Collections.list(
 				bundle.findEntries(batchPath, "*", true));
 		}
-
-		List<Map.Entry<String, URL>> featureFlagURLs = new ArrayList<>();
 
 		for (URL url : entryURLs) {
 			if (StringUtil.endsWith(url.getPath(), StringPool.SLASH)) {
