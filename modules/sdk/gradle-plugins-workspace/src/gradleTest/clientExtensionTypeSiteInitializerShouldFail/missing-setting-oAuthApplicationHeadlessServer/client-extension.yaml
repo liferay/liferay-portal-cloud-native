@@ -7,7 +7,7 @@ oauth-cx:
     type: oAuthApplicationHeadlessServer
 site-initializer-cx:
     name: site initializer
-    # oAuthApplicationHeadlessServer: oauth-cx
+    #oAuthApplicationHeadlessServer: oauth-cx
     siteExternalReferenceCode: externalReferenceCode
     siteName: siteName
     type: siteInitializer

@@ -8,6 +8,6 @@ oauth-cx:
 site-initializer-cx:
     name: site initializer
     oAuthApplicationHeadlessServer: oauth-cx
-    # siteExternalReferenceCode: externalReferenceCode
+    #siteExternalReferenceCode: externalReferenceCode
     siteName: siteName
     type: siteInitializer
