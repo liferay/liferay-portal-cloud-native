@@ -49,17 +49,17 @@ public class LiferayFileItemTest {
 
 	@BeforeClass
 	public static void setUpClass() throws IOException {
-		Mockito.when(
-			FrameworkUtil.getBundle(Mockito.any())
-		).thenReturn(
-			_bundleContext.getBundle()
-		);
-
 		FastDateFormatFactoryUtil fastDateFormatFactoryUtil =
 			new FastDateFormatFactoryUtil();
 
 		fastDateFormatFactoryUtil.setFastDateFormatFactory(
 			new FastDateFormatFactoryImpl());
+
+		Mockito.when(
+			FrameworkUtil.getBundle(Mockito.any())
+		).thenReturn(
+			_bundleContext.getBundle()
+		);
 
 		_liferayFileItemFactory = new LiferayFileItemFactory(
 			FileUtil.createTempFolder(), 0, "UTF-8");
