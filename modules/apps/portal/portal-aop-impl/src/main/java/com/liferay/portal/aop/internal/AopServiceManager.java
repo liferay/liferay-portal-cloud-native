@@ -218,7 +218,7 @@ public class AopServiceManager {
 
 		@Override
 		public String getName() {
-			return "Aop Service Registrar System Checker";
+			return "AOP Service Registrar System Checker";
 		}
 
 		@Override
