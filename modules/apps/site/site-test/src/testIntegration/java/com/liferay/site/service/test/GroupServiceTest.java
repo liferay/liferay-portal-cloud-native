@@ -352,14 +352,13 @@ public class GroupServiceTest {
 		Assert.assertEquals(
 			0,
 			_resourcePermissionLocalService.getResourcePermissionsCount(
-				group.getCompanyId(), Group.class.getName(),
+				group.getCompanyId(), DLConstants.RESOURCE_NAME,
 				ResourceConstants.SCOPE_INDIVIDUAL,
 				String.valueOf(group.getGroupId())));
-
 		Assert.assertEquals(
 			0,
 			_resourcePermissionLocalService.getResourcePermissionsCount(
-				group.getCompanyId(), DLConstants.RESOURCE_NAME,
+				group.getCompanyId(), Group.class.getName(),
 				ResourceConstants.SCOPE_INDIVIDUAL,
 				String.valueOf(group.getGroupId())));
 	}
