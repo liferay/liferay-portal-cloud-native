@@ -142,7 +142,7 @@ public class EndpointHelper {
 		List<String> relationshipsNames) {
 
 		if (relationshipsNames.isEmpty()) {
-			return objectEntry.getValue(property.getSourceFieldName());
+			return objectEntry.getPropertyValue(property.getSourceFieldName());
 		}
 
 		List<Object> values = new ArrayList<>();
