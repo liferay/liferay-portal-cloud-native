@@ -218,10 +218,10 @@ public class CheckIndividualSegmentsSchedulerJobConfiguration
 										sb.append("Unable to cache ");
 										sb.append("segments entry IDs ");
 										sb.append("for user ID ");
+										sb.append(userId);
 
 										_log.error(
-											sb.toString() + userId,
-											portalException);
+											sb.toString(), portalException);
 									}
 								}
 							}
