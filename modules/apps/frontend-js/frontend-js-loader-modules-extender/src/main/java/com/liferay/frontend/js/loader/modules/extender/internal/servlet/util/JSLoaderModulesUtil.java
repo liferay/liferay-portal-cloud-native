@@ -15,23 +15,23 @@ import java.util.UUID;
  */
 public class JSLoaderModulesUtil {
 
-	public static boolean etagEquals(String header) {
-		return _etag.equals(header);
+	public static boolean eTagEquals(String header) {
+		return _eTag.equals(header);
 	}
 
-	public static String getEtag() {
-		return _etag;
+	public static String getETag() {
+		return _eTag;
 	}
 
-	public static void updateEtag() {
-		_etag = _newEtag();
+	public static void updateETag() {
+		_eTag = _newETag();
 	}
 
-	private static String _newEtag() {
+	private static String _newETag() {
 		return StringBundler.concat(
 			"W/\"", UUID.randomUUID(), StringPool.QUOTE);
 	}
 
-	private static volatile String _etag = _newEtag();
+	private static volatile String _eTag = _newETag();
 
 }

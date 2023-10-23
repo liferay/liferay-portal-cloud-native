@@ -51,7 +51,7 @@ public class JSResolveModulesServlet extends HttpServlet {
 			HttpServletResponse httpServletResponse)
 		throws IOException {
 
-		if (JSLoaderModulesUtil.etagEquals(
+		if (JSLoaderModulesUtil.eTagEquals(
 				httpServletRequest.getHeader(HttpHeaders.IF_NONE_MATCH))) {
 
 			httpServletResponse.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
@@ -61,7 +61,7 @@ public class JSResolveModulesServlet extends HttpServlet {
 
 		httpServletResponse.addHeader(HttpHeaders.CACHE_CONTROL, "no-cache");
 		httpServletResponse.addHeader(
-			HttpHeaders.ETAG, JSLoaderModulesUtil.getEtag());
+			HttpHeaders.ETAG, JSLoaderModulesUtil.getETag());
 		httpServletResponse.setCharacterEncoding(StringPool.UTF8);
 		httpServletResponse.setContentType(ContentTypes.APPLICATION_JSON);
 

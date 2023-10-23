@@ -19,7 +19,7 @@ public class JSResolveModulesNPMRegistryUpdatesListener
 
 	@Override
 	public void onAfterUpdate() {
-		JSLoaderModulesUtil.updateEtag();
+		JSLoaderModulesUtil.updateETag();
 	}
 
 }
