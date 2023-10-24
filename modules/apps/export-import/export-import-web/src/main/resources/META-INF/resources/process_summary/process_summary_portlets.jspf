@@ -161,7 +161,7 @@
 							</c:if>
 
 							<c:if test="<%= !Validator.isNull(assetTitle) %>">
-								<label>Title: <%= assetTitle %></label>
+								<label><liferay-ui:message key="title" />: <%= assetTitle %></label>
 							</c:if>
 						</div>
 
