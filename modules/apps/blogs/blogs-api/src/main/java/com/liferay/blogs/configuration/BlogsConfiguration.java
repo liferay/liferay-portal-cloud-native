@@ -30,8 +30,8 @@ public interface BlogsConfiguration {
 	public String displayTemplatesConfig();
 
 	/**
-	 * Set the interval, greater than 0, in minutes on how often to check for
-	 * and display blog entries scheduled to display.
+	 * Set the interval in minutes on how often to check for and display blog
+	 * entries scheduled to display.
 	 */
 	@Meta.AD(
 		deflt = "1", description = "entry-check-interval-description",
@@ -40,8 +40,8 @@ public interface BlogsConfiguration {
 	public int entryCheckInterval();
 
 	/**
-	 * Set the interval, greater than 0, on how often to check for new link
-	 * backs. The value is set in one minute increments.
+	 * Set the interval on how often to check for new link backs. The value is
+	 * set in one minute increments.
 	 */
 	@Meta.AD(
 		deflt = "5", description = "linkback-job-interval-description",

@@ -39,7 +39,7 @@ public class TriggerConfigurationTest {
 		try {
 			TriggerConfiguration.createTriggerConfiguration(StringPool.BLANK);
 
-			Assert.fail("Should have failed due to empty cron expression");
+			Assert.fail();
 		}
 		catch (Exception exception) {
 			Assert.assertEquals(
@@ -55,7 +55,7 @@ public class TriggerConfigurationTest {
 			TriggerConfiguration.createTriggerConfiguration(
 				-1, TimeUnit.MINUTE);
 
-			Assert.fail("Should have failed due to negative interval");
+			Assert.fail();
 		}
 		catch (Exception exception) {
 			Assert.assertEquals(
@@ -71,7 +71,7 @@ public class TriggerConfigurationTest {
 		try {
 			TriggerConfiguration.createTriggerConfiguration(null);
 
-			Assert.fail("Should have failed due to null cron expression");
+			Assert.fail();
 		}
 		catch (Exception exception) {
 			Assert.assertEquals(
@@ -86,7 +86,7 @@ public class TriggerConfigurationTest {
 		try {
 			TriggerConfiguration.createTriggerConfiguration(16, null);
 
-			Assert.fail("Should have failed due to null time unit");
+			Assert.fail();
 		}
 		catch (Exception exception) {
 			Assert.assertEquals(
@@ -100,7 +100,7 @@ public class TriggerConfigurationTest {
 		try {
 			TriggerConfiguration.createTriggerConfiguration(0, TimeUnit.MINUTE);
 
-			Assert.fail("Should have failed due to zero interval");
+			Assert.fail();
 		}
 		catch (Exception exception) {
 			Assert.assertEquals(
