@@ -52,9 +52,6 @@ public class JournalArticleConstants {
 
 	public static final String STAND_ALONE = "stand-alone";
 
-	public static final String
-		SYSTEM_EVENT_EXTRA_DATA_JOURNAL_ARTICLE_ASSET_TITLE = "assetTitle";
-
 	public static final double VERSION_DEFAULT = 1.0;
 
 }

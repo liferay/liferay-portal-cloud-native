@@ -79,9 +79,7 @@ public class JournalArticleTrashHandler extends BaseJournalTrashHandler {
 				_journalArticleLocalService.getLatestArticle(classPK);
 
 			extraDataJSONObject.put(
-				JournalArticleConstants.
-					SYSTEM_EVENT_EXTRA_DATA_JOURNAL_ARTICLE_ASSET_TITLE,
-				article.getTitle(article.getDefaultLanguageId()));
+				"assetTitle", article.getTitle(article.getDefaultLanguageId()));
 		}
 
 		return _systemEventLocalService.addSystemEvent(

@@ -1368,8 +1368,7 @@ public class JournalArticleLocalServiceImpl
 					article.getPrimaryKey(), articleResource.getUuid(), null,
 					SystemEventConstants.TYPE_DELETE,
 					JSONUtil.put(
-						JournalArticleConstants.
-							SYSTEM_EVENT_EXTRA_DATA_JOURNAL_ARTICLE_ASSET_TITLE,
+						"assetTitle",
 						article.getTitle(article.getDefaultLanguageId())
 					).put(
 						"uuid", article.getUuid()
@@ -1471,9 +1470,7 @@ public class JournalArticleLocalServiceImpl
 					articleResource.getUuid(), null,
 					SystemEventConstants.TYPE_DELETE,
 					JSONUtil.put(
-						JournalArticleConstants.
-							SYSTEM_EVENT_EXTRA_DATA_JOURNAL_ARTICLE_ASSET_TITLE,
-						assetTitle
+						"assetTitle", assetTitle
 					).toString());
 			}
 		}
