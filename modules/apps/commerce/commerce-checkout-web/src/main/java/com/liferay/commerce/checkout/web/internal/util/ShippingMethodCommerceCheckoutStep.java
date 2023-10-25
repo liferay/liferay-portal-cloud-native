@@ -239,6 +239,10 @@ public class ShippingMethodCommerceCheckoutStep
 			return;
 		}
 
+		CommerceContext commerceContext =
+			(CommerceContext)actionRequest.getAttribute(
+				CommerceWebKeys.COMMERCE_CONTEXT);
+
 		int pos = commerceShippingOptionKey.indexOf(
 			COMMERCE_SHIPPING_OPTION_KEY_SEPARATOR);
 
@@ -246,10 +250,6 @@ public class ShippingMethodCommerceCheckoutStep
 			commerceShippingOptionKey.substring(0, pos));
 		String shippingOptionName = commerceShippingOptionKey.substring(
 			pos + 1);
-
-		CommerceContext commerceContext =
-			(CommerceContext)actionRequest.getAttribute(
-				CommerceWebKeys.COMMERCE_CONTEXT);
 
 		BigDecimal shippingAmount = getShippingAmount(
 			commerceContext, commerceOrder, commerceShippingMethodId,
