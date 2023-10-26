@@ -44,7 +44,7 @@ public class ApiApplication extends Application {
 		singletons.add(_groupInfoContextProvider);
 		singletons.add(new JacksonJsonProvider(JSONUtil.getObjectMapper()));
 		singletons.add(new RecommendationController());
-		singletons.add(new ReportController());
+		singletons.add(_reportController);
 
 		return singletons;
 	}
@@ -64,5 +64,8 @@ public class ApiApplication extends Application {
 
 	@Reference
 	private GroupInfoContextProvider _groupInfoContextProvider;
+
+	@Reference
+	private ReportController _reportController;
 
 }
