@@ -4401,8 +4401,7 @@ public class JenkinsResultsParserUtil {
 		}
 
 		int retryCount = 0;
-
-		boolean updatingGitHubApiCall = false;
+		boolean updatingGitHubAPICall = false;
 
 		while (true) {
 			try {
@@ -4485,7 +4484,7 @@ public class JenkinsResultsParserUtil {
 							buildProperties, "testray.admin.user.name"));
 				}
 
-				Matcher matcher = _gitHubApiUrlPattern.matcher(url);
+				Matcher matcher = _gitHubAPIURLPattern.matcher(url);
 
 				if (matcher.matches() &&
 					_updatingHttpRequestMethods.contains(httpRequestMethod)) {
@@ -4496,7 +4495,7 @@ public class JenkinsResultsParserUtil {
 						buildProperties.getProperty("github.api.proxy") +
 							matcher.group(1);
 
-					updatingGitHubApiCall = true;
+					updatingGitHubAPICall = true;
 				}
 
 				URL urlObject = new URL(url);
@@ -4519,7 +4518,7 @@ public class JenkinsResultsParserUtil {
 					}
 
 					if ((url.startsWith("https://api.github.com") ||
-						 updatingGitHubApiCall) &&
+						 updatingGitHubAPICall) &&
 						(httpURLConnection instanceof HttpsURLConnection)) {
 
 						SSLContext sslContext = null;
@@ -4592,7 +4591,7 @@ public class JenkinsResultsParserUtil {
 				urlConnection.connect();
 
 				if (url.startsWith("https://api.github.com") ||
-					updatingGitHubApiCall) {
+					updatingGitHubAPICall) {
 
 					try {
 						int limit = Integer.parseInt(
@@ -6356,7 +6355,7 @@ public class JenkinsResultsParserUtil {
 	private static final List<String> _forbiddenRedactTokens = Arrays.asList(
 		"test");
 	private static JSONArray _gitDirectoriesJSONArray;
-	private static final Pattern _gitHubApiUrlPattern = Pattern.compile(
+	private static final Pattern _gitHubAPIURLPattern = Pattern.compile(
 		"https\\:\\/\\/api\\.github\\.com(.*)");
 	private static final DateFormat _gitHubDateFormat = new SimpleDateFormat(
 		"yyyy-MM-dd'T'HH:mm:ss");
