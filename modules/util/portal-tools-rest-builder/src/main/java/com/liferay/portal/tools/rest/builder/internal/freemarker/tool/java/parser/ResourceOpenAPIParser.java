@@ -44,6 +44,7 @@ import com.liferay.portal.vulcan.permission.Permission;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -761,8 +762,7 @@ public class ResourceOpenAPIParser {
 
 		String operationId = operation.getOperationId();
 
-		Schema schema = OpenAPIParserUtil.getOperationSchema(
-			operation, requestBodyMediaTypes);
+		Schema schema = _getOperationSchema(operation, requestBodyMediaTypes);
 
 		if ((operationId != null) && operationId.endsWith("PermissionsPage") &&
 			operationId.startsWith("put") && (schema == null)) {
@@ -1031,6 +1031,24 @@ public class ResourceOpenAPIParser {
 		}
 
 		return StringUtil.merge(methodNameSegments, "");
+	}
+
+	private static Schema _getOperationSchema(
+		Operation operation, Set<String> requestBodyMediaTypes) {
+
+		if (requestBodyMediaTypes.isEmpty()) {
+			return null;
+		}
+
+		RequestBody requestBody = operation.getRequestBody();
+
+		Map<String, Content> contents = requestBody.getContent();
+
+		Iterator<String> iterator = requestBodyMediaTypes.iterator();
+
+		Content content = contents.get(iterator.next());
+
+		return content.getSchema();
 	}
 
 	private static String _getPageClassName(String returnType) {
