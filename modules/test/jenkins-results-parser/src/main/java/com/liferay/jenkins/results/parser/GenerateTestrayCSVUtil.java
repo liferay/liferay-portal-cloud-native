@@ -23,12 +23,12 @@ public class GenerateTestrayCSVUtil {
 		String projectBuildDir, String projectTestrayBuildId) {
 
 		StringBuilder sb = new StringBuilder();
-		StringBuilder uniqueFailuresStringBuilder = new StringBuilder();
-		StringBuilder upstreamFailuresStringBuilder = new StringBuilder();
 
 		sb.append("Case Name,Component Name,Team Name,");
-
 		sb.append("Recent Failures Count,Case History URL\n");
+
+		StringBuilder uniqueFailuresStringBuilder = new StringBuilder();
+		StringBuilder upstreamFailuresStringBuilder = new StringBuilder();
 
 		for (JSONObject resultJSONObject :
 				_getResultJSONObjects(projectTestrayBuildId)) {
