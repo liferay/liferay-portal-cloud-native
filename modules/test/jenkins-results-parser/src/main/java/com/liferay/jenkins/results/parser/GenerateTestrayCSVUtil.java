@@ -17,7 +17,7 @@ import org.json.JSONObject;
  * @author Charlotte Wong
  * @author Kyle Miho
  */
-public class GenerateTestrayCsvUtil {
+public class GenerateTestrayCSVUtil {
 
 	public static void generate(
 		String projectBuildDir, String projectTestrayBuildId) {
