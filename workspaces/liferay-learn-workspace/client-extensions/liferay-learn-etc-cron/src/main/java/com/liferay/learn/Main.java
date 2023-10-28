@@ -679,19 +679,6 @@ public class Main {
 			String fileName, Long structuredContentId)
 		throws Exception {
 
-		SnakeYamlFrontMatterVisitor snakeYamlFrontMatterVisitor =
-			new SnakeYamlFrontMatterVisitor();
-
-		File file = new File(fileName);
-
-		snakeYamlFrontMatterVisitor.visit(
-			_parser.parse(
-				_processMarkdown(
-					FileUtils.readFileToString(file, StandardCharsets.UTF_8),
-					file)));
-
-		Map<String, Object> data = snakeYamlFrontMatterVisitor.getData();
-
 		List<Permission> permissions = new ArrayList<>();
 
 		if (structuredContentId != null) {
@@ -711,6 +698,19 @@ public class Main {
 				permissions.add(permission);
 			}
 		}
+
+		SnakeYamlFrontMatterVisitor snakeYamlFrontMatterVisitor =
+			new SnakeYamlFrontMatterVisitor();
+
+		File file = new File(fileName);
+
+		snakeYamlFrontMatterVisitor.visit(
+			_parser.parse(
+				_processMarkdown(
+					FileUtils.readFileToString(file, StandardCharsets.UTF_8),
+					file)));
+
+		Map<String, Object> data = snakeYamlFrontMatterVisitor.getData();
 
 		if ((data == null) || !data.containsKey("visibility")) {
 			permissions.add(
