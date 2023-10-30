@@ -127,16 +127,16 @@ public class JournalPortletUtil {
 			return breadcrumbEntries;
 		}
 
-		List<JournalFolder> ancestorFolders = folder.getAncestors();
-
-		Collections.reverse(ancestorFolders);
-
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
+
+		List<JournalFolder> ancestorFolders = folder.getAncestors();
+
+		Collections.reverse(ancestorFolders);
 
 		for (JournalFolder ancestorFolder : ancestorFolders) {
 			BreadcrumbEntry folderBreadcrumbEntry = new BreadcrumbEntry();
