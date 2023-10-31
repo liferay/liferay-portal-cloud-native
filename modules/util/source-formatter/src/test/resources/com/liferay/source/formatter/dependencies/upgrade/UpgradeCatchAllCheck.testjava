@@ -298,7 +298,7 @@ public class UpgradeCatchAllCheck {
 	public void method(
 		Indexer indexer, ServiceReference<Indexer> serviceReference) {
 
-		LinkedHashMap<Indexer, Indexer> indexerRequests = new LinkedHashMap<>();
+		Map<Indexer, Indexer> indexerRequests = new LinkedHashMap<>();
 		List<Indexer> indexers = portlet.getIndexerInstances();
 	}
 
