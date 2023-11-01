@@ -50,6 +50,7 @@ public class UpgradeSourceProcessorTest extends BaseSourceProcessorTestCase {
 	public void testUpgradeCatchAllCheck() throws Exception {
 		UpgradeCatchAllCheck.setTestMode(true);
 
+		test("upgrade/UpgradeCatchAllCheck.testftl");
 		test(
 			"upgrade/UpgradeCatchAllCheck.testjava",
 			UpgradeCatchAllCheck.getExpectedMessages());
