@@ -24,7 +24,9 @@ public class DBPartitionVirtualInstanceExtractionConfigurationModelListener
 	extends BaseConfigurationModelListener {
 
 	public DBPartitionVirtualInstanceExtractionConfigurationModelListener() {
-		super(_PID);
+		super(
+			"com.liferay.portal.db.partition.internal.configuration." +
+				"DBPartitionVirtualInstanceExtractionConfiguration");
 	}
 
 	@Override
@@ -35,9 +37,5 @@ public class DBPartitionVirtualInstanceExtractionConfigurationModelListener
 	public Class<?> getConfigurationClass() {
 		return DBPartitionVirtualInstanceExtractionConfiguration.class;
 	}
-
-	private static final String _PID =
-		"com.liferay.portal.db.partition.internal.configuration." +
-			"DBPartitionVirtualInstanceExtractionConfiguration";
 
 }
