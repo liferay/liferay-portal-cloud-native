@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-package com.liferay.scim.internal.user.manager;
+package com.liferay.scim.charon.integration.internal;
 
 import com.liferay.expando.kernel.model.ExpandoColumn;
 import com.liferay.expando.kernel.model.ExpandoColumnConstants;
@@ -45,14 +45,29 @@ import java.util.Objects;
 import org.osgi.framework.Constants;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Rafael Praxedes
  */
-@Component(service = ScimUserManagerImpl.class)
-public class ScimUserManagerImpl {
+public class ScimUserManager {
+
+	public ScimUserManager(
+		ClassNameLocalService classNameLocalService,
+		CompanyLocalService companyLocalService,
+		ConfigurationAdmin configurationAdmin,
+		ExpandoColumnLocalService expandoColumnLocalService,
+		ExpandoTableLocalService expandoTableLocalService,
+		ExpandoValueLocalService expandoValueLocalService,
+		UserLocalService userLocalService) {
+
+		_classNameLocalService = classNameLocalService;
+		_companyLocalService = companyLocalService;
+		_configurationAdmin = configurationAdmin;
+		_expandoColumnLocalService = expandoColumnLocalService;
+		_expandoTableLocalService = expandoTableLocalService;
+		_expandoValueLocalService = expandoValueLocalService;
+		_userLocalService = userLocalService;
+	}
 
 	public ScimUser addOrUpdateScimUser(ScimUser scimUser)
 		throws PortalException {
@@ -387,27 +402,14 @@ public class ScimUserManagerImpl {
 	private static final String _USER_SYNC_MATCHER_FIELD_UN = "userName";
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		ScimUserManagerImpl.class);
+		ScimUserManager.class);
 
-	@Reference
-	private ClassNameLocalService _classNameLocalService;
-
-	@Reference
-	private CompanyLocalService _companyLocalService;
-
-	@Reference
-	private ConfigurationAdmin _configurationAdmin;
-
-	@Reference
-	private ExpandoColumnLocalService _expandoColumnLocalService;
-
-	@Reference
-	private ExpandoTableLocalService _expandoTableLocalService;
-
-	@Reference
-	private ExpandoValueLocalService _expandoValueLocalService;
-
-	@Reference
+	private final ClassNameLocalService _classNameLocalService;
+	private final CompanyLocalService _companyLocalService;
+	private final ConfigurationAdmin _configurationAdmin;
+	private final ExpandoColumnLocalService _expandoColumnLocalService;
+	private final ExpandoTableLocalService _expandoTableLocalService;
+	private final ExpandoValueLocalService _expandoValueLocalService;
 	private UserLocalService _userLocalService;
 
 }
