@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-package com.liferay.scim.client.internal.configuration;
+package com.liferay.scim.rest.internal.configuration;
 
 import com.liferay.oauth.client.LocalOAuthClient;
 import com.liferay.oauth2.provider.constants.ClientProfile;
@@ -29,8 +29,8 @@ import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.scim.client.configuration.ScimClientOAuth2ApplicationConfiguration;
-import com.liferay.scim.client.internal.spi.bearer.token.provider.ScimClientBearerTokenProvider;
 import com.liferay.scim.client.util.ScimClientUtil;
+import com.liferay.scim.rest.internal.provider.ScimClientBearerTokenProvider;
 
 import java.util.Collections;
 import java.util.Map;
