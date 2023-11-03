@@ -25,10 +25,6 @@ public class ScimUser {
 		return _createDate;
 	}
 
-	public long getCreatorUserId() {
-		return _creatorUserId;
-	}
-
 	public String getEmailAddress() {
 		return _emailAddress;
 	}
@@ -141,10 +137,6 @@ public class ScimUser {
 		_createDate = createDate;
 	}
 
-	public void setCreatorUserId(long creatorUserId) {
-		_creatorUserId = creatorUserId;
-	}
-
 	public void setEmailAddress(String emailAddress) {
 		_emailAddress = emailAddress;
 	}
@@ -227,7 +219,6 @@ public class ScimUser {
 	private Date _birthday;
 	private long _companyId;
 	private Date _createDate;
-	private long _creatorUserId;
 	private String _emailAddress;
 	private String _externalReferenceCode;
 	private String _firstName;

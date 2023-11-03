@@ -258,17 +258,17 @@ public class UserManagerImpl implements UserManager {
 		throws PortalException {
 
 		com.liferay.portal.kernel.model.User user = _userLocalService.addUser(
-			scimUser.getCreatorUserId(), scimUser.getCompanyId(),
-			scimUser.isAutoPassword(), scimUser.getPassword(),
-			scimUser.getPassword(), scimUser.isAutoScreenName(),
-			scimUser.getScreenName(), scimUser.getEmailAddress(),
-			scimUser.getLocale(), scimUser.getFirstName(),
-			scimUser.getMiddleName(), scimUser.getLastName(), 0, 0,
-			scimUser.isMale(), birthdayMonth, birthdayDay, birthdayYear,
-			StringPool.BLANK, UserConstants.TYPE_REGULAR,
-			scimUser.getGroupIds(), scimUser.getOrganizationIds(),
-			scimUser.getRoleIds(), scimUser.getUserGroupIds(),
-			scimUser.isSendEmail(), new ServiceContext());
+			0, scimUser.getCompanyId(), scimUser.isAutoPassword(),
+			scimUser.getPassword(), scimUser.getPassword(),
+			scimUser.isAutoScreenName(), scimUser.getScreenName(),
+			scimUser.getEmailAddress(), scimUser.getLocale(),
+			scimUser.getFirstName(), scimUser.getMiddleName(),
+			scimUser.getLastName(), 0, 0, scimUser.isMale(), birthdayMonth,
+			birthdayDay, birthdayYear, StringPool.BLANK,
+			UserConstants.TYPE_REGULAR, scimUser.getGroupIds(),
+			scimUser.getOrganizationIds(), scimUser.getRoleIds(),
+			scimUser.getUserGroupIds(), scimUser.isSendEmail(),
+			new ServiceContext());
 
 		user.setExternalReferenceCode(scimUser.getExternalReferenceCode());
 
