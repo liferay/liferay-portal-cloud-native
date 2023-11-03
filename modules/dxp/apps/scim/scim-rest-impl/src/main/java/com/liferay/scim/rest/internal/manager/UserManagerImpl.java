@@ -334,14 +334,14 @@ public class UserManagerImpl implements UserManager {
 
 		if (Objects.equals(
 				scimClientOAuth2ApplicationConfiguration.matcherField(),
-				_USER_SYNC_MATCHER_FIELD_EA)) {
+				"emailAddress")) {
 
 			return _userLocalService.fetchUserByEmailAddress(
 				scimUser.getCompanyId(), scimUser.getEmailAddress());
 		}
 		else if (Objects.equals(
 					scimClientOAuth2ApplicationConfiguration.matcherField(),
-					_USER_SYNC_MATCHER_FIELD_UN)) {
+					"userName")) {
 
 			return _userLocalService.fetchUserByScreenName(
 				scimUser.getCompanyId(), scimUser.getScreenName());
@@ -546,10 +546,6 @@ public class UserManagerImpl implements UserManager {
 
 		return user;
 	}
-
-	private static final String _USER_SYNC_MATCHER_FIELD_EA = "emailAddress";
-
-	private static final String _USER_SYNC_MATCHER_FIELD_UN = "userName";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		UserManagerImpl.class);
