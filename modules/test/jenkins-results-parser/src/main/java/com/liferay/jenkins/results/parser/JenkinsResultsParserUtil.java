@@ -3233,12 +3233,12 @@ public class JenkinsResultsParserUtil {
 		}
 	}
 
-	public static String getResponseHeaders(URLConnection connection) {
-		Map<String, List<String>> headersMap = connection.getHeaderFields();
-
+	public static String getResponseHeaders(URLConnection urlConnection) {
 		StringBuilder sb = new StringBuilder();
 
-		for (Map.Entry<String, List<String>> entry : headersMap.entrySet()) {
+		Map<String, List<String>> map = connection.getHeaderFields();
+
+		for (Map.Entry<String, List<String>> entry : map.entrySet()) {
 			sb.append(entry.getKey());
 			sb.append(":");
 			sb.append(join(",", entry.getValue()));
