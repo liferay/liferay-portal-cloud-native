@@ -389,12 +389,12 @@ public class DefaultSearchResultPermissionFilter
 				if (_log.isDebugEnabled()) {
 					StringBundler sb = new StringBundler(6);
 
-					sb.append("Count: ");
-					sb.append(count);
-					sb.append(" AmplificationFactor: ");
-					sb.append(amplificationFactor);
-					sb.append(" AmplifiedCount: ");
+					sb.append("Amplified count: ");
 					sb.append(amplifiedCount);
+					sb.append(" amplification factor: ");
+					sb.append(amplificationFactor);
+					sb.append(", count: ");
+					sb.append(count);
 
 					_log.debug(sb.toString());
 				}
@@ -451,7 +451,7 @@ public class DefaultSearchResultPermissionFilter
 						sb.append(searchCount);
 						sb.append(" sliding window searches took ");
 						sb.append(slidingWindowStopWatch.getTime());
-						sb.append(" ms, Hit filtering took ");
+						sb.append(" ms and hit filtering took ");
 						sb.append(hitFilteringStopWatch.getTime());
 						sb.append(" ms");
 
