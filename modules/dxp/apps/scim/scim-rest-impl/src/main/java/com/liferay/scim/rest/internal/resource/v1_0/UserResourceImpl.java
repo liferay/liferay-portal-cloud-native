@@ -96,10 +96,10 @@ public class UserResourceImpl extends BaseUserResourceImpl {
 		Response.ResponseBuilder responseBuilder = Response.status(
 			scimResponse.getResponseStatus());
 
-		Map<String, String> httpHeaders = scimResponse.getHeaderParamMap();
+		Map<String, String> map = scimResponse.getHeaderParamMap();
 
-		if (MapUtil.isNotEmpty(httpHeaders)) {
-			for (Map.Entry<String, String> entry : httpHeaders.entrySet()) {
+		if (MapUtil.isNotEmpty(map)) {
+			for (Map.Entry<String, String> entry : map.entrySet()) {
 				responseBuilder.header(entry.getKey(), entry.getValue());
 			}
 		}
