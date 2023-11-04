@@ -296,7 +296,7 @@ public class UserManagerImpl implements UserManager {
 			!Objects.equals(userScimClientId, scimClientId)) {
 
 			throw new PortalException(
-				"User was provisioned by other SCIM client");
+				"User was provisioned by another SCIM client");
 		}
 	}
 
