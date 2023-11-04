@@ -244,7 +244,7 @@ public class UserManagerImpl implements UserManager {
 		}
 		catch (Exception exception) {
 			throw new CharonException(
-				"Unable to provisioning a portal user for " +
+				"Unable to provision a portal user for " +
 					user.getDisplayName(),
 				exception);
 		}
