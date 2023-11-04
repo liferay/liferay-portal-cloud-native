@@ -451,9 +451,9 @@ public class UserManagerImpl implements UserManager {
 	private ScimUser _toScimUser(
 		com.liferay.portal.kernel.model.User portalUser) {
 
-		ScimUser scimUser = new ScimUser();
-
 		try {
+			ScimUser scimUser = new ScimUser();
+
 			scimUser.setActive(portalUser.isActive());
 			scimUser.setBirthday(portalUser.getBirthday());
 			scimUser.setCompanyId(portalUser.getCompanyId());
@@ -476,7 +476,7 @@ public class UserManagerImpl implements UserManager {
 		catch (PortalException portalException) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Unable to convert the User to a ScimUser instance",
+					"Unable to convert portal user to a SCIM user",
 					portalException);
 			}
 
