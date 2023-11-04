@@ -37,7 +37,6 @@ public class BuildHistoryReport {
 
 		buildHistoryReport.addFilesFromResource(
 			"dependencies/metrics/", "css/report.css", "js/utils.js");
-
 		buildHistoryReport.addFilesFromResource(
 			"dependencies/metrics/aggregate-report", "/css/main.css",
 			"/index.html", "/js/main.js");
@@ -52,7 +51,6 @@ public class BuildHistoryReport {
 		buildHistoryReport.addFile(
 			"js/table-data.js",
 			_getTableDataJSFileContent(buildHistories, "Job Category"));
-
 		buildHistoryReport.addFile(
 			"js/timeline-data.js",
 			_getTimelineDataJSFileContent(buildHistories, duration, startTime));
@@ -68,14 +66,12 @@ public class BuildHistoryReport {
 
 		buildHistoryReport.addFilesFromResource(
 			"dependencies/metrics/", "css/report.css", "js/utils.js");
-
 		buildHistoryReport.addFilesFromResource(
 			"dependencies/metrics/test-suite-report", "/css/main.css",
 			"/index.html", "/js/main.js");
 
-		long startTime = _getStartTime(startDateString);
-
 		long duration = TimeUnit.DAYS.toMillis(durationDays);
+		long startTime = _getStartTime(startDateString);
 
 		Collection<BuildHistory> buildHistories =
 			BuildHistoryProcessor.newTestSuiteJobHistories(
@@ -84,7 +80,6 @@ public class BuildHistoryReport {
 		buildHistoryReport.addFile(
 			"js/table-data.js",
 			_getTableDataJSFileContent(buildHistories, "Test Suite Name"));
-
 		buildHistoryReport.addFile(
 			"js/timeline-data.js",
 			_getTimelineDataJSFileContent(buildHistories, startTime, duration));
