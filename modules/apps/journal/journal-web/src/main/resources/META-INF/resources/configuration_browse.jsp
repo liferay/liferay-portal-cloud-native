@@ -10,12 +10,10 @@
 <%
 JournalConfigurationDisplayContext journalConfigurationDisplayContext = new JournalConfigurationDisplayContext(request, journalGroupServiceConfiguration, renderRequest, renderResponse);
 
-String backURL = journalConfigurationDisplayContext.getBackURL();
+Map<String, String> emailDefinitionTerms = journalConfigurationDisplayContext.getEmailDefinitionTerms();
 
 portletDisplay.setShowBackIcon(true);
-portletDisplay.setURLBack(backURL);
-
-Map<String, String> emailDefinitionTerms = journalConfigurationDisplayContext.getEmailDefinitionTerms();
+portletDisplay.setURLBack(journalConfigurationDisplayContext.getBackURL());
 %>
 
 <clay:container-fluid
