@@ -373,13 +373,13 @@ public class UserManagerImpl implements UserManager {
 	private ScimClientOAuth2ApplicationConfiguration
 		_getScimClientOAuth2ApplicationConfiguration(long companyId) {
 
-		Configuration[] configurations = null;
-
 		try {
-			configurations = _configurationAdmin.listConfigurations(
-				String.format(
-					"(%s=%s*)", Constants.SERVICE_PID,
-					ScimClientOAuth2ApplicationConfiguration.class.getName()));
+			Configuration[] configurations =
+				_configurationAdmin.listConfigurations(
+					String.format(
+						"(%s=%s*)", Constants.SERVICE_PID,
+						ScimClientOAuth2ApplicationConfiguration.class.
+							getName()));
 
 			if (ArrayUtil.isEmpty(configurations)) {
 				return null;
