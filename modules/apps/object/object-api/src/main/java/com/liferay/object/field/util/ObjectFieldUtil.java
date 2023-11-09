@@ -176,7 +176,7 @@ public class ObjectFieldUtil {
 
 	public static String getCounterName(ObjectField objectField) {
 		return StringBundler.concat(
-			"auto.increment.object.field#", objectField.getCompanyId(),
+			"object.field.auto.increment#", objectField.getCompanyId(),
 			StringPool.POUND, objectField.getObjectFieldId());
 	}
 
