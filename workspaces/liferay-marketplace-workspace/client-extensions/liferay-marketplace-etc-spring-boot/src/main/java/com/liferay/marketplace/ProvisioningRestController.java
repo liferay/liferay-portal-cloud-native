@@ -83,9 +83,9 @@ public class ProvisioningRestController extends BaseRestController {
 		AppLicenseKey appLicenseKey = _appLicenseKeyResource.getAppLicenseKey(
 			GetterUtil.getLong(id));
 
-		HttpHeaders headers = new HttpHeaders();
+		HttpHeaders httpHeaders = new HttpHeaders();
 
-		headers.setContentDispositionFormData(
+		httpHeaders.setContentDispositionFormData(
 			"attachment",
 			StringBundler.concat(
 				"activation-key-", appLicenseKey.getProductName(),
@@ -94,15 +94,15 @@ public class ProvisioningRestController extends BaseRestController {
 			).replaceAll(
 				StringPool.SPACE, StringPool.DASH
 			).toLowerCase());
-		headers.setContentType(MediaType.TEXT_XML);
-		headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+		httpHeaders.setContentType(MediaType.TEXT_XML);
+		httpHeaders.setCacheControl("must-revalidate, post-check=0, pre-check=0");
 
 		HttpInvoker.HttpResponse licenseKeyHttpResponse =
 			_appLicenseKeyResource.getAppLicenseKeyDownloadHttpResponse(
 				appLicenseKey.getId());
 
 		return new ResponseEntity(
-			licenseKeyHttpResponse.getBinaryContent(), headers, HttpStatus.OK);
+			licenseKeyHttpResponse.getBinaryContent(), httpHeaders, HttpStatus.OK);
 	}
 
 	@GetMapping("order-license-keys/{orderId}")
