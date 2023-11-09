@@ -316,10 +316,10 @@ public class KoroneikiRestController extends BaseRestController {
 	}
 
 	private String _getLicenseType(
-		Collection<ProductSpecification> productSpecificationCollection) {
+		Collection<ProductSpecification> productSpecifications) {
 
 		for (ProductSpecification productSpecification :
-				productSpecificationCollection) {
+				productSpecifications) {
 
 			if (!StringUtil.equals(
 					productSpecification.getSpecificationKey(),
