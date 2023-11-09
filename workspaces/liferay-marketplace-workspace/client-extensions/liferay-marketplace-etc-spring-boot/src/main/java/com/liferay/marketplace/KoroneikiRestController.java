@@ -258,8 +258,8 @@ public class KoroneikiRestController extends BaseRestController {
 					_skuResource.getProductIdSkusPage(
 						product.getProductId(), Pagination.of(1, 10)
 					).getItems()));
-			productPurchase.setStatus(ProductPurchase.Status.APPROVED);
 			productPurchase.setQuantity(orderItemJSONObject.getInt("quantity"));
+			productPurchase.setStatus(ProductPurchase.Status.APPROVED);
 
 			try {
 				productPurchase =
