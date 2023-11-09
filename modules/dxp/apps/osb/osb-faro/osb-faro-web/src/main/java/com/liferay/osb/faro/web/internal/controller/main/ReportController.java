@@ -81,8 +81,9 @@ public class ReportController extends BaseFaroController {
 			Validator.isBlank(toDateString)) {
 
 			return _reportControllerResponseFactory.create(
-				"\"fromDate\" and \"toDate\" query parameters are mandatory " +
-					"and must be ISO 8601 compliant " + _ISO_8601_DATE_FORMAT,
+				"The \"fromDate\" and \"toDate\" query parameters are " +
+					"mandatory and must comply with ISO 8601 format: " +
+						_ISO_8601_DATE_FORMAT,
 				Response.Status.BAD_REQUEST);
 		}
 
@@ -98,14 +99,14 @@ public class ReportController extends BaseFaroController {
 			_log.error(exception);
 
 			return _reportControllerResponseFactory.create(
-				"Both dates in range must be ISO 8601 compliant " +
+				"Both dates must comply with ISO 8601 format: " +
 					_ISO_8601_DATE_FORMAT,
 				Response.Status.BAD_REQUEST);
 		}
 
 		if (fromLocalDateTime.isAfter(toLocalDateTime)) {
 			return _reportControllerResponseFactory.create(
-				"Wrong range date. \"fromDate\" cannot be after \"toDate\"",
+				"The \"fromDate\" cannot be after \"toDate\"",
 				Response.Status.BAD_REQUEST);
 		}
 
