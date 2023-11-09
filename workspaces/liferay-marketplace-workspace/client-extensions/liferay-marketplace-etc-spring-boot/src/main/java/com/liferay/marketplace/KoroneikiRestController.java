@@ -87,13 +87,13 @@ public class KoroneikiRestController extends BaseRestController {
 			_populateDXPLicenseUsageTypePropertiesMap(
 				dxpLicenseUsageTypePropertiesMap, orderItem.getOptions());
 
+			int provisionedCount = 0;
+
 			ProductPurchaseView productPurchaseView =
 				_productPurchaseViewResource.
 					getAccountAccountKeyProductProductKeyProductPurchaseView(
 						order.getAccountExternalReferenceCode(),
 						orderItem.getSkuExternalReferenceCode());
-
-			int provisionedCount = 0;
 
 			for (ProductConsumption productConsumption :
 					productPurchaseView.getProductConsumptions()) {
@@ -107,11 +107,11 @@ public class KoroneikiRestController extends BaseRestController {
 				}
 			}
 
-			String licenseName = orderItem.getSkuExternalReferenceCode();
+			String dxpLicenseName = orderItem.getSkuExternalReferenceCode();
 
-			for (String licenseUsageType : _LICENSE_USAGE_TYPES) {
-				if (dxpLicenseUsageTypePropertiesMap.get(licenseUsageType)) {
-					licenseName = licenseUsageType;
+			for (String dxpLicenseUsageType : _DXP_LICENSE_USAGE_TYPES) {
+				if (dxpLicenseUsageTypePropertiesMap.get(dxpLicenseUsageType)) {
+					dxpLicenseName = dxpLicenseUsageType;
 
 					break;
 				}
@@ -143,7 +143,7 @@ public class KoroneikiRestController extends BaseRestController {
 				).put(
 					"endDate", endDate
 				).put(
-					"name", licenseName
+					"name", dxpLicenseName
 				).put(
 					"perpetual", productPurchase.getPerpetual()
 				).put(
@@ -431,14 +431,14 @@ public class KoroneikiRestController extends BaseRestController {
 			JSONArray jsonArray = jsonObject.getJSONArray("value");
 
 			for (int j = 0; j < jsonArray.length(); j++) {
-				for (String licenseUsageType : _LICENSE_USAGE_TYPES) {
-					if (!map.containsKey(licenseUsageType) ||
-						!map.get(licenseUsageType)) {
+				for (String dxpLicenseUsageType : _DXP_LICENSE_USAGE_TYPES) {
+					if (!map.containsKey(dxpLicenseUsageType) ||
+						!map.get(dxpLicenseUsageType)) {
 
 						map.put(
-							licenseUsageType,
+							dxpLicenseUsageType,
 							StringUtil.equals(
-								jsonArray.getString(j), licenseUsageType));
+								jsonArray.getString(j), dxpLicenseUsageType));
 					}
 				}
 			}
@@ -451,7 +451,7 @@ public class KoroneikiRestController extends BaseRestController {
 
 	private static final int _COMMERCE_ORDER_PROCESSING_STATUS = 10;
 
-	private static final String[] _LICENSE_USAGE_TYPES = {
+	private static final String[] _DXP_LICENSE_USAGE_TYPES = {
 		"developer", "standard", "trial"
 	};
 
