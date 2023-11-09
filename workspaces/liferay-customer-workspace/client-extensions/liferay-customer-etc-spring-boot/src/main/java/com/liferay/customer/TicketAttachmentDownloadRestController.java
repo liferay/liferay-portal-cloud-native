@@ -42,7 +42,9 @@ public class TicketAttachmentDownloadRestController extends BaseRestController {
 
 			if (ticketAttachment == null) {
 				return new ResponseEntity<>(
-					"Ticket attachment does not exist", HttpStatus.NOT_FOUND);
+					"Ticket attachment " + ticketAttachmentId +
+						" does not exist",
+					HttpStatus.NOT_FOUND);
 			}
 
 			return new ResponseEntity<>(
@@ -55,8 +57,7 @@ public class TicketAttachmentDownloadRestController extends BaseRestController {
 			_log.error(exception);
 
 			return new ResponseEntity(
-				"There was an unexpected error",
-				HttpStatus.INTERNAL_SERVER_ERROR);
+				exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

@@ -72,10 +72,10 @@ public class ZendeskWebService {
 
 	@PostConstruct
 	public void init() throws Exception {
+		Base64.Encoder encoder = Base64.getEncoder();
+
 		String zendeskCredentials =
 			_zendeskAPIEmailAddress + "/token:" + _zendeskAPIToken;
-
-		Base64.Encoder encoder = Base64.getEncoder();
 
 		String encodedZendeskCredentials = new String(
 			encoder.encode(zendeskCredentials.getBytes("UTF-8")), "UTF-8");

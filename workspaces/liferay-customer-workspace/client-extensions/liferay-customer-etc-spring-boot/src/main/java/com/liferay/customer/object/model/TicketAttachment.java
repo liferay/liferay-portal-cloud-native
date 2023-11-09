@@ -23,7 +23,6 @@ public class TicketAttachment {
 		_fileName = jsonObject.getString("fileName");
 		_fileSize = jsonObject.getString("fileSize");
 		_gcsBucketName = jsonObject.getString("gcsBucketName");
-
 		_md5Checksum = jsonObject.getString("md5Checksum");
 
 		JSONObject statusJSONObject = jsonObject.getJSONObject("status");

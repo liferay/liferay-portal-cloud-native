@@ -36,11 +36,11 @@ public class TicketAttachmentInitiateUploadRestController
 	@GetMapping
 	public ResponseEntity<String> get(
 			@AuthenticationPrincipal Jwt jwt,
-			@RequestParam(name = "zendeskTicketId") long zendeskTicketId,
 			@RequestParam(name = "fileName") String fileName,
 			@RequestParam(name = "fileSize") String fileSize,
 			@RequestParam(name = "md5Checksum") String md5Checksum,
-			@RequestParam(name = "type", required = false) String type)
+			@RequestParam(name = "type", required = false) String type,
+			@RequestParam(name = "zendeskTicketId") long zendeskTicketId)
 		throws Exception {
 
 		try {
@@ -51,8 +51,9 @@ public class TicketAttachmentInitiateUploadRestController
 			if (ticketAttachment != null) {
 				if (ticketAttachment.isApproved()) {
 					return new ResponseEntity(
-						"This attachment already exists with ID " +
-							ticketAttachment.getTicketAttachmentId(),
+						"Ticket attachment " +
+							ticketAttachment.getTicketAttachmentId() +
+								" already exists",
 						HttpStatus.CONFLICT);
 				}
 			}
@@ -74,8 +75,7 @@ public class TicketAttachmentInitiateUploadRestController
 			_log.error(exception);
 
 			return new ResponseEntity(
-				"There was an unexpected error",
-				HttpStatus.INTERNAL_SERVER_ERROR);
+				exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -84,7 +84,8 @@ public class TicketAttachmentInitiateUploadRestController
 			zendeskTicketId);
 
 		if (zendeskTicket.isClosed()) {
-			throw new Exception("This ticket is closed");
+			throw new Exception(
+				"Zendesk ticket " + zendeskTicketId + " is closed");
 		}
 
 		ZendeskOrganization zendeskOrganization =
