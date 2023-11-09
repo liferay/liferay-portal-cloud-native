@@ -388,24 +388,21 @@ public class KoroneikiRestController extends BaseRestController {
 		).header(
 			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).endpoint(
-			liferayDXPURL.getHost(), liferayDXPURL.getPort(),
-			liferayDXPURL.getProtocol()
+			liferayDXPURL
 		).build();
 
 		_orderItemResource = OrderItemResource.builder(
 		).header(
 			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).endpoint(
-			liferayDXPURL.getHost(), liferayDXPURL.getPort(),
-			liferayDXPURL.getProtocol()
+			liferayDXPURL
 		).build();
 
 		_orderResource = OrderResource.builder(
 		).header(
 			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).endpoint(
-			liferayDXPURL.getHost(), liferayDXPURL.getPort(),
-			liferayDXPURL.getProtocol()
+			liferayDXPURL
 		).build();
 
 		_productPurchaseResource = ProductPurchaseResource.builder(
@@ -430,24 +427,21 @@ public class KoroneikiRestController extends BaseRestController {
 		).header(
 			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).endpoint(
-			liferayDXPURL.getHost(), liferayDXPURL.getPort(),
-			liferayDXPURL.getProtocol()
+			liferayDXPURL
 		).build();
 
 		_productSpecificationResource = ProductSpecificationResource.builder(
 		).header(
 			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).endpoint(
-			liferayDXPURL.getHost(), liferayDXPURL.getPort(),
-			liferayDXPURL.getProtocol()
+			liferayDXPURL
 		).build();
 
 		_skuResource = SkuResource.builder(
 		).header(
 			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).endpoint(
-			liferayDXPURL.getHost(), liferayDXPURL.getPort(),
-			liferayDXPURL.getProtocol()
+			liferayDXPURL
 		).build();
 	}
 
