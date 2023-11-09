@@ -498,10 +498,10 @@ public class AssetTagLocalServiceImpl extends AssetTagLocalServiceBaseImpl {
 	 */
 	@Override
 	public long[] getTagIds(String name) {
+		List<Long> assetTagIds = new ArrayList<>();
+
 		List<AssetTag> assetTags = assetTagPersistence.findByName(
 			_getName(name));
-
-		List<Long> assetTagIds = new ArrayList<>();
 
 		if (FeatureFlagManagerUtil.isEnabled("LPS-194362")) {
 			for (AssetTag assetTag : assetTags) {
