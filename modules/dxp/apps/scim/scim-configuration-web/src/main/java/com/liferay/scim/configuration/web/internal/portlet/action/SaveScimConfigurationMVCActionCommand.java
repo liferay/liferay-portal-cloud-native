@@ -110,8 +110,10 @@ public class SaveScimConfigurationMVCActionCommand
 			Configuration[] configurations =
 				_configurationAdmin.listConfigurations(filterString);
 
+			Configuration configuration = null;
+
 			if (configurations != null) {
-				Configuration configuration = configurations[0];
+				configuration = configurations[0];
 
 				Dictionary<String, Object> properties =
 					configuration.getProperties();
@@ -129,9 +131,8 @@ public class SaveScimConfigurationMVCActionCommand
 				configuration.update(properties);
 			}
 			else {
-				Configuration configuration =
-					_configurationAdmin.createFactoryConfiguration(
-						ScimConstants.CONFIGURATION_PID, StringPool.QUESTION);
+				configuration = _configurationAdmin.createFactoryConfiguration(
+					ScimConstants.CONFIGURATION_PID, StringPool.QUESTION);
 
 				configuration.update(
 					HashMapDictionaryBuilder.<String, Object>put(
