@@ -990,112 +990,8 @@ public class DefaultObjectEntryManagerImplTest
 	}
 
 	@Test
-	public void testAddObjectEntryWithAccountEntryRestricted2()
+	public void testAddObjectEntryWithAccountEntryRestricted1()
 		throws Exception {
-
-		// Object definitions inherit account entry restricted from the root
-		// object definition
-
-		_addResourcePermission(
-			_rootObjectDefinition, ObjectActionKeys.ADD_OBJECT_ENTRY,
-			_buyerRole);
-
-		AccountEntry accountEntry = _addAccountEntry();
-
-		_user = _addUser();
-
-		_assignAccountEntryRole(accountEntry, _buyerRole, _user);
-
-		Node rootNode = _tree.getRootNode();
-
-		ObjectEntry objectEntry = _defaultObjectEntryManager.addObjectEntry(
-			_simpleDTOConverterContext,
-			objectDefinitionLocalService.getObjectDefinition(
-				rootNode.getPrimaryKey()),
-			new ObjectEntry() {
-				{
-					properties = HashMapBuilder.<String, Object>put(
-						"r_oneToManyRelationshipName2_accountEntryId",
-						accountEntry.getAccountEntryId()
-					).build();
-				}
-			},
-			ObjectDefinitionConstants.SCOPE_COMPANY);
-
-		ObjectDefinition objectDefinition =
-			objectDefinitionLocalService.fetchObjectDefinition(
-				companyId, "C_AA");
-
-		Node childNode = _tree.getNode(
-			objectDefinition.getObjectDefinitionId());
-
-		Edge edge = childNode.getEdge();
-
-		ObjectRelationship objectRelationship =
-			_objectRelationshipLocalService.getObjectRelationship(
-				edge.getObjectRelationshipId());
-
-		ObjectField objectField = objectFieldLocalService.getObjectField(
-			objectRelationship.getObjectFieldId2());
-
-		_defaultObjectEntryManager.addObjectEntry(
-			_simpleDTOConverterContext,
-			objectDefinitionLocalService.getObjectDefinition(
-				childNode.getPrimaryKey()),
-			new ObjectEntry() {
-				{
-					properties = HashMapBuilder.<String, Object>put(
-						objectField.getName(), objectEntry.getId()
-					).build();
-				}
-			},
-			ObjectDefinitionConstants.SCOPE_COMPANY);
-
-		_removeResourcePermission(
-			_rootObjectDefinition, ObjectActionKeys.ADD_OBJECT_ENTRY,
-			_buyerRole);
-
-		AssertUtils.assertFailure(
-			PrincipalException.MustHavePermission.class,
-			StringBundler.concat(
-				"User ", _user.getUserId(),
-				" must have ADD_OBJECT_ENTRY permission for ",
-				_rootObjectDefinition.getResourceName(), StringPool.SPACE),
-			() -> _defaultObjectEntryManager.addObjectEntry(
-				_simpleDTOConverterContext,
-				objectDefinitionLocalService.getObjectDefinition(
-					rootNode.getPrimaryKey()),
-				new ObjectEntry() {
-					{
-						properties = HashMapBuilder.<String, Object>put(
-							"r_oneToManyRelationshipName2_accountEntryId",
-							accountEntry.getAccountEntryId()
-						).build();
-					}
-				},
-				ObjectDefinitionConstants.SCOPE_COMPANY));
-		AssertUtils.assertFailure(
-			PrincipalException.MustHavePermission.class,
-			StringBundler.concat(
-				"User ", _user.getUserId(),
-				" must have ADD_OBJECT_ENTRY permission for ",
-				_rootObjectDefinition.getResourceName(), StringPool.SPACE),
-			() -> _defaultObjectEntryManager.addObjectEntry(
-				_simpleDTOConverterContext,
-				objectDefinitionLocalService.getObjectDefinition(
-					childNode.getPrimaryKey()),
-				new ObjectEntry() {
-					{
-						properties = HashMapBuilder.<String, Object>put(
-							objectField.getName(), objectEntry.getId()
-						).build();
-					}
-				},
-				ObjectDefinitionConstants.SCOPE_COMPANY));
-	}
-
-	@Test
-	public void testAddObjectEntryWithAccountEntryRestricted1() throws Exception {
 
 		// Account entry restricted scope
 
@@ -1221,6 +1117,111 @@ public class DefaultObjectEntryManagerImplTest
 			ObjectActionKeys.ADD_OBJECT_ENTRY, _accountManagerRole);
 
 		Assert.assertNotNull(_addObjectEntry(accountEntry1));
+	}
+
+	@Test
+	public void testAddObjectEntryWithAccountEntryRestricted2()
+		throws Exception {
+
+		// Object definitions inherit account entry restricted from the root
+		// object definition
+
+		_addResourcePermission(
+			_rootObjectDefinition, ObjectActionKeys.ADD_OBJECT_ENTRY,
+			_buyerRole);
+
+		AccountEntry accountEntry = _addAccountEntry();
+
+		_user = _addUser();
+
+		_assignAccountEntryRole(accountEntry, _buyerRole, _user);
+
+		Node rootNode = _tree.getRootNode();
+
+		ObjectEntry objectEntry = _defaultObjectEntryManager.addObjectEntry(
+			_simpleDTOConverterContext,
+			objectDefinitionLocalService.getObjectDefinition(
+				rootNode.getPrimaryKey()),
+			new ObjectEntry() {
+				{
+					properties = HashMapBuilder.<String, Object>put(
+						"r_oneToManyRelationshipName2_accountEntryId",
+						accountEntry.getAccountEntryId()
+					).build();
+				}
+			},
+			ObjectDefinitionConstants.SCOPE_COMPANY);
+
+		ObjectDefinition objectDefinition =
+			objectDefinitionLocalService.fetchObjectDefinition(
+				companyId, "C_AA");
+
+		Node childNode = _tree.getNode(
+			objectDefinition.getObjectDefinitionId());
+
+		Edge edge = childNode.getEdge();
+
+		ObjectRelationship objectRelationship =
+			_objectRelationshipLocalService.getObjectRelationship(
+				edge.getObjectRelationshipId());
+
+		ObjectField objectField = objectFieldLocalService.getObjectField(
+			objectRelationship.getObjectFieldId2());
+
+		_defaultObjectEntryManager.addObjectEntry(
+			_simpleDTOConverterContext,
+			objectDefinitionLocalService.getObjectDefinition(
+				childNode.getPrimaryKey()),
+			new ObjectEntry() {
+				{
+					properties = HashMapBuilder.<String, Object>put(
+						objectField.getName(), objectEntry.getId()
+					).build();
+				}
+			},
+			ObjectDefinitionConstants.SCOPE_COMPANY);
+
+		_removeResourcePermission(
+			_rootObjectDefinition, ObjectActionKeys.ADD_OBJECT_ENTRY,
+			_buyerRole);
+
+		AssertUtils.assertFailure(
+			PrincipalException.MustHavePermission.class,
+			StringBundler.concat(
+				"User ", _user.getUserId(),
+				" must have ADD_OBJECT_ENTRY permission for ",
+				_rootObjectDefinition.getResourceName(), StringPool.SPACE),
+			() -> _defaultObjectEntryManager.addObjectEntry(
+				_simpleDTOConverterContext,
+				objectDefinitionLocalService.getObjectDefinition(
+					rootNode.getPrimaryKey()),
+				new ObjectEntry() {
+					{
+						properties = HashMapBuilder.<String, Object>put(
+							"r_oneToManyRelationshipName2_accountEntryId",
+							accountEntry.getAccountEntryId()
+						).build();
+					}
+				},
+				ObjectDefinitionConstants.SCOPE_COMPANY));
+		AssertUtils.assertFailure(
+			PrincipalException.MustHavePermission.class,
+			StringBundler.concat(
+				"User ", _user.getUserId(),
+				" must have ADD_OBJECT_ENTRY permission for ",
+				_rootObjectDefinition.getResourceName(), StringPool.SPACE),
+			() -> _defaultObjectEntryManager.addObjectEntry(
+				_simpleDTOConverterContext,
+				objectDefinitionLocalService.getObjectDefinition(
+					childNode.getPrimaryKey()),
+				new ObjectEntry() {
+					{
+						properties = HashMapBuilder.<String, Object>put(
+							objectField.getName(), objectEntry.getId()
+						).build();
+					}
+				},
+				ObjectDefinitionConstants.SCOPE_COMPANY));
 	}
 
 	@Test
