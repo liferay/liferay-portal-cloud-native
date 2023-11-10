@@ -2062,14 +2062,19 @@ public class BundleSiteInitializer implements SiteInitializer {
 
 			JSONObject jsonObject = _jsonFactory.createJSONObject(json);
 
-			//articleId should be same as file name.
-			String articleId = "";
+			String articleId = null;
 
-			if (jsonObject.has("articleId")){
+			if (jsonObject.has("articleId")) {
 				articleId = jsonObject.getString("articleId");
-			}else{
-				String[] tokens = resourcePath.replace(".json","").split("/");
-				articleId = tokens[tokens.length - 1];
+			}
+			else {
+				articleId = FileUtil.getShortFileName(resourcePath);
+
+				int index = articleId.indexOf(".");
+
+				if (index != -1) {
+					articleId = articleId.substring(0, index);
+				}
 			}
 
 			Map<Locale, String> titleMap = Collections.singletonMap(
@@ -2096,16 +2101,14 @@ public class BundleSiteInitializer implements SiteInitializer {
 
 			JournalArticle journalArticle =
 				_journalArticleLocalService.fetchArticle(
-					serviceContext.getScopeGroupId(),
-					articleId);
+					serviceContext.getScopeGroupId(), articleId);
 
 			if (journalArticle == null) {
 				journalArticle = _journalArticleLocalService.addArticle(
 					null, serviceContext.getUserId(),
 					serviceContext.getScopeGroupId(), journalFolderId,
-					JournalArticleConstants.CLASS_NAME_ID_DEFAULT, 0,
-					articleId, false, 1, titleMap, null,
-					titleMap,
+					JournalArticleConstants.CLASS_NAME_ID_DEFAULT, 0, articleId,
+					false, 1, titleMap, null, titleMap,
 					_replace(
 						SiteInitializerUtil.read(
 							_replace(resourcePath, ".json", ".xml"),
@@ -2125,8 +2128,8 @@ public class BundleSiteInitializer implements SiteInitializer {
 				journalArticle = _journalArticleLocalService.updateArticle(
 					serviceContext.getUserId(),
 					serviceContext.getScopeGroupId(), journalFolderId,
-					articleId,
-					journalArticle.getVersion(), titleMap, null, titleMap,
+					articleId, journalArticle.getVersion(), titleMap, null,
+					titleMap,
 					_replace(
 						SiteInitializerUtil.read(
 							_replace(resourcePath, ".json", ".xml"),
