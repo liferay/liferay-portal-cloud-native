@@ -1141,8 +1141,8 @@ public class ObjectEntryLocalServiceImpl
 					_objectFieldLocalService);
 		DynamicObjectDefinitionTable dynamicObjectDefinitionTable =
 			_getDynamicObjectDefinitionTable(objectDefinitionId);
-		DynamicObjectDefinitionTable dynamicRootObjectDefinitionTable =
-			_getDynamicRootObjectDefinitionTable(objectDefinitionId);
+		DynamicObjectDefinitionTable rootDynamicObjectDefinitionTable =
+			_getRootDynamicObjectDefinitionTable(objectDefinitionId);
 		DynamicObjectDefinitionTable extensionDynamicObjectDefinitionTable =
 			_getExtensionDynamicObjectDefinitionTable(objectDefinitionId);
 
@@ -1170,9 +1170,9 @@ public class ObjectEntryLocalServiceImpl
 					dynamicObjectDefinitionTable.getPrimaryKeyColumn()
 				)
 			).innerJoinON(
-				dynamicRootObjectDefinitionTable,
+				rootDynamicObjectDefinitionTable,
 				_getInnerJoinRootObjectDefinitionTablePredicate(
-					dynamicRootObjectDefinitionTable)
+					rootDynamicObjectDefinitionTable)
 			).leftJoinOn(
 				dynamicObjectDefinitionLocalizationTable,
 				_getLeftJoinLocalizationTablePredicate(
@@ -1227,8 +1227,8 @@ public class ObjectEntryLocalServiceImpl
 					_objectFieldLocalService);
 		DynamicObjectDefinitionTable dynamicObjectDefinitionTable =
 			_getDynamicObjectDefinitionTable(objectDefinitionId);
-		DynamicObjectDefinitionTable dynamicRootObjectDefinitionTable =
-			_getDynamicRootObjectDefinitionTable(objectDefinitionId);
+		DynamicObjectDefinitionTable rootDynamicObjectDefinitionTable =
+			_getRootDynamicObjectDefinitionTable(objectDefinitionId);
 		DynamicObjectDefinitionTable extensionDynamicObjectDefinitionTable =
 			_getExtensionDynamicObjectDefinitionTable(objectDefinitionId);
 
@@ -1247,9 +1247,9 @@ public class ObjectEntryLocalServiceImpl
 				dynamicObjectDefinitionTable.getPrimaryKeyColumn()
 			)
 		).innerJoinON(
-			dynamicRootObjectDefinitionTable,
+			rootDynamicObjectDefinitionTable,
 			_getInnerJoinRootObjectDefinitionTablePredicate(
-				dynamicRootObjectDefinitionTable)
+				rootDynamicObjectDefinitionTable)
 		).leftJoinOn(
 			dynamicObjectDefinitionLocalizationTable,
 			_getLeftJoinLocalizationTablePredicate(
@@ -2388,7 +2388,7 @@ public class ObjectEntryLocalServiceImpl
 			objectDefinition.getDBTableName());
 	}
 
-	private DynamicObjectDefinitionTable _getDynamicRootObjectDefinitionTable(
+	private DynamicObjectDefinitionTable _getRootDynamicObjectDefinitionTable(
 			long objectDefinitionId)
 		throws PortalException {
 
@@ -2808,8 +2808,8 @@ public class ObjectEntryLocalServiceImpl
 		DynamicObjectDefinitionTable dynamicObjectDefinitionTable =
 			_getDynamicObjectDefinitionTable(
 				objectRelationship.getObjectDefinitionId2());
-		DynamicObjectDefinitionTable dynamicRootObjectDefinitionTable =
-			_getDynamicRootObjectDefinitionTable(
+		DynamicObjectDefinitionTable rootDynamicObjectDefinitionTable =
+			_getRootDynamicObjectDefinitionTable(
 				objectRelationship.getObjectDefinitionId2());
 		DynamicObjectDefinitionTable extensionDynamicObjectDefinitionTable =
 			_getExtensionDynamicObjectDefinitionTable(
@@ -2826,9 +2826,9 @@ public class ObjectEntryLocalServiceImpl
 			ObjectEntryTable.INSTANCE,
 			ObjectEntryTable.INSTANCE.objectEntryId.eq(primaryKeyColumn)
 		).innerJoinON(
-			dynamicRootObjectDefinitionTable,
+			rootDynamicObjectDefinitionTable,
 			_getInnerJoinRootObjectDefinitionTablePredicate(
-				dynamicRootObjectDefinitionTable)
+				rootDynamicObjectDefinitionTable)
 		).innerJoinON(
 			extensionDynamicObjectDefinitionTable,
 			extensionDynamicObjectDefinitionTable.getPrimaryKeyColumn(
