@@ -1172,7 +1172,9 @@ public class ObjectEntryLocalServiceTest {
 	}
 
 	@Test
-	public void testAddOrUpdateObjectEntryRootObjectEntryId() throws Exception {
+	public void testAddOrUpdateObjectEntryWithObjectDefinitionTree()
+		throws Exception {
+
 		Tree objectDefinitionTree = TreeTestUtil.createObjectDefinitionTree(
 			_objectDefinitionLocalService, _objectRelationshipLocalService,
 			_treeFactory);
