@@ -96,14 +96,14 @@ public class GetObjectFieldDeleteInfoMVCResourceCommand
 	private boolean _deleteObjectFieldObjectValidationRuleSetting(
 		ObjectField objectField) {
 
-		int objectValidationRuleSettingsCount =
+		int count =
 			_objectValidationRuleSettingLocalService.
 				getObjectValidationRuleSettingsCount(
 					ObjectValidationRuleSettingConstants.
 						NAME_COMPOSITE_KEY_OBJECT_FIELD_ID,
 					String.valueOf(objectField.getObjectFieldId()));
 
-		if (objectValidationRuleSettingsCount > 0) {
+		if (count > 0) {
 			return false;
 		}
 

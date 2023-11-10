@@ -572,11 +572,10 @@ public class ObjectValidationRuleLocalServiceImpl
 					objectValidationRule.getObjectDefinitionId(),
 					objectField.getName());
 
-				long objectEntriesCount =
-					objectEntryLocalService.getObjectEntriesCount(
-						0, objectDefinition, column.isNotNull());
+				long count = objectEntryLocalService.getObjectEntriesCount(
+					0, objectDefinition, column.isNotNull());
 
-				if (objectEntriesCount > 0) {
+				if (count > 0) {
 					throw new ObjectValidationRuleSettingValueException.
 						InvalidValue(
 							newObjectValidationRuleSetting.getName(),
@@ -707,7 +706,7 @@ public class ObjectValidationRuleLocalServiceImpl
 					NAME_COMPOSITE_KEY_OBJECT_FIELD_ID);
 		}
 
-		int compositeKeyObjectValidationRuleSettingsCount = 0;
+		int count = 0;
 
 		for (ObjectValidationRuleSetting objectValidationRuleSetting :
 				objectValidationRuleSettings) {
@@ -746,7 +745,7 @@ public class ObjectValidationRuleLocalServiceImpl
 					ObjectValidationRuleSettingConstants.
 						NAME_COMPOSITE_KEY_OBJECT_FIELD_ID)) {
 
-				compositeKeyObjectValidationRuleSettingsCount++;
+				count++;
 			}
 		}
 
@@ -754,12 +753,12 @@ public class ObjectValidationRuleLocalServiceImpl
 				engine,
 				ObjectValidationRuleConstants.ENGINE_TYPE_COMPOSITE_KEY)) {
 
-			if (compositeKeyObjectValidationRuleSettingsCount > 5) {
+			if (count > 5) {
 				throw new ObjectValidationRuleSettingValueException.
 					CompositeKeyMustHaveMaxObjectFields();
 			}
 
-			if (active && (compositeKeyObjectValidationRuleSettingsCount < 2)) {
+			if (active && (count < 2)) {
 				throw new ObjectValidationRuleSettingValueException.
 					CompositeKeyMustHaveMinObjectFields();
 			}

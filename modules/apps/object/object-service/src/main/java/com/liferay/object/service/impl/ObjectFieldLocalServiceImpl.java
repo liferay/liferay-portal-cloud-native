@@ -915,18 +915,6 @@ public class ObjectFieldLocalServiceImpl
 					"relationship type");
 		}
 
-		int objectValidationRuleSettingsCount =
-			_objectValidationRuleSettingLocalService.
-				getObjectValidationRuleSettingsCount(
-					ObjectValidationRuleSettingConstants.
-						NAME_COMPOSITE_KEY_OBJECT_FIELD_ID,
-					String.valueOf(objectField.getObjectFieldId()));
-
-		if (objectValidationRuleSettingsCount > 0) {
-			throw new RequiredObjectFieldException.
-				MustNotDeleteObjectFieldCompositeKey(objectField.getName());
-		}
-
 		ObjectDefinition objectDefinition =
 			_objectDefinitionPersistence.findByPrimaryKey(
 				objectField.getObjectDefinitionId());
@@ -936,6 +924,18 @@ public class ObjectFieldLocalServiceImpl
 
 			throw new ObjectFieldSystemException(
 				"Only allowed bundles can delete system object fields");
+		}
+
+		int count =
+			_objectValidationRuleSettingLocalService.
+				getObjectValidationRuleSettingsCount(
+					ObjectValidationRuleSettingConstants.
+						NAME_COMPOSITE_KEY_OBJECT_FIELD_ID,
+					String.valueOf(objectField.getObjectFieldId()));
+
+		if (count > 0) {
+			throw new RequiredObjectFieldException.
+				MustNotDeleteObjectFieldCompositeKey(objectField.getName());
 		}
 
 		List<ObjectField> objectFields = ListUtil.filter(
