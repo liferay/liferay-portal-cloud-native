@@ -8,23 +8,28 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String oAuth2ApplicationName = GetterUtil.getString(request.getAttribute("oAuth2ApplicationName"));
+String paramApplicationName = (String)request.getAttribute("oAuth2ApplicationName");
+String paramMatcherField = (String)request.getAttribute("matcherField");
 
-String paramToken = GetterUtil.getString(request.getAttribute("token"));
+String paramToken = (String)request.getAttribute("token");
+
+if (paramToken == null) {
+	paramToken = StringPool.BLANK;
+}
 %>
 
 <aui:input name="<%= Constants.CMD %>" type="hidden" value="" />
 
-<aui:input label="application-name" name="oAuth2ApplicationName" required="<%= true %>" type="text" value="<%= oAuth2ApplicationName %>" />
+<aui:input label="application-name" name="oAuth2ApplicationName" required="<%= true %>" type="text" value="<%= paramApplicationName %>" />
 
-<aui:select helpMessage="scim-matcher-field-help" label="scim-matcher-field" name="matcherField" required="<%= true %>" value="<%= request.getAttribute("matcherField") %>">
+<aui:select helpMessage="scim-matcher-field-help" label="scim-matcher-field" name="matcherField" required="<%= true %>" value="<%= paramMatcherField %>">
 	<aui:option label="" value="" />
 	<aui:option label="userName" localizeLabel="<%= false %>" value="userName" />
 	<aui:option label="email" localizeLabel="<%= false %>" value="email" />
 </aui:select>
 
 <c:choose>
-	<c:when test="<%= oAuth2ApplicationName != null %>">
+	<c:when test="<%= paramApplicationName != null %>">
 
 		<%
 		String paramTokenInputId = liferayPortletResponse.getNamespace() + "paramToken";

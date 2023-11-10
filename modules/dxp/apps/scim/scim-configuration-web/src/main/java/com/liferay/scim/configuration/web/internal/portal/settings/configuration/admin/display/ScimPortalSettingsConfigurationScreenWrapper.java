@@ -157,8 +157,7 @@ public class ScimPortalSettingsConfigurationScreenWrapper
 				ReflectionUtil.throwException(exception);
 			}
 
-			String oAuth2ApplicationName = (String)properties.get(
-				"oAuth2ApplicationName");
+			String oAuth2AplicationName = (String)properties.get("oAuth2ApplicationName");
 
 			OAuth2Application oAuth2Application = null;
 
@@ -166,8 +165,7 @@ public class ScimPortalSettingsConfigurationScreenWrapper
 				oAuth2Application =
 					_oAuth2ApplicationLocalService.getOAuth2Application(
 						themeDisplay.getCompanyId(),
-						ScimClientUtil.generateScimClientId(
-							oAuth2ApplicationName));
+						ScimClientUtil.generateScimClientId(oAuth2ApplicationName));
 			}
 			catch (NoSuchOAuth2ApplicationException
 						noSuchOAuth2ApplicationException) {
@@ -197,10 +195,8 @@ public class ScimPortalSettingsConfigurationScreenWrapper
 
 			String matcherField = (String)properties.get("matcherField");
 
+			httpServletRequest.setAttribute("oAuth2ApplicationName", oAuth2ApplicationName);
 			httpServletRequest.setAttribute("matcherField", matcherField);
-
-			httpServletRequest.setAttribute(
-				"oAuth2ApplicationName", oAuth2ApplicationName);
 		}
 
 	}
