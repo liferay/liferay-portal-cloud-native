@@ -256,7 +256,7 @@ public class DisplayPageActionDropdownItemsProvider {
 		).setParameter(
 			"groupId", _layoutPageTemplateEntry.getGroupId()
 		).setParameter(
-			"selPlid", _draftLayout.getPlid()
+			"selPlid", _layoutPageTemplateEntry.getPlid()
 		).buildString();
 
 		return dropdownItem -> {
