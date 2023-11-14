@@ -1177,7 +1177,6 @@ public class BatchEngineBrokerTest {
 		_batchPlannerPolicyLocalService.addBatchPlannerPolicy(
 			TestPropsValues.getUserId(),
 			batchPlannerPlan.getBatchPlannerPlanId(), "onErrorFail", "true");
-
 		_batchPlannerPolicyLocalService.addBatchPlannerPolicy(
 			TestPropsValues.getUserId(),
 			batchPlannerPlan.getBatchPlannerPlanId(), "siteId",
