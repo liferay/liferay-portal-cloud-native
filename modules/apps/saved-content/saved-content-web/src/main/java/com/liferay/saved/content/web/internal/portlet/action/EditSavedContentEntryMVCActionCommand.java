@@ -52,11 +52,11 @@ public class EditSavedContentEntryMVCActionCommand
 	}
 
 	private JSONObject _updateSavedContentEntry(ActionRequest actionRequest) {
-		String className = ParamUtil.getString(actionRequest, "className");
-		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		String className = ParamUtil.getString(actionRequest, "className");
+		long classPK = ParamUtil.getLong(actionRequest, "classPK");
 
 		try {
 			SavedContentEntry savedContentEntry =
