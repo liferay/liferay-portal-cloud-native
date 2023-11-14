@@ -336,10 +336,9 @@ public class DBPartitionUtil {
 
 		Connection connection = CurrentConnectionUtil.getConnection(
 			InfrastructureUtil.getDataSource());
+		List<String> controlTableNames = new ArrayList<>();
 
 		DBInspector dbInspector = new DBInspector(connection);
-
-		List<String> controlTableNames = new ArrayList<>();
 
 		try {
 			DatabaseMetaData databaseMetaData = connection.getMetaData();
@@ -379,7 +378,7 @@ public class DBPartitionUtil {
 			catch (Exception exception2) {
 				throw new PortalException(
 					StringBundler.concat(
-						"Unable to rollback the extraction of database ",
+						"Unable to roll back the extraction of database ",
 						"partition. Recover a backup of the database schema ",
 						_getSchemaName(companyId), "."),
 					exception2);
