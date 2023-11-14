@@ -786,7 +786,7 @@ public class CompanyLocalServiceTest {
 		try {
 			_companyLocalService.extractCompany(1L);
 
-			Assert.fail("Should throw UnsupportedOperationException");
+			Assert.fail();
 		}
 		catch (Exception exception) {
 			Assert.assertTrue(
@@ -800,7 +800,7 @@ public class CompanyLocalServiceTest {
 			_companyLocalService.extractCompany(
 				PortalInstances.getDefaultCompanyId());
 
-			Assert.fail("Should throw an exception");
+			Assert.fail();
 		}
 		catch (Exception exception) {
 			if (DBPartition.isPartitionEnabled()) {
@@ -837,7 +837,6 @@ public class CompanyLocalServiceTest {
 	@Test
 	public void testUpdateCompanyLocales() throws Exception {
 		Company company = addCompany();
-
 		String languageId = "ca_ES";
 
 		try {

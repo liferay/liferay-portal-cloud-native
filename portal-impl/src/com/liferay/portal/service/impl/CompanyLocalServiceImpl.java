@@ -407,7 +407,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 	public Company extractCompany(long companyId) throws PortalException {
 		if (!DBPartition.isPartitionEnabled()) {
 			throw new UnsupportedOperationException(
-				"DB Partition must be enabled");
+				"Database partition must be enabled");
 		}
 
 		if (companyId == PortalInstances.getDefaultCompanyId()) {
