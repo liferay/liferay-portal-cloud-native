@@ -43,7 +43,7 @@ public interface LayoutLockManager {
 	public void unlock(Layout layout, long userId);
 
 	public void unlockLayouts(long companyId, long autosaveMinutes)
-		throws Exception;
+		throws PortalException;
 
 	public void unlockLayoutsByUserId(long companyId, long userId);
 

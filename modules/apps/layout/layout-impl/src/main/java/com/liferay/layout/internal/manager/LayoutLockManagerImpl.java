@@ -270,7 +270,7 @@ public class LayoutLockManagerImpl implements LayoutLockManager {
 
 	@Override
 	public void unlockLayouts(long companyId, long autosaveMinutes)
-		throws Exception {
+		throws PortalException {
 
 		Map<Long, LockedLayoutsGroupConfiguration>
 			lockedLayoutsGroupConfigurations =
@@ -477,7 +477,7 @@ public class LayoutLockManagerImpl implements LayoutLockManager {
 
 	private Map<Long, LockedLayoutsGroupConfiguration>
 			_getLockedLayoutsGroupConfigurations(long companyId)
-		throws Exception {
+		throws PortalException {
 
 		Map<Long, LockedLayoutsGroupConfiguration>
 			lockedLayoutsGroupConfigurations = new HashMap<>();
@@ -506,8 +506,8 @@ public class LayoutLockManagerImpl implements LayoutLockManager {
 			}
 		}
 		catch (Exception exception) {
-			throw new Exception(
-				"Unable to get LockedLayoutsGroupConfigurations", exception);
+			throw new PortalException(
+				"Unable to get locked layouts group configurations", exception);
 		}
 
 		return lockedLayoutsGroupConfigurations;
