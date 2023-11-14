@@ -58,8 +58,6 @@ public abstract class BaseConfigurationModelListenerTestCase
 
 	@After
 	public void tearDown() throws Exception {
-		_configurationModelListener = null;
-
 		_deleteConfiguration();
 	}
 
