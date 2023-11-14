@@ -1658,6 +1658,12 @@ public class JournalDisplayContext {
 				_getAssetTagNamesFilter(), BooleanClauseOccur.MUST);
 		}
 
+		if (!isSearch()) {
+			booleanFilter.addTerm(
+				Field.FOLDER_ID, String.valueOf(getFolderId()),
+				BooleanClauseOccur.MUST);
+		}
+
 		if ((isNavigationMine() || isNavigationRecent()) &&
 			(_themeDisplay.getUserId() > 0)) {
 
