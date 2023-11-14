@@ -1069,8 +1069,8 @@ public class CompanyLocalServiceTest {
 		deleteClassName(StagedAssetLink.class.getName());
 		deleteClassName(StagedExpandoColumn.class.getName());
 		deleteClassName(StagedExpandoTable.class.getName());
-		deleteClassName(StagedLayoutSet.class.getName());
 		deleteClassName(StagedGroup.class.getName());
+		deleteClassName(StagedLayoutSet.class.getName());
 		deleteClassName(StagedTheme.class.getName());
 	}
 
