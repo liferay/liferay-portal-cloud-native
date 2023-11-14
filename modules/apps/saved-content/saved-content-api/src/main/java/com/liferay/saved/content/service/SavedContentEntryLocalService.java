@@ -63,7 +63,7 @@ public interface SavedContentEntryLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public SavedContentEntry addSavedContentEntry(
-			long groupId, long userId, String className, long classPK,
+			long userId, long groupId, String className, long classPK,
 			ServiceContext serviceContext)
 		throws PortalException;
 
@@ -209,7 +209,7 @@ public interface SavedContentEntryLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public SavedContentEntry fetchSavedContentEntry(
-		long groupId, long userId, String className, long classPK);
+		long userId, long groupId, String className, long classPK);
 
 	/**
 	 * Returns the saved content entry matching the UUID and group.

@@ -36,12 +36,12 @@ public class SavedContentEntryLocalServiceUtil {
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.saved.content.service.impl.SavedContentEntryLocalServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static SavedContentEntry addSavedContentEntry(
-			long groupId, long userId, String className, long classPK,
+			long userId, long groupId, String className, long classPK,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws PortalException {
 
 		return getService().addSavedContentEntry(
-			groupId, userId, className, classPK, serviceContext);
+			userId, groupId, className, classPK, serviceContext);
 	}
 
 	/**
@@ -218,10 +218,10 @@ public class SavedContentEntryLocalServiceUtil {
 	}
 
 	public static SavedContentEntry fetchSavedContentEntry(
-		long groupId, long userId, String className, long classPK) {
+		long userId, long groupId, String className, long classPK) {
 
 		return getService().fetchSavedContentEntry(
-			groupId, userId, className, classPK);
+			userId, groupId, className, classPK);
 	}
 
 	/**

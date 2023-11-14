@@ -34,12 +34,12 @@ public class SavedContentEntryLocalServiceWrapper
 
 	@Override
 	public SavedContentEntry addSavedContentEntry(
-			long groupId, long userId, String className, long classPK,
+			long userId, long groupId, String className, long classPK,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _savedContentEntryLocalService.addSavedContentEntry(
-			groupId, userId, className, classPK, serviceContext);
+			userId, groupId, className, classPK, serviceContext);
 	}
 
 	/**
@@ -244,10 +244,10 @@ public class SavedContentEntryLocalServiceWrapper
 
 	@Override
 	public SavedContentEntry fetchSavedContentEntry(
-		long groupId, long userId, String className, long classPK) {
+		long userId, long groupId, String className, long classPK) {
 
 		return _savedContentEntryLocalService.fetchSavedContentEntry(
-			groupId, userId, className, classPK);
+			userId, groupId, className, classPK);
 	}
 
 	/**
