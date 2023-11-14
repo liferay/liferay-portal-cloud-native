@@ -60,7 +60,7 @@ export const DownloadIndividualReportModal: React.FC<IDownloadIndividualReportMo
 								{
 									sub(
 										Liferay.Language.get(
-											'this-list-will-be-downloaded-respecting-the-current-ordering,-filter-and-search-results.-the-maximum-number-of-entries-supported-per-export-is-x.-are-you-sure-you-want-to-download-the-csv-file'
+											'this-list-will-be-downloaded-respecting-the-current-ordering,-filter,-and-search-results'
 										),
 										[toLocale(10000)]
 									) as string
