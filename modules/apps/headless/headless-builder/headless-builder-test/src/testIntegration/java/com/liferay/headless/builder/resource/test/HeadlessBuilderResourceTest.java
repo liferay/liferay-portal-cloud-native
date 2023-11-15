@@ -144,7 +144,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			2, ObjectDefinitionConstants.SCOPE_COMPANY);
 		_objectDefinition3 = _addObjectDefinition(
 			3, ObjectDefinitionConstants.SCOPE_COMPANY);
-
 		_objectDefinition4 = _addObjectDefinition(
 			4, ObjectDefinitionConstants.SCOPE_COMPANY);
 		_objectDefinition5 = _addObjectDefinition(
@@ -158,7 +157,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		_objectRelationship2 = _addObjectRelationship(
 			_objectDefinition2, _objectDefinition3,
 			ObjectRelationshipConstants.TYPE_MANY_TO_MANY);
-
 		_objectRelationship3 = _addObjectRelationship(
 			_objectDefinition5, _objectDefinition4,
 			ObjectRelationshipConstants.TYPE_ONE_TO_MANY);
@@ -1038,7 +1036,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 	}
 
 	@Test
-	public void testGetWithIndirectlyUnRelatedObjectEntries() throws Exception {
+	public void testGetWithIndirectlyUnrelatedObjectEntries() throws Exception {
 		_addAPIApplication(
 			_API_APPLICATION_ERC_1, _API_ENDPOINT_ERC_1, _BASE_URL_1,
 			_objectDefinition4.getExternalReferenceCode(),
@@ -1050,17 +1048,14 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		ObjectEntry objectEntry1 = _addCustomObjectEntry(
 			1, null, _objectDefinition4, "value1",
 			RandomTestUtil.randomString());
-
 		ObjectEntry objectEntry2 = _addCustomObjectEntry(
 			1, null, _objectDefinition5, "value1",
 			RandomTestUtil.randomString());
-
 		ObjectEntry objectEntry3 = _addCustomObjectEntry(
 			1, null, _objectDefinition6, "value1",
 			RandomTestUtil.randomString());
 
 		_relateObjectEntries(objectEntry1, objectEntry2, _objectRelationship3);
-
 		_relateObjectEntries(objectEntry1, objectEntry3, _objectRelationship4);
 
 		assertSuccessfulHttpCode(
