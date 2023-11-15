@@ -158,9 +158,17 @@ public class ObjectEntryResourceTest {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
+		_assetVocabulary = AssetVocabularyLocalServiceUtil.addVocabulary(
+			UserLocalServiceUtil.getGuestUserId(TestPropsValues.getCompanyId()),
+			TestPropsValues.getGroupId(), RandomTestUtil.randomString(),
+			new ServiceContext());
+
 		Bundle bundle = FrameworkUtil.getBundle(ObjectEntryResourceTest.class);
 
 		_bundleContext = bundle.getBundleContext();
+
+		_serviceRegistration = _bundleContext.registerService(
+			ModelListener.class, _testDLFileEntryModelListener, null);
 
 		TaxonomyCategoryResource.Builder builder =
 			TaxonomyCategoryResource.builder();
@@ -170,14 +178,6 @@ public class ObjectEntryResourceTest {
 		).locale(
 			LocaleUtil.getDefault()
 		).build();
-
-		_assetVocabulary = AssetVocabularyLocalServiceUtil.addVocabulary(
-			UserLocalServiceUtil.getGuestUserId(TestPropsValues.getCompanyId()),
-			TestPropsValues.getGroupId(), RandomTestUtil.randomString(),
-			new ServiceContext());
-
-		_serviceRegistration = _bundleContext.registerService(
-			ModelListener.class, _testDLFileEntryModelListener, null);
 	}
 
 	@AfterClass
