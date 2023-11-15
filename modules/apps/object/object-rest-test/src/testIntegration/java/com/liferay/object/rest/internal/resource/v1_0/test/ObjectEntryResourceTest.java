@@ -5966,26 +5966,17 @@ public class ObjectEntryResourceTest {
 				ObjectDefinition objectDefinition)
 		throws Exception {
 
-		com.liferay.object.rest.dto.v1_0.FileEntry fileEntry =
-			new com.liferay.object.rest.dto.v1_0.FileEntry();
-
-		fileEntry.setFileBase64(Base64.encode(RandomTestUtil.randomBytes()));
-		fileEntry.setName(RandomTestUtil.randomString() + ".txt");
-
 		JSONObject jsonObject = HTTPTestUtil.invokeToJSONObject(
 			JSONUtil.put(
 				_OBJECT_FIELD_NAME_1, RandomTestUtil.randomString()
 			).put(
 				_OBJECT_FIELD_NAME_ATTACHMENT,
-				JSONFactoryUtil.createJSONObject(fileEntry.toString())
+				_toFileEntryJSONObject(
+					RandomTestUtil.randomString(),
+					RandomTestUtil.randomString() + ".txt")
 			).toString(),
 			_getEndpoint(TestPropsValues.getGroupId(), objectDefinition),
 			Http.Method.POST);
-
-		fileEntry = new com.liferay.object.rest.dto.v1_0.FileEntry();
-
-		fileEntry.setFileBase64(Base64.encode(fileContent.getBytes()));
-		fileEntry.setName(fileName);
 
 		String endpoint =
 			_getEndpoint(TestPropsValues.getGroupId(), objectDefinition) +
@@ -6003,7 +5994,7 @@ public class ObjectEntryResourceTest {
 				_OBJECT_FIELD_NAME_1, RandomTestUtil.randomString()
 			).put(
 				_OBJECT_FIELD_NAME_ATTACHMENT,
-				JSONFactoryUtil.createJSONObject(fileEntry.toString())
+				_toFileEntryJSONObject(fileContent, fileName)
 			).put(
 				"externalReferenceCode",
 				jsonObject.getString("externalReferenceCode")
@@ -6029,30 +6020,7 @@ public class ObjectEntryResourceTest {
 				Http.Method httpMethod, ObjectDefinition objectDefinition)
 		throws Exception {
 
-		// File validation: extension not allowed
-
-		_testPatchPutCustomObjectEntryByExternalReferenceCodeWithAttachmentField(
-			(fileContent, fileName) -> JSONUtil.put(
-				"status", "BAD_REQUEST"
-			).put(
-				"title", "Invalid file extension for " + fileName
-			),
-			null, RandomTestUtil.randomString(),
-			RandomTestUtil.randomString() + ".err", httpMethod, null,
-			objectDefinition);
-
-		// File validation: file name is null
-
-		_testPatchPutCustomObjectEntryByExternalReferenceCodeWithAttachmentField(
-			(fileContent, fileName) -> JSONUtil.put(
-				"status", "BAD_REQUEST"
-			).put(
-				"title", "File name is null"
-			),
-			null, RandomTestUtil.randomString(), null, httpMethod, null,
-			objectDefinition);
-
-		// File validation: size limit exceeded
+		// File validation
 
 		_testPatchPutCustomObjectEntryByExternalReferenceCodeWithAttachmentField(
 			(fileContent, fileName) -> JSONUtil.put(
@@ -6069,6 +6037,23 @@ public class ObjectEntryResourceTest {
 				(_MAX_FILE_SIZE_VALUE * 1024 * 1024) + 1),
 			RandomTestUtil.randomString() + ".txt", httpMethod, null,
 			objectDefinition);
+		_testPatchPutCustomObjectEntryByExternalReferenceCodeWithAttachmentField(
+			(fileContent, fileName) -> JSONUtil.put(
+				"status", "BAD_REQUEST"
+			).put(
+				"title", "File name is null"
+			),
+			null, RandomTestUtil.randomString(), null, httpMethod, null,
+			objectDefinition);
+		_testPatchPutCustomObjectEntryByExternalReferenceCodeWithAttachmentField(
+			(fileContent, fileName) -> JSONUtil.put(
+				"status", "BAD_REQUEST"
+			).put(
+				"title", "Invalid file extension for " + fileName
+			),
+			null, RandomTestUtil.randomString(),
+			RandomTestUtil.randomString() + ".err", httpMethod, null,
+			objectDefinition);
 
 		// File with a nonexistent name
 
@@ -6084,7 +6069,7 @@ public class ObjectEntryResourceTest {
 			RandomTestUtil.randomString() + ".txt", httpMethod, null,
 			objectDefinition);
 
-		// File with a nonexistent name and the base64 content as nested field
+		// File with a nonexistent name and the Base64 content as a nested field
 
 		_testPatchPutCustomObjectEntryByExternalReferenceCodeWithAttachmentField(
 			(fileContent, fileName) -> JSONUtil.put(
@@ -6100,7 +6085,7 @@ public class ObjectEntryResourceTest {
 			RandomTestUtil.randomString() + ".txt", httpMethod, "fileBase64",
 			objectDefinition);
 
-		// File with an already used name
+		// File with an existing name
 
 		String name = RandomTestUtil.randomString();
 
@@ -6114,7 +6099,6 @@ public class ObjectEntryResourceTest {
 				)),
 			"fileBase64", RandomTestUtil.randomString(), name + ".txt",
 			httpMethod, null, objectDefinition);
-
 		_testPatchPutCustomObjectEntryByExternalReferenceCodeWithAttachmentField(
 			(fileContent, fileName) -> JSONUtil.put(
 				_OBJECT_FIELD_NAME_ATTACHMENT,
@@ -6134,26 +6118,17 @@ public class ObjectEntryResourceTest {
 			ObjectDefinition objectDefinition)
 		throws Exception {
 
-		com.liferay.object.rest.dto.v1_0.FileEntry fileEntry =
-			new com.liferay.object.rest.dto.v1_0.FileEntry();
-
-		fileEntry.setFileBase64(Base64.encode(RandomTestUtil.randomBytes()));
-		fileEntry.setName(RandomTestUtil.randomString() + ".txt");
-
 		JSONObject jsonObject = HTTPTestUtil.invokeToJSONObject(
 			JSONUtil.put(
 				_OBJECT_FIELD_NAME_1, RandomTestUtil.randomString()
 			).put(
 				_OBJECT_FIELD_NAME_ATTACHMENT,
-				JSONFactoryUtil.createJSONObject(fileEntry.toString())
+				_toFileEntryJSONObject(
+					RandomTestUtil.randomString(),
+					RandomTestUtil.randomString() + ".txt")
 			).toString(),
 			_getEndpoint(TestPropsValues.getGroupId(), objectDefinition),
 			Http.Method.POST);
-
-		fileEntry = new com.liferay.object.rest.dto.v1_0.FileEntry();
-
-		fileEntry.setFileBase64(Base64.encode(fileContent.getBytes()));
-		fileEntry.setName(fileName);
 
 		String endpoint =
 			objectDefinition.getRESTContextPath() + "/" +
@@ -6170,7 +6145,7 @@ public class ObjectEntryResourceTest {
 				_OBJECT_FIELD_NAME_1, RandomTestUtil.randomString()
 			).put(
 				_OBJECT_FIELD_NAME_ATTACHMENT,
-				JSONFactoryUtil.createJSONObject(fileEntry.toString())
+				_toFileEntryJSONObject(fileContent, fileName)
 			).put(
 				"id", jsonObject.getLong("id")
 			).toString(),
@@ -6194,30 +6169,7 @@ public class ObjectEntryResourceTest {
 			Http.Method httpMethod, ObjectDefinition objectDefinition)
 		throws Exception {
 
-		// File validation: extension not allowed
-
-		_testPatchPutCustomObjectEntryWithAttachmentField(
-			(fileContent, fileName) -> JSONUtil.put(
-				"status", "BAD_REQUEST"
-			).put(
-				"title", "Invalid file extension for " + fileName
-			),
-			null, RandomTestUtil.randomString(),
-			RandomTestUtil.randomString() + ".err", httpMethod, null,
-			objectDefinition);
-
-		// File validation: file name is null
-
-		_testPatchPutCustomObjectEntryWithAttachmentField(
-			(fileContent, fileName) -> JSONUtil.put(
-				"status", "BAD_REQUEST"
-			).put(
-				"title", "File name is null"
-			),
-			null, RandomTestUtil.randomString(), null, httpMethod, null,
-			objectDefinition);
-
-		// File validation: size limit exceeded
+		// File validation
 
 		_testPatchPutCustomObjectEntryWithAttachmentField(
 			(fileContent, fileName) -> JSONUtil.put(
@@ -6234,6 +6186,23 @@ public class ObjectEntryResourceTest {
 				(_MAX_FILE_SIZE_VALUE * 1024 * 1024) + 1),
 			RandomTestUtil.randomString() + ".txt", httpMethod, null,
 			objectDefinition);
+		_testPatchPutCustomObjectEntryWithAttachmentField(
+			(fileContent, fileName) -> JSONUtil.put(
+				"status", "BAD_REQUEST"
+			).put(
+				"title", "File name is null"
+			),
+			null, RandomTestUtil.randomString(), null, httpMethod, null,
+			objectDefinition);
+		_testPatchPutCustomObjectEntryWithAttachmentField(
+			(fileContent, fileName) -> JSONUtil.put(
+				"status", "BAD_REQUEST"
+			).put(
+				"title", "Invalid file extension for " + fileName
+			),
+			null, RandomTestUtil.randomString(),
+			RandomTestUtil.randomString() + ".err", httpMethod, null,
+			objectDefinition);
 
 		// File with a nonexistent name
 
@@ -6249,33 +6218,7 @@ public class ObjectEntryResourceTest {
 			RandomTestUtil.randomString() + ".txt", httpMethod, null,
 			objectDefinition);
 
-		// File with the same name
-
-		String name = RandomTestUtil.randomString();
-
-		_testPatchPutCustomObjectEntryWithAttachmentField(
-			(fileContent, fileName) -> JSONUtil.put(
-				_OBJECT_FIELD_NAME_ATTACHMENT,
-				JSONUtil.put(
-					"id", _testDLFileEntryModelListener.getLastFileEntryId()
-				).put(
-					"name", fileName
-				)),
-			"fileBase64", RandomTestUtil.randomString(), name + ".txt",
-			httpMethod, null, objectDefinition);
-
-		_testPatchPutCustomObjectEntryWithAttachmentField(
-			(fileContent, fileName) -> JSONUtil.put(
-				_OBJECT_FIELD_NAME_ATTACHMENT,
-				JSONUtil.put(
-					"id", _testDLFileEntryModelListener.getLastFileEntryId()
-				).put(
-					"name", StringUtil.replace(fileName, ".txt", " (1).txt")
-				)),
-			"fileBase64", RandomTestUtil.randomString(), name + ".txt",
-			httpMethod, null, objectDefinition);
-
-		// File in base64 encoding requested as nested field
+		// File with a nonexistent name and the Base64 content as a nested field
 
 		_testPatchPutCustomObjectEntryWithAttachmentField(
 			(fileContent, fileName) -> JSONUtil.put(
@@ -6290,6 +6233,31 @@ public class ObjectEntryResourceTest {
 			null, RandomTestUtil.randomString(),
 			RandomTestUtil.randomString() + ".txt", httpMethod, "fileBase64",
 			objectDefinition);
+
+		// File with an existing name
+
+		String name = RandomTestUtil.randomString();
+
+		_testPatchPutCustomObjectEntryWithAttachmentField(
+			(fileContent, fileName) -> JSONUtil.put(
+				_OBJECT_FIELD_NAME_ATTACHMENT,
+				JSONUtil.put(
+					"id", _testDLFileEntryModelListener.getLastFileEntryId()
+				).put(
+					"name", fileName
+				)),
+			"fileBase64", RandomTestUtil.randomString(), name + ".txt",
+			httpMethod, null, objectDefinition);
+		_testPatchPutCustomObjectEntryWithAttachmentField(
+			(fileContent, fileName) -> JSONUtil.put(
+				_OBJECT_FIELD_NAME_ATTACHMENT,
+				JSONUtil.put(
+					"id", _testDLFileEntryModelListener.getLastFileEntryId()
+				).put(
+					"name", StringUtil.replace(fileName, ".txt", " (1).txt")
+				)),
+			"fileBase64", RandomTestUtil.randomString(), name + ".txt",
+			httpMethod, null, objectDefinition);
 	}
 
 	private void _testPostCustomObjectEntryWithAttachmentField(
@@ -6785,6 +6753,19 @@ public class ObjectEntryResourceTest {
 
 		return JSONFactoryUtil.createJSONObject(
 			embeddedTaxonomyCategory.toString());
+	}
+
+	private JSONObject _toFileEntryJSONObject(
+			String fileContent, String fileName)
+		throws Exception {
+
+		com.liferay.object.rest.dto.v1_0.FileEntry fileEntry =
+			new com.liferay.object.rest.dto.v1_0.FileEntry();
+
+		fileEntry.setFileBase64(Base64.encode(fileContent.getBytes()));
+		fileEntry.setName(fileName);
+
+		return JSONFactoryUtil.createJSONObject(fileEntry.toString());
 	}
 
 	private static final String _ERC_VALUE_1 = RandomTestUtil.randomString();
