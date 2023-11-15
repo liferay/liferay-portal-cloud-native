@@ -383,8 +383,6 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 	public void testGetUserAccount() throws Exception {
 		super.testGetUserAccount();
 
-		User user = UserTestUtil.addUser();
-
 		Group group = GroupTestUtil.addGroup();
 
 		Role groupRole = RoleTestUtil.addRole(
@@ -411,6 +409,8 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 						))
 				)),
 			jsonObject.getJSONArray("siteBriefs"), JSONCompareMode.LENIENT);
+
+		User user = UserTestUtil.addUser();
 
 		PermissionChecker originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
