@@ -342,9 +342,9 @@ public class APIEndpointRelevantObjectEntryModelListener
 				APIApplication.Endpoint.RetrieveType.COLLECTION)) {
 
 			throw new ObjectEntryValuesException.InvalidObjectField(
-				null,
+				Arrays.asList("singleElement"),
 				"POST API endpoints retrieve type must be \"singleElement\"",
-				"post-api-endpoints-retrieve-type-must-be-\"singleElement\"");
+				"post-api-endpoints-retrieve-type-must-be-x");
 		}
 
 		String pathString = (String)values.get("path");
