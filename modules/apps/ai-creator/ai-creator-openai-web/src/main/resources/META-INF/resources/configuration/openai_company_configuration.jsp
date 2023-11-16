@@ -42,7 +42,7 @@ AICreatorOpenAICompanyConfigurationDisplayContext aiCreatorOpenAICompanyConfigur
 		<clay:checkbox
 			checked="<%= aiCreatorOpenAICompanyConfigurationDisplayContext.isChatGTPEnabled() %>"
 			id='<%= liferayPortletResponse.getNamespace() + "enableChatGTP" %>'
-			label='<%= LanguageUtil.get(request, "enable-chatgtp-to-create-content") %>'
+			label='<%= LanguageUtil.get(request, "enable-chatgpt-to-create-content") %>'
 			name='<%= liferayPortletResponse.getNamespace() + "enableChatGTP" %>'
 		/>
 	</clay:content-col>

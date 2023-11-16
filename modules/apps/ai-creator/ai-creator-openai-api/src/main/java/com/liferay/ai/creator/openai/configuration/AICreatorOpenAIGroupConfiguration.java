@@ -27,7 +27,7 @@ public interface AICreatorOpenAIGroupConfiguration {
 	public String apiKey();
 
 	@Meta.AD(
-		deflt = "true", name = "enable-chatgtp-to-create-content",
+		deflt = "true", name = "enable-chatgpt-to-create-content",
 		required = false
 	)
 	public boolean enableChatGPTToCreateContent();
