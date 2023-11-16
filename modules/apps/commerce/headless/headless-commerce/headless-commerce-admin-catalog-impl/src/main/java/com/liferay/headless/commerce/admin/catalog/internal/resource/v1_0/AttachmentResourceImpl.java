@@ -398,6 +398,10 @@ public class AttachmentResourceImpl extends BaseAttachmentResourceImpl {
 		ServiceContext serviceContext = _serviceContextHelper.getServiceContext(
 			cpDefinition.getGroupId());
 
+		if (attachment.getTags() != null) {
+			serviceContext.setAssetTagNames(attachment.getTags());
+		}
+
 		Map<String, Serializable> expandoBridgeAttributes =
 			CustomFieldsUtil.toMap(
 				CPAttachmentFileEntry.class.getName(),
@@ -406,12 +410,6 @@ public class AttachmentResourceImpl extends BaseAttachmentResourceImpl {
 
 		if (expandoBridgeAttributes != null) {
 			serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
-		}
-
-		String[] tags = attachment.getTags();
-
-		if (tags != null) {
-			serviceContext.setAssetTagNames(tags);
 		}
 
 		CPAttachmentFileEntry cpAttachmentFileEntry =
@@ -437,6 +435,10 @@ public class AttachmentResourceImpl extends BaseAttachmentResourceImpl {
 		ServiceContext serviceContext = _serviceContextHelper.getServiceContext(
 			cpDefinition.getGroupId());
 
+		if (attachmentBase64.getTags() != null) {
+			serviceContext.setAssetTagNames(attachmentBase64.getTags());
+		}
+
 		Map<String, Serializable> expandoBridgeAttributes =
 			CustomFieldsUtil.toMap(
 				CPAttachmentFileEntry.class.getName(),
@@ -446,12 +448,6 @@ public class AttachmentResourceImpl extends BaseAttachmentResourceImpl {
 
 		if (expandoBridgeAttributes != null) {
 			serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
-		}
-
-		String[] tags = attachmentBase64.getTags();
-
-		if (tags != null) {
-			serviceContext.setAssetTagNames(tags);
 		}
 
 		CPAttachmentFileEntry cpAttachmentFileEntry =
@@ -474,6 +470,10 @@ public class AttachmentResourceImpl extends BaseAttachmentResourceImpl {
 		ServiceContext serviceContext = _serviceContextHelper.getServiceContext(
 			cpDefinition.getGroupId());
 
+		if (attachmentUrl.getTags() != null) {
+			serviceContext.setAssetTagNames(attachmentUrl.getTags());
+		}
+
 		Map<String, Serializable> expandoBridgeAttributes =
 			CustomFieldsUtil.toMap(
 				CPAttachmentFileEntry.class.getName(),
@@ -482,12 +482,6 @@ public class AttachmentResourceImpl extends BaseAttachmentResourceImpl {
 
 		if (expandoBridgeAttributes != null) {
 			serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
-		}
-
-		String[] tags = attachmentUrl.getTags();
-
-		if (tags != null) {
-			serviceContext.setAssetTagNames(tags);
 		}
 
 		CPAttachmentFileEntry cpAttachmentFileEntry =

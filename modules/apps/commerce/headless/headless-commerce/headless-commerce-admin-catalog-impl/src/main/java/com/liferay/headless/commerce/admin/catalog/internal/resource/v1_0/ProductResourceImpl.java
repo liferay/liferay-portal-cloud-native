@@ -1005,14 +1005,12 @@ public class ProductResourceImpl extends BaseProductResourceImpl {
 
 		if (images != null) {
 			for (Attachment attachment : images) {
+				if (attachment.getTags() != null) {
+					serviceContext.setAssetTagNames(attachment.getTags());
+				}
+
 				serviceContext.setExpandoBridgeAttributes(
 					_getExpandoBridgeAttributes(attachment));
-
-				String[] tags = attachment.getTags();
-
-				if (tags != null) {
-					serviceContext.setAssetTagNames(tags);
-				}
 
 				AttachmentUtil.addOrUpdateCPAttachmentFileEntry(
 					cpDefinition.getGroupId(), _cpAttachmentFileEntryService,
@@ -1033,14 +1031,12 @@ public class ProductResourceImpl extends BaseProductResourceImpl {
 
 		if (attachments != null) {
 			for (Attachment attachment : attachments) {
+				if (attachment.getTags() != null) {
+					serviceContext.setAssetTagNames(attachment.getTags());
+				}
+
 				serviceContext.setExpandoBridgeAttributes(
 					_getExpandoBridgeAttributes(attachment));
-
-				String[] tags = attachment.getTags();
-
-				if (tags != null) {
-					serviceContext.setAssetTagNames(tags);
-				}
 
 				AttachmentUtil.addOrUpdateCPAttachmentFileEntry(
 					cpDefinition.getGroupId(), _cpAttachmentFileEntryService,
