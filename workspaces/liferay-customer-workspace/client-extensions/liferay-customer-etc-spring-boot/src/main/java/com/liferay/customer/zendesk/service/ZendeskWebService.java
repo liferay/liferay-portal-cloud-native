@@ -97,7 +97,7 @@ public class ZendeskWebService {
 		).contentType(
 			MediaType.APPLICATION_JSON
 		).header(
-			HttpHeaders.AUTHORIZATION, _getCredentials(emailAddress)
+			HttpHeaders.AUTHORIZATION, _getAuthorization(emailAddress)
 		).body(
 			BodyInserters.fromValue(jsonObject.toString())
 		).retrieve(
@@ -177,10 +177,10 @@ public class ZendeskWebService {
 
 	@PostConstruct
 	public void init() throws Exception {
-		_zendeskAuthorization = _getCredentials(_zendeskAPIEmailAddress);
+		_zendeskAuthorization = _getAuthorization(_zendeskAPIEmailAddress);
 	}
 
-	private String _getCredentials(String emailAddress) throws Exception {
+	private String _getAuthorization(String emailAddress) throws Exception {
 		Base64.Encoder encoder = Base64.getEncoder();
 
 		String zendeskCredentials = emailAddress + "/token:" + _zendeskAPIToken;
