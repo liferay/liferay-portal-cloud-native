@@ -64,22 +64,22 @@ public class SessionTimeoutImpl implements SessionTimeout {
 					configurationException);
 			}
 
-			return _DEFAULT_SESSION_TIMEOUT_CONFIGURATION;
+			return _SESSION_TIMEOUT_CONFIGURATION;
 		}
 	}
 
 	private static final SessionTimeoutConfiguration
-		_DEFAULT_SESSION_TIMEOUT_CONFIGURATION =
+		_SESSION_TIMEOUT_CONFIGURATION =
 			new SessionTimeoutConfiguration() {
 
 				@Override
 				public boolean autoExtend() {
-					return SessionTimeoutUtil.DEFAULT_AUTO_EXTEND;
+					return SessionTimeoutUtil.AUTO_EXTEND;
 				}
 
 				@Override
 				public int autoExtendOffset() {
-					return SessionTimeoutUtil.DEFAULT_AUTO_EXTEND_OFFSET;
+					return SessionTimeoutUtil.AUTO_EXTEND_OFFSET;
 				}
 
 			};

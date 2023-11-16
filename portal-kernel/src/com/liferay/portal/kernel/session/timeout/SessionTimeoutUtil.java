@@ -19,15 +19,15 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
  */
 public class SessionTimeoutUtil {
 
-	public static final boolean DEFAULT_AUTO_EXTEND = false;
+	public static final boolean AUTO_EXTEND = false;
 
-	public static final int DEFAULT_AUTO_EXTEND_OFFSET = 70;
+	public static final int AUTO_EXTEND_OFFSET = 70;
 
 	public static int getAutoExtendOffset(
 		HttpServletRequest httpServletRequest) {
 
 		if (_sessionTimeout == null) {
-			return DEFAULT_AUTO_EXTEND_OFFSET;
+			return AUTO_EXTEND_OFFSET;
 		}
 
 		return _sessionTimeout.getAutoExtendOffset(httpServletRequest);
@@ -35,7 +35,7 @@ public class SessionTimeoutUtil {
 
 	public static boolean isAutoExtend(HttpServletRequest httpServletRequest) {
 		if (_sessionTimeout == null) {
-			return DEFAULT_AUTO_EXTEND;
+			return AUTO_EXTEND;
 		}
 
 		return _sessionTimeout.isAutoExtend(httpServletRequest);
