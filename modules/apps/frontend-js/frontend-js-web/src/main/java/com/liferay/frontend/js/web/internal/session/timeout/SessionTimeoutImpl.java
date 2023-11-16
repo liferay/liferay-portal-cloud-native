@@ -5,7 +5,7 @@
 
 package com.liferay.frontend.js.web.internal.session.timeout;
 
-import com.liferay.frontend.js.web.internal.configuration.SessionTimeoutConfiguration;
+import com.liferay.frontend.js.web.internal.session.timeout.configuration.SessionTimeoutConfiguration;
 import com.liferay.portal.configuration.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Iván Zaera Avellón
  */
 @Component(
-	configurationPid = "com.liferay.frontend.js.web.internal.configuration.SessionTimeoutConfiguration",
+	configurationPid = "com.liferay.frontend.js.web.internal.session.timeout.configuration.SessionTimeoutConfiguration",
 	service = SessionTimeout.class
 )
 public class SessionTimeoutImpl implements SessionTimeout {
