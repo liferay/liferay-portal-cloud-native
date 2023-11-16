@@ -603,7 +603,7 @@ public class CreateClientExtensionConfigTask extends DefaultTask {
 			}
 			catch (IOException ioException) {
 				throw new GradleException(
-					String.format("Could not read file %s", file));
+					String.format("Unable to read file %s", file));
 			}
 		}
 	}
