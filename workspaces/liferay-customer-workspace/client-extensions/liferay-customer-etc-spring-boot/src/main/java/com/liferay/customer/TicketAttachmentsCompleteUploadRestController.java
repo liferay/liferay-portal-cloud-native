@@ -59,7 +59,6 @@ public class TicketAttachmentsCompleteUploadRestController
 			TicketAttachment ticketAttachment =
 				_ticketAttachmentWebService.approveTicketAttachment(
 					jwt, ticketAttachmentId);
-
 			JSONObject jsonObject = new JSONObject(json);
 
 			String zendeskTicketCommentBody = _buildZendeskTicketCommentBody(
