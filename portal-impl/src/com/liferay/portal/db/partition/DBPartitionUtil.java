@@ -706,10 +706,10 @@ public class DBPartitionUtil {
 	private static void _insertDBPartition(long companyId)
 		throws PortalException {
 
+		List<String> companyIdControlTableNames = new ArrayList<>();
+
 		Connection connection = CurrentConnectionUtil.getConnection(
 			InfrastructureUtil.getDataSource());
-
-		List<String> companyIdControlTableNames = new ArrayList<>();
 
 		try (Statement statement = connection.createStatement()) {
 			DBInspector dbInspector = new DBInspector(connection);
