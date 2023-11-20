@@ -151,16 +151,15 @@ public class CopyFragmentEntryMVCActionCommandTest {
 				FragmentConstants.TYPE_COMPONENT, StringPool.BLANK,
 				WorkflowConstants.STATUS_APPROVED, _serviceContext);
 
-		String fragmentEntryNameCopy = StringBundler.concat(
+		String name = StringBundler.concat(
 			fragmentEntry.getName(), " (",
 			_language.get(LocaleUtil.getSiteDefault(), "copy"), ")");
 
 		List<FragmentEntry> fragmentEntries =
 			_fragmentEntryLocalService.getFragmentEntries(
 				_group.getGroupId(),
-				fragmentCollection.getFragmentCollectionId(),
-				fragmentEntryNameCopy, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				null);
+				fragmentCollection.getFragmentCollectionId(), name,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Assert.assertTrue(ListUtil.isEmpty(fragmentEntries));
 
@@ -178,7 +177,7 @@ public class CopyFragmentEntryMVCActionCommandTest {
 
 		fragmentEntries = _fragmentEntryLocalService.getFragmentEntries(
 			_group.getGroupId(), fragmentCollection.getFragmentCollectionId(),
-			fragmentEntryNameCopy, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+			name, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Assert.assertTrue(ListUtil.isNotEmpty(fragmentEntries));
 
