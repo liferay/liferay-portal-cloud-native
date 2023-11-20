@@ -134,7 +134,7 @@ public class UserManagerImpl implements UserManager {
 	@Override
 	public void deleteUser(String userId) throws CharonException {
 		try {
-			ScimUser scimUser = _getScimUser(
+			_getScimUser(
 				CompanyThreadLocal.getCompanyId(), GetterUtil.getLong(userId));
 
 			_userLocalService.updateStatus(
