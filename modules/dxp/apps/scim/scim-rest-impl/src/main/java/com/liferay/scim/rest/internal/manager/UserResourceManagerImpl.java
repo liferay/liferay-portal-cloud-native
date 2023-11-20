@@ -16,6 +16,7 @@ import org.wso2.charon3.core.protocol.endpoints.UserResourceManager;
  */
 public class UserResourceManagerImpl extends UserResourceManager {
 
+	@Override
 	public SCIMResponse updateWithPUT(
 		String existingId, String scimObjectString, UserManager userManager,
 		String attributes, String excludeAttributes) {
