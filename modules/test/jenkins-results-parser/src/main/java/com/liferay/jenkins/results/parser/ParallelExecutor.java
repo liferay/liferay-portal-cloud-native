@@ -190,7 +190,7 @@ public class ParallelExecutor<T> {
 
 			if (parallelExecutor == null) {
 				throw new IllegalArgumentException(
-					"parallelExecutor is required");
+					"Parallel executor is required");
 			}
 
 			_totalTaskCount = callables.size();
