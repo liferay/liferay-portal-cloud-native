@@ -59,61 +59,43 @@
 		const btnMarkAsIncompleteElements = document.getElementsByName('btn-incomplete');
 		const btnMarkAsIncompleteSpinnerElements = document.getElementsByName('incomplete-spinner');
 
-		function toggle(id) {
-			let arrow = arrows[+id - 1];
-			let panelBody = panelBodies[+id - 1];
-			let panel = panels[+id - 1];
-			if (arrow.classList.contains('arrow-expand')) {
-				arrow.classList.remove('arrow-expand');
-				arrow.classList.add('arrow-collapse');
-				panelBody.classList.remove('panel-body-expand');
-				panelBody.classList.add('panel-body-collapse');
-				panel.classList.remove('panel-expand');
-				panel.classList.add('panel-collapse');
-			} else if (arrow.classList.contains('arrow-collapse')) {
-				arrow.classList.remove('arrow-collapse');
-				arrow.classList.add('arrow-expand');
-				panelBody.classList.remove('panel-body-collapse');
-				panelBody.classList.add('panel-body-expand');
-				panel.classList.remove('panel-collapse');
-				panel.classList.add('panel-expand');
-			}
-		}
-
-		function updateStep(data, success, error) {
-			console.log(data);
+		function loadData() {
 			$.ajax({
-				url: '/o/c/m2h8progresstrackers/' + data.id + '?p_auth=' + Liferay.authToken,
+				url: '/o/c/m2h8progresstrackers?p_auth=' + Liferay.authToken,
+				method: 'GET',
 				success: success,
 				error: error,
-				method: 'PUT',
-				data: JSON.stringify(data),
 				headers: {
 					'Content-Type': 'application/json'
 				}
 			});
-		}
 
-		function showToastSuccess(message) {
-			$.toast({
-				heading: 'Success',
-				text: message,
-				position: 'top-right',
-				icon: 'success',
-				stack: true,
-				bgColor: '#4caf50',
-				textColor: 'white'
-			});
-		}
+			function error() {
+				showToastError('Could not load data.');
+			}
 
-		function showToastError(message) {
-			$.toast({
-				heading: 'Error',
-				text: message,
-				position: 'top-right',
-				icon: 'error',
-				stack: true
-			});
+			function success(data) {
+				let stepCheckElement = stepCheckElements[${ configuration.panelId }-1];
+				let stepNumberElement = stepNumberElements[${ configuration.panelId }-1];
+				let btnMarkAsCompleteElement = btnMarkAsCompleteElements[${ configuration.panelId }-1];
+				let btnMarkAsIncompleteElement = btnMarkAsIncompleteElements[${ configuration.panelId }-1];
+				const step = data.items.find(i => i.stepNumber === ${ configuration.panelId });
+				if (step) {
+					steps[${ configuration.panelId } - 1] = {
+						stepNumber: step.stepNumber,
+							done: step.done,
+								id : step.id
+					};
+
+					if (steps[${ configuration.panelId } - 1].done) {
+						replaceCSSClasses(stepCheckElement, 'd-none', 'd-flex');
+						replaceCSSClasses(btnMarkAsIncompleteElement, 'd-none', 'd-flex')
+					} else {
+						replaceCSSClasses(stepNumberElement, 'd-none', 'd-flex');
+						replaceCSSClasses(btnMarkAsCompleteElement, 'd-none', 'd-flex');
+					}
+				}
+			}
 		}
 
 		function markAsComplete(id) {
@@ -182,45 +164,6 @@
 			}, success, error)
 		}
 
-		function loadData() {
-			$.ajax({
-				url: '/o/c/m2h8progresstrackers?p_auth=' + Liferay.authToken,
-				method: 'GET',
-				success: success,
-				error: error,
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			});
-
-			function error() {
-				showToastError('Could not load data.');
-			}
-
-			function success(data) {
-				let stepCheckElement = stepCheckElements[${ configuration.panelId }-1];
-				let stepNumberElement = stepNumberElements[${ configuration.panelId }-1];
-				let btnMarkAsCompleteElement = btnMarkAsCompleteElements[${ configuration.panelId }-1];
-				let btnMarkAsIncompleteElement = btnMarkAsIncompleteElements[${ configuration.panelId }-1];
-				const step = data.items.find(i => i.stepNumber === ${ configuration.panelId });
-				if (step) {
-					steps[${ configuration.panelId } - 1] = {
-						stepNumber: step.stepNumber,
-							done: step.done,
-								id : step.id
-					};
-
-					if (steps[${ configuration.panelId } - 1].done) {
-						replaceCSSClasses(stepCheckElement, 'd-none', 'd-flex');
-						replaceCSSClasses(btnMarkAsIncompleteElement, 'd-none', 'd-flex')
-					} else {
-						replaceCSSClasses(stepNumberElement, 'd-none', 'd-flex');
-						replaceCSSClasses(btnMarkAsCompleteElement, 'd-none', 'd-flex');
-					}
-				}
-			}
-		}
-
 		function replaceCSSClasses(element, removeClass, addClass) {
 			if (removeClass) {
 				element.classList.remove(removeClass);
@@ -229,6 +172,63 @@
 			if (addClass) {
 				element.classList.add(addClass);
 			}
+		}
+
+		function showToastError(message) {
+			$.toast({
+				heading: 'Error',
+				text: message,
+				position: 'top-right',
+				icon: 'error',
+				stack: true
+			});
+		}
+
+		function showToastSuccess(message) {
+			$.toast({
+				heading: 'Success',
+				text: message,
+				position: 'top-right',
+				icon: 'success',
+				stack: true,
+				bgColor: '#4caf50',
+				textColor: 'white'
+			});
+		}
+
+		function toggle(id) {
+			let arrow = arrows[+id - 1];
+			let panelBody = panelBodies[+id - 1];
+			let panel = panels[+id - 1];
+			if (arrow.classList.contains('arrow-expand')) {
+				arrow.classList.remove('arrow-expand');
+				arrow.classList.add('arrow-collapse');
+				panelBody.classList.remove('panel-body-expand');
+				panelBody.classList.add('panel-body-collapse');
+				panel.classList.remove('panel-expand');
+				panel.classList.add('panel-collapse');
+			} else if (arrow.classList.contains('arrow-collapse')) {
+				arrow.classList.remove('arrow-collapse');
+				arrow.classList.add('arrow-expand');
+				panelBody.classList.remove('panel-body-collapse');
+				panelBody.classList.add('panel-body-expand');
+				panel.classList.remove('panel-collapse');
+				panel.classList.add('panel-expand');
+			}
+		}
+
+		function updateStep(data, success, error) {
+			console.log(data);
+			$.ajax({
+				url: '/o/c/m2h8progresstrackers/' + data.id + '?p_auth=' + Liferay.authToken,
+				success: success,
+				error: error,
+				method: 'PUT',
+				data: JSON.stringify(data),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
 		}
 
 		loadData();
