@@ -48,16 +48,16 @@
 
 <script>
 	{
-		var steps = {};
 		const arrows = document.getElementsByName('arrow');
-		const panelBodies = document.getElementsByName('panel-body');
-		const panels = document.getElementsByName('panel');
-		const stepCheckElements = document.getElementsByName('txt-step-complete');
-		const stepNumberElements = document.getElementsByName('txt-step-incomplete');
 		const btnMarkAsCompleteElements = document.getElementsByName('btn-complete');
 		const btnMarkAsCompleteSpinnerElements = document.getElementsByName('complete-spinner');
 		const btnMarkAsIncompleteElements = document.getElementsByName('btn-incomplete');
 		const btnMarkAsIncompleteSpinnerElements = document.getElementsByName('incomplete-spinner');
+		const panelBodies = document.getElementsByName('panel-body');
+		const panels = document.getElementsByName('panel');
+		const stepCheckElements = document.getElementsByName('txt-step-complete');
+		const stepNumberElements = document.getElementsByName('txt-step-incomplete');
+		var steps = {};
 
 		function loadData() {
 			$.ajax({
@@ -75,11 +75,13 @@
 			}
 
 			function success(data) {
-				let stepCheckElement = stepCheckElements[${ configuration.panelId }-1];
-				let stepNumberElement = stepNumberElements[${ configuration.panelId }-1];
 				let btnMarkAsCompleteElement = btnMarkAsCompleteElements[${ configuration.panelId }-1];
 				let btnMarkAsIncompleteElement = btnMarkAsIncompleteElements[${ configuration.panelId }-1];
+				let stepCheckElement = stepCheckElements[${ configuration.panelId }-1];
+				let stepNumberElement = stepNumberElements[${ configuration.panelId }-1];
+
 				const step = data.items.find(i => i.stepNumber === ${ configuration.panelId });
+
 				if (step) {
 					steps[${ configuration.panelId } - 1] = {
 						stepNumber: step.stepNumber,
@@ -100,8 +102,8 @@
 
 		function markAsComplete(id) {
 			let btnMarkAsCompleteElement = btnMarkAsCompleteElements[id - 1];
-			let btnMarkAsIncompleteElement = btnMarkAsIncompleteElements[id - 1];
 			let btnMarkAsCompleteSpinnerElement = btnMarkAsCompleteSpinnerElements[id - 1];
+			let btnMarkAsIncompleteElement = btnMarkAsIncompleteElements[id - 1];
 			let stepCheckElement = stepCheckElements[id - 1];
 			let stepNumberElement = stepNumberElements[id - 1];
 
@@ -132,8 +134,8 @@
 		}
 
 		function markAsIncomplete(id) {
-			let btnMarkAsIncompleteElement = btnMarkAsIncompleteElements[id - 1];
 			let btnMarkAsCompleteElement = btnMarkAsCompleteElements[id - 1];
+			let btnMarkAsIncompleteElement = btnMarkAsIncompleteElements[id - 1];
 			let btnMarkAsIncompleteSpinnerElement = btnMarkAsIncompleteSpinnerElements[id - 1];
 			let stepCheckElement = stepCheckElements[id - 1];
 			let stepNumberElement = stepNumberElements[id - 1];
@@ -168,7 +170,7 @@
 			if (removeClass) {
 				element.classList.remove(removeClass);
 			}
-
+				
 			if (addClass) {
 				element.classList.add(addClass);
 			}
@@ -197,9 +199,11 @@
 		}
 
 		function toggle(id) {
+			
 			let arrow = arrows[+id - 1];
-			let panelBody = panelBodies[+id - 1];
 			let panel = panels[+id - 1];
+			let panelBody = panelBodies[+id - 1];
+
 			if (arrow.classList.contains('arrow-expand')) {
 				arrow.classList.remove('arrow-expand');
 				arrow.classList.add('arrow-collapse');
@@ -218,7 +222,6 @@
 		}
 
 		function updateStep(data, success, error) {
-			console.log(data);
 			$.ajax({
 				url: '/o/c/m2h8progresstrackers/' + data.id + '?p_auth=' + Liferay.authToken,
 				success: success,
