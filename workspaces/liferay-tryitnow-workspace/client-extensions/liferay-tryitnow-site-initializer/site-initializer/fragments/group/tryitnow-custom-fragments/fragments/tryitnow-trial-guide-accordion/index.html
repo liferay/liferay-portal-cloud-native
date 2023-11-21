@@ -5,34 +5,41 @@
 				<div class="animate__animated animate__fadeIn d-none panel-step bg-brand-primary-darken-1" name="txt-step-incomplete">
 					<lfr-editable id="txt-step" name="txt-step" type="text">1</lfr-editable>
 				</div>
+
 				<div class="animate__animated animate__fadeIn d-none panel-step bg-brand-primary-lighten-5" name="txt-step-complete">
 					<img src="[resources:check.svg]" />
 				</div>
+
 				<h4 class="text-neutral-9">
 					<lfr-editable id="txt-header" name="txt-header" type="text">
 						Customer of Clarity
 					</lfr-editable>
 				</h4>
 			</div>
+
 			<div class="panel-header-right">
 				<button class="animate__animated animate__fadeIn mark-as-incomplete d-none pr-4" name="btn-incomplete" onclick="markAsIncomplete(${configuration.panelId})">
 					Mark as Incomplete
 					<img class="animate__animated animate__fadeIn d-none spinner" name="incomplete-spinner" src="[resources:loading.svg]" />
 				</button>
+
 				<button class="animate__animated animate__fadeIn mark-as-complete d-none pr-4" name="btn-complete" onclick="markAsComplete(${configuration.panelId})">
 					Mark as Complete
 					<img class="animate__animated animate__fadeIn d-none spinner" name="complete-spinner" src="[resources:loading.svg]" />
 				</button>
+
 				<p class="text-neutral-9">
 					<lfr-editable id="txt-time-to-read" name="txt-time-to-read" type="text">
 						4 min
 					</lfr-editable>
 				</p>
+
 				<div class="panel-toggle" onclick="toggle(${configuration.panelId})">
 					<span name="arrow" class="arrow arrow-collapse">^</span>
 				</div>
 			</div>
 		</div>
+
 		<div class="panel-body" name="panel-body">
 			<lfr-drop-zone></lfr-drop-zone>
 		</div>
