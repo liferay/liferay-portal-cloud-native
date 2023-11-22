@@ -248,7 +248,7 @@ public class BatchEngineBrokerTest {
 			_getExpectedJsonNode(
 				_objectDefinition1, objectEntry1.getObjectEntryId()),
 			_objectEntryExportFieldNames,
-			_getActualJsonNode(
+			_getFirstJsonNode(
 				_objectMapper.readTree(
 					_getExportFileString(
 						BatchPlannerPlanConstants.EXTERNAL_TYPE_JSON,
@@ -293,7 +293,7 @@ public class BatchEngineBrokerTest {
 		_assertEqualsExport(
 			_getExpectedJsonNode(_objectDefinition1),
 			_objectDefinitionExportFieldNames,
-			_getActualJsonNode(
+			_getFirstJsonNode(
 				_objectMapper.readTree(
 					_getExportFileString(
 						BatchPlannerPlanConstants.EXTERNAL_TYPE_JSON,
@@ -364,7 +364,7 @@ public class BatchEngineBrokerTest {
 			_getExpectedJsonNode(
 				_objectDefinition1, objectEntry.getObjectEntryId()),
 			_objectEntryExportFieldNames,
-			_getActualJsonNode(
+			_getFirstJsonNode(
 				_objectMapper.readTree(
 					_getExportFileString(
 						BatchPlannerPlanConstants.EXTERNAL_TYPE_JSON,
@@ -653,7 +653,6 @@ public class BatchEngineBrokerTest {
 		List<String> fieldNames) {
 
 		Assert.assertEquals(fieldNames, actualColumnNames);
-
 		Assert.assertEquals(expectedColumnNames, actualColumnNames);
 	}
 
@@ -694,7 +693,6 @@ public class BatchEngineBrokerTest {
 			new UnsyncBufferedReader(
 				new InputStreamReader(
 					new ByteArrayInputStream(actualCSVString.getBytes())));
-
 		UnsyncBufferedReader expectedUnsyncBufferedReader =
 			new UnsyncBufferedReader(
 				new InputStreamReader(
@@ -707,9 +705,9 @@ public class BatchEngineBrokerTest {
 
 		String actualLineString = actualUnsyncBufferedReader.readLine();
 
-		String expectedLineString = expectedUnsyncBufferedReader.readLine();
-
 		Assert.assertNotNull(actualLineString);
+
+		String expectedLineString = expectedUnsyncBufferedReader.readLine();
 
 		boolean found = false;
 
@@ -840,14 +838,14 @@ public class BatchEngineBrokerTest {
 		return objectViewSortColumn;
 	}
 
-	private JsonNode _getActualJsonNode(JsonNode arrayJsonNode) {
+	private JsonNode _getFirstJsonNode(JsonNode arrayJsonNode) {
 		Assert.assertTrue(arrayJsonNode.isArray());
 		Assert.assertEquals(1, arrayJsonNode.size());
 
 		return arrayJsonNode.get(0);
 	}
 
-	private JsonNode _getActualJsonNode(JsonNode arrayJsonNode, String name) {
+	private JsonNode _getFirstJsonNode(JsonNode arrayJsonNode, String name) {
 		for (JsonNode jsonNode : arrayJsonNode) {
 			JsonNode nameJsonNode = jsonNode.get("name");
 
@@ -868,13 +866,13 @@ public class BatchEngineBrokerTest {
 			boolean siteScope)
 		throws Exception {
 
-		String groupNameString = null;
+		String scopeKey = null;
 
 		if (siteScope) {
 			Group group = GroupLocalServiceUtil.getGroup(
 				TestPropsValues.getGroupId());
 
-			groupNameString = group.getGroupKey();
+			scopeKey = group.getGroupKey();
 		}
 
 		return StringUtil.replace(
@@ -884,7 +882,7 @@ public class BatchEngineBrokerTest {
 			},
 			new String[] {
 				_toDateString(createDate), _toDateString(modifiedDate),
-				String.valueOf(id), groupNameString
+				String.valueOf(id), scopeKey
 			});
 	}
 
