@@ -126,10 +126,10 @@ public class SXPBlueprintDTOConverter
 
 		sxpElement.setDescription(
 			SXPDTOConverterUtil.translate(
-				fallbackDescription, _language, descriptionMap, locale));
+				fallbackDescription, _language, locale, descriptionMap));
 		sxpElement.setTitle(
 			SXPDTOConverterUtil.translate(
-				fallbackTitle, _language, titleMap, locale));
+				fallbackTitle, _language, locale, titleMap));
 	}
 
 	private Configuration _toConfiguration(String json) {

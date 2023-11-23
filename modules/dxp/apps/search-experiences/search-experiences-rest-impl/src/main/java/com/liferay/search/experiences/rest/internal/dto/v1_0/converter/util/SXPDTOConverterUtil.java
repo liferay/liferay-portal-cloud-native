@@ -68,13 +68,13 @@ public class SXPDTOConverterUtil {
 	}
 
 	public static String translate(
-		String fallback, Language language, Map<Locale, String> localizedMap,
-		Locale userLocale) {
+		String fallback, Language language, Locale locale,
+		Map<Locale, String> localizedMap) {
 
 		return language.get(
-			userLocale,
+			locale,
 			localizedMap.getOrDefault(
-				userLocale,
+				locale,
 				localizedMap.getOrDefault(
 					LocaleUtil.getSiteDefault(),
 					localizedMap.getOrDefault(

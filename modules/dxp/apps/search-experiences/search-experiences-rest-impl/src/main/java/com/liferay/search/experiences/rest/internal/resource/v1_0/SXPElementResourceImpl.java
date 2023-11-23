@@ -282,23 +282,21 @@ public class SXPElementResourceImpl extends BaseSXPElementResourceImpl {
 	public SXPElement postSXPElementPreview(SXPElement sxpElement)
 		throws Exception {
 
-		Locale userLocale = LocaleUtil.fromLanguageId(
+		Locale locale = LocaleUtil.fromLanguageId(
 			contextAcceptLanguage.getPreferredLanguageId());
 
 		sxpElement.setDescription(
 			SXPDTOConverterUtil.translate(
-				sxpElement.getFallbackDescription(), _language,
+				sxpElement.getFallbackDescription(), _language, locale,
 				LocalizedMapUtil.getLocalizedMap(
-					sxpElement.getDescription_i18n()),
-				userLocale));
+					sxpElement.getDescription_i18n())));
 		sxpElement.setElementDefinition(
 			SXPDTOConverterUtil.translate(
-				sxpElement.getElementDefinition(), _language, userLocale));
+				sxpElement.getElementDefinition(), _language, locale));
 		sxpElement.setTitle(
 			SXPDTOConverterUtil.translate(
-				sxpElement.getFallbackTitle(), _language,
-				LocalizedMapUtil.getLocalizedMap(sxpElement.getTitle_i18n()),
-				userLocale));
+				sxpElement.getFallbackTitle(), _language, locale,
+				LocalizedMapUtil.getLocalizedMap(sxpElement.getTitle_i18n())));
 
 		return sxpElement;
 	}

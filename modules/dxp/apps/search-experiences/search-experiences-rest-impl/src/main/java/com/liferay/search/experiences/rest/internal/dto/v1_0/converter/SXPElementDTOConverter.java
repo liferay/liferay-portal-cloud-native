@@ -55,8 +55,8 @@ public class SXPElementDTOConverter
 				createDate = sxpElement.getCreateDate();
 				description = SXPDTOConverterUtil.translate(
 					sxpElement.getFallbackDescription(), _language,
-					sxpElement.getDescriptionMap(),
-					dtoConverterContext.getLocale());
+					dtoConverterContext.getLocale(),
+					sxpElement.getDescriptionMap());
 				description_i18n = LocalizedMapUtil.getI18nMap(
 					true, sxpElement.getDescriptionMap());
 				elementDefinition = SXPDTOConverterUtil.translate(
@@ -70,7 +70,7 @@ public class SXPElementDTOConverter
 				schemaVersion = sxpElement.getSchemaVersion();
 				title = SXPDTOConverterUtil.translate(
 					sxpElement.getFallbackTitle(), _language,
-					sxpElement.getTitleMap(), dtoConverterContext.getLocale());
+					dtoConverterContext.getLocale(), sxpElement.getTitleMap());
 				title_i18n = LocalizedMapUtil.getI18nMap(
 					true, sxpElement.getTitleMap());
 				type = sxpElement.getType();
