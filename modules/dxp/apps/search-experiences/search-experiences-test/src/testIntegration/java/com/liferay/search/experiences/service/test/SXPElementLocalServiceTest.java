@@ -92,7 +92,7 @@ public class SXPElementLocalServiceTest {
 		Assert.assertNotNull(sxpElement.getExternalReferenceCode());
 		Assert.assertEquals("1.0", sxpElement.getVersion());
 
-		// FallbackDescription and fallbackTitle are present
+		// Fallback description and fallback title
 
 		String fallbackDescription = RandomTestUtil.randomString();
 		String fallbackTitle = RandomTestUtil.randomString();
@@ -110,8 +110,6 @@ public class SXPElementLocalServiceTest {
 		Assert.assertEquals(
 			fallbackTitle, fallbackFieldsSXPElement.getFallbackTitle());
 
-		// FallbackDescription and fallbackTitle are not present
-
 		String description = RandomTestUtil.randomString();
 		String title = RandomTestUtil.randomString();
 
@@ -124,7 +122,7 @@ public class SXPElementLocalServiceTest {
 		Assert.assertEquals(
 			title, noFallbackFieldsSXPElement.getFallbackTitle());
 
-		// The title for the default locale is blank
+		// Title
 
 		try {
 			_addSXPElement(
