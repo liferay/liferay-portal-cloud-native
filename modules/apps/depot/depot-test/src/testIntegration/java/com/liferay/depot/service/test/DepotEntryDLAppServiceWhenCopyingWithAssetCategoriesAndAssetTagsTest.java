@@ -156,7 +156,7 @@ public class
 	public void testCopyFileShouldCopyAssetTagsToRelatedGroupWithCaseSensitiveTags()
 		throws Exception {
 
-		_testCopyFileShouldCopyAssetTagsToRelatedGroup(s -> s);
+		_testCopyFileShouldCopyAssetTagsToRelatedGroup(string -> string);
 	}
 
 	@Test
@@ -212,7 +212,7 @@ public class
 	public void testCopyFileShouldNotCopyAssetTagsToUnrelatedGroupWithCaseSensitiveTags()
 		throws Exception {
 
-		_testCopyFileShouldNotCopyAssetTagsToUnrelatedGroup(s -> s);
+		_testCopyFileShouldNotCopyAssetTagsToUnrelatedGroup(string -> string);
 	}
 
 	@Test

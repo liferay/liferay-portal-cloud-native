@@ -181,7 +181,7 @@ public class
 	public void testCopyFileShouldCopyAssetTagsParentGroupWithCaseSensitiveTags()
 		throws Exception {
 
-		_testCopyFileShouldCopyAssetTagsParentGroup(s -> s);
+		_testCopyFileShouldCopyAssetTagsParentGroup(string -> string);
 	}
 
 	@Test
@@ -194,7 +194,7 @@ public class
 	public void testCopyFileShouldCopyAssetTagsSameGroupWithCaseSensitiveTags()
 		throws Exception {
 
-		_testCopyFileShouldCopyAssetTagsSameGroup(s -> s);
+		_testCopyFileShouldCopyAssetTagsSameGroup(string -> string);
 	}
 
 	@Test
@@ -300,7 +300,7 @@ public class
 	public void testCopyFileShouldNotCopyAssetTagsDifferentGroupWithCaseSensitiveTags()
 		throws Exception {
 
-		_testCopyFileShouldNotCopyAssetTagsDifferentGroup(s -> s);
+		_testCopyFileShouldNotCopyAssetTagsDifferentGroup(string -> string);
 	}
 
 	@Test

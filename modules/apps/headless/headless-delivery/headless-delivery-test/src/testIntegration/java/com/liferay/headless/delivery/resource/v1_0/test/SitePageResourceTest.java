@@ -352,7 +352,7 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 	public void testPostSiteSitePageSuccessKeywordsWithCaseSensitiveTags()
 		throws Exception {
 
-		_testPostSiteSitePageSuccessKeywords(s -> s);
+		_testPostSiteSitePageSuccessKeywords(string -> string);
 	}
 
 	@Override

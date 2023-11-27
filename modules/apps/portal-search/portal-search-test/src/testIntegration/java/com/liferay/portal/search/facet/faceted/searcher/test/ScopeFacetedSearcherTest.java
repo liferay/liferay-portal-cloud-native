@@ -85,7 +85,7 @@ public class ScopeFacetedSearcherTest extends BaseFacetedSearcherTestCase {
 	public void testSearchFromSearchPortletWithScopeEverythingWithCaseSensitiveTags()
 		throws Exception {
 
-		_testSearchFromSearchPortletWithScopeEverything(s -> s);
+		_testSearchFromSearchPortletWithScopeEverything(string -> string);
 	}
 
 	@Test
@@ -100,7 +100,7 @@ public class ScopeFacetedSearcherTest extends BaseFacetedSearcherTestCase {
 	public void testSearchFromSearchPortletWithScopeThisSiteWithCaseSensitiveTags()
 		throws Exception {
 
-		_testSearchFromSearchPortletWithScopeThisSite(s -> s);
+		_testSearchFromSearchPortletWithScopeThisSite(string -> string);
 	}
 
 	protected static Map<String, Integer> toMap(Group group, Integer count) {

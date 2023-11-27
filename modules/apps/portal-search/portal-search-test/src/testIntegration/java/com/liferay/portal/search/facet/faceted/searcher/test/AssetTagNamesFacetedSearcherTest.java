@@ -59,7 +59,7 @@ public class AssetTagNamesFacetedSearcherTest
 	@FeatureFlags("LPS-194362")
 	@Test
 	public void testAggregationWithCaseSensitiveTags() throws Exception {
-		_testAggregation(s -> s);
+		_testAggregation(string -> string);
 	}
 
 	@Test
@@ -90,7 +90,7 @@ public class AssetTagNamesFacetedSearcherTest
 	@FeatureFlags("LPS-194362")
 	@Test
 	public void testSearchQuotedWithCaseSensitiveTags() throws Exception {
-		_testSearchQuoted(s -> s);
+		_testSearchQuoted(string -> string);
 	}
 
 	@Test
@@ -101,7 +101,7 @@ public class AssetTagNamesFacetedSearcherTest
 	@FeatureFlags("LPS-194362")
 	@Test
 	public void testSelectionWithCaseSensitiveTags() throws Exception {
-		_testSelection(s -> s);
+		_testSelection(string -> string);
 	}
 
 	protected void addJournalArticle(Group group, String title)

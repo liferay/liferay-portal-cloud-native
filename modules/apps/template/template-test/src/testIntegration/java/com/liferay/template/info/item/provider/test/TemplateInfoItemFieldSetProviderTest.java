@@ -651,7 +651,8 @@ public class TemplateInfoItemFieldSetProviderTest {
 	public void testGetInfoFieldValuesRenderingOtherListInfoFieldTypeWithCaseSensitiveTags()
 		throws Exception {
 
-		_testGetInfoFieldValuesRenderingOtherListInfoFieldType(s -> s);
+		_testGetInfoFieldValuesRenderingOtherListInfoFieldType(
+			string -> string);
 	}
 
 	@Test

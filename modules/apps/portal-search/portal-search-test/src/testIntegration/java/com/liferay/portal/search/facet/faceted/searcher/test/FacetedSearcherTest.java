@@ -55,13 +55,13 @@ public class FacetedSearcherTest extends BaseFacetedSearcherTestCase {
 	public void testSearchByKeywordsIgnoresInactiveSitesWithCaseSensitiveTags()
 		throws Exception {
 
-		_testSearchByKeywordsIgnoresInactiveSites(s -> s);
+		_testSearchByKeywordsIgnoresInactiveSites(string -> string);
 	}
 
 	@FeatureFlags("LPS-194362")
 	@Test
 	public void testSearchByKeywordsWithCaseSensitiveTags() throws Exception {
-		_testSearchByKeywords(s -> s);
+		_testSearchByKeywords(string -> string);
 	}
 
 	@Test
@@ -74,7 +74,7 @@ public class FacetedSearcherTest extends BaseFacetedSearcherTestCase {
 	public void testSearchByQuotedRegexKeywordsWithCaseSensitiveTags()
 		throws Exception {
 
-		_testSearchByQuotedRegexKeywords(s -> s);
+		_testSearchByQuotedRegexKeywords(string -> string);
 	}
 
 	protected static String randomString() {
