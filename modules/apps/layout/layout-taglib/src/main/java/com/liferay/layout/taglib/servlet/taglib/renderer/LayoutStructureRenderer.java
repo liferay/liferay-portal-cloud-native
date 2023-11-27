@@ -221,8 +221,7 @@ public class LayoutStructureRenderer {
 
 			if (listObjectReference != null) {
 				jspWriter.write(" data-analytics-targetable-collection=\"");
-				jspWriter.write(
-					HtmlUtil.escape(listObjectReference.toJSON()));
+				jspWriter.write(HtmlUtil.escape(listObjectReference.toJSON()));
 				jspWriter.write("\"");
 			}
 		}
