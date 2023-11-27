@@ -70,14 +70,14 @@ public class ToolDependencies {
 		BundleContext bundleContext = SystemBundleUtil.getBundleContext();
 
 		bundleContext.registerService(
-			FullNameGenerator.class, new DefaultFullNameGenerator(), null);
-		bundleContext.registerService(
 			FriendlyURLNormalizer.class,
 			(FriendlyURLNormalizer)ProxyUtil.newProxyInstance(
 				ToolDependencies.class.getClassLoader(),
 				new Class<?>[] {FriendlyURLNormalizer.class},
 				(proxy, method, args) -> null),
 			null);
+		bundleContext.registerService(
+			FullNameGenerator.class, new DefaultFullNameGenerator(), null);
 
 		CacheKeyGeneratorUtil cacheKeyGeneratorUtil =
 			new CacheKeyGeneratorUtil();
