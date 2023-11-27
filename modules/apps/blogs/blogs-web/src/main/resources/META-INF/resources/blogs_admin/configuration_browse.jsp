@@ -9,14 +9,12 @@
 
 <%
 BlogsConfigurationDisplayContext blogsConfigurationDisplayContext = new BlogsConfigurationDisplayContext(request, renderRequest, renderResponse);
+BlogsGroupServiceOverriddenConfiguration blogsGroupServiceOverriddenConfiguration = ConfigurationProviderUtil.getConfiguration(BlogsGroupServiceOverriddenConfiguration.class, new ParameterMapSettingsLocator(request.getParameterMap(), new GroupServiceSettingsLocator(themeDisplay.getSiteGroupId(), BlogsConstants.SERVICE_NAME)));
+BlogsGroupServiceSettings blogsGroupServiceSettings = BlogsGroupServiceSettings.getInstance(scopeGroupId, request.getParameterMap());
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(blogsConfigurationDisplayContext.getBackURL());
 portletDisplay.setURLBackTitle("blogs");
-
-BlogsGroupServiceSettings blogsGroupServiceSettings = BlogsGroupServiceSettings.getInstance(scopeGroupId, request.getParameterMap());
-
-BlogsGroupServiceOverriddenConfiguration blogsGroupServiceOverriddenConfiguration = ConfigurationProviderUtil.getConfiguration(BlogsGroupServiceOverriddenConfiguration.class, new ParameterMapSettingsLocator(request.getParameterMap(), new GroupServiceSettingsLocator(themeDisplay.getSiteGroupId(), BlogsConstants.SERVICE_NAME)));
 %>
 
 <clay:container-fluid
