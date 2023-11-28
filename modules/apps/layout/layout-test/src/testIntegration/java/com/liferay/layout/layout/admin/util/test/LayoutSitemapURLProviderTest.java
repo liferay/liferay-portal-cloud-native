@@ -207,7 +207,7 @@ public class LayoutSitemapURLProviderTest {
 
 	@FeatureFlags("LPS-187793")
 	@Test
-	public void testLayoutSitemapURLProviderRobotsWithNofollow()
+	public void testLayoutSitemapURLProviderRobotsWithNoFollow()
 		throws Exception {
 
 		_assertVisitLayout(
@@ -218,7 +218,7 @@ public class LayoutSitemapURLProviderTest {
 
 	@FeatureFlags("LPS-187793")
 	@Test
-	public void testLayoutSitemapURLProviderRobotsWithNofollowNondefaultLanguage()
+	public void testLayoutSitemapURLProviderRobotsWithNoFollowNondefaultLanguage()
 		throws Exception {
 
 		_assertVisitLayout(
@@ -231,7 +231,7 @@ public class LayoutSitemapURLProviderTest {
 
 	@FeatureFlags("LPS-187793")
 	@Test
-	public void testLayoutSitemapURLProviderRobotsWithNoindex()
+	public void testLayoutSitemapURLProviderRobotsWithNoIndex()
 		throws Exception {
 
 		_assertVisitLayout(
@@ -242,7 +242,7 @@ public class LayoutSitemapURLProviderTest {
 
 	@FeatureFlags("LPS-187793")
 	@Test
-	public void testLayoutSitemapURLProviderRobotsWithNoindexNondefaultLanguage()
+	public void testLayoutSitemapURLProviderRobotsWithNoIndexNondefaultLanguage()
 		throws Exception {
 
 		_assertVisitLayout(
