@@ -53,7 +53,7 @@ public class HeadlessBuilderResourceImpl {
 			@QueryParam("sort") String sortString)
 		throws Exception {
 
-		return _executeGetEndpoint(
+		return _get(
 			path, APIApplication.Endpoint.Scope.COMPANY,
 			endpoint -> _endpointHelper.getResponseEntityMapsPage(
 				_acceptLanguage, _company.getCompanyId(), endpoint,
@@ -70,7 +70,7 @@ public class HeadlessBuilderResourceImpl {
 			@QueryParam("sort") String sortString)
 		throws Exception {
 
-		return _executeGetEndpoint(
+		return _get(
 			path, APIApplication.Endpoint.Scope.SITE,
 			endpoint -> _endpointHelper.getResponseEntityMapsPage(
 				_acceptLanguage, _company.getCompanyId(), endpoint,
@@ -85,7 +85,7 @@ public class HeadlessBuilderResourceImpl {
 			@PathParam("parameter") String pathParameterValue)
 		throws Exception {
 
-		return _executeGetEndpoint(
+		return _get(
 			path + "/" + pathParameterValue,
 			APIApplication.Endpoint.Scope.COMPANY,
 			endpoint -> _endpointHelper.getResponseEntityMap(
@@ -105,7 +105,7 @@ public class HeadlessBuilderResourceImpl {
 			@PathParam("parameter") String pathParameterValue)
 		throws Exception {
 
-		return _executeGetEndpoint(
+		return _get(
 			path + "/" + pathParameterValue, APIApplication.Endpoint.Scope.SITE,
 			endpoint -> _endpointHelper.getResponseEntityMap(
 				_company.getCompanyId(), endpoint.getPathParameter(),
@@ -120,7 +120,7 @@ public class HeadlessBuilderResourceImpl {
 			@PathParam("path") String path, Map<String, Object> properties)
 		throws Exception {
 
-		return _executePostEndpoint(
+		return _post(
 			path, APIApplication.Endpoint.Scope.COMPANY,
 			endpoint -> _endpointHelper.postObjectEntry(
 				_company.getCompanyId(), properties,
@@ -137,7 +137,7 @@ public class HeadlessBuilderResourceImpl {
 			@PathParam("path") String path, Map<String, Object> properties)
 		throws Exception {
 
-		return _executePostEndpoint(
+		return _post(
 			path, APIApplication.Endpoint.Scope.SITE,
 			endpoint -> _endpointHelper.postObjectEntry(
 				_company.getCompanyId(), properties,
@@ -145,7 +145,7 @@ public class HeadlessBuilderResourceImpl {
 				scopeKey));
 	}
 
-	private <T> Response _executeGetEndpoint(
+	private <T> Response _get(
 			String path, APIApplication.Endpoint.Scope scope,
 			UnsafeFunction<APIApplication.Endpoint, T, Exception>
 				successUnsafeFunction)
@@ -177,7 +177,7 @@ public class HeadlessBuilderResourceImpl {
 		).build();
 	}
 
-	private <T> Response _executePostEndpoint(
+	private <T> Response _post(
 			String path, APIApplication.Endpoint.Scope scope,
 			UnsafeFunction<APIApplication.Endpoint, T, Exception>
 				successUnsafeFunction)
