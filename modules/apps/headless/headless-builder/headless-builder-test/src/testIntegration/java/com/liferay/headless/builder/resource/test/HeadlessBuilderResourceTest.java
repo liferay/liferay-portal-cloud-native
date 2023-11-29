@@ -1755,8 +1755,8 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			JSONUtil.put(
 				"apiApplicationToAPIEndpoints",
 				_createAPIEndpoint(
-					apiEndpointExternalReferenceCode,
-					StringUtil.toLowerCase(Http.Method.GET.name()), path, null,
+					apiEndpointExternalReferenceCode, Http.Method.GET, path,
+					null,
 					APIApplication.Endpoint.RetrieveType.COLLECTION.getValue(),
 					APIApplication.Endpoint.Scope.COMPANY)
 			).put(
@@ -1825,8 +1825,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			JSONUtil.put(
 				"apiApplicationToAPIEndpoints",
 				_createAPIEndpoint(
-					apiEndpointExternalReferenceCode,
-					StringUtil.toLowerCase(Http.Method.GET.name()), path,
+					apiEndpointExternalReferenceCode, Http.Method.GET, path,
 					pathParameter, retrieveType, scope)
 			).put(
 				"apiApplicationToAPISchemas",
@@ -1890,8 +1889,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			JSONUtil.put(
 				"apiApplicationToAPIEndpoints",
 				_createAPIEndpoint(
-					apiEndpointExternalReferenceCode,
-					StringUtil.toLowerCase(Http.Method.GET.name()), path,
+					apiEndpointExternalReferenceCode, Http.Method.GET, path,
 					pathParameter, retrieveType, scope)
 			).put(
 				"apiApplicationToAPISchemas",
@@ -2035,8 +2033,8 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			JSONUtil.put(
 				"apiApplicationToAPIEndpoints",
 				_createAPIEndpoint(
-					apiEndpointExternalReferenceCode,
-					StringUtil.toLowerCase(Http.Method.POST.name()), path, null,
+					apiEndpointExternalReferenceCode, Http.Method.POST, path,
+					null,
 					APIApplication.Endpoint.RetrieveType.SINGLE_ELEMENT.
 						getValue(),
 					scope)
@@ -2520,8 +2518,8 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 	}
 
 	private JSONArray _createAPIEndpoint(
-		String apiEndpointExternalReferenceCode, String method, String path,
-		String pathParameter, String retrieveType,
+		String apiEndpointExternalReferenceCode, Http.Method method,
+		String path, String pathParameter, String retrieveType,
 		APIApplication.Endpoint.Scope scope) {
 
 		if (Objects.equals(
@@ -2536,7 +2534,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 				).put(
 					"externalReferenceCode", apiEndpointExternalReferenceCode
 				).put(
-					"httpMethod", method
+					"httpMethod", StringUtil.toLowerCase(method.name())
 				).put(
 					"name", "name"
 				).put(
