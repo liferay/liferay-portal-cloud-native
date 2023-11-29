@@ -83,7 +83,7 @@ public class ObjectFieldSettingUtil {
 	public static String getTimeZoneId(
 		List<ObjectFieldSetting> objectFieldSettings, User user) {
 
-		if ((user == null) || ListUtil.isNull(objectFieldSettings) ||
+		if ((user == null) || ListUtil.isEmpty(objectFieldSettings) ||
 			!StringUtil.equals(
 				getValue(
 					ObjectFieldSettingConstants.NAME_TIME_STORAGE,
@@ -115,7 +115,7 @@ public class ObjectFieldSettingUtil {
 	public static boolean isUnique(
 		List<ObjectFieldSetting> objectFieldSetting) {
 
-		if (ListUtil.isNull(objectFieldSetting)) {
+		if (ListUtil.isEmpty(objectFieldSetting)) {
 			return false;
 		}
 
