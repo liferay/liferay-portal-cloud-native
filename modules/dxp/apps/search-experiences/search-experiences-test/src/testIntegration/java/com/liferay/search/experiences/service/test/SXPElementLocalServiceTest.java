@@ -201,7 +201,7 @@ public class SXPElementLocalServiceTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext();
 
-		String attribute =
+		String attributeName =
 			"com.liferay.search.experiences.service.impl." +
 				"SXPElementLocalServiceImpl#_validate";
 
@@ -216,7 +216,7 @@ public class SXPElementLocalServiceTest {
 			Assert.assertNotNull(sxpElementTitleException);
 		}
 
-		serviceContext.setAttribute(attribute, Boolean.TRUE);
+		serviceContext.setAttribute(attributeName, Boolean.TRUE);
 
 		try {
 			_addSXPElement(
@@ -229,7 +229,7 @@ public class SXPElementLocalServiceTest {
 			Assert.assertNotNull(sxpElementTitleException);
 		}
 
-		serviceContext.setAttribute(attribute, Boolean.FALSE);
+		serviceContext.setAttribute(attributeName, Boolean.FALSE);
 
 		SXPElement sxpElement = _addSXPElement(
 			Collections.emptyMap(), RandomTestUtil.randomString(),

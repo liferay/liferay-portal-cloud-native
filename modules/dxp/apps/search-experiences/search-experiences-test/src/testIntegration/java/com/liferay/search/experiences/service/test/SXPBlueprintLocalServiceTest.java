@@ -170,7 +170,7 @@ public class SXPBlueprintLocalServiceTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext();
 
-		String attribute =
+		String attributeName =
 			"com.liferay.search.experiences.service.impl." +
 				"SXPBlueprintLocalServiceImpl#_validate";
 
@@ -184,7 +184,7 @@ public class SXPBlueprintLocalServiceTest {
 			Assert.assertNotNull(sxpBlueprintTitleException);
 		}
 
-		serviceContext.setAttribute(attribute, Boolean.TRUE);
+		serviceContext.setAttribute(attributeName, Boolean.TRUE);
 
 		try {
 			_addSXPBlueprint(
@@ -196,7 +196,7 @@ public class SXPBlueprintLocalServiceTest {
 			Assert.assertNotNull(sxpBlueprintTitleException);
 		}
 
-		serviceContext.setAttribute(attribute, Boolean.FALSE);
+		serviceContext.setAttribute(attributeName, Boolean.FALSE);
 
 		SXPBlueprint sxpBlueprint = _addSXPBlueprint(
 			RandomTestUtil.randomString(), TestPropsValues.getUserId(),
