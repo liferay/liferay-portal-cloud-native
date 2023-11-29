@@ -856,7 +856,7 @@ public class BatchEngineBrokerTest {
 				fieldName, "String", StringPool.BLANK);
 		}
 
-		if (Validator.isNotNull(groupId)) {
+		if (groupId != null) {
 			_batchPlannerPolicyLocalService.addBatchPlannerPolicy(
 				TestPropsValues.getUserId(),
 				batchPlannerPlan.getBatchPlannerPlanId(), "siteId",
