@@ -1755,8 +1755,8 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			JSONUtil.put(
 				"apiApplicationToAPIEndpoints",
 				_createAPIEndpoint(
-					apiEndpointExternalReferenceCode, path,
-					StringUtil.toLowerCase(Http.Method.GET.name()), null,
+					apiEndpointExternalReferenceCode,
+					StringUtil.toLowerCase(Http.Method.GET.name()), path, null,
 					APIApplication.Endpoint.RetrieveType.COLLECTION.getValue(),
 					APIApplication.Endpoint.Scope.COMPANY)
 			).put(
@@ -1825,8 +1825,8 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			JSONUtil.put(
 				"apiApplicationToAPIEndpoints",
 				_createAPIEndpoint(
-					apiEndpointExternalReferenceCode, path,
-					StringUtil.toLowerCase(Http.Method.GET.name()),
+					apiEndpointExternalReferenceCode,
+					StringUtil.toLowerCase(Http.Method.GET.name()), path,
 					pathParameter, retrieveType, scope)
 			).put(
 				"apiApplicationToAPISchemas",
@@ -1890,8 +1890,8 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			JSONUtil.put(
 				"apiApplicationToAPIEndpoints",
 				_createAPIEndpoint(
-					apiEndpointExternalReferenceCode, path,
-					StringUtil.toLowerCase(Http.Method.GET.name()),
+					apiEndpointExternalReferenceCode,
+					StringUtil.toLowerCase(Http.Method.GET.name()), path,
 					pathParameter, retrieveType, scope)
 			).put(
 				"apiApplicationToAPISchemas",
@@ -2035,8 +2035,8 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			JSONUtil.put(
 				"apiApplicationToAPIEndpoints",
 				_createAPIEndpoint(
-					apiEndpointExternalReferenceCode, path,
-					StringUtil.toLowerCase(Http.Method.POST.name()), null,
+					apiEndpointExternalReferenceCode,
+					StringUtil.toLowerCase(Http.Method.POST.name()), path, null,
 					APIApplication.Endpoint.RetrieveType.SINGLE_ELEMENT.
 						getValue(),
 					scope)
@@ -2520,7 +2520,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 	}
 
 	private JSONArray _createAPIEndpoint(
-		String apiEndpointExternalReferenceCode, String path, String method,
+		String apiEndpointExternalReferenceCode, String method, String path,
 		String pathParameter, String retrieveType,
 		APIApplication.Endpoint.Scope scope) {
 
