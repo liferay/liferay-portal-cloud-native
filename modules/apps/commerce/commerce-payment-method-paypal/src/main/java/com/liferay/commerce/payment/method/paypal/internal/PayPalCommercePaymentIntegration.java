@@ -215,20 +215,16 @@ public class PayPalCommercePaymentIntegration
 			if (httpResponse.statusCode() == 204) {
 				commercePaymentEntry.setPaymentStatus(
 					CommercePaymentEntryConstants.STATUS_CANCELLED);
-
-				return commercePaymentEntry;
 			}
-
-			return commercePaymentEntry;
 		}
 		catch (IOException ioException) {
 			_log.error(ioException);
 
 			commercePaymentEntry.setErrorMessages(
 				_getErrorMessages(ioException, StringPool.BLANK));
-
-			return commercePaymentEntry;
 		}
+
+		return commercePaymentEntry;
 	}
 
 	@Override
