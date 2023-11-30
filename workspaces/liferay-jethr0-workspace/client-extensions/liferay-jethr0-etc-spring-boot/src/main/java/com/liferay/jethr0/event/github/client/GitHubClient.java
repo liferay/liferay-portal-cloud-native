@@ -89,6 +89,10 @@ public class GitHubClient {
 
 		if (urlString.startsWith("https://raw.githubusercontent.com")) {
 			try {
+				StringBuilder sb = new StringBuilder();
+
+				String line = null;
+
 				URLConnection urlConnection = url.openConnection();
 
 				urlConnection.setRequestProperty(
@@ -101,12 +105,8 @@ public class GitHubClient {
 				BufferedReader bufferedReader = new BufferedReader(
 					new InputStreamReader(inputStream));
 
-				StringBuilder sb = new StringBuilder();
-
-				String inputLine;
-
-				while ((inputLine = bufferedReader.readLine()) != null) {
-					sb.append(inputLine);
+				while ((line = bufferedReader.readLine()) != null) {
+					sb.append(line);
 					sb.append("\n");
 				}
 
