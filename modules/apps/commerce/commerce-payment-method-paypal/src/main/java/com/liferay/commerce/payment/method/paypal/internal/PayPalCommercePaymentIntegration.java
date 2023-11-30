@@ -525,7 +525,6 @@ public class PayPalCommercePaymentIntegration
 
 		Locale locale = LocaleUtil.fromLanguageId(
 			commercePaymentEntry.getLanguageId());
-
 		PayPalGroupServiceConfiguration payPalGroupServiceConfiguration =
 			_getPayPalGroupServiceConfiguration(commerceOrder.getGroupId());
 
