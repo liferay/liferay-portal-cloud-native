@@ -254,16 +254,18 @@ public class PortalRequestProcessor {
 	}
 
 	private String _getLastPath(HttpServletRequest httpServletRequest) {
+		StringBundler sb = new StringBundler(5);
+
+		String portalURL = PortalUtil.getPortalURL(httpServletRequest);
+
+		sb.append(portalURL);
+
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		String portalURL = PortalUtil.getPortalURL(httpServletRequest);
-
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(portalURL);
 		sb.append(themeDisplay.getPathMain());
+
 		sb.append(_PATH_PORTAL_LAYOUT);
 
 		if (!PropsValues.AUTH_FORWARD_BY_LAST_PATH) {
