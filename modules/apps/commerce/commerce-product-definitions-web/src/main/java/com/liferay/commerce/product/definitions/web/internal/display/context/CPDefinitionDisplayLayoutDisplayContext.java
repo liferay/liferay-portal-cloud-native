@@ -219,7 +219,6 @@ public class CPDefinitionDisplayLayoutDisplayContext
 
 		assetDisplayPageSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			Collections.singletonList(new UUIDItemSelectorReturnType()));
-
 		assetDisplayPageSelectorCriterion.setClassNameId(
 			PortalUtil.getClassNameId(CPDefinition.class));
 
