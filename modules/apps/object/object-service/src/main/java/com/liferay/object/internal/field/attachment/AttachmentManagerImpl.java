@@ -103,7 +103,6 @@ public class AttachmentManagerImpl implements AttachmentManager {
 			fileContent, fileName, objectFieldId, serviceContext.getUserId());
 
 		long folderId = DLFolderConstants.DEFAULT_PARENT_FOLDER_ID;
-
 		long repositoryId = groupId;
 
 		if (Validator.isNotNull(folderExternalReferenceCode)) {

@@ -5976,11 +5976,11 @@ public class ObjectEntryResourceTest {
 	private DLFolder _getDLFolder(ObjectDefinition objectDefinition)
 		throws Exception {
 
+		long groupId = 0;
+
 		ObjectScopeProvider objectScopeProvider =
 			_objectScopeProviderRegistry.getObjectScopeProvider(
 				objectDefinition.getScope());
-
-		long groupId = 0;
 
 		if (objectScopeProvider.isGroupAware()) {
 			groupId = TestPropsValues.getGroupId();
@@ -6019,6 +6019,8 @@ public class ObjectEntryResourceTest {
 			ObjectDefinition objectDefinition)
 		throws Exception {
 
+		Link link = new Link();
+
 		FileEntry fileEntry = _dlAppLocalService.getFileEntry(fileEntryId);
 
 		FileVersion fileVersion = fileEntry.getFileVersion();
@@ -6055,8 +6057,6 @@ public class ObjectEntryResourceTest {
 		ObjectEntry objectEntry = _objectEntryLocalService.getObjectEntry(
 			_testObjectEntryModelListener.getLastObjectEntryId());
 
-		Link link = new Link();
-
 		link.setHref(
 			StringBundler.concat(
 				"/documents/", repositoryId, "/", folderId, "/",
@@ -6067,6 +6067,7 @@ public class ObjectEntryResourceTest {
 				objectDefinition.getExternalReferenceCode(),
 				"&objectEntryExternalReferenceCode=",
 				objectEntry.getExternalReferenceCode()));
+
 		link.setLabel(fileName);
 
 		return JSONFactoryUtil.createJSONObject(link.toString());
