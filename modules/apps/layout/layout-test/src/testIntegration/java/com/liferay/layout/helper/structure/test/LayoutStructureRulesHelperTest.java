@@ -84,7 +84,6 @@ public class LayoutStructureRulesHelperTest {
 
 		Set<String> displayedItemIds =
 			layoutStructureRulesResult.getDisplayedItemIds();
-
 		Set<String> hiddenItemIds =
 			layoutStructureRulesResult.getHiddenItemIds();
 
@@ -117,7 +116,6 @@ public class LayoutStructureRulesHelperTest {
 
 		Set<String> displayedItemIds =
 			layoutStructureRulesResult.getDisplayedItemIds();
-
 		Set<String> hiddenItemIds =
 			layoutStructureRulesResult.getHiddenItemIds();
 
@@ -144,7 +142,6 @@ public class LayoutStructureRulesHelperTest {
 
 		Set<String> displayedItemIds =
 			layoutStructureRulesResult.getDisplayedItemIds();
-
 		Set<String> hiddenItemIds =
 			layoutStructureRulesResult.getHiddenItemIds();
 
