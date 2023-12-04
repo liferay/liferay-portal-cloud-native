@@ -349,14 +349,14 @@ public class SearchResultResourceImpl extends BaseSearchResultResourceImpl {
 			return null;
 		}
 
-		String snippet = legacyDocument.get(
-			com.liferay.portal.kernel.search.Field.SNIPPET);
-
 		Locale originalThemeDisplayLocale =
 			LocaleThreadLocal.getThemeDisplayLocale();
 
 		LocaleThreadLocal.setThemeDisplayLocale(
 			contextAcceptLanguage.getPreferredLocale());
+
+		String snippet = legacyDocument.get(
+			com.liferay.portal.kernel.search.Field.SNIPPET);
 
 		Summary summary = modelSummaryContributor.getSummary(
 			legacyDocument, contextAcceptLanguage.getPreferredLocale(),
@@ -651,6 +651,7 @@ public class SearchResultResourceImpl extends BaseSearchResultResourceImpl {
 				_setDescription(
 					assetRenderer, legacyDocument, entryClassName, fields,
 					searchResult);
+
 				_setDTOFields(
 					embedded, entryClassName, entryClassPK, fields,
 					searchResult);
