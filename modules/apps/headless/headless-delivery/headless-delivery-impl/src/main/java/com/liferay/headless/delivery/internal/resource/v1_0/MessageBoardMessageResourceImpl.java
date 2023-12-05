@@ -165,7 +165,9 @@ public class MessageBoardMessageResourceImpl
 					mbMessage.getGroupId())
 			).build();
 
-		if ((search == null) && (filter == null) && !flatten) {
+		if ((search == null) && (filter == null)) {
+			flatten = GetterUtil.getBoolean(flatten);
+
 			int status = WorkflowConstants.STATUS_APPROVED;
 
 			PermissionChecker permissionChecker =
