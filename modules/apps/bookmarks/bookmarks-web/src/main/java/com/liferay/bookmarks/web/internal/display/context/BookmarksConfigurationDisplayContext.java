@@ -130,8 +130,6 @@ public class BookmarksConfigurationDisplayContext {
 		_getVerticalNavItemUnsafeConsumer(String key) {
 
 		return verticalNavItem -> {
-			String name = LanguageUtil.get(_httpServletRequest, key);
-
 			verticalNavItem.setActive(Objects.equals(getNavigation(), key));
 			verticalNavItem.setHref(
 				PortletURLBuilder.create(
@@ -139,6 +137,9 @@ public class BookmarksConfigurationDisplayContext {
 				).setNavigation(
 					key
 				).buildString());
+
+			String name = LanguageUtil.get(_httpServletRequest, key);
+
 			verticalNavItem.setId(name);
 			verticalNavItem.setLabel(name);
 		};
