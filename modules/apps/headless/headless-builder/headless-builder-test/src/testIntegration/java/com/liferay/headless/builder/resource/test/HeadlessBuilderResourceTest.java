@@ -1184,7 +1184,9 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			JSONUtil.put(
 				"apiApplicationToAPIEndpoints",
 				JSONUtil.putAll(
-					// Order is relevant to reproduce the issue
+
+					// Order is relevant to reproduce the issue. See LPS-202115.
+
 					_createAPIEndpoint(
 						_API_ENDPOINT_ERC_2, Http.Method.POST,
 						"/testpost", null,
@@ -1336,7 +1338,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 				"title", RandomTestUtil.randomString()
 			).toString(),
 			"headless-builder/applications", Http.Method.POST);
-
 		assertSuccessfulJSONObject(
 			null,
 			StringBundler.concat(
@@ -1344,7 +1345,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 				apiSchemaExternalReferenceCode,
 				"/responseAPISchemaToAPIEndpoints/", _API_ENDPOINT_ERC_1),
 			Http.Method.PUT);
-
 		assertSuccessfulJSONObject(
 			null,
 			StringBundler.concat(
@@ -1352,7 +1352,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 				apiSchemaExternalReferenceCode,
 				"/requestAPISchemaToAPIEndpoints/", _API_ENDPOINT_ERC_2),
 			Http.Method.PUT);
-
 		assertSuccessfulJSONObject(
 			null,
 			StringBundler.concat(
@@ -1471,7 +1470,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 				Http.Method.POST
 			).toString(),
 			JSONCompareMode.LENIENT);
-
 		JSONAssert.assertEquals(
 			JSONUtil.put(
 				"items", JSONUtil.putAll(expectedJSONObject)
@@ -2195,7 +2193,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 				"title", RandomTestUtil.randomString()
 			).toString(),
 			"headless-builder/applications", Http.Method.POST);
-
 		assertSuccessfulJSONObject(
 			null,
 			StringBundler.concat(
@@ -2203,7 +2200,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 				apiSchemaExternalReferenceCode,
 				"/requestAPISchemaToAPIEndpoints/", _API_ENDPOINT_ERC_1),
 			Http.Method.PUT);
-
 		assertSuccessfulJSONObject(
 			null,
 			StringBundler.concat(
