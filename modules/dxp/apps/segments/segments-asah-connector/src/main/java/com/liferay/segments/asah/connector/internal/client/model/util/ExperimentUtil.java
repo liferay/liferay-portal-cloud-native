@@ -111,6 +111,8 @@ public class ExperimentUtil {
 
 		experiment.setExperimentStatus(
 			_toExperimentStatus(segmentsExperiment.getStatus()));
+		experiment.setExperimentType(
+			ExperimentType.parse(segmentsExperiment.getType()));
 		experiment.setGoal(_toExperimentGoal(segmentsExperiment));
 		experiment.setId(segmentsExperiment.getSegmentsExperimentKey());
 		experiment.setModifiedDate(segmentsExperiment.getModifiedDate());
@@ -119,8 +121,6 @@ public class ExperimentUtil {
 		experiment.setPageTitle(layout.getTitle(locale));
 		experiment.setPageURL(pageURL);
 		experiment.setPublishable(true);
-		experiment.setExperimentType(
-			ExperimentType.parse(segmentsExperiment.getType()));
 
 		if ((segmentsExperiment.getStatus() ==
 				SegmentsExperimentConstants.STATUS_COMPLETED) ||
