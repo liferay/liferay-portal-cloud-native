@@ -292,8 +292,6 @@ public class DisplayPageLayoutTypeControllerTest {
 					String.valueOf(_assetCategory.getCategoryId())));
 		}
 
-		mockHttpServletRequest.setMethod(HttpMethods.GET);
-
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(_company);
@@ -322,6 +320,8 @@ public class DisplayPageLayoutTypeControllerTest {
 
 		mockHttpServletRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, themeDisplay);
+
+		mockHttpServletRequest.setMethod(HttpMethods.GET);
 
 		return mockHttpServletRequest;
 	}
