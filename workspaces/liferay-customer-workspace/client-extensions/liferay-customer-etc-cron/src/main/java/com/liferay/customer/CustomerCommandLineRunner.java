@@ -92,7 +92,7 @@ public class CustomerCommandLineRunner implements CommandLineRunner {
 			).header(
 				HttpHeaders.AUTHORIZATION,
 				_liferayOAuth2AccessTokenManager.getAuthorization(
-					_liferayEtcCronOAuthApplicationExternalReferenceCode)
+					"liferay-customer-etc-cron-oauth-application-headless-server")
 			).retrieve(
 			).bodyToMono(
 				String.class
@@ -119,7 +119,7 @@ public class CustomerCommandLineRunner implements CommandLineRunner {
 			).header(
 				HttpHeaders.AUTHORIZATION,
 				_liferayOAuth2AccessTokenManager.getAuthorization(
-					_liferayEtcSpringBootOAuthApplicationExternalReferenceCode)
+					"liferay-customer-etc-spring-boot-oauth-application-headless-server")
 			).retrieve(
 			).bodyToMono(
 				String.class
@@ -132,16 +132,6 @@ public class CustomerCommandLineRunner implements CommandLineRunner {
 
 	@Value("${liferay.customer.etc.spring.boot.client.extension.url}")
 	private String _etcSpringBootClientExtensionURL;
-
-	@Value(
-		"${liferay.customer.etc.cron.headless.server.oauth.application.external.reference.code}"
-	)
-	private String _liferayEtcCronOAuthApplicationExternalReferenceCode;
-
-	@Value(
-		"${liferay.customer.etc.spring.boot.headless.server.oauth.application.external.reference.code}"
-	)
-	private String _liferayEtcSpringBootOAuthApplicationExternalReferenceCode;
 
 	@Autowired
 	private LiferayOAuth2AccessTokenManager _liferayOAuth2AccessTokenManager;
