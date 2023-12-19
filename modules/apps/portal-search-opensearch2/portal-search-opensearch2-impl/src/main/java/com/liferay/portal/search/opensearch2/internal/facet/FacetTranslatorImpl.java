@@ -81,7 +81,7 @@ public class FacetTranslatorImpl implements FacetTranslator {
 
 			if (booleanClause != null) {
 				org.opensearch.client.opensearch._types.query_dsl.Query
-					postFilterQuery = _translateBooleanClause(booleanClause);
+					postFilterQuery = _getPostFilterQuery(booleanClause);
 
 				if (postFilterQuery != null) {
 					postFilterQueries.add(postFilterQuery);
@@ -190,7 +190,7 @@ public class FacetTranslatorImpl implements FacetTranslator {
 	}
 
 	private org.opensearch.client.opensearch._types.query_dsl.Query
-		_translateBooleanClause(BooleanClause<Filter> booleanClause) {
+		_getPostFilterQuery(BooleanClause<Filter> booleanClause) {
 
 		BooleanFilter booleanFilter = new BooleanFilter();
 
