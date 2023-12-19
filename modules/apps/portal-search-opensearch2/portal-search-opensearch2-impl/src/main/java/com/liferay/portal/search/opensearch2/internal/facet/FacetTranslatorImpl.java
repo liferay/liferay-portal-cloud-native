@@ -156,6 +156,18 @@ public class FacetTranslatorImpl implements FacetTranslator {
 	}
 
 	private org.opensearch.client.opensearch._types.query_dsl.Query
+		_getPostFilterQuery(BooleanClause<Filter> booleanClause) {
+
+		BooleanFilter booleanFilter = new BooleanFilter();
+
+		booleanFilter.add(
+			booleanClause.getClause(), booleanClause.getBooleanClauseOccur());
+
+		return new org.opensearch.client.opensearch._types.query_dsl.Query(
+			_filterTranslator.translate(booleanFilter, null));
+	}
+
+	private org.opensearch.client.opensearch._types.query_dsl.Query
 		_getPostFilterQuery(
 			List<org.opensearch.client.opensearch._types.query_dsl.Query>
 				queries) {
@@ -187,18 +199,6 @@ public class FacetTranslatorImpl implements FacetTranslator {
 		}
 
 		return facetProcessor.processFacet(facet);
-	}
-
-	private org.opensearch.client.opensearch._types.query_dsl.Query
-		_getPostFilterQuery(BooleanClause<Filter> booleanClause) {
-
-		BooleanFilter booleanFilter = new BooleanFilter();
-
-		booleanFilter.add(
-			booleanClause.getClause(), booleanClause.getBooleanClauseOccur());
-
-		return new org.opensearch.client.opensearch._types.query_dsl.Query(
-			_filterTranslator.translate(booleanFilter, null));
 	}
 
 	private final FacetProcessor<SearchRequest.Builder> _defaultFacetProcessor =
