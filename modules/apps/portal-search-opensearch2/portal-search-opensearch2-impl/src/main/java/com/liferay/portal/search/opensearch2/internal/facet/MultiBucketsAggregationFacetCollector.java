@@ -54,12 +54,12 @@ public class MultiBucketsAggregationFacetCollector implements FacetCollector {
 		Buckets<? extends MultiBucketBase> buckets =
 			multiBucketAggregateBase.buckets();
 
-		List<? extends MultiBucketBase> bucketsList = buckets.array();
+		List<? extends MultiBucketBase> multiBucketBases = buckets.array();
 
 		TermCollectorHolder termCollectorHolder = new TermCollectorHolder(
-			bucketsList.size());
+			multiBucketBases.size());
 
-		for (MultiBucketBase multiBucketBase : bucketsList) {
+		for (MultiBucketBase multiBucketBase : multiBucketBases) {
 			if (multiBucketBase instanceof StringTermsBucket) {
 				StringTermsBucket stringTermsBucket =
 					(StringTermsBucket)multiBucketBase;
