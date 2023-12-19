@@ -1299,7 +1299,7 @@
 				<outputType>boolean</outputType>
 			</attribute>
 			<attribute>
-				<description>Can be 'permanent'/'temporary' (emits 'data-senna-track') or 'off' (emits 'data-senna-off').</description>
+				<description></description>
 				<name>senna</name>
 				<inputType>java.lang.String</inputType>
 				<outputType>java.lang.String</outputType>

@@ -1412,7 +1412,7 @@
 			<type>boolean</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[Can be 'permanent'/'temporary' (emits 'data-senna-track') or 'off' (emits 'data-senna-off').]]></description>
+			<description></description>
 			<name>senna</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
