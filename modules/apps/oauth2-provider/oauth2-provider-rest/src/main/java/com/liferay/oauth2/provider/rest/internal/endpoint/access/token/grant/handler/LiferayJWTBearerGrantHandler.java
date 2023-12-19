@@ -272,7 +272,7 @@ public class LiferayJWTBearerGrantHandler extends BaseAccessTokenGrantHandler {
 			}
 			catch (Exception exception) {
 				if (_log.isDebugEnabled()) {
-					_log.debug("Failed to create access token", exception);
+					_log.debug("Unable to create access token", exception);
 				}
 
 				throw new OAuthServiceException(exception);
