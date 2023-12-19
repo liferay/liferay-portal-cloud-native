@@ -102,16 +102,17 @@ public class ScriptTag extends BaseScriptTag {
 			(HttpServletRequest)pageContext.getRequest();
 
 		try {
-			if ((Validator.isNotNull(getType()) &&
-				 !Objects.equals(getType(), "text/javascript")) ||
-				Validator.isNotNull(getBlocking()) ||
+			if (getAsync() || Validator.isNotNull(getBlocking()) ||
 				Validator.isNotNull(getCrossOrigin()) ||
+				getDefer() ||
 				Validator.isNotNull(getFetchPriority()) ||
 				Validator.isNotNull(getId()) ||
 				Validator.isNotNull(getIntegrity()) ||
 				Validator.isNotNull(getReferrerPolicy()) ||
 				Validator.isNotNull(getSenna()) ||
-				Validator.isNotNull(getSrc()) || getAsync() || getDefer()) {
+				Validator.isNotNull(getSrc()) ||
+				(Validator.isNotNull(getType()) &&
+				 !Objects.equals(getType(), "text/javascript"))) {
 
 				return _endTagDirect();
 			}
