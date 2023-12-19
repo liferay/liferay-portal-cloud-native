@@ -42,15 +42,16 @@ public class HighlightTranslator {
 
 		SetterUtil.setNotNullInteger(
 			builder::boundaryMaxScan, highlight.getBoundaryMaxScan());
-		SetterUtil.setNotBlankString(
-			builder::boundaryScannerLocale,
-			highlight.getBoundaryScannerLocale());
 
 		if (highlight.getBoundaryScannerType() != null) {
 			builder.boundaryScanner(
 				_translateBoundaryScannerType(
 					highlight.getBoundaryScannerType()));
 		}
+
+		SetterUtil.setNotBlankString(
+			builder::boundaryScannerLocale,
+			highlight.getBoundaryScannerLocale());
 
 		if (highlight.getEncoder() != null) {
 			builder.encoder(_translateEncoder(highlight.getEncoder()));
