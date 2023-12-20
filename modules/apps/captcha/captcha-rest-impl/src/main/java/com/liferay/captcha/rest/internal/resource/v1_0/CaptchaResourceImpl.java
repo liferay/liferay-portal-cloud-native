@@ -86,8 +86,7 @@ public class CaptchaResourceImpl extends BaseCaptchaResourceImpl {
 		if (!jsonObject.has("answer") || !jsonObject.has("expiryTime") ||
 			!NonceUtil.verify(jsonObject.getString("nonce"))) {
 
-			throw new IllegalArgumentException(
-				"Token: " + captcha.getToken());
+			throw new IllegalArgumentException("Token: " + captcha.getToken());
 		}
 
 		long expiryTime = jsonObject.getLong("expiryTime");

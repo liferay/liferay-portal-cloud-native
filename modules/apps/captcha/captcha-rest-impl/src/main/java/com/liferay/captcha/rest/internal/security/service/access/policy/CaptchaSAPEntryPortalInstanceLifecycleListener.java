@@ -57,13 +57,15 @@ public class CaptchaSAPEntryPortalInstanceLifecycleListener
 			LanguageResources.PORTAL_RESOURCE_BUNDLE_LOADER,
 			"service-access-policy-entry-default-captcha-title");
 
+		// TODO Expose all methods of CaptchaResourceImpl
+
 		_sapEntryLocalService.addSAPEntry(
 			_userLocalService.getGuestUserId(companyId),
 			StringBundler.concat(
 				"com.liferay.captcha.rest.internal.resource.v1_0.",
-				"SimpleCaptchaResourceImpl#getSimpleCaptchaChallenge\n",
+				"CaptchaResourceImpl#getCaptchaChallenge\n",
 				"com.liferay.captcha.rest.internal.resource.v1_0.",
-				"SimpleCaptchaResourceImpl#postSimpleCaptchaResponse"),
+				"CaptchaResourceImpl#postCaptchaResponse"),
 			true, true, _SAP_ENTRY_NAME, map, new ServiceContext());
 	}
 
