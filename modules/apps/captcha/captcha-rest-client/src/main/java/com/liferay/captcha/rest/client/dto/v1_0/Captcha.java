@@ -6,7 +6,7 @@
 package com.liferay.captcha.rest.client.dto.v1_0;
 
 import com.liferay.captcha.rest.client.function.UnsafeSupplier;
-import com.liferay.captcha.rest.client.serdes.v1_0.SimpleCaptchaSerDes;
+import com.liferay.captcha.rest.client.serdes.v1_0.CaptchaSerDes;
 
 import java.io.Serializable;
 
@@ -19,10 +19,10 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class SimpleCaptcha implements Cloneable, Serializable {
+public class Captcha implements Cloneable, Serializable {
 
-	public static SimpleCaptcha toDTO(String json) {
-		return SimpleCaptchaSerDes.toDTO(json);
+	public static Captcha toDTO(String json) {
+		return CaptchaSerDes.toDTO(json);
 	}
 
 	public String getAnswer() {
@@ -89,8 +89,8 @@ public class SimpleCaptcha implements Cloneable, Serializable {
 	protected String token;
 
 	@Override
-	public SimpleCaptcha clone() throws CloneNotSupportedException {
-		return (SimpleCaptcha)super.clone();
+	public Captcha clone() throws CloneNotSupportedException {
+		return (Captcha)super.clone();
 	}
 
 	@Override
@@ -99,13 +99,13 @@ public class SimpleCaptcha implements Cloneable, Serializable {
 			return true;
 		}
 
-		if (!(object instanceof SimpleCaptcha)) {
+		if (!(object instanceof Captcha)) {
 			return false;
 		}
 
-		SimpleCaptcha simpleCaptcha = (SimpleCaptcha)object;
+		Captcha captcha = (Captcha)object;
 
-		return Objects.equals(toString(), simpleCaptcha.toString());
+		return Objects.equals(toString(), captcha.toString());
 	}
 
 	@Override
@@ -116,7 +116,7 @@ public class SimpleCaptcha implements Cloneable, Serializable {
 	}
 
 	public String toString() {
-		return SimpleCaptchaSerDes.toJSON(this);
+		return CaptchaSerDes.toJSON(this);
 	}
 
 }

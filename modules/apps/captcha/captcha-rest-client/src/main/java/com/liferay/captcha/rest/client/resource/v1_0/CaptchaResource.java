@@ -5,10 +5,10 @@
 
 package com.liferay.captcha.rest.client.resource.v1_0;
 
-import com.liferay.captcha.rest.client.dto.v1_0.SimpleCaptcha;
+import com.liferay.captcha.rest.client.dto.v1_0.Captcha;
 import com.liferay.captcha.rest.client.http.HttpInvoker;
 import com.liferay.captcha.rest.client.problem.Problem;
-import com.liferay.captcha.rest.client.serdes.v1_0.SimpleCaptchaSerDes;
+import com.liferay.captcha.rest.client.serdes.v1_0.CaptchaSerDes;
 
 import java.net.URL;
 
@@ -26,22 +26,21 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public interface SimpleCaptchaResource {
+public interface CaptchaResource {
 
 	public static Builder builder() {
 		return new Builder();
 	}
 
-	public SimpleCaptcha getSimpleCaptchaChallenge() throws Exception;
+	public Captcha getCaptchaChallenge() throws Exception;
 
-	public HttpInvoker.HttpResponse getSimpleCaptchaChallengeHttpResponse()
+	public HttpInvoker.HttpResponse getCaptchaChallengeHttpResponse()
 		throws Exception;
 
-	public void postSimpleCaptchaResponse(SimpleCaptcha simpleCaptcha)
-		throws Exception;
+	public void postCaptchaResponse(Captcha captcha) throws Exception;
 
-	public HttpInvoker.HttpResponse postSimpleCaptchaResponseHttpResponse(
-			SimpleCaptcha simpleCaptcha)
+	public HttpInvoker.HttpResponse postCaptchaResponseHttpResponse(
+			Captcha captcha)
 		throws Exception;
 
 	public static class Builder {
@@ -57,8 +56,8 @@ public interface SimpleCaptchaResource {
 			return header("Authorization", "Bearer " + token);
 		}
 
-		public SimpleCaptchaResource build() {
-			return new SimpleCaptchaResourceImpl(this);
+		public CaptchaResource build() {
+			return new CaptchaResourceImpl(this);
 		}
 
 		public Builder contextPath(String contextPath) {
@@ -150,12 +149,11 @@ public interface SimpleCaptchaResource {
 
 	}
 
-	public static class SimpleCaptchaResourceImpl
-		implements SimpleCaptchaResource {
+	public static class CaptchaResourceImpl implements CaptchaResource {
 
-		public SimpleCaptcha getSimpleCaptchaChallenge() throws Exception {
+		public Captcha getCaptchaChallenge() throws Exception {
 			HttpInvoker.HttpResponse httpResponse =
-				getSimpleCaptchaChallengeHttpResponse();
+				getCaptchaChallengeHttpResponse();
 
 			String content = httpResponse.getContent();
 
@@ -205,7 +203,7 @@ public interface SimpleCaptchaResource {
 			}
 
 			try {
-				return SimpleCaptchaSerDes.toDTO(content);
+				return CaptchaSerDes.toDTO(content);
 			}
 			catch (Exception e) {
 				_logger.log(
@@ -216,7 +214,7 @@ public interface SimpleCaptchaResource {
 			}
 		}
 
-		public HttpInvoker.HttpResponse getSimpleCaptchaChallengeHttpResponse()
+		public HttpInvoker.HttpResponse getCaptchaChallengeHttpResponse()
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -243,7 +241,7 @@ public interface SimpleCaptchaResource {
 			httpInvoker.path(
 				_builder._scheme + "://" + _builder._host + ":" +
 					_builder._port + _builder._contextPath +
-						"/o/captcha/v1.0/simple-captcha/challenge");
+						"/o/captcha/v1.0/captcha/challenge");
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);
@@ -251,11 +249,9 @@ public interface SimpleCaptchaResource {
 			return httpInvoker.invoke();
 		}
 
-		public void postSimpleCaptchaResponse(SimpleCaptcha simpleCaptcha)
-			throws Exception {
-
+		public void postCaptchaResponse(Captcha captcha) throws Exception {
 			HttpInvoker.HttpResponse httpResponse =
-				postSimpleCaptchaResponseHttpResponse(simpleCaptcha);
+				postCaptchaResponseHttpResponse(captcha);
 
 			String content = httpResponse.getContent();
 
@@ -316,13 +312,13 @@ public interface SimpleCaptchaResource {
 			}
 		}
 
-		public HttpInvoker.HttpResponse postSimpleCaptchaResponseHttpResponse(
-				SimpleCaptcha simpleCaptcha)
+		public HttpInvoker.HttpResponse postCaptchaResponseHttpResponse(
+				Captcha captcha)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-			httpInvoker.body(simpleCaptcha.toString(), "application/json");
+			httpInvoker.body(captcha.toString(), "application/json");
 
 			if (_builder._locale != null) {
 				httpInvoker.header(
@@ -346,7 +342,7 @@ public interface SimpleCaptchaResource {
 			httpInvoker.path(
 				_builder._scheme + "://" + _builder._host + ":" +
 					_builder._port + _builder._contextPath +
-						"/o/captcha/v1.0/simple-captcha/response");
+						"/o/captcha/v1.0/captcha/response");
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);
@@ -354,12 +350,12 @@ public interface SimpleCaptchaResource {
 			return httpInvoker.invoke();
 		}
 
-		private SimpleCaptchaResourceImpl(Builder builder) {
+		private CaptchaResourceImpl(Builder builder) {
 			_builder = builder;
 		}
 
 		private static final Logger _logger = Logger.getLogger(
-			SimpleCaptchaResource.class.getName());
+			CaptchaResource.class.getName());
 
 		private Builder _builder;
 

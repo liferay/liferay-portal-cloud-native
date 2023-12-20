@@ -5,7 +5,7 @@
 
 package com.liferay.captcha.rest.resource.v1_0;
 
-import com.liferay.captcha.rest.dto.v1_0.SimpleCaptcha;
+import com.liferay.captcha.rest.dto.v1_0.Captcha;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.service.GroupLocalService;
@@ -41,12 +41,11 @@ import org.osgi.annotation.versioning.ProviderType;
  */
 @Generated("")
 @ProviderType
-public interface SimpleCaptchaResource {
+public interface CaptchaResource {
 
-	public SimpleCaptcha getSimpleCaptchaChallenge() throws Exception;
+	public Captcha getCaptchaChallenge() throws Exception;
 
-	public void postSimpleCaptchaResponse(SimpleCaptcha simpleCaptcha)
-		throws Exception;
+	public void postCaptchaResponse(Captcha captcha) throws Exception;
 
 	public default void setContextAcceptLanguage(
 		AcceptLanguage contextAcceptLanguage) {
@@ -105,7 +104,7 @@ public interface SimpleCaptchaResource {
 	@ProviderType
 	public interface Builder {
 
-		public SimpleCaptchaResource build();
+		public CaptchaResource build();
 
 		public Builder checkPermissions(boolean checkPermissions);
 

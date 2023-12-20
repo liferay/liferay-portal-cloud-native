@@ -13,11 +13,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
-import com.liferay.captcha.rest.client.dto.v1_0.SimpleCaptcha;
+import com.liferay.captcha.rest.client.dto.v1_0.Captcha;
 import com.liferay.captcha.rest.client.http.HttpInvoker;
 import com.liferay.captcha.rest.client.pagination.Page;
-import com.liferay.captcha.rest.client.resource.v1_0.SimpleCaptchaResource;
-import com.liferay.captcha.rest.client.serdes.v1_0.SimpleCaptchaSerDes;
+import com.liferay.captcha.rest.client.resource.v1_0.CaptchaResource;
+import com.liferay.captcha.rest.client.serdes.v1_0.CaptchaSerDes;
 import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.StringBundler;
@@ -70,7 +70,7 @@ import org.junit.Test;
  * @generated
  */
 @Generated("")
-public abstract class BaseSimpleCaptchaResourceTestCase {
+public abstract class BaseCaptchaResourceTestCase {
 
 	@ClassRule
 	@Rule
@@ -91,11 +91,11 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
-		_simpleCaptchaResource.setContextCompany(testCompany);
+		_captchaResource.setContextCompany(testCompany);
 
-		SimpleCaptchaResource.Builder builder = SimpleCaptchaResource.builder();
+		CaptchaResource.Builder builder = CaptchaResource.builder();
 
-		simpleCaptchaResource = builder.authentication(
+		captchaResource = builder.authentication(
 			"test@liferay.com", "test"
 		).locale(
 			LocaleUtil.getDefault()
@@ -126,13 +126,13 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 			}
 		};
 
-		SimpleCaptcha simpleCaptcha1 = randomSimpleCaptcha();
+		Captcha captcha1 = randomCaptcha();
 
-		String json = objectMapper.writeValueAsString(simpleCaptcha1);
+		String json = objectMapper.writeValueAsString(captcha1);
 
-		SimpleCaptcha simpleCaptcha2 = SimpleCaptchaSerDes.toDTO(json);
+		Captcha captcha2 = CaptchaSerDes.toDTO(json);
 
-		Assert.assertTrue(equals(simpleCaptcha1, simpleCaptcha2));
+		Assert.assertTrue(equals(captcha1, captcha2));
 	}
 
 	@Test
@@ -152,10 +152,10 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 			}
 		};
 
-		SimpleCaptcha simpleCaptcha = randomSimpleCaptcha();
+		Captcha captcha = randomCaptcha();
 
-		String json1 = objectMapper.writeValueAsString(simpleCaptcha);
-		String json2 = SimpleCaptchaSerDes.toJSON(simpleCaptcha);
+		String json1 = objectMapper.writeValueAsString(captcha);
+		String json2 = CaptchaSerDes.toJSON(captcha);
 
 		Assert.assertEquals(
 			objectMapper.readTree(json1), objectMapper.readTree(json2));
@@ -165,48 +165,45 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 	public void testEscapeRegexInStringFields() throws Exception {
 		String regex = "^[0-9]+(\\.[0-9]{1,2})\"?";
 
-		SimpleCaptcha simpleCaptcha = randomSimpleCaptcha();
+		Captcha captcha = randomCaptcha();
 
-		simpleCaptcha.setAnswer(regex);
-		simpleCaptcha.setImage(regex);
-		simpleCaptcha.setToken(regex);
+		captcha.setAnswer(regex);
+		captcha.setImage(regex);
+		captcha.setToken(regex);
 
-		String json = SimpleCaptchaSerDes.toJSON(simpleCaptcha);
+		String json = CaptchaSerDes.toJSON(captcha);
 
 		Assert.assertFalse(json.contains(regex));
 
-		simpleCaptcha = SimpleCaptchaSerDes.toDTO(json);
+		captcha = CaptchaSerDes.toDTO(json);
 
-		Assert.assertEquals(regex, simpleCaptcha.getAnswer());
-		Assert.assertEquals(regex, simpleCaptcha.getImage());
-		Assert.assertEquals(regex, simpleCaptcha.getToken());
+		Assert.assertEquals(regex, captcha.getAnswer());
+		Assert.assertEquals(regex, captcha.getImage());
+		Assert.assertEquals(regex, captcha.getToken());
 	}
 
 	@Test
-	public void testGetSimpleCaptchaChallenge() throws Exception {
+	public void testGetCaptchaChallenge() throws Exception {
 		Assert.assertTrue(false);
 	}
 
 	@Test
-	public void testPostSimpleCaptchaResponse() throws Exception {
+	public void testPostCaptchaResponse() throws Exception {
 		Assert.assertTrue(false);
 	}
 
-	protected void assertContains(
-		SimpleCaptcha simpleCaptcha, List<SimpleCaptcha> simpleCaptchas) {
-
+	protected void assertContains(Captcha captcha, List<Captcha> captchas) {
 		boolean contains = false;
 
-		for (SimpleCaptcha item : simpleCaptchas) {
-			if (equals(simpleCaptcha, item)) {
+		for (Captcha item : captchas) {
+			if (equals(captcha, item)) {
 				contains = true;
 
 				break;
 			}
 		}
 
-		Assert.assertTrue(
-			simpleCaptchas + " does not contain " + simpleCaptcha, contains);
+		Assert.assertTrue(captchas + " does not contain " + captcha, contains);
 	}
 
 	protected void assertHttpResponseStatusCode(
@@ -217,39 +214,35 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
-	protected void assertEquals(
-		SimpleCaptcha simpleCaptcha1, SimpleCaptcha simpleCaptcha2) {
-
+	protected void assertEquals(Captcha captcha1, Captcha captcha2) {
 		Assert.assertTrue(
-			simpleCaptcha1 + " does not equal " + simpleCaptcha2,
-			equals(simpleCaptcha1, simpleCaptcha2));
+			captcha1 + " does not equal " + captcha2,
+			equals(captcha1, captcha2));
 	}
 
 	protected void assertEquals(
-		List<SimpleCaptcha> simpleCaptchas1,
-		List<SimpleCaptcha> simpleCaptchas2) {
+		List<Captcha> captchas1, List<Captcha> captchas2) {
 
-		Assert.assertEquals(simpleCaptchas1.size(), simpleCaptchas2.size());
+		Assert.assertEquals(captchas1.size(), captchas2.size());
 
-		for (int i = 0; i < simpleCaptchas1.size(); i++) {
-			SimpleCaptcha simpleCaptcha1 = simpleCaptchas1.get(i);
-			SimpleCaptcha simpleCaptcha2 = simpleCaptchas2.get(i);
+		for (int i = 0; i < captchas1.size(); i++) {
+			Captcha captcha1 = captchas1.get(i);
+			Captcha captcha2 = captchas2.get(i);
 
-			assertEquals(simpleCaptcha1, simpleCaptcha2);
+			assertEquals(captcha1, captcha2);
 		}
 	}
 
 	protected void assertEqualsIgnoringOrder(
-		List<SimpleCaptcha> simpleCaptchas1,
-		List<SimpleCaptcha> simpleCaptchas2) {
+		List<Captcha> captchas1, List<Captcha> captchas2) {
 
-		Assert.assertEquals(simpleCaptchas1.size(), simpleCaptchas2.size());
+		Assert.assertEquals(captchas1.size(), captchas2.size());
 
-		for (SimpleCaptcha simpleCaptcha1 : simpleCaptchas1) {
+		for (Captcha captcha1 : captchas1) {
 			boolean contains = false;
 
-			for (SimpleCaptcha simpleCaptcha2 : simpleCaptchas2) {
-				if (equals(simpleCaptcha1, simpleCaptcha2)) {
+			for (Captcha captcha2 : captchas2) {
+				if (equals(captcha1, captcha2)) {
 					contains = true;
 
 					break;
@@ -257,19 +250,18 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 			}
 
 			Assert.assertTrue(
-				simpleCaptchas2 + " does not contain " + simpleCaptcha1,
-				contains);
+				captchas2 + " does not contain " + captcha1, contains);
 		}
 	}
 
-	protected void assertValid(SimpleCaptcha simpleCaptcha) throws Exception {
+	protected void assertValid(Captcha captcha) throws Exception {
 		boolean valid = true;
 
 		for (String additionalAssertFieldName :
 				getAdditionalAssertFieldNames()) {
 
 			if (Objects.equals("answer", additionalAssertFieldName)) {
-				if (simpleCaptcha.getAnswer() == null) {
+				if (captcha.getAnswer() == null) {
 					valid = false;
 				}
 
@@ -277,7 +269,7 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 			}
 
 			if (Objects.equals("image", additionalAssertFieldName)) {
-				if (simpleCaptcha.getImage() == null) {
+				if (captcha.getImage() == null) {
 					valid = false;
 				}
 
@@ -285,7 +277,7 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 			}
 
 			if (Objects.equals("token", additionalAssertFieldName)) {
-				if (simpleCaptcha.getToken() == null) {
+				if (captcha.getToken() == null) {
 					valid = false;
 				}
 
@@ -300,19 +292,18 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
-	protected void assertValid(Page<SimpleCaptcha> page) {
+	protected void assertValid(Page<Captcha> page) {
 		assertValid(page, Collections.emptyMap());
 	}
 
 	protected void assertValid(
-		Page<SimpleCaptcha> page,
-		Map<String, Map<String, String>> expectedActions) {
+		Page<Captcha> page, Map<String, Map<String, String>> expectedActions) {
 
 		boolean valid = false;
 
-		java.util.Collection<SimpleCaptcha> simpleCaptchas = page.getItems();
+		java.util.Collection<Captcha> captchas = page.getItems();
 
-		int size = simpleCaptchas.size();
+		int size = captchas.size();
 
 		if ((page.getLastPage() > 0) && (page.getPage() > 0) &&
 			(page.getPageSize() > 0) && (page.getTotalCount() > 0) &&
@@ -352,7 +343,7 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 
 		for (java.lang.reflect.Field field :
 				getDeclaredFields(
-					com.liferay.captcha.rest.dto.v1_0.SimpleCaptcha.class)) {
+					com.liferay.captcha.rest.dto.v1_0.Captcha.class)) {
 
 			if (!ArrayUtil.contains(
 					getAdditionalAssertFieldNames(), field.getName())) {
@@ -400,10 +391,8 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 		return new String[0];
 	}
 
-	protected boolean equals(
-		SimpleCaptcha simpleCaptcha1, SimpleCaptcha simpleCaptcha2) {
-
-		if (simpleCaptcha1 == simpleCaptcha2) {
+	protected boolean equals(Captcha captcha1, Captcha captcha2) {
+		if (captcha1 == captcha2) {
 			return true;
 		}
 
@@ -412,8 +401,7 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 
 			if (Objects.equals("answer", additionalAssertFieldName)) {
 				if (!Objects.deepEquals(
-						simpleCaptcha1.getAnswer(),
-						simpleCaptcha2.getAnswer())) {
+						captcha1.getAnswer(), captcha2.getAnswer())) {
 
 					return false;
 				}
@@ -423,7 +411,7 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 
 			if (Objects.equals("image", additionalAssertFieldName)) {
 				if (!Objects.deepEquals(
-						simpleCaptcha1.getImage(), simpleCaptcha2.getImage())) {
+						captcha1.getImage(), captcha2.getImage())) {
 
 					return false;
 				}
@@ -433,7 +421,7 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 
 			if (Objects.equals("token", additionalAssertFieldName)) {
 				if (!Objects.deepEquals(
-						simpleCaptcha1.getToken(), simpleCaptcha2.getToken())) {
+						captcha1.getToken(), captcha2.getToken())) {
 
 					return false;
 				}
@@ -493,13 +481,13 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 	protected java.util.Collection<EntityField> getEntityFields()
 		throws Exception {
 
-		if (!(_simpleCaptchaResource instanceof EntityModelResource)) {
+		if (!(_captchaResource instanceof EntityModelResource)) {
 			throw new UnsupportedOperationException(
 				"Resource is not an instance of EntityModelResource");
 		}
 
 		EntityModelResource entityModelResource =
-			(EntityModelResource)_simpleCaptchaResource;
+			(EntityModelResource)_captchaResource;
 
 		EntityModel entityModel = entityModelResource.getEntityModel(
 			new MultivaluedHashMap());
@@ -532,7 +520,7 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 	}
 
 	protected String getFilterString(
-		EntityField entityField, String operator, SimpleCaptcha simpleCaptcha) {
+		EntityField entityField, String operator, Captcha captcha) {
 
 		StringBundler sb = new StringBundler();
 
@@ -545,7 +533,7 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 		sb.append(" ");
 
 		if (entityFieldName.equals("answer")) {
-			Object object = simpleCaptcha.getAnswer();
+			Object object = captcha.getAnswer();
 
 			String value = String.valueOf(object);
 
@@ -591,7 +579,7 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 		}
 
 		if (entityFieldName.equals("image")) {
-			Object object = simpleCaptcha.getImage();
+			Object object = captcha.getImage();
 
 			String value = String.valueOf(object);
 
@@ -637,7 +625,7 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 		}
 
 		if (entityFieldName.equals("token")) {
-			Object object = simpleCaptcha.getToken();
+			Object object = captcha.getToken();
 
 			String value = String.valueOf(object);
 
@@ -723,8 +711,8 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 			invoke(queryGraphQLField.toString()));
 	}
 
-	protected SimpleCaptcha randomSimpleCaptcha() throws Exception {
-		return new SimpleCaptcha() {
+	protected Captcha randomCaptcha() throws Exception {
+		return new Captcha() {
 			{
 				answer = StringUtil.toLowerCase(RandomTestUtil.randomString());
 				image = StringUtil.toLowerCase(RandomTestUtil.randomString());
@@ -733,17 +721,17 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 		};
 	}
 
-	protected SimpleCaptcha randomIrrelevantSimpleCaptcha() throws Exception {
-		SimpleCaptcha randomIrrelevantSimpleCaptcha = randomSimpleCaptcha();
+	protected Captcha randomIrrelevantCaptcha() throws Exception {
+		Captcha randomIrrelevantCaptcha = randomCaptcha();
 
-		return randomIrrelevantSimpleCaptcha;
+		return randomIrrelevantCaptcha;
 	}
 
-	protected SimpleCaptcha randomPatchSimpleCaptcha() throws Exception {
-		return randomSimpleCaptcha();
+	protected Captcha randomPatchCaptcha() throws Exception {
+		return randomCaptcha();
 	}
 
-	protected SimpleCaptchaResource simpleCaptchaResource;
+	protected CaptchaResource captchaResource;
 	protected com.liferay.portal.kernel.model.Group irrelevantGroup;
 	protected com.liferay.portal.kernel.model.Company testCompany;
 	protected com.liferay.portal.kernel.model.Group testGroup;
@@ -929,12 +917,12 @@ public abstract class BaseSimpleCaptchaResourceTestCase {
 	}
 
 	private static final com.liferay.portal.kernel.log.Log _log =
-		LogFactoryUtil.getLog(BaseSimpleCaptchaResourceTestCase.class);
+		LogFactoryUtil.getLog(BaseCaptchaResourceTestCase.class);
 
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private com.liferay.captcha.rest.resource.v1_0.SimpleCaptchaResource
-		_simpleCaptchaResource;
+	private com.liferay.captcha.rest.resource.v1_0.CaptchaResource
+		_captchaResource;
 
 }

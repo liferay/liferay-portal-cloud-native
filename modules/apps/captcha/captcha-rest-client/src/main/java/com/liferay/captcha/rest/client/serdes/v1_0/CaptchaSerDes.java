@@ -5,7 +5,7 @@
 
 package com.liferay.captcha.rest.client.serdes.v1_0;
 
-import com.liferay.captcha.rest.client.dto.v1_0.SimpleCaptcha;
+import com.liferay.captcha.rest.client.dto.v1_0.Captcha;
 import com.liferay.captcha.rest.client.json.BaseJSONParser;
 
 import java.util.Iterator;
@@ -21,24 +21,22 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class SimpleCaptchaSerDes {
+public class CaptchaSerDes {
 
-	public static SimpleCaptcha toDTO(String json) {
-		SimpleCaptchaJSONParser simpleCaptchaJSONParser =
-			new SimpleCaptchaJSONParser();
+	public static Captcha toDTO(String json) {
+		CaptchaJSONParser captchaJSONParser = new CaptchaJSONParser();
 
-		return simpleCaptchaJSONParser.parseToDTO(json);
+		return captchaJSONParser.parseToDTO(json);
 	}
 
-	public static SimpleCaptcha[] toDTOs(String json) {
-		SimpleCaptchaJSONParser simpleCaptchaJSONParser =
-			new SimpleCaptchaJSONParser();
+	public static Captcha[] toDTOs(String json) {
+		CaptchaJSONParser captchaJSONParser = new CaptchaJSONParser();
 
-		return simpleCaptchaJSONParser.parseToDTOs(json);
+		return captchaJSONParser.parseToDTOs(json);
 	}
 
-	public static String toJSON(SimpleCaptcha simpleCaptcha) {
-		if (simpleCaptcha == null) {
+	public static String toJSON(Captcha captcha) {
+		if (captcha == null) {
 			return "null";
 		}
 
@@ -46,7 +44,7 @@ public class SimpleCaptchaSerDes {
 
 		sb.append("{");
 
-		if (simpleCaptcha.getAnswer() != null) {
+		if (captcha.getAnswer() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -55,12 +53,12 @@ public class SimpleCaptchaSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(simpleCaptcha.getAnswer()));
+			sb.append(_escape(captcha.getAnswer()));
 
 			sb.append("\"");
 		}
 
-		if (simpleCaptcha.getImage() != null) {
+		if (captcha.getImage() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -69,12 +67,12 @@ public class SimpleCaptchaSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(simpleCaptcha.getImage()));
+			sb.append(_escape(captcha.getImage()));
 
 			sb.append("\"");
 		}
 
-		if (simpleCaptcha.getToken() != null) {
+		if (captcha.getToken() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -83,7 +81,7 @@ public class SimpleCaptchaSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(simpleCaptcha.getToken()));
+			sb.append(_escape(captcha.getToken()));
 
 			sb.append("\"");
 		}
@@ -94,74 +92,72 @@ public class SimpleCaptchaSerDes {
 	}
 
 	public static Map<String, Object> toMap(String json) {
-		SimpleCaptchaJSONParser simpleCaptchaJSONParser =
-			new SimpleCaptchaJSONParser();
+		CaptchaJSONParser captchaJSONParser = new CaptchaJSONParser();
 
-		return simpleCaptchaJSONParser.parseToMap(json);
+		return captchaJSONParser.parseToMap(json);
 	}
 
-	public static Map<String, String> toMap(SimpleCaptcha simpleCaptcha) {
-		if (simpleCaptcha == null) {
+	public static Map<String, String> toMap(Captcha captcha) {
+		if (captcha == null) {
 			return null;
 		}
 
 		Map<String, String> map = new TreeMap<>();
 
-		if (simpleCaptcha.getAnswer() == null) {
+		if (captcha.getAnswer() == null) {
 			map.put("answer", null);
 		}
 		else {
-			map.put("answer", String.valueOf(simpleCaptcha.getAnswer()));
+			map.put("answer", String.valueOf(captcha.getAnswer()));
 		}
 
-		if (simpleCaptcha.getImage() == null) {
+		if (captcha.getImage() == null) {
 			map.put("image", null);
 		}
 		else {
-			map.put("image", String.valueOf(simpleCaptcha.getImage()));
+			map.put("image", String.valueOf(captcha.getImage()));
 		}
 
-		if (simpleCaptcha.getToken() == null) {
+		if (captcha.getToken() == null) {
 			map.put("token", null);
 		}
 		else {
-			map.put("token", String.valueOf(simpleCaptcha.getToken()));
+			map.put("token", String.valueOf(captcha.getToken()));
 		}
 
 		return map;
 	}
 
-	public static class SimpleCaptchaJSONParser
-		extends BaseJSONParser<SimpleCaptcha> {
+	public static class CaptchaJSONParser extends BaseJSONParser<Captcha> {
 
 		@Override
-		protected SimpleCaptcha createDTO() {
-			return new SimpleCaptcha();
+		protected Captcha createDTO() {
+			return new Captcha();
 		}
 
 		@Override
-		protected SimpleCaptcha[] createDTOArray(int size) {
-			return new SimpleCaptcha[size];
+		protected Captcha[] createDTOArray(int size) {
+			return new Captcha[size];
 		}
 
 		@Override
 		protected void setField(
-			SimpleCaptcha simpleCaptcha, String jsonParserFieldName,
+			Captcha captcha, String jsonParserFieldName,
 			Object jsonParserFieldValue) {
 
 			if (Objects.equals(jsonParserFieldName, "answer")) {
 				if (jsonParserFieldValue != null) {
-					simpleCaptcha.setAnswer((String)jsonParserFieldValue);
+					captcha.setAnswer((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "image")) {
 				if (jsonParserFieldValue != null) {
-					simpleCaptcha.setImage((String)jsonParserFieldValue);
+					captcha.setImage((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "token")) {
 				if (jsonParserFieldValue != null) {
-					simpleCaptcha.setToken((String)jsonParserFieldValue);
+					captcha.setToken((String)jsonParserFieldValue);
 				}
 			}
 		}

@@ -5,8 +5,8 @@
 
 package com.liferay.captcha.rest.internal.resource.v1_0;
 
-import com.liferay.captcha.rest.dto.v1_0.SimpleCaptcha;
-import com.liferay.captcha.rest.resource.v1_0.SimpleCaptchaResource;
+import com.liferay.captcha.rest.dto.v1_0.Captcha;
+import com.liferay.captcha.rest.resource.v1_0.CaptchaResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
@@ -42,44 +42,38 @@ import javax.ws.rs.core.UriInfo;
  */
 @Generated("")
 @javax.ws.rs.Path("/v1.0")
-public abstract class BaseSimpleCaptchaResourceImpl
-	implements SimpleCaptchaResource {
+public abstract class BaseCaptchaResourceImpl implements CaptchaResource {
 
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -X 'GET' 'http://localhost:8080/o/captcha/v1.0/simple-captcha/challenge'  -u 'test@liferay.com:test'
+	 * curl -X 'GET' 'http://localhost:8080/o/captcha/v1.0/captcha/challenge'  -u 'test@liferay.com:test'
 	 */
 	@io.swagger.v3.oas.annotations.tags.Tags(
-		value = {
-			@io.swagger.v3.oas.annotations.tags.Tag(name = "SimpleCaptcha")
-		}
+		value = {@io.swagger.v3.oas.annotations.tags.Tag(name = "Captcha")}
 	)
 	@javax.ws.rs.GET
-	@javax.ws.rs.Path("/simple-captcha/challenge")
+	@javax.ws.rs.Path("/captcha/challenge")
 	@javax.ws.rs.Produces({"application/json", "application/xml"})
 	@Override
-	public SimpleCaptcha getSimpleCaptchaChallenge() throws Exception {
-		return new SimpleCaptcha();
+	public Captcha getCaptchaChallenge() throws Exception {
+		return new Captcha();
 	}
 
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -X 'POST' 'http://localhost:8080/o/captcha/v1.0/simple-captcha/response' -d $'{"answer": ___, "image": ___, "token": ___}' --header 'Content-Type: application/json' -u 'test@liferay.com:test'
+	 * curl -X 'POST' 'http://localhost:8080/o/captcha/v1.0/captcha/response' -d $'{"answer": ___, "image": ___, "token": ___}' --header 'Content-Type: application/json' -u 'test@liferay.com:test'
 	 */
 	@io.swagger.v3.oas.annotations.tags.Tags(
-		value = {
-			@io.swagger.v3.oas.annotations.tags.Tag(name = "SimpleCaptcha")
-		}
+		value = {@io.swagger.v3.oas.annotations.tags.Tag(name = "Captcha")}
 	)
 	@javax.ws.rs.Consumes({"application/json", "application/xml"})
-	@javax.ws.rs.Path("/simple-captcha/response")
+	@javax.ws.rs.Path("/captcha/response")
 	@javax.ws.rs.POST
 	@javax.ws.rs.Produces({"application/json", "application/xml"})
 	@Override
-	public void postSimpleCaptchaResponse(SimpleCaptcha simpleCaptcha)
-		throws Exception {
+	public void postCaptchaResponse(Captcha captcha) throws Exception {
 	}
 
 	public void setContextAcceptLanguage(AcceptLanguage contextAcceptLanguage) {
@@ -279,6 +273,6 @@ public abstract class BaseSimpleCaptchaResourceImpl
 	protected SortParserProvider sortParserProvider;
 
 	private static final com.liferay.portal.kernel.log.Log _log =
-		LogFactoryUtil.getLog(BaseSimpleCaptchaResourceImpl.class);
+		LogFactoryUtil.getLog(BaseCaptchaResourceImpl.class);
 
 }

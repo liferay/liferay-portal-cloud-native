@@ -6,7 +6,7 @@
 package com.liferay.captcha.rest.internal.resource.v1_0.factory;
 
 import com.liferay.captcha.rest.internal.security.permission.LiberalPermissionChecker;
-import com.liferay.captcha.rest.resource.v1_0.SimpleCaptchaResource;
+import com.liferay.captcha.rest.resource.v1_0.CaptchaResource;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -55,29 +55,28 @@ import org.osgi.service.component.annotations.ReferenceScope;
  * @generated
  */
 @Component(
-	property = "resource.locator.key=/captcha/v1.0/SimpleCaptcha",
-	service = SimpleCaptchaResource.Factory.class
+	property = "resource.locator.key=/captcha/v1.0/Captcha",
+	service = CaptchaResource.Factory.class
 )
 @Generated("")
-public class SimpleCaptchaResourceFactoryImpl
-	implements SimpleCaptchaResource.Factory {
+public class CaptchaResourceFactoryImpl implements CaptchaResource.Factory {
 
 	@Override
-	public SimpleCaptchaResource.Builder create() {
-		return new SimpleCaptchaResource.Builder() {
+	public CaptchaResource.Builder create() {
+		return new CaptchaResource.Builder() {
 
 			@Override
-			public SimpleCaptchaResource build() {
+			public CaptchaResource build() {
 				if (_user == null) {
 					throw new IllegalArgumentException("User is not set");
 				}
 
-				Function<InvocationHandler, SimpleCaptchaResource>
-					simpleCaptchaResourceProxyProviderFunction =
+				Function<InvocationHandler, CaptchaResource>
+					captchaResourceProxyProviderFunction =
 						ResourceProxyProviderFunctionHolder.
-							_simpleCaptchaResourceProxyProviderFunction;
+							_captchaResourceProxyProviderFunction;
 
-				return simpleCaptchaResourceProxyProviderFunction.apply(
+				return captchaResourceProxyProviderFunction.apply(
 					(proxy, method, arguments) -> _invoke(
 						method, arguments, _checkPermissions,
 						_httpServletRequest, _httpServletResponse,
@@ -85,7 +84,7 @@ public class SimpleCaptchaResourceFactoryImpl
 			}
 
 			@Override
-			public SimpleCaptchaResource.Builder checkPermissions(
+			public CaptchaResource.Builder checkPermissions(
 				boolean checkPermissions) {
 
 				_checkPermissions = checkPermissions;
@@ -94,7 +93,7 @@ public class SimpleCaptchaResourceFactoryImpl
 			}
 
 			@Override
-			public SimpleCaptchaResource.Builder httpServletRequest(
+			public CaptchaResource.Builder httpServletRequest(
 				HttpServletRequest httpServletRequest) {
 
 				_httpServletRequest = httpServletRequest;
@@ -103,7 +102,7 @@ public class SimpleCaptchaResourceFactoryImpl
 			}
 
 			@Override
-			public SimpleCaptchaResource.Builder httpServletResponse(
+			public CaptchaResource.Builder httpServletResponse(
 				HttpServletResponse httpServletResponse) {
 
 				_httpServletResponse = httpServletResponse;
@@ -112,7 +111,7 @@ public class SimpleCaptchaResourceFactoryImpl
 			}
 
 			@Override
-			public SimpleCaptchaResource.Builder preferredLocale(
+			public CaptchaResource.Builder preferredLocale(
 				Locale preferredLocale) {
 
 				_preferredLocale = preferredLocale;
@@ -121,14 +120,14 @@ public class SimpleCaptchaResourceFactoryImpl
 			}
 
 			@Override
-			public SimpleCaptchaResource.Builder uriInfo(UriInfo uriInfo) {
+			public CaptchaResource.Builder uriInfo(UriInfo uriInfo) {
 				_uriInfo = uriInfo;
 
 				return this;
 			}
 
 			@Override
-			public SimpleCaptchaResource.Builder user(User user) {
+			public CaptchaResource.Builder user(User user) {
 				_user = user;
 
 				return this;
@@ -144,16 +143,15 @@ public class SimpleCaptchaResourceFactoryImpl
 		};
 	}
 
-	private static Function<InvocationHandler, SimpleCaptchaResource>
+	private static Function<InvocationHandler, CaptchaResource>
 		_getProxyProviderFunction() {
 
 		Class<?> proxyClass = ProxyUtil.getProxyClass(
-			SimpleCaptchaResource.class.getClassLoader(),
-			SimpleCaptchaResource.class);
+			CaptchaResource.class.getClassLoader(), CaptchaResource.class);
 
 		try {
-			Constructor<SimpleCaptchaResource> constructor =
-				(Constructor<SimpleCaptchaResource>)proxyClass.getConstructor(
+			Constructor<CaptchaResource> constructor =
+				(Constructor<CaptchaResource>)proxyClass.getConstructor(
 					InvocationHandler.class);
 
 			return invocationHandler -> {
@@ -195,39 +193,37 @@ public class SimpleCaptchaResourceFactoryImpl
 				new LiberalPermissionChecker(user));
 		}
 
-		SimpleCaptchaResource simpleCaptchaResource =
-			_componentServiceObjects.getService();
+		CaptchaResource captchaResource = _componentServiceObjects.getService();
 
-		simpleCaptchaResource.setContextAcceptLanguage(
+		captchaResource.setContextAcceptLanguage(
 			new AcceptLanguageImpl(httpServletRequest, preferredLocale, user));
 
 		Company company = _companyLocalService.getCompany(user.getCompanyId());
 
-		simpleCaptchaResource.setContextCompany(company);
+		captchaResource.setContextCompany(company);
 
-		simpleCaptchaResource.setContextHttpServletRequest(httpServletRequest);
-		simpleCaptchaResource.setContextHttpServletResponse(
-			httpServletResponse);
-		simpleCaptchaResource.setContextUriInfo(uriInfo);
-		simpleCaptchaResource.setContextUser(user);
-		simpleCaptchaResource.setExpressionConvert(_expressionConvert);
-		simpleCaptchaResource.setFilterParserProvider(_filterParserProvider);
-		simpleCaptchaResource.setGroupLocalService(_groupLocalService);
-		simpleCaptchaResource.setResourceActionLocalService(
+		captchaResource.setContextHttpServletRequest(httpServletRequest);
+		captchaResource.setContextHttpServletResponse(httpServletResponse);
+		captchaResource.setContextUriInfo(uriInfo);
+		captchaResource.setContextUser(user);
+		captchaResource.setExpressionConvert(_expressionConvert);
+		captchaResource.setFilterParserProvider(_filterParserProvider);
+		captchaResource.setGroupLocalService(_groupLocalService);
+		captchaResource.setResourceActionLocalService(
 			_resourceActionLocalService);
-		simpleCaptchaResource.setResourcePermissionLocalService(
+		captchaResource.setResourcePermissionLocalService(
 			_resourcePermissionLocalService);
-		simpleCaptchaResource.setRoleLocalService(_roleLocalService);
-		simpleCaptchaResource.setSortParserProvider(_sortParserProvider);
+		captchaResource.setRoleLocalService(_roleLocalService);
+		captchaResource.setSortParserProvider(_sortParserProvider);
 
 		try {
-			return method.invoke(simpleCaptchaResource, arguments);
+			return method.invoke(captchaResource, arguments);
 		}
 		catch (InvocationTargetException invocationTargetException) {
 			throw invocationTargetException.getTargetException();
 		}
 		finally {
-			_componentServiceObjects.ungetService(simpleCaptchaResource);
+			_componentServiceObjects.ungetService(captchaResource);
 
 			PrincipalThreadLocal.setName(name);
 
@@ -239,8 +235,7 @@ public class SimpleCaptchaResourceFactoryImpl
 	private CompanyLocalService _companyLocalService;
 
 	@Reference(scope = ReferenceScope.PROTOTYPE_REQUIRED)
-	private ComponentServiceObjects<SimpleCaptchaResource>
-		_componentServiceObjects;
+	private ComponentServiceObjects<CaptchaResource> _componentServiceObjects;
 
 	@Reference
 	private PermissionCheckerFactory _defaultPermissionCheckerFactory;
@@ -273,9 +268,8 @@ public class SimpleCaptchaResourceFactoryImpl
 
 	private static class ResourceProxyProviderFunctionHolder {
 
-		private static final Function<InvocationHandler, SimpleCaptchaResource>
-			_simpleCaptchaResourceProxyProviderFunction =
-				_getProxyProviderFunction();
+		private static final Function<InvocationHandler, CaptchaResource>
+			_captchaResourceProxyProviderFunction = _getProxyProviderFunction();
 
 	}
 

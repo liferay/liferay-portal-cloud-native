@@ -36,18 +36,18 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @generated
  */
 @Generated("")
-@GraphQLName("SimpleCaptcha")
+@GraphQLName("Captcha")
 @JsonFilter("Liferay.Vulcan")
 @Schema(requiredProperties = {"token"})
-@XmlRootElement(name = "SimpleCaptcha")
-public class SimpleCaptcha implements Serializable {
+@XmlRootElement(name = "Captcha")
+public class Captcha implements Serializable {
 
-	public static SimpleCaptcha toDTO(String json) {
-		return ObjectMapperUtil.readValue(SimpleCaptcha.class, json);
+	public static Captcha toDTO(String json) {
+		return ObjectMapperUtil.readValue(Captcha.class, json);
 	}
 
-	public static SimpleCaptcha unsafeToDTO(String json) {
-		return ObjectMapperUtil.unsafeReadValue(SimpleCaptcha.class, json);
+	public static Captcha unsafeToDTO(String json) {
+		return ObjectMapperUtil.unsafeReadValue(Captcha.class, json);
 	}
 
 	@Schema
@@ -141,13 +141,13 @@ public class SimpleCaptcha implements Serializable {
 			return true;
 		}
 
-		if (!(object instanceof SimpleCaptcha)) {
+		if (!(object instanceof Captcha)) {
 			return false;
 		}
 
-		SimpleCaptcha simpleCaptcha = (SimpleCaptcha)object;
+		Captcha captcha = (Captcha)object;
 
-		return Objects.equals(toString(), simpleCaptcha.toString());
+		return Objects.equals(toString(), captcha.toString());
 	}
 
 	@Override
@@ -211,7 +211,7 @@ public class SimpleCaptcha implements Serializable {
 
 	@Schema(
 		accessMode = Schema.AccessMode.READ_ONLY,
-		defaultValue = "com.liferay.captcha.rest.dto.v1_0.SimpleCaptcha",
+		defaultValue = "com.liferay.captcha.rest.dto.v1_0.Captcha",
 		name = "x-class-name"
 	)
 	public String xClassName;
