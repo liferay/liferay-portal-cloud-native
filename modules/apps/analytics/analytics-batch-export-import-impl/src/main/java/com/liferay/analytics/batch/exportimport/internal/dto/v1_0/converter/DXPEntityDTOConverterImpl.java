@@ -330,13 +330,10 @@ public class DXPEntityDTOConverterImpl implements DXPEntityDTOConverter {
 						analyticsConfiguration.syncedContactFieldNames()),
 					includeAttributeNames));
 
-			long userId = user.getUserId();
-
 			long[] organizationIds =
-				_userLocalService.getOrganizationPrimaryKeys(userId);
-
+				_userLocalService.getOrganizationPrimaryKeys(user.getUserId());
 			long[] userGroupIds = _userLocalService.getUserGroupPrimaryKeys(
-				userId);
+				user.getUserId());
 
 			fields.add(
 				new Field() {
