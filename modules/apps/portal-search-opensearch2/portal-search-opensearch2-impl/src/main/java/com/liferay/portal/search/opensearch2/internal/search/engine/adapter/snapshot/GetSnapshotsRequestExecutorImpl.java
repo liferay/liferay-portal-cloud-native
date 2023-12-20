@@ -35,10 +35,10 @@ public class GetSnapshotsRequestExecutorImpl
 	public GetSnapshotsResponse execute(
 		GetSnapshotsRequest getSnapshotsRequest) {
 
+		GetSnapshotsResponse getSnapshotsResponse = new GetSnapshotsResponse();
+
 		GetSnapshotResponse getSnapshotResponse = _getGetSnapshotResponse(
 			createGetSnapshotRequest(getSnapshotsRequest), getSnapshotsRequest);
-
-		GetSnapshotsResponse getSnapshotsResponse = new GetSnapshotsResponse();
 
 		List<SnapshotInfo> snapshotInfos = getSnapshotResponse.snapshots();
 
