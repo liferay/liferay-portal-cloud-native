@@ -131,6 +131,10 @@ public class SettingsFactory {
 
 		JSONObject jsonObject = _jsonFactory.createJSONObject();
 
+		jsonObject.put(
+			"max_result_window",
+			_openSearchConfigurationWrapper.indexMaxResultWindow());
+
 		if (!Validator.isBlank(
 				_openSearchConfigurationWrapper.indexNumberOfReplicas())) {
 
@@ -146,10 +150,6 @@ public class SettingsFactory {
 				"number_of_shards",
 				_openSearchConfigurationWrapper.indexNumberOfShards());
 		}
-
-		jsonObject.put(
-			"max_result_window",
-			_openSearchConfigurationWrapper.indexMaxResultWindow());
 
 		return _mergeJSONObjects(settingsJSONObject, jsonObject);
 	}
