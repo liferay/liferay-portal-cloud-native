@@ -117,7 +117,7 @@ public class CaptchaResourceImpl extends BaseCaptchaResourceImpl {
 				SimpleCaptchaImpl.class.getName())) {
 
 			throw new ForbiddenException(
-				"Simple Captcha Headless API is not enabled");
+				"Captcha engine is not configured to use SimpleCaptcha");
 		}
 	}
 
