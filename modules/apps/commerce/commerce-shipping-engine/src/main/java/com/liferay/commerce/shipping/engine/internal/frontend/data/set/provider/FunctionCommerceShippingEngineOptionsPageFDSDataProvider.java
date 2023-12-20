@@ -69,12 +69,12 @@ public class FunctionCommerceShippingEngineOptionsPageFDSDataProvider
 			_commerceShippingEngineRegistry.getCommerceShippingEngine(
 				commerceShippingMethodEngineKey);
 
-		long commerceChannelId = ParamUtil.getLong(
-			httpServletRequest, "commerceChannelId");
-
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
+
+		long commerceChannelId = ParamUtil.getLong(
+			httpServletRequest, "commerceChannelId");
 
 		CommerceContext commerceContext = _commerceContextFactory.create(
 			themeDisplay.getCompanyId(), commerceChannelId,
