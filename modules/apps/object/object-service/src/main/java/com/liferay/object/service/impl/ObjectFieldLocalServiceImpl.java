@@ -1316,8 +1316,8 @@ public class ObjectFieldLocalServiceImpl
 			!Objects.equals(oldObjectField.getReadOnly(), readOnly)) {
 
 			throw new ObjectFieldReadOnlyException(
-				"The readOnly configuration is set by a root object " +
-					"definition and cannot be changed");
+				"An object field's read only setting is defined by the root " +
+					"object definition and cannot be changed");
 		}
 
 		if (Validator.isNotNull(newObjectField.getRelationshipType())) {
