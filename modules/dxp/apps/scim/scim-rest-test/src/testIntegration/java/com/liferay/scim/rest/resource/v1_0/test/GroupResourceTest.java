@@ -163,7 +163,7 @@ public class GroupResourceTest extends BaseGroupResourceTestCase {
 		assertEquals(
 			postGroup1, _getGroup(String.valueOf(userGroup1.getUserGroupId())));
 
-		// Provision an existent Group with no Scim Client Id set
+		// Provision an existent group with no SCIM client ID set
 
 		Group postGroup2 = randomGroup();
 
@@ -296,6 +296,9 @@ public class GroupResourceTest extends BaseGroupResourceTestCase {
 	}
 
 	private User _addUser() throws Exception {
+		String emailPrefix = StringUtil.toLowerCase(
+			RandomTestUtil.randomString());
+
 		HttpInvoker.HttpResponse httpResponse =
 			_userResource.postV2UserHttpResponse(
 				new User() {
@@ -303,10 +306,6 @@ public class GroupResourceTest extends BaseGroupResourceTestCase {
 						active = true;
 						displayName = StringUtil.toLowerCase(
 							RandomTestUtil.randomString());
-
-						String emailPrefix = StringUtil.toLowerCase(
-							RandomTestUtil.randomString());
-
 						emails = new MultiValuedAttribute[] {
 							new MultiValuedAttribute() {
 								{
@@ -316,7 +315,6 @@ public class GroupResourceTest extends BaseGroupResourceTestCase {
 								}
 							}
 						};
-
 						externalId = StringUtil.toLowerCase(
 							RandomTestUtil.randomString());
 						locale = StringUtil.toLowerCase(

@@ -228,8 +228,7 @@ public class ScimUtil {
 			JSONUtil.put(
 				"attributeName", "birthday"
 			).put(
-				"attributeURI",
-				ScimUtil.LIFERAY_USER_SCHEMA_EXTENSION_URI + ":birthday"
+				"attributeURI", LIFERAY_USER_SCHEMA_EXTENSION_URI + ":birthday"
 			).put(
 				"canonicalValues", JSONFactoryUtil.createJSONArray()
 			).put(
@@ -256,8 +255,7 @@ public class ScimUtil {
 			JSONUtil.put(
 				"attributeName", "male"
 			).put(
-				"attributeURI",
-				ScimUtil.LIFERAY_USER_SCHEMA_EXTENSION_URI + ":male"
+				"attributeURI", LIFERAY_USER_SCHEMA_EXTENSION_URI + ":male"
 			).put(
 				"canonicalValues", JSONFactoryUtil.createJSONArray()
 			).put(
@@ -282,9 +280,9 @@ public class ScimUtil {
 				"uniqueness", "none"
 			),
 			JSONUtil.put(
-				"attributeName", ScimUtil.LIFERAY_USER_SCHEMA_EXTENSION_URI
+				"attributeName", LIFERAY_USER_SCHEMA_EXTENSION_URI
 			).put(
-				"attributeURI", ScimUtil.LIFERAY_USER_SCHEMA_EXTENSION_URI
+				"attributeURI", LIFERAY_USER_SCHEMA_EXTENSION_URI
 			).put(
 				"canonicalValues", JSONFactoryUtil.createJSONArray()
 			).put(
