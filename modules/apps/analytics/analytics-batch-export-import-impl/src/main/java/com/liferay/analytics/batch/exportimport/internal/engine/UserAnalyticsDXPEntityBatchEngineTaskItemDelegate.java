@@ -92,12 +92,12 @@ public class UserAnalyticsDXPEntityBatchEngineTaskItemDelegate
 		Map<Serializable, Contact> contacts =
 			_contactLocalService.fetchContacts(contactIds);
 
-		Map<Long, List<Long>> groupIdsMap = _fetchGroupIdsMap(userIds);
-		Map<Long, List<Long>> organizationIdsMap = _fetchOrganizationIdsMap(
+		Map<Long, List<Long>> groupIdsMap = _getGroupIdsMap(userIds);
+		Map<Long, List<Long>> organizationIdsMap = _getOrganizationIdsMap(
 			userIds);
-		Map<Long, List<Long>> roleIdsMap = _fetchRoleIdsMap(userIds);
-		Map<Long, List<Long>> teamIdsMap = _fetchTeamIdsMap(userIds);
-		Map<Long, List<Long>> userGroupIdsMap = _fetchUserGroupIdsMap(userIds);
+		Map<Long, List<Long>> roleIdsMap = _getRoleIdsMap(userIds);
+		Map<Long, List<Long>> teamIdsMap = _getTeamIdsMap(userIds);
+		Map<Long, List<Long>> userGroupIdsMap = _getUserGroupIdsMap(userIds);
 
 		for (User user : users) {
 			Contact contact = contacts.get(user.getContactId());
@@ -271,7 +271,7 @@ public class UserAnalyticsDXPEntityBatchEngineTaskItemDelegate
 		);
 	}
 
-	private Map<Long, List<Long>> _fetchGroupIdsMap(Long[] userIds) {
+	private Map<Long, List<Long>> _getGroupIdsMap(Long[] userIds) {
 		Map<Long, List<Long>> idsMap = new HashMap<>();
 
 		for (Object[] array :
@@ -294,7 +294,7 @@ public class UserAnalyticsDXPEntityBatchEngineTaskItemDelegate
 		return idsMap;
 	}
 
-	private Map<Long, List<Long>> _fetchOrganizationIdsMap(Long[] userIds) {
+	private Map<Long, List<Long>> _getOrganizationIdsMap(Long[] userIds) {
 		Map<Long, List<Long>> idsMap = new HashMap<>();
 
 		for (Object[] array :
@@ -317,7 +317,7 @@ public class UserAnalyticsDXPEntityBatchEngineTaskItemDelegate
 		return idsMap;
 	}
 
-	private Map<Long, List<Long>> _fetchRoleIdsMap(Long[] userIds) {
+	private Map<Long, List<Long>> _getRoleIdsMap(Long[] userIds) {
 		Map<Long, List<Long>> idsMap = new HashMap<>();
 
 		for (Object[] array :
@@ -340,7 +340,7 @@ public class UserAnalyticsDXPEntityBatchEngineTaskItemDelegate
 		return idsMap;
 	}
 
-	private Map<Long, List<Long>> _fetchTeamIdsMap(Long[] userIds) {
+	private Map<Long, List<Long>> _getTeamIdsMap(Long[] userIds) {
 		Map<Long, List<Long>> idsMap = new HashMap<>();
 
 		for (Object[] array :
@@ -363,7 +363,7 @@ public class UserAnalyticsDXPEntityBatchEngineTaskItemDelegate
 		return idsMap;
 	}
 
-	private Map<Long, List<Long>> _fetchUserGroupIdsMap(Long[] userIds) {
+	private Map<Long, List<Long>> _getUserGroupIdsMap(Long[] userIds) {
 		Map<Long, List<Long>> idsMap = new HashMap<>();
 
 		for (Object[] array :
