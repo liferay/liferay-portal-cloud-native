@@ -206,7 +206,9 @@ public class NotificationTemplateContextFactory {
 	}
 
 	/**
-	 * See {@link com.liferay.calendar.web.internal.info.item.provider.CalendarBookingInfoItemFieldValuesProvider#_getCalendarBookingURL(CalendarBooking)}
+	 * See {@link
+	 * com.liferay.calendar.web.internal.info.item.provider.CalendarBookingInfoItemFieldValuesProvider#_getCalendarBookingURL(
+	 * CalendarBooking)}
 	 */
 	private static String _getCalendarBookingURL(
 			User user, long calendarBookingId)

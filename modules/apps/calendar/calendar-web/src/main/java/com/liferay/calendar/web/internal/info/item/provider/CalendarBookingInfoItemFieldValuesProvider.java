@@ -101,7 +101,9 @@ public class CalendarBookingInfoItemFieldValuesProvider
 	}
 
 	/**
-	 * See {@link com.liferay.calendar.internal.notification.NotificationTemplateContextFactory#_getCalendarBookingURL(User, long)}
+	 * See {@link
+	 * com.liferay.calendar.internal.notification.NotificationTemplateContextFactory#_getCalendarBookingURL(
+	 * User, long)}
 	 */
 	private String _getCalendarBookingURL(CalendarBooking calendarBooking) {
 		try {
