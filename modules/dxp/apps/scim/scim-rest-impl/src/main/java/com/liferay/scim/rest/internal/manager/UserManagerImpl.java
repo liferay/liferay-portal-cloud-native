@@ -142,6 +142,7 @@ public class UserManagerImpl implements UserManager {
 				() -> {
 					_userService.setUserGroupUsers(
 						GetterUtil.getLong(groupId), new long[0]);
+
 					_userGroupService.deleteUserGroup(
 						GetterUtil.getLong(groupId));
 
