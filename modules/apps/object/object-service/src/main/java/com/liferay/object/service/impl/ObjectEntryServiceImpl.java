@@ -607,34 +607,56 @@ public class ObjectEntryServiceImpl extends ObjectEntryServiceBaseImpl {
 			).toInstant());
 	}
 
+	private void _sendUserNotificationEvents(
+			long userId, String portletId, ObjectDefinition objectDefinition)
+		throws PortalException {
+
+		_userNotificationEventLocalService.sendUserNotificationEvents(
+			userId, portletId, UserNotificationDeliveryConstants.TYPE_WEBSITE,
+			true, false,
+			JSONUtil.put(
+				"className", objectDefinition.getClassName()
+			).put(
+				"externalReferenceCode",
+				objectDefinition.getExternalReferenceCode()
+			).put(
+				"notificationMessage",
+				StringBundler.concat(
+					"The limit of guest entries for ",
+					objectDefinition.getLabel(
+						objectDefinition.getDefaultLanguageId()),
+					" has been reached and will no longer be accepted. Go to ",
+					"Instance Settings to change this.")
+			).put(
+				"portletId", portletId
+			));
+	}
+
 	private void _sendUserNotificationEvents(ObjectDefinition objectDefinition)
 		throws PortalException {
 
-		List<Long> adminUserIdsNotNotified = new ArrayList<>();
-
-		Role role = _roleLocalService.getRole(
-			objectDefinition.getCompanyId(), RoleConstants.ADMINISTRATOR);
-
-		long[] adminUserIds = _userLocalService.getRoleUserIds(
-			role.getRoleId());
+		List<Long> userIds = new ArrayList<>();
 
 		String portletId =
 			objectDefinition.isUnmodifiableSystemObject() ? StringPool.BLANK :
 				objectDefinition.getPortletId();
+		long timestamp = LocalDate.now(
+		).atStartOfDay(
+			ZoneId.systemDefault()
+		).toInstant(
+		).getEpochSecond();
 
-		for (long adminUserId : adminUserIds) {
-			int notificationsCount =
+		Role role = _roleLocalService.getRole(
+			objectDefinition.getCompanyId(), RoleConstants.ADMINISTRATOR);
+
+		for (long userId : _userLocalService.getRoleUserIds(role.getRoleId())) {
+			int count =
 				_userNotificationEventLocalService.
 					getUserNotificationEventsCount(
-						adminUserId, portletId, true,
-						LocalDate.now(
-						).atStartOfDay(
-							ZoneId.systemDefault()
-						).toInstant(
-						).getEpochSecond());
+						userId, portletId, timestamp, true);
 
-			if (notificationsCount <= 0) {
-				adminUserIdsNotNotified.add(adminUserId);
+			if (count == 0) {
+				userIds.add(userId);
 			}
 		}
 
@@ -642,30 +664,9 @@ public class ObjectEntryServiceImpl extends ObjectEntryServiceBaseImpl {
 			TransactionInvokerUtil.invoke(
 				_transactionConfig,
 				() -> {
-					for (long adminUserId : adminUserIdsNotNotified) {
-						_userNotificationEventLocalService.
-							sendUserNotificationEvents(
-								adminUserId, portletId,
-								UserNotificationDeliveryConstants.TYPE_WEBSITE,
-								true, false,
-								JSONUtil.put(
-									"className", objectDefinition.getClassName()
-								).put(
-									"externalReferenceCode",
-									objectDefinition.getExternalReferenceCode()
-								).put(
-									"notificationMessage",
-									StringBundler.concat(
-										"The limit of guest entries for ",
-										objectDefinition.getLabel(
-											objectDefinition.
-												getDefaultLanguageId()),
-										" has been reached and will no longer ",
-										"be accepted. Go to Instance Settings ",
-										"to change this.")
-								).put(
-									"portletId", portletId
-								));
+					for (long userId : userIds) {
+						_sendUserNotificationEvents(
+							userId, portletId, objectDefinition);
 					}
 
 					return null;
