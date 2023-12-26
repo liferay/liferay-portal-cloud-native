@@ -699,27 +699,27 @@ public class ObjectEntryServiceTest {
 				ServiceContextTestUtil.getServiceContext(
 					TestPropsValues.getGroupId(), _guestUser.getUserId())));
 
-		Role adminRole = _roleLocalService.getRole(
-			_objectDefinition.getCompanyId(), RoleConstants.ADMINISTRATOR);
-
-		long[] adminUserIds = _userLocalService.getRoleUserIds(
-			adminRole.getRoleId());
-
 		String portletId =
 			_objectDefinition.isUnmodifiableSystemObject() ? StringPool.BLANK :
 				_objectDefinition.getPortletId();
 
-		for (long adminUserId : adminUserIds) {
-			int notificationsCount =
+		Role role = _roleLocalService.getRole(
+			_objectDefinition.getCompanyId(), RoleConstants.ADMINISTRATOR);
+
+		long[] userIds = _userLocalService.getRoleUserIds(role.getRoleId());
+
+		for (long userId : userIds) {
+			int count =
 				_userNotificationLocalService.getUserNotificationEventsCount(
-					adminUserId, portletId, true,
+					userId, portletId,
 					LocalDate.now(
 					).atStartOfDay(
 						ZoneId.systemDefault()
 					).toInstant(
-					).getEpochSecond());
+					).getEpochSecond(),
+					true);
 
-			Assert.assertTrue(notificationsCount > 0);
+			Assert.assertTrue(count > 0);
 		}
 
 		ConfigurationTestUtil.deleteConfiguration(
@@ -803,16 +803,17 @@ public class ObjectEntryServiceTest {
 				ServiceContextTestUtil.getServiceContext(
 					TestPropsValues.getGroupId(), _guestUser.getUserId())));
 
-		for (long adminUserId : adminUserIds) {
+		for (long userId : userIds) {
 			Assert.assertEquals(
 				1,
 				_userNotificationLocalService.getUserNotificationEventsCount(
-					adminUserId, portletId, true,
+					userId, portletId,
 					LocalDate.now(
 					).atStartOfDay(
 						ZoneId.systemDefault()
 					).toInstant(
-					).getEpochSecond()));
+					).getEpochSecond(),
+					true));
 		}
 
 		_objectEntryLocalService.deleteObjectEntry(
