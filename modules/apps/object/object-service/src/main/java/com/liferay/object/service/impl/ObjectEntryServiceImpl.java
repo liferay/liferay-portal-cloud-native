@@ -607,8 +607,7 @@ public class ObjectEntryServiceImpl extends ObjectEntryServiceBaseImpl {
 			).toInstant());
 	}
 
-	private void _sendUserNotificationEvents(
-			ObjectDefinition objectDefinition)
+	private void _sendUserNotificationEvents(ObjectDefinition objectDefinition)
 		throws PortalException {
 
 		List<Long> adminUserIdsNotNotified = new ArrayList<>();
