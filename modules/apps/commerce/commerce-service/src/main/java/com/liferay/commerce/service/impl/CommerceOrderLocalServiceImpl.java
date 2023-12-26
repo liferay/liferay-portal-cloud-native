@@ -2786,14 +2786,14 @@ public class CommerceOrderLocalServiceImpl
 					accountEntryId, commerceChannel.getCommerceChannelId(),
 					CommerceChannelAccountEntryRelConstants.TYPE_ELIGIBILITY);
 
-		int commerceChannelAccountEntryRelsCount =
+		int count =
 			_commerceChannelAccountEntryRelLocalService.
 				getCommerceChannelAccountEntryRelsCount(
 					commerceChannel.getCommerceChannelId(), null,
 					CommerceChannelAccountEntryRelConstants.TYPE_ELIGIBILITY);
 
 		if ((commerceChannelAccountEntryRel == null) &&
-			(commerceChannelAccountEntryRelsCount != 0)) {
+			(count != 0)) {
 
 			throw new NoSuchChannelAccountEntryRelException(
 				"This account is not eligible for this channel");
