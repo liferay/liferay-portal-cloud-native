@@ -99,7 +99,9 @@ public class MoveLayoutMVCActionCommand extends BaseAddLayoutMVCActionCommand {
 					_layoutSetPrototypeHelper, liferayPortletRequest,
 					liferayPortletResponse);
 
-			JSONObject jsonObject = JSONUtil.put(
+			JSONPortletResponseUtil.writeJSON(
+				liferayPortletRequest, liferayPortletResponse,
+				JSONUtil.put(
 				"layoutColumns",
 				() -> {
 					MillerColumnsDisplayContext millerColumnsDisplayContext =
@@ -110,12 +112,9 @@ public class MoveLayoutMVCActionCommand extends BaseAddLayoutMVCActionCommand {
 
 					return millerColumnsDisplayContext.
 						getLayoutColumnsJSONArray();
-				});
+				}));
 
 			hideDefaultSuccessMessage(actionRequest);
-
-			JSONPortletResponseUtil.writeJSON(
-				liferayPortletRequest, liferayPortletResponse, jsonObject);
 		}
 		catch (Exception exception) {
 			hideDefaultErrorMessage(actionRequest);
