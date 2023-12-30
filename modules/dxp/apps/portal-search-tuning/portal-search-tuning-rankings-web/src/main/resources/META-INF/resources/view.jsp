@@ -47,7 +47,7 @@ page import="com.liferay.search.experiences.service.SXPBlueprintLocalServiceUtil
 	<aui:script>
 		Liferay.Util.openToast({
 			message:
-				'<liferay-ui:message key="the-selected-action-could-not-be-performed-on-the-rankings-with-not-applicable-status" />',
+				'<liferay-ui:message key="the-selected-action-could-not-be-performed-on-the-rankings-with-a-not-applicable-status" />',
 			title: '<liferay-ui:message key="warning" />',
 			toastProps: {
 				autoClose: 5000,
