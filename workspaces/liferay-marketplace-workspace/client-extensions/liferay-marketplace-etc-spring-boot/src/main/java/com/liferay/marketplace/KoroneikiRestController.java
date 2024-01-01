@@ -216,7 +216,8 @@ public class KoroneikiRestController extends BaseRestController {
 					product.getProductId(), Pagination.of(1, 10)
 				).getItems()) {
 
-			String licenseUsageType = _getDXPLicenseUsageType(sku.getSkuOptions());
+			String licenseUsageType = _getDXPLicenseUsageType(
+				sku.getSkuOptions());
 
 			if (sku.getExternalReferenceCode(
 				).startsWith(
