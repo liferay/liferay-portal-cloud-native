@@ -219,15 +219,15 @@ public class KoroneikiRestController extends BaseRestController {
 			String dxpLicenseUsageType = _getDXPLicenseUsageType(
 				sku.getSkuOptions());
 
-			if (sku.getExternalReferenceCode(
+			if ((dxpLicenseUsageType == null) ||
+				sku.getExternalReferenceCode(
 				).startsWith(
 					"KOR-"
-				) || (dxpLicenseUsageType == null)) {
+				)) {
 
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						"Skipping post koroneiki product for sku " +
-							sku.toString());
+						"Skipping POST product for sku " + sku.toString());
 				}
 
 				continue;
@@ -242,20 +242,21 @@ public class KoroneikiRestController extends BaseRestController {
 
 			com.liferay.osb.koroneiki.phloem.rest.client.pagination.Page
 				<com.liferay.osb.koroneiki.phloem.rest.client.dto.v1_0.Product>
-					productsPage = _koroneikiProductResource.getProductsPage(
+					page = _koroneikiProductResource.getProductsPage(
 						"", "name eq '" + name + "'",
 						com.liferay.osb.koroneiki.phloem.rest.client.pagination.
 							Pagination.of(1, 1),
 						"");
 
 			com.liferay.osb.koroneiki.phloem.rest.client.dto.v1_0.Product
-				koroneikiProduct = productsPage.fetchFirstItem();
+				koroneikiProduct = page.fetchFirstItem();
 
 			if (koroneikiProduct == null) {
 				koroneikiProduct =
 					new com.liferay.osb.koroneiki.phloem.rest.client.dto.v1_0.
 						Product();
 
+				koroneikiProduct.setName(name);
 				koroneikiProduct.setProperties(
 					HashMapBuilder.put(
 						"display-group-name", productName
@@ -266,14 +267,13 @@ public class KoroneikiRestController extends BaseRestController {
 					).put(
 						"type", "marketplace-app"
 					).build());
-				koroneikiProduct.setName(name);
 
 				_koroneikiProductResource.postProduct(
 					jwt.getClaim("username"), jwt.getClaim("sub"),
 					koroneikiProduct);
 
 				if (_log.isInfoEnabled()) {
-					_log.info("Created koroneiki product " + koroneikiProduct);
+					_log.info("Created product " + koroneikiProduct);
 				}
 			}
 
