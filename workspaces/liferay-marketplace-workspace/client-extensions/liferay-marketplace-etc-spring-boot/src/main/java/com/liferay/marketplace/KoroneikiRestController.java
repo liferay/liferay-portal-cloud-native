@@ -396,9 +396,11 @@ public class KoroneikiRestController extends BaseRestController {
 
 			String value = skuOption.getValue();
 
-			return value.substring(
+			String firstCharUpperCase = value.substring(
 				0, 1
-			).toUpperCase() + value.substring(1);
+			).toUpperCase();
+
+			return firstCharUpperCase + value.substring(1);
 		}
 
 		return null;
