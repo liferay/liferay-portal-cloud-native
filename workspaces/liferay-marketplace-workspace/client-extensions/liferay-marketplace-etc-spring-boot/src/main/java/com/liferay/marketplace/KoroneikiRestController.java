@@ -543,6 +543,15 @@ public class KoroneikiRestController extends BaseRestController {
 					liferayMarketplaceKoroneikiAuthURL
 				).build();
 
+		_koroneikiProductResource =
+			com.liferay.osb.koroneiki.phloem.rest.client.resource.v1_0.
+				ProductResource.builder(
+				).header(
+					"API_TOKEN", _koroneikiAuthToken
+				).endpoint(
+					liferayMarketplaceKoroneikiAuthURL
+				).build();
+
 		_orderItemResource = OrderItemResource.builder(
 		).header(
 			HttpHeaders.AUTHORIZATION, oAuthAccessToken
@@ -563,15 +572,6 @@ public class KoroneikiRestController extends BaseRestController {
 		).endpoint(
 			liferayDXPURL
 		).build();
-
-		_koroneikiProductResource =
-			com.liferay.osb.koroneiki.phloem.rest.client.resource.v1_0.
-				ProductResource.builder(
-				).header(
-					"API_TOKEN", _koroneikiAuthToken
-				).endpoint(
-					liferayMarketplaceKoroneikiAuthURL
-				).build();
 
 		_productResource = ProductResource.builder(
 		).header(
