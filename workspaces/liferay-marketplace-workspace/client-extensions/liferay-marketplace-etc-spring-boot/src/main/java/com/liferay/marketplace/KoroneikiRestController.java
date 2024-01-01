@@ -142,7 +142,7 @@ public class KoroneikiRestController extends BaseRestController {
 				);
 			}
 
-			String licenseUsageType = _getLicenseUsageType(
+			String licenseUsageType = _getDXPLicenseUsageType(
 				orderItem.getOptions());
 
 			if (licenseUsageType == null) {
@@ -216,7 +216,7 @@ public class KoroneikiRestController extends BaseRestController {
 					product.getProductId(), Pagination.of(1, 10)
 				).getItems()) {
 
-			String licenseUsageType = _getLicenseUsageType(sku.getSkuOptions());
+			String licenseUsageType = _getDXPLicenseUsageType(sku.getSkuOptions());
 
 			if (sku.getExternalReferenceCode(
 				).startsWith(
@@ -388,7 +388,7 @@ public class KoroneikiRestController extends BaseRestController {
 		}
 	}
 
-	private String _getLicenseUsageType(SkuOption[] skuOptions) {
+	private String _getDXPLicenseUsageType(SkuOption[] skuOptions) {
 		for (SkuOption skuOption : skuOptions) {
 			if (!Objects.equals(skuOption.getKey(), "dxp-license-usage-type")) {
 				continue;
@@ -404,7 +404,7 @@ public class KoroneikiRestController extends BaseRestController {
 		return null;
 	}
 
-	private String _getLicenseUsageType(String options) {
+	private String _getDXPLicenseUsageType(String options) {
 		JSONArray optionsJSONArray = new JSONArray(options);
 
 		for (int i = 0; i < optionsJSONArray.length(); i++) {
@@ -626,7 +626,7 @@ public class KoroneikiRestController extends BaseRestController {
 			).toInstant();
 
 			if (Objects.equals(
-					_getLicenseUsageType(orderItem.getOptions()), "trial")) {
+					_getDXPLicenseUsageType(orderItem.getOptions()), "trial")) {
 
 				instant = zonedDateTime.plusMonths(
 					1
