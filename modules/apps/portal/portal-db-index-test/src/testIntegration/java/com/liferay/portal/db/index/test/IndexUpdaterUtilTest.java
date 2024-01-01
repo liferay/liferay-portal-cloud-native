@@ -61,7 +61,7 @@ public class IndexUpdaterUtilTest {
 			public Bundle addingBundle(Bundle bundle, BundleEvent event) {
 				String symbolicName = bundle.getSymbolicName();
 
-				if (symbolicName.equals(_MODULE_BUNDLE_NAME)) {
+				if (symbolicName.equals("com.liferay.portal.lock.service")) {
 					_moduleBundle = bundle;
 
 					countDownLatch.countDown();
@@ -198,9 +198,6 @@ public class IndexUpdaterUtilTest {
 		_db.runSQL(
 			StringBundler.concat("drop index ", indexName, " on ", tableName));
 	}
-
-	private static final String _MODULE_BUNDLE_NAME =
-		"com.liferay.portal.lock.service";
 
 	private static Connection _connection;
 	private static DB _db;
