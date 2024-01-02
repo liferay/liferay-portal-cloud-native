@@ -364,10 +364,10 @@ public class JournalArticleLayoutClassedModelUsageUpgradeProcessTest {
 	private void _assertLayoutPortletIds(
 		Map<Layout, List<String>> expectedLayoutPortletIdsMap) {
 
+		int count = 0;
+
 		long portletClassNameId = _classNameLocalService.getClassNameId(
 			Portlet.class.getName());
-
-		int count = 0;
 
 		for (Map.Entry<Layout, List<String>> layoutPortletIdsEntry :
 				expectedLayoutPortletIdsMap.entrySet()) {
