@@ -390,9 +390,9 @@ public class PortletDocumentFragmentEntryProcessor
 			}
 
 			if (Validator.isNotNull(id)) {
-				Elements elementsById = document.select("#" + id);
+				Elements idElements = document.select("#" + id);
 
-				if (elementsById.size() > 1) {
+				if (idElements.size() > 1) {
 					throw new FragmentEntryContentException(
 						_language.get(locale, "widget-id-must-be-unique"));
 				}
@@ -407,9 +407,10 @@ public class PortletDocumentFragmentEntryProcessor
 				}
 			}
 
-			Elements elementsByTag = document.getElementsByTag(htmlTagName);
+			Elements htmlTagNameElements = document.getElementsByTag(
+				htmlTagName);
 
-			if ((elementsByTag.size() > 1) && Validator.isNull(id)) {
+			if ((htmlTagNameElements.size() > 1) && Validator.isNull(id)) {
 				throw new FragmentEntryContentException(
 					_language.get(
 						locale,
@@ -417,7 +418,7 @@ public class PortletDocumentFragmentEntryProcessor
 							"have-an-id"));
 			}
 
-			if (elementsByTag.size() > 1) {
+			if (htmlTagNameElements.size() > 1) {
 				Portlet portlet = _portletLocalService.getPortletById(
 					_portletRegistry.getPortletName(alias));
 
