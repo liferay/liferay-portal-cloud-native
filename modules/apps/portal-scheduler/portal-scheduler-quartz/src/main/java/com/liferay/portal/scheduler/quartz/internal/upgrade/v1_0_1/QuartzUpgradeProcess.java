@@ -40,7 +40,7 @@ public class QuartzUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		Map<String, Long> jobCompanyIds = new HashMap<>();
+		Map<String, Long> companyIds = new HashMap<>();
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select job_name, job_data from QUARTZ_JOB_DETAILS where " +
@@ -51,19 +51,19 @@ public class QuartzUpgradeProcess extends UpgradeProcess {
 				JobDataMap jobDataMap = _deserializeJobData(
 					resultSet.getBinaryStream("job_data"));
 
-				_fetchCompanyId(
-					jobCompanyIds, resultSet.getString("job_name"), jobDataMap);
+				_loadCompanyIds(
+					companyIds, resultSet.getString("job_name"), jobDataMap);
 			}
 		}
 
 		_updateTables(
-			jobCompanyIds, "job_name",
+			companyIds, "job_name",
 			new String[] {
 				"QUARTZ_FIRED_TRIGGERS", "QUARTZ_JOB_DETAILS", "QUARTZ_TRIGGERS"
 			});
 
 		_updateTables(
-			jobCompanyIds, "trigger_name",
+			companyIds, "trigger_name",
 			new String[] {
 				"QUARTZ_BLOB_TRIGGERS", "QUARTZ_CRON_TRIGGERS",
 				"QUARTZ_FIRED_TRIGGERS", "QUARTZ_SIMPLE_TRIGGERS",
@@ -95,8 +95,8 @@ public class QuartzUpgradeProcess extends UpgradeProcess {
 		}
 	}
 
-	private void _fetchCompanyId(
-			Map<String, Long> jobCompanyIds, String jobName,
+	private void _loadCompanyIds(
+			Map<String, Long> companyIds, String jobName,
 			JobDataMap jobDataMap)
 		throws Exception {
 
@@ -113,14 +113,14 @@ public class QuartzUpgradeProcess extends UpgradeProcess {
 			jobDataMap.getString(SchedulerEngine.MESSAGE));
 
 		if (message.contains("companyId")) {
-			jobCompanyIds.put(jobName, message.getLong("companyId"));
+			companyIds.put(jobName, message.getLong("companyId"));
 
 			return;
 		}
 
 		_companyLocalService.forEachCompanyId(
 			companyId -> {
-				if (jobCompanyIds.containsKey(jobName)) {
+				if (companyIds.containsKey(jobName)) {
 					return;
 				}
 
@@ -132,7 +132,7 @@ public class QuartzUpgradeProcess extends UpgradeProcess {
 					if (_containsColumnId(
 							"CTCollection", "ctCollectionId", ctCollectionId)) {
 
-						jobCompanyIds.put(jobName, companyId);
+						companyIds.put(jobName, companyId);
 					}
 				}
 				else if (destinationName.equals("liferay/dispatch/executor")) {
@@ -146,14 +146,14 @@ public class QuartzUpgradeProcess extends UpgradeProcess {
 							"DispatchTrigger", "dispatchTriggerId",
 							dispatchTriggerId)) {
 
-						jobCompanyIds.put(jobName, companyId);
+						companyIds.put(jobName, companyId);
 					}
 				}
 			});
 	}
 
 	private void _updateTables(
-			Map<String, Long> jobCompanyIds, String columnName,
+			Map<String, Long> companyIds, String columnName,
 			String[] tableNames)
 		throws Exception {
 
@@ -165,7 +165,7 @@ public class QuartzUpgradeProcess extends UpgradeProcess {
 							"update ", tableName, " set ", columnName,
 							" = ? where ", columnName, " = ?"))) {
 
-				for (Map.Entry<String, Long> entry : jobCompanyIds.entrySet()) {
+				for (Map.Entry<String, Long> entry : companyIds.entrySet()) {
 					preparedStatement.setString(
 						1,
 						StringBundler.concat(
