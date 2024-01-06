@@ -60,9 +60,6 @@ public class CustomAssetDisplayPageFriendlyURLResolverTest {
 
 	@Before
 	public void setUp() {
-		_customAssetDisplayPageFriendlyURLResolver =
-			new CustomAssetDisplayPageFriendlyURLResolver();
-
 		_setUpAssetServices();
 		_setUpInfoServices();
 		_setUpLayoutServices();
@@ -94,7 +91,6 @@ public class CustomAssetDisplayPageFriendlyURLResolverTest {
 			_customAssetDisplayPageFriendlyURLResolver,
 			"assetDisplayPageEntryLocalService",
 			Mockito.mock(AssetDisplayPageEntryLocalService.class));
-
 		ReflectionTestUtil.setFieldValue(
 			_customAssetDisplayPageFriendlyURLResolver,
 			"assetEntryLocalService", Mockito.mock(AssetEntryService.class));
@@ -189,7 +185,6 @@ public class CustomAssetDisplayPageFriendlyURLResolverTest {
 			_customAssetDisplayPageFriendlyURLResolver,
 			"layoutPageTemplateEntryService",
 			Mockito.mock(LayoutPageTemplateEntryService.class));
-
 		ReflectionTestUtil.setFieldValue(
 			_customAssetDisplayPageFriendlyURLResolver,
 			"layoutSEOTemplateProcessor",
@@ -232,6 +227,7 @@ public class CustomAssetDisplayPageFriendlyURLResolverTest {
 			AssetRendererFactoryRegistryUtil.class);
 
 	private CustomAssetDisplayPageFriendlyURLResolver
-		_customAssetDisplayPageFriendlyURLResolver;
+		_customAssetDisplayPageFriendlyURLResolver =
+			new CustomAssetDisplayPageFriendlyURLResolver();
 
 }
