@@ -615,6 +615,8 @@ public class ObjectEntryServiceImpl extends ObjectEntryServiceBaseImpl {
 			JSONUtil.put(
 				"className", objectDefinition.getClassName()
 			).put(
+				"exceedsObjectEntryLimit", true
+			).put(
 				"externalReferenceCode",
 				objectDefinition.getExternalReferenceCode()
 			).put(
@@ -651,7 +653,8 @@ public class ObjectEntryServiceImpl extends ObjectEntryServiceBaseImpl {
 			int count =
 				_userNotificationEventLocalService.
 					getUserNotificationEventsCount(
-						userId, portletId, timestamp, true);
+						userId, portletId, timestamp, true,
+						"%\"exceedsObjectEntryLimit\":%");
 
 			if (count == 0) {
 				userIds.add(userId);
