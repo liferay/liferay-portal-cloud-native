@@ -8,7 +8,7 @@ package com.liferay.adaptive.media.content.transformer.constants;
 import com.liferay.adaptive.media.content.transformer.ContentTransformerContentType;
 
 /**
- * @author Alejandro Tardín
+ * @author     Alejandro Tardín
  * @deprecated As of Cavanaugh (7.4.x), with no direct replacement
  */
 @Deprecated

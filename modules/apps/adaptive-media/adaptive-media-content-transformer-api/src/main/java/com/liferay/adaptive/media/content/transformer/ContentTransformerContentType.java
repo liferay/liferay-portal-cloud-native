@@ -11,7 +11,7 @@ package com.liferay.adaptive.media.content.transformer;
  * com.liferay.adaptive.media.content.transformer.constants.ContentTransformerContentTypes}
  * for examples.
  *
- * @author Alejandro Tardín
+ * @author     Alejandro Tardín
  * @deprecated As of Cavanaugh (7.4.x), with no direct replacement
  */
 @Deprecated
