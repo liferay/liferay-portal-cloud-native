@@ -73,18 +73,18 @@ public class NotificationTemplateFTLElementsMVCResourceCommand
 
 		Locale locale = _portal.getLocale(resourceRequest);
 
-		_fillTemplateContextTemplateVariables(locale, jsonArray);
+		_fillTemplateContextTemplateVariables(jsonArray, locale);
 
 		_fillObjectDefinitionTemplateVariables(
-			resourceRequest, objectDefinition, locale, jsonArray);
+			jsonArray, locale, objectDefinition, resourceRequest);
 
 		JSONPortletResponseUtil.writeJSON(
 			resourceRequest, resourceResponse, jsonArray);
 	}
 
 	private void _fillObjectDefinitionTemplateVariables(
-			ResourceRequest resourceRequest, ObjectDefinition objectDefinition,
-			Locale locale, JSONArray jsonArray)
+			JSONArray jsonArray, Locale locale,
+			ObjectDefinition objectDefinition, ResourceRequest resourceRequest)
 		throws Exception {
 
 		InfoItemFormProvider<?> infoItemFormProvider =
@@ -128,7 +128,7 @@ public class NotificationTemplateFTLElementsMVCResourceCommand
 	}
 
 	private void _fillTemplateContextTemplateVariables(
-			Locale locale, JSONArray jsonArray)
+			JSONArray jsonArray, Locale locale)
 		throws Exception {
 
 		Map<String, TemplateVariableGroup> templateVariableGroupsMap =
