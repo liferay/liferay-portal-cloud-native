@@ -1,5 +1,5 @@
 /**
- * SPDX-FileCopyrightText: (c) 2023 Liferay, Inc. https://liferay.com
+ * SPDX-FileCopyrightText: (c) 2024 Liferay, Inc. https://liferay.com
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
@@ -32,26 +32,17 @@ public class CancelRestController extends BaseRestController {
 
 		log(jwt, _log, json);
 
-		try {
-			JSONObject jsonObject = new JSONObject(json);
+		JSONObject jsonObject = new JSONObject(json);
 
-			JSONObject commercePaymentEntryJSONObject = new JSONObject(
-				jsonObject.getString("commercePaymentEntry"));
+		JSONObject commercePaymentEntryJSONObject = new JSONObject(
+			jsonObject.getString("commercePaymentEntry"));
 
-			commercePaymentEntryJSONObject.put("paymentStatus", 8);
+		commercePaymentEntryJSONObject.put("paymentStatus", 8);
 
-			jsonObject.put(
-				"commercePaymentEntry", commercePaymentEntryJSONObject);
+		jsonObject.put(
+			"commercePaymentEntry", commercePaymentEntryJSONObject);
 
-			return new ResponseEntity<>(jsonObject.toString(), HttpStatus.OK);
-		}
-		catch (Exception exception) {
-			return new ResponseEntity<>(
-				new JSONObject(
-					exception
-				).toString(),
-				HttpStatus.BAD_REQUEST);
-		}
+		return new ResponseEntity<>(jsonObject.toString(), HttpStatus.OK);
 	}
 
 	private static final Log _log = LogFactory.getLog(

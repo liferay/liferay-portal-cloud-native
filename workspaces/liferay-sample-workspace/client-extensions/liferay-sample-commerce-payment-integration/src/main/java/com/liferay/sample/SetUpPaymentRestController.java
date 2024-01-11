@@ -32,26 +32,17 @@ public class SetUpPaymentRestController extends BaseRestController {
 
 		log(jwt, _log, json);
 
-		try {
-			JSONObject jsonObject = new JSONObject(json);
+		JSONObject jsonObject = new JSONObject(json);
 
-			JSONObject commercePaymentEntryJSONObject = new JSONObject(
-				jsonObject.getString("commercePaymentEntry"));
+		JSONObject commercePaymentEntryJSONObject = new JSONObject(
+			jsonObject.getString("commercePaymentEntry"));
 
-			commercePaymentEntryJSONObject.put("paymentStatus", 18);
+		commercePaymentEntryJSONObject.put("paymentStatus", 18);
 
-			jsonObject.put(
-				"commercePaymentEntry", commercePaymentEntryJSONObject);
+		jsonObject.put(
+			"commercePaymentEntry", commercePaymentEntryJSONObject);
 
-			return new ResponseEntity<>(jsonObject.toString(), HttpStatus.OK);
-		}
-		catch (Exception exception) {
-			return new ResponseEntity<>(
-				new JSONObject(
-					exception
-				).toString(),
-				HttpStatus.BAD_REQUEST);
-		}
+		return new ResponseEntity<>(jsonObject.toString(), HttpStatus.OK);
 	}
 
 	private static final Log _log = LogFactory.getLog(
