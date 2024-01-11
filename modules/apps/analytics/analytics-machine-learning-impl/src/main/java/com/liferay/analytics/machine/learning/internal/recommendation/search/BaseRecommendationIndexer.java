@@ -18,6 +18,7 @@ import com.liferay.portal.search.engine.adapter.index.CreateIndexRequest;
 import com.liferay.portal.search.engine.adapter.index.DeleteIndexRequest;
 import com.liferay.portal.search.engine.adapter.index.IndicesExistsIndexRequest;
 import com.liferay.portal.search.engine.adapter.index.IndicesExistsIndexResponse;
+import com.liferay.portal.search.index.IndexNameBuilder;
 
 import org.osgi.service.component.annotations.Reference;
 
@@ -83,6 +84,9 @@ public abstract class BaseRecommendationIndexer
 	}
 
 	protected abstract String getIndexMappingFileName();
+
+	@Reference
+	protected IndexNameBuilder indexNameBuilder;
 
 	@Reference
 	protected JSONFactory jsonFactory;

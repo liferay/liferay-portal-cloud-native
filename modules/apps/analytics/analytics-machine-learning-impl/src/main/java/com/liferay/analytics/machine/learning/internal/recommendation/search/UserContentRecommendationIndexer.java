@@ -6,10 +6,8 @@
 package com.liferay.analytics.machine.learning.internal.recommendation.search;
 
 import com.liferay.analytics.machine.learning.internal.search.api.RecommendationIndexer;
-import com.liferay.portal.search.index.IndexNameBuilder;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Riccardo Ferrari
@@ -20,7 +18,7 @@ public class UserContentRecommendationIndexer
 
 	@Override
 	public String getIndexName(long companyId) {
-		return _indexNameBuilder.getIndexName(companyId) +
+		return indexNameBuilder.getIndexName(companyId) +
 			"-user-content-recommendation";
 	}
 
@@ -28,8 +26,5 @@ public class UserContentRecommendationIndexer
 	protected String getIndexMappingFileName() {
 		return "user-content-recommendation-mappings.json";
 	}
-
-	@Reference
-	private IndexNameBuilder _indexNameBuilder;
 
 }
