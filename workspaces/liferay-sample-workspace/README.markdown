@@ -34,6 +34,10 @@ For `liferay-sample-etc-cron` and `liferay-sample-etc-spring-boot` the third typ
 
 	...
 
+- *liferay-sample-commerce-payment-integration*
+
+	TODO
+
 - *liferay-sample-custom-element-1*
 
 	A custom element can be self contained (i.e. does not depend on any external packages).
