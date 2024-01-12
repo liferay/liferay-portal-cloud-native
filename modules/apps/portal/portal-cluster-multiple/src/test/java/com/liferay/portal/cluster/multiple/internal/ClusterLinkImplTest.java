@@ -253,6 +253,10 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 
 		};
 
+		ReflectionTestUtil.setFieldValue(
+			clusterLinkImpl, "_portalExecutorManager",
+			new MockPortalExecutorManager());
+
 		Properties channelNameProperties = new Properties();
 		Properties channelPropertiesProperties = new Properties();
 
@@ -277,10 +281,6 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 					PropsKeys.CLUSTER_LINK_CHANNEL_PROPERTIES_TRANSPORT,
 					channelPropertiesProperties
 				).build()));
-
-		ReflectionTestUtil.setFieldValue(
-			clusterLinkImpl, "_portalExecutorManager",
-			new MockPortalExecutorManager());
 
 		clusterLinkImpl.activate(Collections.emptyMap());
 
