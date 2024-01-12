@@ -227,7 +227,7 @@ const Renderer: React.FC<RendererProps> = ({
 							name={name}
 							onChange={onChange}
 							options={getOptions()}
-							value={currentValue}
+							value={currentValue[0]?.value || currentValue}
 						/>
 					);
 				}
