@@ -20,7 +20,7 @@ if (recordSet != null) {
 		<clay:alert
 			displayType="warning"
 		>
-			<liferay-ui:message key="please-enable-the-dynamic-data-list-deprecation-feature-flag-to-view-this-portlet" />
+			<liferay-ui:message key="please-enable-the-dynamic-data-lists-deprecation-feature-flag-to-view-this-portlet" />
 		</clay:alert>
 	</c:when>
 	<c:otherwise>
