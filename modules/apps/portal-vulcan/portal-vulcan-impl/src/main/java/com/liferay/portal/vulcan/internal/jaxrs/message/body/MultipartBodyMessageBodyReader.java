@@ -77,7 +77,7 @@ public class MultipartBodyMessageBodyReader
 
 		if (uploadServletRequest == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("No UploadServletRequest read from the message");
+				_log.warn("Upload servlet request is null");
 			}
 
 			return null;
