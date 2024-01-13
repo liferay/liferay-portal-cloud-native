@@ -167,7 +167,7 @@ public class ChannelAccountResourceImpl extends BaseChannelAccountResourceImpl {
 			throw new AccountEntryTypeException();
 		}
 
-		CommerceChannel commerceChannel;
+		CommerceChannel commerceChannel = null;
 
 		if (Validator.isNull(
 				channelAccount.getChannelExternalReferenceCode())) {
