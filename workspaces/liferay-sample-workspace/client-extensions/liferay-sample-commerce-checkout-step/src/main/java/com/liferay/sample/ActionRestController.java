@@ -26,7 +26,7 @@ import org.springframework.web.reactive.function.client.WebClient;
  */
 @RequestMapping("/action")
 @RestController
-public class CommerceCheckoutStepRestController extends BaseRestController {
+public class ActionRestController extends BaseRestController {
 
 	@PostMapping
 	public ResponseEntity<String> post(
