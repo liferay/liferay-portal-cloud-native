@@ -502,7 +502,7 @@ public class BundleSiteInitializer implements SiteInitializer {
 			_invoke(() -> _addAccountGroupAssignments(serviceContext));
 
 			_invoke(
-				() -> _addOrUpdateDataDefinition(
+				() -> _addOrUpdateDataDefinitions(
 					serviceContext, stringUtilReplaceValues));
 			_invoke(
 				() -> _addOrUpdateDDMStructures(
@@ -1563,7 +1563,7 @@ public class BundleSiteInitializer implements SiteInitializer {
 		}
 	}
 
-	private void _addOrUpdateDataDefinition(
+	private void _addOrUpdateDataDefinitions(
 			ServiceContext serviceContext,
 			Map<String, String> stringUtilReplaceValues)
 		throws Exception {
