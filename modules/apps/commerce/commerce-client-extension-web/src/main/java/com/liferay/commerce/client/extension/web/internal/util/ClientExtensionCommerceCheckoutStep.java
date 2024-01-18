@@ -182,7 +182,7 @@ public class ClientExtensionCommerceCheckoutStep
 		throws Exception {
 
 		httpServletRequest.setAttribute(
-			WebKeys.RENDER_URL, _baseURL + "/index.js");
+			CommerceClientExtensionWebKeys.RENDER_URL, _baseURL + "/index.js");
 
 		_jspRenderer.renderJSP(
 			_servletContext, httpServletRequest, httpServletResponse,

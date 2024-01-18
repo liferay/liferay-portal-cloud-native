@@ -10,7 +10,7 @@
 <%@ taglib uri="http://liferay.com/tld/frontend" prefix="liferay-frontend" %><%@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 
-<%@ page import="com.liferay.commerce.client.extension.web.internal.util.WebKeys" %><%@
+<%@ page import="com.liferay.commerce.client.extension.web.internal.util.CommerceClientExtensionWebKeys" %><%@
 page import="com.liferay.portal.kernel.util.HashMapBuilder" %>
 
 <liferay-frontend:defineObjects />

@@ -8,7 +8,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String renderURL = (String)request.getAttribute(WebKeys.RENDER_URL);
+String renderURL = (String)request.getAttribute(CommerceClientExtensionWebKeys.RENDER_URL);
 %>
 
 <div class="form-group form-group-item input-String-wrapper has-error" id="commerceCheckoutStepContainer"></div>

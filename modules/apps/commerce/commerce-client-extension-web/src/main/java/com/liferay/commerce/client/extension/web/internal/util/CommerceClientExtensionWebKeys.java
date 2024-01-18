@@ -8,7 +8,7 @@ package com.liferay.commerce.client.extension.web.internal.util;
 /**
  * @author Andrea Sbarra
  */
-public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
+public class CommerceClientExtensionWebKeys {
 
 	public static final String RENDER_URL = "RENDER_URL";
 
