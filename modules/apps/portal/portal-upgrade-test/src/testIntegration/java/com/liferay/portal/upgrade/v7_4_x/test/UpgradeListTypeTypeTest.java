@@ -56,7 +56,21 @@ public class UpgradeListTypeTypeTest {
 
 			upgradeProcess.upgrade();
 
-			_assertListTypes();
+			FinderCacheUtil.clearCache();
+
+			for (String listTypeName : _listTypeNames) {
+				ListType oldListType = _listTypeLocalService.getListType(
+					CompanyThreadLocal.getCompanyId(), listTypeName,
+					_OLD_LIST_TYPE_TYPE);
+
+				Assert.assertNull(oldListType);
+
+				ListType newListType = _listTypeLocalService.getListType(
+					CompanyThreadLocal.getCompanyId(), listTypeName,
+					_NEW_LIST_TYPE_TYPE);
+
+				Assert.assertNotNull(newListType);
+			}
 		}
 		finally {
 			_deleteListType(_listTypeNames.get(1), _NEW_LIST_TYPE_TYPE);
@@ -64,24 +78,6 @@ public class UpgradeListTypeTypeTest {
 			if (_originalListType != null) {
 				_listTypeLocalService.addListType(_originalListType);
 			}
-		}
-	}
-
-	private void _assertListTypes() {
-		FinderCacheUtil.clearCache();
-
-		for (String listTypeName : _listTypeNames) {
-			ListType oldListType = _listTypeLocalService.getListType(
-				CompanyThreadLocal.getCompanyId(), listTypeName,
-				_OLD_LIST_TYPE_TYPE);
-
-			ListType newListType = _listTypeLocalService.getListType(
-				CompanyThreadLocal.getCompanyId(), listTypeName,
-				_NEW_LIST_TYPE_TYPE);
-
-			Assert.assertNull(oldListType);
-
-			Assert.assertNotNull(newListType);
 		}
 	}
 
