@@ -11,7 +11,7 @@
 String renderURL = (String)request.getAttribute(CommerceClientExtensionWebKeys.RENDER_URL);
 %>
 
-<div class="form-group form-group-item input-String-wrapper has-error" id="commerceCheckoutStepContainer"></div>
+<div class="form-group form-group-item has-error input-String-wrapper" id="commerceCheckoutStepContainer"></div>
 
 <liferay-frontend:component
 	context='<%=
