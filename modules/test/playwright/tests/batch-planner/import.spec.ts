@@ -832,7 +832,7 @@ test('can show duplicate error message with CSV import existing entry and only a
 	page,
 }) => {
 	await apiHelpers.featureFlag.updateFeatureFlag('COMMERCE-8087', true);
-	
+
 	const response = await apiHelpers.objectAdmin.postObjectDefinition(
 		companyObjectDefinition
 	);
@@ -940,7 +940,7 @@ test('cannot import CSV file with object entry with UPSERT strategy', async ({
 	page,
 }) => {
 	await apiHelpers.featureFlag.updateFeatureFlag('COMMERCE-8087', true);
-	
+
 	const response = await apiHelpers.objectAdmin.postObjectDefinition(
 		companyObjectDefinition
 	);
