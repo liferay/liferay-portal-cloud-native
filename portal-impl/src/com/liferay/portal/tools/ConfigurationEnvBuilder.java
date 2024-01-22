@@ -84,9 +84,9 @@ public class ConfigurationEnvBuilder {
 		String jsonSchemaOutputFile = arguments.get("json.schema.output.file");
 
 		if (Validator.isNotNull(jsonSchemaOutputFile)) {
-			String jsonString = _generateJSONString(objectDefs);
+			String json = _generateJSON(objectDefs);
 
-			Files.write(Paths.get(jsonSchemaOutputFile), jsonString.getBytes());
+			Files.write(Paths.get(jsonSchemaOutputFile), json.getBytes());
 		}
 	}
 
@@ -126,7 +126,7 @@ public class ConfigurationEnvBuilder {
 	private static ObjectDef _createObjectDef(
 		Path basePath, String configurationFilePath) {
 
-		List<String> lines;
+		List<String> lines = null;
 
 		try {
 			String realString = basePath.toString();
@@ -284,7 +284,7 @@ public class ConfigurationEnvBuilder {
 		return objectDef;
 	}
 
-	private static String _generateJSONString(List<ObjectDef> objectDefs) {
+	private static String _generateJSON(List<ObjectDef> objectDefs) {
 		JSONObject schemaJSONObject = _jsonObject(
 			jsonObject -> jsonObject.put(
 				"oneOf", _jsonArray()
