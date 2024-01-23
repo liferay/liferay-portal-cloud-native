@@ -11,12 +11,12 @@
 LayoutUtilityPageEntryDisplayContext layoutUtilityPageEntryDisplayContext = new LayoutUtilityPageEntryDisplayContext(renderRequest, renderResponse);
 %>
 
+<liferay-ui:success key="layoutUpdated" message="the-page-was-updated-successfully" />
+
 <clay:management-toolbar
 	managementToolbarDisplayContext="<%= new LayoutUtilityPageEntryManagementToolbarDisplayContext(request, layoutUtilityPageEntryDisplayContext, liferayPortletRequest, liferayPortletResponse) %>"
 	propsTransformer="js/LayoutUtilityPageEntriesManagementToolbarPropsTransformer"
 />
-
-<liferay-ui:success key="layoutUpdated" message="the-page-was-updated-successfully" />
 
 <aui:form cssClass="container-fluid container-fluid-max-xl container-view" name="fm">
 	<liferay-ui:success key="layoutPublished" message="the-utility-page-was-published-successfully" />
