@@ -370,7 +370,7 @@ export function getUnsupportedObjectRelationshipErrorMessage(
 	if (sourceNode.data?.linkedObjectDefinition) {
 		return {
 			errorMessage: Liferay.Language.get(
-				'adding-relationships-directly-to-linked-objects-is-currently-not-allowed'
+				'adding-relationships-directly-to-linked-objects-is-not-allowed'
 			),
 		};
 	}
