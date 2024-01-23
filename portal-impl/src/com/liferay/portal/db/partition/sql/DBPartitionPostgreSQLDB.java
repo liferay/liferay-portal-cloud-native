@@ -32,7 +32,7 @@ public class DBPartitionPostgreSQLDB implements DBPartitionDB {
 		return StringBundler.concat(
 			"create table if not exists ", toPartitionName, StringPool.PERIOD,
 			tableName, " (like ", fromPartitionName, StringPool.PERIOD,
-			tableName, " INCLUDING ALL)");
+			tableName, " including all)");
 	}
 
 	@Override
