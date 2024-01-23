@@ -35,6 +35,8 @@ page import="com.liferay.portlet.usersadmin.util.UsersAdminUtil" %>
 
 <%@ page import="java.util.Locale" %>
 
+<liferay-frontend:defineObjects />
+
 <liferay-theme:defineObjects />
 
 <%
