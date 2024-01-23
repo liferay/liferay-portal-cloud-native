@@ -85,7 +85,7 @@ public class CompanyLocalServiceDBPartitionTest
 
 	@Test
 	public void testAddCompany() throws Exception {
-		int partitionsCount = _getPartitionsCount();
+		int dbPartitionsCount = _getDBPartitionsCount();
 
 		_company = CompanyTestUtil.addCompany();
 
@@ -93,13 +93,13 @@ public class CompanyLocalServiceDBPartitionTest
 			ArrayUtil.contains(
 				PortalInstances.getCompanyIdsBySQL(), _company.getCompanyId()));
 
-		Assert.assertEquals(partitionsCount + 1, _getPartitionsCount());
+		Assert.assertEquals(dbPartitionsCount + 1, _getDBPartitionsCount());
 	}
 
 	@Test
 	public void testAddCompanyWhenCompanyLocalServiceFails() throws Exception {
 		long[] companyIds = PortalInstances.getCompanyIdsBySQL();
-		int partitionsCount = _getPartitionsCount();
+		int dbPartitionsCount = _getDBPartitionsCount();
 
 		Company company = null;
 
@@ -121,7 +121,7 @@ public class CompanyLocalServiceDBPartitionTest
 		catch (Exception exception) {
 			Assert.assertArrayEquals(
 				companyIds, PortalInstances.getCompanyIdsBySQL());
-			Assert.assertEquals(partitionsCount, _getPartitionsCount());
+			Assert.assertEquals(dbPartitionsCount, _getDBPartitionsCount());
 		}
 		finally {
 			if (company != null) {
@@ -133,7 +133,7 @@ public class CompanyLocalServiceDBPartitionTest
 	@Test
 	public void testAddCompanyWhenDBPartitionUtilFails() throws Exception {
 		long[] companyIds = PortalInstances.getCompanyIdsBySQL();
-		int partitionsCount = _getPartitionsCount();
+		int dbPartitionsCount = _getDBPartitionsCount();
 
 		Company company = null;
 
@@ -160,7 +160,7 @@ public class CompanyLocalServiceDBPartitionTest
 		catch (Exception exception) {
 			Assert.assertArrayEquals(
 				companyIds, PortalInstances.getCompanyIdsBySQL());
-			Assert.assertEquals(partitionsCount, _getPartitionsCount());
+			Assert.assertEquals(dbPartitionsCount, _getDBPartitionsCount());
 		}
 		finally {
 			if (company != null) {
@@ -315,14 +315,14 @@ public class CompanyLocalServiceDBPartitionTest
 	public void testDeleteCompany() throws Exception {
 		Company company = CompanyTestUtil.addCompany();
 
-		int partitionsCount = _getPartitionsCount();
+		int dbPartitionsCount = _getDBPartitionsCount();
 
 		_companyLocalService.deleteCompany(company);
 
 		Assert.assertFalse(
 			ArrayUtil.contains(
 				PortalInstances.getCompanyIdsBySQL(), company.getCompanyId()));
-		Assert.assertEquals(partitionsCount - 1, _getPartitionsCount());
+		Assert.assertEquals(dbPartitionsCount - 1, _getDBPartitionsCount());
 	}
 
 	@Test
@@ -428,7 +428,6 @@ public class CompanyLocalServiceDBPartitionTest
 				tablesCount, _getTablesCount(company.getCompanyId()));
 			Assert.assertEquals(
 				viewsCount, _getViewsCount(company.getCompanyId()));
-
 			Assert.assertTrue(
 				ArrayUtil.contains(
 					PortalInstances.getCompanyIdsBySQL(),
@@ -500,7 +499,7 @@ public class CompanyLocalServiceDBPartitionTest
 		return objectNames;
 	}
 
-	private int _getPartitionsCount() throws SQLException {
+	private int _getDBPartitionsCount() throws SQLException {
 		DatabaseMetaData databaseMetaData = connection.getMetaData();
 
 		try (ResultSet resultSet = databaseMetaData.getSchemas()) {
