@@ -40,7 +40,7 @@ For `liferay-sample-etc-cron` and `liferay-sample-etc-spring-boot` the third typ
 
 - *liferay-sample-commerce-shipping-engine*
 
-	Use Spring Boot and OAuth to add a new shipping engine (shipping options provider) to Liferay.
+	Use Spring Boot to provide a new commerce shipping engine.
 
 - *liferay-sample-custom-element-1*
 
