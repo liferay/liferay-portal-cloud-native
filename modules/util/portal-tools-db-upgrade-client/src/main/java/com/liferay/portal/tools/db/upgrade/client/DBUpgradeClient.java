@@ -181,17 +181,6 @@ public class DBUpgradeClient {
 			commands.add("java");
 		}
 
-		commands.add("-cp");
-		commands.add(_getBootstrapClassPath());
-
-		_jvmOpts.add("-Dexternal-properties=portal-upgrade.properties");
-		_jvmOpts.add(
-			"-Dliferay.shielded.container.lib.portal.dir=" +
-				_appServer.getPortalShieldedContainerLibDir());
-		_jvmOpts.add(
-			"-Dserver.detector.server.id=" +
-				_appServer.getServerDetectorServerId());
-
 		if (_isGTJDK8()) {
 			_jvmOpts.add("--add-opens=java.base/java.lang=ALL-UNNAMED");
 			_jvmOpts.add("--add-opens=java.base/java.lang.reflect=ALL-UNNAMED");
@@ -201,6 +190,17 @@ public class DBUpgradeClient {
 			_jvmOpts.add("--add-opens=java.base/sun.util.calendar=ALL-UNNAMED");
 			_jvmOpts.add("--add-opens=jdk.zipfs/jdk.nio.zipfs=ALL-UNNAMED");
 		}
+
+		_jvmOpts.add("-Dexternal-properties=portal-upgrade.properties");
+		_jvmOpts.add(
+			"-Dliferay.shielded.container.lib.portal.dir=" +
+				_appServer.getPortalShieldedContainerLibDir());
+		_jvmOpts.add(
+			"-Dserver.detector.server.id=" +
+				_appServer.getServerDetectorServerId());
+
+		commands.add("-cp");
+		commands.add(_getBootstrapClassPath());
 
 		System.out.println("JVM arguments: " + _jvmOpts.toString());
 
