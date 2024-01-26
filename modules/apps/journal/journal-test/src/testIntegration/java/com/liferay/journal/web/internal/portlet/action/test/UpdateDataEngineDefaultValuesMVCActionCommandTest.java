@@ -65,15 +65,6 @@ public class UpdateDataEngineDefaultValuesMVCActionCommandTest {
 	public void testAddArticleDefaultValuesWithoutDisplayDate()
 		throws Exception {
 
-		MockMultipartHttpServletRequest mockMultipartHttpServletRequest =
-			new MockMultipartHttpServletRequest();
-
-		mockMultipartHttpServletRequest.setContentType(
-			"multipart/form-data;boundary=" + System.currentTimeMillis());
-
-		DDMStructure ddmStructure = DDMStructureTestUtil.addStructure(
-			_group.getGroupId(), JournalArticle.class.getName());
-
 		MockActionRequest mockActionRequest = new MockActionRequest();
 
 		mockActionRequest.setAttribute(
@@ -82,8 +73,18 @@ public class UpdateDataEngineDefaultValuesMVCActionCommandTest {
 		mockActionRequest.addParameter(
 			ActionRequest.ACTION_NAME,
 			"/journal/add_data_engine_default_values");
+
+		DDMStructure ddmStructure = DDMStructureTestUtil.addStructure(
+			_group.getGroupId(), JournalArticle.class.getName());
+
 		mockActionRequest.addParameter(
 			"groupId", String.valueOf(ddmStructure.getGroupId()));
+
+		MockMultipartHttpServletRequest mockMultipartHttpServletRequest =
+			new MockMultipartHttpServletRequest();
+
+		mockMultipartHttpServletRequest.setContentType(
+			"multipart/form-data;boundary=" + System.currentTimeMillis());
 
 		Calendar calendar = Calendar.getInstance();
 
