@@ -374,16 +374,17 @@ public class Sidecar {
 		arguments.add("-Djava.io.tmpdir=" + _sidecarTempDirPath);
 
 		if (JavaDetector.isJDK21()) {
-			arguments.add("-XX:-UseContainerSupport");
-
 			arguments.add("-Djava.security.manager=allow");
 		}
 
 		arguments.add(
 			"-Djava.security.policy=" +
 				String.valueOf(_getSecurityPolicyURL(bundleURL)));
-
 		arguments.add("-Djna.nosys=true");
+
+		if (JavaDetector.isJDK21()) {
+			arguments.add("-XX:-UseContainerSupport");
+		}
 
 		return arguments;
 	}
