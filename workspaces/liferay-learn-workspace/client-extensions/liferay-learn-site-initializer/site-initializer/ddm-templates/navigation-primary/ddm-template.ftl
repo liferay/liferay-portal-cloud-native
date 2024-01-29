@@ -109,14 +109,15 @@
 	<#if icons?size != 0>
 		<#assign icon = icons[0].value />
 	</#if>
+
 	<#assign taxonomyVocabulary = taxonomyVocabulary + {
-				taxonomyCategory.name:
-					{
-						"description": taxonomyCategory.description,
-						"icon": icon!"documents/d${themeDisplay.getScopeGroup().getFriendlyURL()}/blank_icon",
-						"id": taxonomyCategory.id
-					}
-			}
+			taxonomyCategory.name:
+				{
+					"description": taxonomyCategory.description,
+					"icon": icon!"documents/d${themeDisplay.getScopeGroup().getFriendlyURL()}/blank_icon",
+					"id": taxonomyCategory.id
+				}
+		}
 	>
 </#list>
 
