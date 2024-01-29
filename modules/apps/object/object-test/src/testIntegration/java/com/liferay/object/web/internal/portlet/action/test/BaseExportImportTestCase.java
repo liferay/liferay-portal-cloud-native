@@ -52,6 +52,10 @@ public abstract class BaseExportImportTestCase {
 			String externalReferenceCode, String name)
 		throws Exception {
 
+		// MVCActionCommand
+
+		MVCActionCommand mvcActionCommand = getMvcActionCommand();
+
 		MockMultipartHttpServletRequest mockMultipartHttpServletRequest =
 			new MockMultipartHttpServletRequest();
 
@@ -96,8 +100,6 @@ public abstract class BaseExportImportTestCase {
 		mockLiferayPortletActionRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, _getThemeDisplay());
 
-		MVCActionCommand mvcActionCommand = getMvcActionCommand();
-
 		ReflectionTestUtil.setFieldValue(
 			mvcActionCommand, "_portal",
 			ProxyUtil.newProxyInstance(
@@ -125,6 +127,10 @@ public abstract class BaseExportImportTestCase {
 			mockLiferayPortletActionRequest,
 			new MockLiferayPortletActionResponse());
 
+		// MVCResourceCommand
+
+		MVCResourceCommand mvcResourceCommand = getMvcResourceCommand();
+
 		MockLiferayResourceRequest mockLiferayResourceRequest =
 			new MockLiferayResourceRequest();
 
@@ -135,8 +141,6 @@ public abstract class BaseExportImportTestCase {
 
 		MockLiferayResourceResponse mockLiferayResourceResponse =
 			new MockLiferayResourceResponse();
-
-		MVCResourceCommand mvcResourceCommand = getMvcResourceCommand();
 
 		mvcResourceCommand.serveResource(
 			mockLiferayResourceRequest, mockLiferayResourceResponse);
