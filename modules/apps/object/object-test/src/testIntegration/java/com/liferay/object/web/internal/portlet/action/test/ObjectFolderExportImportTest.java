@@ -64,7 +64,7 @@ public class ObjectFolderExportImportTest extends BaseExportImportTestCase {
 			"TESTOBJECTFOLDER1", "TestObjectFolder1");
 
 		_assertObjectFolder(
-			"TestObjectFolder1", 0, Collections.emptyList(),
+			0, Collections.emptyList(), "TestObjectFolder1",
 			Collections.emptyList());
 
 		testExportImport(
@@ -73,7 +73,7 @@ public class ObjectFolderExportImportTest extends BaseExportImportTestCase {
 			"TestObjectFolder1");
 
 		_assertObjectFolder(
-			"TestObjectFolder1", 0, Collections.emptyList(),
+			0, Collections.emptyList(), "TestObjectFolder1",
 			Collections.emptyList());
 
 		// Import and export an object folder that has a linked object
@@ -84,8 +84,8 @@ public class ObjectFolderExportImportTest extends BaseExportImportTestCase {
 			"TESTOBJECTFOLDER2", "TestObjectFolder2");
 
 		_assertObjectFolder(
-			"TestObjectFolder2", 2,
-			Collections.singletonList("TESTOBJECTDEFINITION2"),
+			2, Collections.singletonList("TESTOBJECTDEFINITION2"),
+			"TestObjectFolder2",
 			Collections.singletonList("TESTOBJECTDEFINITION1"));
 		_assertDefaultObjectFolder(
 			Collections.singletonList("TESTOBJECTDEFINITION1"),
@@ -99,12 +99,12 @@ public class ObjectFolderExportImportTest extends BaseExportImportTestCase {
 			"TESTOBJECTFOLDER3", "TestObjectFolder3");
 
 		_assertObjectFolder(
-			"TestObjectFolder2", 2,
-			Collections.singletonList("TESTOBJECTDEFINITION2"),
+			2, Collections.singletonList("TESTOBJECTDEFINITION2"),
+			"TestObjectFolder2",
 			Collections.singletonList("TESTOBJECTDEFINITION1"));
 		_assertObjectFolder(
-			"TestObjectFolder3", 2,
-			Collections.singletonList("TESTOBJECTDEFINITION1"),
+			2, Collections.singletonList("TESTOBJECTDEFINITION1"),
+			"TestObjectFolder3",
 			Collections.singletonList("TESTOBJECTDEFINITION2"));
 
 		// Import and export an object folder with a duplicate external
@@ -115,11 +115,11 @@ public class ObjectFolderExportImportTest extends BaseExportImportTestCase {
 			"TESTOBJECTFOLDER3", "TestObjectFolder1");
 
 		_assertObjectFolder(
-			"TestObjectFolder2", 2,
-			Collections.singletonList("TESTOBJECTDEFINITION2"),
+			2, Collections.singletonList("TESTOBJECTDEFINITION2"),
+			"TestObjectFolder2",
 			Collections.singletonList("TESTOBJECTDEFINITION1"));
 		_assertObjectFolder(
-			"TestObjectFolder3", 0, Collections.emptyList(),
+			0, Collections.emptyList(), "TestObjectFolder3",
 			Collections.emptyList());
 		_assertDefaultObjectFolder(
 			Collections.singletonList("TESTOBJECTDEFINITION1"),
@@ -204,8 +204,9 @@ public class ObjectFolderExportImportTest extends BaseExportImportTestCase {
 	}
 
 	private void _assertObjectFolder(
-			String name, long expectedLength,
+			long expectedLength,
 			List<String> linkedObjectFolderItemExternalReferenceCodes,
+			String name,
 			List<String> unlinkedObjectFolderItemExternalReferenceCodes)
 		throws Exception {
 
