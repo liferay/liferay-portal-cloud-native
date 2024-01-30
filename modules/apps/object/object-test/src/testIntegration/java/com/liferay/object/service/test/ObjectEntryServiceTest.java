@@ -853,6 +853,8 @@ public class ObjectEntryServiceTest {
 		long[] userIds = _userLocalService.getRoleUserIds(role.getRoleId());
 
 		for (long userId : userIds) {
+			int count = 0;
+
 			List<UserNotificationEvent> userNotificationEvents =
 				_userNotificationLocalService.getUserNotificationEvents(
 					userId, portletId,
@@ -862,8 +864,6 @@ public class ObjectEntryServiceTest {
 					).toInstant(
 					).getEpochSecond(),
 					true);
-
-			int count = 0;
 
 			for (UserNotificationEvent userNotificationEvent :
 					userNotificationEvents) {

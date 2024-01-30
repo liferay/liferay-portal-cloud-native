@@ -653,11 +653,11 @@ public class ObjectEntryServiceImpl extends ObjectEntryServiceBaseImpl {
 			objectDefinition.getCompanyId(), RoleConstants.ADMINISTRATOR);
 
 		for (long userId : _userLocalService.getRoleUserIds(role.getRoleId())) {
+			boolean addUserId = true;
+
 			List<UserNotificationEvent> userNotificationEvents =
 				_userNotificationEventLocalService.getUserNotificationEvents(
 					userId, portletId, timestamp, true);
-
-			boolean notificationReceived = false;
 
 			for (UserNotificationEvent userNotificationEvent :
 					userNotificationEvents) {
@@ -666,13 +666,13 @@ public class ObjectEntryServiceImpl extends ObjectEntryServiceBaseImpl {
 					userNotificationEvent.getPayload());
 
 				if (jsonObject.has("exceedsObjectEntryLimit")) {
-					notificationReceived = true;
+					addUserId = false;
 
 					break;
 				}
 			}
 
-			if (!notificationReceived) {
+			if (addUserId) {
 				userIds.add(userId);
 			}
 		}

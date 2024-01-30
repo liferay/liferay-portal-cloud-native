@@ -84,7 +84,7 @@ public class ObjectUserNotificationsHandlerTest {
 		Mockito.when(
 			_userNotificationEvent.getPayload()
 		).thenReturn(
-			"{ \"externalReferenceCode\": \"externalReferenceCode\" }"
+			"{\"externalReferenceCode\": \"externalReferenceCode\"}"
 		);
 
 		try (MockedStatic<PortletURLBuilder> portletURLBuilderMockedStatic =
