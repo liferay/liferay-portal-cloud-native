@@ -77,7 +77,7 @@ public class FriendlyURLSeparatorSaveCompanyConfigurationMVCActionCommand
 			_jsonFactory.createJSONObject();
 
 		String friendlyURLSeparators = _getFriendlyURLSeparators(
-			actionRequest, themeDisplay, fieldsValidationErrorsJSONObject);
+			actionRequest, fieldsValidationErrorsJSONObject, themeDisplay);
 
 		if (fieldsValidationErrorsJSONObject.length() == 0) {
 			_friendlyURLSeparatorConfigurationManager.
@@ -97,14 +97,15 @@ public class FriendlyURLSeparatorSaveCompanyConfigurationMVCActionCommand
 	}
 
 	private String _getFriendlyURLSeparators(
-		ActionRequest actionRequest, ThemeDisplay themeDisplay,
-		JSONObject fieldsValidationErrorsJSONObject) {
+		ActionRequest actionRequest,
+		JSONObject fieldsValidationErrorsJSONObject,
+		ThemeDisplay themeDisplay) {
 
 		JSONObject friendlyURLSeparatorsJSONObject =
 			_jsonFactory.createJSONObject();
 
-		String namespace = _portal.getPortletNamespace(themeDisplay.getPpid());
 		List<String> friendlyURLSeparators = new ArrayList<>();
+		String namespace = _portal.getPortletNamespace(themeDisplay.getPpid());
 
 		for (FriendlyURLResolver friendlyURLResolver :
 				FriendlyURLResolverRegistryUtil.
@@ -306,16 +307,14 @@ public class FriendlyURLSeparatorSaveCompanyConfigurationMVCActionCommand
 			}
 		}
 
-		int layoutFriendlyURLCountContainsURLSeparator =
+		int count1 =
+			_layoutFriendlyURLLocalService.getLayoutFriendlyURLsCount(
+				themeDisplay.getCompanyId(), friendlyURL);
+		int count2 =
 			_layoutFriendlyURLLocalService.getLayoutFriendlyURLsCount(
 				themeDisplay.getCompanyId(), urlSeparator + CharPool.PERCENT);
 
-		int layoutFriendlyURLCountWithURLSeparator =
-			_layoutFriendlyURLLocalService.getLayoutFriendlyURLsCount(
-				themeDisplay.getCompanyId(), friendlyURL);
-
-		if ((layoutFriendlyURLCountContainsURLSeparator > 0) ||
-			(layoutFriendlyURLCountWithURLSeparator > 0)) {
+		if ((count1 > 0) || (count2 > 0)) {
 
 			fieldsValidationErrorsJSONObject.put(
 				namespace + key,

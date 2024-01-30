@@ -62,9 +62,7 @@ public class FriendlyURLSeparatorCompanyConfigurationDisplayContext {
 
 		JSONObject configuredFriendlyURLSeparatorsJSONObject =
 			_getConfiguredFriendlyURLSeparatorsJSONObject();
-
 		String namespace = _portal.getPortletNamespace(_themeDisplay.getPpid());
-
 		Map<String, String[]> parameters =
 			_httpServletRequest.getParameterMap();
 
