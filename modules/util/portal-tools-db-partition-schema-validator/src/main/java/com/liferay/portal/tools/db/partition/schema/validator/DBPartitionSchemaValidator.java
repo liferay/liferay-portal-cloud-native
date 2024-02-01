@@ -55,12 +55,12 @@ public class DBPartitionSchemaValidator {
 		String jdbcURL = null;
 
 		if (_dbType.equals("mysql")) {
-			jdbcURL = _MYSQL_DEFAULT_JDBC_URL;
+			jdbcURL = "jdbc:mysql://localhost/db-name";
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		}
 		else if (_dbType.equals("postgresql")) {
-			jdbcURL = _POSTGRESQL_DEFAULT_JDBC_URL;
+			jdbcURL = "jdbc:postgresql://localhost:5432/db-name";
 
 			Class.forName("org.postgresql.Driver");
 		}
@@ -305,12 +305,6 @@ public class DBPartitionSchemaValidator {
 			}
 		}
 	}
-
-	private static final String _MYSQL_DEFAULT_JDBC_URL =
-		"jdbc:mysql://localhost/db-name";
-
-	private static final String _POSTGRESQL_DEFAULT_JDBC_URL =
-		"jdbc:postgresql://localhost:5432/db-name";
 
 	private static Connection _connection;
 	private static final Set<String> _controlTableNames = new HashSet<>(
