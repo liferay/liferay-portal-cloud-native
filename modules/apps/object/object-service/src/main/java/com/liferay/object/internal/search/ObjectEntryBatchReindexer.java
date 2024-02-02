@@ -5,18 +5,58 @@
 
 package com.liferay.object.internal.search;
 
+import com.liferay.object.model.ObjectDefinition;
+import com.liferay.object.model.ObjectEntry;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.search.batch.BatchIndexingActionable;
 import com.liferay.portal.search.indexer.IndexerDocumentBuilder;
+import com.liferay.portal.search.spi.model.index.contributor.ModelIndexerWriterContributor;
 
 /**
  * @author Feliphe Marinho
  * @author Gabriel Albuquerque
  */
-public interface ObjectEntryBatchReindexer {
+public class ObjectEntryBatchReindexer {
 
-	public String getClassName();
+	public ObjectEntryBatchReindexer(
+		ModelIndexerWriterContributor<ObjectEntry>
+			modelIndexerWriterContributor,
+		ObjectDefinition objectDefinition) {
+
+		_modelIndexerWriterContributor = modelIndexerWriterContributor;
+		_objectDefinition = objectDefinition;
+	}
+
+	public String getClassName() {
+		return _objectDefinition.getClassName();
+	}
 
 	public void reindex(
-		IndexerDocumentBuilder indexerDocumentBuilder, long accountId,
-		long companyId);
+		IndexerDocumentBuilder indexerDocumentBuilder, long accountEntryId,
+		long companyId) {
+
+		BatchIndexingActionable batchIndexingActionable =
+			_modelIndexerWriterContributor.getBatchIndexingActionable();
+
+		batchIndexingActionable.setAddCriteriaMethod(
+			dynamicQuery -> {
+				Property property = PropertyFactoryUtil.forName(
+					"objectDefinitionId");
+
+				dynamicQuery.add(
+					property.eq(_objectDefinition.getObjectDefinitionId()));
+			});
+		batchIndexingActionable.setCompanyId(companyId);
+		batchIndexingActionable.setPerformActionMethod(
+			(ObjectEntry objectEntry) -> batchIndexingActionable.addDocuments(
+				indexerDocumentBuilder.getDocument(objectEntry)));
+
+		batchIndexingActionable.performActions();
+	}
+
+	private final ModelIndexerWriterContributor<ObjectEntry>
+		_modelIndexerWriterContributor;
+	private final ObjectDefinition _objectDefinition;
 
 }

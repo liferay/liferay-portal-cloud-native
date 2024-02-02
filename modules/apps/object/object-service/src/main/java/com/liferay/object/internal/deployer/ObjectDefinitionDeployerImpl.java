@@ -23,7 +23,6 @@ import com.liferay.object.internal.related.models.ObjectEntryMtoMObjectRelatedMo
 import com.liferay.object.internal.related.models.ObjectEntryMtoMObjectRelatedModelsProviderImpl;
 import com.liferay.object.internal.rest.context.path.RESTContextPathResolverImpl;
 import com.liferay.object.internal.search.ObjectEntryBatchReindexer;
-import com.liferay.object.internal.search.ObjectEntryBatchReindexerImpl;
 import com.liferay.object.internal.search.spi.model.index.contributor.ObjectEntryModelDocumentContributor;
 import com.liferay.object.internal.search.spi.model.index.contributor.ObjectEntryModelIndexerWriterContributor;
 import com.liferay.object.internal.search.spi.model.query.contributor.ObjectEntryKeywordQueryContributor;
@@ -434,7 +433,7 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 		serviceRegistrations.add(
 			_bundleContext.registerService(
 				ObjectEntryBatchReindexer.class,
-				new ObjectEntryBatchReindexerImpl(
+				new ObjectEntryBatchReindexer(
 					objectEntryModelIndexerWriterContributor, objectDefinition),
 				null));
 
