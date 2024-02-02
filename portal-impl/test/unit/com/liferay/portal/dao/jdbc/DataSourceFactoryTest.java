@@ -52,23 +52,23 @@ public class DataSourceFactoryTest {
 
 		fileUtil.setFile(new FileImpl());
 
-		_tempFolder = FileUtil.createTempFolder();
+		_tempDir = FileUtil.createTempFolder();
 
 		_dataSource = _dataSourceFactory.initDataSource(
 			"org.hsqldb.jdbc.JDBCDriver",
-			"jdbc:hsqldb:" + _tempFolder.getAbsolutePath() + "/lportal;", "sa",
+			"jdbc:hsqldb:" + _tempDir.getAbsolutePath() + "/lportal;", "sa",
 			StringPool.BLANK, StringPool.BLANK);
 	}
 
 	@After
 	public void tearDown() {
-		FileUtil.deltree(_tempFolder);
+		FileUtil.deltree(_tempDir);
 	}
 
 	@Test
 	public void testDestroyDataSource() throws Exception {
 
-		// Test 1, destroy JDNI data source
+		// Destroy JDNI data source
 
 		NamingManager.setInitialContextFactoryBuilder(
 			environment -> environment1 -> new InitialContext() {
@@ -94,12 +94,12 @@ public class DataSourceFactoryTest {
 			Assert.assertFalse(connection.isClosed());
 		}
 
-		// Test 2, destroy non JDNI data source
+		// Destroy other data source
 
 		_dataSourceFactory.destroyDataSource(_dataSource);
 
 		try (Connection connection = _dataSource.getConnection()) {
-			Assert.fail("Data source should be closed");
+			Assert.fail();
 		}
 		catch (Exception exception) {
 			Assert.assertEquals(
@@ -112,6 +112,6 @@ public class DataSourceFactoryTest {
 	private DataSource _dataSource;
 	private final DataSourceFactory _dataSourceFactory =
 		new DataSourceFactoryImpl();
-	private File _tempFolder;
+	private File _tempDir;
 
 }
