@@ -7,14 +7,17 @@ package com.liferay.object.internal.model.listener;
 
 import com.liferay.account.model.AccountEntryOrganizationRel;
 import com.liferay.object.internal.search.ObjectEntryBatchReindexer;
-import com.liferay.object.internal.search.ObjectEntryBatchReindexerRegistry;
+import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerList;
+import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerListFactory;
 import com.liferay.portal.kernel.exception.ModelListenerException;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
 
+import org.osgi.framework.BundleContext;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.Deactivate;
 
 /**
  * @author Feliphe Marinho
@@ -50,12 +53,22 @@ public class AccountEntryOrganizationRelModelListener
 			});
 	}
 
+	@Activate
+	protected void activate(BundleContext bundleContext) {
+		_objectEntryBatchReindexers = ServiceTrackerListFactory.open(
+			bundleContext, ObjectEntryBatchReindexer.class);
+	}
+
+	@Deactivate
+	protected void deactivate() {
+		_objectEntryBatchReindexers.close();
+	}
+
 	private void _reindex(
 		AccountEntryOrganizationRel accountEntryOrganizationRel) {
 
 		for (ObjectEntryBatchReindexer objectEntryBatchReindexer :
-				_objectEntryBatchReindexerRegistry.
-					getObjectEntryBatchReindexers()) {
+				_objectEntryBatchReindexers) {
 
 			objectEntryBatchReindexer.reindex(
 				accountEntryOrganizationRel.getAccountEntryId(),
@@ -63,8 +76,7 @@ public class AccountEntryOrganizationRelModelListener
 		}
 	}
 
-	@Reference
-	private ObjectEntryBatchReindexerRegistry
-		_objectEntryBatchReindexerRegistry;
+	private ServiceTrackerList<ObjectEntryBatchReindexer>
+		_objectEntryBatchReindexers;
 
 }
