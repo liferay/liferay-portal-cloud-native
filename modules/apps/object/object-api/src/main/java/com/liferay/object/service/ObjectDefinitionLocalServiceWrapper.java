@@ -480,6 +480,14 @@ public class ObjectDefinitionLocalServiceWrapper
 			getObjectDefinitionByUuidAndCompanyId(uuid, companyId);
 	}
 
+	@Override
+	public java.util.List<com.liferay.object.model.ObjectDefinition>
+		getObjectDefinitions(boolean accountEntryRestricted) {
+
+		return _objectDefinitionLocalService.getObjectDefinitions(
+			accountEntryRestricted);
+	}
+
 	/**
 	 * Returns a range of all the object definitions.
 	 *

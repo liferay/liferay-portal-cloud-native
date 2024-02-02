@@ -415,6 +415,12 @@ public class ObjectDefinitionLocalServiceUtil {
 			uuid, companyId);
 	}
 
+	public static List<ObjectDefinition> getObjectDefinitions(
+		boolean accountEntryRestricted) {
+
+		return getService().getObjectDefinitions(accountEntryRestricted);
+	}
+
 	/**
 	 * Returns a range of all the object definitions.
 	 *

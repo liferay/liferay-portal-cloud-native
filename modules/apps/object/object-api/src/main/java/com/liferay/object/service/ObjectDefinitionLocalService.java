@@ -329,6 +329,10 @@ public interface ObjectDefinitionLocalService
 			String uuid, long companyId)
 		throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<ObjectDefinition> getObjectDefinitions(
+		boolean accountEntryRestricted);
+
 	/**
 	 * Returns a range of all the object definitions.
 	 *
