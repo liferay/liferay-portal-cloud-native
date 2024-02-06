@@ -40,11 +40,11 @@ public class CTPublishMessageBusInterceptorTest {
 
 	@Test
 	public void testInterceptBackgroundTaskStatusMessage() throws Exception {
-		TestMessageListener messageListener = new TestMessageListener();
+		TestMessageListener testMessageListener = new TestMessageListener();
 
 		ServiceRegistration<MessageListener> serviceRegistration =
 			_bundleContext.registerService(
-				MessageListener.class, messageListener,
+				MessageListener.class, testMessageListener,
 				HashMapDictionaryBuilder.<String, Object>put(
 					"destination.name", DestinationNames.BACKGROUND_TASK_STATUS
 				).put(
@@ -53,11 +53,13 @@ public class CTPublishMessageBusInterceptorTest {
 
 		try {
 			_assertSentMessageCount(
-				1, messageListener, BackgroundTaskConstants.STATUS_CANCELLED);
+				1, BackgroundTaskConstants.STATUS_CANCELLED,
+				testMessageListener);
 			_assertSentMessageCount(
-				1, messageListener, BackgroundTaskConstants.STATUS_FAILED);
+				1, BackgroundTaskConstants.STATUS_FAILED, testMessageListener);
 			_assertSentMessageCount(
-				2, messageListener, BackgroundTaskConstants.STATUS_SUCCESSFUL);
+				2, BackgroundTaskConstants.STATUS_SUCCESSFUL,
+				testMessageListener);
 		}
 		finally {
 			if (serviceRegistration != null) {
@@ -67,8 +69,8 @@ public class CTPublishMessageBusInterceptorTest {
 	}
 
 	private void _assertSentMessageCount(
-			int expectedSentMessageCount, TestMessageListener messageListener,
-			int status)
+			int expectedSentMessageCount, int status,
+			TestMessageListener testMessageListener)
 		throws Exception {
 
 		Message message = new Message();
@@ -83,7 +85,8 @@ public class CTPublishMessageBusInterceptorTest {
 			DestinationNames.BACKGROUND_TASK_STATUS, message);
 
 		Assert.assertEquals(
-			expectedSentMessageCount, messageListener.getSentMessageCount());
+			expectedSentMessageCount,
+			testMessageListener.getSentMessageCount());
 	}
 
 	private static final BundleContext _bundleContext =
