@@ -390,7 +390,6 @@
 		</attribute>
 	</tag>
 	<tag>
-		<description>Creates the Feature Indicator component.</description>
 		<name>feature-indicator</name>
 		<tag-class>com.liferay.frontend.taglib.servlet.taglib.FeatureIndicatorTag</tag-class>
 		<body-content>JSP</body-content>
