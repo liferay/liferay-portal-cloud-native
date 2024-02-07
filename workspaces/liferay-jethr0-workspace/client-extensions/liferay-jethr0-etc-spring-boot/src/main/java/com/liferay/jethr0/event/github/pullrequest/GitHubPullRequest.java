@@ -38,8 +38,6 @@ public class GitHubPullRequest {
 		_gitHubFactory = gitHubFactory;
 		_jsonObject = jsonObject;
 
-		_number = jsonObject.getLong("number");
-
 		JSONObject baseJSONObject = jsonObject.getJSONObject("base");
 
 		_baseBranchName = baseJSONObject.getString("ref");
@@ -227,7 +225,7 @@ public class GitHubPullRequest {
 	}
 
 	public Long getNumber() {
-		return _number;
+		return _jsonObject.getLong("number");
 	}
 
 	public GitHubUser getOriginGitHubUser() {
@@ -329,7 +327,6 @@ public class GitHubPullRequest {
 	private final GitHubCommit _headGitHubCommit;
 	private final GitHubRepository _headGitHubRepository;
 	private final JSONObject _jsonObject;
-	private final Long _number;
 	private final GitHubUser _originGitHubUser;
 	private final GitHubUser _receiverGitHubUser;
 	private final GitHubUser _senderGitHubUser;
