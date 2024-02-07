@@ -100,7 +100,7 @@ public class MBMessageModelPreFilterContributor
 						}
 					}
 
-					User curUser = user;
+					User finalUser = user;
 
 					add(
 						new BooleanFilter() {
@@ -112,12 +112,12 @@ public class MBMessageModelPreFilterContributor
 											WorkflowConstants.STATUS_PENDING)),
 									BooleanClauseOccur.MUST);
 
-								if (curUser != null) {
+								if (finalUser != null) {
 									add(
 										new TermFilter(
 											"userId",
 											String.valueOf(
-												curUser.getUserId())),
+												finalUser.getUserId())),
 										BooleanClauseOccur.MUST);
 								}
 							}
