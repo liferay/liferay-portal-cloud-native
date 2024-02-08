@@ -1234,6 +1234,9 @@ public class SiteInitializerTestrayImportResultsDispatchTaskExecutor
 		try (InputStream inputStream = new ByteArrayInputStream(
 				s3APIKey.getBytes())) {
 
+			long filesCountThreshold = GetterUtil.getLong(
+				unicodeProperties.getProperty("filesCountThreshold"), -1);
+
 			Storage storage = StorageOptions.newBuilder(
 			).setCredentials(
 				GoogleCredentials.fromStream(inputStream)
@@ -1246,9 +1249,6 @@ public class SiteInitializerTestrayImportResultsDispatchTaskExecutor
 			Page<Blob> page = storage.list(
 				unicodeProperties.getProperty("s3BucketName"),
 				Storage.BlobListOption.prefix(s3InboxFolderName + "/"));
-
-			long filesCountThreshold = GetterUtil.getLong(
-				unicodeProperties.getProperty("filesCountThreshold"), -1);
 
 			for (Blob blob : page.iterateAll()) {
 				if (filesCountThreshold == 0) {
@@ -1282,6 +1282,7 @@ public class SiteInitializerTestrayImportResultsDispatchTaskExecutor
 				}
 
 				blob.delete();
+
 				filesCountThreshold--;
 			}
 		}
