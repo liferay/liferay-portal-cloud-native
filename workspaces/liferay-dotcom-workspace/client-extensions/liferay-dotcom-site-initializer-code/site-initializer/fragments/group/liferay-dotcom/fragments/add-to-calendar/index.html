@@ -1,13 +1,13 @@
 <div
-		class="f-add-to-calendar ${configuration.blockAlignment}"
-		data-event-details="${configuration.eventDetails}"
-		data-event-end-date="${configuration.eventEndDate}"
-		data-event-end-time="${configuration.eventEndTime}"
-		data-event-location="${configuration.eventLocation}"
-		data-event-name="${configuration.eventName}"
-		data-event-start-date="${configuration.eventStartDate}"
-		data-event-start-time="${configuration.eventStartTime}"
-	>
+	class="f-add-to-calendar ${configuration.blockAlignment}"
+	data-event-details="${configuration.eventDetails}"
+	data-event-end-date="${configuration.eventEndDate}"
+	data-event-end-time="${configuration.eventEndTime}"
+	data-event-location="${configuration.eventLocation}"
+	data-event-name="${configuration.eventName}"
+	data-event-start-date="${configuration.eventStartDate}"
+	data-event-start-time="${configuration.eventStartTime}"
+>
 	<a class="btn btn-${configuration.buttonStyle}" href="javascript:;">
 		<div class="add-to-calendar-button">
 			<span class="btn-text" data-lfr-editable-id="addToCalendarButton" data-lfr-editable-type="text">Add to Calendar</span>
@@ -105,47 +105,47 @@
 </div>
 
 [@liferay_aui.script require="com.liferay.osb.www.frontend.support.web@1.0.0/Datebook as Datebook"]
-const addToCalendar = document.querySelector('.f-add-to-calendar');
-const addToCalendarButton = addToCalendar.querySelector('.add-to-calendar-button');
-const calendarLinksWrapper = addToCalendar.querySelector('.calendar-links');
-const calendarLinks = addToCalendar.querySelectorAll('.calendar-link');
+	const addToCalendar = document.querySelector('.f-add-to-calendar');
+	const addToCalendarButton = addToCalendar.querySelector('.add-to-calendar-button');
+	const calendarLinksWrapper = addToCalendar.querySelector('.calendar-links');
+	const calendarLinks = addToCalendar.querySelectorAll('.calendar-link');
 
-const eventStartDate = addToCalendar.getAttribute('data-event-start-date');
-const eventStartTime = addToCalendar.getAttribute('data-event-start-time');
-const eventEndDate = addToCalendar.getAttribute('data-event-end-date');
-const eventEndTime = addToCalendar.getAttribute('data-event-end-time');
-const eventDetails = addToCalendar.getAttribute('data-event-details');
-const eventLocation = addToCalendar.getAttribute('data-event-location');
-const eventName = addToCalendar.getAttribute('data-event-name');
+	const eventStartDate = addToCalendar.getAttribute('data-event-start-date');
+	const eventStartTime = addToCalendar.getAttribute('data-event-start-time');
+	const eventEndDate = addToCalendar.getAttribute('data-event-end-date');
+	const eventEndTime = addToCalendar.getAttribute('data-event-end-time');
+	const eventDetails = addToCalendar.getAttribute('data-event-details');
+	const eventLocation = addToCalendar.getAttribute('data-event-location');
+	const eventName = addToCalendar.getAttribute('data-event-name');
 
-const endDateTime = new Date(eventEndDate + 'T' + eventEndTime + ':00Z');
-const startDateTime = new Date(eventStartDate + 'T' + eventStartTime + ':00Z');
+	const endDateTime = new Date(eventEndDate + 'T' + eventEndTime + ':00Z');
+	const startDateTime = new Date(eventStartDate + 'T' + eventStartTime + ':00Z');
 
-const config = {
-	description: eventDetails,
-	end: endDateTime,
-	location: eventLocation,
-	start: startDateTime,
-	title: eventName,
-};
+	const config = {
+		description: eventDetails,
+		end: endDateTime,
+		location: eventLocation,
+		start: startDateTime,
+		title: eventName,
+	};
 
-calendarLinks.forEach(function (link) {
-	link.addEventListener('click', function () {
-		new Datebook.default(link.getAttribute('data-calendar-type'), config);
+	calendarLinks.forEach(function (link) {
+		link.addEventListener('click', function () {
+			new Datebook.default(link.getAttribute('data-calendar-type'), config);
+		});
 	});
-});
 
-addToCalendarButton.addEventListener('click', function (e) {
-	e.stopPropagation();
-	calendarLinksWrapper.classList.toggle('active');
-});
+	addToCalendarButton.addEventListener('click', function (e) {
+		e.stopPropagation();
+		calendarLinksWrapper.classList.toggle('active');
+	});
 
-window.onclick = function () {
-	calendarLinksWrapper.classList.remove('active');
-};
+	window.onclick = function () {
+		calendarLinksWrapper.classList.remove('active');
+	};
 
-if (startDateTime > endDateTime) {
-	addToCalendar.innerHTML =
-		'ERROR: Start Date/Time is not before End Date/Time';
-}
+	if (startDateTime > endDateTime) {
+		addToCalendar.innerHTML =
+			'ERROR: Start Date/Time is not before End Date/Time';
+	}
 [/@]
