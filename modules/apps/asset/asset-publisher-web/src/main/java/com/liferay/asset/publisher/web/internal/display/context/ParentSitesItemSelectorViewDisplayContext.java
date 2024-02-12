@@ -38,17 +38,17 @@ public class ParentSitesItemSelectorViewDisplayContext
 
 	@Override
 	public GroupSearch getGroupSearch() throws Exception {
+		GroupSearch groupSearch = new GroupSearch(
+			getPortletRequest(), portletURL);
+
+		long[] excludedGroupIds =
+			_groupItemSelectorCriterion.getExcludedGroupIds();
+
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		GroupSearch groupSearch = new GroupSearch(
-			getPortletRequest(), portletURL);
-
 		Group group = themeDisplay.getSiteGroup();
-
-		long[] excludedGroupIds =
-			_groupItemSelectorCriterion.getExcludedGroupIds();
 
 		List<Group> groups = ListUtil.filter(
 			group.getAncestors(),
