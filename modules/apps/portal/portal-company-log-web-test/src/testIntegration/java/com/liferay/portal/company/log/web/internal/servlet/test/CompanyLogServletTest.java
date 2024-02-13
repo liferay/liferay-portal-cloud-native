@@ -518,9 +518,9 @@ public class CompanyLogServletTest {
 	private Map<Long, JSONObject> _toCompanyJSONObjects(String json)
 		throws JSONException {
 
-		JSONArray jsonArray = _jsonFactory.createJSONArray(json);
-
 		Map<Long, JSONObject> jsonObjects = new HashMap<>();
+
+		JSONArray jsonArray = _jsonFactory.createJSONArray(json);
 
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
