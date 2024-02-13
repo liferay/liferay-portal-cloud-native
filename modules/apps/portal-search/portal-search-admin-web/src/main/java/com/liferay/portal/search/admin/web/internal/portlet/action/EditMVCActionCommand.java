@@ -90,8 +90,9 @@ public class EditMVCActionCommand extends BaseMVCActionCommand {
 			}
 		}
 
-		String className = ParamUtil.getString(actionRequest, "className");
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		String className = ParamUtil.getString(actionRequest, "className");
 		String executionMode = ParamUtil.getString(
 			actionRequest, "executionMode");
 
