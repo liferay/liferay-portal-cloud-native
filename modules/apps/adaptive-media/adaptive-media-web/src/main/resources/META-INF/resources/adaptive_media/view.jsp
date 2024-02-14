@@ -11,8 +11,8 @@
 SearchContainer<?> amSearchContainer = new SearchContainer<>(renderRequest, renderResponse.createRenderURL(), null, "there-are-no-image-resolutions");
 
 amSearchContainer.setId("imageConfigurationEntries");
-amSearchContainer.setRowChecker(new ImageConfigurationEntriesChecker(liferayPortletResponse));
 amSearchContainer.setResultsAndTotal((List)request.getAttribute(AMWebKeys.CONFIGURATION_ENTRIES_LIST));
+amSearchContainer.setRowChecker(new ImageConfigurationEntriesChecker(liferayPortletResponse));
 %>
 
 <clay:management-toolbar
