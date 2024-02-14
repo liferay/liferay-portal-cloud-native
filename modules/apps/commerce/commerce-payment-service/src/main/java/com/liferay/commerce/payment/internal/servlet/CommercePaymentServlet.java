@@ -251,7 +251,6 @@ public class CommercePaymentServlet extends HttpServlet {
 					commercePaymentEntry.getCommercePaymentEntryId(),
 					commercePaymentIntegration.getKey(), httpServletRequest,
 					"&orderType=normal", _nextUrl));
-
 			commercePaymentEntry.setCancelURL(
 				_getApplicationContextURL(
 					commercePaymentEntry.getCommercePaymentEntryId(),
@@ -373,10 +372,10 @@ public class CommercePaymentServlet extends HttpServlet {
 				CommercePaymentIntegrationConstants.TYPE_FUNCTION_OFFLINE) ||
 			(commercePaymentIntegration.getPaymentIntegrationType() ==
 				CommercePaymentIntegrationConstants.
-					TYPE_INTERNAL_ONLINE_STANDARD) ||
+					TYPE_FUNCTION_ONLINE_STANDARD) ||
 			(commercePaymentIntegration.getPaymentIntegrationType() ==
 				CommercePaymentIntegrationConstants.
-					TYPE_FUNCTION_ONLINE_STANDARD)) {
+					TYPE_INTERNAL_ONLINE_STANDARD)) {
 
 			if (commercePaymentEntry.getPaymentStatus() ==
 					CommercePaymentEntryConstants.STATUS_CREATED) {
