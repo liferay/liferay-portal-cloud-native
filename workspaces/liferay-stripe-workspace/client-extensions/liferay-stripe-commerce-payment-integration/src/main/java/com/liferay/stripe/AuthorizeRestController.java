@@ -149,18 +149,18 @@ public class AuthorizeRestController extends BaseRestController {
 		}
 		else {
 			sessionCreateParams = SessionCreateParams.builder(
+			).addAllLineItem(
+				_getLineItems(commercePaymentEntryJSONObject)
 			).addPaymentMethodType(
 				SessionCreateParams.PaymentMethodType.CARD
+			).setCancelUrl(
+				commercePaymentEntryJSONObject.getString("cancelURL")
 			).setCurrency(
 				commercePaymentEntryJSONObject.getString("currencyCode")
 			).setMode(
 				SessionCreateParams.Mode.PAYMENT
 			).setSuccessUrl(
 				commercePaymentEntryJSONObject.getString("callbackURL")
-			).setCancelUrl(
-				commercePaymentEntryJSONObject.getString("cancelURL")
-			).addAllLineItem(
-				_getLineItems(commercePaymentEntryJSONObject)
 			).build();
 		}
 
