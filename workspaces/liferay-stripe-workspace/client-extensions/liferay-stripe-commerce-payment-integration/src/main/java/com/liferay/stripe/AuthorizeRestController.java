@@ -180,15 +180,11 @@ public class AuthorizeRestController extends BaseRestController {
 				).setProductData(
 					SessionCreateParams.LineItem.PriceData.ProductData.builder(
 					).setName(
-						new StringBuilder(
-						).append(
+						StringBundler.concat(
 							commercePaymentEntryJSONObject.getString(
-								"classNameLabel")
-						).append(
-							" "
-						).append(
-							commercePaymentEntryJSONObject.getString("classPK")
-						).toString()
+								"classNameLabel"),
+							" ",
+							commercePaymentEntryJSONObject.getString("classPK"))
 					).build()
 				).setUnitAmount(
 					BigDecimal.valueOf(
