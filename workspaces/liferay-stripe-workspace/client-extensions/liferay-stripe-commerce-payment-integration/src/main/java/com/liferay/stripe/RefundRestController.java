@@ -100,9 +100,9 @@ public class RefundRestController extends BaseRestController {
 
 			return RefundCreateParams.Reason.DUPLICATE;
 		}
-
-		if (Objects.equals(
-				reasonKey, RefundCreateParams.Reason.FRAUDULENT.getValue())) {
+		else if (Objects.equals(
+					reasonKey,
+					RefundCreateParams.Reason.FRAUDULENT.getValue())) {
 
 			return RefundCreateParams.Reason.FRAUDULENT;
 		}
