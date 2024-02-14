@@ -14,6 +14,7 @@ import com.stripe.param.checkout.SessionCreateParams;
 import java.math.BigDecimal;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -170,9 +171,7 @@ public class AuthorizeRestController extends BaseRestController {
 	private List<SessionCreateParams.LineItem> _getLineItems(
 		JSONObject commercePaymentEntryJSONObject) {
 
-		List<SessionCreateParams.LineItem> lineItems = new ArrayList<>();
-
-		SessionCreateParams.LineItem lineItem =
+		return Collections.singletonList(
 			SessionCreateParams.LineItem.builder(
 			).setPriceData(
 				SessionCreateParams.LineItem.PriceData.builder(
@@ -200,11 +199,7 @@ public class AuthorizeRestController extends BaseRestController {
 				).build()
 			).setQuantity(
 				BigDecimal.ONE.longValue()
-			).build();
-
-		lineItems.add(lineItem);
-
-		return lineItems;
+			).build());
 	}
 
 	private List<SessionCreateParams.LineItem> _getLineItems(
