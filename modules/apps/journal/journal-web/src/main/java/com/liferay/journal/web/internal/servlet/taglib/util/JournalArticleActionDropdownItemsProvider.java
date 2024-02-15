@@ -68,6 +68,7 @@ import com.liferay.translation.security.permission.TranslationPermission;
 import com.liferay.translation.url.provider.TranslationURLProvider;
 import com.liferay.trash.TrashHelper;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -946,15 +947,32 @@ public class JournalArticleActionDropdownItemsProvider {
 			PortletDisplay portletDisplay = _themeDisplay.getPortletDisplay();
 
 			dropdownItem.setHref(
-				_translationURLProvider.getTranslateURL(
-					_themeDisplay.getScopeGroupId(),
-					PortalUtil.getClassNameId(JournalArticle.class.getName()),
-					_article.getResourcePrimKey(),
-					RequestBackedPortletURLFactoryUtil.create(
-						_httpServletRequest)),
-				"backURLTitle", portletDisplay.getPortletDisplayName(),
-				"redirect", _getRedirect(), "portletResource",
-				portletDisplay.getId());
+				PortletURLBuilder.create(
+					_translationURLProvider.getTranslateURL(
+						_themeDisplay.getScopeGroupId(),
+						PortalUtil.getClassNameId(
+							JournalArticle.class.getName()),
+						_article.getResourcePrimKey(),
+						RequestBackedPortletURLFactoryUtil.create(
+							_httpServletRequest))
+				).setRedirect(
+					_getRedirect()
+				).setPortletResource(
+					portletDisplay.getId()
+				).setParameter(
+					"backURLTitle", portletDisplay.getPortletDisplayName()
+				).setParameter(
+					"modifiedDateTime",
+					() -> {
+						Date modifiedDate = _article.getModifiedDate();
+
+						if (modifiedDate == null) {
+							return null;
+						}
+
+						return modifiedDate.getTime();
+					}
+				).buildString());
 
 			dropdownItem.setIcon("automatic-translate");
 			dropdownItem.setLabel(
