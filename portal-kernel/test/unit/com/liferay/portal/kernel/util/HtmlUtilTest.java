@@ -144,13 +144,13 @@ public class HtmlUtilTest {
 
 	@Test
 	public void testEscapeJS() {
-		Assert.assertEquals("\\x27", HtmlUtil.escapeJS("'"));
-		Assert.assertEquals("\\x22", HtmlUtil.escapeJS("\""));
-		Assert.assertEquals("\\x5c", HtmlUtil.escapeJS("\\"));
-		Assert.assertEquals("\\x0a", HtmlUtil.escapeJS("\n"));
-		Assert.assertEquals("\\x0d", HtmlUtil.escapeJS("\r"));
 		Assert.assertEquals("\\u2028", HtmlUtil.escapeJS("\u2028"));
 		Assert.assertEquals("\\u2029", HtmlUtil.escapeJS("\u2029"));
+		Assert.assertEquals("\\x0a", HtmlUtil.escapeJS("\n"));
+		Assert.assertEquals("\\x0d", HtmlUtil.escapeJS("\r"));
+		Assert.assertEquals("\\x22", HtmlUtil.escapeJS("\""));
+		Assert.assertEquals("\\x27", HtmlUtil.escapeJS("'"));
+		Assert.assertEquals("\\x5c", HtmlUtil.escapeJS("\\"));
 	}
 
 	@Test
