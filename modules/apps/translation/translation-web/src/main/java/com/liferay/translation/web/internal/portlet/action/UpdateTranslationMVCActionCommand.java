@@ -129,9 +129,8 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 						(Date)infoItemFieldValue, new Date(modifiedDateTime));
 
 					if (value > 0) {
-						SessionErrors.add(
-							actionRequest,
-							"anotherUserHasMadeChangesSinceYouStartedEditing");
+						SessionErrors.add(actionRequest, "duplicateChanges");
+
 						sendRedirect(
 							actionRequest, actionResponse,
 							_getRedirect(actionRequest, className, classPK));

@@ -19,7 +19,7 @@ portletDisplay.setURLBackTitle(ParamUtil.getString(request, "backURLTitle"));
 renderResponse.setTitle(translateDisplayContext.getTitle());
 %>
 
-<liferay-ui:error key="anotherUserHasMadeChangesSinceYouStartedEditing" message="another-user-has-made-changes-since-you-started-editing" />
+<liferay-ui:error key="duplicateChanges" message="another-user-has-made-changes-since-you-started-editing" />
 
 <div class="translation">
 	<aui:form action="<%= translateDisplayContext.getUpdateTranslationPortletURL() %>" cssClass="translation-edit" name="translate_fm">
