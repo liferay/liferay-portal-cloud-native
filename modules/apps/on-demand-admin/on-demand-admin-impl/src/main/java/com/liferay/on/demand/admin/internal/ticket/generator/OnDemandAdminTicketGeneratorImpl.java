@@ -121,7 +121,6 @@ public class OnDemandAdminTicketGeneratorImpl
 			String emailAddress = screenName + StringPool.AT + mx;
 
 			Calendar calendar = Calendar.getInstance();
-
 			Role role = _roleLocalService.getRole(
 				companyId, RoleConstants.ADMINISTRATOR);
 
