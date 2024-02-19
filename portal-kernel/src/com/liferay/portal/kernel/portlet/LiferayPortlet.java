@@ -97,15 +97,15 @@ public class LiferayPortlet extends GenericPortlet {
 		catch (PortletException portletException) {
 			Throwable throwable = portletException.getCause();
 
-			if (throwable instanceof CTTransactionException) {
-				_log.error(throwable, throwable);
+			if (throwable.getCause() instanceof CTRequiredModelException) {
+				throwable = throwable.getCause();
 
 				SessionErrors.add(
 					PortalUtil.getHttpServletRequest(actionRequest),
 					throwable.getClass(), throwable);
 			}
-			else if (throwable.getCause() instanceof CTRequiredModelException) {
-				throwable = throwable.getCause();
+			else if (throwable instanceof CTTransactionException) {
+				_log.error(throwable, throwable);
 
 				SessionErrors.add(
 					PortalUtil.getHttpServletRequest(actionRequest),

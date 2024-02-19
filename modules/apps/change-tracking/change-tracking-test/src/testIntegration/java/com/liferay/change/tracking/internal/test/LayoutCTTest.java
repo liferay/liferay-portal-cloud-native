@@ -1083,10 +1083,7 @@ public class LayoutCTTest {
 			}
 		}
 
-		Assert.assertTrue(
-			"Conflict should occur when publishing a deleted layout that was " +
-				"modified in another publication",
-			hasConflict);
+		Assert.assertTrue(hasConflict);
 	}
 
 	@Test
