@@ -196,12 +196,12 @@ function get_playwright_project_dir() {
 	find ${PLAYWRIGHT_BASE_DIR} -name config.ts -type f -print | xargs grep "name: '${PLAYWRIGHT_PROJECT_NAME}'" | sed -n 's/\(.*\)\/config.ts.*/\1/p'
 }
 
-function get_tomcat_portal_ext_properties_file() {
-	find ${LIFERAY_HOME} -type f -name "portal-ext.properties"
-}
-
 function get_tomcat_dir() {
 	find ${LIFERAY_HOME} -type d -name "tomcat*"
+}
+
+function get_tomcat_portal_ext_properties_file() {
+	find ${LIFERAY_HOME} -type f -name "portal-ext.properties"
 }
 
 function start_app_server() {
