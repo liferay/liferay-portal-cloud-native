@@ -6,6 +6,7 @@
 package com.liferay.taglib.ui;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.Role;
@@ -173,8 +174,8 @@ public class InputPermissionsTag extends IncludeTag {
 				RoleConstants.ADMINISTRATOR, RoleConstants.GUEST,
 				RoleConstants.OWNER, RoleConstants.SITE_ADMINISTRATOR,
 				RoleConstants.SITE_MEMBER, RoleConstants.SITE_OWNER),
-			null, null, _getRoleTypes(group, modelName), 0, teamGroupId, -1,
-			-1);
+			null, null, _getRoleTypes(group, modelName), 0, teamGroupId,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 
 	private static int[] _getRoleTypes(Group group, String modelName) {
