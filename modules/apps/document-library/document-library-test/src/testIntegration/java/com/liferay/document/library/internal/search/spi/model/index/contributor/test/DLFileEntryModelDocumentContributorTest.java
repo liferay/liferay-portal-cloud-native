@@ -146,12 +146,6 @@ public class DLFileEntryModelDocumentContributorTest {
 			_dlFileEntryModelDocumentContributor.contribute(
 				new DocumentImpl(), dlFileEntry);
 
-			Assert.assertTrue(
-				_dlStore.hasFile(
-					dlFileEntry.getCompanyId(),
-					dlFileEntry.getDataRepositoryId(), dlFileEntry.getName(),
-					dlFileVersion.getStoreFileName() + ".index"));
-
 			Assert.assertEquals(
 				StreamUtil.toString(dlFileEntry.getContentStream()),
 				StringUtil.trim(
@@ -161,6 +155,11 @@ public class DLFileEntryModelDocumentContributorTest {
 							dlFileEntry.getDataRepositoryId(),
 							dlFileEntry.getName(),
 							dlFileVersion.getStoreFileName() + ".index"))));
+			Assert.assertTrue(
+				_dlStore.hasFile(
+					dlFileEntry.getCompanyId(),
+					dlFileEntry.getDataRepositoryId(), dlFileEntry.getName(),
+					dlFileVersion.getStoreFileName() + ".index"));
 		}
 	}
 
