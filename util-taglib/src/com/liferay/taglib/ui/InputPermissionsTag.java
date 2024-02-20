@@ -149,33 +149,6 @@ public class InputPermissionsTag extends IncludeTag {
 		return defaultRoleTypes;
 	}
 
-	private static List<Role> _getSupportedRoles(
-			HttpServletRequest httpServletRequest, String modelName)
-		throws Exception {
-
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
-		Group group = GroupLocalServiceUtil.getGroup(
-			themeDisplay.getScopeGroupId());
-
-		long teamGroupId = group.getGroupId();
-
-		if (group.isLayout()) {
-			teamGroupId = group.getParentGroupId();
-		}
-
-		return RoleServiceUtil.getGroupRolesAndTeamRoles(
-			themeDisplay.getCompanyId(), null,
-			ListUtil.fromArray(
-				RoleConstants.ADMINISTRATOR, RoleConstants.GUEST,
-				RoleConstants.OWNER, RoleConstants.SITE_ADMINISTRATOR,
-				RoleConstants.SITE_MEMBER, RoleConstants.SITE_OWNER),
-			null, null, _getRoleTypes(group, modelName), 0, teamGroupId,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-	}
-
 	private static int[] _getRoleTypes(Group group, String modelName) {
 		int[] roleTypes = RoleConstants.TYPES_REGULAR_AND_SITE;
 
@@ -217,6 +190,33 @@ public class InputPermissionsTag extends IncludeTag {
 		}
 
 		return roleTypes;
+	}
+
+	private static List<Role> _getSupportedRoles(
+			HttpServletRequest httpServletRequest, String modelName)
+		throws Exception {
+
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)httpServletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			themeDisplay.getScopeGroupId());
+
+		long teamGroupId = group.getGroupId();
+
+		if (group.isLayout()) {
+			teamGroupId = group.getParentGroupId();
+		}
+
+		return RoleServiceUtil.getGroupRolesAndTeamRoles(
+			themeDisplay.getCompanyId(), null,
+			ListUtil.fromArray(
+				RoleConstants.ADMINISTRATOR, RoleConstants.GUEST,
+				RoleConstants.OWNER, RoleConstants.SITE_ADMINISTRATOR,
+				RoleConstants.SITE_MEMBER, RoleConstants.SITE_OWNER),
+			null, null, _getRoleTypes(group, modelName), 0, teamGroupId,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 
 	private static final String _PAGE =
