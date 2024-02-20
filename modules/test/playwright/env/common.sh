@@ -207,8 +207,8 @@ function get_tomcat_portal_ext_properties_file() {
 function main {
 	PLAYWRIGHT_ENV_DIR=$(dirname ${BASH_SOURCE[0]})
 
-	export PLAYWRIGHT_BASE_DIR=$(get_absolute_dir ${PLAYWRIGHT_ENV_DIR}/../..)
-	export PORTAL_PROJECT_DIR=$(get_absolute_dir ${PLAYWRIGHT_ENV_DIR}/../../../../..)
+	PLAYWRIGHT_BASE_DIR=$(get_absolute_dir ${PLAYWRIGHT_ENV_DIR}/../..)
+	PORTAL_PROJECT_DIR=$(get_absolute_dir ${PLAYWRIGHT_ENV_DIR}/../../../../..)
 
 	if [[ "${LIFERAY_HOME}" == "" ]]
 	then
