@@ -68,7 +68,7 @@ public class PortletPreferencesConflictTest {
 	}
 
 	@Test
-	public void testResolvePortletPreferenceConflictTest() throws Exception {
+	public void testResolvePortletPreferencesConflictTest() throws Exception {
 		javax.portlet.PortletPreferences jxPortletPreferences = null;
 
 		try (SafeCloseable safeCloseable =
