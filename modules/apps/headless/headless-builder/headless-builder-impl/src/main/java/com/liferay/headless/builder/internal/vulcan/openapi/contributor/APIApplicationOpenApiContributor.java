@@ -211,9 +211,9 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 	private Schema _getPropertySchema(
 		APIApplication.Property property, Map<String, Schema> schemas) {
 
-		APIApplication.Property.Type type = property.getType();
-
 		Schema schema = null;
+
+		APIApplication.Property.Type type = property.getType();
 
 		if (type == APIApplication.Property.Type.AGGREGATION) {
 			schema = new StringSchema();
