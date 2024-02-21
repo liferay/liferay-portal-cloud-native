@@ -238,17 +238,15 @@ public class PortletPreferencesConflictTest {
 				PortletKeys.PREFS_OWNER_TYPE_LAYOUT, _layout.getPlid(),
 				_portlet.getPortletId());
 
-		Assert.assertNotNull(
-			publishedJavaxPortletPreferences.getValue(
-				_ctCollection2.getName(), null));
-
-		Assert.assertEquals(
-			publishedJavaxPortletPreferences.getValue(conflictValueName, null),
-			_ctCollection2.getName());
-
 		Assert.assertNull(
 			publishedJavaxPortletPreferences.getValue(
 				_ctCollection1.getName(), null));
+		Assert.assertNotNull(
+			publishedJavaxPortletPreferences.getValue(
+				_ctCollection2.getName(), null));
+		Assert.assertEquals(
+			publishedJavaxPortletPreferences.getValue(conflictValueName, null),
+			_ctCollection2.getName());
 
 		Map<Long, List<ConflictInfo>> conflictInfos =
 			_ctCollectionLocalService.checkConflicts(_ctCollection1);
@@ -271,12 +269,10 @@ public class PortletPreferencesConflictTest {
 
 		Assert.assertNotNull(
 			publishedJavaxPortletPreferences.getValue(
-				_ctCollection2.getName(), null));
-
+				_ctCollection1.getName(), null));
 		Assert.assertNotNull(
 			publishedJavaxPortletPreferences.getValue(
-				_ctCollection1.getName(), null));
-
+				_ctCollection2.getName(), null));
 		Assert.assertEquals(
 			publishedJavaxPortletPreferences.getValue(conflictValueName, null),
 			_ctCollection1.getName());
