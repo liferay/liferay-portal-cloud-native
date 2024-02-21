@@ -54,8 +54,9 @@ public class ObjectDefinitionUtil {
 	}
 
 	public static boolean isInvokerBundleAllowed() {
-		if (PortalInstances.isCurrentCompanyInDeletionProcess() ||
-			PortalRunMode.isTestMode() || DBUpgrader.isUpgradeClient()) {
+		if (DBUpgrader.isUpgradeClient() ||
+			PortalInstances.isCurrentCompanyInDeletionProcess() ||
+			PortalRunMode.isTestMode()) {
 
 			return true;
 		}
