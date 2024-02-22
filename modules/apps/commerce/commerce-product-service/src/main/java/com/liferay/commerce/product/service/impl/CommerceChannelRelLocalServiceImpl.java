@@ -120,12 +120,12 @@ public class CommerceChannelRelLocalServiceImpl
 				CountryTable.INSTANCE.countryId.eq(
 					CommerceChannelRelTable.INSTANCE.classPK)
 			).where(
-				CommerceChannelRelTable.INSTANCE.commerceChannelId.eq(
-					commerceChannelId
+				CommerceChannelRelTable.INSTANCE.classNameId.eq(
+					_classNameLocalService.getClassNameId(
+						Country.class.getName())
 				).and(
-					CommerceChannelRelTable.INSTANCE.classNameId.eq(
-						_classNameLocalService.getClassNameId(
-							Country.class.getName()))
+					CommerceChannelRelTable.INSTANCE.commerceChannelId.eq(
+						commerceChannelId)
 				).and(
 					() -> {
 						if (Validator.isNull(name)) {
