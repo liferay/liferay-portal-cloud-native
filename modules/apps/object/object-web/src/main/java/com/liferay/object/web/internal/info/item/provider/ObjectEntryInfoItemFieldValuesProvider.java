@@ -143,6 +143,16 @@ public class ObjectEntryInfoItemFieldValuesProvider
 		}
 	}
 
+	private User _fetchUser(ServiceContext serviceContext) {
+		User user = _userLocalService.fetchUser(serviceContext.getUserId());
+
+		if (user != null) {
+			return user;
+		}
+
+		return _userLocalService.fetchGuestUser(serviceContext.getCompanyId());
+	}
+
 	private List<InfoFieldValue<Object>> _getAttachmentInfoFieldValues(
 		ObjectField objectField, Object value) {
 
@@ -552,16 +562,6 @@ public class ObjectEntryInfoItemFieldValuesProvider
 		}
 
 		return null;
-	}
-
-	private User _fetchUser(ServiceContext serviceContext) {
-		User user = _userLocalService.fetchUser(serviceContext.getUserId());
-
-		if (user != null) {
-			return user;
-		}
-
-		return _userLocalService.fetchGuestUser(serviceContext.getCompanyId());
 	}
 
 	private Object _getValue(
