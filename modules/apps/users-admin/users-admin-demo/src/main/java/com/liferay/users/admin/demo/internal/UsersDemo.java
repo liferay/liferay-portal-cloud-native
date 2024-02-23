@@ -18,15 +18,12 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserConstants;
 import com.liferay.portal.kernel.model.role.RoleConstants;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
-import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.OrganizationLocalService;
 import com.liferay.portal.kernel.service.RoleLocalService;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Calendar;
 import java.util.List;
@@ -42,45 +39,44 @@ public class UsersDemo extends BasePortalInstanceLifecycleListener {
 
 	@Override
 	public void portalInstanceRegistered(Company company) throws Exception {
-		if (company.getCompanyId() == _portal.getDefaultCompanyId()) {
-			Organization organization = _addTestOrganization(company);
-
-			_addTestCompanyAdminUser(company);
-
-			_addTestOrganizationOwnerUser(organization);
-
-			_addTestUnprivilegedUser(company);
+		if (company.getCompanyId() != _portal.getDefaultCompanyId()) {
+			return;
 		}
+
+		_addTestCompanyAdminUser(company);
+
+		Organization organization = _addTestOrganization(
+			company.getCompanyId());
+
+		_addTestOrganizationOwnerUser(company, organization);
+
+		_addTestUnprivilegedUser(company);
 	}
 
 	private User _addTestCompanyAdminUser(Company company) throws Exception {
-		long companyId = company.getCompanyId();
 		String screenName = "test-company-admin";
 
 		User user = _userLocalService.fetchUserByScreenName(
-			companyId, screenName);
+			company.getCompanyId(), screenName);
 
 		if (user != null) {
 			return user;
 		}
 
 		Group group = _groupLocalService.getGroup(
-			companyId, GroupConstants.GUEST);
+			company.getCompanyId(), GroupConstants.GUEST);
 
-		user = _addUser(companyId, screenName, new long[] {group.getGroupId()});
+		user = _addUser(company, screenName, new long[] {group.getGroupId()});
 
 		Role role = _roleLocalService.getRole(
-			companyId, RoleConstants.ADMINISTRATOR);
+			company.getCompanyId(), RoleConstants.ADMINISTRATOR);
 
 		_userLocalService.addRoleUser(role.getRoleId(), user);
 
 		return user;
 	}
 
-	private Organization _addTestOrganization(Company company)
-		throws Exception {
-
-		long companyId = company.getCompanyId();
+	private Organization _addTestOrganization(long companyId) throws Exception {
 		String name = "test-organization";
 
 		Organization organization = _organizationLocalService.fetchOrganization(
@@ -97,27 +93,27 @@ public class UsersDemo extends BasePortalInstanceLifecycleListener {
 			OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID, name, false);
 	}
 
-	private User _addTestOrganizationOwnerUser(Organization organization)
+	private User _addTestOrganizationOwnerUser(
+			Company company, Organization organization)
 		throws Exception {
 
-		long companyId = organization.getCompanyId();
 		String screenName = "test-organization-owner";
 
 		User user = _userLocalService.fetchUserByScreenName(
-			companyId, screenName);
+			company.getCompanyId(), screenName);
 
 		if (user != null) {
 			return user;
 		}
 
 		user = _addUser(
-			companyId, screenName, new long[] {organization.getGroupId()});
+			company, screenName, new long[] {organization.getGroupId()});
 
 		_userLocalService.addOrganizationUser(
 			organization.getOrganizationId(), user.getUserId());
 
 		Role role = _roleLocalService.getRole(
-			organization.getCompanyId(), RoleConstants.ORGANIZATION_OWNER);
+			company.getCompanyId(), RoleConstants.ORGANIZATION_OWNER);
 
 		_userGroupRoleLocalService.addUserGroupRoles(
 			new long[] {user.getUserId()}, organization.getGroupId(),
@@ -127,54 +123,32 @@ public class UsersDemo extends BasePortalInstanceLifecycleListener {
 	}
 
 	private User _addTestUnprivilegedUser(Company company) throws Exception {
-		long companyId = company.getCompanyId();
 		String screenName = "test-unprivileged";
 
 		User user = _userLocalService.fetchUserByScreenName(
-			companyId, screenName);
+			company.getCompanyId(), screenName);
 
 		if (user != null) {
 			return user;
 		}
 
-		return _addUser(companyId, screenName, null);
+		return _addUser(company, screenName, null);
 	}
 
-	private User _addUser(long companyId, String screenName, long[] groupIds)
+	private User _addUser(Company company, String screenName, long[] groupIds)
 		throws Exception {
 
-		User adminUser = _getAdminUser(companyId);
-
-		Company company = _companyLocalService.getCompanyById(companyId);
-
-		boolean autoPassword = false;
-		String password1 = "test";
-		String password2 = "test";
-		String emailAddress = screenName + "@liferay.com";
+		User adminUser = _getAdminUser(company.getCompanyId());
 		String firstName = screenName;
-		String middleName = StringPool.BLANK;
 		String lastName = screenName;
-		long prefixListTypeId = 0;
-		long suffixListTypeId = 0;
-		boolean male = false;
-		int birthdayMonth = Calendar.JANUARY;
-		int birthdayDay = 1;
-		int birthdayYear = 1970;
-		String jobTitle = StringPool.BLANK;
-		long[] organizationIds = null;
-		long[] roleIds = null;
-		long[] userGroupIds = null;
-		boolean sendMail = false;
-		ServiceContext serviceContext = null;
 
 		User user = _userLocalService.addUser(
-			adminUser.getUserId(), companyId, autoPassword, password1,
-			password2, Validator.isNull(screenName), screenName, emailAddress,
-			company.getLocale(), firstName, middleName, lastName,
-			prefixListTypeId, suffixListTypeId, male, birthdayMonth,
-			birthdayDay, birthdayYear, jobTitle, UserConstants.TYPE_REGULAR,
-			groupIds, organizationIds, roleIds, userGroupIds, sendMail,
-			serviceContext);
+			adminUser.getUserId(), company.getCompanyId(), false, "test",
+			"test", false, screenName, screenName + "@liferay.com",
+			company.getLocale(), firstName, StringPool.BLANK, lastName, 0, 0,
+			true, Calendar.JANUARY, 1970, 1970, StringPool.BLANK,
+			UserConstants.TYPE_REGULAR, groupIds, null, null, null, false,
+			null);
 
 		user.setEmailAddressVerified(true);
 
@@ -188,15 +162,8 @@ public class UsersDemo extends BasePortalInstanceLifecycleListener {
 		List<User> users = _userLocalService.getRoleUsers(
 			role.getRoleId(), 0, 1);
 
-		if (!users.isEmpty()) {
-			return users.get(0);
-		}
-
-		return null;
+		return users.get(0);
 	}
-
-	@Reference
-	private CompanyLocalService _companyLocalService;
 
 	@Reference
 	private GroupLocalService _groupLocalService;
