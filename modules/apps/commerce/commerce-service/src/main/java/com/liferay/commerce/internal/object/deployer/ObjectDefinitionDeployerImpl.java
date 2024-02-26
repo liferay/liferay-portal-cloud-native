@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.UserGroupLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -49,7 +50,9 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 	public List<ServiceRegistration<?>> deploy(
 		ObjectDefinition objectDefinition) {
 
-		if ("CommerceOrder".equalsIgnoreCase(objectDefinition.getShortName())) {
+		if (StringUtil.equalsIgnoreCase(
+				"CommerceOrder", objectDefinition.getShortName())) {
+
 			return Collections.singletonList(
 				_bundleContext.registerService(
 					NotificationTermEvaluator.class,

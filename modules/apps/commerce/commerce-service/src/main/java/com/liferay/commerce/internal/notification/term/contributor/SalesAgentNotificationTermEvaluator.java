@@ -13,6 +13,7 @@ import com.liferay.object.model.ObjectDefinition;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionCheckerFactory;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.service.RoleLocalService;
@@ -60,14 +61,13 @@ public class SalesAgentNotificationTermEvaluator
 
 		Map<String, Object> termValues = (Map<String, Object>)object;
 
-		return StringUtil.merge(_getSalesAgentsEmailAddresses(termValues));
+		return StringUtil.merge(_getEmailAddresses(termValues));
 	}
 
-	private List<String> _getSalesAgentsEmailAddresses(
-			Map<String, Object> termValues)
+	private List<String> _getEmailAddresses(Map<String, Object> termValues)
 		throws PortalException {
 
-		List<String> salesAgentsEmailAddresses = new ArrayList<>();
+		List<String> emailAddresses = new ArrayList<>();
 
 		CommerceOrder commerceOrder =
 			_commerceOrderLocalService.getCommerceOrder(
@@ -82,13 +82,13 @@ public class SalesAgentNotificationTermEvaluator
 		for (User user : roleUsers) {
 			if (_accountEntryModelResourcePermission.contains(
 					_permissionCheckerFactory.create(user),
-					commerceOrder.getCommerceAccountId(), "VIEW")) {
+					commerceOrder.getCommerceAccountId(), ActionKeys.VIEW)) {
 
-				salesAgentsEmailAddresses.add(user.getEmailAddress());
+				emailAddresses.add(user.getEmailAddress());
 			}
 		}
 
-		return salesAgentsEmailAddresses;
+		return emailAddresses;
 	}
 
 	private final ModelResourcePermission<AccountEntry>
