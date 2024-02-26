@@ -81,9 +81,9 @@ public class ClusterLinkPortalCacheClusterListener extends BaseMessageListener {
 
 	@Deactivate
 	protected void deactivate() {
-		_serviceTrackerMap.close();
-
 		_serviceRegistration.unregister();
+
+		_serviceTrackerMap.close();
 	}
 
 	@Override
