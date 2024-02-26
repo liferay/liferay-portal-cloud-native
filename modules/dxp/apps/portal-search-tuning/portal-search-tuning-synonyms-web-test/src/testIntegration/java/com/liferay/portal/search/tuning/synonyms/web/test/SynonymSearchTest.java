@@ -288,7 +288,7 @@ public class SynonymSearchTest {
 		SearchEngine searchEngine = SearchEngineHelperUtil.getSearchEngine();
 
 		if (Objects.equals(searchEngine.getVendor(), "OpenSearch")) {
-			return _CONFIGURATION_PID_OPENSEARCH2;
+			return _CONFIGURATION_PID_OPENSEARCH_2;
 		}
 
 		return _CONFIGURATION_PID_ELASTICSEARCH;
@@ -298,7 +298,7 @@ public class SynonymSearchTest {
 		"com.liferay.portal.search.elasticsearch7.configuration." +
 			"ElasticsearchConfiguration";
 
-	private static final String _CONFIGURATION_PID_OPENSEARCH2 =
+	private static final String _CONFIGURATION_PID_OPENSEARCH_2 =
 		"com.liferay.portal.search.opensearch2.configuration." +
 			"OpenSearchConfiguration";
 
