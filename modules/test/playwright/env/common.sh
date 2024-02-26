@@ -65,7 +65,7 @@ function deploy_client_extensions {
 
 				${gradlew} deploy -Pliferay.workspace.home.dir=${LIFERAY_HOME}
 			else
-				echo "Unable to find Client Extension directory at ${client_extension_dir}"
+				echo "The directory ${client_extension_dir} does not exist."
 			fi
 		done
 	fi
@@ -101,7 +101,7 @@ function deploy_osgi_modules {
 
 				${gradlew} deploy
 			else
-				echo "Unable to find OSGi module directory at ${osgi_module_dir}"
+				echo "The directory ${osgi_module_dir} does not exist."
 			fi
 		done
 	fi
