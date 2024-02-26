@@ -325,7 +325,6 @@ public abstract class BaseDBPartitionTestCase {
 
 		dbPartitionDB = ReflectionTestUtil.getFieldValue(
 			DBPartitionUtil.class, "_dbPartitionDB");
-
 		defaultPartitionName = ReflectionTestUtil.getFieldValue(
 			DBPartitionUtil.class, "_defaultPartitionName");
 	}
