@@ -1033,8 +1033,7 @@ public class JournalEditArticleDisplayContext {
 		).put(
 			"displayDate",
 			() -> {
-				if ((_article != null) &&
-					(_article.getDisplayDate() != null) &&
+				if ((_article != null) && (_article.getDisplayDate() != null) &&
 					(_article.isPending() || _article.isScheduled())) {
 
 					Format format =
