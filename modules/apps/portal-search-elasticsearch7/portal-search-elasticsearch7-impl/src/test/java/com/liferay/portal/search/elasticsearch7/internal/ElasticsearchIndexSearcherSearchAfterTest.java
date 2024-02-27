@@ -225,15 +225,15 @@ public class ElasticsearchIndexSearcherSearchAfterTest {
 			DeepPaginationConfiguration.class);
 
 		Mockito.when(
-			deepPaginationConfiguration.pointInTimeKeepAliveSeconds()
-		).thenReturn(
-			pointInTimeKeepAliveSeconds
-		);
-
-		Mockito.when(
 			deepPaginationConfiguration.enableDeepPagination()
 		).thenReturn(
 			true
+		);
+
+		Mockito.when(
+			deepPaginationConfiguration.pointInTimeKeepAliveSeconds()
+		).thenReturn(
+			pointInTimeKeepAliveSeconds
 		);
 
 		ConfigurationProvider configurationProvider = Mockito.mock(
