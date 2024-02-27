@@ -260,11 +260,9 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 				sb.append(errorJSONObject.getString("stack"));
 
 				sb.append("\n");
-
 				sb.append(
 					StringEscapeUtils.unescapeJava(
 						errorJSONObject.getString("snippet")));
-
 				sb.append("\n\n");
 			}
 
