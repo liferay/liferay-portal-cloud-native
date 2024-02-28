@@ -59,17 +59,23 @@ function copy_reference_docs {
 }
 
 function copy_resources {
-	copy_images
-
 	copy_examples
-
+	copy_images
 	copy_reference_docs
+}
+
+function generate_docs {
+	pushd ${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}
+
+	./generate_docs.sh
+
+	popd
 }
 
 function main {
 	clone_repository
 
-	setup
+	generate_docs
 
 	copy_resources
 
@@ -81,6 +87,11 @@ function prepare_import {
 	export PATH=${JAVA_HOME}/bin:${PATH}
 
 	java -version
+
+	if [ -z "${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}" ]
+	then
+		export LIFERAY_LEARN_ROOT_DIR=${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}
+	fi
 
 	if [ -z "${LIFERAY_LEARN_ETC_CRON_LIFERAY_OAUTH_CLIENT_ID}" ]
 	then
@@ -95,11 +106,6 @@ function prepare_import {
 	if [ -z "${LIFERAY_LEARN_ETC_CRON_LIFERAY_URL}" ]
 	then
 		export LIFERAY_LEARN_ETC_CRON_LIFERAY_URL="https://$(cat /etc/liferay/lxc/dxp-metadata/com.liferay.lxc.dxp.mainDomain)"
-	fi
-
-	if [ -z "${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}" ]
-	then
-		export LIFERAY_LEARN_ROOT_DIR=${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}
 	fi
 }
 
@@ -118,14 +124,6 @@ function send_slack_message {
 	eval curl \
 		-X POST \
 		-d "'{\"channel\": \"${LIFERAY_LEARN_ETC_CRON_SLACK_CHANNEL}\", \"icon_emoji\": \":robot_face:\", \"text\": \"${text}\", \"username\": \"devopsbot\"}'" ${LIFERAY_LEARN_ETC_CRON_SLACK_ENDPOINT}
-}
-
-function setup {
-	pushd ${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}
-
-	./setup.sh
-
-	popd
 }
 
 main "${@}"
