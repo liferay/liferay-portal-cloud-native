@@ -67,7 +67,7 @@ function copy_resources {
 }
 
 function main {
-	# clone_repository
+	clone_repository
 
 	setup
 
