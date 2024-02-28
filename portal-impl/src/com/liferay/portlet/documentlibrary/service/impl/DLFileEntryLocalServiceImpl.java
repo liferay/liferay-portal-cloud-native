@@ -2004,6 +2004,7 @@ public class DLFileEntryLocalServiceImpl
 		}
 
 		dlFileVersion.setStatus(status);
+
 		dlFileVersion.setStatusByUserId(user.getUserId());
 		dlFileVersion.setStatusByUserName(user.getFullName());
 		dlFileVersion.setStatusDate(new Date());
@@ -2325,7 +2326,7 @@ public class DLFileEntryLocalServiceImpl
 			_log.debug(
 				StringBundler.concat(
 					"Publishing file entries with display date less than ",
-					displayDate, " for companyId ", companyId));
+					displayDate, " for company ", companyId));
 		}
 
 		_publishFileEntriesByCompanyId(
@@ -2341,7 +2342,7 @@ public class DLFileEntryLocalServiceImpl
 			_log.debug(
 				StringBundler.concat(
 					"Expiring file entries with expiration date prior to ",
-					expirationDate, " for companyId ", companyId));
+					expirationDate, " for company ", companyId));
 		}
 
 		_expireFileEntriesByCompanyId(
