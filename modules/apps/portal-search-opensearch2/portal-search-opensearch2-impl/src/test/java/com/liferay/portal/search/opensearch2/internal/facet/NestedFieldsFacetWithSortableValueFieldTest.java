@@ -52,7 +52,6 @@ public class NestedFieldsFacetWithSortableValueFieldTest
 
 				helper.assertFrequencies(facet, Arrays.asList("one=6"));
 			});
-
 		assertSearchFacet(
 			helper -> {
 				Facet facet = helper.addFacet(this::createFacet);
