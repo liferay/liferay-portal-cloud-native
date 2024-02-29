@@ -36,6 +36,9 @@ public class ThemeCSSCETImplFactoryImplTest {
 		ThemeCSSCETImplFactoryImpl themeCSSCETImplFactoryImpl =
 			new ThemeCSSCETImplFactoryImpl(new JSONFactoryImpl());
 
+		themeCSSCETImplFactoryImpl.validate(
+			_createThemeCSSCET("{\"frontendTokenCategories\": []}"), null);
+
 		try {
 			themeCSSCETImplFactoryImpl.validate(
 				_createThemeCSSCET("{\"frontendTokenCategories\": [}"), null);
@@ -50,9 +53,6 @@ public class ThemeCSSCETImplFactoryImplTest {
 					"token-definition-json-file",
 				clientExtensionEntryTypeSettingsException.getMessageKey());
 		}
-
-		themeCSSCETImplFactoryImpl.validate(
-			_createThemeCSSCET("{\"frontendTokenCategories\": []}"), null);
 	}
 
 	private ThemeCSSCET _createThemeCSSCET(String frontendTokenDefinitionJSON) {
