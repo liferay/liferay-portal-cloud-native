@@ -417,3 +417,8 @@ e1e299f3ba8e2e255d4906effaaa9b347ffb96cd^..995217ac801dd28f20ad864508d814e35193c
 # Bundle Version 6.0.70
 #
 69bd452c19f9fd8f26979a384a40fd034cc26366^..f845da8be8abc10d4bf9acdf68b88fa35aaf7333=LPD-15167 LPD-17054 LPS-201585
+
+#
+# Bundle Version 6.0.71
+#
+f845da8be8abc10d4bf9acdf68b88fa35aaf7333^..47da410b3cc69ea6b1cabeb72d67a977c0eacafc=LPD-16337
