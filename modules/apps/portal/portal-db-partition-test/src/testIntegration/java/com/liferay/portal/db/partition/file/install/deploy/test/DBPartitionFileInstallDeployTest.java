@@ -221,8 +221,8 @@ public class DBPartitionFileInstallDeployTest extends BaseDBPartitionTestCase {
 			() -> _checkConfigurationNotExists(),
 			() -> _checkConfigurationNotExists(),
 			unsupportedOperationException -> Assert.assertEquals(
-				"Group scoped configuration files are not supported with " +
-					"Database Partition",
+				"Group scoped configuration files do not support database " +
+					"partitioning",
 				unsupportedOperationException.getMessage()),
 			false);
 	}
@@ -236,8 +236,8 @@ public class DBPartitionFileInstallDeployTest extends BaseDBPartitionTestCase {
 			() -> _checkConfigurationNotExists(),
 			() -> _checkConfigurationNotExists(),
 			unsupportedOperationException -> Assert.assertEquals(
-				"Portlet-instance scoped configuration files are not " +
-					"supported with Database Partition",
+				"Portlet-instance scoped configuration do not support " +
+					"database partitioning",
 				unsupportedOperationException.getMessage()),
 			false);
 	}

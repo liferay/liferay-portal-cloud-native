@@ -373,8 +373,8 @@ public class ConfigurationFileInstaller implements FileInstaller {
 							StringBundler.concat(
 								StringUtil.upperCaseFirstLetter(
 									scope.getValue()),
-								" scoped configuration files are not ",
-								"supported with Database Partition"));
+								" scoped configuration files do not support ",
+								"database partitioning"));
 					}
 
 					return scope;
