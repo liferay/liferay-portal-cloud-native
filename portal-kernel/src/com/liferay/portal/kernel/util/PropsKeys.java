@@ -1400,15 +1400,6 @@ public interface PropsKeys {
 	public static final String LDAP_ATTRS_TRANSFORMER_IMPL =
 		"ldap.attrs.transformer.impl";
 
-	public static final String LEARN_RESOURCES_CDN_ENABLED =
-		"learn.resources.cdn.enabled";
-
-	public static final String LEARN_RESOURCES_ENABLED =
-		"learn.resources.enabled";
-
-	public static final String LEARN_RESOURCES_REFRESH_TIME =
-		"learn.resources.refresh.time";
-
 	public static final String LIFERAY_HOME = "liferay.home";
 
 	public static final String LIFERAY_SHIELDED_CONTAINER_LIB_PORTAL_DIR =

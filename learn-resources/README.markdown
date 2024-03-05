@@ -24,7 +24,7 @@ Here are the steps:
 
 1. In this folder (i.e., `learn-resources`), create a JSON file named after the module you're embedding links in.
 
-1. Create an element for each resource you're linking to. For example, the [`learn-resources/marketplace-store-web.json`](https://github.com/liferay/liferay-portal/blob/master/learn-resources/marketplace-store-web.json) file has these resource entries:
+1. Create an element for each resource you're linking to. For example, the [`learn-resources/data/marketplace-store-web.json`](https://github.com/liferay/liferay-portal/blob/master/learn-resources/data/marketplace-store-web.json) file has these resource entries:
 
 	```json
 	{
@@ -47,7 +47,7 @@ The example resource entries have the keys `download-app` and `purchase-app`. Th
 
 ## Adding `liferay-learn:message` Tags to a JSP
 
-In your module's JSP, link to the resources using `liferay-learn:message` tags. For example, the `marketplace-store-web` module's `view.jsp` file can reference the `learn-resources/marketplace-store-web.json` file's `download-app` resource with this code:
+In your module's JSP, link to the resources using `liferay-learn:message` tags. For example, the `marketplace-store-web` module's `view.jsp` file can reference the `learn-resources/data/marketplace-store-web.json` file's `download-app` resource with this code:
 
 ```javascript
 <%@ taglib uri="http://liferay.com/tld/learn" prefix="liferay-learn" %>
@@ -58,7 +58,7 @@ In your module's JSP, link to the resources using `liferay-learn:message` tags. 
 />
 ```
 
-The first line above includes the `liferay-learn` tag library. The `liferay-learn:message` tag links to the `download-app` resource in the `learn-resources/marketplace-store-web.json` file. When the JSP renders, the text *How can I download an app?* links to the resource located at <https://learn.liferay.com/dxp/latest/en/system-administration/installing-and-managing-apps/installing-apps/downloading-apps.html>.
+The first line above includes the `liferay-learn` tag library. The `liferay-learn:message` tag links to the `download-app` resource in the `learn-resources/data/marketplace-store-web.json` file. When the JSP renders, the text *How can I download an app?* links to the resource located at <https://learn.liferay.com/dxp/latest/en/system-administration/installing-and-managing-apps/installing-apps/downloading-apps.html>.
 
 That's how you link to Liferay Learn resources!
 
@@ -72,7 +72,7 @@ That's how you link to Liferay Learn resources!
 
 ## Adding a Resource Link to a React Component
 
-For example, to use [the `search-experiences-web.json` file's `advanced-configuration` resource key](https://github.com/liferay/liferay-portal/blob/master/learn-resources/search-experiences-web.json#L2-L7):
+For example, to use [the `search-experiences-web.json` file's `advanced-configuration` resource key](https://github.com/liferay/liferay-portal/blob/master/learn-resources/data/search-experiences-web.json#L2-L7):
 
 1. In the JSP, use the `LearnMessageUtil.getReactDataJSONObject` Java method to retrieve the resource data to pass into the React component.
 
