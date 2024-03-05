@@ -31,14 +31,11 @@ public class FrontendTokenDefinitionJSONValidatorTest {
 	@Test
 	public void testValidate() throws IOException, JSONValidatorException {
 		_frontendTokenDefinitionJSONValidator.validate("");
-
 		_frontendTokenDefinitionJSONValidator.validate("{}");
-
 		_frontendTokenDefinitionJSONValidator.validate(
 			URLUtil.toString(
 				FrontendTokenDefinitionRegistryImplTest.class.getResource(
 					"dependencies/frontend-token-definition.json")));
-
 		_frontendTokenDefinitionJSONValidator.validate(
 			URLUtil.toString(
 				FrontendTokenDefinitionRegistryImplTest.class.getResource(
