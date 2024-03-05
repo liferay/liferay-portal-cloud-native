@@ -37,7 +37,7 @@ public class CommercePaymentEntryRefundTypeImpl
 	implements CommercePaymentEntryRefundType {
 
 	@Override
-	public boolean getEnabled() {
+	public boolean isEnabled() {
 		return _commercePaymentEntryRefundTypeConfiguration.enabled();
 	}
 

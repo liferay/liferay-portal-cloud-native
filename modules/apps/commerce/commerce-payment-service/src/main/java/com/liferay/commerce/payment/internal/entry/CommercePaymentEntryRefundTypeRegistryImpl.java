@@ -73,7 +73,7 @@ public class CommercePaymentEntryRefundTypeRegistryImpl
 			commercePaymentEntryRefundTypes = TransformUtil.transform(
 				_serviceTrackerMap.values(),
 				commercePaymentEntryRefundType -> {
-					if (commercePaymentEntryRefundType.getEnabled()) {
+					if (commercePaymentEntryRefundType.isEnabled()) {
 						return commercePaymentEntryRefundType;
 					}
 

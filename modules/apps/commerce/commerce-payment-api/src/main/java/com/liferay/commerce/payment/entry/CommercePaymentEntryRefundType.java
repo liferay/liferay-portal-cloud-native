@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public interface CommercePaymentEntryRefundType {
 
-	public boolean getEnabled();
+	public boolean isEnabled();
 
 	public String getKey();
 
