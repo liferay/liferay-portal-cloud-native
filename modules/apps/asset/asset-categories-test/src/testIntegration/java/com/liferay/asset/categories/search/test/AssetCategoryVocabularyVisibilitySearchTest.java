@@ -231,11 +231,9 @@ public class AssetCategoryVocabularyVisibilitySearchTest {
 			(String)searchContext.getAttribute("queryString"), hits.getDocs(),
 			assetCategoryIdsFieldName,
 			TransformUtil.transform(expectedAssetCategoryIds, String::valueOf));
-
 		DocumentsAssert.assertValuesIgnoreRelevance(
 			(String)searchContext.getAttribute("queryString"), hits.getDocs(),
 			assetCategoryTitlesFieldName, expectedAssetCategoryTitles);
-
 		DocumentsAssert.assertValuesIgnoreRelevance(
 			(String)searchContext.getAttribute("queryString"), hits.getDocs(),
 			assetVocabularyIdsFieldName,
