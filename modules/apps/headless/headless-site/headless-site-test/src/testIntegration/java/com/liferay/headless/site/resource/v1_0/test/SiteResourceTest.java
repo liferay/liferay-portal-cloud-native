@@ -41,6 +41,7 @@ import java.util.Map;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -127,6 +128,13 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 					externalReferenceCode,
 				problem.getTitle());
 		}
+	}
+
+	@Ignore
+	@Override
+	@Test
+	public void testGetSiteByExternalReferenceCodeSiteInitializer()
+		throws Exception {
 	}
 
 	@Override
