@@ -31,6 +31,8 @@ import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.site.exception.InitializationException;
 import com.liferay.site.initializer.SiteInitializer;
 
+import java.io.File;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -102,6 +104,11 @@ public class MiniumFullSiteInitializer implements SiteInitializer {
 	@Override
 	public boolean isActive(long companyId) {
 		return _siteInitializer.isActive(companyId);
+	}
+
+	@Override
+	public File serialize(long groupId) {
+		throw new UnsupportedOperationException();
 	}
 
 	private void _fixDLFileEntryPermissions(long groupId)

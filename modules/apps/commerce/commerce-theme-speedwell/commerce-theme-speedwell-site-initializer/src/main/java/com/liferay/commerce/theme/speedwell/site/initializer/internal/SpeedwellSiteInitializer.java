@@ -278,6 +278,11 @@ public class SpeedwellSiteInitializer implements SiteInitializer {
 		return true;
 	}
 
+	@Override
+	public File serialize(long groupId) {
+		throw new UnsupportedOperationException();
+	}
+
 	@Activate
 	protected void activate() {
 		init();
