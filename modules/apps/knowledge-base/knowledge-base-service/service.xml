@@ -473,6 +473,7 @@
 		<exception>KBFolderParent</exception>
 		<exception>KBTemplateContent</exception>
 		<exception>KBTemplateTitle</exception>
+		<exception>LockedKBArticle</exception>
 		<exception>NoSuchKBArticleSelector</exception>
 	</exceptions>
 </service-builder>
