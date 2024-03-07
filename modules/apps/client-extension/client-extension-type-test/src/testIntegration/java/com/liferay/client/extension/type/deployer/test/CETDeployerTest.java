@@ -50,14 +50,19 @@ public class CETDeployerTest {
 	public void testDeploy() throws Exception {
 		User user = UserTestUtil.addUser();
 
+		_testDeploy(
+			ClientExtensionEntryConstants.TYPE_JS_IMPORT_MAPS_ENTRY, user);
+		_testDeploy(ClientExtensionEntryConstants.TYPE_THEME_CSS, user);
+	}
+
+	private void _testDeploy(String type, User user) throws Exception {
 		ClientExtensionEntry clientExtensionEntry =
 			_clientExtensionEntryLocalService.addClientExtensionEntry(
 				StringPool.BLANK, user.getUserId(), StringPool.BLANK,
 				HashMapBuilder.put(
 					LocaleUtil.getDefault(), RandomTestUtil.randomString()
 				).build(),
-				StringPool.BLANK, StringPool.BLANK,
-				ClientExtensionEntryConstants.TYPE_THEME_CSS, StringPool.BLANK);
+				StringPool.BLANK, StringPool.BLANK, type, StringPool.BLANK);
 
 		List<ServiceRegistration<?>> serviceRegistrations = new ArrayList<>();
 
