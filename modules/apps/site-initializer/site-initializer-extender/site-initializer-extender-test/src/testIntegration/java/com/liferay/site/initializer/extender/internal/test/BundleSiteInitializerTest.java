@@ -173,6 +173,7 @@ import com.liferay.portal.language.override.model.PLOEntry;
 import com.liferay.portal.language.override.service.PLOEntryLocalService;
 import com.liferay.portal.security.service.access.policy.model.SAPEntry;
 import com.liferay.portal.security.service.access.policy.service.SAPEntryLocalService;
+import com.liferay.portal.test.rule.FeatureFlags;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
@@ -365,6 +366,7 @@ public class BundleSiteInitializerTest {
 		}
 	}
 
+	@FeatureFlags("LPD-19870")
 	@Test
 	public void testSerialize() throws Exception {
 		File tempDir1 = _getTempDir(

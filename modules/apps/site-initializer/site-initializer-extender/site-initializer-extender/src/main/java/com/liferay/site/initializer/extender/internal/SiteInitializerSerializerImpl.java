@@ -11,6 +11,7 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalService;
 import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.feature.flag.FeatureFlagManagerUtil;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -43,6 +44,10 @@ public class SiteInitializerSerializerImpl
 
 	@Override
 	public File serialize(long groupId) throws SerializationException {
+		if (!FeatureFlagManagerUtil.isEnabled("LPD-19870")) {
+			throw new UnsupportedOperationException();
+		}
+
 		try {
 			ZipWriter zipWriter = _zipWriterFactory.getZipWriter();
 

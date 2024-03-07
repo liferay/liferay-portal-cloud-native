@@ -11,6 +11,7 @@ import com.liferay.portal.events.ServicePreAction;
 import com.liferay.portal.events.ThemeServicePreAction;
 import com.liferay.portal.kernel.change.tracking.CTAware;
 import com.liferay.portal.kernel.exception.NoSuchGroupException;
+import com.liferay.portal.kernel.feature.flag.FeatureFlagManagerUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.LayoutSetPrototype;
@@ -109,6 +110,10 @@ public class SiteResourceImpl extends BaseSiteResourceImpl {
 	public Response getSiteByExternalReferenceCodeSiteInitializer(
 			String externalReferenceCode)
 		throws Exception {
+
+		if (!FeatureFlagManagerUtil.isEnabled("LPD-19870")) {
+			throw new UnsupportedOperationException();
+		}
 
 		Group group = _groupLocalService.getGroupByExternalReferenceCode(
 			externalReferenceCode, contextCompany.getCompanyId());
