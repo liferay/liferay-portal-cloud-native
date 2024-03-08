@@ -136,7 +136,7 @@ public class JournalArticleFriendlyURLTest {
 	}
 
 	@Test
-	public void testFriendlyURLShouldNotHaveSiteLanguageNotEqualDefaultLanguage()
+	public void testFriendlyURLShouldNotHaveSiteLocaleNotEqualDefaultLocale()
 		throws Exception {
 
 		Locale originalSiteDefaultLocale =
