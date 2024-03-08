@@ -3,10 +3,10 @@
 	"cpu": 4,
 	"env": {
 		"LIFERAY_JAR_RUNNER_JAVA_OPTS": "-Xmx4096m",
-		"LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR": "/home/liferay/liferay-learn",
 		"LIFERAY_LEARN_ETC_CRON_GITHUB_BRANCH": "master",
 		"LIFERAY_LEARN_ETC_CRON_GITHUB_DEPLOY_KEY": "@liferay-learn-github-deploy-key",
 		"LIFERAY_LEARN_ETC_CRON_GITHUB_USER": "liferay",
+		"LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR": "/home/liferay/liferay-learn",
 		"LIFERAY_LEARN_ETC_CRON_LIFERAY_DATA_DEFINITION_KEY": "LEARN-ARTICLE",
 		"LIFERAY_LEARN_ETC_CRON_LIFERAY_LEARN_RESOURCES_DOMAIN": "https://liferaylearnresources-exte5a2learn-extdev.lfr.cloud",
 		"LIFERAY_LEARN_ETC_CRON_LIFERAY_OAUTH_CLIENT_ID": "@liferay-oauth-client-id",
@@ -45,7 +45,7 @@
 	"scale": 1,
 	"schedule": "0 10 * * 1",
 	"volumes": {
-		"publicHtml": "/public_html",
-		"homeLiferay": "/home/liferay"
+		"homeLiferay": "/home/liferay",
+		"publicHtml": "/public_html"
 	}
 }
