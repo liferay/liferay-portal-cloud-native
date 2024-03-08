@@ -555,6 +555,15 @@ public class ClientExtensionProjectConfigurator
 						assembleClientExtensionCopy.from(
 							(fromPath != null) ? fromPath : ".",
 							copySpec -> {
+								if (hashifyJsonNode != null) {
+									copySpec.eachFile(
+										new HashifyAction(
+											hashifyJsonNode.asText()));
+								}
+
+								copySpec.exclude(
+									"**/" + CLIENT_EXTENSION_BUILD_DIR);
+
 								if (includeJsonNode instanceof ArrayNode) {
 									ArrayNode arrayNode =
 										(ArrayNode)includeJsonNode;
@@ -573,17 +582,8 @@ public class ClientExtensionProjectConfigurator
 									}
 								}
 
-								copySpec.exclude(
-									"**/" + CLIENT_EXTENSION_BUILD_DIR);
-
 								if (intoJsonNode != null) {
 									copySpec.into(intoJsonNode.asText());
-								}
-
-								if (hashifyJsonNode != null) {
-									copySpec.eachFile(
-										new HashifyAction(
-											hashifyJsonNode.asText()));
 								}
 
 								copySpec.setIncludeEmptyDirs(false);
