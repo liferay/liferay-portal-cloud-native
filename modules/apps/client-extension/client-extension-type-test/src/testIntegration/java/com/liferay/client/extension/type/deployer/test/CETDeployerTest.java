@@ -54,26 +54,27 @@ public class CETDeployerTest {
 		_testDeploy(
 			1, ClientExtensionEntryConstants.TYPE_COMMERCE_CHECKOUT_STEP,
 			"checkoutStepOrder=" + RandomTestUtil.randomInt(), user);
-		_testDeploy(
-			1, ClientExtensionEntryConstants.TYPE_THEME_CSS, StringPool.BLANK,
-			user);
 
-		String randomURL = "http://" + RandomTestUtil.randomString() + ".com";
+		String url = "http://" + RandomTestUtil.randomString() + ".com";
 
 		_testDeploy(
 			2, ClientExtensionEntryConstants.TYPE_CUSTOM_ELEMENT,
-			"htmlElementName=valid-name\nurls=" + randomURL, user);
+			"htmlElementName=valid-name\nurls=" + url, user);
 		_testDeploy(
 			1, ClientExtensionEntryConstants.TYPE_EDITOR_CONFIG_CONTRIBUTOR,
-			"url=" + randomURL, user);
+			"url=" + url, user);
 		_testDeploy(
-			2, ClientExtensionEntryConstants.TYPE_IFRAME, "url=" + randomURL,
+			2, ClientExtensionEntryConstants.TYPE_IFRAME, "url=" + url,
 			user);
 		_testDeploy(
 			1, ClientExtensionEntryConstants.TYPE_JS_IMPORT_MAPS_ENTRY,
 			StringBundler.concat(
 				"bareSpecifier=", RandomTestUtil.randomString(), "\nurl=",
-				randomURL),
+				url),
+			user);
+
+		_testDeploy(
+			1, ClientExtensionEntryConstants.TYPE_THEME_CSS, StringPool.BLANK,
 			user);
 	}
 
