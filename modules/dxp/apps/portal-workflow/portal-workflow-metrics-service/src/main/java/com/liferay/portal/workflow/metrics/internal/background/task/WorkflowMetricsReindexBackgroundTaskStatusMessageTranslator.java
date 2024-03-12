@@ -54,18 +54,18 @@ public class WorkflowMetricsReindexBackgroundTaskStatusMessageTranslator
 					WorkflowMetricsReindexBackgroundTaskConstants.
 						INDEX_ENTITY_NAMES);
 
-			int pos = -1;
+			int index = -1;
 
 			for (int i = 0; i < indexEntityNames.length; i++) {
 				if (Objects.equals(indexEntityNames[i], indexEntityName)) {
-					pos = i;
+					index = i;
 
 					break;
 				}
 			}
 
 			percentage = _getPercentage(
-				count, pos, indexEntityNames.length, total);
+				count, index, indexEntityNames.length, total);
 		}
 
 		backgroundTaskStatus.setAttribute(
