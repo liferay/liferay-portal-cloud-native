@@ -1627,20 +1627,6 @@ public class LayoutLocalServiceWrapper
 			layoutSetPrototypeUuid, companyId, layoutUuid);
 	}
 
-	/**
-	 * Returns a range of all the layouts belonging to the group.
-	 *
-	 * @param groupId the primary key of the group
-	 * @param privateLayout whether the layout is private to the group
-	 * @param keywords keywords
-	 * @param searchOnlyByTitle searchOnlyByTitle
-	 * @param types layout types
-	 * @param start the lower bound of the range of layouts
-	 * @param end the upper bound of the range of layouts (not inclusive)
-	 * @param orderByComparator the comparator to order the layouts
-	 * @return the matching layouts, or <code>null</code> if no matches were
-	 found
-	 */
 	@Override
 	public java.util.List<Layout> search(
 			long groupId, boolean privateLayout, String keywords,
@@ -1654,21 +1640,6 @@ public class LayoutLocalServiceWrapper
 			end, orderByComparator);
 	}
 
-	/**
-	 * Returns a range of all the layouts belonging to the group.
-	 *
-	 * @param groupId the primary key of the group
-	 * @param userId the primary key of the user
-	 * @param privateLayout whether the layout is private to the group
-	 * @param keywords keywords
-	 * @param searchOnlyByTitle searchOnlyByTitle
-	 * @param types layout types
-	 * @param start the lower bound of the range of layouts
-	 * @param end the upper bound of the range of layouts (not inclusive)
-	 * @param orderByComparator the comparator to order the layouts
-	 * @return the matching layouts, or <code>null</code> if no matches were
-	 found
-	 */
 	@Override
 	public java.util.List<Layout> search(
 			long groupId, long userId, boolean privateLayout, String keywords,
@@ -1682,21 +1653,6 @@ public class LayoutLocalServiceWrapper
 			start, end, orderByComparator);
 	}
 
-	/**
-	 * Returns a range of all the layouts belonging to the group.
-	 *
-	 * @param groupId the primary key of the group
-	 * @param userId the primary key of the user
-	 * @param privateLayout whether the layout is private to the group
-	 * @param keywords keywords
-	 * @param searchOnlyByTitle searchOnlyByTitle
-	 * @param types layout types
-	 * @param start the lower bound of the range of layouts
-	 * @param end the upper bound of the range of layouts (not inclusive)
-	 * @param orderByComparator the comparator to order the layouts
-	 * @return the matching layouts, or <code>null</code> if no matches were
-	 found
-	 */
 	@Override
 	public java.util.List<Layout> search(
 			long groupId, long userId, boolean privateLayout, String keywords,
