@@ -265,7 +265,7 @@ public class FrontendTokenDefinitionRegistryImpl
 			FeatureFlagManagerUtil.isEnabled("LPD-10773")) {
 
 			Map<String, FrontendTokenDefinition> frontendTokenDefinitions =
-				_getFrontendTokenDefinitionsMap(companyId);
+				_getFrontendTokenDefinitions(companyId);
 
 			FrontendTokenDefinition frontendTokenDefinition =
 				frontendTokenDefinitions.get(externalReferenceCode);
@@ -305,7 +305,7 @@ public class FrontendTokenDefinitionRegistryImpl
 	}
 
 	private Map<String, FrontendTokenDefinition>
-		_getFrontendTokenDefinitionsMap(long companyId) {
+		_getFrontendTokenDefinitions(long companyId) {
 
 		return _frontendTokenDefinitionsMap.getOrDefault(
 			companyId, new ConcurrentHashMap<>());
@@ -313,7 +313,7 @@ public class FrontendTokenDefinitionRegistryImpl
 
 	private void _removedService(ThemeCSSCET themeCSSCET) {
 		Map<String, FrontendTokenDefinition> frontendTokenDefinitions =
-			_getFrontendTokenDefinitionsMap(themeCSSCET.getCompanyId());
+			_getFrontendTokenDefinitions(themeCSSCET.getCompanyId());
 
 		frontendTokenDefinitions.remove(themeCSSCET.getExternalReferenceCode());
 	}
