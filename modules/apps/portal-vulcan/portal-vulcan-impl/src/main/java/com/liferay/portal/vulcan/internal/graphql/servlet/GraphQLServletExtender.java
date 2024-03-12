@@ -914,14 +914,11 @@ public class GraphQLServletExtender {
 				if (StringUtil.equals(firstPath, path)) {
 					Method firstMethod = methodsTreeSet.first();
 
-					boolean deprecated = FeatureFlagManagerUtil.isEnabled(
-						"LPD-10789");
-
 					for (Method method : methodsTreeSet) {
 						GraphQLFieldDefinition field =
 							_liferayGraphQLFieldRetriever.getField(
-								deprecated, method, mutation,
-								processingElementsContainer);
+								FeatureFlagManagerUtil.isEnabled("LPD-10789"),
+								method, mutation, processingElementsContainer);
 
 						if (firstMethod == method) {
 							graphQLObjectTypeBuilder.field(field);
