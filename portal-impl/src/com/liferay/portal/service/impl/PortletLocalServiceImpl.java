@@ -342,7 +342,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 			boolean eagerDestroy, boolean clearCache)
 		throws PortalException {
 
-		portlet.setDisplayCategories(SetUtil.fromArray(categoryNames));
+		portlet.setCategoryNames(SetUtil.fromArray(categoryNames));
 
 		_portletsMap.put(portlet.getRootPortletId(), portlet);
 
@@ -2763,7 +2763,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 		portletCategory.separate(portlet.getPortletId());
 
-		for (String categoryName : portlet.getDisplayCategories()) {
+		for (String categoryName : portlet.getCategoryNames()) {
 			PortletCategory newPortletCategory = new PortletCategory(
 				categoryName);
 

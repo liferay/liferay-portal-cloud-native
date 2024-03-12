@@ -112,7 +112,7 @@ public class PortletImpl extends PortletBaseImpl {
 		_assetRendererFactoryClasses = new ArrayList<>();
 		_autopropagatedParameters = new LinkedHashSet<>();
 		_customAttributesDisplayClasses = new ArrayList<>();
-		_displayCategories = new LinkedHashSet<>();
+		_categoryNames = new LinkedHashSet<>();
 		_footerPortalCss = new ArrayList<>();
 		_footerPortalJavaScript = new ArrayList<>();
 		_footerPortletCss = new ArrayList<>();
@@ -166,7 +166,7 @@ public class PortletImpl extends PortletBaseImpl {
 		String controlPanelEntryCategory, double controlPanelEntryWeight,
 		String controlPanelEntryClass, List<String> assetRendererFactoryClasses,
 		List<String> customAttributesDisplayClasses,
-		Set<String> displayCategories, String permissionPropagatorClass,
+		Set<String> categoryNames, String permissionPropagatorClass,
 		List<String> trashHandlerClasses, List<String> workflowHandlerClasses,
 		String defaultPreferences, String preferencesValidator,
 		boolean preferencesCompanyWide, boolean preferencesUniquePerLayout,
@@ -248,7 +248,7 @@ public class PortletImpl extends PortletBaseImpl {
 		_controlPanelEntryClass = controlPanelEntryClass;
 		_assetRendererFactoryClasses = assetRendererFactoryClasses;
 		_customAttributesDisplayClasses = customAttributesDisplayClasses;
-		_displayCategories = displayCategories;
+		_categoryNames = categoryNames;
 		_permissionPropagatorClass = permissionPropagatorClass;
 		_trashHandlerClasses = trashHandlerClasses;
 		_workflowHandlerClasses = workflowHandlerClasses;
@@ -412,7 +412,7 @@ public class PortletImpl extends PortletBaseImpl {
 			getWebDAVStorageClass(), getXmlRpcMethodClass(),
 			getControlPanelEntryCategory(), getControlPanelEntryWeight(),
 			getControlPanelEntryClass(), getAssetRendererFactoryClasses(),
-			getCustomAttributesDisplayClasses(), getDisplayCategories(),
+			getCustomAttributesDisplayClasses(), getCategoryNames(),
 			getPermissionPropagatorClass(), getTrashHandlerClasses(),
 			getWorkflowHandlerClasses(), getDefaultPreferences(),
 			getPreferencesValidator(), isPreferencesCompanyWide(),
@@ -808,8 +808,8 @@ public class PortletImpl extends PortletBaseImpl {
 	 * @return the names of the category that display the portlet
 	 */
 	@Override
-	public Set<String> getDisplayCategories() {
-		return _displayCategories;
+	public Set<String> getCategoryNames() {
+		return _categoryNames;
 	}
 
 	/**
@@ -3094,12 +3094,12 @@ public class PortletImpl extends PortletBaseImpl {
 	/**
 	 * Sets the names of the category that display the portlet
 	 *
-	 * @param displayCategories the names of the category that display the
+	 * @param categoryNames the names of the category that display the
 	 *        portlet
 	 */
 	@Override
-	public void setDisplayCategories(Set<String> displayCategories) {
-		_displayCategories = displayCategories;
+	public void setCategoryNames(Set<String> categoryNames) {
+		_categoryNames = categoryNames;
 	}
 
 	/**
@@ -4368,7 +4368,7 @@ public class PortletImpl extends PortletBaseImpl {
 	/**
 	 * The names of the category that display the portlet
 	 */
-	private Set<String> _displayCategories;
+	private Set<String> _categoryNames;
 
 	/**
 	 * The display name of the portlet.
