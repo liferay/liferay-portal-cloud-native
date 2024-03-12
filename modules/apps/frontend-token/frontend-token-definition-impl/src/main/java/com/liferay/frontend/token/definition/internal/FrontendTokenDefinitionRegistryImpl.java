@@ -74,8 +74,6 @@ public class FrontendTokenDefinitionRegistryImpl
 		_bundleTracker = new BundleTracker<>(
 			bundleContext, Bundle.ACTIVE, _bundleTrackerCustomizer);
 
-		_companyFrontendTokenDefinitionsMap = new ConcurrentHashMap<>();
-
 		_serviceTracker = ServiceTrackerFactory.open(
 			bundleContext, ThemeCSSCET.class,
 			new ServiceTrackerCustomizer<ThemeCSSCET, ThemeCSSCET>() {
@@ -381,7 +379,7 @@ public class FrontendTokenDefinitionRegistryImpl
 		_clientExtensionEntryRelLocalService;
 
 	private Map<Long, Map<String, FrontendTokenDefinition>>
-		_companyFrontendTokenDefinitionsMap;
+		_companyFrontendTokenDefinitionsMap = new ConcurrentHashMap<>();
 	private final FrontendTokenDefinitionJSONValidator
 		_frontendTokenDefinitionJSONValidator =
 			new FrontendTokenDefinitionJSONValidator();
