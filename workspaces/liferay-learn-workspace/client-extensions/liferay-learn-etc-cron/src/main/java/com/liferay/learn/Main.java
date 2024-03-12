@@ -375,7 +375,7 @@ public class Main {
 
 					File file = new File(fileName);
 
-					String existingMd5Hex = _getMd5Hex(siteStructuredContent);
+					String existingMd5Hex = _getMD5Hex(siteStructuredContent);
 					String md5Hex = DigestUtils.md5Hex(file.toString());
 
 					if (StringUtil.equals(md5Hex, existingMd5Hex)) {
@@ -677,7 +677,7 @@ public class Main {
 		return FileUtils.readFileToString(htmlFile, StandardCharsets.UTF_8);
 	}
 
-	private String _getMd5Hex(StructuredContent structuredContent) {
+	private String _getMD5Hex(StructuredContent structuredContent) {
 		ContentField[] contentFields = structuredContent.getContentFields();
 
 		for (ContentField contentField : contentFields) {
