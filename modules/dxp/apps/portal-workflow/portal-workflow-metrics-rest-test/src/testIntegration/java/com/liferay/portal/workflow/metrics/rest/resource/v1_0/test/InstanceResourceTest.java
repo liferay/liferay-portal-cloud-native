@@ -270,17 +270,17 @@ public class InstanceResourceTest extends BaseInstanceResourceTestCase {
 			(entityField, instance1, instance2) -> {
 				if (Objects.equals(entityField.getName(), "dateOverdue")) {
 					for (SLAResult slaResult : instance1.getSlaResults()) {
-						Date dateOverdue = slaResult.getDateOverdue();
+						Date date = slaResult.getDateOverdue();
 
 						slaResult.setDateOverdue(
-							new Date(dateOverdue.getTime() - (2 * Time.DAY)));
+							new Date(date.getTime() - (2 * Time.DAY)));
 					}
 
 					for (SLAResult slaResult : instance2.getSlaResults()) {
-						Date dateOverdue = slaResult.getDateOverdue();
+						Date date = slaResult.getDateOverdue();
 
 						slaResult.setDateOverdue(
-							new Date(dateOverdue.getTime() - (1 * Time.DAY)));
+							new Date(date.getTime() - (1 * Time.DAY)));
 					}
 				}
 				else {
