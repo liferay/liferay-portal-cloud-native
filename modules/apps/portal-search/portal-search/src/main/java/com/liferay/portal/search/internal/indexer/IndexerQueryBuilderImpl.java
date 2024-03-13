@@ -148,7 +148,6 @@ public class IndexerQueryBuilderImpl<T extends BaseModel<?>>
 				new TermQueryImpl(
 					"entryClassName", _modelSearchSettings.getClassName()),
 				BooleanClauseOccur.MUST);
-
 			modelBooleanQuery.add(
 				keywordsBooleanQuery, BooleanClauseOccur.MUST);
 

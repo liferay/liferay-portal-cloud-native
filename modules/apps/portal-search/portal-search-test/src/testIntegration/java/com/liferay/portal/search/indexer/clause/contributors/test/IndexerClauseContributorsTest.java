@@ -211,7 +211,7 @@ public class IndexerClauseContributorsTest {
 		String alwaysPresentContributor =
 			"com.liferay.portal.search.internal.spi.model.query.contributor." +
 				"AlwaysPresentFieldsKeywordQueryContributor";
-		String blogsContributor =
+		String blogsEntryContributor =
 			"com.liferay.blogs.internal.search.spi.model.query.contributor." +
 				"BlogsEntryKeywordQueryContributor";
 		String journalArticleContributor =
@@ -224,56 +224,56 @@ public class IndexerClauseContributorsTest {
 		assertSearch(
 			"[Gamma Article, Gamma Blog, Gamma Message]",
 			withIncludes(
-				alwaysPresentContributor, blogsContributor,
+				alwaysPresentContributor, blogsEntryContributor,
 				journalArticleContributor, mbMessageContributor),
 			consumer);
 
 		assertSearch(
 			"[Gamma Article, Gamma Blog, Gamma Message]",
 			withIncludes(
-				alwaysPresentContributor, blogsContributor,
+				alwaysPresentContributor, blogsEntryContributor,
 				journalArticleContributor, mbMessageContributor),
 			withExcludes(alwaysPresentContributor), consumer);
 
 		assertSearch(
 			"[Gamma Blog, Gamma Message]",
 			withIncludes(
-				alwaysPresentContributor, blogsContributor,
+				alwaysPresentContributor, blogsEntryContributor,
 				journalArticleContributor, mbMessageContributor),
-			withExcludes(blogsContributor, journalArticleContributor),
+			withExcludes(blogsEntryContributor, journalArticleContributor),
 			consumer);
 
 		assertSearch(
 			"[Gamma Message]",
 			withIncludes(
-				alwaysPresentContributor, blogsContributor,
+				alwaysPresentContributor, blogsEntryContributor,
 				journalArticleContributor, mbMessageContributor),
 			withExcludes(
-				alwaysPresentContributor, blogsContributor,
+				alwaysPresentContributor, blogsEntryContributor,
 				journalArticleContributor),
 			consumer);
 
 		assertSearch(
 			"[Gamma Article, Gamma Blog]",
 			withIncludes(
-				alwaysPresentContributor, blogsContributor,
+				alwaysPresentContributor, blogsEntryContributor,
 				journalArticleContributor, mbMessageContributor),
-			withExcludes(blogsContributor, mbMessageContributor), consumer);
+			withExcludes(blogsEntryContributor, mbMessageContributor), consumer);
 
 		assertSearch(
 			"[Gamma Article]",
 			withIncludes(
-				alwaysPresentContributor, blogsContributor,
+				alwaysPresentContributor, blogsEntryContributor,
 				journalArticleContributor, mbMessageContributor),
 			withExcludes(
-				alwaysPresentContributor, blogsContributor,
+				alwaysPresentContributor, blogsEntryContributor,
 				mbMessageContributor),
 			consumer);
 
 		assertSearch(
 			"[Gamma Blog]",
 			withIncludes(
-				alwaysPresentContributor, blogsContributor,
+				alwaysPresentContributor, blogsEntryContributor,
 				journalArticleContributor, mbMessageContributor),
 			withExcludes(journalArticleContributor, mbMessageContributor),
 			consumer);
