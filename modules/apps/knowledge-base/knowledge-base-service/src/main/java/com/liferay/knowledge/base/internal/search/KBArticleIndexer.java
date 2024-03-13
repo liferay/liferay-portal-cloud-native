@@ -127,7 +127,6 @@ public class KBArticleIndexer extends BaseIndexer<KBArticle> {
 			modelBooleanQuery.add(
 				new TermQueryImpl("entryClassName", CLASS_NAME),
 				BooleanClauseOccur.MUST);
-
 			modelBooleanQuery.add(
 				keywordsBooleanQuery, BooleanClauseOccur.MUST);
 

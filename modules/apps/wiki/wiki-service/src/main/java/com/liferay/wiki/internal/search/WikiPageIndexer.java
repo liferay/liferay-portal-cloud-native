@@ -180,7 +180,6 @@ public class WikiPageIndexer extends BaseIndexer<WikiPage> {
 			modelBooleanQuery.add(
 				new TermQueryImpl("entryClassName", CLASS_NAME),
 				BooleanClauseOccur.MUST);
-
 			modelBooleanQuery.add(
 				keywordsBooleanQuery, BooleanClauseOccur.MUST);
 
