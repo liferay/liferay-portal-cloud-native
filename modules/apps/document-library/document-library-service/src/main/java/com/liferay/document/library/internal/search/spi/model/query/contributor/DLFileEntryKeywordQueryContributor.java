@@ -156,8 +156,8 @@ public class DLFileEntryKeywordQueryContributor
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Unable to add search term to query field:", field,
-						" value:", value, " like:", false),
+						"Unable to add term field \"", field,
+						"\" with value \"", value, "\""),
 					parseException);
 			}
 		}
