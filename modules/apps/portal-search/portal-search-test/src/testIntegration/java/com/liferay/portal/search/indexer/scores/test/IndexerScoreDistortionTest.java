@@ -134,21 +134,18 @@ public class IndexerScoreDistortionTest {
 		SearchResponse searchResponse1 = search(title, locale, classes);
 
 		assertValuesIgnoreRelevance(
-			Field.ENTRY_CLASS_NAME, getClassNamesAsString(WikiPage.class),
-			_sublist(searchResponse1.getDocuments(), 0, 1), searchResponse1);
-
+			Field.ENTRY_CLASS_NAME, getClassNamesAsString(BlogsEntry.class),
+			_sublist(searchResponse1.getDocuments(), 2, 3), searchResponse1);
 		assertValuesIgnoreRelevance(
 			Field.ENTRY_CLASS_NAME, getClassNamesAsString(DLFileEntry.class),
 			_sublist(searchResponse1.getDocuments(), 1, 2), searchResponse1);
-
-		assertValuesIgnoreRelevance(
-			Field.ENTRY_CLASS_NAME, getClassNamesAsString(BlogsEntry.class),
-			_sublist(searchResponse1.getDocuments(), 2, 3), searchResponse1);
-
 		assertValuesIgnoreRelevance(
 			Field.ENTRY_CLASS_NAME,
 			getClassNamesAsString(JournalArticle.class, MBMessage.class),
 			_sublist(searchResponse1.getDocuments(), 3, 5), searchResponse1);
+		assertValuesIgnoreRelevance(
+			Field.ENTRY_CLASS_NAME, getClassNamesAsString(WikiPage.class),
+			_sublist(searchResponse1.getDocuments(), 0, 1), searchResponse1);
 
 		SearchResponse searchResponse2 = search(
 			title, locale, classes,
@@ -353,9 +350,9 @@ public class IndexerScoreDistortionTest {
 	}
 
 	private List<Document> _sublist(
-		List<Document> documents, int start, int finish) {
+		List<Document> documents, int start, int end) {
 
-		return documents.subList(start, finish);
+		return documents.subList(start, end);
 	}
 
 	@DeleteAfterTestRun
