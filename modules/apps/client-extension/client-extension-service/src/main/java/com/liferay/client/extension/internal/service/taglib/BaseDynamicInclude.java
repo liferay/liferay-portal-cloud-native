@@ -29,9 +29,9 @@ import com.liferay.portal.kernel.util.WebKeys;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -132,11 +132,11 @@ public abstract class BaseDynamicInclude implements DynamicInclude {
 			JSONObject jsonObject = jsonFactory.createJSONObject(
 				scriptElementAttributesJSON);
 
-			Set<String> keySet = jsonObject.keySet();
+			Iterator<String> iterator = jsonObject.keys();
 
-			int i = 0;
+			while (iterator.hasNext()) {
+				String key = iterator.next();
 
-			for (String key : keySet) {
 				Object value = jsonObject.get(key);
 
 				if (value instanceof Boolean) {
@@ -155,11 +155,9 @@ public abstract class BaseDynamicInclude implements DynamicInclude {
 					stringBuilder.append(StringPool.QUOTE);
 				}
 
-				if (i != (keySet.size() - 1)) {
+				if (iterator.hasNext()) {
 					stringBuilder.append(StringPool.SPACE);
 				}
-
-				i++;
 			}
 		}
 		catch (JSONException jsonException) {
