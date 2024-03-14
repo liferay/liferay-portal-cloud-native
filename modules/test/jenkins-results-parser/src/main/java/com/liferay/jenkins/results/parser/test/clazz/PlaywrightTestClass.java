@@ -96,6 +96,8 @@ public class PlaywrightTestClass extends BaseTestClass {
 				minimumSlaveRAM = _MINIMUM_SLAVE_RAM_DEFAULT;
 			}
 
+			_minimumSlaveRAM = Integer.valueOf(minimumSlaveRAM);
+
 			String slaveLabel = JenkinsResultsParserUtil.getProperty(
 				testProperties, "test.batch.slave.label");
 
@@ -103,8 +105,8 @@ public class PlaywrightTestClass extends BaseTestClass {
 				slaveLabel = _SLAVE_LABEL_DEFAULT;
 			}
 
-			_minimumSlaveRAM = Integer.valueOf(minimumSlaveRAM);
 			_slaveLabel = slaveLabel;
+
 			_testrayMainComponentName = JenkinsResultsParserUtil.getProperty(
 				testProperties, "testray.main.component.name");
 		}
