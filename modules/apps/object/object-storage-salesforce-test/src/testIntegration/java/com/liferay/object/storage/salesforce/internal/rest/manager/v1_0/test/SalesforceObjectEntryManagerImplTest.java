@@ -177,7 +177,7 @@ public class SalesforceObjectEntryManagerImplTest
 			).userId(
 				adminUser.getUserId()
 			).labelMap(
-				LocalizedMapUtil.getLocalizedMap("Object Definition Id")
+				LocalizedMapUtil.getLocalizedMap("Object Definition ID")
 			).name(
 				"objectDefinitionId"
 			).objectDefinitionId(
@@ -461,8 +461,7 @@ public class SalesforceObjectEntryManagerImplTest
 	}
 
 	private ObjectEntry _addObjectEntry(
-			String customStatus, Date date, long objectDefinitionId,
-			String title)
+			String customStatus, Date date, String title)
 		throws Exception {
 
 		ObjectEntry objectEntry = _objectEntryManager.addObjectEntry(
@@ -475,7 +474,8 @@ public class SalesforceObjectEntryManagerImplTest
 						"dueDate",
 						(date != null) ? _simpleDateFormat.format(date) : null
 					).put(
-						"objectDefinitionId", objectDefinitionId
+						"objectDefinitionId",
+						_objectDefinition.getObjectDefinitionId()
 					).put(
 						"title", title
 					).build();
@@ -486,15 +486,6 @@ public class SalesforceObjectEntryManagerImplTest
 		_objectEntries.add(objectEntry);
 
 		return objectEntry;
-	}
-
-	private ObjectEntry _addObjectEntry(
-			String customStatus, Date date, String title)
-		throws Exception {
-
-		return _addObjectEntry(
-			customStatus, date, _objectDefinition.getObjectDefinitionId(),
-			title);
 	}
 
 	private void _assertObjectEntry(String externalReferenceCode, String title)
