@@ -118,8 +118,8 @@ public abstract class BaseCompanyIdUpgradeProcess extends UpgradeProcess {
 							foreignTableName, " where ", foreignTableName, ".",
 							foreignColumnName, " > 0 and ", foreignTableName,
 							".", foreignColumnName, " = ", _tableName, ".",
-							_columnName, " ORDER BY ", foreignTableName,
-							".companyId DESC LIMIT 1")));
+							_columnName, " order by ", foreignTableName,
+							".companyId desc limit 1")));
 			}
 
 			return dbTypeToSQLMap;
