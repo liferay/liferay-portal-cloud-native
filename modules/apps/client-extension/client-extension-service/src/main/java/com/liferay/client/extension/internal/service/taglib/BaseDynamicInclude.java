@@ -140,7 +140,7 @@ public abstract class BaseDynamicInclude implements DynamicInclude {
 				Object value = jsonObject.get(key);
 
 				if (value instanceof Boolean) {
-					if (!(boolean)value) {
+					if (value == Boolean.FALSE) {
 						continue;
 					}
 
