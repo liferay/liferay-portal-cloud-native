@@ -358,7 +358,7 @@ public class LayoutLocalServiceTest {
 	}
 
 	@Test
-	public void testSearchLayoutOnlyByName() throws Exception {
+	public void testSearch() throws Exception {
 		String name = RandomTestUtil.randomString();
 
 		Layout layout = LayoutTestUtil.addTypeContentLayout(_group, name);
@@ -394,10 +394,10 @@ public class LayoutLocalServiceTest {
 
 		ContentLayoutTestUtil.publishLayout(draftLayout, layout);
 
-		_verifySearchOnlyByName(keyword, name, true, 0);
-		_verifySearchOnlyByName(keyword, name, false, 1);
-		_verifySearchOnlyByName(name, name, true, 1);
-		_verifySearchOnlyByName(name, name, false, 1);
+		_assertSearch(keyword, name, true, 0);
+		_assertSearch(keyword, name, false, 1);
+		_assertSearch(name, name, true, 1);
+		_assertSearch(name, name, false, 1);
 	}
 
 	@Test
@@ -502,7 +502,7 @@ public class LayoutLocalServiceTest {
 			0, _layoutLocalService.getLayoutsCount(_group.getGroupId()));
 	}
 
-	private void _verifySearchOnlyByName(
+	private void _assertSearch(
 			String keyword, String name, boolean searchOnlyByName, int count)
 		throws Exception {
 
