@@ -484,24 +484,6 @@ public class LayoutLocalServiceTest {
 			layout.getFaviconFileEntryId(), layout.getPlid(), _serviceContext);
 	}
 
-	private ServiceContext _getServiceContext(Group group) throws Exception {
-		return ServiceContextTestUtil.getServiceContext(
-			group, TestPropsValues.getUserId());
-	}
-
-	private void _testDeleteLayouts(boolean system) throws Exception {
-		LayoutTestUtil.addTypeContentLayout(_group, false, system);
-		LayoutTestUtil.addTypeContentLayout(_group, true, system);
-
-		_layoutLocalService.deleteLayouts(
-			_group.getGroupId(), true, _serviceContext);
-		_layoutLocalService.deleteLayouts(
-			_group.getGroupId(), false, _serviceContext);
-
-		Assert.assertEquals(
-			0, _layoutLocalService.getLayoutsCount(_group.getGroupId()));
-	}
-
 	private void _assertSearch(
 			String keyword, String name, boolean searchOnlyByName, int count)
 		throws Exception {
@@ -523,6 +505,24 @@ public class LayoutLocalServiceTest {
 
 			Assert.assertEquals(layout.getName(LocaleUtil.getDefault()), name);
 		}
+	}
+
+	private ServiceContext _getServiceContext(Group group) throws Exception {
+		return ServiceContextTestUtil.getServiceContext(
+			group, TestPropsValues.getUserId());
+	}
+
+	private void _testDeleteLayouts(boolean system) throws Exception {
+		LayoutTestUtil.addTypeContentLayout(_group, false, system);
+		LayoutTestUtil.addTypeContentLayout(_group, true, system);
+
+		_layoutLocalService.deleteLayouts(
+			_group.getGroupId(), true, _serviceContext);
+		_layoutLocalService.deleteLayouts(
+			_group.getGroupId(), false, _serviceContext);
+
+		Assert.assertEquals(
+			0, _layoutLocalService.getLayoutsCount(_group.getGroupId()));
 	}
 
 	@Inject
