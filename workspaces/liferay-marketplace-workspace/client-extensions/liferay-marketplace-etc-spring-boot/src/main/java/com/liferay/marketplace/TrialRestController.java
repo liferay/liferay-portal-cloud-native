@@ -104,6 +104,9 @@ public class TrialRestController extends BaseRestController {
 	}
 
 	private boolean _hasAccountOrders(String accountId) throws Exception {
+
+		// TODO Make this a single query
+
 		Page<Order> ordersPage = _orderResource.getOrdersPage(
 			"", "accountId/any(x:(x eq " + accountId + "))",
 			Pagination.of(-1, -1), "");
