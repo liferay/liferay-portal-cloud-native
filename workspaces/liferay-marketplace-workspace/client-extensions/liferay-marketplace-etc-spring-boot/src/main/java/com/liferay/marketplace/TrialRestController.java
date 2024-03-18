@@ -145,8 +145,6 @@ public class TrialRestController extends BaseRestController {
 			Jwt jwt, String emailAddress, long orderId)
 		throws Exception {
 
-		String domain = "tryitnow-" + orderId + ".us.demo.lxc.liferay.com";
-
 		PortalInstance portalInstance = new PortalInstance();
 
 		portalInstance.setAdmin(
@@ -163,8 +161,12 @@ public class TrialRestController extends BaseRestController {
 						).toString());
 				}
 			});
+
+		String domain = "tryitnow-" + orderId + ".us.demo.lxc.liferay.com";
+
 		portalInstance.setDomain(domain);
 		portalInstance.setPortalInstanceId(domain);
+
 		portalInstance.setSiteInitializerKey(
 			"com.liferay.site.initializer.welcome");
 		portalInstance.setVirtualHost(domain);
