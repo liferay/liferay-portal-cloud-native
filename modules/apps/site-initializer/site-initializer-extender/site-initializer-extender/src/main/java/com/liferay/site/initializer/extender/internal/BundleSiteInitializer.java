@@ -4912,11 +4912,10 @@ public class BundleSiteInitializer implements SiteInitializer {
 			return;
 		}
 
-		ObjectDefinitionResource.Builder objectDefinitionResourceBuilder =
+		ObjectDefinitionResource.Builder builder =
 			_objectDefinitionResourceFactory.create();
 
-		ObjectDefinitionResource objectDefinitionResource =
-			objectDefinitionResourceBuilder.user(
+		ObjectDefinitionResource objectDefinitionResource = builder.user(
 				serviceContext.fetchUser()
 			).build();
 
