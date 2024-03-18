@@ -93,7 +93,7 @@ public class FrontendTokenDefinitionApplication extends Application {
 
 			return _getResponse(
 				_language.get(
-					locale, "your-upload-failed-to-complete-please-try-again"),
+					locale, "your-upload-failed-to-complete"),
 				Response.Status.INTERNAL_SERVER_ERROR);
 		}
 		catch (JSONException | JSONValidatorException exception) {
@@ -102,7 +102,7 @@ public class FrontendTokenDefinitionApplication extends Application {
 			return _getResponse(
 				_language.get(
 					locale,
-					"the-format-is-not-valid-please-upload-a-valid-frontend-" +
+					"the-format-is-invalid.-please-upload-a-valid-frontend-" +
 						"token-definition-json-file"),
 				Response.Status.BAD_REQUEST);
 		}
@@ -146,7 +146,7 @@ public class FrontendTokenDefinitionApplication extends Application {
 		return _getResponse(
 			_language.format(
 				locale,
-				"the-frontend-token-definition-json-file-was-uploaded-it-" +
+				"the-frontend-token-definition-json-file-was-uploaded-and-" +
 					"contributed-x-token-categories-x-token-sets-and-x-tokens",
 				new Object[] {
 					frontendTokenCategories.size(), frontendTokenSets.size(),

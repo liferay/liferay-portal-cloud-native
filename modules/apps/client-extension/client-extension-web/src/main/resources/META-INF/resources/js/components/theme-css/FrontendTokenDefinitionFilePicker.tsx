@@ -118,7 +118,7 @@ const FrontendTokenDefinitionFilePicker = ({
 						typeof error === 'string'
 							? error
 							: Liferay.Language.get(
-									'your-upload-failed-to-complete-please-try-again'
+									'your-upload-failed-to-complete'
 							  ),
 				});
 			});
@@ -148,7 +148,7 @@ const FrontendTokenDefinitionFilePicker = ({
 			setFeedback({
 				displayType: 'danger',
 				message: Liferay.Language.get(
-					'the-format-is-not-valid-please-upload-a-valid-frontend-token-definition-json-file'
+					'the-format-is-invalid.-please-upload-a-valid-frontend-token-definition-json-file'
 				),
 			});
 
@@ -158,7 +158,7 @@ const FrontendTokenDefinitionFilePicker = ({
 			setFeedback({
 				displayType: 'danger',
 				message: Liferay.Language.get(
-					'your-upload-failed-to-complete-please-try-again'
+					'your-upload-failed-to-complete'
 				),
 			});
 
@@ -222,7 +222,7 @@ const FrontendTokenDefinitionFilePicker = ({
 					size={3}
 				>
 					{`${Liferay.Language.get(
-						'the-frontend-token-definition-is-a-json-file-that-allows-you-to-contribute-your-own-frontend-tokens-it-will-replace-the-current-frontend-tokens-contributed-by-the-theme'
+						'the-frontend-token-definition-is-a-json-file-that-allows-you-to-contribute-your-own-frontend-tokens'
 					)} `}
 
 					<LearnMessage
