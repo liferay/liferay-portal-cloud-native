@@ -683,13 +683,13 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 	}
 
 	private SearchPage<SearchResult> _toSearchPage(JSONObject jsonObject) {
+		List<SearchResult> searchResults = new ArrayList<>();
+
 		JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
 
 		if (itemsJSONArray == null) {
 			itemsJSONArray = JSONFactoryUtil.createJSONArray();
 		}
-
-		List<SearchResult> searchResults = new ArrayList<>();
 
 		for (int i = 0; i < itemsJSONArray.length(); i++) {
 			searchResults.add(
