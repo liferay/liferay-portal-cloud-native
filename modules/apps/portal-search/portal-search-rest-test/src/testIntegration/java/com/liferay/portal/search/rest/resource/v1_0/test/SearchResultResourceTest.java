@@ -121,8 +121,8 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 		SearchPage<SearchResult> searchPage = _postSearchPage(
 			_journalArticle.getArticleId());
 
-		Assert.assertEquals(1L, searchPage.getTotalCount());
 		Assert.assertEquals(1L, searchPage.getPage());
+		Assert.assertEquals(1L, searchPage.getTotalCount());
 
 		_testPostSearchPageWithCategoryTreeFacetConfiguration();
 		_testPostSearchPageWithCustomFacetConfiguration();
@@ -579,7 +579,6 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 			searchPage.getItems());
 
 		Assert.assertFalse(searchResults.isEmpty());
-
 		Assert.assertTrue(
 			ListUtil.count(
 				searchResults,
@@ -628,13 +627,11 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 			searchPage.getItems());
 
 		Assert.assertFalse(searchResults.isEmpty());
-
 		Assert.assertTrue(
 			ListUtil.count(
 				searchResults,
 				searchResult -> Objects.equals(
 					searchResult.getTitle(), _user.getFullName())) >= 1);
-
 		Assert.assertEquals(
 			0,
 			ListUtil.count(
