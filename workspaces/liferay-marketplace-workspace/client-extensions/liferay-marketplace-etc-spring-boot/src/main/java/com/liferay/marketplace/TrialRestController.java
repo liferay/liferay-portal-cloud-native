@@ -119,13 +119,12 @@ public class TrialRestController extends BaseRestController {
 	}
 
 	private void _initResourceBuilders() throws Exception {
-		URL liferayDXPURL = new URL(
-			lxcDXPServerProtocol + "://" + lxcDXPMainDomain);
-
 		String authorization =
 			_liferayOAuth2AccessTokenManager.getAuthorization(
 				"liferay-marketplace-etc-spring-boot-oauth-application-" +
 					"headless-server");
+		URL liferayDXPURL = new URL(
+			lxcDXPServerProtocol + "://" + lxcDXPMainDomain);
 
 		_orderResource = OrderResource.builder(
 		).endpoint(
