@@ -56,7 +56,7 @@ public class TrialRestController extends BaseRestController {
 		long classPK = jsonObject.getLong("classPK");
 
 		if (_log.isInfoEnabled()) {
-			_log.info("New trial request for order " + classPK);
+			_log.info("Provision order " + classPK);
 		}
 
 		order.setId(classPK);
@@ -68,7 +68,7 @@ public class TrialRestController extends BaseRestController {
 
 		if (_hasAccountOrders(accountId)) {
 			_log.error(
-				accountId + " exceeded the limit of trials for this account");
+				"Account " + accountId + " already has a provisioned order");
 
 			order.setOrderStatus(_ORDER_STATUS_CANCELLED);
 
@@ -81,10 +81,6 @@ public class TrialRestController extends BaseRestController {
 
 		_orderResource.patchOrder(order.getId(), order);
 
-		PortalInstance portalInstance = _postPortalInstance(
-			jwt, modelDTOOrderJSONObject.getString("creatorEmailAddress"),
-			order.getId());
-
 		Map<String, String> customFields =
 			(Map<String, String>)new CustomField();
 
@@ -93,6 +89,11 @@ public class TrialRestController extends BaseRestController {
 			"trial-expires-in",
 			new Date(
 			).toString());
+
+		PortalInstance portalInstance = _postPortalInstance(
+			jwt, modelDTOOrderJSONObject.getString("creatorEmailAddress"),
+			order.getId());
+
 		customFields.put("trial-virtualhost", portalInstance.getVirtualHost());
 
 		order.setCustomFields(customFields);
@@ -171,7 +172,7 @@ public class TrialRestController extends BaseRestController {
 			portalInstance);
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Portal instance created " + portalInstance);
+			_log.info("Created portal instance " + portalInstance);
 		}
 
 		return portalInstance;
