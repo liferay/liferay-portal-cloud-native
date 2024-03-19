@@ -21,33 +21,8 @@
 			"label": {
 				"en_US": "T4T1 DL Folder Template"
 			},
-			"modifiable": true,
 			"name": "T4T1DLFolderTemplate",
 			"objectFields": [
-				{
-					"DBType": "String",
-					"businessType": "Text",
-					"indexed": true,
-					"indexedAsKeyword": false,
-					"indexedLanguageId": "en_US",
-					"label": {
-						"en_US": "Name"
-					},
-					"localized": false,
-					"name": "name",
-					"objectFieldSettings": [
-						{
-							"name": "uniqueValues",
-							"value": true
-						}
-					],
-					"readOnly": "false",
-					"readOnlyConditionExpression": "",
-					"required": true,
-					"state": false,
-					"system": false,
-					"type": "String"
-				},
 				{
 					"DBType": "Clob",
 					"businessType": "LongText",
@@ -71,6 +46,30 @@
 					"state": false,
 					"system": false,
 					"type": "Clob"
+				},
+				{
+					"DBType": "String",
+					"businessType": "Text",
+					"indexed": true,
+					"indexedAsKeyword": false,
+					"indexedLanguageId": "en_US",
+					"label": {
+						"en_US": "Name"
+					},
+					"localized": false,
+					"name": "name",
+					"objectFieldSettings": [
+						{
+							"name": "uniqueValues",
+							"value": true
+						}
+					],
+					"readOnly": "false",
+					"readOnlyConditionExpression": "",
+					"required": true,
+					"state": false,
+					"system": false,
+					"type": "String"
 				}
 			],
 			"panelCategoryKey": "applications_menu.applications.custom.apps",
