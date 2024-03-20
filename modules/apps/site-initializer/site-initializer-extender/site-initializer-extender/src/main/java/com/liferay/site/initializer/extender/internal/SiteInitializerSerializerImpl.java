@@ -223,8 +223,6 @@ public class SiteInitializerSerializerImpl
 			JSONUtil.put(
 				"friendlyURL", layout.getFriendlyURL()
 			).put(
-				"friendlyURL", layout.getFriendlyURL()
-			).put(
 				"hidden", layout.isHidden()
 			).put(
 				"name_i18n",
