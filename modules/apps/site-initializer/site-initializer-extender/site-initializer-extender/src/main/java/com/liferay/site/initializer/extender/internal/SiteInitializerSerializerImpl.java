@@ -247,8 +247,7 @@ public class SiteInitializerSerializerImpl
 					String[] parts = StringUtil.split(
 						layout.getTypeSettings(), CharPool.EQUAL);
 
-					JSONObject typeSettingsjsonObject = JSONUtil.put(
-						"key", parts[0]);
+					JSONObject jsonObject = JSONUtil.put("key", parts[0]);
 
 					if (Objects.equals(
 							layout.getType(),
@@ -258,7 +257,7 @@ public class SiteInitializerSerializerImpl
 							layout.getGroupId(), layout.isPrivateLayout(),
 							GetterUtil.getLong(parts[1].replace("\n", "")));
 
-						typeSettingsjsonObject.put(
+						jsonObject.put(
 							"value",
 							"[$LAYOUT_ID:" +
 								linkToLayout.getName(LocaleUtil.US) + "$]");
@@ -266,11 +265,10 @@ public class SiteInitializerSerializerImpl
 					else if (Objects.equals(
 								layout.getType(), LayoutConstants.TYPE_URL)) {
 
-						typeSettingsjsonObject.put(
-							"value", parts[1].replace("\n", ""));
+						jsonObject.put("value", parts[1].replace("\n", ""));
 					}
 
-					return JSONUtil.put(typeSettingsjsonObject);
+					return JSONUtil.put(jsonObject);
 				}
 			),
 			zipWriter);
