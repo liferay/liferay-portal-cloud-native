@@ -105,24 +105,6 @@ public class SiteInitializerSerializerImpl
 		zipWriter.addEntry("site-initializer/" + fileName, string);
 	}
 
-	private LayoutStructure _getLayoutStructure(Layout layout) {
-		if (layout.getType(
-			).equalsIgnoreCase(
-				LayoutConstants.TYPE_CONTENT
-			)) {
-
-			LayoutPageTemplateStructure layoutPageTemplateStructure =
-				_layoutPageTemplateStructureLocalService.
-					fetchLayoutPageTemplateStructure(
-						layout.getGroupId(), layout.getPlid());
-
-			return LayoutStructure.of(
-				layoutPageTemplateStructure.getDefaultSegmentsExperienceData());
-		}
-
-		return null;
-	}
-
 	private String _normalize(String string) {
 		string = StringUtil.toLowerCase(string);
 
@@ -293,11 +275,14 @@ public class SiteInitializerSerializerImpl
 			),
 			zipWriter);
 
-		LayoutStructure layoutStructure = _getLayoutStructure(layout);
-
-		if (layoutStructure == null) {
+		if (!Objects.equals(layout.getType(), LayoutConstants.TYPE_CONTENT)) {
 			return;
 		}
+
+		LayoutPageTemplateStructure layoutPageTemplateStructure =
+			_layoutPageTemplateStructureLocalService.
+				fetchLayoutPageTemplateStructure(
+					layout.getGroupId(), layout.getPlid());
 
 		PageDefinition pageDefinition = _pageDefinitionDTOConverter.toDTO(
 			new DefaultDTOConverterContext(
@@ -310,7 +295,9 @@ public class SiteInitializerSerializerImpl
 					setAttribute("layout", layout);
 				}
 			},
-			layoutStructure);
+			LayoutStructure.of(
+				layoutPageTemplateStructure.
+					getDefaultSegmentsExperienceData()));
 
 		_addZipEntry(
 			zipDirName + "/page-definition.json",
