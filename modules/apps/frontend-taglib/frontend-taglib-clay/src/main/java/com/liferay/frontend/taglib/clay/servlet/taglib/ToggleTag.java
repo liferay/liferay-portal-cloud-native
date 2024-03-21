@@ -26,7 +26,7 @@ public class ToggleTag extends BaseContainerTag {
 
 	@Override
 	public int doEndTag() throws JspException {
-		updateFormCheckboxNames();
+		_updateFormCheckboxNames();
 
 		return super.doEndTag();
 	}
@@ -241,9 +241,7 @@ public class ToggleTag extends BaseContainerTag {
 		}
 
 		jspWriter.write("\">");
-
 		jspWriter.write("<span class=\"toggle-switch-check-bar\">");
-
 		jspWriter.write("<input class=\"toggle-switch-check\"");
 
 		if (_toggled) {
@@ -323,7 +321,7 @@ public class ToggleTag extends BaseContainerTag {
 		return SKIP_BODY;
 	}
 
-	protected void updateFormCheckboxNames() {
+	private void _updateFormCheckboxNames() {
 		HttpServletRequest httpServletRequest = getRequest();
 
 		List<String> checkboxNames =
