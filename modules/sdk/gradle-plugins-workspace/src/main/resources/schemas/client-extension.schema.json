@@ -229,7 +229,7 @@
 											"string"
 										]
 									},
-									"description": "A list of HTML attributes that will be added to the script element.",
+									"description": "",
 									"properties": {
 										"src": false
 									},
