@@ -335,7 +335,7 @@ public class ReflectionTestUtil {
 				return;
 			}
 
-			MethodHandle methodHandle = _implLookup.findStaticSetter(
+			MethodHandle methodHandle = _lookup.findStaticSetter(
 				field.getDeclaringClass(), field.getName(), field.getType());
 
 			methodHandle.invoke(value);
@@ -421,7 +421,7 @@ public class ReflectionTestUtil {
 		return null;
 	}
 
-	private static final MethodHandles.Lookup _implLookup;
+	private static final MethodHandles.Lookup _lookup;
 
 	static {
 		try {
@@ -430,7 +430,7 @@ public class ReflectionTestUtil {
 
 			field.setAccessible(true);
 
-			_implLookup = (MethodHandles.Lookup)field.get(null);
+			_lookup = (MethodHandles.Lookup)field.get(null);
 		}
 		catch (ReflectiveOperationException reflectiveOperationException) {
 			throw new ExceptionInInitializerError(reflectiveOperationException);
