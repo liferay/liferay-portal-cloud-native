@@ -121,13 +121,13 @@ public class JournalConfigurationDisplayContext {
 					Group group = GroupLocalServiceUtil.fetchGroup(
 						ddmStructure.getGroupId());
 
-					if (group != null) {
-						return LanguageUtil.get(
-							_themeDisplay.getLocale(),
-							group.getScopeLabel(_themeDisplay));
+					if (group == null) {
+						return StringPool.BLANK;
 					}
 
-					return StringPool.BLANK;
+					return LanguageUtil.get(
+						_themeDisplay.getLocale(),
+						group.getScopeLabel(_themeDisplay));
 				}
 			));
 	}
