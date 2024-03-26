@@ -326,6 +326,7 @@ export type TestraySubTask = {
 	dueStatus: PickList;
 	errors: string;
 	id: number;
+	issues?: TestrayIssue[];
 	mbMessageId: number;
 	mbThreadId: number;
 	mergedToSubtaskId: TestraySubTask;
