@@ -85,10 +85,10 @@ public class SiteInitializerSerializerImpl
 			_serializeDDMTemplates(groupId, zipWriter);
 			_serializeLayoutPageTemplates(groupId, zipWriter);
 			_serializeLayouts(groupId, "layouts", zipWriter);
-			_serializeStyleBookEntries(groupId, zipWriter);
 			_serializeJournalArticles(
 				groupId, JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 				"journal-articles", zipWriter);
+			_serializeStyleBookEntries(groupId, zipWriter);
 
 			return zipWriter.getFile();
 		}
@@ -249,7 +249,6 @@ public class SiteInitializerSerializerImpl
 					"name", journalArticle.getArticleId()
 				),
 				zipWriter);
-
 			_addZipEntry(
 				_normalize(
 					StringBundler.concat(
