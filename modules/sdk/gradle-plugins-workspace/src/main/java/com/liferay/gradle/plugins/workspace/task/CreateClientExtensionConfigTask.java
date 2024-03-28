@@ -796,7 +796,7 @@ public class CreateClientExtensionConfigTask extends DefaultTask {
 		Map<String, String> substitutionMap) {
 
 		try {
-			String fileContent = ResourceUtil.readString(
+			String content = ResourceUtil.readString(
 				ResourceUtil.getLocalFileResolver(inputFile),
 				ResourceUtil.getClassLoaderResolver(
 					CreateClientExtensionConfigTask.class,
@@ -805,11 +805,10 @@ public class CreateClientExtensionConfigTask extends DefaultTask {
 						classificationGrouping, inputFile.getName())));
 
 			for (Map.Entry<String, String> entry : substitutionMap.entrySet()) {
-				fileContent = fileContent.replace(
-					entry.getKey(), entry.getValue());
+				content = content.replace(entry.getKey(), entry.getValue());
 			}
 
-			Files.write(outputFile.toPath(), fileContent.getBytes());
+			Files.write(outputFile.toPath(), content.getBytes());
 		}
 		catch (GradleException gradleException) {
 			throw new GradleException(
