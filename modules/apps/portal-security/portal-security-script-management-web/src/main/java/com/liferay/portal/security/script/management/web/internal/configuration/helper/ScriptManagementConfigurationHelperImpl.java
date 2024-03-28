@@ -62,9 +62,9 @@ public class ScriptManagementConfigurationHelperImpl
 			url, "p_p_id", ConfigurationAdminPortletKeys.SYSTEM_SETTINGS);
 		url = HttpComponentsUtil.addParameter(url, "p_p_lifecycle", "0");
 		url = HttpComponentsUtil.addParameter(
-			url, "p_p_mode", PortletMode.VIEW.toString());
-		url = HttpComponentsUtil.addParameter(
 			url, "p_p_state", WindowState.MAXIMIZED.toString());
+		url = HttpComponentsUtil.addParameter(
+			url, "p_p_mode", PortletMode.VIEW.toString());
 
 		String namespace = _portal.getPortletNamespace(
 			ConfigurationAdminPortletKeys.SYSTEM_SETTINGS);
