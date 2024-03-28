@@ -521,12 +521,12 @@ public class CreateClientExtensionConfigTask extends DefaultTask {
 		}
 		catch (JsonParseException jsonParseException) {
 			throw new GradleException(
-				"Could not parse json from file " + frontendTokenDefinitionFile,
+				"Unable to JSON from file " + frontendTokenDefinitionFile,
 				jsonParseException);
 		}
 		catch (JsonProcessingException jsonProcessingException) {
 			throw new GradleException(
-				"Could not write json", jsonProcessingException);
+				"Unable to write JSON", jsonProcessingException);
 		}
 	}
 
