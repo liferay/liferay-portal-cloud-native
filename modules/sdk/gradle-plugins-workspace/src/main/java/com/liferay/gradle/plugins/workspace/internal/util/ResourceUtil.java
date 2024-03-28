@@ -218,7 +218,7 @@ public class ResourceUtil {
 			return transformer.transform(inputStream2);
 		}
 		catch (Exception exception) {
-			throw new GradleException("Could not process resource", exception);
+			throw new GradleException("Unable to process resource", exception);
 		}
 	}
 
