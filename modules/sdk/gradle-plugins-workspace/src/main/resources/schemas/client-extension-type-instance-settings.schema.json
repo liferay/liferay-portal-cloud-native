@@ -1642,7 +1642,7 @@
 				},
 				"displayFieldName": {
 					"default": false,
-					"title": "Display Field Name in Structures UI and allow users to edit it.",
+					"title": "Display field name in structures UI and allow users to edit it.",
 					"type": "boolean"
 				},
 				"enableContentTransformerListener": {
