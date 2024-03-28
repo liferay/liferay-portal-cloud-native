@@ -37,9 +37,9 @@ public class ObjectDefinitionGroovyScriptUseSourceURLFactory {
 			url, "p_p_id", ObjectPortletKeys.OBJECT_DEFINITIONS);
 		url = HttpComponentsUtil.addParameter(url, "p_p_lifecycle", "0");
 		url = HttpComponentsUtil.addParameter(
-			url, "p_p_mode", PortletMode.VIEW.toString());
-		url = HttpComponentsUtil.addParameter(
 			url, "p_p_state", WindowState.MAXIMIZED.toString());
+		url = HttpComponentsUtil.addParameter(
+			url, "p_p_mode", PortletMode.VIEW.toString());
 
 		String namespace = portal.getPortletNamespace(
 			ObjectPortletKeys.OBJECT_DEFINITIONS);
