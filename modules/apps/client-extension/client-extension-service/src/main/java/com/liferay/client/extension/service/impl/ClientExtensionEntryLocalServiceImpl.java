@@ -81,20 +81,16 @@ public class ClientExtensionEntryLocalServiceImpl
 
 		User user = _userLocalService.getUser(userId);
 
-		long companyId = user.getCompanyId();
-
-		_validateTypeSettings(companyId, typeSettings, null, type);
+		_validateTypeSettings(user.getCompanyId(), typeSettings, null, type);
 
 		ClientExtensionEntry clientExtensionEntry =
 			clientExtensionEntryPersistence.create(
 				counterLocalService.increment());
 
 		clientExtensionEntry.setExternalReferenceCode(externalReferenceCode);
-
-		clientExtensionEntry.setCompanyId(companyId);
+		clientExtensionEntry.setCompanyId(user.getCompanyId());
 		clientExtensionEntry.setUserId(user.getUserId());
 		clientExtensionEntry.setUserName(user.getFullName());
-
 		clientExtensionEntry.setDescription(description);
 		clientExtensionEntry.setNameMap(nameMap);
 		clientExtensionEntry.setProperties(properties);
