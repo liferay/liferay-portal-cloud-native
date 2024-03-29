@@ -149,7 +149,7 @@ public class SaveCompanyConfigurationMVCActionCommandTest {
 	}
 
 	@Test
-	public void testSaveCompanyConfigurationCompanySitemapGroupIdsNotExistingGroup()
+	public void testSaveCompanyConfigurationCompanySitemapGroupIdsNonexistentGroup()
 		throws Exception {
 
 		Group group = GroupTestUtil.addGroup(
