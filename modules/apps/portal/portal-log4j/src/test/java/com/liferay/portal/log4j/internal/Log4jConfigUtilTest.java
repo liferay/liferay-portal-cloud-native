@@ -359,13 +359,8 @@ public class Log4jConfigUtilTest {
 			appenderRefs.toString(), appenderTypes.length, appenderRefs.size());
 
 		for (String appenderType : appenderTypes) {
-			Assert.assertTrue(
-				"Missing appender " + appenderType,
-				appenders.containsKey(appenderType));
-
-			Assert.assertTrue(
-				"Missing appender reference " + appenderType,
-				appenderRefs.contains(appenderType));
+			Assert.assertTrue(appenderRefs.contains(appenderType));
+			Assert.assertTrue(appenders.containsKey(appenderType));
 		}
 	}
 
