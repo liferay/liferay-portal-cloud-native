@@ -524,9 +524,6 @@ public class SiteInitializerSerializerImpl
 
 					allRoles.addAll(user.getRoles());
 
-					JSONArray userAccountBriefsJSONArray =
-						_jsonFactory.createJSONArray();
-
 					List<AccountEntry> accountEntries =
 						_accountEntryLocalService.getUserAccountEntries(
 							user.getUserId(), null, null, null,
@@ -534,25 +531,17 @@ public class SiteInitializerSerializerImpl
 
 					allAccountEntries.addAll(accountEntries);
 
-					for (AccountEntry accountEntry : accountEntries) {
-						userAccountBriefsJSONArray.put(
-							JSONUtil.put(
-								"externalReferenceCode",
-								accountEntry.getExternalReferenceCode()));
-					}
+					List<Organization> organizations = user.getOrganizations();
 
-					JSONArray userOrganizationBriefsJSONArray =
-						_jsonFactory.createJSONArray();
-
-					allOrganizations.addAll(user.getOrganizations());
-
-					for (Organization organization : user.getOrganizations()) {
-						userOrganizationBriefsJSONArray.put(
-							JSONUtil.put("name", organization.getName()));
-					}
+					allOrganizations.addAll(organizations);
 
 					return JSONUtil.put(
-						"accountBriefs", userAccountBriefsJSONArray
+						"accountBriefs",
+						JSONUtil.toJSONArray(
+							accountEntries,
+							accountEntry -> JSONUtil.put(
+								"externalReferenceCode",
+								accountEntry.getExternalReferenceCode()))
 					).put(
 						"alternateName", user.getScreenName()
 					).put(
@@ -566,45 +555,47 @@ public class SiteInitializerSerializerImpl
 					).put(
 						"name", user.getFullName()
 					).put(
-						"organizationBriefs", userOrganizationBriefsJSONArray
+						"organizationBriefs",
+						JSONUtil.toJSONArray(
+							organizations,
+							organization -> JSONUtil.put(
+								"name", organization.getName()))
 					);
 				}),
 			zipWriter);
 
-		JSONArray roleJSONArray = _jsonFactory.createJSONArray();
+		_addZipEntry(
+			"roles.json",
+			JSONUtil.toJSONArray(
+				allRoles,
+				role -> {
+					if (StringUtil.equals(role.getName(), "User")) {
+						return null;
+					}
 
-		for (Role role : allRoles) {
-			if (StringUtil.equals(role.getName(), "User")) {
-				continue;
-			}
+					return JSONUtil.put(
+						"name", role.getName()
+					).put(
+						"name_i18n", JSONUtil.put("en-US", role.getName())
+					).put(
+						"type", role.getType()
+					);
+				}),
+			zipWriter);
 
-			roleJSONArray.put(
-				JSONUtil.put(
-					"name", role.getName()
-				).put(
-					"name_i18n", JSONUtil.put("en-US", role.getName())
-				).put(
-					"type", role.getType()
-				));
-		}
-
-		_addZipEntry("roles.json", roleJSONArray, zipWriter);
-
-		JSONArray accountEntriesJSONArray = _jsonFactory.createJSONArray();
-
-		for (AccountEntry accountEntry : allAccountEntries) {
-			accountEntriesJSONArray.put(
-				JSONUtil.put(
+		_addZipEntry(
+			"accounts.json",
+			JSONUtil.toJSONArray(
+				allAccountEntries,
+				accountEntry -> JSONUtil.put(
 					"externalReferenceCode",
 					accountEntry.getExternalReferenceCode()
 				).put(
 					"name", accountEntry.getName()
 				).put(
 					"type", accountEntry.getType()
-				));
-		}
-
-		_addZipEntry("accounts.json", accountEntriesJSONArray, zipWriter);
+				)),
+			zipWriter);
 
 		_serializeOrganizations(allOrganizations, zipWriter);
 	}
