@@ -421,17 +421,16 @@ public class JournalArticleSearchTest extends BaseSearchTestCase {
 			RandomTestUtil.randomLocaleStringMap(locale), null, locale, null,
 			false, true, serviceContext);
 
-		AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
-
-		assetEntryQuery.setClassName(JournalArticle.class.getName());
-
-		assetEntryQuery.setGroupIds(new long[] {group.getGroupId()});
-
 		SearchContext searchContext = SearchContextTestUtil.getSearchContext();
 
 		searchContext.setAssetVocabularyIds(
 			new long[] {assetVocabulary.getVocabularyId()});
 		searchContext.setGroupIds(new long[] {group.getGroupId()});
+
+		AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
+
+		assetEntryQuery.setClassName(JournalArticle.class.getName());
+		assetEntryQuery.setGroupIds(new long[] {group.getGroupId()});
 
 		Hits results = _assetHelper.search(
 			searchContext, assetEntryQuery, QueryUtil.ALL_POS,

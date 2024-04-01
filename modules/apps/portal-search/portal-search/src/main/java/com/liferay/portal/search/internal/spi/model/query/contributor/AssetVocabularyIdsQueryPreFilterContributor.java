@@ -32,29 +32,29 @@ public class AssetVocabularyIdsQueryPreFilterContributor
 			return;
 		}
 
-		TermsFilter vocabularyIdsTermsFilter = new TermsFilter(
+		TermsFilter assetVocabularyIdsTermsFilter = new TermsFilter(
 			Field.ASSET_VOCABULARY_IDS);
 
-		vocabularyIdsTermsFilter.addValues(
+		assetVocabularyIdsTermsFilter.addValues(
 			ArrayUtil.toStringArray(assetVocabularyIds));
 
 		if (!searchContext.isIncludeInternalAssetCategories()) {
 			fullQueryBooleanFilter.add(
-				vocabularyIdsTermsFilter, BooleanClauseOccur.MUST);
+				assetVocabularyIdsTermsFilter, BooleanClauseOccur.MUST);
 
 			return;
 		}
 
 		BooleanFilter booleanFilter = new BooleanFilter();
 
-		TermsFilter internalVocabularyIdsTermsFilter = new TermsFilter(
+		TermsFilter internalAssetVocabularyIdsTermsFilter = new TermsFilter(
 			Field.ASSET_INTERNAL_VOCABULARY_IDS);
 
-		internalVocabularyIdsTermsFilter.addValues(
+		internalAssetVocabularyIdsTermsFilter.addValues(
 			ArrayUtil.toStringArray(assetVocabularyIds));
 
-		booleanFilter.add(vocabularyIdsTermsFilter);
-		booleanFilter.add(internalVocabularyIdsTermsFilter);
+		booleanFilter.add(assetVocabularyIdsTermsFilter);
+		booleanFilter.add(internalAssetVocabularyIdsTermsFilter);
 
 		fullQueryBooleanFilter.add(booleanFilter, BooleanClauseOccur.MUST);
 	}
