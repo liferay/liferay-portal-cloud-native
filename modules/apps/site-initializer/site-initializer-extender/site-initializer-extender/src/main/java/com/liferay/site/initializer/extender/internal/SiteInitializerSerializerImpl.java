@@ -504,8 +504,8 @@ public class SiteInitializerSerializerImpl
 	private void _serializeUserAccounts(long groupId, ZipWriter zipWriter)
 		throws Exception {
 
-		Set<Organization> allOrganizations = new TreeSet<>();
 		Set<AccountEntry> allAccountEntries = new TreeSet<>();
+		Set<Organization> allOrganizations = new TreeSet<>();
 		Set<Role> allRoles = new TreeSet<>();
 
 		_addZipEntry(
