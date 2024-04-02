@@ -39,7 +39,7 @@ import org.springframework.web.util.UriBuilder;
 public class TestrayCommandLineRunner implements CommandLineRunner {
 
 	public void archiveTestrayBuilds() throws Exception {
-		JSONArray testrayBuildsJSONArray = _get(
+		JSONArray jsonArray = _get(
 			uriBuilder -> uriBuilder.path(
 				"/o/c/builds"
 			).queryParam(
@@ -53,18 +53,14 @@ public class TestrayCommandLineRunner implements CommandLineRunner {
 			"items"
 		);
 
-		JSONArray jsonArray = new JSONArray();
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-		for (int i = 0; i < testrayBuildsJSONArray.length(); i++) {
-			JSONObject testrayBuildsJSONObject =
-				(JSONObject)testrayBuildsJSONArray.get(i);
-
-			jsonArray.put(
-				testrayBuildsJSONObject.put(
-					"archived", true
-				).put(
-					"dateArchived", _currentDateTime
-				));
+			jsonObject.put(
+				"archived", true
+			).put(
+				"dateArchived", _currentDateTime
+			);
 		}
 
 		if (_log.isInfoEnabled()) {
