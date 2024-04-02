@@ -441,21 +441,20 @@ public abstract class BaseEhcachePortalCacheManager<K extends Serializable, V>
 		ObjectValuePair<Configuration, PortalCacheManagerConfiguration>
 			configurationObjectValuePair) {
 
-		String extConfigFile = StringUtil.replace(
-			_configFile, ".xml", "-ext.xml");
+		String extFile = StringUtil.replace(_configFile, ".xml", "-ext.xml");
 
 		ClassLoader classLoader =
 			EhcachePortalCacheManagerConfigurator.class.getClassLoader();
 
-		URL extConfigFileURL = classLoader.getResource(extConfigFile);
+		URL extFileURL = classLoader.getResource(extFile);
 
-		if (extConfigFileURL == null) {
+		if (extFileURL == null) {
 			classLoader = PortalClassLoaderUtil.getClassLoader();
 
-			extConfigFileURL = classLoader.getResource(extConfigFile);
+			extFileURL = classLoader.getResource(extFile);
 		}
 
-		if (extConfigFileURL == null) {
+		if (extFileURL == null) {
 			return;
 		}
 
@@ -463,7 +462,7 @@ public abstract class BaseEhcachePortalCacheManager<K extends Serializable, V>
 			extConfigurationObjectValuePair =
 				_ehcachePortalCacheManagerConfigurator.
 					getConfigurationObjectValuePair(
-						_portalCacheManagerName, extConfigFileURL, classLoader,
+						_portalCacheManagerName, extFileURL, classLoader,
 						false);
 
 		Configuration extConfiguration =
