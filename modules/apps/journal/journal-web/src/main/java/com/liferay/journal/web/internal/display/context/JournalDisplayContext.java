@@ -1446,53 +1446,6 @@ public class JournalDisplayContext {
 			_themeDisplay.getLocale(), _themeDisplay.getTimeZone());
 	}
 
-	private void _setBooleanClauses(SearchContext searchContext) {
-		BooleanFilter booleanFilter = new BooleanFilter();
-
-		if (ArrayUtil.isNotEmpty(_getAssetCategoryIds())) {
-			booleanFilter.add(
-				_getAssetCategoryIdsFilter(), BooleanClauseOccur.MUST);
-		}
-
-		if (ArrayUtil.isNotEmpty(_getAssetTagNames())) {
-			booleanFilter.add(
-				_getAssetTagNamesFilter(), BooleanClauseOccur.MUST);
-		}
-
-		if (_isSearchLocationCurrentFolder()) {
-			booleanFilter.add(
-				_getCurrentFolderFilter(), BooleanClauseOccur.MUST_NOT);
-		}
-
-		if (!isHighlightedDDMStructure() && !isSearch()) {
-			booleanFilter.addTerm(
-				Field.FOLDER_ID, String.valueOf(getFolderId()),
-				BooleanClauseOccur.MUST);
-		}
-
-		if ((isNavigationMine() || isNavigationRecent()) &&
-			(_themeDisplay.getUserId() > 0)) {
-
-			booleanFilter.addTerm(
-				Field.USER_ID, String.valueOf(_themeDisplay.getUserId()),
-				BooleanClauseOccur.MUST);
-		}
-
-		if (!booleanFilter.hasClauses()) {
-			return;
-		}
-
-		BooleanQuery booleanQuery = new BooleanQueryImpl();
-
-		booleanQuery.setPreBooleanFilter(booleanFilter);
-
-		searchContext.setBooleanClauses(
-			new BooleanClause[] {
-				BooleanClauseFactoryUtil.create(
-					booleanQuery, BooleanClauseOccur.MUST.getName())
-			});
-	}
-
 	private SearchContainer<Object> _getArticleAndFolderSearchContainer()
 		throws PortalException {
 
@@ -2112,6 +2065,53 @@ public class JournalDisplayContext {
 		}
 
 		searchContext.setStart(start);
+	}
+
+	private void _setBooleanClauses(SearchContext searchContext) {
+		BooleanFilter booleanFilter = new BooleanFilter();
+
+		if (ArrayUtil.isNotEmpty(_getAssetCategoryIds())) {
+			booleanFilter.add(
+				_getAssetCategoryIdsFilter(), BooleanClauseOccur.MUST);
+		}
+
+		if (ArrayUtil.isNotEmpty(_getAssetTagNames())) {
+			booleanFilter.add(
+				_getAssetTagNamesFilter(), BooleanClauseOccur.MUST);
+		}
+
+		if (_isSearchLocationCurrentFolder()) {
+			booleanFilter.add(
+				_getCurrentFolderFilter(), BooleanClauseOccur.MUST_NOT);
+		}
+
+		if (!isHighlightedDDMStructure() && !isSearch()) {
+			booleanFilter.addTerm(
+				Field.FOLDER_ID, String.valueOf(getFolderId()),
+				BooleanClauseOccur.MUST);
+		}
+
+		if ((isNavigationMine() || isNavigationRecent()) &&
+			(_themeDisplay.getUserId() > 0)) {
+
+			booleanFilter.addTerm(
+				Field.USER_ID, String.valueOf(_themeDisplay.getUserId()),
+				BooleanClauseOccur.MUST);
+		}
+
+		if (!booleanFilter.hasClauses()) {
+			return;
+		}
+
+		BooleanQuery booleanQuery = new BooleanQueryImpl();
+
+		booleanQuery.setPreBooleanFilter(booleanFilter);
+
+		searchContext.setBooleanClauses(
+			new BooleanClause[] {
+				BooleanClauseFactoryUtil.create(
+					booleanQuery, BooleanClauseOccur.MUST.getName())
+			});
 	}
 
 	private static final String[] _PARAMETER_NAMES = {
