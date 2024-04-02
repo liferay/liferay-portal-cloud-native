@@ -236,7 +236,7 @@ public class RecurrenceUtil {
 				LocaleUtil.getMostRelevantLocale(), "false");
 		}
 
-		List<Object> params = new ArrayList<>();
+		List<Object> arguments = new ArrayList<>();
 
 		StringBundler sb = new StringBundler(4);
 
@@ -249,7 +249,7 @@ public class RecurrenceUtil {
 			sb.append("every-x-");
 			sb.append(_intervalUnits.get(frequency));
 
-			params.add(recurrence.getInterval());
+			arguments.add(recurrence.getInterval());
 		}
 
 		PositionalWeekday positionalWeekday = recurrence.getPositionalWeekday();
@@ -262,19 +262,19 @@ public class RecurrenceUtil {
 			if (frequency == Frequency.MONTHLY) {
 				sb.append("-on-x-x");
 
-				params.add(
+				arguments.add(
 					_positionLabels.get(positionalWeekday.getPosition()));
-				params.add(_weekdayLabels.get(weekday.toString()));
+				arguments.add(_weekdayLabels.get(weekday.toString()));
 			}
 			else {
 				Date startDate = new Date(calendarBooking.getStartTime());
 
 				sb.append("-on-x-x-of-x");
 
-				params.add(
+				arguments.add(
 					_positionLabels.get(positionalWeekday.getPosition()));
-				params.add(_weekdayLabels.get(weekday.toString()));
-				params.add(_monthLabels.get(startDate.getMonth()));
+				arguments.add(_weekdayLabels.get(weekday.toString()));
+				arguments.add(_monthLabels.get(startDate.getMonth()));
 			}
 		}
 		else if ((frequency == Frequency.WEEKLY) && !weekdays.isEmpty()) {
@@ -286,7 +286,7 @@ public class RecurrenceUtil {
 				formattedWeekdays.add(_weekdayLabels.get(weekday.toString()));
 			}
 
-			params.add(ListUtil.toString(formattedWeekdays, StringPool.BLANK));
+			arguments.add(ListUtil.toString(formattedWeekdays, StringPool.BLANK));
 		}
 
 		Calendar untilJCalendar = recurrence.getUntilJCalendar();
@@ -294,19 +294,19 @@ public class RecurrenceUtil {
 		if (recurrence.getCount() > 0) {
 			sb.append("-x-times");
 
-			params.add(recurrence.getCount());
+			arguments.add(recurrence.getCount());
 		}
 		else if (untilJCalendar != null) {
 			sb.append("-until-x-x-x");
 
-			params.add(_monthLabels.get(untilJCalendar.get(Calendar.MONTH)));
-			params.add(untilJCalendar.get(Calendar.DATE));
-			params.add(untilJCalendar.get(Calendar.YEAR));
+			arguments.add(_monthLabels.get(untilJCalendar.get(Calendar.MONTH)));
+			arguments.add(untilJCalendar.get(Calendar.DATE));
+			arguments.add(untilJCalendar.get(Calendar.YEAR));
 		}
 
 		return LanguageUtil.format(
 			LocaleUtil.getMostRelevantLocale(), sb.toString(),
-			params.toArray(new Object[0]));
+			arguments.toArray(new Object[0]));
 	}
 
 	public static Recurrence inTimeZone(
