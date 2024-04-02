@@ -110,7 +110,7 @@ public class ScanCodeProject {
 			"name",
 			JenkinsResultsParserUtil.combine(
 				dockerTag, " Docker Scan-",
-				startTimeSimpleDateFormat.format(new Date()))
+				_simpleDateFormat.format(new Date()))
 		).put(
 			"pipeline", _pipelineName
 		);
@@ -131,7 +131,7 @@ public class ScanCodeProject {
 			"labels", _LABELS
 		).put(
 			"name",
-			"Master Daily Scan-" + startTimeSimpleDateFormat.format(new Date())
+			"Master Daily Scan-" + _simpleDateFormat.format(new Date())
 		).put(
 			"pipeline", _pipelineName
 		);
@@ -170,7 +170,7 @@ public class ScanCodeProject {
 			"name",
 			JenkinsResultsParserUtil.combine(
 				portalReleaseVersion, " Scan-",
-				startTimeSimpleDateFormat.format(new Date()))
+				_simpleDateFormat.format(new Date()))
 		).put(
 			"pipeline", _pipelineName
 		);
@@ -382,7 +382,7 @@ public class ScanCodeProject {
 		setProjectURL(_projectID, _projectName);
 	}
 
-	protected static final SimpleDateFormat startTimeSimpleDateFormat =
+	private final SimpleDateFormat _simpleDateFormat =
 		new SimpleDateFormat("MMM d yy HH:mm:ss");
 
 	private static final String _API_URL =
