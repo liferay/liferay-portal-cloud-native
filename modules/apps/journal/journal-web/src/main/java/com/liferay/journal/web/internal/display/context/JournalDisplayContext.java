@@ -1446,7 +1446,7 @@ public class JournalDisplayContext {
 			_themeDisplay.getLocale(), _themeDisplay.getTimeZone());
 	}
 
-	private void _addBooleanClauses(SearchContext searchContext) {
+	private void _setBooleanClauses(SearchContext searchContext) {
 		BooleanFilter booleanFilter = new BooleanFilter();
 
 		if (ArrayUtil.isNotEmpty(_getAssetCategoryIds())) {
@@ -2065,7 +2065,7 @@ public class JournalDisplayContext {
 
 		searchContext.setAttributes(attributes);
 
-		_addBooleanClauses(searchContext);
+		_setBooleanClauses(searchContext);
 
 		long ddmStructureId = ParamUtil.getLong(
 			_httpServletRequest, "ddmStructureId");
