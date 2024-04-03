@@ -65,7 +65,7 @@ public class SugarCRMObjectEntryManagerImpl
 			_getObjectLocation(objectDefinition),
 			toJSONObject(
 				dtoConverterContext, objectDefinition, objectEntry,
-				_getTriConsumer(objectDefinition)));
+				_getUnsafeTriConsumer(objectDefinition)));
 
 		return toObjectEntry(
 			objectDefinition.getCompanyId(), getDateFormat(),
@@ -167,7 +167,7 @@ public class SugarCRMObjectEntryManagerImpl
 				externalReferenceCode),
 			toJSONObject(
 				dtoConverterContext, objectDefinition, objectEntry,
-				_getTriConsumer(objectDefinition)));
+				_getUnsafeTriConsumer(objectDefinition)));
 
 		return toObjectEntry(
 			objectDefinition.getCompanyId(), getDateFormat(),
@@ -332,7 +332,7 @@ public class SugarCRMObjectEntryManagerImpl
 	}
 
 	private UnsafeTriConsumer
-		<Map<String, Object>, Object, ObjectField, Exception> _getTriConsumer(
+		<Map<String, Object>, Object, ObjectField, Exception> _getUnsafeTriConsumer(
 			ObjectDefinition objectDefinition) {
 
 		return (map, value, objectField) -> {

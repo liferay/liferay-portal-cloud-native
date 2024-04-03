@@ -75,7 +75,7 @@ public class SalesforceObjectEntryManagerImpl
 			"sobjects/" + objectDefinition.getExternalReferenceCode(),
 			toJSONObject(
 				dtoConverterContext, objectDefinition, objectEntry,
-				_getTriConsumer(objectDefinition)));
+				_getUnsafeTriConsumer(objectDefinition)));
 
 		return getObjectEntry(
 			objectDefinition.getCompanyId(), dtoConverterContext,
@@ -172,7 +172,7 @@ public class SalesforceObjectEntryManagerImpl
 				externalReferenceCode),
 			toJSONObject(
 				dtoConverterContext, objectDefinition, objectEntry,
-				_getTriConsumer(objectDefinition)));
+				_getUnsafeTriConsumer(objectDefinition)));
 
 		return getObjectEntry(
 			companyId, dtoConverterContext, externalReferenceCode,
@@ -405,8 +405,8 @@ public class SalesforceObjectEntryManagerImpl
 	}
 
 	private UnsafeTriConsumer
-		<Map<String, Object>, Object, ObjectField, Exception> _getTriConsumer(
-			ObjectDefinition objectDefinition) {
+		<Map<String, Object>, Object, ObjectField, Exception>
+			_getUnsafeTriConsumer(ObjectDefinition objectDefinition) {
 
 		return (map, value, objectField) -> {
 			if (StringUtil.endsWith(

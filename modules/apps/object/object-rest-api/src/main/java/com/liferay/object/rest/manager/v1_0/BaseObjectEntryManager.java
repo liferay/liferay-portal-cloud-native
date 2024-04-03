@@ -172,7 +172,7 @@ public abstract class BaseObjectEntryManager {
 			com.liferay.object.rest.dto.v1_0.ObjectEntry objectEntry,
 			UnsafeTriConsumer
 				<Map<String, Object>, Object, ObjectField, Exception>
-					triConsumer)
+					unsafeTriConsumer)
 		throws Exception {
 
 		Map<String, Object> map = new HashMap<>();
@@ -234,7 +234,7 @@ public abstract class BaseObjectEntryManager {
 				objectField.getExternalReferenceCode(),
 				Objects.equals(value, StringPool.BLANK) ? null : value);
 
-			triConsumer.accept(map, value, objectField);
+			unsafeTriConsumer.accept(map, value, objectField);
 		}
 
 		return jsonFactory.createJSONObject(jsonFactory.looseSerialize(map));
