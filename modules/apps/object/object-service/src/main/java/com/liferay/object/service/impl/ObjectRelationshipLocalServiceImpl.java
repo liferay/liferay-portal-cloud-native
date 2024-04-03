@@ -573,9 +573,9 @@ public class ObjectRelationshipLocalServiceImpl
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Object relationship ID ", objectRelationshipId,
-						" cannot be edge because the object definitions are ",
-						"bound to different root object definitions"));
+						"Object relationship ", objectRelationshipId,
+						" cannot be an edge because its object definitions ",
+						"are bound to different root object definitions"));
 			}
 
 			return objectRelationship;
@@ -586,9 +586,9 @@ public class ObjectRelationshipLocalServiceImpl
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Object relationship ID ", objectRelationshipId,
-						" cannot be  edge because the object definitions have ",
-						"different status"));
+						"Object relationship ", objectRelationshipId,
+						" cannot be an edge because its object definitions ",
+						"have different statuses"));
 			}
 
 			return objectRelationship;

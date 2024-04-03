@@ -422,8 +422,8 @@ public class ObjectDefinitionResourceImpl
 				WorkflowConstants.STATUS_APPROVED)) {
 
 			throw new ObjectDefinitionStatusException(
-				"Editing the status of a published object definition is not " +
-					"allowed");
+				"Modifying the status of a published object definition is " +
+					"not allowed");
 		}
 
 		String rootObjectDefinitionExternalReferenceCode =
@@ -1269,7 +1269,7 @@ public class ObjectDefinitionResourceImpl
 				StringBundler.concat(
 					"Unable to set the object definition ",
 					rootServiceBuilderObjectDefinition.getObjectDefinitionId(),
-					" as root object definition because it is bound to ",
+					" as a root object definition because it is bound to ",
 					"another root object definition"));
 		}
 	}
