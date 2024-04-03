@@ -70,7 +70,7 @@ public class SugarCRMObjectEntryManagerImpl
 		JSONObject responseJSONObject = _objectEntryManagerHttp.post(
 			objectDefinition.getCompanyId(),
 			getGroupId(objectDefinition, scopeKey),
-			_getObjectLocation(objectDefinition),
+			objectDefinition.getExternalReferenceCode(),
 			toJSONObject(
 				dtoConverterContext, objectDefinition, objectEntry,
 				_getUnsafeTriConsumer(objectDefinition)));
@@ -136,7 +136,7 @@ public class SugarCRMObjectEntryManagerImpl
 			_objectEntryManagerHttp.get(
 				companyId, getGroupId(objectDefinition, scopeKey),
 				StringBundler.concat(
-					_getObjectLocation(objectDefinition),
+					objectDefinition.getExternalReferenceCode(),
 					StringPool.FORWARD_SLASH, externalReferenceCode)),
 			objectDefinition);
 	}
@@ -171,8 +171,8 @@ public class SugarCRMObjectEntryManagerImpl
 			objectDefinition.getCompanyId(),
 			getGroupId(objectDefinition, scopeKey),
 			StringBundler.concat(
-				_getObjectLocation(objectDefinition), StringPool.FORWARD_SLASH,
-				externalReferenceCode),
+				objectDefinition.getExternalReferenceCode(),
+				StringPool.FORWARD_SLASH, externalReferenceCode),
 			toJSONObject(
 				dtoConverterContext, objectDefinition, objectEntry,
 				_getUnsafeTriConsumer(objectDefinition)));
@@ -250,7 +250,7 @@ public class SugarCRMObjectEntryManagerImpl
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(_getObjectLocation(objectDefinition));
+		sb.append(objectDefinition.getExternalReferenceCode());
 
 		if (count) {
 			sb.append(StringPool.FORWARD_SLASH);
@@ -297,10 +297,6 @@ public class SugarCRMObjectEntryManagerImpl
 			_getTotalCount(
 				companyId, objectDefinition, scopeKey, filterString, pagination,
 				sorts));
-	}
-
-	private String _getObjectLocation(ObjectDefinition objectDefinition) {
-		return objectDefinition.getExternalReferenceCode();
 	}
 
 	private int _getTotalCount(
