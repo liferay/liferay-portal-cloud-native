@@ -212,51 +212,41 @@ public class SugarCRMObjectEntryManagerImpl
 	}
 
 	private void _appendSorts(
-		StringBuilder sb, ObjectDefinition objectDefinition, Sort[] oldSorts) {
+		StringBuilder sb, ObjectDefinition objectDefinition, Sort[] sorts) {
 
-		if (ArrayUtil.isEmpty(oldSorts)) {
+		if (ArrayUtil.isEmpty(sorts)) {
 			return;
 		}
+
+		sb.append("order_by=");
 
 		List<ObjectField> objectFields =
 			_objectFieldLocalService.getObjectFields(
 				objectDefinition.getObjectDefinitionId());
 
-		Sort[] newSorts = new Sort[oldSorts.length];
-
-		for (int i = 0; i < oldSorts.length; i++) {
+		for (int i = 0; i < sorts.length; i++) {
 			for (ObjectField objectField : objectFields) {
 				if (!Objects.equals(
-						oldSorts[i].getFieldName(), objectField.getName())) {
+						sorts[i].getFieldName(), objectField.getName())) {
 
 					continue;
 				}
 
-				Sort sort = new Sort(
-					objectField.getExternalReferenceCode(),
-					oldSorts[i].isReverse());
+				if (i > 0) {
+					sb.append(",");
+				}
 
-				newSorts[i] = sort;
+				sb.append(objectField.getExternalReferenceCode());
+				sb.append(":");
+
+				if (sorts[i].isReverse()) {
+					sb.append("DESC");
+				}
+				else {
+					sb.append("ASC");
+				}
 
 				break;
-			}
-		}
-
-		sb.append("order_by=");
-
-		for (int i = 0; i < newSorts.length; i++) {
-			if (i > 0) {
-				sb.append(",");
-			}
-
-			sb.append(newSorts[i].getFieldName());
-			sb.append(":");
-
-			if (newSorts[i].isReverse()) {
-				sb.append("DESC");
-			}
-			else {
-				sb.append("ASC");
 			}
 		}
 
