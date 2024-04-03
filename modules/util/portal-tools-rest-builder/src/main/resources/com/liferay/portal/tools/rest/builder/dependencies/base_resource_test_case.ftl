@@ -1797,6 +1797,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 					</#if>
 
 					<#if freeMarkerTool.isVersionCompatible(configYAML, 5)>
+
 						// Using the namespace ${graphQLNamespace}
 
 						${schemaName} ${schemaVarName}2 = testGraphQL${javaMethodSignature.methodName?cap_first}_add${schemaName}();
@@ -1860,7 +1861,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 				</#if>
 			}
 		<#elseif configYAML.generateGraphQL && freeMarkerTool.hasHTTPMethod(javaMethodSignature, "get") && javaMethodSignature.returnType?contains("Page<") && stringUtil.equals(freeMarkerTool.getGraphQLPropertyName(javaMethodSignature, javaMethodSignatures), schemaVarNames)>
-
 			@FeatureFlags("LPD-10789")
 			@Test
 			public void testGraphQL${javaMethodSignature.methodName?cap_first}() throws Exception {
@@ -1926,6 +1926,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 					assertContains(${schemaVarName}2, Arrays.asList(${schemaName}SerDes.toDTOs(${schemaVarNames}JSONObject.getString("items"))));
 
 					<#if freeMarkerTool.isVersionCompatible(configYAML, 5)>
+
 						// Using the namespace ${graphQLNamespace}
 
 						${schemaVarNames}JSONObject = JSONUtil.getValueAsJSONObject(
@@ -2037,6 +2038,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 								"Object/${freeMarkerTool.getGraphQLPropertyName(javaMethodSignature, javaMethodSignatures)}"))));
 
 					<#if freeMarkerTool.isVersionCompatible(configYAML, 5)>
+
 						// Using the namespace ${graphQLNamespace}
 
 						Assert.assertTrue(
@@ -2182,6 +2184,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 							"JSONArray/errors", "Object/0", "JSONObject/extensions", "Object/code"));
 
 					<#if freeMarkerTool.isVersionCompatible(configYAML, 5)>
+
 						// Using the namespace ${graphQLNamespace}
 
 						Assert.assertEquals(
@@ -2215,7 +2218,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 				</#if>
 				}
 		<#elseif configYAML.generateGraphQL && freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post") && stringUtil.equals(javaMethodSignature.methodName, "postSite" + schemaName) && javaMethodSignature.returnType?ends_with(schemaName) && !freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
-
 			@Test
 			public void testGraphQL${javaMethodSignature.methodName?cap_first}() throws Exception {
 				${schemaName} random${schemaName} = random${schemaName}();
