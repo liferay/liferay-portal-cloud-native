@@ -445,7 +445,7 @@ public class PortletRenderUtil {
 				WebKeys.PORTLET_RESOURCE_STATIC_URLS, visitedURLs);
 		}
 
-		List<String> urls;
+		List<String> urls = null;
 
 		if (fastLoad) {
 			Theme theme = themeDisplay.getTheme();
@@ -468,9 +468,6 @@ public class PortletRenderUtil {
 				httpServletRequest, portletResourceAccessors, portlets,
 				visitedURLs);
 		}
-
-		// Remove nocombo: but leave module: since the latter must be honored
-		// browser side.
 
 		for (int i = 0; i < urls.size(); i++) {
 			String url = urls.get(i);
