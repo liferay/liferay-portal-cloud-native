@@ -171,7 +171,6 @@ public class SugarCRMQueryExpressionVisitorImpl
 		JSONArray jsonArray = null;
 
 		JSONObject leftJSONObject = (JSONObject)left;
-		JSONObject rightJSONObject = (JSONObject)right;
 
 		if (Validator.isNotNull(leftJSONObject.getJSONArray(operator))) {
 			jsonArray = leftJSONObject.getJSONArray(operator);
@@ -180,7 +179,7 @@ public class SugarCRMQueryExpressionVisitorImpl
 			jsonArray = JSONUtil.put(leftJSONObject);
 		}
 
-		jsonArray.put(rightJSONObject);
+		jsonArray.put(right);
 
 		sb.append(JSONUtil.put(operator, jsonArray));
 	}
