@@ -91,7 +91,7 @@ public class BuildHistoryReport {
 			"dependencies/metrics/utilization-report", "/index.html");
 
 		Collection<BuildHistory> buildHistories =
-			BuildHistoryProcessor.newUtilizationJobHistories(
+			BuildHistoryProcessor.newUtilizationBuildHistories(
 				TimeUnit.DAYS.toMillis(durationDays),
 				_getStartTime(startDateString));
 

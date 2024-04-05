@@ -161,7 +161,7 @@ public class BuildHistoryProcessor {
 			duration, null, jobNamePattern, biConsumer, startTime);
 	}
 
-	public static Collection<BuildHistory> newUtilizationJobHistories(
+	public static Collection<BuildHistory> newUtilizationBuildHistories(
 		long duration, long startTime) {
 
 		BiConsumer<Set<BuildJSONObject>, Map<String, BuildHistory>> biConsumer =
