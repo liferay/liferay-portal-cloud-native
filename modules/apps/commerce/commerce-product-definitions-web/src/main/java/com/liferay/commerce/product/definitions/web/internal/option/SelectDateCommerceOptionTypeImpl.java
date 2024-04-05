@@ -97,7 +97,6 @@ public class SelectDateCommerceOptionTypeImpl implements CommerceOptionType {
 
 		printWriter.write("<div>");
 
-		AccountEntry accountEntry = null;
 		CommerceContext commerceContext =
 			(CommerceContext)httpServletRequest.getAttribute(
 				CommerceWebKeys.COMMERCE_CONTEXT);
@@ -128,8 +127,6 @@ public class SelectDateCommerceOptionTypeImpl implements CommerceOptionType {
 				defaultDTOConverterContext);
 		}
 		else {
-			accountEntry = commerceContext.getAccountEntry();
-
 			ProductSettingsModel productSettingsModel =
 				_productHelper.getProductSettingsModel(
 					cpDefinition.getCPDefinitionId());
@@ -166,7 +163,22 @@ public class SelectDateCommerceOptionTypeImpl implements CommerceOptionType {
 					"/components/product_options/ProductOptionSelect"),
 			HashMapBuilder.<String, Object>put(
 				"accountId",
-				(accountEntry == null) ? 0 : accountEntry.getAccountEntryId()
+				() -> {
+					if (CPPortletKeys.CP_DEFINITIONS.equals(
+							portletDisplay.getPortletName())) {
+
+						return null;
+					}
+
+					AccountEntry accountEntry =
+						commerceContext.getAccountEntry();
+
+					if (accountEntry == null) {
+						return null;
+					}
+
+					return accountEntry.getAccountEntryId();
+				}
 			).put(
 				"channelId",
 				(commerceContext == null) ? 0 :
