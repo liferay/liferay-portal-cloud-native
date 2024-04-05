@@ -166,31 +166,31 @@ public class BuildHistory {
 	protected class Table {
 
 		public JSONArray getJSONArray(int intervalDays) {
-			String[][] splitDateStrings = _splitArray(
+			String[][] dateStringsArray = _split(
 				JenkinsResultsParserUtil.getDateStrings(
 					getStartTime(), getDuration()),
 				intervalDays);
 
-			String[] dateStrings = new String[splitDateStrings.length];
+			String[] dateStrings = new String[dateStringsArray.length];
 
 			Long[] averageTopLevelBuildDurations =
-				new Long[splitDateStrings.length];
-			Long[] invokedBuilds = new Long[splitDateStrings.length];
-			Long[] invokedTopLevelBuilds = new Long[splitDateStrings.length];
-			Long[] totalServerDurations = new Long[splitDateStrings.length];
+				new Long[dateStringsArray.length];
+			Long[] invokedBuilds = new Long[dateStringsArray.length];
+			Long[] invokedTopLevelBuilds = new Long[dateStringsArray.length];
+			Long[] totalServerDurations = new Long[dateStringsArray.length];
 
-			for (int i = 0; i < splitDateStrings.length; i++) {
-				dateStrings[i] = splitDateStrings[i][0];
+			for (int i = 0; i < dateStringsArray.length; i++) {
+				dateStrings[i] = dateStringsArray[i][0];
 
 				invokedBuilds[i] = _getTotalValue(
-					_dailyInvokedBuilds, splitDateStrings[i]);
+					_dailyInvokedBuilds, dateStringsArray[i]);
 				invokedTopLevelBuilds[i] = _getTotalValue(
-					_dailyInvokedTopLevelBuilds, splitDateStrings[i]);
+					_dailyInvokedTopLevelBuilds, dateStringsArray[i]);
 				totalServerDurations[i] = _getTotalValue(
-					_dailyTotalBuildDurations, splitDateStrings[i]);
+					_dailyTotalBuildDurations, dateStringsArray[i]);
 
 				long topLevelBuildDuration = _getTotalValue(
-					_dailyTotalTopLevelBuildDurations, splitDateStrings[i]);
+					_dailyTotalTopLevelBuildDurations, dateStringsArray[i]);
 
 				averageTopLevelBuildDurations[i] = _getQuotient(
 					topLevelBuildDuration, invokedTopLevelBuilds[i]);
@@ -474,25 +474,25 @@ public class BuildHistory {
 		}
 	}
 
-	private String[][] _splitArray(String[] array, int partitionSize) {
-		int partitionCount = (int)Math.ceil(
-			(double)array.length / partitionSize);
+	private String[][] _split(String[] array, int size) {
+		int count = (int)Math.ceil(
+			(double)array.length / size);
 
-		String[][] partitionedArrays = new String[partitionCount][];
+		String[][] arrays = new String[count][];
 
-		for (int i = 0; i < partitionCount; ++i) {
-			int start = i * partitionSize;
+		for (int i = 0; i < count; ++i) {
+			int start = i * size;
 
-			int length = Math.min(array.length - start, partitionSize);
+			int length = Math.min(array.length - start, size);
 
-			String[] arraySubset = new String[length];
+			String[] curArray = new String[length];
 
-			System.arraycopy(array, start, arraySubset, 0, length);
+			System.arraycopy(array, start, curArray, 0, length);
 
-			partitionedArrays[i] = arraySubset;
+			arrays[i] = curArray;
 		}
 
-		return partitionedArrays;
+		return arrays;
 	}
 
 	private static final long _TIMELINE_SAMPLE_PERIOD_MINUTES = 15;
