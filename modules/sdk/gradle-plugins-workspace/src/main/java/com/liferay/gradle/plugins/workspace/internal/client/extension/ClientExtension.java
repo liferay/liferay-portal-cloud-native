@@ -148,6 +148,6 @@ public class ClientExtension {
 			ResourceUtil.readProperties(
 				ResourceUtil.getClassLoaderResolver(
 					ClientExtension.class, "client-extension.properties")),
-			"Could not read client-extension.properties file from classpath");
+			"Unable to read client-extension.properties file from class path");
 
 }

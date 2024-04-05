@@ -168,7 +168,7 @@ public class ReleaseUtil {
 			ResourceUtil.getClassLoaderResolver("/releases.json"));
 
 		if (releaseEntries == null) {
-			throw new GradleException("Could not read releases.json file");
+			throw new GradleException("Unable to read releases.json");
 		}
 
 		for (ReleaseEntry releaseEntry : releaseEntries) {

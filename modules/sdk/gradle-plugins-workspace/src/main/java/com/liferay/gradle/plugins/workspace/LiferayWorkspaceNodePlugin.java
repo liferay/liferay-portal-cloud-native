@@ -76,7 +76,7 @@ public class LiferayWorkspaceNodePlugin implements Plugin<Project> {
 
 		if (_nodeInfos == null) {
 			throw new GradleException(
-				"Could not read Node release information");
+				"Unable to read Node release information");
 		}
 	}
 

@@ -181,7 +181,7 @@ public class ResourceUtil {
 
 	private static void _logInfo(String message, Object... args) {
 		if (_logger.isInfoEnabled()) {
-			_logger.info("ResourceUtil: " + message, args);
+			_logger.info(message, args);
 		}
 	}
 
