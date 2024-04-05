@@ -475,8 +475,7 @@ public class BuildHistory {
 	}
 
 	private String[][] _split(String[] array, int size) {
-		int count = (int)Math.ceil(
-			(double)array.length / size);
+		int count = (int)Math.ceil((double)array.length / size);
 
 		String[][] arrays = new String[count][];
 
