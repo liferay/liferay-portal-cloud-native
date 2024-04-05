@@ -630,7 +630,7 @@
 					"businessType": "LongText",
 					"indexed": false,
 					"label": {
-						"en_US": "Prioritized Job Ids"
+						"en_US": "Prioritized Job IDs"
 					},
 					"name": "prioritizedJobIds",
 					"type": "Clob"
