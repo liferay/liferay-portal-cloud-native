@@ -90,7 +90,7 @@ public class EditCookiesPreferenceHandlingConfigurationMVCActionCommand
 			(scope != ExtendedObjectClassDefinition.Scope.SYSTEM)) {
 
 			throw new PortalException(
-				"Invalid scope primary key 0 for " + scope + " scope");
+				"Invalid scope primary key 0 for scope " + scope);
 		}
 
 		return scopePK;
