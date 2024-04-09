@@ -64,39 +64,39 @@ public class CookiesConfigurationProviderImpl
 		PermissionChecker permissionChecker = _permissionCheckerFactory.create(
 			_portal.getUser(httpServletRequest));
 
-		if (permissionChecker.isCompanyAdmin()) {
-			String factoryPid =
-				CookiesPreferenceHandlingConfiguration.class.getName();
-
-			String pid = factoryPid;
-
-			Configuration configuration =
-				_getCookiesPreferenceHandlingCompanyConfiguration(
-					_portal.getCompanyId(httpServletRequest));
-
-			if (configuration != null) {
-				pid = configuration.getPid();
-			}
-
-			return PortletURLBuilder.create(
-				_portal.getControlPanelPortletURL(
-					httpServletRequest,
-					ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
-					PortletRequest.RENDER_PHASE)
-			).setMVCRenderCommandName(
-				"/configuration_admin/edit_configuration"
-			).setRedirect(
-				ParamUtil.getString(
-					httpServletRequest, "backURL",
-					_portal.getCurrentCompleteURL(httpServletRequest))
-			).setParameter(
-				"factoryPid", factoryPid
-			).setParameter(
-				"pid", pid
-			).buildString();
+		if (!permissionChecker.isCompanyAdmin()) {
+			return null;
 		}
 
-		return null;
+		String factoryPid =
+			CookiesPreferenceHandlingConfiguration.class.getName();
+
+		String pid = factoryPid;
+
+		Configuration configuration =
+			_getCookiesPreferenceHandlingCompanyConfiguration(
+				_portal.getCompanyId(httpServletRequest));
+
+		if (configuration != null) {
+			pid = configuration.getPid();
+		}
+
+		return PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				httpServletRequest,
+				ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
+				PortletRequest.RENDER_PHASE)
+		).setMVCRenderCommandName(
+			"/configuration_admin/edit_configuration"
+		).setRedirect(
+			ParamUtil.getString(
+				httpServletRequest, "backURL",
+				_portal.getCurrentCompleteURL(httpServletRequest))
+		).setParameter(
+			"factoryPid", factoryPid
+		).setParameter(
+			"pid", pid
+		).buildString();
 	}
 
 	@Override
@@ -138,39 +138,38 @@ public class CookiesConfigurationProviderImpl
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		if (permissionChecker.isGroupAdmin(themeDisplay.getScopeGroupId())) {
-			String factoryPid =
-				CookiesPreferenceHandlingConfiguration.class.getName();
-
-			String pid = factoryPid;
-
-			Configuration configuration =
-				_getCookiesPreferenceHandlingGroupConfiguration(
-					themeDisplay.getScopeGroupId());
-
-			if (configuration != null) {
-				pid = configuration.getPid();
-			}
-
-			return PortletURLBuilder.create(
-				_portal.getControlPanelPortletURL(
-					httpServletRequest,
-					ConfigurationAdminPortletKeys.SITE_SETTINGS,
-					PortletRequest.RENDER_PHASE)
-			).setMVCRenderCommandName(
-				"/configuration_admin/edit_configuration"
-			).setRedirect(
-				ParamUtil.getString(
-					httpServletRequest, "backURL",
-					_portal.getCurrentCompleteURL(httpServletRequest))
-			).setParameter(
-				"factoryPid", factoryPid
-			).setParameter(
-				"pid", pid
-			).buildString();
+		if (!permissionChecker.isGroupAdmin(themeDisplay.getScopeGroupId())) {
+			return null;
 		}
 
-		return null;
+		String factoryPid =
+			CookiesPreferenceHandlingConfiguration.class.getName();
+
+		String pid = factoryPid;
+
+		Configuration configuration =
+			_getCookiesPreferenceHandlingGroupConfiguration(
+				themeDisplay.getScopeGroupId());
+
+		if (configuration != null) {
+			pid = configuration.getPid();
+		}
+
+		return PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				httpServletRequest, ConfigurationAdminPortletKeys.SITE_SETTINGS,
+				PortletRequest.RENDER_PHASE)
+		).setMVCRenderCommandName(
+			"/configuration_admin/edit_configuration"
+		).setRedirect(
+			ParamUtil.getString(
+				httpServletRequest, "backURL",
+				_portal.getCurrentCompleteURL(httpServletRequest))
+		).setParameter(
+			"factoryPid", factoryPid
+		).setParameter(
+			"pid", pid
+		).buildString();
 	}
 
 	@Override
