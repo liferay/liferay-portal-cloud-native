@@ -34,9 +34,9 @@ function clone_repository {
 		git clone --branch ${github_branch} --depth 1 --single-branch ${github_url} ${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}
 	fi
 
-	if [ ! -f "$HOME/.gitconfig" ]
+	if [ ! -e "$HOME/.gitconfig" ]
 	then
-	  git config --global --add safe.directory ${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}
+		git config --global --add safe.directory ${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}
 	fi
 
 	git -C ${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR} log
