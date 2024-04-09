@@ -49,6 +49,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -534,20 +535,6 @@ public class GetEntryRenderDataMVCResourceCommand
 			}
 		}
 
-		String workflowView = null;
-
-		Map<String, String> workflowData = new LinkedHashMap<>();
-
-		if (_ctDisplayRendererRegistry.isWorkflowEnabled(ctEntry, rightModel) &&
-			(ctEntry.getChangeType() != CTConstants.CT_CHANGE_TYPE_DELETION)) {
-
-			workflowData = _getWorkflowData(ctEntry, rightModel, themeDisplay);
-		}
-
-		if (!workflowData.isEmpty()) {
-			workflowView = _getWorkflowViewHTML(themeDisplay, workflowData);
-		}
-
 		JSONObject jsonObject = JSONUtil.put("changeType", changeType);
 
 		if (defaultLanguageId != null) {
@@ -615,6 +602,20 @@ public class GetEntryRenderDataMVCResourceCommand
 				_diffHtml.diff(
 					new UnsyncStringReader(leftPreview),
 					new UnsyncStringReader(rightPreview)));
+		}
+
+		String workflowView = null;
+
+		Map<String, String> workflowData = new LinkedHashMap<>();
+
+		if (_ctDisplayRendererRegistry.isWorkflowEnabled(ctEntry, rightModel) &&
+			(ctEntry.getChangeType() != CTConstants.CT_CHANGE_TYPE_DELETION)) {
+
+			workflowData = _getWorkflowData(ctEntry, rightModel, themeDisplay);
+		}
+
+		if (!workflowData.isEmpty()) {
+			workflowView = _getWorkflowViewHTML(themeDisplay, workflowData);
 		}
 
 		if ((workflowView != null) &&
@@ -1026,8 +1027,6 @@ public class GetEntryRenderDataMVCResourceCommand
 			CTEntry ctEntry, T model, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		Map<String, String> workflowData = new LinkedHashMap<>();
-
 		long groupId = 0;
 
 		if (model instanceof GroupedModel) {
@@ -1043,7 +1042,7 @@ public class GetEntryRenderDataMVCResourceCommand
 				ctEntry.getModelClassPK());
 
 		if (workflowInstanceLink == null) {
-			return workflowData;
+			return new LinkedHashMap<>();
 		}
 
 		List<WorkflowTask> workflowTasks =
@@ -1053,48 +1052,46 @@ public class GetEntryRenderDataMVCResourceCommand
 				null);
 
 		if (workflowTasks.isEmpty()) {
-			return workflowData;
+			return new LinkedHashMap<>();
 		}
-
-		WorkflowTask workflowTask = workflowTasks.get(0);
-
-		Map<String, Object> modelAttributes = model.getModelAttributes();
-
-		workflowData.put(
-			"status", String.valueOf(modelAttributes.get("status")));
-
-		if (workflowTask.isAssignedToSingleUser()) {
-			workflowData.put(
-				"assigned-to",
-				_portal.getUserName(
-					workflowTask.getAssigneeUserId(),
-					String.valueOf(workflowTask.getAssigneeUserId())));
-		}
-		else {
-			workflowData.put(
-				"assigned-to",
-				_language.get(themeDisplay.getLocale(), "nobody"));
-		}
-
-		workflowData.put(
-			"task-name", workflowTask.getLabel(themeDisplay.getLocale()));
 
 		Format format = FastDateFormatFactoryUtil.getDateTime(
 			themeDisplay.getLocale(), themeDisplay.getTimeZone());
+		WorkflowTask workflowTask = workflowTasks.get(0);
 
-		workflowData.put(
-			"create-date", format.format(workflowTask.getCreateDate()));
+		return LinkedHashMapBuilder.put(
+			"assigned-to",
+			() -> {
+				if (workflowTask.isAssignedToSingleUser()) {
+					return _language.get(themeDisplay.getLocale(), "nobody");
+				}
 
-		if (workflowTask.getDueDate() != null) {
-			workflowData.put(
-				"due-date", format.format(workflowTask.getDueDate()));
-		}
-		else {
-			workflowData.put(
-				"due-date", _language.get(themeDisplay.getLocale(), "never"));
-		}
+				return _portal.getUserName(
+					workflowTask.getAssigneeUserId(),
+					String.valueOf(workflowTask.getAssigneeUserId()));
+			}
+		).put(
+			"create-date", format.format(workflowTask.getCreateDate())
+		).put(
+			"due-date",
+			() -> {
+				if (workflowTask.getDueDate() != null) {
+					return format.format(workflowTask.getDueDate());
+				}
 
-		return workflowData;
+				return _language.get(themeDisplay.getLocale(), "never");
+			}
+		).put(
+			"status",
+			() -> {
+				Map<String, Object> modelAttributes =
+					model.getModelAttributes();
+
+				return String.valueOf(modelAttributes.get("status"));
+			}
+		).put(
+			"task-name", workflowTask.getLabel(themeDisplay.getLocale())
+		).build();
 	}
 
 	private String _getWorkflowViewHTML(
