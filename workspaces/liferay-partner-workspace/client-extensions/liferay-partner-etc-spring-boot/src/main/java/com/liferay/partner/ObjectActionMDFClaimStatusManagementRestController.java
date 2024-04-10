@@ -46,7 +46,7 @@ public class ObjectActionMDFClaimStatusManagementRestController
 					mdfClaimPropertiesJSONObject.getDouble(
 						"totalMDFRequestedAmount")) {
 
-				_completeMdfRequestStatus(mdfRequestExternalReferenceCode);
+				_completeMDFRequestStatus(mdfRequestExternalReferenceCode);
 			}
 			else {
 				JSONObject responseJSONObject = get(
@@ -58,7 +58,7 @@ public class ObjectActionMDFClaimStatusManagementRestController
 				if (responseJSONObject.getDouble("totalPaidAmount") >=
 						responseJSONObject.getDouble("totalMDFRequestAmount")) {
 
-					_completeMdfRequestStatus(mdfRequestExternalReferenceCode);
+					_completeMDFRequestStatus(mdfRequestExternalReferenceCode);
 				}
 			}
 		}
@@ -66,7 +66,7 @@ public class ObjectActionMDFClaimStatusManagementRestController
 		return new ResponseEntity<>(json, HttpStatus.OK);
 	}
 
-	private void _completeMdfRequestStatus(
+	private void _completeMDFRequestStatus(
 		String mdfRequestExternalReferenceCode) {
 
 		JSONObject jsonObject = new JSONObject();
