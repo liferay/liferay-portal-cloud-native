@@ -338,7 +338,8 @@ public class AssetListAssetEntryProviderTest {
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 		AssetEntry assetEntry1 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle1.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle1.getResourcePrimKey());
 
 		AssetListTestUtil.addAssetListEntryAssetEntryRel(
 			_group.getGroupId(), assetEntry1, assetListEntry,
@@ -356,7 +357,8 @@ public class AssetListAssetEntryProviderTest {
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 		AssetEntry assetEntry2 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle2.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle2.getResourcePrimKey());
 
 		AssetListTestUtil.addAssetListEntryAssetEntryRel(
 			_group.getGroupId(), assetEntry2, assetListEntry,
@@ -367,7 +369,8 @@ public class AssetListAssetEntryProviderTest {
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 		AssetEntry assetEntry3 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle3.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle3.getResourcePrimKey());
 
 		AssetListTestUtil.addAssetListEntryAssetEntryRel(
 			_group.getGroupId(), assetEntry3, assetListEntry,
@@ -774,21 +777,24 @@ public class AssetListAssetEntryProviderTest {
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, _serviceContext);
 
 		AssetEntry assetEntry1 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle1.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle1.getResourcePrimKey());
 
 		JournalArticle journalArticle2 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, _serviceContext);
 
 		AssetEntry assetEntry2 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle2.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle2.getResourcePrimKey());
 
 		JournalArticle journalArticle3 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, _serviceContext);
 
 		AssetEntry assetEntry3 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle3.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle3.getResourcePrimKey());
 
 		AssetListEntry assetListEntry =
 			_assetListEntryLocalService.addAssetListEntry(
@@ -828,7 +834,8 @@ public class AssetListAssetEntryProviderTest {
 			RandomTestUtil.randomString());
 
 		AssetEntry assetEntry1 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle1.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle1.getResourcePrimKey());
 
 		JournalArticle journalArticle2 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
@@ -836,7 +843,8 @@ public class AssetListAssetEntryProviderTest {
 			RandomTestUtil.randomString());
 
 		AssetEntry assetEntry2 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle2.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle2.getResourcePrimKey());
 
 		JournalArticle journalArticle3 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
@@ -844,7 +852,8 @@ public class AssetListAssetEntryProviderTest {
 			RandomTestUtil.randomString());
 
 		AssetEntry assetEntry3 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle3.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle3.getResourcePrimKey());
 
 		AssetListEntry assetListEntry =
 			_assetListEntryLocalService.addAssetListEntry(
@@ -897,7 +906,8 @@ public class AssetListAssetEntryProviderTest {
 			});
 
 		AssetEntry assetEntry1 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle1.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle1.getResourcePrimKey());
 
 		JournalArticle journalArticle2 = _addJournalArticle(
 			new long[] {
@@ -905,7 +915,8 @@ public class AssetListAssetEntryProviderTest {
 			});
 
 		AssetEntry assetEntry2 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle2.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle2.getResourcePrimKey());
 
 		AssetCategory assetCategory3 = AssetTestUtil.addCategory(
 			_group.getGroupId(), assetVocabulary.getVocabularyId());
@@ -914,7 +925,8 @@ public class AssetListAssetEntryProviderTest {
 			new long[] {assetCategory3.getCategoryId()});
 
 		AssetEntry assetEntry3 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle3.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle3.getResourcePrimKey());
 
 		AssetListEntry assetListEntry =
 			_assetListEntryLocalService.addAssetListEntry(
@@ -964,7 +976,8 @@ public class AssetListAssetEntryProviderTest {
 			new long[] {assetCategory1.getCategoryId()});
 
 		AssetEntry assetEntry1 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle1.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle1.getResourcePrimKey());
 
 		AssetCategory assetCategory2 = AssetTestUtil.addCategory(
 			_group.getGroupId(), assetVocabulary.getVocabularyId());
@@ -973,7 +986,8 @@ public class AssetListAssetEntryProviderTest {
 			new long[] {assetCategory2.getCategoryId()});
 
 		AssetEntry assetEntry2 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle2.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle2.getResourcePrimKey());
 
 		AssetCategory assetCategory3 = AssetTestUtil.addCategory(
 			_group.getGroupId(), assetVocabulary.getVocabularyId());
@@ -982,7 +996,8 @@ public class AssetListAssetEntryProviderTest {
 			new long[] {assetCategory3.getCategoryId()});
 
 		AssetEntry assetEntry3 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle3.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle3.getResourcePrimKey());
 
 		AssetListEntry assetListEntry =
 			_assetListEntryLocalService.addAssetListEntry(
@@ -1037,7 +1052,8 @@ public class AssetListAssetEntryProviderTest {
 			new long[] {assetCategory1.getCategoryId()});
 
 		AssetEntry assetEntry1 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle1.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle1.getResourcePrimKey());
 
 		AssetCategory assetCategory2 = AssetTestUtil.addCategory(
 			_group.getGroupId(), assetVocabulary.getVocabularyId());
@@ -1046,7 +1062,8 @@ public class AssetListAssetEntryProviderTest {
 			new long[] {assetCategory2.getCategoryId()});
 
 		AssetEntry assetEntry2 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle2.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle2.getResourcePrimKey());
 
 		AssetCategory assetCategory3 = AssetTestUtil.addCategory(
 			_group.getGroupId(), assetVocabulary.getVocabularyId());
@@ -1055,7 +1072,8 @@ public class AssetListAssetEntryProviderTest {
 			new long[] {assetCategory3.getCategoryId()});
 
 		AssetEntry assetEntry3 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle3.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle3.getResourcePrimKey());
 
 		AssetListEntry assetListEntry =
 			_assetListEntryLocalService.addAssetListEntry(
@@ -1096,7 +1114,8 @@ public class AssetListAssetEntryProviderTest {
 			new long[] {assetCategory1.getCategoryId()});
 
 		AssetEntry assetEntry1 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle1.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle1.getResourcePrimKey());
 
 		AssetCategory assetCategory2 = AssetTestUtil.addCategory(
 			_group.getGroupId(), assetVocabulary.getVocabularyId());
@@ -1105,7 +1124,8 @@ public class AssetListAssetEntryProviderTest {
 			new long[] {assetCategory2.getCategoryId()});
 
 		AssetEntry assetEntry2 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle2.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle2.getResourcePrimKey());
 
 		AssetCategory assetCategory3 = AssetTestUtil.addCategory(
 			_group.getGroupId(), assetVocabulary.getVocabularyId());
@@ -1114,7 +1134,8 @@ public class AssetListAssetEntryProviderTest {
 			new long[] {assetCategory3.getCategoryId()});
 
 		AssetEntry assetEntry3 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle3.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle3.getResourcePrimKey());
 
 		AssetListEntry assetListEntry =
 			_assetListEntryLocalService.addAssetListEntry(
@@ -1236,7 +1257,8 @@ public class AssetListAssetEntryProviderTest {
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 		AssetEntry assetEntry1 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle1.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle1.getResourcePrimKey());
 
 		AssetListTestUtil.addAssetListEntryAssetEntryRel(
 			_group.getGroupId(), assetEntry1, assetListEntry,
@@ -1254,7 +1276,8 @@ public class AssetListAssetEntryProviderTest {
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 		AssetEntry assetEntry2 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle2.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle2.getResourcePrimKey());
 
 		AssetListTestUtil.addAssetListEntryAssetEntryRel(
 			_group.getGroupId(), assetEntry2, assetListEntry,
@@ -1265,7 +1288,8 @@ public class AssetListAssetEntryProviderTest {
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 		AssetEntry assetEntry3 = _assetEntryLocalService.fetchEntry(
-			JournalArticle.class.getName(), journalArticle3.getResourcePrimKey());
+			JournalArticle.class.getName(),
+			journalArticle3.getResourcePrimKey());
 
 		AssetListTestUtil.addAssetListEntryAssetEntryRel(
 			_group.getGroupId(), assetEntry3, assetListEntry,
