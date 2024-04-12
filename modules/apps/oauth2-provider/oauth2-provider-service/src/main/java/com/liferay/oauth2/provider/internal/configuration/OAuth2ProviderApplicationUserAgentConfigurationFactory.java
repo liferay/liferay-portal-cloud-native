@@ -70,15 +70,13 @@ public class OAuth2ProviderApplicationUserAgentConfigurationFactory
 
 				Company company = companyLocalService.getCompanyById(companyId);
 
-				List<String> redirectURIsList = _assembleRedirectURLs(company);
-
 				List<String> scopeAliasesList = ListUtil.fromArray(
 					oAuth2ProviderApplicationUserAgentConfiguration.scopes());
 
 				oAuth2Application = _addOrUpdateOAuth2Application(
 					companyId, externalReferenceCode,
 					oAuth2ProviderApplicationUserAgentConfiguration,
-					redirectURIsList, scopeAliasesList);
+					_getRedirectURIsList(company), scopeAliasesList);
 
 				if (_log.isDebugEnabled()) {
 					_log.debug("OAuth 2 application " + oAuth2Application);
@@ -176,7 +174,7 @@ public class OAuth2ProviderApplicationUserAgentConfigurationFactory
 		return oAuth2Application;
 	}
 
-	private List<String> _assembleRedirectURLs(Company company) {
+	private List<String> _getRedirectURIsList(Company company) {
 		List<String> redirectURIsList = new ArrayList<>();
 
 		List<VirtualHost> virtualHosts =
