@@ -410,7 +410,6 @@ public class SalesforceObjectEntryManagerImplTest
 
 		String dateTimeString1 = dateTimeFormatter.format(
 			localDateTime1.withNano(0));
-
 		String dateTimeString2 = dateTimeFormatter.format(
 			localDateTime2.withNano(0));
 
@@ -462,6 +461,14 @@ public class SalesforceObjectEntryManagerImplTest
 		testGetObjectEntries(
 			HashMapBuilder.put(
 				"filter",
+				filterString.concat(
+					buildEqualsExpressionFilterString("flagged", true))
+			).build(),
+			objectEntry2, objectEntry4);
+
+		testGetObjectEntries(
+			HashMapBuilder.put(
+				"filter",
 				buildEqualsExpressionFilterString("startDate", localDateTime1)
 			).build(),
 			objectEntry2);
@@ -474,14 +481,6 @@ public class SalesforceObjectEntryManagerImplTest
 						"startDate", localDateTime2))
 			).build(),
 			objectEntry1, objectEntry2, objectEntry4);
-
-		testGetObjectEntries(
-			HashMapBuilder.put(
-				"filter",
-				filterString.concat(
-					buildEqualsExpressionFilterString("flagged", true))
-			).build(),
-			objectEntry2, objectEntry4);
 
 		testGetObjectEntries(
 			HashMapBuilder.put(
