@@ -156,7 +156,7 @@ public class FriendlyURLEntryLocalServiceImpl
 
 		// Asset
 
-		_updateAsset(friendlyURLEntry, serviceContext);
+		_updateAssetEntry(friendlyURLEntry, serviceContext);
 
 		return friendlyURLEntry;
 	}
@@ -567,7 +567,7 @@ public class FriendlyURLEntryLocalServiceImpl
 
 		// Asset
 
-		_updateAsset(friendlyURLEntry, serviceContext);
+		_updateAssetEntry(friendlyURLEntry, serviceContext);
 
 		return friendlyURLEntry;
 	}
@@ -792,7 +792,7 @@ public class FriendlyURLEntryLocalServiceImpl
 		return sortedUrlTitleMap;
 	}
 
-	private void _updateAsset(
+	private void _updateAssetEntry(
 			FriendlyURLEntry friendlyURLEntry, ServiceContext serviceContext)
 		throws PortalException {
 
