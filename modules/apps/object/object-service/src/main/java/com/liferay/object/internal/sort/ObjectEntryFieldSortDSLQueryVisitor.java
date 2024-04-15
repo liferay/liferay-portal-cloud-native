@@ -48,8 +48,8 @@ public class ObjectEntryFieldSortDSLQueryVisitor
 		ObjectField objectField = objectFieldLocalService.fetchObjectField(
 			objectDefinition.getObjectDefinitionId(), sort.getFieldName());
 
-		Expression<?> columnExpression;
-		Table fieldTable;
+		Expression<?> columnExpression = null;
+		Table fieldTable = null;
 
 		if (objectField == null) {
 			Column<?, Object> column =
