@@ -210,7 +210,7 @@ public class JspServletPerformanceTest {
 		}
 	}
 
-	private byte[] _getBytes(String... strings) {
+	private static byte[] _getBytes(String... strings) {
 		String string = StringBundler.concat(strings);
 
 		return string.getBytes();
