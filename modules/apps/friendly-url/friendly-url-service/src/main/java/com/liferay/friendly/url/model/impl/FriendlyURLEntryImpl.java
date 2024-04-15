@@ -43,16 +43,16 @@ public class FriendlyURLEntryImpl extends FriendlyURLEntryBaseImpl {
 			return urlTitle;
 		}
 
-		List<AssetCategory> categories = assetEntry.getCategories();
+		List<AssetCategory> assetCategories = assetEntry.getCategories();
 
-		if (categories.isEmpty()) {
+		if (assetCategories.isEmpty()) {
 			return urlTitle;
 		}
 
-		StringBundler sb = new StringBundler(categories.size() * 2);
+		StringBundler sb = new StringBundler(assetCategories.size() * 2);
 
-		for (AssetCategory category : categories) {
-			sb.append(category.getTitle(languageId));
+		for (AssetCategory assetCategory : assetCategories) {
+			sb.append(assetCategory.getTitle(languageId));
 			sb.append(StringPool.SLASH);
 		}
 
