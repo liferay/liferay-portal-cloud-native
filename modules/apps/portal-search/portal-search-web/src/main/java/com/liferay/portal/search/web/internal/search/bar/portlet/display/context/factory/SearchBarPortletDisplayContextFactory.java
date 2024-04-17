@@ -155,7 +155,6 @@ public class SearchBarPortletDisplayContextFactory {
 		searchBarPortletDisplayContext.setPaginationStartParameterName(
 			GetterUtil.getString(
 				searchRequest.getPaginationStartParameterName()));
-
 		searchBarPortletDisplayContext.setRetainFacetSelections(
 			searchRequest.isRetainFacetSelections());
 
