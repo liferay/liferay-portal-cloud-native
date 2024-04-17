@@ -3813,7 +3813,7 @@ public class DefaultObjectEntryManagerImplTest
 			long objectEntryId)
 		throws Exception {
 
-		// Locale in the DTOConverterContext
+		// DTOConverterContext#getLocale
 
 		assertEquals(
 			_defaultObjectEntryManager.getObjectEntry(
@@ -3827,7 +3827,7 @@ public class DefaultObjectEntryManagerImplTest
 				}
 			});
 
-		// Without Locale in the DTOConverterContext but languageId in the User
+		// User#getLanguageId
 
 		String originalLanguageId = _user.getLanguageId();
 
