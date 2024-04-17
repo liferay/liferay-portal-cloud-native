@@ -825,9 +825,6 @@ public class WorkflowTaskManagerImplTest extends BaseWorkflowManagerTestCase {
 
 	@Test
 	public void testGetNotifiableUsersRoleType() throws Exception {
-
-		// Account Role
-
 		String emailAddress =
 			StringUtil.toLowerCase(RandomTestUtil.randomString()) +
 				RandomTestUtil.nextLong() + "@liferay.com";
