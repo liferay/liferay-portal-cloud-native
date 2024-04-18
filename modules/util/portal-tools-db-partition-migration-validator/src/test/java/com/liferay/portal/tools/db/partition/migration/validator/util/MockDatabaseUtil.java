@@ -188,7 +188,7 @@ public class MockDatabaseUtil {
 
 					return companies.get(
 						counter - 1
-					).getVirtualHostName();
+					).getVirtualHostname();
 				}
 
 			}

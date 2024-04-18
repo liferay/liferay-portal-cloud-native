@@ -154,8 +154,7 @@ public class DBPartitionMigrationValidator {
 		options.addRequiredOption(
 			"p", "password", true, "Set the database user password.");
 		options.addOption(
-			"s", "schema-name", true,
-			"Set the database schema name.");
+			"s", "schema-name", true, "Set the database schema name.");
 		options.addRequiredOption(
 			"u", "user", true, "Set the database user name.");
 
@@ -172,8 +171,7 @@ public class DBPartitionMigrationValidator {
 		optionGroup.addOption(
 			new Option("e", "export", false, "Export database."));
 		optionGroup.addOption(
-			new Option(
-				"v", "validate", false, "Validate two databases."));
+			new Option("v", "validate", false, "Validate two databases."));
 
 		options.addOptionGroup(optionGroup);
 
@@ -206,8 +204,7 @@ public class DBPartitionMigrationValidator {
 			printWriter, _HELP_WIDTH, _getMainOptions(), _HELP_LEFT_PAD,
 			_HELP_DESC_PAD);
 		helpFormatter.printWrapped(
-			printWriter, _HELP_WIDTH, _HELP_DESC_PAD,
-			"\nExport parameters:");
+			printWriter, _HELP_WIDTH, _HELP_DESC_PAD, "\nExport parameters:");
 		helpFormatter.printOptions(
 			printWriter, _HELP_WIDTH, _getExportOptions(), _HELP_LEFT_PAD,
 			_HELP_DESC_PAD);

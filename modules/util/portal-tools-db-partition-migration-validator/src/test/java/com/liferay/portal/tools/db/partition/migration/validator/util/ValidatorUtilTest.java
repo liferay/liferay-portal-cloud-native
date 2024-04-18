@@ -1,5 +1,5 @@
 /**
- * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-FileCopyrightText: (c) 2024 Liferay, Inc. https://liferay.com
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
@@ -52,14 +52,14 @@ public class ValidatorUtilTest extends ValidatorUtil {
 			RandomTestUtil.randomString(), RandomTestUtil.randomString());
 
 		_testValidateCompany(
-			true, false, true, true, company,
+			false, true, true, true, company,
 			() -> _assertValidateDatabases(
 				true, false,
 				Arrays.asList(
 					"[ERROR] Company ID " + company.getCompanyId() +
 						" already exists in the target database")));
 		_testValidateCompany(
-			true, true, false, true, company,
+			true, false, true, true, company,
 			() -> _assertValidateDatabases(
 				false, true,
 				Arrays.asList(
@@ -68,11 +68,11 @@ public class ValidatorUtilTest extends ValidatorUtil {
 					"different value in ",
 					"DBPartitionInsertVirtualInstanceConfiguration.config.")));
 		_testValidateCompany(
-			false, true, true, true, company,
+			true, true, false, true, company,
 			() -> _assertValidateDatabases(
 				false, true,
 				Arrays.asList(
-					"[WARN] Virtual host ", company.getVirtualHostName(),
+					"[WARN] Virtual host ", company.getVirtualHostname(),
 					" already exists in the target database. You must set a ",
 					"different value in ",
 					"DBPartitionInsertVirtualInstanceConfiguration.config.")));
@@ -266,9 +266,9 @@ public class ValidatorUtilTest extends ValidatorUtil {
 	}
 
 	private void _testValidateCompany(
-			boolean changeVirtualHostname, boolean changeCompanyId, boolean changeName,
-			boolean changeWebId, Company sourceCompany,
-			UnsafeRunnable<Exception> unsafeRunnable)
+			boolean changeCompanyId, boolean changeName,
+			boolean changeVirtualHostname, boolean changeWebId,
+			Company sourceCompany, UnsafeRunnable<Exception> unsafeRunnable)
 		throws Exception {
 
 		_sourceLiferayDatabase.setCompanies(
@@ -280,17 +280,17 @@ public class ValidatorUtilTest extends ValidatorUtil {
 			RandomTestUtil.randomLong(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString());
 
-		if (!changeVirtualHostname) {
-			targetCompany.setVirtualHostName(
-				sourceCompany.getVirtualHostName());
-		}
-
 		if (!changeCompanyId) {
 			targetCompany.setCompanyId(sourceCompany.getCompanyId());
 		}
 
 		if (!changeName) {
 			targetCompany.setCompanyName(sourceCompany.getCompanyName());
+		}
+
+		if (!changeVirtualHostname) {
+			targetCompany.setVirtualHostname(
+				sourceCompany.getVirtualHostname());
 		}
 
 		if (!changeWebId) {
@@ -320,7 +320,6 @@ public class ValidatorUtilTest extends ValidatorUtil {
 		throws Exception {
 
 		List<Release> sourceReleases = new ArrayList<>();
-
 		List<Release> targetReleases = new ArrayList<>();
 
 		for (Release release : _getReleases()) {
@@ -383,9 +382,9 @@ public class ValidatorUtilTest extends ValidatorUtil {
 			UnsafeRunnable<Exception> unsafeRunnable)
 		throws Exception {
 
-		List<Release> sourceReleases = _getReleases();
-
 		List<Release> targetReleases = new ArrayList<>();
+
+		List<Release> sourceReleases = _getReleases();
 
 		for (Release release : sourceReleases) {
 			if (targetServletContextName.equals(
@@ -410,11 +409,11 @@ public class ValidatorUtilTest extends ValidatorUtil {
 			UnsafeRunnable<Exception> unsafeRunnable)
 		throws Exception {
 
+		List<Release> targetReleases = new ArrayList<>();
+
 		List<Release> sourceReleases = _getReleases();
 
 		_sourceLiferayDatabase.setReleases(sourceReleases);
-
-		List<Release> targetReleases = new ArrayList<>();
 
 		for (Release release : sourceReleases) {
 			if (targetServletContextName.equals(
