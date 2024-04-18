@@ -118,7 +118,7 @@ public class LocalStagingPublishParentLayoutsByDefaultTest
 				stagingGroup.getGroupId(), _read("data_definition.json"),
 				TestPropsValues.getUser());
 
-		JournalArticle article = JournalTestUtil.addArticleWithXMLContent(
+		JournalArticle journalArticle = JournalTestUtil.addArticleWithXMLContent(
 			stagingGroup.getGroupId(), content,
 			dataDefinition.getDataDefinitionKey(), null);
 
@@ -162,7 +162,7 @@ public class LocalStagingPublishParentLayoutsByDefaultTest
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
 			themeDisplay.getCompanyId(), JournalPortletKeys.JOURNAL);
 
-		StagingUtil.addModelToChangesetCollection(article);
+		StagingUtil.addModelToChangesetCollection(journalArticle);
 
 		StagingUtil.publishToLive(_mockPortletRequest, portlet);
 
@@ -171,13 +171,13 @@ public class LocalStagingPublishParentLayoutsByDefaultTest
 			JournalArticleLocalServiceUtil.getArticlesCount(
 				liveGroup.getGroupId()));
 
-		JournalArticle groupArticle =
+		JournalArticle groupJournalArticle =
 			JournalArticleLocalServiceUtil.fetchJournalArticleByUuidAndGroupId(
-				article.getUuid(), liveGroup.getGroupId());
+				journalArticle.getUuid(), liveGroup.getGroupId());
 
-		Assert.assertNotNull(groupArticle);
+		Assert.assertNotNull(groupJournalArticle);
 
-		Assert.assertEquals(content, groupArticle.getContent());
+		Assert.assertEquals(content, groupJournalArticle.getContent());
 	}
 
 	/**
