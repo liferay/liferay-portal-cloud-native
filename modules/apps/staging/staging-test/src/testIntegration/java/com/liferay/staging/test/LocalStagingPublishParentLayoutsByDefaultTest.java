@@ -118,9 +118,10 @@ public class LocalStagingPublishParentLayoutsByDefaultTest
 				stagingGroup.getGroupId(), _read("data_definition.json"),
 				TestPropsValues.getUser());
 
-		JournalArticle journalArticle = JournalTestUtil.addArticleWithXMLContent(
-			stagingGroup.getGroupId(), content,
-			dataDefinition.getDataDefinitionKey(), null);
+		JournalArticle journalArticle =
+			JournalTestUtil.addArticleWithXMLContent(
+				stagingGroup.getGroupId(), content,
+				dataDefinition.getDataDefinitionKey(), null);
 
 		StagingUtil.addModelToChangesetCollection(journalArticle);
 
@@ -372,7 +373,8 @@ public class LocalStagingPublishParentLayoutsByDefaultTest
 
 		_mockPortletRequest = new MockPortletRequest();
 
-		_mockPortletRequest.setAttribute(WebKeys.THEME_DISPLAY, _getThemeDisplay(stagingGroup));
+		_mockPortletRequest.setAttribute(
+			WebKeys.THEME_DISPLAY, _getThemeDisplay(stagingGroup));
 
 		_mockPortletRequest.setParameter(
 			"exportImportConfigurationId", String.valueOf(0));
@@ -410,7 +412,8 @@ public class LocalStagingPublishParentLayoutsByDefaultTest
 
 		_mockPortletRequest = new MockPortletRequest();
 
-		_mockPortletRequest.setAttribute(WebKeys.THEME_DISPLAY, _getThemeDisplay(stagingGroup));
+		_mockPortletRequest.setAttribute(
+			WebKeys.THEME_DISPLAY, _getThemeDisplay(stagingGroup));
 		_mockPortletRequest.setAttribute(
 			"layoutIdMap", selectedLayoutsJSONArray.toString());
 
