@@ -139,48 +139,50 @@ public class BatchEngineImportTaskItemReaderUtil {
 					targetFieldNameValueMap.put(
 						targetFieldName, entry.getValue());
 				}
+
+				continue;
 			}
-			else {
-				String[] fieldNameParts = StringUtil.split(
-					entry.getKey(), StringPool.PERIOD);
 
-				targetFieldName = (String)fieldNameMappingMap.get(
-					fieldNameParts[0]);
+			String[] fieldNameParts = StringUtil.split(
+				entry.getKey(), StringPool.PERIOD);
 
-				if (Validator.isNotNull(targetFieldName)) {
-					Matcher multiselectPicklistMatcher =
-						_multiselectPicklistPattern.matcher(fieldNameParts[1]);
+			targetFieldName = (String)fieldNameMappingMap.get(
+				fieldNameParts[0]);
 
-					if (multiselectPicklistMatcher.matches()) {
-						if (fieldNameParts[1].startsWith("name_")) {
-							continue;
-						}
+			if (Validator.isNull(targetFieldName)) {
+				continue;
+			}
 
-						List<Object> list =
-							(List<Object>)
-								targetFieldNameValueMap.computeIfAbsent(
-									targetFieldName, key -> new ArrayList<>());
+			Matcher multiselectPicklistMatcher =
+				_multiselectPicklistPattern.matcher(fieldNameParts[1]);
 
-						list.add(entry.getValue());
-					}
-					else {
-						Map<String, Object> map =
-							(Map<String, Object>)
-								targetFieldNameValueMap.computeIfAbsent(
-									targetFieldName, key -> new HashMap<>());
-
-						for (int i = 1; i < fieldNameParts.length; i++) {
-							if ((fieldNameParts.length - 1) > i) {
-								map = (Map<String, Object>)map.computeIfAbsent(
-									fieldNameParts[i], key -> new HashMap<>());
-
-								continue;
-							}
-
-							map.put(fieldNameParts[i], entry.getValue());
-						}
-					}
+			if (multiselectPicklistMatcher.matches()) {
+				if (fieldNameParts[1].startsWith("name_")) {
+					continue;
 				}
+
+				List<Object> list =
+					(List<Object>)targetFieldNameValueMap.computeIfAbsent(
+						targetFieldName, key -> new ArrayList<>());
+
+				list.add(entry.getValue());
+
+				continue;
+			}
+
+			Map<String, Object> map =
+				(Map<String, Object>)targetFieldNameValueMap.computeIfAbsent(
+					targetFieldName, key -> new HashMap<>());
+
+			for (int i = 1; i < fieldNameParts.length; i++) {
+				if ((fieldNameParts.length - 1) > i) {
+					map = (Map<String, Object>)map.computeIfAbsent(
+						fieldNameParts[i], key -> new HashMap<>());
+
+					continue;
+				}
+
+				map.put(fieldNameParts[i], entry.getValue());
 			}
 		}
 
