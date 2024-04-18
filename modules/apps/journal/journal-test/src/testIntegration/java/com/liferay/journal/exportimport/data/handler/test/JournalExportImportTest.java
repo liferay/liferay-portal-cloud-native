@@ -240,7 +240,6 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 				article.getUuid(), importedGroup.getGroupId());
 
 		Assert.assertNotNull(groupArticle);
-
 		Assert.assertEquals(content, groupArticle.getContent());
 	}
 

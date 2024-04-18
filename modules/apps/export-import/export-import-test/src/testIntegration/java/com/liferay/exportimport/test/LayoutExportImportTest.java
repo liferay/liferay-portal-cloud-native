@@ -646,7 +646,6 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 				layout.getUuid(), importedGroup.getGroupId(), false);
 
 		Assert.assertNotNull(importedParentLayout);
-
 		Assert.assertEquals(
 			0,
 			_getLayoutPortletIds(
@@ -658,7 +657,6 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 				childLayout.getUuid(), importedGroup.getGroupId(), false);
 
 		Assert.assertNotNull(importedChildLayout);
-
 		Assert.assertEquals(
 			0,
 			_getLayoutPortletIds(
@@ -667,7 +665,6 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 
 		LayoutTestUtil.addPortletToLayout(
 			layout, JournalContentPortletKeys.JOURNAL_CONTENT);
-
 		LayoutTestUtil.addPortletToLayout(
 			childLayout, JournalContentPortletKeys.JOURNAL_CONTENT);
 
@@ -688,7 +685,6 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 			_getLayoutPortletIds(
 				importedParentLayout.getPlid()
 			).size());
-
 		Assert.assertEquals(
 			1,
 			_getLayoutPortletIds(
@@ -786,7 +782,6 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 				layout.getUuid(), importedGroup.getGroupId(), false);
 
 		Assert.assertNotNull(importedParentLayout);
-
 		Assert.assertEquals(
 			0,
 			_getLayoutPortletIds(
@@ -798,7 +793,6 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 				childLayout.getUuid(), importedGroup.getGroupId(), false);
 
 		Assert.assertNotNull(importedChildLayout);
-
 		Assert.assertEquals(
 			0,
 			_getLayoutPortletIds(
@@ -807,7 +801,6 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 
 		LayoutTestUtil.addPortletToLayout(
 			layout, JournalContentPortletKeys.JOURNAL_CONTENT);
-
 		LayoutTestUtil.addPortletToLayout(
 			childLayout, JournalContentPortletKeys.JOURNAL_CONTENT);
 
@@ -828,7 +821,6 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 			_getLayoutPortletIds(
 				importedParentLayout.getPlid()
 			).size());
-
 		Assert.assertEquals(
 			1,
 			_getLayoutPortletIds(
@@ -1016,7 +1008,6 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 				childLayout.getUuid(), importedGroup.getGroupId(), false);
 
 		Assert.assertNotNull(importedChildLayout);
-
 		Assert.assertEquals(
 			importedChildLayout.getParentLayoutId(),
 			importedParentLayout.getLayoutId());
