@@ -468,6 +468,11 @@ public class LocalStagingPublishParentLayoutsByDefaultTest
 					"BackgroundTaskMessageListener",
 				LoggerTestUtil.ERROR)) {
 
+			_mockPortletRequest = new MockPortletRequest();
+
+			_mockPortletRequest.setAttribute(
+				WebKeys.THEME_DISPLAY, _getThemeDisplay(stagingGroup));
+
 			Layout parentLayout = LayoutTestUtil.addTypePortletLayout(
 				stagingGroup);
 
@@ -481,12 +486,6 @@ public class LocalStagingPublishParentLayoutsByDefaultTest
 						StringUtil.merge(
 							new long[] {childLayout.getLayoutId()})));
 
-			ThemeDisplay themeDisplay = _getThemeDisplay(stagingGroup);
-
-			_mockPortletRequest = new MockPortletRequest();
-
-			_mockPortletRequest.setAttribute(
-				WebKeys.THEME_DISPLAY, themeDisplay);
 			_mockPortletRequest.setAttribute(
 				"layoutIdMap", selectedLayoutsJSONArray.toString());
 
