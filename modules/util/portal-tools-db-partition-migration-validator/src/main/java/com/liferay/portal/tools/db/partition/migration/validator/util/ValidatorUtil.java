@@ -53,7 +53,7 @@ public class ValidatorUtil {
 		return failedServletContextNames;
 	}
 
-	private static Map<String, Release> _getReleasesMap(
+	private static Map<String, Release> _getReleases(
 		LiferayInstance liferayInstance) {
 
 		Map<String, Release> releases = new HashMap<>();
@@ -165,7 +165,7 @@ public class ValidatorUtil {
 		List<String> missingSourceModules = new ArrayList<>();
 		List<String> missingTargetModules = new ArrayList<>();
 		List<String> missingTargetServiceModules = new ArrayList<>();
-		Map<String, Release> targetReleasesMap = _getReleasesMap(
+		Map<String, Release> targetReleases = _getReleases(
 			targetLiferayInstance);
 		List<String> unverifiedSourceModules = new ArrayList<>();
 		List<String> unverifiedTargetModules = new ArrayList<>();
@@ -174,7 +174,7 @@ public class ValidatorUtil {
 			String sourceServletContextName =
 				sourceRelease.getServletContextName();
 
-			Release targetRelease = targetReleasesMap.remove(
+			Release targetRelease = targetReleases.remove(
 				sourceServletContextName);
 
 			if (targetRelease == null) {
@@ -203,7 +203,7 @@ public class ValidatorUtil {
 			}
 		}
 
-		for (Release targetRelease : targetReleasesMap.values()) {
+		for (Release targetRelease : targetReleases.values()) {
 			String targetServletContextName =
 				targetRelease.getServletContextName();
 
