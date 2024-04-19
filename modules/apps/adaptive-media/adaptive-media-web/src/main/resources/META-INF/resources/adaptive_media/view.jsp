@@ -14,7 +14,7 @@ amSearchContainer.setId("imageConfigurationEntries");
 amSearchContainer.setResultsAndTotal((List)request.getAttribute(AMWebKeys.CONFIGURATION_ENTRIES_LIST));
 amSearchContainer.setRowChecker(new ImageConfigurationEntriesChecker(liferayPortletResponse));
 
-int totalImages = GetterUtil.getInteger(request.getAttribute(AMWebKeys.TOTAL_IMAGES_COUNT));
+int totalImages = GetterUtil.getInteger(request.getAttribute(AMWebKeys.TOTAL_IMAGES));
 %>
 
 <clay:management-toolbar
