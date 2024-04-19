@@ -393,14 +393,13 @@ public class ExportImportTaskResourcePerformanceTest {
 
 			httpInvoker.header(
 				HttpHeaders.ACCEPT, ContentTypes.APPLICATION_OCTET_STREAM);
-			httpInvoker.userNameAndPassword("test@liferay.com:test");
 			httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
-
 			httpInvoker.path(
 				StringBundler.concat(
 					"http://localhost:8080/o/headless-batch-engine/v1.0",
 					"/export-task/by-external-reference-code/",
 					externalReferenceCode, "/content"));
+			httpInvoker.userNameAndPassword("test@liferay.com:test");
 
 			HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
 
