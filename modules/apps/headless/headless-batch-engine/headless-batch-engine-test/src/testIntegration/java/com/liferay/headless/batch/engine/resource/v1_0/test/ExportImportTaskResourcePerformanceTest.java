@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.UserService;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
-import com.liferay.portal.kernel.test.performance.PerformanceTestTimer;
+import com.liferay.portal.kernel.test.performance.PerformanceTimer;
 import com.liferay.portal.kernel.test.randomizerbumpers.UniqueStringRandomizerBumper;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.AssumeTestRule;
@@ -336,8 +336,8 @@ public class ExportImportTaskResourcePerformanceTest {
 
 		Map<String, String> classNamePartsMap = _splitClassName(className);
 
-		try (ItemCountPerformanceTestTimer itemCountPerformanceTestTimer =
-				new ItemCountPerformanceTestTimer(
+		try (ItemCountPerformanceTimer itemCountPerformanceTimer =
+				new ItemCountPerformanceTimer(
 					count, className + "#export", maxExportTime)) {
 
 			httpInvoker = HttpInvoker.newHttpInvoker();
@@ -389,8 +389,8 @@ public class ExportImportTaskResourcePerformanceTest {
 			}
 		}
 
-		try (ItemCountPerformanceTestTimer itemCountPerformanceTestTimer =
-				new ItemCountPerformanceTestTimer(
+		try (ItemCountPerformanceTimer itemCountPerformanceTimer =
+				new ItemCountPerformanceTimer(
 					count, className + "#download", maxDownloadTime)) {
 
 			httpInvoker = HttpInvoker.newHttpInvoker();
@@ -432,7 +432,7 @@ public class ExportImportTaskResourcePerformanceTest {
 		String json = _createBatchJSON(
 			classNamePartsMap.get("className"), count);
 
-		try (Closeable closeable = new ItemCountPerformanceTestTimer(
+		try (Closeable closeable = new ItemCountPerformanceTimer(
 				count, className, maxTime)) {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -505,9 +505,9 @@ public class ExportImportTaskResourcePerformanceTest {
 	@Inject
 	private UserService _userService;
 
-	private class ItemCountPerformanceTestTimer extends PerformanceTestTimer {
+	private class ItemCountPerformanceTimer extends PerformanceTimer {
 
-		public ItemCountPerformanceTestTimer(
+		public ItemCountPerformanceTimer(
 			int count, String name, long maxTime) {
 
 			this(
@@ -515,7 +515,7 @@ public class ExportImportTaskResourcePerformanceTest {
 				maxTime, null);
 		}
 
-		public ItemCountPerformanceTestTimer(
+		public ItemCountPerformanceTimer(
 			int count, String name, long maxTime, Path logFilePath) {
 
 			this(
@@ -544,7 +544,7 @@ public class ExportImportTaskResourcePerformanceTest {
 				delta < maxTime);
 		}
 
-		protected ItemCountPerformanceTestTimer(
+		protected ItemCountPerformanceTimer(
 			int count, String name, long startTime, long maxTime,
 			Path logFilePath) {
 

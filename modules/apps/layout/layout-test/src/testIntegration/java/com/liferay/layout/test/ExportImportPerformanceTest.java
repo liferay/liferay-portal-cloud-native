@@ -50,7 +50,7 @@ import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
-import com.liferay.portal.kernel.test.performance.PerformanceTestTimer;
+import com.liferay.portal.kernel.test.performance.PerformanceTimer;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -179,7 +179,7 @@ public class ExportImportPerformanceTest {
 
 	@Test
 	public void testExportGroupToLAR() throws Exception {
-		try (Closeable closeable = new PerformanceTestTimer(
+		try (Closeable closeable = new PerformanceTimer(
 				1000, _logFilePath)) {
 
 			Map<String, Serializable> exportLayoutSettingsMap =
@@ -218,7 +218,7 @@ public class ExportImportPerformanceTest {
 		File file = _exportImportLocalService.exportLayoutsAsFile(
 			_exportImportConfiguration);
 
-		try (Closeable closeable = new PerformanceTestTimer(
+		try (Closeable closeable = new PerformanceTimer(
 				1000, _logFilePath)) {
 
 			Map<String, Serializable> importLayoutSettingsMap =
@@ -241,7 +241,7 @@ public class ExportImportPerformanceTest {
 
 	@Test
 	public void testInitialStagingPublication() throws Exception {
-		try (Closeable closeable = new PerformanceTestTimer(
+		try (Closeable closeable = new PerformanceTimer(
 				10000, _logFilePath)) {
 
 			_stagingLocalService.enableLocalStaging(
@@ -280,7 +280,7 @@ public class ExportImportPerformanceTest {
 			_group, _layoutSetPrototype.getLayoutSetPrototypeId(), 0, true,
 			true);
 
-		try (Closeable closeable = new PerformanceTestTimer(
+		try (Closeable closeable = new PerformanceTimer(
 				1000, _logFilePath)) {
 
 			MergeLayoutPrototypesThreadLocal.clearMergeComplete();
@@ -295,7 +295,7 @@ public class ExportImportPerformanceTest {
 		_stagingLocalService.enableLocalStaging(
 			TestPropsValues.getUserId(), _group, false, false, _serviceContext);
 
-		try (Closeable closeable = new PerformanceTestTimer(
+		try (Closeable closeable = new PerformanceTimer(
 				1000, _logFilePath)) {
 
 			Group stagingGroup = _group.getStagingGroup();

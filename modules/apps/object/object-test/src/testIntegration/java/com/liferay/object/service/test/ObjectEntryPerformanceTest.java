@@ -17,7 +17,7 @@ import com.liferay.object.service.ObjectDefinitionLocalService;
 import com.liferay.object.service.ObjectEntryLocalService;
 import com.liferay.object.test.util.ObjectDefinitionTestUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.test.performance.PerformanceTestTimer;
+import com.liferay.portal.kernel.test.performance.PerformanceTimer;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -103,7 +103,7 @@ public class ObjectEntryPerformanceTest {
 
 	@Test
 	public void testGetObjectEntries() throws Exception {
-		try (Closeable closeable = new PerformanceTestTimer(
+		try (Closeable closeable = new PerformanceTimer(
 				60000, _logFilePath)) {
 
 			_objectEntries = _objectEntryLocalService.getObjectEntries(

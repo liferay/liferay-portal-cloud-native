@@ -24,7 +24,7 @@ import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.test.performance.PerformanceTestTimer;
+import com.liferay.portal.kernel.test.performance.PerformanceTimer;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DataGuard;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
@@ -93,8 +93,8 @@ public class CTProcessLocalServicePerformanceTest {
 
 		DDMFormTestUtil.addTextDDMFormFields(ddmForm, formFieldName);
 
-		try (PerformanceTestTimer performanceTestTimer =
-				new PerformanceTestTimer(10000)) {
+		try (PerformanceTimer performanceTimer =
+				new PerformanceTimer(10000)) {
 
 			_ctProcessLocalService.addCTProcess(
 				_ctCollection.getUserId(), _ctCollection.getCtCollectionId());
@@ -134,8 +134,8 @@ public class CTProcessLocalServicePerformanceTest {
 
 		journalArticle = JournalTestUtil.updateArticle(journalArticle);
 
-		try (PerformanceTestTimer performanceTestTimer =
-				new PerformanceTestTimer(10000)) {
+		try (PerformanceTimer performanceTimer =
+				new PerformanceTimer(10000)) {
 
 			_ctProcessLocalService.addCTProcess(
 				_ctCollection.getUserId(), _ctCollection.getCtCollectionId());

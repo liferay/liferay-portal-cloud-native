@@ -24,15 +24,15 @@ import org.junit.Assert;
 /**
  * @author David Truong
  */
-public class PerformanceTestTimer implements Closeable {
+public class PerformanceTimer implements Closeable {
 
-	public PerformanceTestTimer(Class<?> clazz, String name, long maxTime) {
+	public PerformanceTimer(Class<?> clazz, String name, long maxTime) {
 		this(
 			getInvokerName(clazz, name), System.currentTimeMillis(), maxTime,
 			null);
 	}
 
-	public PerformanceTestTimer(
+	public PerformanceTimer(
 		Class<?> clazz, String name, long maxTime, Path logFilePath) {
 
 		this(
@@ -40,25 +40,25 @@ public class PerformanceTestTimer implements Closeable {
 			logFilePath);
 	}
 
-	public PerformanceTestTimer(long maxTime) {
+	public PerformanceTimer(long maxTime) {
 		this(
 			getInvokerName(null, null), System.currentTimeMillis(), maxTime,
 			null);
 	}
 
-	public PerformanceTestTimer(long maxTime, Path logFilePath) {
+	public PerformanceTimer(long maxTime, Path logFilePath) {
 		this(
 			getInvokerName(null, null), System.currentTimeMillis(), maxTime,
 			logFilePath);
 	}
 
-	public PerformanceTestTimer(String name, long maxTime) {
+	public PerformanceTimer(String name, long maxTime) {
 		this(
 			getInvokerName(null, name), System.currentTimeMillis(), maxTime,
 			null);
 	}
 
-	public PerformanceTestTimer(String name, long maxTime, Path logFilePath) {
+	public PerformanceTimer(String name, long maxTime, Path logFilePath) {
 		this(
 			getInvokerName(null, name), System.currentTimeMillis(), maxTime,
 			logFilePath);
@@ -105,7 +105,7 @@ public class PerformanceTestTimer implements Closeable {
 		return sb.toString();
 	}
 
-	protected PerformanceTestTimer(
+	protected PerformanceTimer(
 		String name, long startTime, long maxTime, Path logFilePath) {
 
 		this.name = name;
@@ -143,7 +143,7 @@ public class PerformanceTestTimer implements Closeable {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		PerformanceTestTimer.class);
+		PerformanceTimer.class);
 
 	private Path _logFilePath;
 

@@ -16,7 +16,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
-import com.liferay.portal.kernel.test.performance.PerformanceTestTimer;
+import com.liferay.portal.kernel.test.performance.PerformanceTimer;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DataGuard;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
@@ -112,15 +112,15 @@ public class CTCollectionLocalServicePerformanceTest {
 			siteInitializer.initialize(group.getGroupId());
 		}
 
-		try (PerformanceTestTimer performanceTestTimer =
-				new PerformanceTestTimer(45000)) {
+		try (PerformanceTimer performanceTimer =
+				new PerformanceTimer(45000)) {
 
 			_ctProcessLocalService.addCTProcess(
 				_ctCollection2.getUserId(), _ctCollection2.getCtCollectionId());
 		}
 
-		try (PerformanceTestTimer performanceTestTimer =
-				new PerformanceTestTimer(10000)) {
+		try (PerformanceTimer performanceTimer =
+				new PerformanceTimer(10000)) {
 
 			_ctCollectionLocalService.checkConflicts(_ctCollection1);
 		}
@@ -146,15 +146,15 @@ public class CTCollectionLocalServicePerformanceTest {
 			LayoutTestUtil.addTypeContentLayout(_group, layoutName);
 		}
 
-		try (PerformanceTestTimer performanceTestTimer =
-				new PerformanceTestTimer(10000)) {
+		try (PerformanceTimer performanceTimer =
+				new PerformanceTimer(10000)) {
 
 			_ctProcessLocalService.addCTProcess(
 				_ctCollection2.getUserId(), _ctCollection2.getCtCollectionId());
 		}
 
-		try (PerformanceTestTimer performanceTestTimer =
-				new PerformanceTestTimer(10000)) {
+		try (PerformanceTimer performanceTimer =
+				new PerformanceTimer(10000)) {
 
 			_ctCollectionLocalService.checkConflicts(_ctCollection1);
 		}
