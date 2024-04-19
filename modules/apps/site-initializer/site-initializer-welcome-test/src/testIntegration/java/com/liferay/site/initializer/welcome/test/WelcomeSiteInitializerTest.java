@@ -102,20 +102,19 @@ public class WelcomeSiteInitializerTest {
 		LayoutUtilityPageEntry layoutUtilityPageEntry) {
 
 		Assert.assertNotNull(layoutUtilityPageEntry);
-
 		Assert.assertEquals(expectedName, layoutUtilityPageEntry.getName());
 
 		long layoutUtilityPageEntryPlid = layoutUtilityPageEntry.getPlid();
 
-		List<PortletPreferences> portletPreferencesByPlid =
+		List<PortletPreferences> portletPreferencesList =
 			_portletPreferencesLocalService.getPortletPreferencesByPlid(
 				layoutUtilityPageEntryPlid);
 
 		Assert.assertEquals(
-			portletPreferencesByPlid.toString(), 1,
-			portletPreferencesByPlid.size());
+			portletPreferencesList.toString(), 1,
+			portletPreferencesList.size());
 
-		PortletPreferences portletPreferences = portletPreferencesByPlid.get(0);
+		PortletPreferences portletPreferences = portletPreferencesList.get(0);
 
 		Assert.assertEquals(
 			expectedPortletId, portletPreferences.getPortletId());
