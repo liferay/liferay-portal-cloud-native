@@ -340,7 +340,6 @@ public class ExportImportTaskResourcePerformanceTest {
 
 			httpInvoker.header(
 				HttpHeaders.ACCEPT, ContentTypes.APPLICATION_JSON);
-			httpInvoker.userNameAndPassword("test@liferay.com:test");
 			httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
 			StringBundler sb = new StringBundler(
@@ -357,6 +356,8 @@ public class ExportImportTaskResourcePerformanceTest {
 			}
 
 			httpInvoker.path(sb.toString());
+
+			httpInvoker.userNameAndPassword("test@liferay.com:test");
 
 			HttpInvoker.HttpResponse response = httpInvoker.invoke();
 
