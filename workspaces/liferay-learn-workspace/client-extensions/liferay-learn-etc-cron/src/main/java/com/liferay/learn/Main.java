@@ -1239,7 +1239,7 @@ public class Main {
 		).build();
 	}
 
-	private boolean _isShowChildrenCardsBoolean(File file) throws Exception {
+	private boolean _isShowChildrenCards(File file) throws Exception {
 		SnakeYamlFrontMatterVisitor snakeYamlFrontMatterVisitor =
 			new SnakeYamlFrontMatterVisitor();
 
@@ -1453,7 +1453,7 @@ public class Main {
 				{
 					setData(
 						() -> String.valueOf(
-							_isShowChildrenCardsBoolean(englishFile)));
+							_isShowChildrenCards(englishFile)));
 				}
 			};
 		String englishTitle = _getTitle(englishText);
@@ -1542,7 +1542,7 @@ public class Main {
 										{
 											setData(
 												() -> String.valueOf(
-													_isShowChildrenCardsBoolean(
+													_isShowChildrenCards(
 														japaneseFile)));
 										}
 									}
