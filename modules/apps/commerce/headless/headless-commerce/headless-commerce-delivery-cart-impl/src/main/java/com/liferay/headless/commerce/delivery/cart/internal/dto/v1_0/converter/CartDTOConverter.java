@@ -386,13 +386,10 @@ public class CartDTOConverter implements DTOConverter<CommerceOrder, Cart> {
 
 		BigDecimal finalShippingDiscountPercentageLevel1 =
 			shippingDiscountPercentageLevel1;
-
 		BigDecimal finalShippingDiscountPercentageLevel2 =
 			shippingDiscountPercentageLevel2;
-
 		BigDecimal finalShippingDiscountPercentageLevel3 =
 			shippingDiscountPercentageLevel3;
-
 		BigDecimal finalShippingDiscountPercentageLevel4 =
 			shippingDiscountPercentageLevel4;
 
@@ -459,13 +456,10 @@ public class CartDTOConverter implements DTOConverter<CommerceOrder, Cart> {
 
 		BigDecimal finalSubtotalDiscountPercentageLevel1 =
 			subtotalDiscountPercentageLevel1;
-
 		BigDecimal finalSubtotalDiscountPercentageLevel2 =
 			subtotalDiscountPercentageLevel2;
-
 		BigDecimal finalSubtotalDiscountPercentageLevel3 =
 			subtotalDiscountPercentageLevel3;
-
 		BigDecimal finalSubtotalDiscountPercentageLevel4 =
 			subtotalDiscountPercentageLevel4;
 
@@ -526,13 +520,10 @@ public class CartDTOConverter implements DTOConverter<CommerceOrder, Cart> {
 
 		BigDecimal finalTotalDiscountPercentageLevel1 =
 			totalDiscountPercentageLevel1;
-
 		BigDecimal finalTotalDiscountPercentageLevel2 =
 			totalDiscountPercentageLevel2;
-
 		BigDecimal finalTotalDiscountPercentageLevel3 =
 			totalDiscountPercentageLevel3;
-
 		BigDecimal finalTotalDiscountPercentageLevel4 =
 			totalDiscountPercentageLevel4;
 
