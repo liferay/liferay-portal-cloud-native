@@ -239,34 +239,30 @@ public class ExportImportTaskResourcePerformanceTest {
 				_jsons.get(className), "[$ALTERNATE_NAME$]", alternateName);
 
 			json = StringUtil.replace(
+				json, "[$EMAIL_ADDRESS$]",
+				StringBundler.concat(
+					alternateName, "@", RandomTestUtil.randomString(), ".com"));
+			json = StringUtil.replace(
 				json, "[$FAMILY_NAME$]",
 				StringUtil.getTitleCase(
 					RandomTestUtil.randomString(
 						8, UniqueStringRandomizerBumper.INSTANCE),
 					true, ""));
-
 			json = StringUtil.replace(
 				json, "[$GIVEN_NAME$]",
 				StringUtil.getTitleCase(
 					RandomTestUtil.randomString(
 						8, UniqueStringRandomizerBumper.INSTANCE),
 					true, ""));
-
 			json = StringUtil.replace(
-				json, "[$EMAIL_ADDRESS$]",
-				StringBundler.concat(
-					alternateName, "@", RandomTestUtil.randomString(), ".com"));
-
+				json, "\"[$INT_VALUE$]\"",
+				String.valueOf(RandomTestUtil.nextInt()));
 			json = StringUtil.replace(
 				json, "[$TEXT_VALUE$]",
 				StringUtil.getTitleCase(
 					RandomTestUtil.randomString(
 						8, UniqueStringRandomizerBumper.INSTANCE),
 					true, ""));
-
-			json = StringUtil.replace(
-				json, "\"[$INT_VALUE$]\"",
-				String.valueOf(RandomTestUtil.nextInt()));
 
 			batchJsonSB.append(json);
 
