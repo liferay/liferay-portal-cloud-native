@@ -453,10 +453,10 @@ public class ExportImportTaskResourcePerformanceTest {
 
 			httpInvoker.userNameAndPassword("test@liferay.com:test");
 
-			HttpInvoker.HttpResponse response = httpInvoker.invoke();
+			HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
 
 			ImportTask importTask = ImportTaskSerDes.toDTO(
-				response.getContent());
+				httpResponse.getContent());
 
 			String externalReferenceCode =
 				importTask.getExternalReferenceCode();
@@ -480,12 +480,12 @@ public class ExportImportTaskResourcePerformanceTest {
 				}
 			}
 
-			Date endTime = importTask.getEndTime();
-			Date startTime = importTask.getStartTime();
+			Date endDate = importTask.getEndTime();
+			Date startDate = importTask.getStartTime();
 
 			_log.info(
 				"Import task duration: " +
-					(endTime.getTime() - startTime.getTime()) + " ms");
+					(endDate.getTime() - startDate.getTime()) + " ms");
 		}
 	}
 
