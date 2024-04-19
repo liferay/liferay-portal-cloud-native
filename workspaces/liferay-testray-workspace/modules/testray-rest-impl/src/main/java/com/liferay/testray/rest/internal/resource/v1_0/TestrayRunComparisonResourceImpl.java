@@ -418,10 +418,10 @@ public class TestrayRunComparisonResourceImpl
 		return testrayTeamComparisonsMap;
 	}
 
-	private String _merge(Collection<?> col, String delimiter) {
-		StringBundler sb = new StringBundler(2 * col.size());
+	private String _merge(Collection<?> collection, String delimiter) {
+		StringBundler sb = new StringBundler(2 * collection.size());
 
-		for (Object object : col) {
+		for (Object object : collection) {
 			if (Validator.isNull(object)) {
 				continue;
 			}
