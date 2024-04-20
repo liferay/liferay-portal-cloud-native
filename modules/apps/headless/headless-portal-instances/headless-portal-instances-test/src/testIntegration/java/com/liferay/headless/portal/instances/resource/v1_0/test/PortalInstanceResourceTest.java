@@ -55,7 +55,7 @@ public class PortalInstanceResourceTest
 	@Override
 	@Test
 	public void testDeletePortalInstance() throws Exception {
-		_testDeletePortalInstanceNotExisting();
+		_testDeletePortalInstanceNonexistent();
 		_testDeletePortalInstanceExisting();
 	}
 
@@ -270,7 +270,7 @@ public class PortalInstanceResourceTest
 			_companyLocalService.fetchCompany(portalInstance.getCompanyId()));
 	}
 
-	private void _testDeletePortalInstanceNotExisting() throws Exception {
+	private void _testDeletePortalInstanceNonexistent() throws Exception {
 
 		// Nonexistent key
 
