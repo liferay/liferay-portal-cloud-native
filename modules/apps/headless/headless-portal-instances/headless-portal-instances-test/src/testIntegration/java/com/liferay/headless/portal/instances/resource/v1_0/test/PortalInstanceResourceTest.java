@@ -85,7 +85,7 @@ public class PortalInstanceResourceTest
 		_testPatchPortalInstanceUpdateCompanyId();
 		_testPatchPortalInstanceUpdateDomain();
 		_testPatchPortalInstanceUpdatePortletInstanceId();
-		_testPatchPortalInstanceUpdateVirtualHostName();
+		_testPatchPortalInstanceUpdateVirtualHost();
 	}
 
 	@Test
@@ -218,7 +218,7 @@ public class PortalInstanceResourceTest
 
 	private PortalInstance _copyPortalInstance(
 			boolean updateActive, boolean updateCompanyId, boolean updateDomain,
-			boolean updatePortletInstanceId, boolean updateVirtualHostName)
+			boolean updatePortletInstanceId, boolean updateVirtualHost)
 		throws Exception {
 
 		String randomName = StringUtil.toLowerCase(
@@ -246,7 +246,7 @@ public class PortalInstanceResourceTest
 			copyPortalInstance.setPortalInstanceId(randomName);
 		}
 
-		if (updateVirtualHostName) {
+		if (updateVirtualHost) {
 			copyPortalInstance.setVirtualHost(randomDomain);
 		}
 
@@ -369,7 +369,7 @@ public class PortalInstanceResourceTest
 		_testPatchPortalInstace(portalInstance, false, false, true);
 	}
 
-	private void _testPatchPortalInstanceUpdateVirtualHostName()
+	private void _testPatchPortalInstanceUpdateVirtualHost()
 		throws Exception {
 
 		PortalInstance portalInstance = _copyPortalInstance(
