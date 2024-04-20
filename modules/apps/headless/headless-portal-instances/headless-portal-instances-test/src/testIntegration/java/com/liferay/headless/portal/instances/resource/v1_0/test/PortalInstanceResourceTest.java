@@ -387,8 +387,8 @@ public class PortalInstanceResourceTest
 		randomPortalInstance.setAdmin(
 			Admin.toDTO(
 				StringBundler.concat(
-					"{\"emailAddress\": \"", email, "\",\"familyName\": \"",
-					lastName, "\",\"givenName\": \"", firstName, "\"}")));
+					"{\"emailAddress\": \"", email, "\", \"familyName\": \"",
+					lastName, "\", \"givenName\": \"", firstName, "\"}")));
 
 		PortalInstance postPortalInstance =
 			testPostPortalInstance_addPortalInstance(randomPortalInstance);
