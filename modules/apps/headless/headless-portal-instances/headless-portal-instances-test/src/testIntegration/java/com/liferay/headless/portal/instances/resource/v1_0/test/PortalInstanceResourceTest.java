@@ -161,11 +161,11 @@ public class PortalInstanceResourceTest
 
 	@Override
 	protected PortalInstance randomPortalInstance() throws Exception {
-		String randomName = StringUtil.toLowerCase(
+		String randomPortalInstanceId = StringUtil.toLowerCase(
 			RandomTestUtil.randomString());
 
 		String randomDomain =
-			randomName + "." +
+			randomPortalInstanceId + "." +
 				StringUtil.toLowerCase(RandomTestUtil.randomString(3));
 
 		return new PortalInstance() {
@@ -173,7 +173,7 @@ public class PortalInstanceResourceTest
 				active = true;
 				companyId = RandomTestUtil.randomLong();
 				domain = randomDomain;
-				portalInstanceId = randomName;
+				portalInstanceId = randomPortalInstanceId;
 				virtualHost = randomDomain;
 			}
 		};
@@ -221,11 +221,11 @@ public class PortalInstanceResourceTest
 			boolean updatePortletInstanceId, boolean updateVirtualHost)
 		throws Exception {
 
-		String randomName = StringUtil.toLowerCase(
+		String randomPortalInstanceId = StringUtil.toLowerCase(
 			RandomTestUtil.randomString());
 
 		String randomDomain =
-			randomName + "." +
+			randomPortalInstanceId + "." +
 				StringUtil.toLowerCase(RandomTestUtil.randomString(3));
 
 		PortalInstance copyPortalInstance = _portalInstance.clone();
@@ -243,7 +243,7 @@ public class PortalInstanceResourceTest
 		}
 
 		if (updatePortletInstanceId) {
-			copyPortalInstance.setPortalInstanceId(randomName);
+			copyPortalInstance.setPortalInstanceId(randomPortalInstanceId);
 		}
 
 		if (updateVirtualHost) {
