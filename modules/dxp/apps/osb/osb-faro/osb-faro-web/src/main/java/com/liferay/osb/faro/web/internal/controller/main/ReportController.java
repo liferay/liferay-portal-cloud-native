@@ -56,7 +56,7 @@ public class ReportController extends BaseFaroController {
 
 	@GET
 	@Path("/export/csv/{type}")
-	public Object getCsv(
+	public Object getCSV(
 			@QueryParam("assetId") String assetId,
 			@QueryParam("assetTitle") String assetTitle,
 			@QueryParam("assetType") String assetType,
@@ -134,7 +134,7 @@ public class ReportController extends BaseFaroController {
 
 	@GET
 	@Path("/export/csv/{type}/count")
-	public Object getCsvCount(
+	public Object getCSVCount(
 			@QueryParam("assetId") String assetId,
 			@QueryParam("assetType") String assetType,
 			@QueryParam("channelId") String channelId,
@@ -159,7 +159,7 @@ public class ReportController extends BaseFaroController {
 			return result;
 		}
 
-		return contactsEngineClient.getReportsExportCsvCount(
+		return contactsEngineClient.getReportsExportCSVCount(
 			faroProjectLocalService.getFaroProjectByGroupId(groupId),
 			String.format("/reports/export/csv/%s/count", type),
 			queryParameters);

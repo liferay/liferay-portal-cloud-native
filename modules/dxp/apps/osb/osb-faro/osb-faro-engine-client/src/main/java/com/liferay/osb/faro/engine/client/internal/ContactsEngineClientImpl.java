@@ -2277,7 +2277,7 @@ public class ContactsEngineClientImpl
 	}
 
 	@Override
-	public long getReportsExportCsvCount(
+	public long getReportsExportCSVCount(
 			FaroProject faroProject, String path,
 			Map<String, List<String>> queryParameters)
 		throws Exception {
