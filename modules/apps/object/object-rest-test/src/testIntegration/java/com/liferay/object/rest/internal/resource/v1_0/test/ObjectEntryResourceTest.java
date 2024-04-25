@@ -65,6 +65,7 @@ import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.function.UnsafeRunnable;
+import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -152,7 +153,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
 
 import org.hamcrest.CoreMatchers;
@@ -5535,11 +5535,28 @@ public class ObjectEntryResourceTest {
 	@Test
 	public void testGetObjectEntryWithObjectActions() throws Exception {
 		_testGetObjectEntryWithObjectActions(
-			_addObjectAction(_objectDefinition1), _objectDefinition1);
+			_addObjectAction(_objectDefinition1), _objectDefinition1,
+			(actionJSONObject, jsonObject, objectAction) -> Assert.assertEquals(
+				StringBundler.concat(
+					"http://localhost:8080/o",
+					_objectDefinition1.getRESTContextPath(),
+					"/by-external-reference-code/",
+					jsonObject.getString("externalReferenceCode"),
+					"/object-actions/", objectAction.getName()),
+				actionJSONObject.getString("href")));
 
 		_testGetObjectEntryWithObjectActions(
 			_addObjectAction(_siteScopedObjectDefinition1),
-			_siteScopedObjectDefinition1);
+			_siteScopedObjectDefinition1,
+			(actionJSONObject, jsonObject, objectAction) -> Assert.assertEquals(
+				StringBundler.concat(
+					"http://localhost:8080/o",
+					_siteScopedObjectDefinition1.getRESTContextPath(),
+					"/scopes/", TestPropsValues.getGroupId(),
+					"/by-external-reference-code/",
+					jsonObject.getString("externalReferenceCode"),
+					"/object-actions/", objectAction.getName()),
+				actionJSONObject.getString("href")));
 	}
 
 	@Test
@@ -9381,7 +9398,9 @@ public class ObjectEntryResourceTest {
 	}
 
 	private void _testGetObjectEntryWithObjectActions(
-			ObjectAction objectAction, ObjectDefinition objectDefinition)
+			ObjectAction objectAction, ObjectDefinition objectDefinition,
+			UnsafeTriConsumer<JSONObject, JSONObject, ObjectAction, Exception>
+				unsafeTriConsumer)
 		throws Exception {
 
 		JSONObject jsonObject = HTTPTestUtil.invokeToJSONObject(
@@ -9396,29 +9415,9 @@ public class ObjectEntryResourceTest {
 		JSONObject actionJSONObject = actionsJSONObject.getJSONObject(
 			objectAction.getName());
 
-		if (Objects.equals(objectDefinition.getScope(), "site")) {
-			Assert.assertEquals(
-				StringBundler.concat(
-					"http://localhost:8080/o",
-					objectDefinition.getRESTContextPath(), "/scopes/",
-					TestPropsValues.getGroupId(),
-					"/by-external-reference-code/",
-					jsonObject.getString("externalReferenceCode"),
-					"/object-actions/", objectAction.getName()),
-				actionJSONObject.getString("href"));
-		}
-		else {
-			Assert.assertEquals(
-				StringBundler.concat(
-					"http://localhost:8080/o",
-					objectDefinition.getRESTContextPath(),
-					"/by-external-reference-code/",
-					jsonObject.getString("externalReferenceCode"),
-					"/object-actions/", objectAction.getName()),
-				actionJSONObject.getString("href"));
-		}
-
 		Assert.assertEquals("PUT", actionJSONObject.getString("method"));
+
+		unsafeTriConsumer.accept(actionJSONObject, jsonObject, objectAction);
 	}
 
 	private void _testPatchPutCustomObjectEntryExternalReferenceCode(
