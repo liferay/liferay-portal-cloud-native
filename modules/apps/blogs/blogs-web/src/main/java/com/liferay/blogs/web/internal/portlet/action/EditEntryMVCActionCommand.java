@@ -542,7 +542,8 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 
 			serviceContext.setAttribute(
 				"friendlyURLAssetCategoryIds",
-				serviceContext.getAssetCategoryIds());
+				ParamUtil.getLongValues(
+					actionRequest, "friendlyURLAssetCategoryIds"));
 		}
 
 		serviceContext.setAttribute(
