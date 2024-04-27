@@ -74,6 +74,8 @@ public class KaleoTimerInstanceTokenTableReferenceDefinitionTest
 
 	@Override
 	protected CTModel<?> addCTModel() throws Exception {
+		Message message = new Message();
+
 		KaleoTimerInstanceToken kaleoTimerInstanceToken =
 			_kaleoTimerInstanceTokenLocalService.addKaleoTimerInstanceToken(
 				_kaleoInstanceToken.getKaleoInstanceTokenId(),
@@ -82,8 +84,6 @@ public class KaleoTimerInstanceTokenTableReferenceDefinitionTest
 				WorkflowContextUtil.convert(
 					_kaleoInstance.getWorkflowContext()),
 				serviceContext);
-
-		Message message = new Message();
 
 		message.put(
 			"kaleoTimerInstanceTokenId",
