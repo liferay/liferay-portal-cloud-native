@@ -16930,11 +16930,11 @@ CATALINA_OPTS="$CATALINA_OPTS -Dcom.sun.management.jmxremote -Dcom.sun.managemen
 						output="${liferay.home}/validateoutput.txt"
 					>
 						<arg line="--db-name ${database.mysql.schema}" />
+						<arg line="--db-type mysql" />
 						<arg line="--jdbc-url ${database.mysql.url}" />
 						<arg value="--password" />
 						<arg value="&quot;${database.mysql.password}&quot;" />
 						<arg line="--schema-prefix ${schema.name.prefix}" />
-						<arg line="--db-type mysql" />
 						<arg line="--user ${database.mysql.username}" />
 					</java>
 				</then>
@@ -16947,11 +16947,11 @@ CATALINA_OPTS="$CATALINA_OPTS -Dcom.sun.management.jmxremote -Dcom.sun.managemen
 							output="${liferay.home}/validateoutput.txt"
 						>
 							<arg line="--db-name ${database.postgresql.schema}" />
+							<arg line="--db-type postgresql" />
 							<arg line="--jdbc-url ${database.postgresql.url}" />
 							<arg value="--password" />
 							<arg value="&quot;${database.postgresql.password}&quot;" />
 							<arg line="--schema-prefix ${schema.name.prefix}" />
-							<arg line="--db-type postgresql" />
 							<arg line="--user ${database.postgresql.username}" />
 						</java>
 					</then>
