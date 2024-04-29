@@ -31,7 +31,7 @@ public class DBPartitionExtractVirtualInstanceOperation
 
 	@Override
 	public String getOperationCompletedMessage(long companyId) {
-		return "Virtual Instance with company ID " + companyId +
+		return "Virtual instance with company ID " + companyId +
 			" extracted successfully";
 	}
 
@@ -52,7 +52,7 @@ public class DBPartitionExtractVirtualInstanceOperation
 
 				if (_companyLocalService.fetchCompany(companyId) == null) {
 					_log.error(
-						"Virtual Instance with company ID " + companyId +
+						"Virtual instance with company ID " + companyId +
 							" does not exist");
 
 					return null;

@@ -39,7 +39,7 @@ public class DBPartitionInsertVirtualInstanceOperationTest
 
 			assertLog(
 				logCapture,
-				"Virtual Instance with company ID " +
+				"Virtual instance with company ID " +
 					PortalInstancePool.getDefaultCompanyId() +
 						" already exists");
 		}

@@ -34,7 +34,7 @@ public class DBPartitionInsertVirtualInstanceOperation
 
 	@Override
 	public String getOperationCompletedMessage(long companyId) {
-		return "Virtual Instance with company ID " + companyId +
+		return "Virtual instance with company ID " + companyId +
 			" imported successfully";
 	}
 
@@ -55,7 +55,7 @@ public class DBPartitionInsertVirtualInstanceOperation
 				if (_companyLocalService.fetchCompany(companyId) != null) {
 					_log.error(
 						StringBundler.concat(
-							"Virtual Instance with company ID ", companyId,
+							"Virtual instance with company ID ", companyId,
 							" already exists"));
 
 					return null;

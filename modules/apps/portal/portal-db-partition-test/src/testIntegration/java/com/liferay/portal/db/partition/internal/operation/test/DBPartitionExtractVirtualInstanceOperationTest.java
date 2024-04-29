@@ -35,7 +35,7 @@ public class DBPartitionExtractVirtualInstanceOperationTest
 
 			assertLog(
 				logCapture,
-				"Virtual Instance with company ID 0 does not exist");
+				"Virtual instance with company ID 0 does not exist");
 		}
 
 		assertConfigurationIsDeletedAfterDeploy(_PID);
