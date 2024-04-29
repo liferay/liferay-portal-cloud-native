@@ -40,21 +40,20 @@ public class MultiselectPicklistFieldPredicateProvider
 		Object left, long objectDefinitionId,
 		BinaryExpression.Operation operation, Object right) {
 
-		Expression<String> columnFieldExpression =
+		Expression<String> expression =
 			(Expression<String>)objectDefinitionColumnSupplier.apply(
 				String.valueOf(left));
 
 		if (Objects.equals(operation, BinaryExpression.Operation.EQ)) {
-			Expression<String> formatedColumnExpression =
-				DSLFunctionFactoryUtil.concat(
-					new Scalar<>(_SCALAR_EXPRESSION), columnFieldExpression,
-					new Scalar<>(_SCALAR_EXPRESSION));
+			expression = DSLFunctionFactoryUtil.concat(
+				new Scalar<>(_SCALAR_EXPRESSION), expression,
+				new Scalar<>(_SCALAR_EXPRESSION));
 
-			return formatedColumnExpression.like(
+			return expression.like(
 				_getFieldValueExpression(String.valueOf(right), null));
 		}
 		else if (Objects.equals(operation, BinaryExpression.Operation.NE)) {
-			return columnFieldExpression.neq(String.valueOf(right));
+			return expression.neq(String.valueOf(right));
 		}
 
 		throw new UnsupportedOperationException(
@@ -108,14 +107,12 @@ public class MultiselectPicklistFieldPredicateProvider
 		Function<String, Column<?, ?>> objectDefinitionColumnSupplier,
 		String fieldName, Object fieldValue) {
 
-		Expression<String> columnFieldExpression =
-			DSLFunctionFactoryUtil.concat(
-				new Scalar<>(_SCALAR_EXPRESSION),
-				(Expression<String>)objectDefinitionColumnSupplier.apply(
-					fieldName),
-				new Scalar<>(_SCALAR_EXPRESSION));
+		Expression<String> expression = DSLFunctionFactoryUtil.concat(
+			new Scalar<>(_SCALAR_EXPRESSION),
+			(Expression<String>)objectDefinitionColumnSupplier.apply(fieldName),
+			new Scalar<>(_SCALAR_EXPRESSION));
 
-		return columnFieldExpression.like(
+		return expression.like(
 			_getFieldValueExpression(
 				String.valueOf(fieldValue), MethodExpression.Type.STARTS_WITH));
 	}
