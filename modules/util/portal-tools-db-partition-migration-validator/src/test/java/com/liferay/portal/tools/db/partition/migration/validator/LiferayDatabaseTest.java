@@ -174,7 +174,7 @@ public class LiferayDatabaseTest {
 			resultSet2
 		);
 
-		final List<Integer> nextCounter = new ArrayList<>();
+		List<Integer> nextCounter = new ArrayList<>();
 
 		nextCounter.add(0);
 
@@ -201,9 +201,9 @@ public class LiferayDatabaseTest {
 			}
 		);
 
-		final List<Integer> getStringCounter = new ArrayList<>();
+		List<Integer> tableNameCounter = new ArrayList<>();
 
-		getStringCounter.add(0);
+		tableNameCounter.add(0);
 
 		Mockito.when(
 			resultSet2.getString("TABLE_NAME")
@@ -214,13 +214,13 @@ public class LiferayDatabaseTest {
 				public String answer(InvocationOnMock invocationOnMock)
 					throws Throwable {
 
-					int counter = getStringCounter.get(0);
+					int counter = tableNameCounter.get(0);
 
 					if (counter >= tableNames.size()) {
 						throw new IndexOutOfBoundsException();
 					}
 
-					getStringCounter.set(0, ++counter);
+					tableNameCounter.set(0, ++counter);
 
 					return tableNames.get(counter - 1);
 				}
@@ -234,7 +234,6 @@ public class LiferayDatabaseTest {
 
 		PreparedStatement preparedStatement = Mockito.mock(
 			PreparedStatement.class);
-		ResultSet resultSet = Mockito.mock(ResultSet.class);
 
 		Mockito.when(
 			_connection.prepareStatement(
@@ -245,13 +244,15 @@ public class LiferayDatabaseTest {
 			preparedStatement
 		);
 
+		ResultSet resultSet = Mockito.mock(ResultSet.class);
+
 		Mockito.when(
 			preparedStatement.executeQuery()
 		).thenReturn(
 			resultSet
 		);
 
-		final List<Integer> nextCounter = new ArrayList<>();
+		List<Integer> nextCounter = new ArrayList<>();
 
 		nextCounter.add(0);
 
@@ -278,7 +279,7 @@ public class LiferayDatabaseTest {
 			}
 		);
 
-		final List<Integer> companyIdCounter = new ArrayList<>();
+		List<Integer> companyIdCounter = new ArrayList<>();
 
 		companyIdCounter.add(0);
 
@@ -299,15 +300,15 @@ public class LiferayDatabaseTest {
 
 					companyIdCounter.set(0, ++counter);
 
-					return companies.get(
-						counter - 1
-					).getCompanyId();
+					Company company = companies.get(counter - 1);
+
+					return company.getCompanyId();
 				}
 
 			}
 		);
 
-		final List<Integer> webIdCounter = new ArrayList<>();
+		List<Integer> webIdCounter = new ArrayList<>();
 
 		webIdCounter.add(0);
 
@@ -328,15 +329,15 @@ public class LiferayDatabaseTest {
 
 					webIdCounter.set(0, ++counter);
 
-					return companies.get(
-						counter - 1
-					).getWebId();
+					Company company = companies.get(counter - 1);
+
+					return company.getWebId();
 				}
 
 			}
 		);
 
-		final List<Integer> companyNameCounter = new ArrayList<>();
+		List<Integer> companyNameCounter = new ArrayList<>();
 
 		companyNameCounter.add(0);
 
@@ -357,17 +358,17 @@ public class LiferayDatabaseTest {
 
 					companyNameCounter.set(0, ++counter);
 
-					return companies.get(
-						counter - 1
-					).getCompanyName();
+					Company company = companies.get(counter - 1);
+
+					return company.getCompanyName();
 				}
 
 			}
 		);
 
-		final List<Integer> virtualHostCounter = new ArrayList<>();
+		List<Integer> virtualHostnameCounter = new ArrayList<>();
 
-		virtualHostCounter.add(0);
+		virtualHostnameCounter.add(0);
 
 		Mockito.when(
 			resultSet.getString(4)
@@ -378,17 +379,17 @@ public class LiferayDatabaseTest {
 				public String answer(InvocationOnMock invocationOnMock)
 					throws Throwable {
 
-					int counter = virtualHostCounter.get(0);
+					int counter = virtualHostnameCounter.get(0);
 
 					if (counter >= companies.size()) {
 						throw new IndexOutOfBoundsException();
 					}
 
-					virtualHostCounter.set(0, ++counter);
+					virtualHostnameCounter.set(0, ++counter);
 
-					return companies.get(
-						counter - 1
-					).getVirtualHostname();
+					Company company = companies.get(counter - 1);
+
+					return company.getVirtualHostname();
 				}
 
 			}
@@ -398,7 +399,6 @@ public class LiferayDatabaseTest {
 	private void _mockGetCompanyIds(List<Long> companyIds) throws SQLException {
 		PreparedStatement preparedStatement = Mockito.mock(
 			PreparedStatement.class);
-		ResultSet resultSet = Mockito.mock(ResultSet.class);
 
 		Mockito.when(
 			_connection.prepareStatement("select companyId from Company")
@@ -406,13 +406,15 @@ public class LiferayDatabaseTest {
 			preparedStatement
 		);
 
+		ResultSet resultSet = Mockito.mock(ResultSet.class);
+
 		Mockito.when(
 			preparedStatement.executeQuery()
 		).thenReturn(
 			resultSet
 		);
 
-		final List<Integer> nextCounter = new ArrayList<>();
+		List<Integer> nextCounter = new ArrayList<>();
 
 		nextCounter.add(0);
 
@@ -439,9 +441,9 @@ public class LiferayDatabaseTest {
 			}
 		);
 
-		final List<Integer> getLongCounter = new ArrayList<>();
+		List<Integer> companyIdCounter = new ArrayList<>();
 
-		getLongCounter.add(0);
+		companyIdCounter.add(0);
 
 		Mockito.when(
 			resultSet.getLong("companyId")
@@ -452,13 +454,13 @@ public class LiferayDatabaseTest {
 				public Long answer(InvocationOnMock invocationOnMock)
 					throws Throwable {
 
-					int counter = getLongCounter.get(0);
+					int counter = companyIdCounter.get(0);
 
 					if (counter >= companyIds.size()) {
 						throw new IndexOutOfBoundsException();
 					}
 
-					getLongCounter.set(0, ++counter);
+					companyIdCounter.set(0, ++counter);
 
 					return companyIds.get(counter - 1);
 				}
@@ -472,7 +474,6 @@ public class LiferayDatabaseTest {
 
 		PreparedStatement preparedStatement = Mockito.mock(
 			PreparedStatement.class);
-		ResultSet resultSet = Mockito.mock(ResultSet.class);
 
 		Mockito.when(
 			_connection.prepareStatement("select companyId from CompanyInfo")
@@ -480,13 +481,15 @@ public class LiferayDatabaseTest {
 			preparedStatement
 		);
 
+		ResultSet resultSet = Mockito.mock(ResultSet.class);
+
 		Mockito.when(
 			preparedStatement.executeQuery()
 		).thenReturn(
 			resultSet
 		);
 
-		final List<Integer> nextCounter = new ArrayList<>();
+		List<Integer> nextCounter = new ArrayList<>();
 
 		nextCounter.add(0);
 
@@ -513,9 +516,9 @@ public class LiferayDatabaseTest {
 			}
 		);
 
-		final List<Integer> getLongCounter = new ArrayList<>();
+		List<Integer> companyIdCounter = new ArrayList<>();
 
-		getLongCounter.add(0);
+		companyIdCounter.add(0);
 
 		Mockito.when(
 			resultSet.getLong(1)
@@ -526,13 +529,13 @@ public class LiferayDatabaseTest {
 				public Long answer(InvocationOnMock invocationOnMock)
 					throws Throwable {
 
-					int counter = getLongCounter.get(0);
+					int counter = companyIdCounter.get(0);
 
 					if (counter >= companyIds.size()) {
 						throw new IndexOutOfBoundsException();
 					}
 
-					getLongCounter.set(0, ++counter);
+					companyIdCounter.set(0, ++counter);
 
 					return companyIds.get(counter - 1);
 				}
@@ -583,7 +586,7 @@ public class LiferayDatabaseTest {
 			resultSet
 		);
 
-		final List<Integer> nextCounter = new ArrayList<>();
+		List<Integer> nextCounter = new ArrayList<>();
 
 		nextCounter.add(0);
 
@@ -610,7 +613,7 @@ public class LiferayDatabaseTest {
 			}
 		);
 
-		final List<Integer> servletContextNameCounter = new ArrayList<>();
+		List<Integer> servletContextNameCounter = new ArrayList<>();
 
 		servletContextNameCounter.add(0);
 
@@ -631,15 +634,15 @@ public class LiferayDatabaseTest {
 
 					servletContextNameCounter.set(0, ++counter);
 
-					return releases.get(
-						counter - 1
-					).getServletContextName();
+					Release release = releases.get(counter - 1);
+
+					return release.getServletContextName();
 				}
 
 			}
 		);
 
-		final List<Integer> schemaVersionCounter = new ArrayList<>();
+		List<Integer> schemaVersionCounter = new ArrayList<>();
 
 		schemaVersionCounter.add(0);
 
@@ -660,9 +663,9 @@ public class LiferayDatabaseTest {
 
 					schemaVersionCounter.set(0, ++counter);
 
-					Version version = releases.get(
-						counter - 1
-					).getSchemaVersion();
+					Release release = releases.get(counter - 1);
+
+					Version version = release.getSchemaVersion();
 
 					return version.toString();
 				}
@@ -670,7 +673,7 @@ public class LiferayDatabaseTest {
 			}
 		);
 
-		final List<Integer> stateCounter = new ArrayList<>();
+		List<Integer> stateCounter = new ArrayList<>();
 
 		stateCounter.add(0);
 
@@ -691,15 +694,15 @@ public class LiferayDatabaseTest {
 
 					stateCounter.set(0, ++counter);
 
-					return releases.get(
-						counter - 1
-					).getState();
+					Release release = releases.get(counter - 1);
+
+					return release.getState();
 				}
 
 			}
 		);
 
-		final List<Integer> verifiedCounter = new ArrayList<>();
+		List<Integer> verifiedCounter = new ArrayList<>();
 
 		verifiedCounter.add(0);
 
@@ -720,9 +723,9 @@ public class LiferayDatabaseTest {
 
 					verifiedCounter.set(0, ++counter);
 
-					return releases.get(
-						counter - 1
-					).getVerified();
+					Release release = releases.get(counter - 1);
+
+					return release.getVerified();
 				}
 
 			}
