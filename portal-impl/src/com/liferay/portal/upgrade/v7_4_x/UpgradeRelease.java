@@ -9,10 +9,6 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * @author Luis Ortiz
  */
@@ -28,9 +24,9 @@ public class UpgradeRelease extends UpgradeProcess {
 			"update Release_ set verified = [$FALSE$] where " +
 				"servletContextName not in (");
 
-		for (String verifiedServletContextName : _verifiedServletContextNames) {
+		for (String servletContextName : _SERVLET_CONTEXT_NAMES) {
 			sb.append(StringPool.APOSTROPHE);
-			sb.append(verifiedServletContextName);
+			sb.append(servletContextName);
 			sb.append(StringPool.APOSTROPHE + StringPool.COMMA);
 		}
 
@@ -41,28 +37,26 @@ public class UpgradeRelease extends UpgradeProcess {
 		runSQL(sb.toString());
 	}
 
-	private static final List<String> _verifiedServletContextNames =
-		Arrays.asList(
-			"com.liferay.adaptive.media.document.library.thumbnails",
-			"com.liferay.blogs.service", "com.liferay.bookmarks.service",
-			"com.liferay.commerce.price.list.service",
-			"com.liferay.commerce.product.service",
-			"com.liferay.commerce.service", "com.liferay.depot.service",
-			"com.liferay.document.library.google.docs",
-			"com.liferay.document.library.service",
-			"com.liferay.document.library.video",
-			"com.liferay.dynamic.data.mapping.service",
-			"com.liferay.frontend.js.a11y.web",
-			"com.liferay.message.boards.service",
-			"com.liferay.organizations.service",
-			"com.liferay.portal.lock.service",
-			"com.liferay.portal.search.tuning.rankings.web",
-			"com.liferay.portal.search.tuning.synonyms.web",
-			"com.liferay.portal.security.service.access.policy.service",
-			"com.liferay.portal.security.sso.facebook.connect",
-			"com.liferay.portal.security.sso.opensso",
-			"com.liferay.portal.workflow.kaleo.designer.web",
-			"com.liferay.search.experiences.service",
-			"com.liferay.wiki.service", "portal");
+	private static final String[] _SERVLET_CONTEXT_NAMES = {
+		"com.liferay.adaptive.media.document.library.thumbnails",
+		"com.liferay.blogs.service", "com.liferay.bookmarks.service",
+		"com.liferay.commerce.price.list.service",
+		"com.liferay.commerce.product.service", "com.liferay.commerce.service",
+		"com.liferay.depot.service", "com.liferay.document.library.google.docs",
+		"com.liferay.document.library.service",
+		"com.liferay.document.library.video",
+		"com.liferay.dynamic.data.mapping.service",
+		"com.liferay.frontend.js.a11y.web",
+		"com.liferay.message.boards.service",
+		"com.liferay.organizations.service", "com.liferay.portal.lock.service",
+		"com.liferay.portal.search.tuning.rankings.web",
+		"com.liferay.portal.search.tuning.synonyms.web",
+		"com.liferay.portal.security.service.access.policy.service",
+		"com.liferay.portal.security.sso.facebook.connect",
+		"com.liferay.portal.security.sso.opensso",
+		"com.liferay.portal.workflow.kaleo.designer.web",
+		"com.liferay.search.experiences.service", "com.liferay.wiki.service",
+		"portal"
+	};
 
 }
