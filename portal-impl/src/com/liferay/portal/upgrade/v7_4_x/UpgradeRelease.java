@@ -24,10 +24,6 @@ public class UpgradeRelease extends UpgradeProcess {
 			"delete from Release_ where servletContextName = " +
 				"'com.liferay.notifications.service'");
 
-		_upgradeReleaseVerifiedStatus();
-	}
-
-	private void _upgradeReleaseVerifiedStatus() throws Exception {
 		StringBundler sb = new StringBundler(
 			"update Release_ set verified = [$FALSE$] where " +
 				"servletContextName not in (");
