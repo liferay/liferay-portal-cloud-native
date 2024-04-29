@@ -26,8 +26,8 @@ import org.openjdk.jmh.annotations.Warmup;
 @BenchmarkMode(Mode.AverageTime)
 @Fork(
 	jvmArgsAppend = {
-		"-XX:+IgnoreUnrecognizedVMOptions",
-		"--add-opens=java.base/java.lang.invoke=ALL-UNNAMED"
+		"--add-opens=java.base/java.lang.invoke=ALL-UNNAMED",
+		"-XX:+IgnoreUnrecognizedVMOptions"
 	},
 	value = 1
 )
