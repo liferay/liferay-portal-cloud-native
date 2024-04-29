@@ -19,6 +19,8 @@ import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Warmup;
 
 /**
+ * See LPD-24313.
+ *
  * @author Shuyang Zhou
  */
 @BenchmarkMode(Mode.AverageTime)
