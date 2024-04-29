@@ -52,7 +52,7 @@ public class LiferayDatabaseTest {
 	}
 
 	@Test
-	public void testCompanyId() throws Exception {
+	public void testGetExportedCompanyId() throws Exception {
 		List<Long> companyIds = new ArrayList<>();
 
 		companyIds.add(RandomTestUtil.randomLong());
@@ -79,7 +79,7 @@ public class LiferayDatabaseTest {
 	}
 
 	@Test
-	public void testDefaultPartition() throws Exception {
+	public void testIsExportedCompanyDefault() throws Exception {
 		_testDefaultPartition(
 			false,
 			liferayDatabase -> Assert.assertFalse(
@@ -112,7 +112,7 @@ public class LiferayDatabaseTest {
 	}
 
 	@Test
-	public void testGetPartitionedTableNames() throws Exception {
+	public void testGetTableNames() throws Exception {
 		_mockGetCompanyIds(Collections.singletonList(25000L));
 		_mockTables(
 			Arrays.asList("Table1", "Company", "Table2", "Object_x_25000"));
