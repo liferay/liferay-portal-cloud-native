@@ -26,9 +26,11 @@ public class GitCommitEntityDALO extends BaseEntityDALO<GitCommitEntity> {
 			return null;
 		}
 
-		String filter = "sha eq '" + sha + "'";
+		String filterString = "sha eq '" + sha + "'";
 
-		for (GitCommitEntity gitCommitEntity : getAll(filter, null, null)) {
+		for (GitCommitEntity gitCommitEntity :
+				getAll(filterString, null, null)) {
+
 			if (Objects.equals(gitCommitEntity.getSHA(), sha)) {
 				return gitCommitEntity;
 			}
