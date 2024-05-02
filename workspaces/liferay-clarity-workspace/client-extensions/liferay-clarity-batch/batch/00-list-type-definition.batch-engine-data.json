@@ -470,8 +470,8 @@
 					}
 				},
 				{
-					"externalReferenceCode": "SCHEDULE_FOLLOWUP_INTERVIEW",
-					"key": "scheduleFollowupInterview",
+					"externalReferenceCode": "SCHEDULE_FOLLOW_UP_INTERVIEW",
+					"key": "scheduleFollowUpInterview",
 					"name": "Schedule Follow-up Interview",
 					"name_i18n": {
 						"en-US": "Schedule Follow-up Interview"
