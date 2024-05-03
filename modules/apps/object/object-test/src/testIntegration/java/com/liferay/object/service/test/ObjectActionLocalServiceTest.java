@@ -1867,7 +1867,7 @@ public class ObjectActionLocalServiceTest {
 							).name(
 								ObjectFieldSettingConstants.NAME_MAX_FILE_SIZE
 							).value(
-								String.valueOf(100)
+								"100"
 							).build()),
 						false)));
 
