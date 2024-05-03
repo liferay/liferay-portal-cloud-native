@@ -1847,7 +1847,7 @@ public class ObjectActionLocalServiceTest {
 					ObjectFieldUtil.createObjectField(
 						ObjectFieldConstants.BUSINESS_TYPE_ATTACHMENT,
 						ObjectFieldConstants.DB_TYPE_LONG, true, false, null,
-						"attachment", "attachment",
+						RandomTestUtil.randomString(), "attachment",
 						Arrays.asList(
 							new ObjectFieldSettingBuilder(
 							).name(
@@ -1872,7 +1872,7 @@ public class ObjectActionLocalServiceTest {
 					ObjectFieldUtil.createObjectField(
 						ObjectFieldConstants.BUSINESS_TYPE_INTEGER,
 						ObjectFieldConstants.DB_TYPE_INTEGER, true, false, null,
-						"integer", "integer", false)));
+						RandomTestUtil.randomString(), "integer", false)));
 
 		_objectDefinitionLocalService.publishCustomObjectDefinition(
 			TestPropsValues.getUserId(),
