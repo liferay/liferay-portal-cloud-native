@@ -908,8 +908,6 @@ public class TestrayImportResultsDispatchTaskExecutor
 				testrayRunName, "'"),
 			"Run", objectEntryIdsKey, userId);
 
-		_runNumber++;
-
 		if (testrayRunId != 0) {
 			return testrayRunId;
 		}
@@ -926,7 +924,7 @@ public class TestrayImportResultsDispatchTaskExecutor
 			).put(
 				"name", testrayRunName
 			).put(
-				"number", _runNumber
+				"number", _runNumber++
 			).put(
 				"r_buildToRuns_c_buildId", testrayBuildId
 			).build());
@@ -1000,12 +998,12 @@ public class TestrayImportResultsDispatchTaskExecutor
 
 		unsafeRunnable.run();
 
-		if (_log.isInfoEnabled()) {
+		if (_log.isDebugEnabled()) {
 			Thread thread = Thread.currentThread();
 
 			StackTraceElement stackTraceElement = thread.getStackTrace()[2];
 
-			_log.info(
+			_log.debug(
 				StringBundler.concat(
 					"Invoking line ", stackTraceElement.getLineNumber(),
 					" took ", System.currentTimeMillis() - startTime, " ms"));
@@ -1187,6 +1185,10 @@ public class TestrayImportResultsDispatchTaskExecutor
 				documentBuilderFactory.newDocumentBuilder();
 
 			for (File file : tempDirectoryFile.listFiles()) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Processing " + file.getName());
+				}
+
 				try {
 					Document document = documentBuilder.parse(file);
 
@@ -1280,6 +1282,10 @@ public class TestrayImportResultsDispatchTaskExecutor
 
 				if (name.equals(s3InboxFolderName + "/")) {
 					continue;
+				}
+
+				if (_log.isInfoEnabled()) {
+					_log.info("Processing " + name);
 				}
 
 				try {
