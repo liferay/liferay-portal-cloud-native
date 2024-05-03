@@ -10,8 +10,6 @@
 <%
 DLAdminDisplayContext dlAdminDisplayContext = (DLAdminDisplayContext)request.getAttribute(DLAdminDisplayContext.class.getName());
 
-DLViewEntriesDisplayContext dlViewEntriesDisplayContext = new DLViewEntriesDisplayContext(liferayPortletRequest, liferayPortletResponse);
-
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 Object result = row.getObject();
@@ -84,6 +82,11 @@ else {
 	</aui:a>
 
 	<span>
+
+		<%
+		DLViewEntriesDisplayContext dlViewEntriesDisplayContext = new DLViewEntriesDisplayContext(liferayPortletRequest, liferayPortletResponse);
+		%>
+
 		<c:if test='<%= FeatureFlagManagerUtil.isEnabled(latestFileVersion.getCompanyId(), "LPD-16311") && !dlViewEntriesDisplayContext.hasGuestViewPermission(fileEntry) %>'>
 			<clay:icon
 				aria-label="<%= LanguageUtil.get(request, "not-visible-to-guest-users") %>"
