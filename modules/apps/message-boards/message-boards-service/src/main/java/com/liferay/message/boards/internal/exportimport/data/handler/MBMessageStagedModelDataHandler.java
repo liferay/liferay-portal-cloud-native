@@ -131,6 +131,13 @@ public class MBMessageStagedModelDataHandler
 			PortletDataContext portletDataContext, MBMessage message)
 		throws Exception {
 
+		if (message.isAnonymous()) {
+			message.setUserId(0);
+			message.setUserName(StringPool.BLANK);
+			message.setStatusByUserId(0);
+			message.setStatusByUserName(StringPool.BLANK);
+		}
+
 		if (message.isDiscussion()) {
 			MBDiscussion discussion = _mbDiscussionLocalService.getDiscussion(
 				message.getClassName(), message.getClassPK());
@@ -202,13 +209,6 @@ public class MBMessageStagedModelDataHandler
 			if (folderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 				message.setAttachmentsFolderId(folderId);
 			}
-		}
-
-		if (message.isAnonymous()) {
-			message.setUserId(0);
-			message.setUserName(StringPool.BLANK);
-			message.setStatusByUserId(0);
-			message.setStatusByUserName(StringPool.BLANK);
 		}
 
 		portletDataContext.addClassedModel(
