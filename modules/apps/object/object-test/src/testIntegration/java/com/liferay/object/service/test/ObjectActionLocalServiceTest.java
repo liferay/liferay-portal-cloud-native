@@ -1844,11 +1844,11 @@ public class ObjectActionLocalServiceTest {
 					ObjectFieldUtil.createObjectField(
 						ObjectFieldConstants.BUSINESS_TYPE_INTEGER,
 						ObjectFieldConstants.DB_TYPE_INTEGER, true, false, null,
-						"integerField", "integerField", false),
+						"integer", "integer", false),
 					ObjectFieldUtil.createObjectField(
 						ObjectFieldConstants.BUSINESS_TYPE_ATTACHMENT,
 						ObjectFieldConstants.DB_TYPE_LONG, true, false, null,
-						"upload", "upload",
+						"attachment", "attachment",
 						Arrays.asList(
 							new ObjectFieldSettingBuilder(
 							).name(
@@ -1892,7 +1892,7 @@ public class ObjectActionLocalServiceTest {
 					JSONUtil.put(
 						"inputAsValue", true
 					).put(
-						"name", "integerField"
+						"name", "integer"
 					).put(
 						"value", "1"
 					)
@@ -1903,18 +1903,18 @@ public class ObjectActionLocalServiceTest {
 		ObjectEntry objectEntry = _addObjectEntry(
 			0, objectDefinition.getObjectDefinitionId(),
 			HashMapBuilder.<String, Serializable>put(
-				"integerField", String.valueOf(RandomTestUtil.randomInt())
+				"attachment", StringPool.BLANK
 			).put(
-				"upload", StringPool.BLANK
+				"integer", String.valueOf(RandomTestUtil.randomInt())
 			).build());
 
 		_objectEntryLocalService.addOrUpdateObjectEntry(
 			objectEntry.getExternalReferenceCode(), TestPropsValues.getUserId(),
 			0, objectDefinition.getObjectDefinitionId(),
 			HashMapBuilder.<String, Serializable>put(
-				"integerField", String.valueOf(RandomTestUtil.randomInt())
+				"attachment", StringPool.BLANK
 			).put(
-				"upload", StringPool.BLANK
+				"integer", String.valueOf(RandomTestUtil.randomInt())
 			).build(),
 			ServiceContextTestUtil.getServiceContext());
 
@@ -1923,7 +1923,7 @@ public class ObjectActionLocalServiceTest {
 
 		Map<String, Serializable> values = objectEntry.getValues();
 
-		Assert.assertEquals(1, values.get("integerField"));
+		Assert.assertEquals(1, values.get("integer"));
 	}
 
 	@Test
