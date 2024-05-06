@@ -279,12 +279,12 @@ public abstract class BasePortletPreferencesUpgradeProcess
 	private String _getCompanyIdSelectSQL(
 		int ownerType, long ownerId, long plid) {
 
-		String foreignColumnName;
-		String foreignTableName;
+		String foreignColumnName = null;
+		String foreignTableName = null;
 
-		if (ownerType == PortletKeys.PREFS_OWNER_TYPE_LAYOUT) {
-			foreignColumnName = "plid";
-			foreignTableName = "Layout";
+		if (ownerType == PortletKeys.PREFS_OWNER_TYPE_ARCHIVED) {
+			foreignColumnName = "portletItemId";
+			foreignTableName = "PortletItem";
 		}
 		else if (ownerType == PortletKeys.PREFS_OWNER_TYPE_COMPANY) {
 			foreignColumnName = "companyId";
@@ -294,13 +294,13 @@ public abstract class BasePortletPreferencesUpgradeProcess
 			foreignColumnName = "groupId";
 			foreignTableName = "Group_";
 		}
+		else if (ownerType == PortletKeys.PREFS_OWNER_TYPE_LAYOUT) {
+			foreignColumnName = "plid";
+			foreignTableName = "Layout";
+		}
 		else if (ownerType == PortletKeys.PREFS_OWNER_TYPE_ORGANIZATION) {
 			foreignColumnName = "organizationId";
 			foreignTableName = "Organization_";
-		}
-		else if (ownerType == PortletKeys.PREFS_OWNER_TYPE_ARCHIVED) {
-			foreignColumnName = "portletItemId";
-			foreignTableName = "PortletItem";
 		}
 		else if (ownerType == PortletKeys.PREFS_OWNER_TYPE_USER) {
 			foreignColumnName = "userId";
@@ -433,7 +433,6 @@ public abstract class BasePortletPreferencesUpgradeProcess
 	private void _updatePortletPreferences(Object[] values) throws Exception {
 		long portletPreferencesId = (Long)values[0];
 		long companyId = (Long)values[1];
-
 		int ownerType = (Integer)values[2];
 		long plid = (Long)values[3];
 		long ownerId = (Long)values[4];
@@ -539,9 +538,7 @@ public abstract class BasePortletPreferencesUpgradeProcess
 
 		long portletPreferencesId = (Long)values[0];
 		long companyId = (Long)values[1];
-
 		int ownerType = (Integer)values[2];
-
 		long plid = (Long)values[3];
 		long ownerId = (Long)values[4];
 

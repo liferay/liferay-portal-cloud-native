@@ -136,7 +136,8 @@ public class UpgradeCompanyId extends BaseCompanyIdUpgradeProcess {
 	}
 
 	/**
-	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link BaseCompanyIdUpgradeProcess.PortletPreferencesTableUpdater}
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             BaseCompanyIdUpgradeProcess.PortletPreferencesTableUpdater}
 	 */
 	@Deprecated
 	protected class PortletPreferencesTableUpdater extends TableUpdater {
