@@ -161,17 +161,16 @@ public class LoginAction implements Action {
 		}
 
 		if (Validator.isNotNull(loginRedirect)) {
-			String loginPortletNamespace = PortalUtil.getPortletNamespace(
-				PropsValues.AUTH_LOGIN_PORTLET_NAME);
-
-			String loginRedirectParameter = loginPortletNamespace + "redirect";
-
 			redirect = HttpComponentsUtil.setParameter(
 				redirect, "p_p_id", PropsValues.AUTH_LOGIN_PORTLET_NAME);
 			redirect = HttpComponentsUtil.setParameter(
 				redirect, "p_p_lifecycle", "0");
+
+			String portletNamespace = PortalUtil.getPortletNamespace(
+				PropsValues.AUTH_LOGIN_PORTLET_NAME);
+
 			redirect = HttpComponentsUtil.setParameter(
-				redirect, loginRedirectParameter, loginRedirect);
+				redirect, portletNamespace + "redirect", loginRedirect);
 		}
 
 		httpServletResponse.sendRedirect(redirect);
