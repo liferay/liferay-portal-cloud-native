@@ -5,8 +5,9 @@
 
 /// <reference types="react" />
 
-import {IPickList} from '../../../../../utils/types';
-interface IObjectPicklistProps {
+import {IPickList} from '../../../utils/types';
+declare function Header(): JSX.Element;
+interface IBodyProps {
 	includeMode: string;
 	multiple: boolean;
 	namespace: string;
@@ -15,10 +16,10 @@ interface IObjectPicklistProps {
 	onPreselectedValuesChange: (val: any[]) => void;
 	onSelectedPicklistChange: (val?: IPickList) => void;
 	picklists: IPickList[];
-	preselectedValues: any[];
+	preselectedValues?: any[];
 	selectedPicklist?: IPickList;
 }
-declare function ObjectPicklist({
+declare function Body({
 	includeMode,
 	multiple,
 	namespace,
@@ -29,5 +30,9 @@ declare function ObjectPicklist({
 	picklists,
 	preselectedValues,
 	selectedPicklist,
-}: IObjectPicklistProps): JSX.Element;
-export default ObjectPicklist;
+}: IBodyProps): JSX.Element;
+declare const _default: {
+	Body: typeof Body;
+	Header: typeof Header;
+};
+export default _default;

@@ -26,7 +26,6 @@ import {
 	EFieldFormat,
 	EFieldType,
 	EFilterType,
-	ESelectionFilterSourceType,
 	IClientExtensionFilter,
 	IDateFilter,
 	IField,
@@ -36,10 +35,9 @@ import {
 } from '../../utils/types';
 import ClientExtensionFilterModalContent from './modal_content/ClientExtensionFilter';
 import DateRangeFilterModalContent from './modal_content/DateRangeFilter';
-import SelectionFilterModalContent from './modal_content/selection_filter/SelectionFilter';
+import SelectionFilterModalContent from './modal_content/SelectionFilter';
 
 import '../../../css/Filters.scss';
-import RequiredMark from '../../components/RequiredMark';
 
 type FilterCollection = Array<
 	IClientExtensionFilter | IDateFilter | ISelectionFilter
@@ -97,30 +95,21 @@ function AddFDSFilterModalContent({
 	);
 	const [picklists, setPicklists] = useState<IPickList[]>([]);
 	const [preselectedValues, setPreselectedValues] = useState<any[]>([]);
-	const [saveButtonDisabled, setSaveButtonDisabled] = useState<boolean>(
-		filter ? false : true
-	);
-	const [selectedField, setSelectedField] = useState<IField | undefined>(
-		fields.find((item) => item.name === filter?.fieldName)
+	const [saveButtonDisabled, setSaveButtonDisabled] = useState<boolean>();
+	const [selectedField, setSelectedField] = useState<IField | null>(
+		fields.find((item) => item.name === filter?.fieldName) || null
 	);
 	const [selectedPicklist, setSelectedPicklist] = useState<IPickList>();
-	const [source, setSource] = useState<ESelectionFilterSourceType | undefined>();
 	const [to, setTo] = useState<string>((filter as IDateFilter)?.to ?? '');
-
-	const inUseFields: (string | undefined)[] = fields.map((item) =>
-		fieldNames?.includes(item.name) ? item.name : undefined
-	);
 
 	useEffect(() => {
 		getAllPicklists().then((items) => {
 			setPicklists(items);
 
-			const picklist = items.find((item) =>
-				Liferay.FeatureFlags['LPD-10754']
-					? String(item.externalReferenceCode) ===
-					  (filter as any)?.source
-					: String(item.externalReferenceCode) ===
-					  (filter as any)?.listTypeDefinitionERC
+			const picklist = items.find(
+				(item) =>
+					String(item.externalReferenceCode) ===
+					(filter as any)?.listTypeDefinitionERC
 			);
 
 			if (picklist) {
@@ -145,71 +134,7 @@ function AddFDSFilterModalContent({
 				);
 			}
 		});
-
-		if (filter?.filterType === EFilterType.SELECTION) {
-			const selectionFilter = filter as ISelectionFilter;
-			setSource(selectionFilter.source);
-		}
 	}, [filter]);
-
-	const isFormInvalid = ({
-		i18nFilterLabels,
-		isValidDateRange,
-		selectedClientExtension,
-		selectedField,
-		selectedPicklist,
-		sourceType,
-	}: {
-		i18nFilterLabels: Partial<Liferay.Language.FullyLocalizedValue<string>>;
-		isValidDateRange: boolean;
-		selectedClientExtension: IClientExtensionRenderer | undefined;
-		selectedField: IField | undefined;
-		selectedPicklist: IPickList | undefined;
-		sourceType: ESelectionFilterSourceType | undefined;
-	}) => {
-		if (!selectedField) {
-			return true;
-		}
-
-		if (selectedField && !filter) {
-			if (inUseFields.includes(selectedField.name)) {
-				return true;
-			}
-		}
-
-		if (
-			Liferay.FeatureFlags['LPD-10754'] &&
-			filterType === EFilterType.SELECTION
-		) {
-			if (!i18nFilterLabels || !Object.values(i18nFilterLabels).length) {
-				return true;
-			}
-			else {
-				Object.values(i18nFilterLabels).forEach((value) => {
-					if (!value) {
-						return true;
-					}
-				});
-			}
-
-			if (!selectedPicklist || !sourceType) {
-				return true;
-			}
-		}
-
-		if (
-			filterType === EFilterType.CLIENT_EXTENSION &&
-			!selectedClientExtension
-		) {
-			return true;
-		}
-
-		if (filterType === EFilterType.DATE_RANGE && !isValidDateRange) {
-			return true;
-		}
-
-		return false;
-	};
 
 	const handleFilterSave = async () => {
 		setSaveButtonDisabled(true);
@@ -243,21 +168,6 @@ function AddFDSFilterModalContent({
 		}
 		else if (filterType === EFilterType.SELECTION) {
 			url = API_URL.FDS_DYNAMIC_FILTERS;
-
-			if (Liferay.FeatureFlags['LPD-10754']) {
-				body = {
-					...body,
-					source: selectedPicklist?.externalReferenceCode,
-					sourceType,
-				};
-			}
-			else {
-				body = {
-					...body,
-					listTypeDefinitionERC:
-						selectedPicklist?.externalReferenceCode,
-				};
-			}
 
 			body = {
 				...body,
@@ -326,12 +236,17 @@ function AddFDSFilterModalContent({
 	const nameFormElementId = `${namespace}Name`;
 	const selectedFieldFormElementId = `${namespace}SelectedField`;
 
+	const inUseFields = fields.map((item) =>
+		fieldNames?.includes(item.name) ? item.name : undefined
+	);
+
 	const FieldNameDropdown = ({
 		fields,
+		inUseFields,
 		onItemClick,
 	}: {
 		fields: IField[];
-		namespace: string;
+		inUseFields: (string | undefined)[];
 		onItemClick: Function;
 	}) => {
 		return (
@@ -403,40 +318,12 @@ function AddFDSFilterModalContent({
 			</ClayModal.Header>
 
 			<ClayModal.Body>
-				{Liferay.FeatureFlags['LPD-10754'] &&
-					<ClayLayout.SheetSection className="mb-4">
-						<h3 className="sheet-subtitle">
-							{Liferay.Language.get('configuration')}
-						</h3>
-
-						<ClayForm.Text>
-							{Liferay.Language.get(
-								'add-a-name-for-your-filter-and-select-a-field-to-start-creating-it'
-							)}
-						</ClayForm.Text>
-					</ClayLayout.SheetSection>
-				}
-
 				<ClayForm.Group>
 					<InputLocalized
 						id={nameFormElementId}
 						label={Liferay.Language.get('name')}
 						name="label"
-						onChange={(values) => {
-							setI18nFilterLabels(values);
-							setSaveButtonDisabled(
-								isFormInvalid({
-									i18nFilterLabels: values,
-									isValidDateRange,
-									selectedClientExtension,
-									selectedField,
-									selectedPicklist,
-									sourceType,
-								})
-							);
-						}}
-						placeholder={Liferay.Language.get('add-a-name')}
-						required={Liferay.FeatureFlags['LPD-10754']}
+						onChange={setI18nFilterLabels}
 						translations={i18nFilterLabels}
 					/>
 				</ClayForm.Group>
@@ -448,33 +335,23 @@ function AddFDSFilterModalContent({
 				>
 					<label htmlFor={selectedFieldFormElementId}>
 						{Liferay.Language.get('filter-by')}
-
-						{Liferay.FeatureFlags['LPD-10754'] && <RequiredMark />}
 					</label>
 
 					<FieldNameDropdown
 						fields={fields}
-						namespace={namespace}
+						inUseFields={inUseFields}
 						onItemClick={(item: IField) => {
 							const newVal = fields.find((field) => {
 								return field.name === item.label;
 							});
 
 							if (newVal) {
+								const inUse = inUseFields.includes(newVal.name);
+
+								setFieldInUseValidationError(inUse);
+								setSaveButtonDisabled(inUse);
+
 								setSelectedField(newVal);
-								setFieldInUseValidationError(
-									inUseFields.includes(newVal.name)
-								);
-								setSaveButtonDisabled(
-									isFormInvalid({
-										i18nFilterLabels,
-										isValidDateRange,
-										selectedClientExtension,
-										selectedField: newVal,
-										selectedPicklist,
-										sourceType,
-									})
-								);
 							}
 						}}
 					/>
@@ -496,19 +373,9 @@ function AddFDSFilterModalContent({
 									fdsFilterClientExtensions
 								}
 								namespace={namespace}
-								onSelectedClientExtensionChange={(values) => {
-									setSelectedClientExtension(values);
-									setSaveButtonDisabled(
-										isFormInvalid({
-											i18nFilterLabels,
-											isValidDateRange,
-											selectedClientExtension: values,
-											selectedField,
-											selectedPicklist,
-											sourceType,
-										})
-									);
-								}}
+								onSelectedClientExtensionChange={
+									setSelectedClientExtension
+								}
 								selectedClientExtension={
 									selectedClientExtension
 								}
@@ -522,19 +389,7 @@ function AddFDSFilterModalContent({
 								namespace={namespace}
 								onFromChange={setFrom}
 								onToChange={setTo}
-								onValidDateChange={(values) => {
-									setIsValidDateRange(values);
-									setSaveButtonDisabled(
-										isFormInvalid({
-											i18nFilterLabels,
-											isValidDateRange: values,
-											selectedClientExtension,
-											selectedField,
-											selectedPicklist,
-											sourceType,
-										})
-									);
-								}}
+								onValidDateChange={setIsValidDateRange}
 								to={to}
 							/>
 						)}
@@ -559,38 +414,10 @@ function AddFDSFilterModalContent({
 											: 'include'
 									);
 								}}
-								onSelectedPicklistChange={(
-									values: IPickList | undefined
-								) => {
-									setSelectedPicklist(values);
-									setSaveButtonDisabled(
-										isFormInvalid({
-											i18nFilterLabels,
-											isValidDateRange,
-											selectedClientExtension,
-											selectedField,
-											selectedPicklist: values,
-											sourceType,
-										})
-									);
-								}}
-								onSourceChange={(values) => {
-									setSourceType(values);
-									setSaveButtonDisabled(
-										isFormInvalid({
-											i18nFilterLabels,
-											isValidDateRange,
-											selectedClientExtension,
-											selectedField,
-											selectedPicklist,
-											sourceType: values,
-										})
-									);
-								}}
+								onSelectedPicklistChange={setSelectedPicklist}
 								picklists={picklists}
 								preselectedValues={preselectedValues}
 								selectedPicklist={selectedPicklist}
-								source={source}
 							/>
 						)}
 					</>
@@ -601,7 +428,15 @@ function AddFDSFilterModalContent({
 				last={
 					<ClayButton.Group spaced>
 						<ClayButton
-							disabled={saveButtonDisabled}
+							disabled={
+								!selectedField ||
+								(filterType === EFilterType.CLIENT_EXTENSION &&
+									!selectedClientExtension) ||
+								(!multiple && preselectedValues.length > 1) ||
+								(filterType === EFilterType.DATE_RANGE &&
+									!isValidDateRange) ||
+								saveButtonDisabled
+							}
 							onClick={handleFilterSave}
 							type="submit"
 						>
@@ -776,7 +611,6 @@ function Filters({fdsFilterClientExtensions, fdsView, namespace}: IProps) {
 						},
 					},
 				],
-				size: Liferay.FeatureFlags['LPD-10754'] ? 'lg' : 'md',
 				status: 'info',
 				title: Liferay.Language.get('no-fields-available'),
 			});
@@ -802,7 +636,6 @@ function Filters({fdsFilterClientExtensions, fdsView, namespace}: IProps) {
 					/>
 				),
 				disableAutoClose: true,
-				size: Liferay.FeatureFlags['LPD-10754'] ? 'lg' : 'md',
 			});
 		}
 	};
@@ -847,7 +680,6 @@ function Filters({fdsFilterClientExtensions, fdsView, namespace}: IProps) {
 				/>
 			),
 			disableAutoClose: true,
-			size: Liferay.FeatureFlags['LPD-10754'] ? 'lg' : 'md',
 		});
 
 	const handleDelete = async ({item}: {item: IFilter}) => {
@@ -894,7 +726,6 @@ function Filters({fdsFilterClientExtensions, fdsView, namespace}: IProps) {
 					},
 				},
 			],
-			size: Liferay.FeatureFlags['LPD-10754'] ? 'lg' : 'md',
 			status: 'warning',
 			title: Liferay.Language.get('delete-filter'),
 		});
