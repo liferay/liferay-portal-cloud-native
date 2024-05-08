@@ -162,7 +162,7 @@ public class ObjectDefinitionPersistenceTest {
 
 		newObjectDefinition.setEnableComments(RandomTestUtil.randomBoolean());
 
-		newObjectDefinition.setEnableIndexedSearch(
+		newObjectDefinition.setEnableIndexSearch(
 			RandomTestUtil.randomBoolean());
 
 		newObjectDefinition.setEnableLocalization(
@@ -269,8 +269,8 @@ public class ObjectDefinitionPersistenceTest {
 			existingObjectDefinition.isEnableComments(),
 			newObjectDefinition.isEnableComments());
 		Assert.assertEquals(
-			existingObjectDefinition.isEnableIndexedSearch(),
-			newObjectDefinition.isEnableIndexedSearch());
+			existingObjectDefinition.isEnableIndexSearch(),
+			newObjectDefinition.isEnableIndexSearch());
 		Assert.assertEquals(
 			existingObjectDefinition.isEnableLocalization(),
 			newObjectDefinition.isEnableLocalization());
@@ -504,7 +504,7 @@ public class ObjectDefinitionPersistenceTest {
 			"rootObjectDefinitionId", true, "titleObjectFieldId", true,
 			"accountEntryRestricted", true, "active", true, "dbTableName", true,
 			"label", true, "className", true, "enableCategorization", true,
-			"enableComments", true, "enableIndexedSearch", true,
+			"enableComments", true, "enableIndexSearch", true,
 			"enableLocalization", true, "enableObjectEntryDraft", true,
 			"enableObjectEntryHistory", true, "modifiable", true, "name", true,
 			"panelAppOrder", true, "panelCategoryKey", true,
@@ -865,7 +865,7 @@ public class ObjectDefinitionPersistenceTest {
 
 		objectDefinition.setEnableComments(RandomTestUtil.randomBoolean());
 
-		objectDefinition.setEnableIndexedSearch(RandomTestUtil.randomBoolean());
+		objectDefinition.setEnableIndexSearch(RandomTestUtil.randomBoolean());
 
 		objectDefinition.setEnableLocalization(RandomTestUtil.randomBoolean());
 

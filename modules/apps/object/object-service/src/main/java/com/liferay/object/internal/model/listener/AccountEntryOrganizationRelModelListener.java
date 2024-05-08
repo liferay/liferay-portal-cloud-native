@@ -76,7 +76,7 @@ public class AccountEntryOrganizationRelModelListener
 		for (ObjectDefinition objectDefinition :
 				_objectDefinitionLocalService.getObjectDefinitions(true)) {
 
-			if (!objectDefinition.isEnableIndexedSearch()) {
+			if (!objectDefinition.isEnableIndexSearch()) {
 				continue;
 			}
 

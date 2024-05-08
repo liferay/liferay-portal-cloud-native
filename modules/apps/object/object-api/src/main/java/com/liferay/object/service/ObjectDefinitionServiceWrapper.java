@@ -31,7 +31,7 @@ public class ObjectDefinitionServiceWrapper
 	@Override
 	public com.liferay.object.model.ObjectDefinition addCustomObjectDefinition(
 			long objectFolderId, boolean enableComments,
-			boolean enableIndexedSearch, boolean enableLocalization,
+			boolean enableIndexSearch, boolean enableLocalization,
 			boolean enableObjectEntryDraft,
 			java.util.Map<java.util.Locale, String> labelMap, String name,
 			String panelAppOrder, String panelCategoryKey,
@@ -41,7 +41,7 @@ public class ObjectDefinitionServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _objectDefinitionService.addCustomObjectDefinition(
-			objectFolderId, enableComments, enableIndexedSearch,
+			objectFolderId, enableComments, enableIndexSearch,
 			enableLocalization, enableObjectEntryDraft, labelMap, name,
 			panelAppOrder, panelCategoryKey, pluralLabelMap, portlet, scope,
 			storageType, objectFields);
@@ -60,7 +60,7 @@ public class ObjectDefinitionServiceWrapper
 	@Override
 	public com.liferay.object.model.ObjectDefinition addSystemObjectDefinition(
 			String externalReferenceCode, long userId, long objectFolderId,
-			boolean enableComments, boolean enableIndexedSearch,
+			boolean enableComments, boolean enableIndexSearch,
 			java.util.Map<java.util.Locale, String> labelMap, String name,
 			String panelAppOrder, String panelCategoryKey,
 			java.util.Map<java.util.Locale, String> pluralLabelMap,
@@ -70,7 +70,7 @@ public class ObjectDefinitionServiceWrapper
 
 		return _objectDefinitionService.addSystemObjectDefinition(
 			externalReferenceCode, userId, objectFolderId, enableComments,
-			enableIndexedSearch, labelMap, name, panelAppOrder,
+			enableIndexSearch, labelMap, name, panelAppOrder,
 			panelCategoryKey, pluralLabelMap, portlet, scope, objectFields);
 	}
 
@@ -178,7 +178,7 @@ public class ObjectDefinitionServiceWrapper
 				long descriptionObjectFieldId, long objectFolderId,
 				long titleObjectFieldId, boolean accountEntryRestricted,
 				boolean active, boolean enableCategorization,
-				boolean enableComments, boolean enableIndexedSearch,
+				boolean enableComments, boolean enableIndexSearch,
 				boolean enableLocalization, boolean enableObjectEntryDraft,
 				boolean enableObjectEntryHistory,
 				java.util.Map<java.util.Locale, String> labelMap, String name,
@@ -191,7 +191,7 @@ public class ObjectDefinitionServiceWrapper
 			externalReferenceCode, objectDefinitionId,
 			accountEntryRestrictedObjectFieldId, descriptionObjectFieldId,
 			objectFolderId, titleObjectFieldId, accountEntryRestricted, active,
-			enableCategorization, enableComments, enableIndexedSearch,
+			enableCategorization, enableComments, enableIndexSearch,
 			enableLocalization, enableObjectEntryDraft,
 			enableObjectEntryHistory, labelMap, name, panelAppOrder,
 			panelCategoryKey, portlet, pluralLabelMap, scope, status);

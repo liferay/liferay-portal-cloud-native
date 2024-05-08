@@ -1969,7 +1969,7 @@ public class ObjectDefinitionLocalServiceTest {
 			objectDefinition.getObjectFolderId());
 		Assert.assertEquals(0, objectDefinition.getTitleObjectFieldId());
 		Assert.assertFalse(objectDefinition.isActive());
-		Assert.assertFalse(objectDefinition.isEnableIndexedSearch());
+		Assert.assertFalse(objectDefinition.isEnableIndexSearch());
 		Assert.assertFalse(objectDefinition.isEnableObjectEntryHistory());
 		Assert.assertEquals(
 			LocalizedMapUtil.getLocalizedMap("Able"),
@@ -1988,7 +1988,7 @@ public class ObjectDefinitionLocalServiceTest {
 				objectDefinition.getScope(), objectDefinition.getStatus());
 
 		Assert.assertFalse(objectDefinition.isActive());
-		Assert.assertTrue(objectDefinition.isEnableIndexedSearch());
+		Assert.assertTrue(objectDefinition.isEnableIndexSearch());
 		Assert.assertTrue(objectDefinition.isEnableObjectEntryHistory());
 		Assert.assertEquals(
 			LocalizedMapUtil.getLocalizedMap("Baker"),
@@ -2012,7 +2012,7 @@ public class ObjectDefinitionLocalServiceTest {
 				objectDefinition.getScope(), objectDefinition.getStatus());
 
 		Assert.assertTrue(objectDefinition.isActive());
-		Assert.assertTrue(objectDefinition.isEnableIndexedSearch());
+		Assert.assertTrue(objectDefinition.isEnableIndexSearch());
 		Assert.assertTrue(objectDefinition.isEnableObjectEntryHistory());
 		Assert.assertEquals(
 			LocalizedMapUtil.getLocalizedMap("Charlie"),
@@ -2486,12 +2486,12 @@ public class ObjectDefinitionLocalServiceTest {
 	}
 
 	private ObjectDefinition _publishCustomObjectDefinition(
-			boolean enableIndexedSearch)
+			boolean enableIndexSearch)
 		throws Exception {
 
 		ObjectDefinition objectDefinition =
 			_objectDefinitionLocalService.addCustomObjectDefinition(
-				TestPropsValues.getUserId(), 0, false, enableIndexedSearch,
+				TestPropsValues.getUserId(), 0, false, enableIndexSearch,
 				false, false,
 				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
 				ObjectDefinitionTestUtil.getRandomName(), null, null,
@@ -2537,7 +2537,7 @@ public class ObjectDefinitionLocalServiceTest {
 		Assert.assertEquals(externalReferenceCode, objectDefinition.getLabel());
 		Assert.assertFalse(objectDefinition.isEnableCategorization());
 		Assert.assertFalse(objectDefinition.isEnableComments());
-		Assert.assertFalse(objectDefinition.isEnableIndexedSearch());
+		Assert.assertFalse(objectDefinition.isEnableIndexSearch());
 		Assert.assertFalse(objectDefinition.isEnableLocalization());
 		Assert.assertFalse(objectDefinition.isEnableObjectEntryHistory());
 		Assert.assertEquals(modifiable, objectDefinition.isModifiable());

@@ -47,7 +47,7 @@ public interface ObjectDefinitionService extends BaseService {
 	 */
 	public ObjectDefinition addCustomObjectDefinition(
 			long objectFolderId, boolean enableComments,
-			boolean enableIndexedSearch, boolean enableLocalization,
+			boolean enableIndexSearch, boolean enableLocalization,
 			boolean enableObjectEntryDraft, Map<Locale, String> labelMap,
 			String name, String panelAppOrder, String panelCategoryKey,
 			Map<Locale, String> pluralLabelMap, boolean portlet, String scope,
@@ -61,7 +61,7 @@ public interface ObjectDefinitionService extends BaseService {
 
 	public ObjectDefinition addSystemObjectDefinition(
 			String externalReferenceCode, long userId, long objectFolderId,
-			boolean enableComments, boolean enableIndexedSearch,
+			boolean enableComments, boolean enableIndexSearch,
 			Map<Locale, String> labelMap, String name, String panelAppOrder,
 			String panelCategoryKey, Map<Locale, String> pluralLabelMap,
 			boolean portlet, String scope, List<ObjectField> objectFields)
@@ -118,7 +118,7 @@ public interface ObjectDefinitionService extends BaseService {
 			long descriptionObjectFieldId, long objectFolderId,
 			long titleObjectFieldId, boolean accountEntryRestricted,
 			boolean active, boolean enableCategorization,
-			boolean enableComments, boolean enableIndexedSearch,
+			boolean enableComments, boolean enableIndexSearch,
 			boolean enableLocalization, boolean enableObjectEntryDraft,
 			boolean enableObjectEntryHistory, Map<Locale, String> labelMap,
 			String name, String panelAppOrder, String panelCategoryKey,

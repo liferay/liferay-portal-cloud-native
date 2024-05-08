@@ -110,7 +110,7 @@ export function ConfigurationContainer({
 							Liferay.Language.get('enable-x'),
 							Liferay.Language.get('indexed-search')
 						)}
-						name="enableIndexedSearch"
+						name="enableIndexSearch"
 						onBlur={(event) => {
 							event.stopPropagation();
 
@@ -120,10 +120,10 @@ export function ConfigurationContainer({
 						}}
 						onToggle={() =>
 							setValues({
-								enableIndexedSearch: !values.enableIndexedSearch,
+								enableIndexSearch: !values.enableIndexSearch,
 							})
 						}
-						toggled={values.enableIndexedSearch}
+						toggled={values.enableIndexSearch}
 					/>
 				</ClayForm.Group>
 			)}

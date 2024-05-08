@@ -194,7 +194,7 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 
 		List<ServiceRegistration<?>> serviceRegistrations = new ArrayList<>();
 
-		if (objectDefinition.isEnableIndexedSearch()) {
+		if (objectDefinition.isEnableIndexSearch()) {
 			ObjectEntryModelIndexerWriterContributor
 				objectEntryModelIndexerWriterContributor =
 					new ObjectEntryModelIndexerWriterContributor(

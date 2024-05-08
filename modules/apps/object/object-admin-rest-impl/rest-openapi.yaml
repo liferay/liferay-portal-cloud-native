@@ -81,7 +81,7 @@ components:
                     type: boolean
                 enableComments:
                     type: boolean
-                enableIndexedSearch:
+                enableIndexSearch:
                     type: boolean
                 enableLocalization:
                     type: boolean

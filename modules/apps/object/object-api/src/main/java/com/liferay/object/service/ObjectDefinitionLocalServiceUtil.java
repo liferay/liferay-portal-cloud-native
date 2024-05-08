@@ -39,7 +39,7 @@ public class ObjectDefinitionLocalServiceUtil {
 	 */
 	public static ObjectDefinition addCustomObjectDefinition(
 			long userId, long objectFolderId, boolean enableComments,
-			boolean enableIndexedSearch, boolean enableLocalization,
+			boolean enableIndexSearch, boolean enableLocalization,
 			boolean enableObjectEntryDraft,
 			Map<java.util.Locale, String> labelMap, String name,
 			String panelAppOrder, String panelCategoryKey,
@@ -49,7 +49,7 @@ public class ObjectDefinitionLocalServiceUtil {
 		throws PortalException {
 
 		return getService().addCustomObjectDefinition(
-			userId, objectFolderId, enableComments, enableIndexedSearch,
+			userId, objectFolderId, enableComments, enableIndexSearch,
 			enableLocalization, enableObjectEntryDraft, labelMap, name,
 			panelAppOrder, panelCategoryKey, pluralLabelMap, portlet, scope,
 			storageType, objectFields);
@@ -94,7 +94,7 @@ public class ObjectDefinitionLocalServiceUtil {
 	public static ObjectDefinition addSystemObjectDefinition(
 			String externalReferenceCode, long userId, long objectFolderId,
 			String className, String dbTableName, boolean enableComments,
-			boolean enableIndexedSearch, Map<java.util.Locale, String> labelMap,
+			boolean enableIndexSearch, Map<java.util.Locale, String> labelMap,
 			boolean modifiable, String name, String panelAppOrder,
 			String panelCategoryKey, String pkObjectFieldDBColumnName,
 			String pkObjectFieldName,
@@ -105,7 +105,7 @@ public class ObjectDefinitionLocalServiceUtil {
 
 		return getService().addSystemObjectDefinition(
 			externalReferenceCode, userId, objectFolderId, className,
-			dbTableName, enableComments, enableIndexedSearch, labelMap,
+			dbTableName, enableComments, enableIndexSearch, labelMap,
 			modifiable, name, panelAppOrder, panelCategoryKey,
 			pkObjectFieldDBColumnName, pkObjectFieldName, pluralLabelMap,
 			portlet, scope, titleObjectFieldName, version, status,
@@ -563,7 +563,7 @@ public class ObjectDefinitionLocalServiceUtil {
 			long descriptionObjectFieldId, long objectFolderId,
 			long titleObjectFieldId, boolean accountEntryRestricted,
 			boolean active, boolean enableCategorization,
-			boolean enableComments, boolean enableIndexedSearch,
+			boolean enableComments, boolean enableIndexSearch,
 			boolean enableLocalization, boolean enableObjectEntryDraft,
 			boolean enableObjectEntryHistory,
 			Map<java.util.Locale, String> labelMap, String name,
@@ -576,7 +576,7 @@ public class ObjectDefinitionLocalServiceUtil {
 			externalReferenceCode, objectDefinitionId,
 			accountEntryRestrictedObjectFieldId, descriptionObjectFieldId,
 			objectFolderId, titleObjectFieldId, accountEntryRestricted, active,
-			enableCategorization, enableComments, enableIndexedSearch,
+			enableCategorization, enableComments, enableIndexSearch,
 			enableLocalization, enableObjectEntryDraft,
 			enableObjectEntryHistory, labelMap, name, panelAppOrder,
 			panelCategoryKey, portlet, pluralLabelMap, scope, status);

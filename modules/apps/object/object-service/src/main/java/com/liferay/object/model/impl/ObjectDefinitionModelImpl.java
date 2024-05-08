@@ -85,7 +85,7 @@ public class ObjectDefinitionModelImpl
 		{"dbTableName", Types.VARCHAR}, {"label", Types.VARCHAR},
 		{"className", Types.VARCHAR}, {"enableCategorization", Types.BOOLEAN},
 		{"enableComments", Types.BOOLEAN},
-		{"enableIndexedSearch", Types.BOOLEAN},
+		{"enableIndexSearch", Types.BOOLEAN},
 		{"enableLocalization", Types.BOOLEAN},
 		{"enableObjectEntryDraft", Types.BOOLEAN},
 		{"enableObjectEntryHistory", Types.BOOLEAN},
@@ -123,7 +123,7 @@ public class ObjectDefinitionModelImpl
 		TABLE_COLUMNS_MAP.put("className", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("enableCategorization", Types.BOOLEAN);
 		TABLE_COLUMNS_MAP.put("enableComments", Types.BOOLEAN);
-		TABLE_COLUMNS_MAP.put("enableIndexedSearch", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("enableIndexSearch", Types.BOOLEAN);
 		TABLE_COLUMNS_MAP.put("enableLocalization", Types.BOOLEAN);
 		TABLE_COLUMNS_MAP.put("enableObjectEntryDraft", Types.BOOLEAN);
 		TABLE_COLUMNS_MAP.put("enableObjectEntryHistory", Types.BOOLEAN);
@@ -143,7 +143,7 @@ public class ObjectDefinitionModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table ObjectDefinition (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,externalReferenceCode VARCHAR(75) null,objectDefinitionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,accountERObjectFieldId LONG,descriptionObjectFieldId LONG,objectFolderId LONG,rootObjectDefinitionId LONG,titleObjectFieldId LONG,accountEntryRestricted BOOLEAN,active_ BOOLEAN,dbTableName VARCHAR(75) null,label STRING null,className VARCHAR(255) null,enableCategorization BOOLEAN,enableComments BOOLEAN,enableIndexedSearch BOOLEAN,enableLocalization BOOLEAN,enableObjectEntryDraft BOOLEAN,enableObjectEntryHistory BOOLEAN,modifiable BOOLEAN,name VARCHAR(75) null,panelAppOrder VARCHAR(75) null,panelCategoryKey VARCHAR(75) null,pkObjectFieldDBColumnName VARCHAR(75) null,pkObjectFieldName VARCHAR(75) null,pluralLabel STRING null,portlet BOOLEAN,scope VARCHAR(75) null,storageType VARCHAR(255) null,system_ BOOLEAN,version INTEGER,status INTEGER)";
+		"create table ObjectDefinition (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,externalReferenceCode VARCHAR(75) null,objectDefinitionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,accountERObjectFieldId LONG,descriptionObjectFieldId LONG,objectFolderId LONG,rootObjectDefinitionId LONG,titleObjectFieldId LONG,accountEntryRestricted BOOLEAN,active_ BOOLEAN,dbTableName VARCHAR(75) null,label STRING null,className VARCHAR(255) null,enableCategorization BOOLEAN,enableComments BOOLEAN,enableIndexSearch BOOLEAN,enableLocalization BOOLEAN,enableObjectEntryDraft BOOLEAN,enableObjectEntryHistory BOOLEAN,modifiable BOOLEAN,name VARCHAR(75) null,panelAppOrder VARCHAR(75) null,panelCategoryKey VARCHAR(75) null,pkObjectFieldDBColumnName VARCHAR(75) null,pkObjectFieldName VARCHAR(75) null,pluralLabel STRING null,portlet BOOLEAN,scope VARCHAR(75) null,storageType VARCHAR(255) null,system_ BOOLEAN,version INTEGER,status INTEGER)";
 
 	public static final String TABLE_SQL_DROP = "drop table ObjectDefinition";
 
@@ -386,8 +386,8 @@ public class ObjectDefinitionModelImpl
 			attributeGetterFunctions.put(
 				"enableComments", ObjectDefinition::getEnableComments);
 			attributeGetterFunctions.put(
-				"enableIndexedSearch",
-				ObjectDefinition::getEnableIndexedSearch);
+				"enableIndexSearch",
+				ObjectDefinition::getEnableIndexSearch);
 			attributeGetterFunctions.put(
 				"enableLocalization", ObjectDefinition::getEnableLocalization);
 			attributeGetterFunctions.put(
@@ -522,9 +522,9 @@ public class ObjectDefinitionModelImpl
 				(BiConsumer<ObjectDefinition, Boolean>)
 					ObjectDefinition::setEnableComments);
 			attributeSetterBiConsumers.put(
-				"enableIndexedSearch",
+				"enableIndexSearch",
 				(BiConsumer<ObjectDefinition, Boolean>)
-					ObjectDefinition::setEnableIndexedSearch);
+					ObjectDefinition::setEnableIndexSearch);
 			attributeSetterBiConsumers.put(
 				"enableLocalization",
 				(BiConsumer<ObjectDefinition, Boolean>)
@@ -1158,23 +1158,23 @@ public class ObjectDefinitionModelImpl
 
 	@JSON
 	@Override
-	public boolean getEnableIndexedSearch() {
-		return _enableIndexedSearch;
+	public boolean getEnableIndexSearch() {
+		return _enableIndexSearch;
 	}
 
 	@JSON
 	@Override
-	public boolean isEnableIndexedSearch() {
-		return _enableIndexedSearch;
+	public boolean isEnableIndexSearch() {
+		return _enableIndexSearch;
 	}
 
 	@Override
-	public void setEnableIndexedSearch(boolean enableIndexedSearch) {
+	public void setEnableIndexSearch(boolean enableIndexSearch) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_enableIndexedSearch = enableIndexedSearch;
+		_enableIndexSearch = enableIndexSearch;
 	}
 
 	@JSON
@@ -1800,7 +1800,7 @@ public class ObjectDefinitionModelImpl
 		objectDefinitionImpl.setClassName(getClassName());
 		objectDefinitionImpl.setEnableCategorization(isEnableCategorization());
 		objectDefinitionImpl.setEnableComments(isEnableComments());
-		objectDefinitionImpl.setEnableIndexedSearch(isEnableIndexedSearch());
+		objectDefinitionImpl.setEnableIndexSearch(isEnableIndexSearch());
 		objectDefinitionImpl.setEnableLocalization(isEnableLocalization());
 		objectDefinitionImpl.setEnableObjectEntryDraft(
 			isEnableObjectEntryDraft());
@@ -1872,8 +1872,8 @@ public class ObjectDefinitionModelImpl
 			this.<Boolean>getColumnOriginalValue("enableCategorization"));
 		objectDefinitionImpl.setEnableComments(
 			this.<Boolean>getColumnOriginalValue("enableComments"));
-		objectDefinitionImpl.setEnableIndexedSearch(
-			this.<Boolean>getColumnOriginalValue("enableIndexedSearch"));
+		objectDefinitionImpl.setEnableIndexSearch(
+			this.<Boolean>getColumnOriginalValue("enableIndexSearch"));
 		objectDefinitionImpl.setEnableLocalization(
 			this.<Boolean>getColumnOriginalValue("enableLocalization"));
 		objectDefinitionImpl.setEnableObjectEntryDraft(
@@ -2083,8 +2083,8 @@ public class ObjectDefinitionModelImpl
 
 		objectDefinitionCacheModel.enableComments = isEnableComments();
 
-		objectDefinitionCacheModel.enableIndexedSearch =
-			isEnableIndexedSearch();
+		objectDefinitionCacheModel.enableIndexSearch =
+			isEnableIndexSearch();
 
 		objectDefinitionCacheModel.enableLocalization = isEnableLocalization();
 
@@ -2257,7 +2257,7 @@ public class ObjectDefinitionModelImpl
 	private String _className;
 	private boolean _enableCategorization;
 	private boolean _enableComments;
-	private boolean _enableIndexedSearch;
+	private boolean _enableIndexSearch;
 	private boolean _enableLocalization;
 	private boolean _enableObjectEntryDraft;
 	private boolean _enableObjectEntryHistory;
@@ -2333,7 +2333,7 @@ public class ObjectDefinitionModelImpl
 		_columnOriginalValues.put(
 			"enableCategorization", _enableCategorization);
 		_columnOriginalValues.put("enableComments", _enableComments);
-		_columnOriginalValues.put("enableIndexedSearch", _enableIndexedSearch);
+		_columnOriginalValues.put("enableIndexSearch", _enableIndexSearch);
 		_columnOriginalValues.put("enableLocalization", _enableLocalization);
 		_columnOriginalValues.put(
 			"enableObjectEntryDraft", _enableObjectEntryDraft);
@@ -2422,7 +2422,7 @@ public class ObjectDefinitionModelImpl
 
 		columnBitmasks.put("enableComments", 1048576L);
 
-		columnBitmasks.put("enableIndexedSearch", 2097152L);
+		columnBitmasks.put("enableIndexSearch", 2097152L);
 
 		columnBitmasks.put("enableLocalization", 4194304L);
 

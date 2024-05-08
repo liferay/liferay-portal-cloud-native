@@ -397,12 +397,12 @@ public class ObjectDefinitionResourceTest
 
 		randomObjectDefinition = randomObjectDefinition();
 
-		randomObjectDefinition.setEnableIndexedSearch((Boolean)null);
+		randomObjectDefinition.setEnableIndexSearch((Boolean)null);
 
 		postObjectDefinition = testPostObjectDefinition_addObjectDefinition(
 			randomObjectDefinition);
 
-		Assert.assertTrue(postObjectDefinition.getEnableIndexedSearch());
+		Assert.assertTrue(postObjectDefinition.getEnableIndexSearch());
 	}
 
 	@Override

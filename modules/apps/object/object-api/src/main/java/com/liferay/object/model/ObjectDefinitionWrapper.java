@@ -58,7 +58,7 @@ public class ObjectDefinitionWrapper
 		attributes.put("className", getClassName());
 		attributes.put("enableCategorization", isEnableCategorization());
 		attributes.put("enableComments", isEnableComments());
-		attributes.put("enableIndexedSearch", isEnableIndexedSearch());
+		attributes.put("enableIndexSearch", isEnableIndexSearch());
 		attributes.put("enableLocalization", isEnableLocalization());
 		attributes.put("enableObjectEntryDraft", isEnableObjectEntryDraft());
 		attributes.put(
@@ -216,11 +216,11 @@ public class ObjectDefinitionWrapper
 			setEnableComments(enableComments);
 		}
 
-		Boolean enableIndexedSearch = (Boolean)attributes.get(
-			"enableIndexedSearch");
+		Boolean enableIndexSearch = (Boolean)attributes.get(
+			"enableIndexSearch");
 
-		if (enableIndexedSearch != null) {
-			setEnableIndexedSearch(enableIndexedSearch);
+		if (enableIndexSearch != null) {
+			setEnableIndexSearch(enableIndexSearch);
 		}
 
 		Boolean enableLocalization = (Boolean)attributes.get(
@@ -450,8 +450,8 @@ public class ObjectDefinitionWrapper
 	 * @return the enable indexed search of this object definition
 	 */
 	@Override
-	public boolean getEnableIndexedSearch() {
-		return model.getEnableIndexedSearch();
+	public boolean getEnableIndexSearch() {
+		return model.getEnableIndexSearch();
 	}
 
 	/**
@@ -982,8 +982,8 @@ public class ObjectDefinitionWrapper
 	 * @return <code>true</code> if this object definition is enable indexed search; <code>false</code> otherwise
 	 */
 	@Override
-	public boolean isEnableIndexedSearch() {
-		return model.isEnableIndexedSearch();
+	public boolean isEnableIndexSearch() {
+		return model.isEnableIndexSearch();
 	}
 
 	/**
@@ -1197,11 +1197,11 @@ public class ObjectDefinitionWrapper
 	/**
 	 * Sets whether this object definition is enable indexed search.
 	 *
-	 * @param enableIndexedSearch the enable indexed search of this object definition
+	 * @param enableIndexSearch the enable indexed search of this object definition
 	 */
 	@Override
-	public void setEnableIndexedSearch(boolean enableIndexedSearch) {
-		model.setEnableIndexedSearch(enableIndexedSearch);
+	public void setEnableIndexSearch(boolean enableIndexSearch) {
+		model.setEnableIndexSearch(enableIndexSearch);
 	}
 
 	/**

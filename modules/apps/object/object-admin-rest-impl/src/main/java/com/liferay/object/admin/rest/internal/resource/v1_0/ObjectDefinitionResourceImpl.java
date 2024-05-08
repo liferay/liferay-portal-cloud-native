@@ -216,7 +216,7 @@ public class ObjectDefinitionResourceImpl
 			serviceBuilderObjectDefinition;
 
 		if (!FeatureFlagManagerUtil.isEnabled("LPD-23379")) {
-			objectDefinition.setEnableIndexedSearch(() -> true);
+			objectDefinition.setEnableIndexSearch(() -> true);
 		}
 
 		if (GetterUtil.getBoolean(objectDefinition.getSystem())) {
@@ -229,7 +229,7 @@ public class ObjectDefinitionResourceImpl
 							getObjectFolderExternalReferenceCode()),
 					GetterUtil.getBoolean(objectDefinition.getEnableComments()),
 					GetterUtil.getBoolean(
-						objectDefinition.getEnableIndexedSearch()),
+						objectDefinition.getEnableIndexSearch()),
 					LocalizedMapUtil.getLocalizedMap(
 						objectDefinition.getLabel()),
 					objectDefinition.getName(),
@@ -262,7 +262,7 @@ public class ObjectDefinitionResourceImpl
 							getObjectFolderExternalReferenceCode()),
 					GetterUtil.getBoolean(objectDefinition.getEnableComments()),
 					GetterUtil.getBoolean(
-						objectDefinition.getEnableIndexedSearch(), true),
+						objectDefinition.getEnableIndexSearch(), true),
 					GetterUtil.getBoolean(
 						objectDefinition.getEnableLocalization()),
 					GetterUtil.getBoolean(
@@ -507,7 +507,7 @@ public class ObjectDefinitionResourceImpl
 		}
 		else {
 			if (!FeatureFlagManagerUtil.isEnabled("LPD-23379")) {
-				objectDefinition.setEnableIndexedSearch(() -> true);
+				objectDefinition.setEnableIndexSearch(() -> true);
 			}
 
 			serviceBuilderObjectDefinition =
@@ -528,7 +528,7 @@ public class ObjectDefinitionResourceImpl
 						objectDefinition.getEnableCategorization(), true),
 					GetterUtil.getBoolean(objectDefinition.getEnableComments()),
 					GetterUtil.getBoolean(
-						objectDefinition.getEnableIndexedSearch()),
+						objectDefinition.getEnableIndexSearch()),
 					GetterUtil.getBoolean(
 						objectDefinition.getEnableLocalization()),
 					GetterUtil.getBoolean(

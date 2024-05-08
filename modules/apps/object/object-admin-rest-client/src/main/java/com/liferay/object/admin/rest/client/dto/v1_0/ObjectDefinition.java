@@ -223,26 +223,26 @@ public class ObjectDefinition implements Cloneable, Serializable {
 
 	protected Boolean enableComments;
 
-	public Boolean getEnableIndexedSearch() {
-		return enableIndexedSearch;
+	public Boolean getEnableIndexSearch() {
+		return enableIndexSearch;
 	}
 
-	public void setEnableIndexedSearch(Boolean enableIndexedSearch) {
-		this.enableIndexedSearch = enableIndexedSearch;
+	public void setEnableIndexSearch(Boolean enableIndexSearch) {
+		this.enableIndexSearch = enableIndexSearch;
 	}
 
-	public void setEnableIndexedSearch(
-		UnsafeSupplier<Boolean, Exception> enableIndexedSearchUnsafeSupplier) {
+	public void setEnableIndexSearch(
+		UnsafeSupplier<Boolean, Exception> enableIndexSearchUnsafeSupplier) {
 
 		try {
-			enableIndexedSearch = enableIndexedSearchUnsafeSupplier.get();
+			enableIndexSearch = enableIndexSearchUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	protected Boolean enableIndexedSearch;
+	protected Boolean enableIndexSearch;
 
 	public Boolean getEnableLocalization() {
 		return enableLocalization;

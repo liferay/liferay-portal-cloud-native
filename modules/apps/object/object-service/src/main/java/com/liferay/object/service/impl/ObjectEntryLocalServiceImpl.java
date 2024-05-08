@@ -521,7 +521,7 @@ public class ObjectEntryLocalServiceImpl
 			values);
 
 		if (!objectDefinition.isActive() ||
-			!objectDefinition.isEnableIndexedSearch()) {
+			!objectDefinition.isEnableIndexSearch()) {
 
 			return objectEntry;
 		}
@@ -3802,7 +3802,7 @@ public class ObjectEntryLocalServiceImpl
 			_objectDefinitionPersistence.findByPrimaryKey(
 				objectEntry.getObjectDefinitionId());
 
-		if (!objectDefinition.isEnableIndexedSearch()) {
+		if (!objectDefinition.isEnableIndexSearch()) {
 			return;
 		}
 

@@ -64,7 +64,7 @@ public interface ObjectDefinitionLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public ObjectDefinition addCustomObjectDefinition(
 			long userId, long objectFolderId, boolean enableComments,
-			boolean enableIndexedSearch, boolean enableLocalization,
+			boolean enableIndexSearch, boolean enableLocalization,
 			boolean enableObjectEntryDraft, Map<Locale, String> labelMap,
 			String name, String panelAppOrder, String panelCategoryKey,
 			Map<Locale, String> pluralLabelMap, boolean portlet, String scope,
@@ -101,7 +101,7 @@ public interface ObjectDefinitionLocalService
 	public ObjectDefinition addSystemObjectDefinition(
 			String externalReferenceCode, long userId, long objectFolderId,
 			String className, String dbTableName, boolean enableComments,
-			boolean enableIndexedSearch, Map<Locale, String> labelMap,
+			boolean enableIndexSearch, Map<Locale, String> labelMap,
 			boolean modifiable, String name, String panelAppOrder,
 			String panelCategoryKey, String pkObjectFieldDBColumnName,
 			String pkObjectFieldName, Map<Locale, String> pluralLabelMap,
@@ -429,7 +429,7 @@ public interface ObjectDefinitionLocalService
 			long descriptionObjectFieldId, long objectFolderId,
 			long titleObjectFieldId, boolean accountEntryRestricted,
 			boolean active, boolean enableCategorization,
-			boolean enableComments, boolean enableIndexedSearch,
+			boolean enableComments, boolean enableIndexSearch,
 			boolean enableLocalization, boolean enableObjectEntryDraft,
 			boolean enableObjectEntryHistory, Map<Locale, String> labelMap,
 			String name, String panelAppOrder, String panelCategoryKey,

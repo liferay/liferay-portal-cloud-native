@@ -113,8 +113,8 @@ public class ObjectDefinitionCacheModel
 		sb.append(enableCategorization);
 		sb.append(", enableComments=");
 		sb.append(enableComments);
-		sb.append(", enableIndexedSearch=");
-		sb.append(enableIndexedSearch);
+		sb.append(", enableIndexSearch=");
+		sb.append(enableIndexSearch);
 		sb.append(", enableLocalization=");
 		sb.append(enableLocalization);
 		sb.append(", enableObjectEntryDraft=");
@@ -231,7 +231,7 @@ public class ObjectDefinitionCacheModel
 
 		objectDefinitionImpl.setEnableCategorization(enableCategorization);
 		objectDefinitionImpl.setEnableComments(enableComments);
-		objectDefinitionImpl.setEnableIndexedSearch(enableIndexedSearch);
+		objectDefinitionImpl.setEnableIndexSearch(enableIndexSearch);
 		objectDefinitionImpl.setEnableLocalization(enableLocalization);
 		objectDefinitionImpl.setEnableObjectEntryDraft(enableObjectEntryDraft);
 		objectDefinitionImpl.setEnableObjectEntryHistory(
@@ -342,7 +342,7 @@ public class ObjectDefinitionCacheModel
 
 		enableComments = objectInput.readBoolean();
 
-		enableIndexedSearch = objectInput.readBoolean();
+		enableIndexSearch = objectInput.readBoolean();
 
 		enableLocalization = objectInput.readBoolean();
 
@@ -442,7 +442,7 @@ public class ObjectDefinitionCacheModel
 
 		objectOutput.writeBoolean(enableComments);
 
-		objectOutput.writeBoolean(enableIndexedSearch);
+		objectOutput.writeBoolean(enableIndexSearch);
 
 		objectOutput.writeBoolean(enableLocalization);
 
@@ -538,7 +538,7 @@ public class ObjectDefinitionCacheModel
 	public String className;
 	public boolean enableCategorization;
 	public boolean enableComments;
-	public boolean enableIndexedSearch;
+	public boolean enableIndexSearch;
 	public boolean enableLocalization;
 	public boolean enableObjectEntryDraft;
 	public boolean enableObjectEntryHistory;

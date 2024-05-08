@@ -42,7 +42,7 @@ public class ObjectDefinitionServiceImpl
 	@Override
 	public ObjectDefinition addCustomObjectDefinition(
 			long objectFolderId, boolean enableComments,
-			boolean enableIndexedSearch, boolean enableLocalization,
+			boolean enableIndexSearch, boolean enableLocalization,
 			boolean enableObjectEntryDraft, Map<Locale, String> labelMap,
 			String name, String panelAppOrder, String panelCategoryKey,
 			Map<Locale, String> pluralLabelMap, boolean portlet, String scope,
@@ -58,7 +58,7 @@ public class ObjectDefinitionServiceImpl
 			ObjectActionKeys.ADD_OBJECT_DEFINITION);
 
 		return objectDefinitionLocalService.addCustomObjectDefinition(
-			getUserId(), objectFolderId, enableComments, enableIndexedSearch,
+			getUserId(), objectFolderId, enableComments, enableIndexSearch,
 			enableLocalization, enableObjectEntryDraft, labelMap, name,
 			panelAppOrder, panelCategoryKey, pluralLabelMap, portlet, scope,
 			storageType, objectFields);
@@ -86,7 +86,7 @@ public class ObjectDefinitionServiceImpl
 	@Override
 	public ObjectDefinition addSystemObjectDefinition(
 			String externalReferenceCode, long userId, long objectFolderId,
-			boolean enableComments, boolean enableIndexedSearch,
+			boolean enableComments, boolean enableIndexSearch,
 			Map<Locale, String> labelMap, String name, String panelAppOrder,
 			String panelCategoryKey, Map<Locale, String> pluralLabelMap,
 			boolean portlet, String scope, List<ObjectField> objectFields)
@@ -102,7 +102,7 @@ public class ObjectDefinitionServiceImpl
 
 		return objectDefinitionLocalService.addSystemObjectDefinition(
 			externalReferenceCode, userId, objectFolderId, null, null,
-			enableComments, enableIndexedSearch, labelMap, true, name,
+			enableComments, enableIndexSearch, labelMap, true, name,
 			panelAppOrder, panelCategoryKey, null, null, pluralLabelMap,
 			portlet, scope, null, 1, WorkflowConstants.STATUS_DRAFT,
 			objectFields);
@@ -223,7 +223,7 @@ public class ObjectDefinitionServiceImpl
 			long descriptionObjectFieldId, long objectFolderId,
 			long titleObjectFieldId, boolean accountEntryRestricted,
 			boolean active, boolean enableCategorization,
-			boolean enableComments, boolean enableIndexedSearch,
+			boolean enableComments, boolean enableIndexSearch,
 			boolean enableLocalization, boolean enableObjectEntryDraft,
 			boolean enableObjectEntryHistory, Map<Locale, String> labelMap,
 			String name, String panelAppOrder, String panelCategoryKey,
@@ -242,7 +242,7 @@ public class ObjectDefinitionServiceImpl
 			externalReferenceCode, objectDefinitionId,
 			accountEntryRestrictedObjectFieldId, descriptionObjectFieldId,
 			objectFolderId, titleObjectFieldId, accountEntryRestricted, active,
-			enableCategorization, enableComments, enableIndexedSearch,
+			enableCategorization, enableComments, enableIndexSearch,
 			enableLocalization, enableObjectEntryDraft,
 			enableObjectEntryHistory, labelMap, name, panelAppOrder,
 			panelCategoryKey, portlet, pluralLabelMap, scope, status);

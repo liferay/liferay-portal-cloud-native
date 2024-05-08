@@ -1378,9 +1378,9 @@ public abstract class BaseObjectDefinitionResourceTestCase {
 			}
 
 			if (Objects.equals(
-					"enableIndexedSearch", additionalAssertFieldName)) {
+					"enableIndexSearch", additionalAssertFieldName)) {
 
-				if (objectDefinition.getEnableIndexedSearch() == null) {
+				if (objectDefinition.getEnableIndexSearch() == null) {
 					valid = false;
 				}
 
@@ -1854,11 +1854,11 @@ public abstract class BaseObjectDefinitionResourceTestCase {
 			}
 
 			if (Objects.equals(
-					"enableIndexedSearch", additionalAssertFieldName)) {
+					"enableIndexSearch", additionalAssertFieldName)) {
 
 				if (!Objects.deepEquals(
-						objectDefinition1.getEnableIndexedSearch(),
-						objectDefinition2.getEnableIndexedSearch())) {
+						objectDefinition1.getEnableIndexSearch(),
+						objectDefinition2.getEnableIndexSearch())) {
 
 					return false;
 				}
@@ -2478,7 +2478,7 @@ public abstract class BaseObjectDefinitionResourceTestCase {
 				"Invalid entity field " + entityFieldName);
 		}
 
-		if (entityFieldName.equals("enableIndexedSearch")) {
+		if (entityFieldName.equals("enableIndexSearch")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
 		}
@@ -3086,7 +3086,7 @@ public abstract class BaseObjectDefinitionResourceTestCase {
 					RandomTestUtil.randomString());
 				enableCategorization = RandomTestUtil.randomBoolean();
 				enableComments = RandomTestUtil.randomBoolean();
-				enableIndexedSearch = RandomTestUtil.randomBoolean();
+				enableIndexSearch = RandomTestUtil.randomBoolean();
 				enableLocalization = RandomTestUtil.randomBoolean();
 				enableObjectEntryDraft = RandomTestUtil.randomBoolean();
 				enableObjectEntryHistory = RandomTestUtil.randomBoolean();

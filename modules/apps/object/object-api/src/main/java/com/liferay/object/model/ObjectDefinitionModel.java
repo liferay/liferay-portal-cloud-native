@@ -506,21 +506,21 @@ public interface ObjectDefinitionModel
 	 *
 	 * @return the enable indexed search of this object definition
 	 */
-	public boolean getEnableIndexedSearch();
+	public boolean getEnableIndexSearch();
 
 	/**
 	 * Returns <code>true</code> if this object definition is enable indexed search.
 	 *
 	 * @return <code>true</code> if this object definition is enable indexed search; <code>false</code> otherwise
 	 */
-	public boolean isEnableIndexedSearch();
+	public boolean isEnableIndexSearch();
 
 	/**
 	 * Sets whether this object definition is enable indexed search.
 	 *
-	 * @param enableIndexedSearch the enable indexed search of this object definition
+	 * @param enableIndexSearch the enable indexed search of this object definition
 	 */
-	public void setEnableIndexedSearch(boolean enableIndexedSearch);
+	public void setEnableIndexSearch(boolean enableIndexSearch);
 
 	/**
 	 * Returns the enable localization of this object definition.

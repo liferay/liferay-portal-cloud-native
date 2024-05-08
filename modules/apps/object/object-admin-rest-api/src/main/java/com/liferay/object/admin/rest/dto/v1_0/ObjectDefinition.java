@@ -433,29 +433,29 @@ public class ObjectDefinition implements Serializable {
 	private Supplier<Boolean> _enableCommentsSupplier;
 
 	@Schema
-	public Boolean getEnableIndexedSearch() {
-		if (_enableIndexedSearchSupplier != null) {
-			enableIndexedSearch = _enableIndexedSearchSupplier.get();
+	public Boolean getEnableIndexSearch() {
+		if (_enableIndexSearchSupplier != null) {
+			enableIndexSearch = _enableIndexSearchSupplier.get();
 
-			_enableIndexedSearchSupplier = null;
+			_enableIndexSearchSupplier = null;
 		}
 
-		return enableIndexedSearch;
+		return enableIndexSearch;
 	}
 
-	public void setEnableIndexedSearch(Boolean enableIndexedSearch) {
-		this.enableIndexedSearch = enableIndexedSearch;
+	public void setEnableIndexSearch(Boolean enableIndexSearch) {
+		this.enableIndexSearch = enableIndexSearch;
 
-		_enableIndexedSearchSupplier = null;
+		_enableIndexSearchSupplier = null;
 	}
 
 	@JsonIgnore
-	public void setEnableIndexedSearch(
-		UnsafeSupplier<Boolean, Exception> enableIndexedSearchUnsafeSupplier) {
+	public void setEnableIndexSearch(
+		UnsafeSupplier<Boolean, Exception> enableIndexSearchUnsafeSupplier) {
 
-		_enableIndexedSearchSupplier = () -> {
+		_enableIndexSearchSupplier = () -> {
 			try {
-				return enableIndexedSearchUnsafeSupplier.get();
+				return enableIndexSearchUnsafeSupplier.get();
 			}
 			catch (RuntimeException runtimeException) {
 				throw runtimeException;
@@ -468,10 +468,10 @@ public class ObjectDefinition implements Serializable {
 
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected Boolean enableIndexedSearch;
+	protected Boolean enableIndexSearch;
 
 	@JsonIgnore
-	private Supplier<Boolean> _enableIndexedSearchSupplier;
+	private Supplier<Boolean> _enableIndexSearchSupplier;
 
 	@Schema
 	public Boolean getEnableLocalization() {
@@ -1760,16 +1760,16 @@ public class ObjectDefinition implements Serializable {
 			sb.append(enableComments);
 		}
 
-		Boolean enableIndexedSearch = getEnableIndexedSearch();
+		Boolean enableIndexSearch = getEnableIndexSearch();
 
-		if (enableIndexedSearch != null) {
+		if (enableIndexSearch != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"enableIndexedSearch\": ");
+			sb.append("\"enableIndexSearch\": ");
 
-			sb.append(enableIndexedSearch);
+			sb.append(enableIndexSearch);
 		}
 
 		Boolean enableLocalization = getEnableLocalization();

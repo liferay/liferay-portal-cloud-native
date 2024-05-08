@@ -73,7 +73,7 @@ public class ObjectDefinitionUpgradeProcessTest {
 		_objectDefinition = _objectDefinitionLocalService.getObjectDefinition(
 			_objectDefinition.getObjectDefinitionId());
 
-		Assert.assertTrue(_objectDefinition.isEnableIndexedSearch());
+		Assert.assertTrue(_objectDefinition.isEnableIndexSearch());
 	}
 
 	private static ObjectDefinition _objectDefinition;

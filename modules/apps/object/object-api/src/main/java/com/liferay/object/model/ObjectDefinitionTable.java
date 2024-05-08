@@ -87,9 +87,9 @@ public class ObjectDefinitionTable extends BaseTable<ObjectDefinitionTable> {
 		createColumn(
 			"enableComments", Boolean.class, Types.BOOLEAN,
 			Column.FLAG_DEFAULT);
-	public final Column<ObjectDefinitionTable, Boolean> enableIndexedSearch =
+	public final Column<ObjectDefinitionTable, Boolean> enableIndexSearch =
 		createColumn(
-			"enableIndexedSearch", Boolean.class, Types.BOOLEAN,
+			"enableIndexSearch", Boolean.class, Types.BOOLEAN,
 			Column.FLAG_DEFAULT);
 	public final Column<ObjectDefinitionTable, Boolean> enableLocalization =
 		createColumn(

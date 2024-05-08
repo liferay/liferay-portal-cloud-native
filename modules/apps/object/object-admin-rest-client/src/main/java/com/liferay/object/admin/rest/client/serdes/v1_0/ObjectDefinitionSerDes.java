@@ -173,14 +173,14 @@ public class ObjectDefinitionSerDes {
 			sb.append(objectDefinition.getEnableComments());
 		}
 
-		if (objectDefinition.getEnableIndexedSearch() != null) {
+		if (objectDefinition.getEnableIndexSearch() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"enableIndexedSearch\": ");
+			sb.append("\"enableIndexSearch\": ");
 
-			sb.append(objectDefinition.getEnableIndexedSearch());
+			sb.append(objectDefinition.getEnableIndexSearch());
 		}
 
 		if (objectDefinition.getEnableLocalization() != null) {
@@ -686,13 +686,13 @@ public class ObjectDefinitionSerDes {
 				String.valueOf(objectDefinition.getEnableComments()));
 		}
 
-		if (objectDefinition.getEnableIndexedSearch() == null) {
-			map.put("enableIndexedSearch", null);
+		if (objectDefinition.getEnableIndexSearch() == null) {
+			map.put("enableIndexSearch", null);
 		}
 		else {
 			map.put(
-				"enableIndexedSearch",
-				String.valueOf(objectDefinition.getEnableIndexedSearch()));
+				"enableIndexSearch",
+				String.valueOf(objectDefinition.getEnableIndexSearch()));
 		}
 
 		if (objectDefinition.getEnableLocalization() == null) {
@@ -1009,10 +1009,10 @@ public class ObjectDefinitionSerDes {
 				}
 			}
 			else if (Objects.equals(
-						jsonParserFieldName, "enableIndexedSearch")) {
+						jsonParserFieldName, "enableIndexSearch")) {
 
 				if (jsonParserFieldValue != null) {
-					objectDefinition.setEnableIndexedSearch(
+					objectDefinition.setEnableIndexSearch(
 						(Boolean)jsonParserFieldValue);
 				}
 			}

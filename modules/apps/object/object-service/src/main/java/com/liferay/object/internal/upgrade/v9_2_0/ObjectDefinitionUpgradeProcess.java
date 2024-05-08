@@ -16,14 +16,14 @@ public class ObjectDefinitionUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		runSQL("update ObjectDefinition set enableIndexedSearch = [$TRUE$]");
+		runSQL("update ObjectDefinition set enableIndexSearch = [$TRUE$]");
 	}
 
 	@Override
 	protected UpgradeStep[] getPreUpgradeSteps() {
 		return new UpgradeStep[] {
 			UpgradeProcessFactory.addColumns(
-				"ObjectDefinition", "enableIndexedSearch BOOLEAN")
+				"ObjectDefinition", "enableIndexSearch BOOLEAN")
 		};
 	}
 
