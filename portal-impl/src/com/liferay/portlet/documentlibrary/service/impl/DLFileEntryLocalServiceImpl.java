@@ -440,8 +440,8 @@ public class DLFileEntryLocalServiceImpl
 
 		// File version
 
-		String oldStoreFileName = latestDLFileVersion.getStoreFileName();
 		String oldVersion = latestDLFileVersion.getVersion();
+		String oldStoreFileName = latestDLFileVersion.getStoreFileName();
 
 		latestDLFileVersion = _dlFileVersionPersistence.fetchByPrimaryKey(
 			latestDLFileVersion.getFileVersionId());

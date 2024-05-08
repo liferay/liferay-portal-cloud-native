@@ -647,6 +647,7 @@ public class DLCheckInCheckOutTest {
 				dlFileVersion.getVersion()
 			).build(),
 			new UnsyncByteArrayInputStream(_TEST_CONTENT.getBytes()));
+
 		DLStoreUtil.deleteFile(
 			dlFileEntry.getCompanyId(), dlFileEntry.getDataRepositoryId(),
 			dlFileEntry.getName(), dlFileVersion.getStoreFileName());
