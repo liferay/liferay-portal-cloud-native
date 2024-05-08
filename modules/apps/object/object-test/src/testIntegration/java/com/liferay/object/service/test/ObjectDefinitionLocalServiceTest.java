@@ -1713,9 +1713,6 @@ public class ObjectDefinitionLocalServiceTest {
 
 	@Test
 	public void testPublishCustomObjectDefinition() throws Exception {
-
-		// Failed to publish object definition when disabling entry translation
-
 		ObjectDefinition objectDefinition1 =
 			ObjectDefinitionTestUtil.addCustomObjectDefinition(
 				false, _objectDefinitionLocalService,
@@ -1737,9 +1734,6 @@ public class ObjectDefinitionLocalServiceTest {
 			() -> _objectDefinitionLocalService.publishCustomObjectDefinition(
 				TestPropsValues.getUserId(),
 				objectDefinition1.getObjectDefinitionId()));
-
-		// Publish object definition after enabling or disabling the indexed
-		// search
 
 		ObjectDefinition objectDefinition2 = null;
 		ObjectDefinition objectDefinition3 = null;
