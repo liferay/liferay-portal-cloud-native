@@ -90,7 +90,7 @@ public class TestrayUtil {
 
 		StringBundler sb = new StringBundler(3);
 
-		sb.append("select COUNT(*) as count FROM ( ");
+		sb.append("select count(*) as count from ( ");
 		sb.append(sql);
 		sb.append(") count");
 
