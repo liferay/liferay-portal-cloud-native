@@ -66,6 +66,14 @@ export interface IFDSField {
 	type: string;
 }
 
+export interface IFieldTreeItem extends IField {
+	children?: IFieldTreeItem[];
+	initialChildren?: IFieldTreeItem[];
+	query?: string;
+	savedId?: string;
+	selected?: boolean;
+}
+
 export interface IFilter {
 	fieldName: string;
 	filterType?: EFilterType;
