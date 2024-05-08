@@ -69,9 +69,9 @@ public class IPGeocoderImpl implements IPGeocoder {
 
 		cacheBuilder.expireAfterAccess(1, TimeUnit.HOURS);
 
-		Cache<String, String> countryCodesCache = cacheBuilder.build();
+		Cache<String, String> cache = cacheBuilder.build();
 
-		_countryCodes = countryCodesCache.asMap();
+		_countryCodes = cache.asMap();
 	}
 
 	private DatabaseReader _createDatabaseReader() {
