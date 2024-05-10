@@ -1061,10 +1061,9 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 			int index2 = _ids.indexOf(id2);
 
 			if ((index1 == -1) && (index2 == -1)) {
-				return objectEntry1.getDateCreated(
-				).compareTo(
-					objectEntry2.getDateCreated()
-				);
+				Date date = objectEntry1.getDateCreated();
+
+				return date.compareTo(objectEntry2.getDateCreated());
 			}
 
 			if (index1 == -1) {
