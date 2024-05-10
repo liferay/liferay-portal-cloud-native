@@ -910,7 +910,8 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 
 	private Set<ObjectEntry> _getSortedRelatedObjectEntries(
 			ObjectDefinition fdsViewObjectDefinition,
-			ObjectEntry fdsViewObjectEntry, String itemsOrderPropertyName,
+			ObjectEntry fdsViewObjectEntry,
+			String objectEntryComparatorIdsPropertyKey,
 			String... relationshipNames)
 		throws Exception {
 
@@ -920,7 +921,7 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 					ListUtil.fromString(
 						MapUtil.getString(
 							fdsViewObjectEntry.getProperties(),
-							itemsOrderPropertyName),
+							objectEntryComparatorIdsPropertyKey),
 						StringPool.COMMA),
 					Long::parseLong)));
 
