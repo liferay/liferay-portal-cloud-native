@@ -25,40 +25,45 @@ ViewPortalPropertiesDisplayContext viewPortalPropertiesDisplayContext = new View
 		>
 
 			<%
-			String property = (String)entry.getKey();
-			String value = (String)entry.getValue();
-
-			List<String> overriddenProperties = viewPortalPropertiesDisplayContext.getOverriddenProperties();
-
-			boolean overriddenPropertyValue = overriddenProperties.contains(property);
-
-			String label = LanguageUtil.get(request, overriddenPropertyValue ? "the-value-of-this-property-was-overridden-using-the-control-panel-and-is-stored-in-the-database" : "the-value-of-this-property-is-read-from-a-portal.properties-file-or-one-of-its-extension-files");
+			String propertyKey = (String)entry.getKey();
 			%>
 
 			<liferay-ui:search-container-column-text
 				cssClass="table-cell-expand"
 				name="property"
-				value="<%= HtmlUtil.escape(StringUtil.shorten(property, 80)) %>"
+				value="<%= HtmlUtil.escape(StringUtil.shorten(propertyKey, 80)) %>"
 			/>
+
+			<%
+			String propertyValue = (String)entry.getValue();
+			%>
 
 			<liferay-ui:search-container-column-text
 				cssClass="table-cell-expand"
 				name="value"
 			>
-				<c:if test="<%= Validator.isNotNull(value) %>">
-					<span class="lfr-portal-tooltip" title="<%= HtmlUtil.escape(value) %>">
-						<%= HtmlUtil.escape(StringUtil.shorten(value, 80)) %>
+				<c:if test="<%= Validator.isNotNull(propertyValue) %>">
+					<span class="lfr-portal-tooltip" title="<%= HtmlUtil.escape(propertyValue) %>">
+						<%= HtmlUtil.escape(StringUtil.shorten(propertyValue, 80)) %>
 					</span>
 				</c:if>
 			</liferay-ui:search-container-column-text>
+
+			<%
+			List<String> overriddenProperties = viewPortalPropertiesDisplayContext.getOverriddenProperties();
+
+			boolean overriddenPropertyValue = overriddenProperties.contains(propertyKey);
+
+			String message = LanguageUtil.get(request, overriddenPropertyValue ? "the-value-of-this-property-was-overridden-using-the-control-panel-and-is-stored-in-the-database" : "the-value-of-this-property-is-read-from-a-portal.properties-file-or-one-of-its-extension-files");
+			%>
 
 			<liferay-ui:search-container-column-text
 				name="source"
 			>
 				<clay:icon
-					aria-label='<%= label %>'
+					aria-label='<%= message %>'
 					cssClass="lfr-portal-tooltip"
-					data-title='<%= label %>'
+					data-title='<%= message %>'
 					symbol="<%= overriddenPropertyValue ? "hdd" : "document" %>"
 					tabindex="0"
 				/>
