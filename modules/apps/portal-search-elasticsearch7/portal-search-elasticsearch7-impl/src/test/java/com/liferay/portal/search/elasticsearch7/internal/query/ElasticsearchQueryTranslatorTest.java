@@ -123,15 +123,15 @@ public class ElasticsearchQueryTranslatorTest {
 
 		_setMaxTermsCount(10, termsQueryTranslator);
 
-		_assertNumberOfTermsClauses(1, termsQuery);
+		_assertTermsCount(1, termsQuery);
 
 		_setMaxTermsCount(5, termsQueryTranslator);
 
-		_assertNumberOfTermsClauses(2, termsQuery);
+		_assertTermsCount(2, termsQuery);
 
 		_setMaxTermsCount(3, termsQueryTranslator);
 
-		_assertNumberOfTermsClauses(4, termsQuery);
+		_assertTermsCount(4, termsQuery);
 	}
 
 	private void _assertBoost(Query query) {
@@ -145,7 +145,7 @@ public class ElasticsearchQueryTranslatorTest {
 			String.valueOf(queryBuilder.boost()));
 	}
 
-	private void _assertNumberOfTermsClauses(
+	private void _assertTermsCount(
 		int expected, TermsQuery termsQuery) {
 
 		String queryString = _elasticsearchQueryTranslator.translate(

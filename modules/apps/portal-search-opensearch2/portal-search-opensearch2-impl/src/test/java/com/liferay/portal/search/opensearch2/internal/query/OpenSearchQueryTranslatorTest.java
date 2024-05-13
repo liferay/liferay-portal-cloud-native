@@ -130,15 +130,15 @@ public class OpenSearchQueryTranslatorTest {
 
 		_setMaxTermsCount(10);
 
-		_assertNumberOfTermsClauses(1, termsQuery);
+		_assertTermsCount(1, termsQuery);
 
 		_setMaxTermsCount(5);
 
-		_assertNumberOfTermsClauses(2, termsQuery);
+		_assertTermsCount(2, termsQuery);
 
 		_setMaxTermsCount(3);
 
-		_assertNumberOfTermsClauses(4, termsQuery);
+		_assertTermsCount(4, termsQuery);
 	}
 
 	private void _assertBoost(Query query) {
@@ -151,7 +151,7 @@ public class OpenSearchQueryTranslatorTest {
 			queryString.contains("\"boost\":" + String.valueOf(_BOOST)));
 	}
 
-	private void _assertNumberOfTermsClauses(
+	private void _assertTermsCount(
 		int expected, TermsQuery termsQuery) {
 
 		String queryString = _getTranslatedQueryString(termsQuery);
