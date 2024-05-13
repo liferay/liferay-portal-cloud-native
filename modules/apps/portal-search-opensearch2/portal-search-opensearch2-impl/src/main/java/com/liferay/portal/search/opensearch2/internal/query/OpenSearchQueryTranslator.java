@@ -994,18 +994,18 @@ public class OpenSearchQueryTranslator
 		String[] terms = termsQuery.getValues();
 
 		if (terms.length <= _MAX_TERMS_COUNT) {
-			return _getTermsQuery(termsQuery, field, terms);
+			return _translateTermsQuery(termsQuery, field, terms);
 		}
 
-		List<String> termsList = new ArrayList<>();
 		BoolQuery.Builder builder = QueryBuilders.bool();
+		List<String> termsList = new ArrayList<>();
 
 		for (String term : terms) {
 			termsList.add(term);
 
 			if (termsList.size() == _MAX_TERMS_COUNT) {
 				builder.should(
-					_getTermsQuery(
+					_translateTermsQuery(
 						termsQuery, field, termsList.toArray(new String[0])
 					)._toQuery());
 
@@ -1015,7 +1015,7 @@ public class OpenSearchQueryTranslator
 
 		if (!termsList.isEmpty()) {
 			builder.should(
-				_getTermsQuery(
+				_translateTermsQuery(
 					termsQuery, field, termsList.toArray(new String[0])
 				)._toQuery());
 		}
@@ -1146,7 +1146,7 @@ public class OpenSearchQueryTranslator
 	}
 
 	private org.opensearch.client.opensearch._types.query_dsl.TermsQuery
-		_getTermsQuery(TermsQuery termsQuery, String field, String[] values) {
+		_translateTermsQuery(TermsQuery termsQuery, String field, String[] values) {
 
 		org.opensearch.client.opensearch._types.query_dsl.TermsQuery.Builder
 			builder = QueryBuilders.terms();
