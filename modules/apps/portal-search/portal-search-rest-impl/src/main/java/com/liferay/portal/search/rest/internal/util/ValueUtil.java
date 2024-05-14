@@ -13,14 +13,14 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class ValueUtil {
 
-	public static String[] toArray(String csvString) {
-		if (Validator.isBlank(csvString)) {
+	public static String[] toArray(String csv) {
+		if (Validator.isBlank(csv)) {
 			return new String[0];
 		}
 
-		csvString = StringUtil.trim(csvString);
+		csv = StringUtil.trim(csv);
 
-		return csvString.split("\\s*,\\s*");
+		return csv.split("\\s*,\\s*");
 	}
 
 }

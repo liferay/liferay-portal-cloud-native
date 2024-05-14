@@ -5,7 +5,6 @@
 
 package com.liferay.portal.search.rest.internal.util;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -22,12 +21,12 @@ public class ScopeUtil {
 	public static long[] toGroupIds(long companyId, String scope) {
 		List<Long> groupIds = new ArrayList<>();
 
-		String[] scopes = ValueUtil.toArray(scope);
+		String[] parts = ValueUtil.toArray(scope);
 
-		for (String s : scopes) {
+		for (String part : parts) {
 			Group group =
 				GroupLocalServiceUtil.fetchGroupByExternalReferenceCode(
-					s, companyId);
+					part, companyId);
 
 			if (group != null) {
 				groupIds.add(group.getGroupId());
@@ -36,13 +35,12 @@ public class ScopeUtil {
 			}
 
 			try {
-				groupIds.add(Long.parseLong(s));
+				groupIds.add(Long.parseLong(part));
 			}
 			catch (NumberFormatException numberFormatException) {
 				throw new IllegalScopeParameterException(
-					StringBundler.concat(
-						"Invalid group external reference code or ID ", s, ". ",
-						numberFormatException));
+					"Invalid external reference code or group ID: " + part,
+					numberFormatException);
 			}
 		}
 

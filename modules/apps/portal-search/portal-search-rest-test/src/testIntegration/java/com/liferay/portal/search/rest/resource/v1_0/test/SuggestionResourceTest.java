@@ -55,9 +55,7 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 		_journalArticle = JournalTestUtil.addArticle(
 			testGroup.getGroupId(), StringUtil.randomString(),
 			StringUtil.randomString());
-
 		_layout = LayoutTestUtil.addTypePortletLayout(testGroup);
-
 		_locale = LocaleUtil.getSiteDefault();
 	}
 
@@ -75,14 +73,14 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 
 	private void _assertSuggestionContributorResults(
 			String displayGroupName,
-			Page<SuggestionsContributorResults> suggestionPage,
+			Page<SuggestionsContributorResults> page,
 			String... expectedTexts)
 		throws Exception {
 
 		SuggestionsContributorResults suggestionsContributorResults1 = null;
 
 		for (SuggestionsContributorResults suggestionsContributorResults2 :
-				suggestionPage.getItems()) {
+				page.getItems()) {
 
 			if (!StringUtil.equals(
 					suggestionsContributorResults2.getDisplayGroupName(),
@@ -94,8 +92,7 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 			suggestionsContributorResults1 = suggestionsContributorResults2;
 		}
 
-		Assert.assertTrue(
-			"Display group not found", suggestionsContributorResults1 != null);
+		Assert.assertTrue(suggestionsContributorResults1 != null);
 
 		Suggestion[] suggestions =
 			suggestionsContributorResults1.getSuggestions();
@@ -178,12 +175,12 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 	private void _testPostSuggestionsPageWithBasicSuggestionsContributorWithAssetSearchSummary()
 		throws Exception {
 
-		Page<SuggestionsContributorResults> suggestionsPage =
+		Page<SuggestionsContributorResults> page =
 			_postSuggestionsPageWithBasicSuggestionsContributor(
 				null, _journalArticle.getArticleId(), "Suggestions");
 
 		SuggestionsContributorResults suggestionsContributorResults =
-			suggestionsPage.fetchFirstItem();
+			page.fetchFirstItem();
 
 		Suggestion[] suggestions =
 			suggestionsContributorResults.getSuggestions();
