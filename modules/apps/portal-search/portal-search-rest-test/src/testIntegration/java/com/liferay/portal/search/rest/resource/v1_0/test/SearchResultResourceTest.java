@@ -99,8 +99,6 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		_baseURI = "search";
-
 		_locale = LocaleUtil.getSiteDefault();
 
 		_ddmStructure = _addJournalArticleDDMStructure(_locale);
@@ -862,7 +860,7 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 	@Inject
 	private AssetVocabularyLocalService _assetVocabularyLocalService;
 
-	private String _baseURI;
+	private String _baseURI = "search";
 	private DDMStructure _ddmStructure;
 	private JournalArticle _journalArticle;
 
