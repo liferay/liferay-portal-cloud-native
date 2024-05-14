@@ -1906,8 +1906,6 @@ public class ObjectEntryLocalServiceTest {
 	public void testAddSystemObjectEntryWithObjectValidationRule()
 		throws Exception {
 
-		// Can only update user if email address is equal to a specific value
-
 		User user = UserTestUtil.addUser();
 
 		String emailAddress = user.getEmailAddress();
