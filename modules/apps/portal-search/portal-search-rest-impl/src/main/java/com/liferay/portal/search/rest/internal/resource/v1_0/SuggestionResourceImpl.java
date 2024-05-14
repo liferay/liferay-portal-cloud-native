@@ -181,6 +181,13 @@ public class SuggestionResourceImpl extends BaseSuggestionResourceImpl {
 		searchContext.setAttribute(
 			"search.experiences.ip.address",
 			contextHttpServletRequest.getRemoteAddr());
+
+		if (themeDisplay != null) {
+			searchContext.setAttribute(
+				"search.experiences.scope.group.id",
+				themeDisplay.getScopeGroupId());
+		}
+
 		searchContext.setAttribute(
 			"search.suggestions.contributor.configurations",
 			suggestionsContributorConfigurations);
@@ -190,12 +197,6 @@ public class SuggestionResourceImpl extends BaseSuggestionResourceImpl {
 		searchContext.setAttribute(
 			"search.suggestions.keywords.parameter.name",
 			keywordsParameterName);
-
-		if (themeDisplay != null) {
-			searchContext.setAttribute(
-				"search.experiences.scope.group.id",
-				themeDisplay.getScopeGroupId());
-		}
 
 		searchContext.setCompanyId(contextCompany.getCompanyId());
 		searchContext.setKeywords(search);
