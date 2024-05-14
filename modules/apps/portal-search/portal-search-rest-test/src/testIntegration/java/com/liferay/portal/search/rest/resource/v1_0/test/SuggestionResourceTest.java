@@ -198,10 +198,10 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 	private void _testPostSuggestionsPageWithBasicSuggestionsContributorWithEverythingScope()
 		throws Exception {
 
-		Group testGroup2 = GroupTestUtil.addGroup();
+		Group group = GroupTestUtil.addGroup();
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
-			testGroup2.getGroupId(), StringUtil.randomString(),
+			group.getGroupId(), StringUtil.randomString(),
 			StringUtil.randomString());
 
 		Page<SuggestionsContributorResults> page =
@@ -216,7 +216,7 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 			page.fetchFirstItem(), _journalArticle.getTitle(_locale),
 			journalArticle.getTitle(_locale));
 
-		GroupTestUtil.deleteGroup(testGroup2);
+		GroupTestUtil.deleteGroup(group);
 	}
 
 	private void _testPostSuggestionsPageWithBasicSuggestionsContributorWithGroupERCScope()
@@ -234,10 +234,10 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 	private void _testPostSuggestionsPageWithBasicSuggestionsContributorWithThisSiteScope()
 		throws Exception {
 
-		Group testGroup2 = GroupTestUtil.addGroup();
+		Group group = GroupTestUtil.addGroup();
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
-			testGroup2.getGroupId(), StringUtil.randomString(),
+			group.getGroupId(), StringUtil.randomString(),
 			StringUtil.randomString());
 
 		Page<SuggestionsContributorResults> page = _postSuggestionsPage(
@@ -258,7 +258,7 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 		_assertSuggestionTexts(
 			page.fetchFirstItem(), _journalArticle.getTitle(_locale));
 
-		GroupTestUtil.deleteGroup(testGroup2);
+		GroupTestUtil.deleteGroup(group);
 	}
 
 	private void _testPostSuggestionsPageWithSXPBlueprintSuggestionsContributor()
