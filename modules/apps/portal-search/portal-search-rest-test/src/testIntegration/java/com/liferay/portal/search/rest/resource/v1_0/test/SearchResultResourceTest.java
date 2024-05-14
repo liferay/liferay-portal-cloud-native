@@ -601,10 +601,10 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 	}
 
 	private void _testPostSearchPageWithEmptyScope() throws Exception {
-		Group testGroup2 = GroupTestUtil.addGroup();
+		Group group = GroupTestUtil.addGroup();
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
-			testGroup2.getGroupId(), StringUtil.randomString(),
+			group.getGroupId(), StringUtil.randomString(),
 			StringUtil.randomString());
 
 		SearchPage<SearchResult> searchPage = _postSearchPage(
@@ -617,7 +617,7 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 			searchPage, _journalArticle.getTitle(_locale),
 			journalArticle.getTitle(_locale));
 
-		GroupTestUtil.deleteGroup(testGroup2);
+		GroupTestUtil.deleteGroup(group);
 	}
 
 	private void _testPostSearchPageWithFaultyScope() throws Exception {
@@ -646,10 +646,10 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 	}
 
 	private void _testPostSearchPageWithGroupERCAndIdScope() throws Exception {
-		Group testGroup2 = GroupTestUtil.addGroup();
+		Group group = GroupTestUtil.addGroup();
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
-			testGroup2.getGroupId(), StringUtil.randomString(),
+			group.getGroupId(), StringUtil.randomString(),
 			StringUtil.randomString());
 
 		SearchPage<SearchResult> searchPage = _postSearchPage(
@@ -658,13 +658,13 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 				journalArticle.getTitle(_locale)),
 			StringBundler.concat(
 				testGroup.getGroupId(), StringPool.COMMA,
-				testGroup2.getExternalReferenceCode()));
+				group.getExternalReferenceCode()));
 
 		_assertSearchResultTitles(
 			searchPage, _journalArticle.getTitle(_locale),
 			journalArticle.getTitle(_locale));
 
-		GroupTestUtil.deleteGroup(testGroup2);
+		GroupTestUtil.deleteGroup(group);
 	}
 
 	private void _testPostSearchPageWithGroupERCScope() throws Exception {
@@ -716,10 +716,10 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 	private void _testPostSearchPageWithMultipleGroupIdsScope()
 		throws Exception {
 
-		Group testGroup2 = GroupTestUtil.addGroup();
+		Group group = GroupTestUtil.addGroup();
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
-			testGroup2.getGroupId(), StringUtil.randomString(),
+			group.getGroupId(), StringUtil.randomString(),
 			StringUtil.randomString());
 
 		SearchPage<SearchResult> searchPage = _postSearchPage(
@@ -727,14 +727,13 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 				_journalArticle.getTitle(_locale), StringPool.SPACE,
 				journalArticle.getTitle(_locale)),
 			StringBundler.concat(
-				testGroup.getGroupId(), StringPool.COMMA,
-				testGroup2.getGroupId()));
+				testGroup.getGroupId(), StringPool.COMMA, group.getGroupId()));
 
 		_assertSearchResultTitles(
 			searchPage, _journalArticle.getTitle(_locale),
 			journalArticle.getTitle(_locale));
 
-		GroupTestUtil.deleteGroup(testGroup2);
+		GroupTestUtil.deleteGroup(group);
 	}
 
 	private void _testPostSearchPageWithNestedFacetConfiguration()
