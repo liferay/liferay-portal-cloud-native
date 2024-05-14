@@ -199,12 +199,22 @@ public class SuggestionResourceImpl extends BaseSuggestionResourceImpl {
 			keywordsParameterName);
 
 		searchContext.setCompanyId(contextCompany.getCompanyId());
+
+		if (StringUtil.equals(scope, "everything") ||
+			(Validator.isBlank(scope) && (groupId == null))) {
+		}
+		else if (StringUtil.equals(scope, "this-site") && (groupId != null)) {
+			searchContext.setGroupIds(new long[] {groupId});
+		}
+		else {
+			searchContext.setGroupIds(
+				ScopeUtil.toGroupIds(contextCompany.getCompanyId(), scope));
+		}
+
 		searchContext.setKeywords(search);
 		searchContext.setLocale(contextAcceptLanguage.getPreferredLocale());
 		searchContext.setTimeZone(contextUser.getTimeZone());
 		searchContext.setUserId(contextUser.getUserId());
-
-		_setScope(groupId, scope, searchContext);
 
 		return searchContext;
 	}
@@ -228,24 +238,6 @@ public class SuggestionResourceImpl extends BaseSuggestionResourceImpl {
 		themeDisplay.setUser(contextUser);
 
 		return themeDisplay;
-	}
-
-	private void _setScope(
-		Long groupId, String scope, SearchContext searchContext) {
-
-		if (StringUtil.equals(scope, "everything") ||
-			(Validator.isBlank(scope) && (groupId == null))) {
-
-			return;
-		}
-		else if (StringUtil.equals(scope, "this-site") && (groupId != null)) {
-			searchContext.setGroupIds(new long[] {groupId});
-
-			return;
-		}
-
-		searchContext.setGroupIds(
-			ScopeUtil.toGroupIds(contextCompany.getCompanyId(), scope));
 	}
 
 	@Reference
