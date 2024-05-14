@@ -34,6 +34,7 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,16 +105,12 @@ public class TestrayRunComparisonResourceImpl
 		sb.append("b.r_routineToBuilds_c_routineId = ? order by b.dueDate_ ");
 		sb.append("desc limit 2");
 
-		List<Object> params = new ArrayList<>();
-
-		params.add(testrayRoutineId);
-
 		String sql = StringUtil.replace(
 			sb.toString(), "[%COMPANY_ID%]",
 			String.valueOf(contextCompany.getCompanyId()));
 
 		List<Map<String, Object>> values = TestrayUtil.executeQuery(
-			sql, params);
+			sql, Collections.singletonList(testrayRoutineId));
 
 		if (ListUtil.isEmpty(values) || (values.size() < 2)) {
 			throw new Exception("Unable to find more than one run");
