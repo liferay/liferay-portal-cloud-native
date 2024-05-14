@@ -70,7 +70,7 @@ public class EditFileEntryHeaderProductNavigationControlMenuEntryTest {
 	@Test
 	public void testIsShowFileEntryHeaderInAnotherView() throws Exception {
 		MockHttpServletRequest mockHttpServletRequest =
-			_getMockHttpServletRequest(_createFileEntry());
+			_getMockHttpServletRequest(_addFileEntry());
 
 		mockHttpServletRequest.setParameter("mvcRenderCommandName", "/");
 
@@ -80,7 +80,7 @@ public class EditFileEntryHeaderProductNavigationControlMenuEntryTest {
 
 	@Test
 	public void testIsShowFileEntryHeaderInViewerView() throws Exception {
-		FileEntry fileEntry = _createFileEntry();
+		FileEntry fileEntry = _addFileEntry();
 
 		MockHttpServletRequest mockHttpServletRequest =
 			_getMockHttpServletRequest(fileEntry);
@@ -100,7 +100,7 @@ public class EditFileEntryHeaderProductNavigationControlMenuEntryTest {
 
 		Assert.assertFalse(
 			_productNavigationControlMenuEntry.isShow(
-				_getMockHttpServletRequest(_createFileEntry())));
+				_getMockHttpServletRequest(_addFileEntry())));
 	}
 
 	@Test
@@ -114,7 +114,7 @@ public class EditFileEntryHeaderProductNavigationControlMenuEntryTest {
 	public void testIsShowFileEntryHeaderWithoutGuestPermissions()
 		throws Exception {
 
-		FileEntry fileEntry = _createFileEntry();
+		FileEntry fileEntry = _addFileEntry();
 
 		_deleteResourcePermissions(fileEntry);
 
@@ -123,7 +123,7 @@ public class EditFileEntryHeaderProductNavigationControlMenuEntryTest {
 				_getMockHttpServletRequest(fileEntry)));
 	}
 
-	private FileEntry _createFileEntry() throws Exception {
+	private FileEntry _addFileEntry() throws Exception {
 		return _dlAppService.addFileEntry(
 			null, _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
