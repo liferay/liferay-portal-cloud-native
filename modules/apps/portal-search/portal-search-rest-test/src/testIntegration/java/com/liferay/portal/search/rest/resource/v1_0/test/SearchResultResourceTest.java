@@ -128,7 +128,7 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 		_testPostSearchPageWithFaultyScope();
 		_testPostSearchPageWithFilter();
 		_testPostSearchPageWithFolderFacetConfiguration();
-		_testPostSearchPageWithGroupERCAndIdScope();
+		_testPostSearchPageWithGroupERCAndGroupIdScope();
 		_testPostSearchPageWithGroupERCScope();
 		_testPostSearchPageWithGroupIdScope();
 		_testPostSearchPageWithHighlightConfiguration();
@@ -645,7 +645,9 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 			String.valueOf(_journalArticle.getFolderId()));
 	}
 
-	private void _testPostSearchPageWithGroupERCAndIdScope() throws Exception {
+	private void _testPostSearchPageWithGroupERCAndGroupIdScope()
+		throws Exception {
+
 		Group group = GroupTestUtil.addGroup();
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
