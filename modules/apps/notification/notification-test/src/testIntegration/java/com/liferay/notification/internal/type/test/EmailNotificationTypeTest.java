@@ -776,18 +776,17 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 	public void testSendNotificationWithSystemObjectDefinition()
 		throws Exception {
 
-		// On Account Entry update
+		// On account entry update
 
 		ObjectDefinition accountEntryObjectDefinition =
 			objectDefinitionLocalService.fetchObjectDefinition(
 				TestPropsValues.getCompanyId(),
 				AccountEntry.class.getSimpleName());
 
-		ObjectAction accountEntryObjectAction =
-			_addObjectActionWithNotification(
-				accountEntryObjectDefinition,
-				ObjectActionTriggerConstants.KEY_ON_AFTER_UPDATE,
-				"[%ACCOUNTENTRY_AUTHOR_EMAIL_ADDRESS%]");
+		ObjectAction accountEntryObjectAction = _addObjectAction(
+			ObjectActionTriggerConstants.KEY_ON_AFTER_UPDATE,
+			accountEntryObjectDefinition,
+			"[%ACCOUNTENTRY_AUTHOR_EMAIL_ADDRESS%]");
 
 		User omniadminUser = UserTestUtil.addOmniadminUser();
 
@@ -816,7 +815,7 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 
 		objectActionLocalService.deleteObjectAction(accountEntryObjectAction);
 
-		// On Commerce Order payment status update
+		// On commerce order payment status update
 
 		ObjectDefinition commerceOrderObjectDefinition =
 			_objectDefinitionLocalService.fetchObjectDefinitionByClassName(
@@ -837,11 +836,9 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 			objectActionTriggerKeys.contains(
 				DestinationNames.COMMERCE_PAYMENT_STATUS));
 
-		ObjectAction commerceOrderObjectAction =
-			_addObjectActionWithNotification(
-				commerceOrderObjectDefinition,
-				DestinationNames.COMMERCE_PAYMENT_STATUS,
-				"[%CURRENT_USER_EMAIL_ADDRESS%]");
+		ObjectAction commerceOrderObjectAction = _addObjectAction(
+			DestinationNames.COMMERCE_PAYMENT_STATUS,
+			commerceOrderObjectDefinition, "[%CURRENT_USER_EMAIL_ADDRESS%]");
 
 		Group group = GroupTestUtil.addGroup();
 
@@ -950,8 +947,8 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 				Collections.singletonList(objectField.getObjectFieldId())));
 	}
 
-	private ObjectAction _addObjectActionWithNotification(
-			ObjectDefinition objectDefinition, String objectActionTriggerKey,
+	private ObjectAction _addObjectAction(
+			String objectActionTriggerKey, ObjectDefinition objectDefinition,
 			String to)
 		throws Exception {
 
