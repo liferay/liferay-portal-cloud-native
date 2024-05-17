@@ -79,7 +79,9 @@ public class TensorFlowModelUpgradeProcessTest {
 
 	private void _runUpgradeProcess() throws Exception {
 		UpgradeProcess upgradeProcess = UpgradeTestUtil.getUpgradeStep(
-			_upgradeStepRegistrator, _UPGRADE_PROCESS_CLASS_NAME);
+			_upgradeStepRegistrator,
+			"com.liferay.document.library.asset.auto.tagger.tensorflow." +
+				"internal.upgrade.v0_0_2.TensorFlowModelUpgradeProcess");
 
 		upgradeProcess.upgrade();
 	}
@@ -106,8 +108,7 @@ public class TensorFlowModelUpgradeProcessTest {
 				"TensorFlowImageAssetAutoTagProviderCompanyConfiguration";
 
 	private static final String _UPGRADE_PROCESS_CLASS_NAME =
-		"com.liferay.document.library.asset.auto.tagger.tensorflow.internal." +
-			"upgrade.v0_0_2.TensorFlowModelUpgradeProcess";
+		;
 
 	@Inject(
 		filter = "(&(component.name=com.liferay.document.library.asset.auto.tagger.tensorflow.internal.upgrade.registry.TensorFlowAssetAutoTagProviderUpgradeStepRegistrator))"
