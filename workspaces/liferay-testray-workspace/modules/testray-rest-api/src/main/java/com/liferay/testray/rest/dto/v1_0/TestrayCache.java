@@ -48,7 +48,7 @@ public class TestrayCache {
 		_testrayCaseResultAmount++;
 	}
 
-	public void setBuildId(long testrayBuildId) {
+	public void setTestrayBuildId(long testrayBuildId) {
 		_testrayBuildId = testrayBuildId;
 	}
 

@@ -182,7 +182,7 @@ public class TestrayManagerImpl implements TestrayManager {
 				propertiesMap.get("testray.build.name"), testrayCache,
 				testrayProjectId, testrayRoutineId, userId);
 
-			testrayCache.setBuildId(testrayBuildId);
+			testrayCache.setTestrayBuildId(testrayBuildId);
 
 			long testrayRunId = _getTestrayRunId(
 				companyId, element, serviceContext, propertiesMap,
