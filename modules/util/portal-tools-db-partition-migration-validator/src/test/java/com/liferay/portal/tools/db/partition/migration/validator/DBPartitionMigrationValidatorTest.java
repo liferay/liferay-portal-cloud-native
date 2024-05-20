@@ -133,7 +133,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 
 		Assert.assertEquals(Arrays.toString(files), 1, files.length);
 
-		String content = _getFileContent(files[0]);
+		String content = _read(files[0]);
 
 		_assertFileContent(
 			companies, companyInfoIds, content, defaultPartition, releases);
@@ -202,7 +202,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		return jsonObject.toString();
 	}
 
-	private String _getFileContent(File file) throws Exception {
+	private String _read(File file) throws Exception {
 		StringBuilder sb = new StringBuilder();
 
 		try (BufferedReader bufferedReader = new BufferedReader(
