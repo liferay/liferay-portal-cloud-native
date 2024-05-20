@@ -75,7 +75,11 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 			_getExportedCompanyIdOutput(companyInfoIds), content, false);
 
 		JSONAssert.assertEquals(
-			_getExportedCompanyDefaultOutput(defaultPartition), content, false);
+			new JSONObject(
+			).put(
+				"exportedCompanyDefault", defaultPartition
+			).toString(),
+			content, false);
 
 		JSONAssert.assertEquals(
 			_getTableNamesOutput(Arrays.asList("Table1", "Table2")), content,
@@ -106,34 +110,23 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		JSONArray companiesJSONArray = new JSONArray();
 
 		for (Company company : companies) {
-			JSONObject jsonObject = new JSONObject();
-
-			jsonObject.put(
-				"companyId", company.getCompanyId()
-			).put(
-				"companyName", company.getCompanyName()
-			).put(
-				"virtualHostname", company.getVirtualHostname()
-			).put(
-				"webId", company.getWebId()
-			);
-
-			companiesJSONArray.put(jsonObject);
+			companiesJSONArray.put(
+				new JSONObject(
+				).put(
+					"companyId", company.getCompanyId()
+				).put(
+					"companyName", company.getCompanyName()
+				).put(
+					"virtualHostname", company.getVirtualHostname()
+				).put(
+					"webId", company.getWebId()
+				));
 		}
 
-		JSONObject jsonObject = new JSONObject();
-
-		jsonObject.put("companies", companiesJSONArray);
-
-		return jsonObject.toString();
-	}
-
-	private String _getExportedCompanyDefaultOutput(boolean defaultPartition) {
-		JSONObject jsonObject = new JSONObject();
-
-		jsonObject.put("exportedCompanyDefault", defaultPartition);
-
-		return jsonObject.toString();
+		return new JSONObject(
+		).put(
+			"companies", companiesJSONArray
+		).toString();
 	}
 
 	private String _getExportedCompanyIdOutput(List<Long> companyInfoIds) {
@@ -153,46 +146,41 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		JSONArray releasesJSONArray = new JSONArray();
 
 		for (Release release : releases) {
-			JSONObject schemaVersionJSONObject = new JSONObject();
-
-			schemaVersionJSONObject.put(
-				"major",
-				release.getSchemaVersion(
-				).getMajor()
-			).put(
-				"micro",
-				release.getSchemaVersion(
-				).getMicro()
-			).put(
-				"minor",
-				release.getSchemaVersion(
-				).getMinor()
-			).put(
-				"qualifier",
-				release.getSchemaVersion(
-				).getQualifier()
-			);
-
-			JSONObject releaseJSONObject = new JSONObject();
-
-			releaseJSONObject.put(
-				"schemaVersion", schemaVersionJSONObject
-			).put(
-				"servletContextName", release.getServletContextName()
-			).put(
-				"state", release.getState()
-			).put(
-				"verified", release.getVerified()
-			);
-
-			releasesJSONArray.put(releaseJSONObject);
+			releasesJSONArray.put(
+				new JSONObject(
+				).put(
+					"schemaVersion",
+					new JSONObject(
+					).put(
+						"major",
+						release.getSchemaVersion(
+						).getMajor()
+					).put(
+						"micro",
+						release.getSchemaVersion(
+						).getMicro()
+					).put(
+						"minor",
+						release.getSchemaVersion(
+						).getMinor()
+					).put(
+						"qualifier",
+						release.getSchemaVersion(
+						).getQualifier()
+					)
+				).put(
+					"servletContextName", release.getServletContextName()
+				).put(
+					"state", release.getState()
+				).put(
+					"verified", release.getVerified()
+				));
 		}
 
-		JSONObject jsonObject = new JSONObject();
-
-		jsonObject.put("releases", releasesJSONArray);
-
-		return jsonObject.toString();
+		return new JSONObject(
+		).put(
+			"releases", releasesJSONArray
+		).toString();
 	}
 
 	private String _getTableNamesOutput(List<String> tableNames) {
@@ -202,11 +190,10 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 			tableNamesJSONArray.put(tableName);
 		}
 
-		JSONObject jsonObject = new JSONObject();
-
-		jsonObject.put("tableNames", tableNamesJSONArray);
-
-		return jsonObject.toString();
+		return new JSONObject(
+		).put(
+			"tableNames", tableNamesJSONArray
+		).toString();
 	}
 
 	private void _mockDatabase(
