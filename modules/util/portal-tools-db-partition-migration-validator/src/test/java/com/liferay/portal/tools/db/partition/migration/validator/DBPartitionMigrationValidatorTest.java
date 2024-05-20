@@ -65,53 +65,6 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
-	private void _assertFileContent(
-			List<Company> companies, List<Long> companyInfoIds, String content,
-			boolean defaultPartition, List<Release> releases)
-		throws Exception {
-
-		JSONAssert.assertEquals(
-			new JSONObject(
-			).put(
-				"companies", new JSONArray(companies)
-			).toString(),
-			content, false);
-
-		JSONAssert.assertEquals(
-			new JSONObject(
-			).put(
-				"exportedCompanyDefault", defaultPartition
-			).toString(),
-			content, false);
-
-		Long exportedCompanyId = null;
-
-		if (companyInfoIds.size() == 1) {
-			exportedCompanyId = companyInfoIds.get(0);
-		}
-
-		JSONAssert.assertEquals(
-			new JSONObject(
-			).put(
-				"exportedCompanyId", exportedCompanyId
-			).toString(),
-			content, false);
-
-		JSONAssert.assertEquals(
-			new JSONObject(
-			).put(
-				"releases", new JSONArray(releases)
-			).toString(),
-			content, false);
-
-		JSONAssert.assertEquals(
-			new JSONObject(
-			).put(
-				"tableNames", new JSONArray(Arrays.asList("Table1", "Table2"))
-			).toString(),
-			content, false);
-	}
-
 	private List<Company> _generateCompanies() {
 		return Arrays.asList(
 			new Company(
@@ -209,8 +162,46 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 
 		String content = _read(files[0]);
 
-		_assertFileContent(
-			companies, companyInfoIds, content, defaultPartition, releases);
+		JSONAssert.assertEquals(
+			new JSONObject(
+			).put(
+				"companies", new JSONArray(companies)
+			).toString(),
+			content, false);
+
+		JSONAssert.assertEquals(
+			new JSONObject(
+			).put(
+				"exportedCompanyDefault", defaultPartition
+			).toString(),
+			content, false);
+
+		Long exportedCompanyId = null;
+
+		if (companyInfoIds.size() == 1) {
+			exportedCompanyId = companyInfoIds.get(0);
+		}
+
+		JSONAssert.assertEquals(
+			new JSONObject(
+			).put(
+				"exportedCompanyId", exportedCompanyId
+			).toString(),
+			content, false);
+
+		JSONAssert.assertEquals(
+			new JSONObject(
+			).put(
+				"releases", new JSONArray(releases)
+			).toString(),
+			content, false);
+
+		JSONAssert.assertEquals(
+			new JSONObject(
+			).put(
+				"tableNames", new JSONArray(Arrays.asList("Table1", "Table2"))
+			).toString(),
+			content, false);
 	}
 
 	private static final String _PASSWORD = RandomTestUtil.randomString();
