@@ -55,7 +55,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 
 	@Test
 	public void testExportDefaultDatabase() throws Exception {
-		_export(
+		_testExport(
 			_generateCompanies(),
 			Arrays.asList(
 				RandomTestUtil.randomLong(), RandomTestUtil.randomLong()),
@@ -86,7 +86,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		JSONAssert.assertEquals(_getCompaniesOutput(companies), content, false);
 	}
 
-	private void _export(
+	private void _testExport(
 			List<Company> companies, List<Long> companyIds,
 			List<Long> companyInfoIds, boolean defaultPartition,
 			List<Release> releases)
