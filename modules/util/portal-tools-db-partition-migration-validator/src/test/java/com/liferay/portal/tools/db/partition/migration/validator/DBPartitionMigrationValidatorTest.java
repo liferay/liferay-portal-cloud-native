@@ -19,7 +19,6 @@ import java.io.PrintStream;
 import java.security.Permission;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -71,8 +70,18 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 			boolean defaultPartition, List<Release> releases)
 		throws Exception {
 
+		Long exportedCompanyId = null;
+
+		if (companyInfoIds.size() == 1) {
+			exportedCompanyId = companyInfoIds.get(0);
+		}
+
 		JSONAssert.assertEquals(
-			_getExportedCompanyIdOutput(companyInfoIds), content, false);
+			new JSONObject(
+			).put(
+				"exportedCompanyId", exportedCompanyId
+			).toString(),
+			content, false);
 
 		JSONAssert.assertEquals(
 			new JSONObject(
@@ -117,19 +126,6 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		return Arrays.asList(
 			new Release(Version.parseVersion("14.2.4"), "module1", 0, true),
 			new Release(Version.parseVersion("2.0.1"), "module2", 1, false));
-	}
-
-	private String _getExportedCompanyIdOutput(List<Long> companyInfoIds) {
-		JSONObject jsonObject = new JSONObject();
-
-		if (companyInfoIds.size() > 1) {
-			jsonObject.put("exportedCompanyId", (Collection<?>)null);
-		}
-		else {
-			jsonObject.put("exportedCompanyId", companyInfoIds.get(0));
-		}
-
-		return jsonObject.toString();
 	}
 
 	private void _mockDatabase(
