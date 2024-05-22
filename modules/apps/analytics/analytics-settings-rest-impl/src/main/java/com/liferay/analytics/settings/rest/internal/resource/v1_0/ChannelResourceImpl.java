@@ -239,7 +239,6 @@ public class ChannelResourceImpl extends BaseChannelResourceImpl {
 	@Activate
 	protected void activate() {
 		_analyticsCloudClient = new AnalyticsCloudClient(_http);
-
 		_commerceChannelClassNameIdSupplier =
 			_classNameLocalService.getClassNameIdSupplier(
 				"com.liferay.commerce.product.model.CommerceChannel");

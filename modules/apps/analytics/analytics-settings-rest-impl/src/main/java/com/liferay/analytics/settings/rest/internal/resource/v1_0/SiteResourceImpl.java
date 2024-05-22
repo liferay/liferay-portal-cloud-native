@@ -87,7 +87,6 @@ public class SiteResourceImpl extends BaseSiteResourceImpl {
 	@Activate
 	protected void activate(Map<String, Object> properties) {
 		_analyticsCloudClient = new AnalyticsCloudClient(_http);
-
 		_classNameIdsSupplier = _classNameLocalService.getClassNameIdsSupplier(
 			new String[] {Group.class.getName(), Organization.class.getName()});
 	}

@@ -87,7 +87,6 @@ public class CommerceChannelResourceImpl
 	@Activate
 	protected void activate(Map<String, Object> properties) {
 		_analyticsCloudClient = new AnalyticsCloudClient(_http);
-
 		_classNameIdsSupplier = _classNameLocalService.getClassNameIdsSupplier(
 			new String[] {
 				"com.liferay.commerce.product.model.CommerceChannel"
