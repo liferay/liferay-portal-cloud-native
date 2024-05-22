@@ -498,7 +498,7 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 	public void testGetClassNameIdsSupplier() throws Exception {
 		_assertClassNameIds(
 			classNameIds -> {
-				for (Long classNameId :
+				for (long classNameId :
 						_classNameLocalService.getClassNameIdsSupplier(
 							new String[] {"class.name.test"}
 						).get()) {
