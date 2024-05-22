@@ -42,7 +42,6 @@ public class ClassNameLocalServiceImplTest {
 		ReflectionTestUtil.setFieldValue(
 			_classNameLocalServiceImpl, "classNameLocalService",
 			_classNameLocalServiceImpl);
-
 		ReflectionTestUtil.setFieldValue(
 			_classNameLocalServiceImpl, "counterLocalService",
 			Mockito.mock(CounterLocalService.class));
@@ -56,7 +55,7 @@ public class ClassNameLocalServiceImplTest {
 	@Test
 	public void testGetClassNameIdsSupplier() {
 		Assert.assertArrayEquals(
-			new long[] {_CLASS_NAME_ID1, _CLASS_NAME_ID2},
+			new long[] {_CLASS_NAME_ID_1, _CLASS_NAME_ID_2},
 			_classNameLocalServiceImpl.getClassNameIdsSupplier(
 				new String[] {_CLASS_NAME_VALUE1, _CLASS_NAME_VALUE2}
 			).get());
@@ -80,7 +79,7 @@ public class ClassNameLocalServiceImplTest {
 	@Test
 	public void testGetClassNameIdSupplier() {
 		Assert.assertEquals(
-			_CLASS_NAME_ID1,
+			_CLASS_NAME_ID_1,
 			_classNameLocalServiceImpl.getClassNameIdSupplier(
 				_CLASS_NAME_VALUE1
 			).get());
@@ -101,7 +100,7 @@ public class ClassNameLocalServiceImplTest {
 			});
 	}
 
-	private static ClassName _getMockedClassName(
+	private static ClassName _mockClassName(
 		long classNameId, String value) {
 
 		ClassName className = Mockito.mock(ClassName.class);
@@ -125,8 +124,8 @@ public class ClassNameLocalServiceImplTest {
 			ClassNamePersistence.class, Answers.RETURNS_MOCKS);
 
 		List<ClassName> classNames = Arrays.asList(
-			_getMockedClassName(_CLASS_NAME_ID1, _CLASS_NAME_VALUE1),
-			_getMockedClassName(_CLASS_NAME_ID2, _CLASS_NAME_VALUE2));
+			_mockClassName(_CLASS_NAME_ID_1, _CLASS_NAME_VALUE1),
+			_mockClassName(_CLASS_NAME_ID_2, _CLASS_NAME_VALUE2));
 
 		Mockito.when(
 			_classNamePersistence.findAll()
@@ -140,10 +139,10 @@ public class ClassNameLocalServiceImplTest {
 	}
 
 	private static void _mockModelHintsUtil() {
-		MockedStatic<ModelHintsUtil> modelHintsUtilMockedStatic =
+		MockedStatic<ModelHintsUtil> mockedStatic =
 			Mockito.mockStatic(ModelHintsUtil.class);
 
-		modelHintsUtilMockedStatic.when(
+		mockedStatic.when(
 			ModelHintsUtil::getModels
 		).thenReturn(
 			Collections.emptyList()
@@ -168,9 +167,9 @@ public class ClassNameLocalServiceImplTest {
 		);
 	}
 
-	private static final Long _CLASS_NAME_ID1 = 1L;
+	private static final Long _CLASS_NAME_ID_1 = 1L;
 
-	private static final Long _CLASS_NAME_ID2 = 2L;
+	private static final Long _CLASS_NAME_ID_2 = 2L;
 
 	private static final String _CLASS_NAME_VALUE1 = "com.liferay.test1";
 
