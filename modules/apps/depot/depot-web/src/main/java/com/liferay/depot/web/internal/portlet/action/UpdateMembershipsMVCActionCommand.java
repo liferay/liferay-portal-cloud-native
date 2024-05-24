@@ -71,7 +71,7 @@ public class UpdateMembershipsMVCActionCommand extends BaseMVCActionCommand {
 
 			birthdayCal.setTime(user.getBirthday());
 
-			_validateGroups(actionRequest);
+			_validateGroupIds(actionRequest);
 
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				User.class.getName(), actionRequest);
@@ -134,7 +134,7 @@ public class UpdateMembershipsMVCActionCommand extends BaseMVCActionCommand {
 		return ArrayUtil.toLongArray(groupIds);
 	}
 
-	private void _validateGroups(ActionRequest actionRequest)
+	private void _validateGroupIds(ActionRequest actionRequest)
 		throws PortalException {
 
 		Set<Long> groupIds = new HashSet<>();
