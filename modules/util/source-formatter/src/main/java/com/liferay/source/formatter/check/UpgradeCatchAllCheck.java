@@ -142,7 +142,8 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 			if (newParameterName.contains(prefix)) {
 				List<Integer> indexes = new ArrayList<>();
 
-				Matcher matcher = _parameterPattern.matcher(newParameterName);
+				Matcher matcher = _parameterNamePattern.matcher(
+					newParameterName);
 
 				while (matcher.find()) {
 					int index = GetterUtil.getInteger(matcher.group(1));
@@ -652,7 +653,7 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 
 	private static final String _CONSTRUCTOR_REGEX = "(:?[A-Z][a-z]+)+\\(.*\\)";
 
-	private static final Pattern _parameterPattern = Pattern.compile(
+	private static final Pattern _parameterNamePattern = Pattern.compile(
 		"\\w+#(\\d+)#");
 	private static boolean _testMode;
 
