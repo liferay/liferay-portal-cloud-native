@@ -156,6 +156,7 @@ SearchContainer<CommerceOrderItem> commerceOrderItemSearchContainer = commerceCa
 	</aui:button-row>
 
 	<%@ include file="/cart_total/request_quote.jspf" %>
+
 	<%@ include file="/common/transition.jspf" %>
 
 	<liferay-frontend:component
