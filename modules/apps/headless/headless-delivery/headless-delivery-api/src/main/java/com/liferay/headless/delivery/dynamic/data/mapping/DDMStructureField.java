@@ -86,25 +86,26 @@ public class DDMStructureField {
 			DDMStructureLocalServiceUtil.fetchDDMStructure(
 				GetterUtil.getLong(_ddmStructureId));
 
-		if (ddmStructure != null) {
-			try {
-				DDMFormField ddmFormField =
-					ddmStructure.getDDMFormFieldByFieldReference(
-						_fieldReference);
+		if (ddmStructure == null) {
+			return ddmStructureNestedTypeSortableFieldName;
+		}
 
-				if ((ddmFormField != null) &&
-					Objects.equals(
-						ddmFormField.getDataType(), FieldConstants.STRING)) {
+		try {
+			DDMFormField ddmFormField =
+				ddmStructure.getDDMFormFieldByFieldReference(_fieldReference);
 
-					ddmStructureNestedTypeSortableFieldName =
-						ddmStructureNestedTypeSortableFieldName +
-							".keyword_lowercase";
-				}
+			if ((ddmFormField != null) &&
+				Objects.equals(
+					ddmFormField.getDataType(), FieldConstants.STRING)) {
+
+				ddmStructureNestedTypeSortableFieldName =
+					ddmStructureNestedTypeSortableFieldName +
+						".keyword_lowercase";
 			}
-			catch (Exception exception) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(exception);
-				}
+		}
+		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception);
 			}
 		}
 
