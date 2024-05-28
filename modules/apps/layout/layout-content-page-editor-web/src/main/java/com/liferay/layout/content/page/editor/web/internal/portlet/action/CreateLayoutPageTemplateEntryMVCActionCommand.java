@@ -115,7 +115,7 @@ public class CreateLayoutPageTemplateEntryMVCActionCommand
 				createLayoutPageTemplateEntryFromLayout(
 					segmentsExperienceId, sourceLayout,
 					_getUniqueName(
-						layoutPageTemplateCollectionId, sourceLayout,
+						sourceLayout, layoutPageTemplateCollectionId,
 						themeDisplay.getLocale()),
 					layoutPageTemplateCollectionId, serviceContext);
 
