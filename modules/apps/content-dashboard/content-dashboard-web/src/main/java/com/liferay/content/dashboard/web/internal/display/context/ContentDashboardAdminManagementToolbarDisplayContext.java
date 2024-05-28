@@ -121,13 +121,13 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 				"status", WorkflowConstants.STATUS_ANY
 			);
 
+		HttpServletRequest httpServletRequest =
+			_liferayPortletRequest.getHttpServletRequest();
+
 		List<ContentDashboardItemFilterProvider>
 			contentDashboardItemFilterProviders =
 				_contentDashboardItemFilterProviderRegistry.
 					getContentDashboardItemFilterProviders();
-
-		HttpServletRequest httpServletRequest =
-			_liferayPortletRequest.getHttpServletRequest();
 
 		try {
 			for (ContentDashboardItemFilterProvider
