@@ -202,12 +202,9 @@ public class FileSizeContentDashboardItemFilterProviderTest {
 
 		themeDisplay.setCompany(
 			_companyLocalService.fetchCompany(TestPropsValues.getCompanyId()));
-
 		themeDisplay.setLayout(
 			LayoutTestUtil.addTypePortletLayout(_group.getGroupId()));
-
 		themeDisplay.setLocale(LocaleUtil.getDefault());
-
 		themeDisplay.setPermissionChecker(
 			PermissionCheckerFactoryUtil.create(TestPropsValues.getUser()));
 		themeDisplay.setRequest(httpServletRequest);
