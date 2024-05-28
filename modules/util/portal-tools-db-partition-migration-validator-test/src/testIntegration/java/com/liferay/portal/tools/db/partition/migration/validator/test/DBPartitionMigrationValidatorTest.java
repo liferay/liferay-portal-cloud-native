@@ -108,8 +108,7 @@ public class DBPartitionMigrationValidatorTest extends BaseDBPartitionTestCase {
 		};
 
 		_testValidate(
-			() -> {
-			},
+			sourceFileName, targetFilePath,
 			runtimeException -> {
 				String string = _outByteArrayOutputStream.toString();
 
@@ -117,7 +116,8 @@ public class DBPartitionMigrationValidatorTest extends BaseDBPartitionTestCase {
 					Assert.assertTrue(string.contains(message));
 				}
 			},
-			sourceFileName, targetFilePath);
+			() -> {
+			});
 	}
 
 	@Test
@@ -133,6 +133,9 @@ public class DBPartitionMigrationValidatorTest extends BaseDBPartitionTestCase {
 		Assert.assertEquals(Arrays.toString(files), 2, files.length);
 
 		_testValidate(
+			sourceFileName, targetFileName,
+			runtimeException -> Assert.assertEquals(
+				"0", runtimeException.getMessage()),
 			() -> {
 				Assert.assertTrue(
 					_outByteArrayOutputStream.toString(
@@ -140,10 +143,7 @@ public class DBPartitionMigrationValidatorTest extends BaseDBPartitionTestCase {
 				Assert.assertTrue(
 					_errByteArrayOutputStream.toString(
 					).isEmpty());
-			},
-			runtimeException -> Assert.assertEquals(
-				"0", runtimeException.getMessage()),
-			sourceFileName, targetFileName);
+			});
 	}
 
 	private static void _deleteCompany() throws Exception {
@@ -167,9 +167,9 @@ public class DBPartitionMigrationValidatorTest extends BaseDBPartitionTestCase {
 	}
 
 	private void _testValidate(
-			UnsafeRunnable<Exception> unsafeRunnable,
+			String sourceFileName, String targetFileName,
 			UnsafeConsumer<RuntimeException, Exception> unsafeConsumer,
-			String sourceFileName, String targetFileName)
+			UnsafeRunnable<Exception> unsafeRunnable)
 		throws Exception {
 
 		try {
