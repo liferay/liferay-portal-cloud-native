@@ -115,9 +115,9 @@ public class MarketplaceCommandLineRunner implements CommandLineRunner {
 	}
 
 	private void _processExpiredTrials() throws Exception {
-		Page<Order> ordersPage = _getOrdersPage(_ORDER_STATUS_COMPLETED);
+		Page<Order> page = _getOrdersPage(_ORDER_STATUS_COMPLETED);
 
-		for (Order order : ordersPage.getItems()) {
+		for (Order order : page.getItems()) {
 			if (ZonedDateTime.parse(
 					order.getCustomFields(
 					).get(
@@ -131,9 +131,7 @@ public class MarketplaceCommandLineRunner implements CommandLineRunner {
 					_deleteTrial(order.getId());
 
 					if (_log.isInfoEnabled()) {
-						_log.info(
-							"Deleted expired trial for order: " +
-								order.getId());
+						_log.info("Processed expired order " + order.getId());
 					}
 				}
 				catch (Exception exception) {
@@ -144,18 +142,20 @@ public class MarketplaceCommandLineRunner implements CommandLineRunner {
 	}
 
 	private void _processOnHoldTrials() throws Exception {
-		if (!_getAvailabilityJSONObject().getBoolean("available")) {
+		JSONObject availabilityJSONObject = _getAvailabilityJSONObject();
+
+		if (!availabilityJSONObject.getBoolean("available")) {
 			return;
 		}
 
-		Page<Order> ordersPage = _getOrdersPage(_ORDER_STATUS_ON_HOLD);
+		Page<Order> page = _getOrdersPage(_ORDER_STATUS_ON_HOLD);
 
-		for (Order order : ordersPage.getItems()) {
+		for (Order order : page.getItems()) {
 			try {
 				_postTrial(order);
 
 				if (_log.isInfoEnabled()) {
-					_log.info("Trial process for order: " + order.getId());
+					_log.info("Processed on hold order " + order.getId());
 				}
 			}
 			catch (Exception exception) {
