@@ -135,6 +135,7 @@ public class Testray1TestrayBuild extends TestrayBuild {
 		}
 
 		JSONObject jsonObject = getJSONObject();
+
 		TestrayProject testrayProject = getTestrayProject();
 
 		_testrayProductVersion = testrayProject.getTestrayProductVersionByID(
