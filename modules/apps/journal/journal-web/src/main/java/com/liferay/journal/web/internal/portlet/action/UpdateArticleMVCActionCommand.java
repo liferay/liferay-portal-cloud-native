@@ -715,7 +715,7 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private String _getSaveAndContinueRedirect(
-		ActionRequest actionRequest, String actionName, JournalArticle article,
+		String actionName, ActionRequest actionRequest, JournalArticle article,
 		String redirect) {
 
 		return PortletURLBuilder.create(
@@ -823,7 +823,7 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 			(workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT)) {
 
 			redirect = _getSaveAndContinueRedirect(
-				actionRequest, actionName, article, redirect);
+				actionName, actionRequest, article, redirect);
 		}
 		else {
 			redirect = _portal.escapeRedirect(redirect);
