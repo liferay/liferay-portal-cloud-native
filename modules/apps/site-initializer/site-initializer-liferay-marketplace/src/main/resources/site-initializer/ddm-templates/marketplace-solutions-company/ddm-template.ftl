@@ -41,6 +41,7 @@
 
 	catalogName = product.catalogName
 	productImage = product.images![]
+
 	solutionHeaderImages = productImage?filter(image -> image.tags?seq_contains("solution-profile-app-icon"))
 />
 
