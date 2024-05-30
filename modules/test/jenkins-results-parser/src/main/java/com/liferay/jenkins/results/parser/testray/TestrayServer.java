@@ -283,8 +283,8 @@ public class TestrayServer {
 
 			StringBuilder sb = new StringBuilder();
 
-			sb.append("{ ");
-			sb.append("c { ");
+			sb.append("{");
+			sb.append("c {");
 
 			sb.append(entityName);
 			sb.append(" (page: ");
@@ -298,22 +298,14 @@ public class TestrayServer {
 				sb.append("\"");
 			}
 
-			sb.append(") { ");
-
-			sb.append("items { ");
+			sb.append(") {items {");
 
 			for (String entityField : entityFields) {
 				sb.append(entityField);
 				sb.append(" ");
 			}
 
-			sb.append("} ");
-			sb.append("page ");
-			sb.append("pageSize ");
-			sb.append("lastPage ");
-			sb.append("} ");
-			sb.append("} ");
-			sb.append("}");
+			sb.append("} page pageSize lastPage}}}");
 
 			JSONObject requestJSONObject = new JSONObject();
 
