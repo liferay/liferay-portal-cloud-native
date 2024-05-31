@@ -240,8 +240,8 @@ public class CompanyIndexFactoryHelper {
 	}
 
 	private void _loadDefaultIndexSettings(
-		SettingsBuilder settingsBuilder,
-		LiferayDocumentTypeFactory liferayDocumentTypeFactory) {
+		LiferayDocumentTypeFactory liferayDocumentTypeFactory,
+		SettingsBuilder settingsBuilder) {
 
 		liferayDocumentTypeFactory.loadDefaultAnalyzers(settingsBuilder);
 
@@ -398,7 +398,7 @@ public class CompanyIndexFactoryHelper {
 		SettingsBuilder settingsBuilder = new SettingsBuilder(
 			Settings.builder());
 
-		_loadDefaultIndexSettings(settingsBuilder, liferayDocumentTypeFactory);
+		_loadDefaultIndexSettings(liferayDocumentTypeFactory, settingsBuilder);
 
 		_loadTestModeIndexSettings(settingsBuilder);
 
