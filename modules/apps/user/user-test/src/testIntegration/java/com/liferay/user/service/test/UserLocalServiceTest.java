@@ -255,7 +255,7 @@ public class UserLocalServiceTest {
 	}
 
 	@Test
-	public void testFailureCountResetWhenResetFailureTimeIsOver()
+	public void testUnlockoutUserWithStaleLastFailedLoginDate()
 		throws Exception {
 
 		User user = UserTestUtil.addUser();
@@ -580,7 +580,7 @@ public class UserLocalServiceTest {
 	}
 
 	@Test
-	public void testLockoutUserResetWhenLockoutResetTimeIsOver()
+	public void testUnlockoutUserWithStaleLockoutDate()
 		throws Exception {
 
 		User user = UserTestUtil.addUser();
