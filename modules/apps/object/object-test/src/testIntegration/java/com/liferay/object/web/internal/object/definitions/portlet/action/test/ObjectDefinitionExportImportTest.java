@@ -85,8 +85,7 @@ public class ObjectDefinitionExportImportTest extends BaseExportImportTestCase {
 			publishedObjectDefinitionJSON, publishedObjectDefinitionJSON,
 			externalReferenceCode, name);
 
-		// Once published, cannot update a published object definition to
-		// draft status
+		// Published object definition cannot be a draft
 
 		testFailedImportJSON(
 			jsonFactory.createJSONObject(
@@ -130,7 +129,7 @@ public class ObjectDefinitionExportImportTest extends BaseExportImportTestCase {
 			objectDefinitionResource.getObjectDefinitionByExternalReferenceCode(
 				"TESTOBJECTDEFINITION2"));
 
-		// Root descendant node object definition
+		// Root node object definition, override descendant
 
 		JSONObject objectDefinition2JSONObject = jsonFactory.createJSONObject(
 			defaultObjectDefinitionJSON

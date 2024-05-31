@@ -42,7 +42,7 @@ public class BoundObjectDefinitionsExportImportTest
 	@Test
 	public void testExportImportBoundObjectDefinitions() throws Exception {
 
-		// Invalid bound object definitions name
+		// Draft
 
 		testFailedImportJSON(
 			_getBoundObjectDefinitionsJSONArray(
@@ -57,8 +57,6 @@ public class BoundObjectDefinitionsExportImportTest
 			).toString(),
 			read("test-bound-object-definitions.name-error-message.json"), null,
 			null);
-
-		// Draft bound object definitions
 
 		JSONArray boundObjectDefinitionsJSONArray =
 			_getBoundObjectDefinitionsJSONArray(
@@ -103,7 +101,7 @@ public class BoundObjectDefinitionsExportImportTest
 			).toString(),
 			null, "TestObjectDefinition1");
 
-		// Published bound object definitions
+		// Update draft to approved
 
 		testExportImportJSON(
 			_getBoundObjectDefinitionsJSONArray(

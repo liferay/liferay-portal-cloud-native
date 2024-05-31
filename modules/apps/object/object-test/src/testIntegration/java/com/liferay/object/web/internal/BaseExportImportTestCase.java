@@ -207,6 +207,9 @@ public abstract class BaseExportImportTestCase {
 			String externalReferenceCode, String json, String name)
 		throws Exception {
 
+		MockLiferayPortletActionResponse mockLiferayPortletActionResponse =
+			new MockLiferayPortletActionResponse();
+
 		MVCActionCommand mvcActionCommand = getMVCActionCommand();
 
 		MockMultipartHttpServletRequest mockMultipartHttpServletRequest =
@@ -282,9 +285,6 @@ public abstract class BaseExportImportTestCase {
 
 					return method.invoke(_portal, args);
 				}));
-
-		MockLiferayPortletActionResponse mockLiferayPortletActionResponse =
-			new MockLiferayPortletActionResponse();
 
 		mvcActionCommand.processAction(
 			mockLiferayPortletActionRequest, mockLiferayPortletActionResponse);
