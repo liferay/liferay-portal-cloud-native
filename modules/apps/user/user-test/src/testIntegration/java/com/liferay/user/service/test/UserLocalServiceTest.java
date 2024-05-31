@@ -255,34 +255,6 @@ public class UserLocalServiceTest {
 	}
 
 	@Test
-	public void testUnlockoutUserWithStaleLastFailedLoginDate()
-		throws Exception {
-
-		User user = UserTestUtil.addUser();
-
-		user.setLastFailedLoginDate(
-			DateUtil.newDate(System.currentTimeMillis() - 5000L));
-		user.setFailedLoginAttempts(3);
-
-		user = _userLocalService.updateUser(user);
-
-		PasswordPolicy passwordPolicy = user.getPasswordPolicy();
-
-		passwordPolicy.setLockout(false);
-		passwordPolicy.setResetFailureCount(3L);
-
-		_passwordPolicyLocalService.updatePasswordPolicy(passwordPolicy);
-
-		_userLocalService.authenticateByEmailAddress(
-			user.getCompanyId(), user.getEmailAddress(),
-			RandomTestUtil.randomString(), null, null, null);
-
-		user = _userLocalService.fetchUser(user.getUserId());
-
-		Assert.assertEquals(1, user.getFailedLoginAttempts());
-	}
-
-	@Test
 	public void testGetCompanyUsers() throws Exception {
 		_company = CompanyTestUtil.addCompany();
 
@@ -580,35 +552,6 @@ public class UserLocalServiceTest {
 	}
 
 	@Test
-	public void testUnlockoutUserWithStaleLockoutDate()
-		throws Exception {
-
-		User user = UserTestUtil.addUser();
-
-		user.setLockout(true);
-		user.setLockoutDate(
-			DateUtil.newDate(System.currentTimeMillis() - 5000L));
-
-		user = _userLocalService.updateUser(user);
-
-		PasswordPolicy passwordPolicy = user.getPasswordPolicy();
-
-		passwordPolicy.setLockout(true);
-		passwordPolicy.setMaxFailure(0);
-		passwordPolicy.setLockoutDuration(3L);
-
-		_passwordPolicyLocalService.updatePasswordPolicy(passwordPolicy);
-
-		_userLocalService.authenticateByEmailAddress(
-			user.getCompanyId(), user.getEmailAddress(),
-			RandomTestUtil.randomString(), null, null, null);
-
-		user = _userLocalService.fetchUser(user.getUserId());
-
-		Assert.assertFalse(user.isLockout());
-	}
-
-	@Test
 	public void testPasswordHistory() throws Exception {
 		User user = UserTestUtil.addUser();
 
@@ -891,6 +834,61 @@ public class UserLocalServiceTest {
 		user = _userLocalService.getUser(user.getUserId());
 
 		Assert.assertTrue(ArrayUtil.contains(user.getRoleIds(), roleId));
+	}
+
+	@Test
+	public void testUnlockoutUserWithStaleLastFailedLoginDate()
+		throws Exception {
+
+		User user = UserTestUtil.addUser();
+
+		user.setLastFailedLoginDate(
+			DateUtil.newDate(System.currentTimeMillis() - 5000L));
+		user.setFailedLoginAttempts(3);
+
+		user = _userLocalService.updateUser(user);
+
+		PasswordPolicy passwordPolicy = user.getPasswordPolicy();
+
+		passwordPolicy.setLockout(false);
+		passwordPolicy.setResetFailureCount(3L);
+
+		_passwordPolicyLocalService.updatePasswordPolicy(passwordPolicy);
+
+		_userLocalService.authenticateByEmailAddress(
+			user.getCompanyId(), user.getEmailAddress(),
+			RandomTestUtil.randomString(), null, null, null);
+
+		user = _userLocalService.fetchUser(user.getUserId());
+
+		Assert.assertEquals(1, user.getFailedLoginAttempts());
+	}
+
+	@Test
+	public void testUnlockoutUserWithStaleLockoutDate() throws Exception {
+		User user = UserTestUtil.addUser();
+
+		user.setLockout(true);
+		user.setLockoutDate(
+			DateUtil.newDate(System.currentTimeMillis() - 5000L));
+
+		user = _userLocalService.updateUser(user);
+
+		PasswordPolicy passwordPolicy = user.getPasswordPolicy();
+
+		passwordPolicy.setLockout(true);
+		passwordPolicy.setMaxFailure(0);
+		passwordPolicy.setLockoutDuration(3L);
+
+		_passwordPolicyLocalService.updatePasswordPolicy(passwordPolicy);
+
+		_userLocalService.authenticateByEmailAddress(
+			user.getCompanyId(), user.getEmailAddress(),
+			RandomTestUtil.randomString(), null, null, null);
+
+		user = _userLocalService.fetchUser(user.getUserId());
+
+		Assert.assertFalse(user.isLockout());
 	}
 
 	@Test
