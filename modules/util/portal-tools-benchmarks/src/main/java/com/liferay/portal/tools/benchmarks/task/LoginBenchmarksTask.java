@@ -49,12 +49,12 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 	}
 
 	private void _assertRedirect(
-			String expectedRedirect, HttpResponse httpResponse)
+			String redirect, HttpResponse httpResponse)
 		throws Exception {
 
 		Assert.assertEquals(httpResponse.getStatusCode(), 302);
 
-		URL url = _creatURL(expectedRedirect);
+		URL url = _creatURL(redirect);
 
 		Assert.assertEquals(url.toString(), httpResponse.getRedirect());
 	}
