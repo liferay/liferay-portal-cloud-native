@@ -105,7 +105,7 @@ public class LiferayOAuth2ResourceServerEnableWebSecurityTest {
 	}
 
 	@Test
-	public void testClientIdExistsFromApplicationRoute() throws Exception {
+	public void testGetJWTWithClientIdFromERC() throws Exception {
 		try (CloseableMockServerClient closeableMockServerClient =
 				new CloseableMockServerClient("localhost", 8181)) {
 
@@ -122,7 +122,7 @@ public class LiferayOAuth2ResourceServerEnableWebSecurityTest {
 			).respond(
 				HttpResponse.response(
 				).withBody(
-					"{ \"client_id\": \"987654321\" }"
+					"{\"client_id\": \"987654321\"}"
 				).withHeader(
 					new Header("Content-Type", "application/json")
 				).withStatusCode(
@@ -130,29 +130,24 @@ public class LiferayOAuth2ResourceServerEnableWebSecurityTest {
 				)
 			);
 
-			String jwt = JWTAssertionUtil.getJWTWithClientId("987654321");
-
-			_jwtDecoder.decode(jwt);
+			_jwtDecoder.decode(
+				JWTAssertionUtil.getJWTWithClientId("987654321"));
 		}
 	}
 
 	@Test
-	public void testSingleClientIdExistsFromProperties() throws Exception {
-		String jwt = JWTAssertionUtil.getJWTWithClientId("123456789");
-
-		_jwtDecoder.decode(jwt);
+	public void testGetJWTWithClientIdInProperties() throws Exception {
+		_jwtDecoder.decode(JWTAssertionUtil.getJWTWithClientId("123456789"));
 	}
 
 	@Test
-	public void testSingleClientIdNotExistsFromProperties() throws Exception {
+	public void testGetJWTWithClientIdNotInProperties() throws Exception {
 		expectedException.expect(JwtValidationException.class);
 		expectedException.expectMessage(
 			"An error occurred while attempting to decode the Jwt: The " +
 				"client_id does not match");
 
-		String jwt = JWTAssertionUtil.getJWTWithClientId("987654321");
-
-		_jwtDecoder.decode(jwt);
+		_jwtDecoder.decode(JWTAssertionUtil.getJWTWithClientId("987654321"));
 	}
 
 	@Rule
