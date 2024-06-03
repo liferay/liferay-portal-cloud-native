@@ -32,7 +32,10 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 	}
 
 	public List<ObjectValuePair<String, Long>> execute() throws Exception {
-		HttpResponse httpResponse = _homePage();
+		HttpResponse httpResponse = HttpUtil.doGet(
+			null, _newURL(StringPool.FORWARD_SLASH));
+
+		_assertResult(httpResponse, "Liferay.currentURL");
 
 		return ListUtil.fromArray(
 			new ObjectValuePair<>("homePage", httpResponse.getDuration()),
@@ -91,15 +94,6 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 		}
 
 		return duration;
-	}
-
-	private HttpResponse _homePage() throws Exception {
-		HttpResponse httpResponse = HttpUtil.doGet(
-			null, _newURL(StringPool.FORWARD_SLASH));
-
-		_assertResult(httpResponse, "Liferay.currentURL");
-
-		return httpResponse;
 	}
 
 	private long _login(String csrfToken, String emailAddress, String password)
