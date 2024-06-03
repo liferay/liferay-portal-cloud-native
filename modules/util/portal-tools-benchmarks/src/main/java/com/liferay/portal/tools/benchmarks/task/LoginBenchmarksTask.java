@@ -121,7 +121,12 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 				{_P_P_ID_NAMESPACE + "_password", password},
 				{_P_P_ID_NAMESPACE + "_checkboxNames", "rememberMe"}
 			},
-			_newURL(_URL_LOGIN_POST));
+			_newURL(
+				StringBundler.concat(
+					"/home?p_p_id=", _P_P_ID, "&p_p_lifecycle=1&",
+					"p_p_state=normal&p_p_mode=view&", _P_P_ID_NAMESPACE,
+					"_javax.portlet.action=/login/login&", _P_P_ID_NAMESPACE,
+					"_mvcRenderCommandName=/login/login")));
 
 		_assertRedirect(httpResponse1, "/c");
 
@@ -171,12 +176,6 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 
 	private static final String _P_P_ID_NAMESPACE =
 		StringPool.UNDERLINE + _P_P_ID;
-
-	private static final String _URL_LOGIN_POST = StringBundler.concat(
-		"/home?p_p_id=", _P_P_ID, "&p_p_lifecycle=1&",
-		"p_p_state=normal&p_p_mode=view&", _P_P_ID_NAMESPACE,
-		"_javax.portlet.action=/login/login&", _P_P_ID_NAMESPACE,
-		"_mvcRenderCommandName=/login/login");
 
 	private final String _emailAddress;
 	private final String _hostName;
