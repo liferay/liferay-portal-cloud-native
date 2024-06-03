@@ -48,7 +48,7 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 	}
 
 	private void _assertRedirect(
-			HttpResponse httpResponse, String expectedRedirect)
+			String expectedRedirect, HttpResponse httpResponse)
 		throws Exception {
 
 		if (httpResponse.getStatusCode() != 302) {
@@ -120,11 +120,11 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 					"_javax.portlet.action=/login/login&", _P_P_ID_NAMESPACE,
 					"_mvcRenderCommandName=/login/login")));
 
-		_assertRedirect(httpResponse1, "/c");
+		_assertRedirect("/c", httpResponse1);
 
 		HttpResponse httpResponse2 = HttpUtil.doGet(csrfToken, _newURL("/c"));
 
-		_assertRedirect(httpResponse2, StringPool.SLASH);
+		_assertRedirect(StringPool.SLASH, httpResponse2);
 
 		HttpResponse httpResponse3 = HttpUtil.doGet(
 			csrfToken, _newURL(StringPool.SLASH));
@@ -153,7 +153,7 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 			"p_p_state=exclusive&p_p_mode=view&", _P_P_ID_NAMESPACE,
 			"_mvcRenderCommandName=/login/login&saveLastPath=false");
 
-		_assertRedirect(httpResponse1, redirect);
+		_assertRedirect(redirect, httpResponse1);
 
 		HttpResponse httpResponse2 = HttpUtil.doGet(
 			csrfToken, _newURL(redirect));
