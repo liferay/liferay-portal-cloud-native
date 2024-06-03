@@ -48,7 +48,7 @@ public class HttpResponse {
 	}
 
 	public String getRedirect() throws Exception {
-		String location = _getHeader("Location");
+		String location = _getHeaderValue("Location");
 
 		if (location.contains(StringPool.PERCENT)) {
 			location = URLDecoder.decode(location, StringPool.UTF8);
@@ -91,7 +91,7 @@ public class HttpResponse {
 		return sb.toString();
 	}
 
-	private String _getHeader(String name) {
+	private String _getHeaderValue(String name) {
 		List<String> headers = _headers.get(name);
 
 		if (ListUtil.isEmpty(headers)) {
