@@ -69,6 +69,10 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 		}
 	}
 
+	private URL _creatURL(String path) throws Exception {
+		return new URL("http", _hostname, _port, path);
+	}
+
 	private long _getDuration(HttpResponse... httpResponses) {
 		long duration = 0;
 
@@ -122,10 +126,6 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 			null, _creatURL("/c/portal/logout"));
 
 		return httpResponse.getDuration();
-	}
-
-	private URL _creatURL(String path) throws Exception {
-		return new URL("http", _hostname, _port, path);
 	}
 
 	private long _viewLoginPage(String csrfToken) throws Exception {
