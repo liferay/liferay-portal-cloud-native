@@ -35,9 +35,9 @@ public abstract class BaseRegexStringContentTransformer
 				sb = new StringBuffer(content.length());
 			}
 
-			FileEntry fileEntry = getFileEntry(matcher);
-
 			String replacement = matcher.group(0);
+
+			FileEntry fileEntry = getFileEntry(matcher);
 
 			if (isSupported(fileEntry)) {
 				replacement = getReplacement(replacement, fileEntry);
