@@ -161,6 +161,14 @@ public class NewEnvTestRule implements TestRule {
 			arguments.addAll(processJVMArgsLine(jvmArgsLine));
 		}
 
+		RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
+
+		for (String jvmArg : runtimeMXBean.getInputArguments()) {
+			if (jvmArg.startsWith("--add-opens")) {
+				arguments.add(jvmArg);
+			}
+		}
+
 		arguments.add("-Djava.net.preferIPv4Stack=true");
 
 		if (_isJPDAEnabled()) {
@@ -168,6 +176,7 @@ public class NewEnvTestRule implements TestRule {
 			arguments.add("-Djvm.debug=true");
 		}
 
+		arguments.add("-Dnet.bytebuddy.experimental=true");
 		arguments.add("-Dsun.zip.disableMemoryMapping=true");
 
 		String whipAgentLine = System.getProperty("whip.agent");
@@ -190,18 +199,6 @@ public class NewEnvTestRule implements TestRule {
 		if (Boolean.getBoolean("whip.static.instrument")) {
 			arguments.add("-Dwhip.static.instrument=true");
 		}
-
-		RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
-
-		List<String> jvmArgs = runtimeMXBean.getInputArguments();
-
-		for (String jvmArg : jvmArgs) {
-			if (jvmArg.startsWith("--add-opens")) {
-				arguments.add(jvmArg);
-			}
-		}
-
-		arguments.add("-Dnet.bytebuddy.experimental=true");
 
 		return arguments;
 	}
