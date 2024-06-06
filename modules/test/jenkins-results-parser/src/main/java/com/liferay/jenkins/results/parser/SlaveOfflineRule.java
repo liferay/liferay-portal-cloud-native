@@ -134,7 +134,7 @@ public class SlaveOfflineRule {
 					siblingJenkinsSlave.getComputerURL(), "\n");
 
 				String siblingMessage = JenkinsResultsParserUtil.combine(
-					pinnedMessage, "Offline sibling: ", jenkinsSlave.getName(),
+					pinnedMessage, "Offline Sibling: ", jenkinsSlave.getName(),
 					" Reason: ", getName());
 
 				siblingJenkinsSlave.takeSlavesOffline(siblingMessage);
