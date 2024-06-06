@@ -187,6 +187,10 @@ pre[class*='language-'] {
 	border-color: var(--warning);
 }
 
+.code-toolbar > .toolbar {
+	z-index: 2 !important;
+}
+
 .code-toolbar > .toolbar > .toolbar-item > button.copy-to-clipboard-button {
 	background-color: transparent;
 	/* stylelint-disable-next-line function-url-quotes */
@@ -234,6 +238,7 @@ pre[class*='language-'] {
 	max-width: var(--container-max-xl);
 	padding: var(--spacer-4);
 	position: relative;
+	width: 55vw;
 
 	.general-info {
 		background-color: var(--white);
@@ -435,6 +440,10 @@ pre[class*='language-'] {
 					width: 4px;
 				}
 			}
+		}
+
+		ul {
+			width: inherit;
 		}
 	}
 
