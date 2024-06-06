@@ -32,7 +32,7 @@
 					"indexedAsKeyword": false,
 					"indexedLanguageId": "en_US",
 					"label": {
-						"en_US": "Hmac Signature"
+						"en_US": "HMAC Signature"
 					},
 					"localized": false,
 					"name": "hmacSignature",
