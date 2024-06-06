@@ -63,7 +63,7 @@ public class ConsoleService {
 		).baseUrl(
 			_consoleAuthURL
 		).filter(
-			_getRetryFilter()
+			_getRetryExchangeFilterFunction()
 		).build(
 		).post(
 		).uri(
@@ -132,7 +132,7 @@ public class ConsoleService {
 		}
 	}
 
-	private ExchangeFilterFunction _getRetryFilter() {
+	private ExchangeFilterFunction _getRetryExchangeFilterFunction() {
 		return (clientRequest, next) -> next.exchange(
 			clientRequest
 		).retryWhen(
@@ -142,8 +142,7 @@ public class ConsoleService {
 				retrySignal -> {
 					if (_log.isInfoEnabled()) {
 						_log.info(
-							"Retrying... Attempt: " +
-								retrySignal.totalRetries() + 1);
+							"Retry attempt " + retrySignal.totalRetries() + 1);
 					}
 				}
 			)
@@ -157,7 +156,7 @@ public class ConsoleService {
 		).defaultHeader(
 			HttpHeaders.AUTHORIZATION, "Bearer " + getAuthorization()
 		).filter(
-			_getRetryFilter()
+			_getRetryExchangeFilterFunction()
 		).build();
 	}
 

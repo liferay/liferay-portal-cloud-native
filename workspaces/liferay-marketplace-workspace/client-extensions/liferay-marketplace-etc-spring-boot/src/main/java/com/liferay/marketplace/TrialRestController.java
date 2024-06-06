@@ -189,8 +189,8 @@ public class TrialRestController extends BaseRestController {
 			orderId, _ORDER_STATUS_COMPLETED);
 
 		_postNotificationQueueEntry(
-			"TRY-IT-NOW-COMPLETED-ORDER",
 			modelDTOOrderJSONObject.getString("creatorEmailAddress"),
+			"TRY-IT-NOW-COMPLETED-ORDER",
 			new HashMapBuilder<String, Object>().put(
 				"%EMAIL%",
 				modelDTOOrderJSONObject.getString("creatorEmailAddress")
@@ -266,7 +266,7 @@ public class TrialRestController extends BaseRestController {
 	}
 
 	private void _postNotificationQueueEntry(
-			String templateExternalReferenceCode, String emailAddress,
+			String emailAddress, String externalReferenceCode,
 			Map<String, String> map)
 		throws Exception {
 
@@ -288,7 +288,7 @@ public class TrialRestController extends BaseRestController {
 		NotificationTemplate notificationTemplate =
 			notificationTemplateResource.
 				getNotificationTemplateByExternalReferenceCode(
-					templateExternalReferenceCode);
+					externalReferenceCode);
 
 		if (notificationTemplate == null) {
 			return;
@@ -355,8 +355,8 @@ public class TrialRestController extends BaseRestController {
 		if (_log.isInfoEnabled()) {
 			_log.info(
 				StringBundler.concat(
-					"Sent ", templateExternalReferenceCode,
-					" notification to: ", emailAddress));
+					"Sent ", externalReferenceCode, " notification to ",
+					emailAddress));
 		}
 	}
 
