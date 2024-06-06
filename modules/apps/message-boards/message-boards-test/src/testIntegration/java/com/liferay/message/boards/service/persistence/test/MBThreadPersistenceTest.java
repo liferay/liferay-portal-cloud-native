@@ -418,6 +418,7 @@ public class MBThreadPersistenceTest {
 
 		_persistence.filterFindByGroupId(
 			0, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
 		_persistence.filterFindByGroupId(
 			0, QueryUtil.ALL_POS, QueryUtil.ALL_POS, getOrderByComparator());
 	}
