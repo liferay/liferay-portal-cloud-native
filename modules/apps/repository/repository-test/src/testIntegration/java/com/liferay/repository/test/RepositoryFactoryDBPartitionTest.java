@@ -96,11 +96,10 @@ public class RepositoryFactoryDBPartitionTest extends BaseDBPartitionTestCase {
 			long companyId, long groupId, long repositoryId)
 		throws Exception {
 
-		User user = _userLocalService.getGuestUser(companyId);
-
-		String name = RandomTestUtil.randomString();
-
 		_counterLocalService.reset(Counter.class.getName(), groupId - 1);
+
+		User user = _userLocalService.getGuestUser(companyId);
+		String name = RandomTestUtil.randomString();
 
 		Group group = _groupLocalService.addGroup(
 			user.getUserId(), GroupConstants.DEFAULT_PARENT_GROUP_ID, null, 0,
