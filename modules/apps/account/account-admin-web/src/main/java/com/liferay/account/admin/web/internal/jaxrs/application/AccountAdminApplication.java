@@ -80,8 +80,13 @@ public class AccountAdminApplication extends Application {
 
 		String errorMessage = null;
 
-		if (!accountEntryEmailAddressValidator.isValidEmailAddressFormat(
+		if (accountEntryEmailAddressValidator.isEmailAddressAlreadyUsed(
 				emailAddress)) {
+
+			errorMessage = "x-cannot-be-used-to-invite-a-new-user";
+		}
+		else if (!accountEntryEmailAddressValidator.isValidEmailAddressFormat(
+					emailAddress)) {
 
 			errorMessage = "x-is-not-a-valid-email-address";
 		}
@@ -89,11 +94,6 @@ public class AccountAdminApplication extends Application {
 					emailAddress)) {
 
 			errorMessage = "x-has-an-invalid-email-domain";
-		}
-		else if (accountEntryEmailAddressValidator.isEmailAddressAlreadyUsed(
-					emailAddress)) {
-
-			errorMessage = "x-cannot-be-used-to-invite-a-new-user";
 		}
 
 		if (Validator.isNotNull(errorMessage)) {
