@@ -119,16 +119,16 @@ public class FileEntryContentDashboardItemTest {
 			versionableContentDashboardItem =
 				_getVersionableContentDashboardItem(1);
 
-		List<ContentDashboardItemVersion> contentDashboardItemVersionList =
+		List<ContentDashboardItemVersion> contentDashboardItemVersions =
 			versionableContentDashboardItem.getAllContentDashboardItemVersions(
 				_getMockHttpServletRequest());
 
 		Assert.assertEquals(
-			contentDashboardItemVersionList.toString(), 1,
-			contentDashboardItemVersionList.size());
+			contentDashboardItemVersions.toString(), 1,
+			contentDashboardItemVersions.size());
 
 		ContentDashboardItemVersion contentDashboardItemVersion =
-			contentDashboardItemVersionList.get(0);
+			contentDashboardItemVersions.get(0);
 
 		Assert.assertEquals(
 			LanguageUtil.get(LocaleUtil.getDefault(), "approved"),
@@ -145,16 +145,16 @@ public class FileEntryContentDashboardItemTest {
 			versionableContentDashboardItem =
 				_getVersionableContentDashboardItem(2);
 
-		List<ContentDashboardItemVersion> contentDashboardItemVersionList =
+		List<ContentDashboardItemVersion> contentDashboardItemVersions =
 			versionableContentDashboardItem.getAllContentDashboardItemVersions(
 				_getMockHttpServletRequest());
 
 		Assert.assertEquals(
-			contentDashboardItemVersionList.toString(), 2,
-			contentDashboardItemVersionList.size());
+			contentDashboardItemVersions.toString(), 2,
+			contentDashboardItemVersions.size());
 
 		ContentDashboardItemVersion contentDashboardItemVersion =
-			contentDashboardItemVersionList.get(0);
+			contentDashboardItemVersions.get(0);
 
 		Assert.assertEquals(
 			LanguageUtil.get(LocaleUtil.getDefault(), "approved"),
@@ -359,16 +359,16 @@ public class FileEntryContentDashboardItemTest {
 			versionableContentDashboardItem =
 				_getVersionableContentDashboardItem(2);
 
-		List<ContentDashboardItemVersion> contentDashboardItemVersionList =
+		List<ContentDashboardItemVersion> contentDashboardItemVersions =
 			versionableContentDashboardItem.
 				getLatestContentDashboardItemVersions(LocaleUtil.getDefault());
 
 		Assert.assertEquals(
-			contentDashboardItemVersionList.toString(), 1,
-			contentDashboardItemVersionList.size());
+			contentDashboardItemVersions.toString(), 1,
+			contentDashboardItemVersions.size());
 
 		ContentDashboardItemVersion contentDashboardItemVersion =
-			contentDashboardItemVersionList.get(0);
+			contentDashboardItemVersions.get(0);
 
 		Assert.assertEquals(
 			LanguageUtil.get(LocaleUtil.getDefault(), "approved"),
@@ -398,16 +398,16 @@ public class FileEntryContentDashboardItemTest {
 					_contentDashboardItemFactory.create(
 						fileEntry.getFileEntryId());
 
-		List<ContentDashboardItemVersion> contentDashboardItemVersionList =
+		List<ContentDashboardItemVersion> contentDashboardItemVersions =
 			versionableContentDashboardItem.
 				getLatestContentDashboardItemVersions(LocaleUtil.getDefault());
 
 		Assert.assertEquals(
-			contentDashboardItemVersionList.toString(), 2,
-			contentDashboardItemVersionList.size());
+			contentDashboardItemVersions.toString(), 2,
+			contentDashboardItemVersions.size());
 
 		ContentDashboardItemVersion contentDashboardItemVersion =
-			contentDashboardItemVersionList.get(0);
+			contentDashboardItemVersions.get(0);
 
 		Assert.assertEquals(
 			LanguageUtil.get(LocaleUtil.getDefault(), "approved"),
@@ -415,7 +415,7 @@ public class FileEntryContentDashboardItemTest {
 		Assert.assertEquals("1.1", contentDashboardItemVersion.getVersion());
 		Assert.assertEquals("success", contentDashboardItemVersion.getStyle());
 
-		contentDashboardItemVersion = contentDashboardItemVersionList.get(1);
+		contentDashboardItemVersion = contentDashboardItemVersions.get(1);
 
 		Assert.assertEquals(
 			LanguageUtil.get(LocaleUtil.getDefault(), "expired"),
