@@ -3457,7 +3457,7 @@ public class ObjectEntryLocalServiceTest {
 	}
 
 	@Test
-	public void testUpdateUserSystemObjectEntryWithDDMObjectValidationRule()
+	public void testUpdateSystemObjectEntryWithDDMObjectValidationRule()
 		throws Exception {
 
 		User user = UserTestUtil.addUser();
@@ -3473,8 +3473,7 @@ public class ObjectEntryLocalServiceTest {
 				StringPool.BLANK, TestPropsValues.getUserId(),
 				userObjectDefinition.getObjectDefinitionId(), true,
 				ObjectValidationRuleConstants.ENGINE_TYPE_DDM,
-				LocalizedMapUtil.getLocalizedMap(
-					"Old value must be " + emailAddress),
+				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
 				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
 				ObjectValidationRuleConstants.OUTPUT_TYPE_FULL_VALIDATION,
 				"oldValue(\"emailAddress\") == \"" + emailAddress + "\"", false,
@@ -3518,7 +3517,7 @@ public class ObjectEntryLocalServiceTest {
 	}
 
 	@Test
-	public void testUpdateUserSystemObjectEntryWithJavaDelegateObjectValidationRule()
+	public void testUpdateSystemObjectEntryWithJavaDelegateObjectValidationRule()
 		throws Exception {
 
 		Consumer<Map<String, Object>> consumer = inputObjects -> {
