@@ -54,7 +54,6 @@ public class AssetListEntrySegmentsEntryRelUpgradeProcessTest
 
 		_assetListEntry = AssetListTestUtil.addAssetListEntry(
 			_group.getGroupId());
-
 		_segmentsEntry = SegmentsTestUtil.addSegmentsEntry(_group.getGroupId());
 	}
 
