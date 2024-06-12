@@ -52,25 +52,21 @@ public class CommerceOrderAddressNotificationTermTest {
 
 	@Before
 	public void setUp() throws Exception {
-		long groupId = TestPropsValues.getGroupId();
-
-		long userId = TestPropsValues.getUserId();
-
 		CommerceCurrency commerceCurrency =
 			CommerceCurrencyTestUtil.addCommerceCurrency(
 				TestPropsValues.getCompanyId());
 
 		CommerceChannel commerceChannel = CommerceTestUtil.addCommerceChannel(
-			groupId, commerceCurrency.getCode());
+			TestPropsValues.getGroupId(), commerceCurrency.getCode());
 
 		_commerceOrder = CommerceTestUtil.addB2CCommerceOrder(
-			userId, commerceChannel.getGroupId(), commerceCurrency);
+			TestPropsValues.getUserId(), commerceChannel.getGroupId(), commerceCurrency);
 
 		CommerceAddress billingAddress =
-			CommerceTestUtil.addUserCommerceAddress(groupId, userId);
+			CommerceTestUtil.addUserCommerceAddress(TestPropsValues.getGroupId(), TestPropsValues.getUserId());
 
 		CommerceAddress shippingAddress =
-			CommerceTestUtil.addUserCommerceAddress(groupId, userId);
+			CommerceTestUtil.addUserCommerceAddress(TestPropsValues.getGroupId(), TestPropsValues.getUserId());
 
 		_commerceOrder.setBillingAddressId(
 			billingAddress.getCommerceAddressId());
