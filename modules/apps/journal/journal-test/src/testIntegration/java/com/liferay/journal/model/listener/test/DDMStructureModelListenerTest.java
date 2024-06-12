@@ -301,8 +301,6 @@ public class DDMStructureModelListenerTest {
 	private void _assertDataDefinitionStructureKeyChanged(
 		DataDefinition actualDataDefinition, String expectedDataDefinitionKey) {
 
-		Assert.assertNotNull(actualDataDefinition);
-
 		Assert.assertEquals(
 			expectedDataDefinitionKey,
 			actualDataDefinition.getDataDefinitionKey());
