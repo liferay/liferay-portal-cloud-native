@@ -37,10 +37,7 @@ public class SampleCommandLineRunner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		// Get a token from the auto-provisioned
-		// liferay-sample-etc-cron-oauth-application-headless-server
-		// and call the headless API of the DXP Main Domain server to count
-		// the number of message board threads
+		// Call the main Liferay that this client extension belongs to
 
 		try {
 			_countMessageBoardThreads(
@@ -51,9 +48,7 @@ public class SampleCommandLineRunner implements CommandLineRunner {
 			_log.error(exception);
 		}
 
-		// Get a token from a pre-existing OAuth2 application in an externally
-		// managed DXP instance and call the headless API to count the number of
-		// message board threads
+		// Call another Liferay
 
 		try {
 			_countMessageBoardThreads(
@@ -63,9 +58,7 @@ public class SampleCommandLineRunner implements CommandLineRunner {
 			_log.error(exception);
 		}
 
-		// Call a route on the liferay-sample-etc-spring-boot application
-		// which is configured to accept tokens from the auto-provisioned
-		// liferay-sample-etc-cron-oauth-application-headless-server
+		// Call another client extension (liferay-sample-etc-spring-boot)
 
 		try {
 			String dadJoke = _getDadJoke(
