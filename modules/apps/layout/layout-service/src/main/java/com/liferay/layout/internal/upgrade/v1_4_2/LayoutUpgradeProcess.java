@@ -128,16 +128,14 @@ public class LayoutUpgradeProcess extends UpgradeProcess {
 	}
 
 	private String _generateFriendlyURLUUID() {
-		UUID uuid = new UUID(
-			SecureRandomUtil.nextLong(), SecureRandomUtil.nextLong());
-
-		return StringPool.SLASH + uuid.toString();
+		return StringPool.SLASH + _generateUUID();
 	}
 
 	private String _generateUUID() {
-		return new UUID(
-			SecureRandomUtil.nextLong(), SecureRandomUtil.nextLong()
-		).toString();
+		UUID uuid = new UUID(
+			SecureRandomUtil.nextLong(), SecureRandomUtil.nextLong());
+
+		return uuid.toString();
 	}
 
 	private final LayoutLocalService _layoutLocalService;
