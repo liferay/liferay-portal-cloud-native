@@ -65,11 +65,11 @@ public class RelayStateHelperImpl implements RelayStateHelper {
 		_redirectsToRelayStateTokensPortalCache =
 			(PortalCache<String, String>)_singleVMPool.getPortalCache(
 				RelayStateHelperImpl.class.getName() +
-					"_redirectsToRelayStateTokens");
+					"#_redirectsToRelayStateTokens");
 		_relayStateTokensToRedirectsPortalCache =
 			(PortalCache<String, String>)_singleVMPool.getPortalCache(
 				RelayStateHelperImpl.class.getName() +
-					"_relayStateTokensToRedirects");
+					"#_relayStateTokensToRedirects");
 	}
 
 	private PortalCache<String, String> _redirectsToRelayStateTokensPortalCache;
