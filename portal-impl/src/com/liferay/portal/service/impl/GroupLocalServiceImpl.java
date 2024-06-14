@@ -5464,19 +5464,6 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		}
 	}
 
-	private String _toExternalReferenceCode(String groupKey) {
-
-		// Web Search --> webSearch
-
-		groupKey = TextFormatter.format(groupKey, TextFormatter.F);
-
-		// webSearch --> web-search
-
-		groupKey = TextFormatter.format(groupKey, TextFormatter.K);
-
-		return "system-site-" + groupKey;
-	}
-
 	private Map<Locale, String> _normalizeNameMap(Map<Locale, String> nameMap) {
 		Map<Locale, String> normalizedNameMap = new HashMap<>();
 
@@ -5489,6 +5476,19 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		}
 
 		return normalizedNameMap;
+	}
+
+	private String _toExternalReferenceCode(String groupKey) {
+
+		// Web Search --> webSearch
+
+		groupKey = TextFormatter.format(groupKey, TextFormatter.F);
+
+		// webSearch --> web-search
+
+		groupKey = TextFormatter.format(groupKey, TextFormatter.K);
+
+		return "system-site-" + groupKey;
 	}
 
 	private void _validateGroupKeyChange(long groupId, String typeSettings)
