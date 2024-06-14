@@ -897,7 +897,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 					site, true, null);
 
 				group.setExternalReferenceCode(
-					_groupKeyToExternalReferenceCode(groupKey));
+					_toExternalReferenceCode(groupKey));
 
 				group = groupPersistence.update(group);
 
@@ -5464,7 +5464,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		}
 	}
 
-	private String _groupKeyToExternalReferenceCode(String groupKey) {
+	private String _toExternalReferenceCode(String groupKey) {
 
 		// Web Search --> webSearch
 
