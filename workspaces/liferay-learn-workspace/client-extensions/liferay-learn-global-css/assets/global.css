@@ -224,6 +224,62 @@ pre[class*='language-'] {
 	max-width: var(--container-max-xl);
 }
 
+.course-nav-bottom__banner {
+	align-items: center;
+	background-color: #0b5fff;
+	border-radius: 10px;
+	color: #ffffff;
+	justify-content: space-between;
+	padding: 12px;
+
+	.banner-options {
+		align-items: center;
+		gap: 1rem;
+
+		.banner-next-container {
+			background-color: #28293426;
+			border-radius: 10px;
+			font-size: 14px;
+			font-weight: 600;
+			padding: 12px;
+			text-align: center;
+		}
+		.banner-title {
+			font-size: 20px;
+			font-weight: 600;
+		}
+	}
+
+	.banner-icon {
+		display: flex;
+		padding: 0 24px;
+		svg {
+			height: 24px;
+			width: 24px;
+		}
+	}
+}
+
+.course-nav-bottom__menu {
+	align-items: center;
+	border-top: 1px solid #e2e2e4;
+	color: #2b3a4b;
+	font-weight: 600;
+	height: 40px;
+	justify-content: space-between;
+	margin-top: 1rem;
+	.menu-previous-lesson {
+		gap: 0.5rem;
+		padding: 8px 16px;
+	}
+	.menu-sign-in a {
+		text-decoration: underline;
+	}
+	.previous-lesson-icon {
+		color: #2b3a4b;
+	}
+}
+
 .landing-page,
 .learn-card-container {
 	border-bottom: 1px solid var(--color-neutral-2, #e2e2e4);

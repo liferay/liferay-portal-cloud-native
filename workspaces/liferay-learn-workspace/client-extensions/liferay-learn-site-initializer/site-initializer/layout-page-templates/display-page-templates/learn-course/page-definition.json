@@ -1,5 +1,6 @@
 {
 	"pageElement": {
+		"id": "33280812-eba2-30c7-418c-c166ea00d190",
 		"pageElements": [
 			{
 				"definition": {
@@ -26,6 +27,7 @@
 					},
 					"name": "Header Container"
 				},
+				"id": "06bafecd-037b-193b-3cde-5d48cc21c486",
 				"pageElements": [
 					{
 						"definition": {
@@ -47,6 +49,7 @@
 							},
 							"name": "Header Banner"
 						},
+						"id": "95ead01e-1830-af9e-4fae-0af2a419d823",
 						"pageElements": [
 							{
 								"definition": {
@@ -62,8 +65,7 @@
 										{
 											"id": "element-text",
 											"value": {
-												"fragmentLink": {
-												},
+												"fragmentLink": {},
 												"text": {
 													"value_i18n": {
 														"en_US": "Course"
@@ -77,15 +79,13 @@
 									},
 									"indexed": true
 								},
+								"id": "c2777c61-e4ea-24f6-954a-64978cd0c85b",
 								"type": "Fragment"
 							},
 							{
 								"definition": {
-									"fragment": {
-										"key": "BASIC_COMPONENT-html"
-									},
-									"fragmentConfig": {
-									},
+									"fragment": {"key": "BASIC_COMPONENT-html"},
+									"fragmentConfig": {},
 									"fragmentFields": [
 										{
 											"id": "element-html",
@@ -108,6 +108,7 @@
 									},
 									"indexed": true
 								},
+								"id": "75b74294-5d1e-047a-117b-daeb7e80ab35",
 								"type": "Fragment"
 							}
 						],
@@ -143,6 +144,7 @@
 					},
 					"name": "Content Container"
 				},
+				"id": "79f633fa-6610-75aa-cec5-6b8b0fbabdd3",
 				"pageElements": [
 					{
 						"definition": {
@@ -166,31 +168,23 @@
 							},
 							"name": "Side Menu Container"
 						},
+						"id": "e6ff3629-f05c-d06d-b7c5-406cadc2dd9b",
 						"pageElements": [
 							{
 								"definition": {
-									"fragment": {
-										"key": "BASIC_COMPONENT-html"
-									},
-									"fragmentConfig": {
-									},
+									"fragment": {"key": "BASIC_COMPONENT-html"},
+									"fragmentConfig": {},
 									"fragmentFields": [
 										{
 											"id": "element-html",
 											"value": {
-												"html": {
-													"mapping": {
-														"fieldKey": "_ddmTemplate_83317",
-														"itemReference": {
-															"contextSource": "DisplayPageItem"
-														}
-													}
-												}
+												"html": {"value_i18n": {}}
 											}
 										}
 									],
 									"indexed": true
 								},
+								"id": "4339b947-7d0f-dae2-8280-9c045518a409",
 								"type": "Fragment"
 							}
 						],
@@ -199,10 +193,10 @@
 					{
 						"definition": {
 							"indexed": true,
-							"layout": {
-							},
+							"layout": {},
 							"name": "Main Content Container"
 						},
+						"id": "29e77395-75a9-1e5e-df92-8ece974da04f",
 						"pageElements": [
 							{
 								"definition": {
@@ -219,14 +213,14 @@
 									},
 									"name": "Content Container"
 								},
+								"id": "f2e812f9-4f4d-7b77-4e5f-aa00151fb7b7",
 								"pageElements": [
 									{
 										"definition": {
 											"fragment": {
 												"key": "BASIC_COMPONENT-html"
 											},
-											"fragmentConfig": {
-											},
+											"fragmentConfig": {},
 											"fragmentFields": [
 												{
 													"id": "element-html",
@@ -244,6 +238,7 @@
 											],
 											"indexed": true
 										},
+										"id": "4f53d5bd-a4dd-44db-6308-e2b65d24bc82",
 										"type": "Fragment"
 									}
 								],
@@ -251,10 +246,12 @@
 							},
 							{
 								"definition": {
+									"customCSS": ".[$FRAGMENT_CLASS$] .course-nav-bottom__banner {\n    background-image: url('/documents/d/liferay-learn/smallwaves-svg?imagePreview=1');\n    background-repeat: no-repeat;\n    background-position: calc(100% + 60px) center;\n    background-size: 220px 220px;\n  }\n\n",
 									"fragmentStyle": {
 										"backgroundColor": "colorNeutral1",
 										"borderRadius": "borderRadiusLg",
 										"marginTop": "4",
+										"maxWidth": "763px",
 										"paddingBottom": "4",
 										"paddingLeft": "4",
 										"paddingRight": "4",
@@ -262,52 +259,43 @@
 									},
 									"indexed": true,
 									"layout": {
+										"contentDisplay": "FlexColumn",
 										"marginTop": 2,
 										"paddingBottom": 2,
 										"paddingLeft": 2,
 										"paddingRight": 2,
-										"paddingTop": 2
+										"paddingTop": 2,
+										"widthType": "Fixed"
 									},
 									"name": "Bottom Nav Container"
 								},
+								"id": "166a34ad-2625-d96d-d9a7-8db6b2ac1cde",
 								"pageElements": [
 									{
 										"definition": {
-											"indexed": true,
-											"layout": {
-											}
-										},
-										"pageElements": [
-											{
-												"definition": {
-													"fragment": {
-														"key": "dialect-text",
-														"siteKey": "Liferay Learn"
-													},
-													"fragmentConfig": {
-														"textType": "h1",
-														"truncateText": false
-													},
-													"fragmentFields": [
-														{
-															"id": "element-text",
-															"value": {
-																"fragmentLink": {
-																},
-																"text": {
-																	"value_i18n": {
-																		"en_US": "Nav Bottom"
-																	}
+											"fragment": {
+												"key": "BASIC_COMPONENT-html"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "element-html",
+													"value": {
+														"html": {
+															"mapping": {
+																"fieldKey": "_ddmTemplate_LEARN_COURSE",
+																"itemReference": {
+																	"contextSource": "DisplayPageItem"
 																}
 															}
 														}
-													],
-													"indexed": true
-												},
-												"type": "Fragment"
-											}
-										],
-										"type": "Section"
+													}
+												}
+											],
+											"indexed": true
+										},
+										"id": "0699ce0f-c66b-c73d-5058-4e94d6248e09",
+										"type": "Fragment"
 									}
 								],
 								"type": "Section"
@@ -323,9 +311,7 @@
 	},
 	"settings": {
 		"colorSchemeName": "01",
-		"masterPage": {
-			"key": "liferay-learn"
-		},
+		"masterPage": {"key": "liferay-learn"},
 		"themeName": "Dialect"
 	},
 	"version": 1.1
