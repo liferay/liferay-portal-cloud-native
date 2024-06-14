@@ -63,9 +63,7 @@ public class CommerceOrderAccountNotificationTermTest {
 	}
 
 	@Test
-	public void testCommerceOrderAccountNotificationEvaluateTerms()
-		throws Exception {
-
+	public void testEvaluateTerms() throws Exception {
 		String content = "[%COMMERCEORDER_ACCOUNT_NAME%]";
 
 		Map<String, Object> termValues = HashMapBuilder.<String, Object>put(
