@@ -4,6 +4,16 @@
  */
 
 import { Page, expect } from "@playwright/test";
+
+export async function viewNameListIsPresent(page: Page, itemNames: string[]) {
+	for (const itemName of itemNames) {
+		await expect(
+			page.getByRole('cell', { name: itemName })
+		).toBeVisible({
+			timeout: 100 * 1000,
+		});
+	}
+}
 export async function changeTimeFilterTo(page: Page, timeFilter: string) {
 	await page.getByRole('button', {name: 'Last 30 days'}).click();
 	await page.getByRole('menuitem', {name: timeFilter}).click();
