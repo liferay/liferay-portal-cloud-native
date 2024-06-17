@@ -68,8 +68,8 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 					connection, getPartitionName(companyId)));
 		}
 
-		_scheduleJob(PortalInstancePool.getDefaultCompanyId(), _JOB_NAME1);
-		_scheduleJob(PortalInstancePool.getDefaultCompanyId(), _JOB_NAME2);
+		_scheduleJob(PortalInstancePool.getDefaultCompanyId(), _JOB_NAME_1);
+		_scheduleJob(PortalInstancePool.getDefaultCompanyId(), _JOB_NAME_2);
 	}
 
 	@After
@@ -153,7 +153,7 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 
 			insertPartitionRequiredData();
 
-			_scheduleJob(COMPANY_IDS[0], _JOB_NAME1);
+			_scheduleJob(COMPANY_IDS[0], _JOB_NAME_1);
 
 			String testObjectTableNamePrefix = dbInspector.normalizeName(
 				"TestObjectTable_x_");
@@ -235,7 +235,7 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 				viewNames.put(companyId, _getObjectNames("VIEW", companyId));
 				tablesCount.put(companyId, _getTablesCount(companyId));
 
-				_scheduleJob(companyId, _JOB_NAME1);
+				_scheduleJob(companyId, _JOB_NAME_1);
 			}
 
 			Assert.assertEquals(
@@ -304,7 +304,7 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 
 				tablesCount.put(companyId, _getTablesCount(companyId));
 
-				_scheduleJob(companyId, _JOB_NAME1);
+				_scheduleJob(companyId, _JOB_NAME_1);
 			}
 
 			Assert.assertEquals(
@@ -395,7 +395,7 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 		addDBPartitions();
 
 		for (long companyId : COMPANY_IDS) {
-			_scheduleJob(companyId, _JOB_NAME1);
+			_scheduleJob(companyId, _JOB_NAME_1);
 		}
 
 		Assert.assertEquals(
@@ -543,9 +543,9 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 
 	private static final String _JOB_GROUP_NAME = "liferay/test";
 
-	private static final String _JOB_NAME1 = "testjob1";
+	private static final String _JOB_NAME_1 = "testjob1";
 
-	private static final String _JOB_NAME2 = "testjob2";
+	private static final String _JOB_NAME_2 = "testjob2";
 
 	private static final int _JOBS_COUNT = 2;
 
