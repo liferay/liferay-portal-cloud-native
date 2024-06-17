@@ -10,10 +10,12 @@ import {dataApiHelpersTest} from '../../fixtures/dataApiHelpersTest';
 import {loginAnalyticsCloudTest} from '../../fixtures/loginAnalyticsCloudTest';
 import {loginTest} from '../../fixtures/loginTest';
 import {liferayConfig} from '../../liferay.config';
-import getRandomString from '../../utils/getRandomString';
 import {syncAnalyticsCloud} from '../analytics-settings-web/utils/analyticsSettings';
-import {faroConfig} from './faro.config';
-import {dragAndDropCriteriaItem} from './utils/segments';
+import {addSegmentField, createDynamicSegment, editCriteriaAttributeValue, editSegment, saveSegment, setSegmentName} from './utils/segments';
+import {navigateTo, navigateToACPage} from './utils/navigation';
+import {changeEventDisplayName} from './utils/definitions';
+import {switchChannel} from './utils/channel';
+import getRandomString from '../../utils/getRandomString';
 
 export const test = mergeTests(
 	apiHelpersTest,
@@ -28,116 +30,110 @@ test('check if updated custom event displayName is shown on segment criteria car
 }) => {
 	const channelName = 'My Property - ' + getRandomString();
 	const customEventName = 'CustomEvent' + new Date().getTime();
+	const newCustomEventName = `${customEventName}EV`;
 
-	await syncAnalyticsCloud(apiHelpers, page, channelName);
-	await page.goto(liferayConfig.environment.baseUrl);
-	await page.waitForTimeout(3000);
+	await test.step('Connect the DXP to AC', async () => {
+		await syncAnalyticsCloud(apiHelpers, page, channelName);
+	});
 
-	await page.evaluate(
-		({customEventName}) => {
+	await test.step('Go to DXP Home Page > Create a custom event', async () => {
+		await page.goto(liferayConfig.environment.baseUrl);
+		await page.waitForTimeout(3000);
 
-			// @ts-ignore
-
-			if (window.Analytics) {
+		await page.evaluate(
+			({customEventName}) => {
 
 				// @ts-ignore
 
-				window.Analytics.track(customEventName, {
-					propBool: true,
-					propDate: '2024-05-20T01:00:00.000',
-					propDuration: 66840000,
-					propNum: 18,
-					propString: 'test',
-				});
-			}
-		},
-		{customEventName}
-	);
+				if (window.Analytics) {
 
-	await page.waitForTimeout(3000);
-	await page.goto(faroConfig.environment.baseUrl);
+					// @ts-ignore
 
-	await page
-		.getByRole('link', {
-			name: 'FARO-DEV-liferay Liferay Demo Enterprise Plan',
-		})
-		.click();
+					window.Analytics.track(customEventName, {
+						propBool: true,
+						propDate: '2024-05-20T01:00:00.000',
+						propDuration: 66840000,
+						propNum: 18,
+						propString: 'test',
+					});
+				}
+			},
+			{customEventName}
+		);
 
-	await page.locator('.channels-menu.button-root').click();
-	await page.getByRole('link', {name: channelName}).click();
-	await page.getByRole('link', {name: 'Settings'}).click();
-	await page.getByRole('link', {name: 'Definitions'}).click();
-	await page.getByRole('link', {name: 'Events'}).click();
-	await page.getByRole('link', {name: 'Custom Events'}).click();
-	await page.getByPlaceholder('Search').click();
-	await page.getByPlaceholder('Search').fill(customEventName);
-	await page.getByPlaceholder('Search').press('Enter');
-
-	expect(page.getByText(customEventName)).toBeTruthy();
-
-	await page.getByRole('link', {name: customEventName}).click();
-	await page.getByRole('button', {name: 'Edit'}).click();
-	await page.getByLabel('Display Name').click();
-	await page.getByLabel('Display Name').fill(customEventName + 'EV');
-	await page.getByRole('button', {name: 'Save'}).click();
-
-	await page.waitForTimeout(3000);
-
-	await page.evaluate(() => {
-		const element = document.querySelector('.alert');
-
-		if (element) {
-
-			// @ts-ignore
-
-			element.style.display = 'none';
-		}
+		await page.waitForTimeout(3000);
 	});
 
-	expect(page.getByRole('link', {name: customEventName + 'EV'})).toBeTruthy();
+	await test.step('Go to Analytics Cloud and Switch the property', async () => {
+		await navigateToACPage(page);
+		await switchChannel(page, channelName);
+	});
 
-	await page.getByRole('link', {name: 'Exit Settings'}).click();
-	await page.getByRole('link', {name: 'Segments'}).click();
-	await page.getByLabel('Menu').click();
-	await page.getByRole('menuitem', {name: 'Dynamic Segment'}).click();
+	await test.step('Go to Settings > Go to Events > Go to Custom Events Tab', async () => {
+		await navigateTo(page,'Settings');
+		await navigateTo(page,'Definitions');
+		await navigateTo(page,'Events');
+		await navigateTo(page,'Custom Events');
+	});
 
-	expect(page.getByText(customEventName + 'EV')).toBeTruthy();
+	await test.step('Change the display name of the event', async () => {
+		await changeEventDisplayName(page,customEventName, newCustomEventName);
 
-	await dragAndDropCriteriaItem(page, `${customEventName}EV`);
+		await expect(page.getByText(newCustomEventName).nth(1)).toBeVisible();
+		await page.locator('button.close').click();
+	});
 
-	await page.waitForTimeout(3000);
+	await test.step('Go to Segments', async () => {
+		await navigateTo(page,'Exit Settings');
+		await navigateTo(page,'Segments');
+	});
 
-	expect(
-		page.locator('div').filter({hasText: `/^${customEventName}EV$/`})
-	).toBeTruthy();
+	await test.step('Create dynamic segment', async () => {
+		await createDynamicSegment(page);
+	});
 
-	await page.getByTestId('attribute-value-string-input').click();
+	await test.step('Check that the custom event with the updated name appears in the list of criteria', async () => {
+		await expect(page.getByText(newCustomEventName)).toBeVisible();
+	});
 
-	await page
-		.getByTestId('attribute-value-string-input')
-		.fill('testAttribute');
+	await test.step('Add the custom event criteria to the segment', async () => {
+		await addSegmentField(page, 'Events', newCustomEventName);
+	});
 
-	await page
-		.locator('div')
-		.filter({hasText: /^Unnamed Segment$/})
-		.first()
-		.click();
+	await test.step('Check that the added criteria is using the name of the updated custom event', async () => {
+		expect(
+			page.locator('div').filter({hasText: `/^${newCustomEventName}$/`})
+		).toBeTruthy();
+	});
 
-	await page.getByPlaceholder('Unnamed Segment').fill('Test Dynamic Segment');
-	await page.getByRole('button', {name: 'Save Segment'}).click();
-	await page.waitForTimeout(3000);
+	await test.step('Add a value to the attribute value field', async () => {
+		await editCriteriaAttributeValue(page, 'testAttribute');
+	});
 
-	expect(page.getByRole('heading', {name: 'Segment Criteria'})).toBeTruthy();
-	expect(page.getByText(customEventName + 'EV')).toBeTruthy();
+	await test.step('Add a name to the segment', async () => {
+		await setSegmentName(page, 'Test Dynamic Segment');
+	});
 
-	await page.getByRole('link', {name: 'Edit Segment'}).click();
-	await page.waitForTimeout(3000);
+	await test.step('Save the segment', async () => {
+		await saveSegment(page);
+	});
 
-	expect(
-		page.locator('div').filter({hasText: `/^${customEventName}EV$/`})
-	).toBeTruthy();
+	await test.step('Check that the Segment Criteria card is displaying the segment rule with the name of the updated custom event', async () => {
+		expect(page.getByRole('heading', {name: 'Segment Criteria'})).toBeTruthy();
+		expect(page.getByText(newCustomEventName)).toBeTruthy();
+	});
 
-	expect(
-		page.locator('li').filter({hasText: `/^${customEventName}EV$/`})
-	).toBeTruthy();
+	await test.step('Edit the segment', async () => {
+		await editSegment(page);
+	});
+
+	await test.step('Check that the list of criteria and the criteria being used in the segment are both using the name of the updated custom event', async () => {
+		expect(
+			page.locator('div').filter({hasText: `/^${newCustomEventName}$/`})
+		).toBeTruthy();
+	
+		expect(
+			page.locator('li').filter({hasText: `/^${newCustomEventName}$/`})
+		).toBeTruthy();
+	});
 });
