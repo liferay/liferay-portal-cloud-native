@@ -27,9 +27,9 @@ export async function changeTimeFilterTo(page: Page, timeFilter: string) {
 }
 
 export async function searchTerm(page: Page, searchTerm: string) {
-	await page.getByPlaceholder('Search').click();
-	await page.getByPlaceholder('Search').fill(searchTerm);
-	await page.getByPlaceholder('Search').press('Enter');
+	await page.getByPlaceholder('Search').first().click();
+	await page.getByPlaceholder('Search').first().fill(searchTerm);
+	await page.getByPlaceholder('Search').first().press('Enter');
 }
 
 export async function viewNameListIsNotPresent(
