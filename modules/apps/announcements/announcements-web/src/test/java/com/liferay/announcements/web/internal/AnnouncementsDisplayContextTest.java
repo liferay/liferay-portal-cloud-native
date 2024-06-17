@@ -61,8 +61,8 @@ public class AnnouncementsDisplayContextTest {
 	@Test
 	public void testHasAddAnnouncementsEntryPermission() {
 		_testHasAddAnnouncementsEntryPermission(false, false, false);
-		_testHasAddAnnouncementsEntryPermission(true, true, false);
 		_testHasAddAnnouncementsEntryPermission(true, false, true);
+		_testHasAddAnnouncementsEntryPermission(true, true, false);
 	}
 
 	private void _testHasAddAnnouncementsEntryPermission(
