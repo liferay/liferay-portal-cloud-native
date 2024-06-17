@@ -288,6 +288,7 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 	@Test
 	public void testExtractDBPartition() throws Exception {
 		addDBPartitions();
+
 		insertPartitionRequiredData();
 
 		try {
