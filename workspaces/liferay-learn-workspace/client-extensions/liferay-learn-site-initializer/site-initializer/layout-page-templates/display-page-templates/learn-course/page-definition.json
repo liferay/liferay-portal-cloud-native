@@ -1,6 +1,5 @@
 {
 	"pageElement": {
-		"id": "33280812-eba2-30c7-418c-c166ea00d190",
 		"pageElements": [
 			{
 				"definition": {
@@ -27,7 +26,6 @@
 					},
 					"name": "Header Container"
 				},
-				"id": "06bafecd-037b-193b-3cde-5d48cc21c486",
 				"pageElements": [
 					{
 						"definition": {
@@ -49,7 +47,6 @@
 							},
 							"name": "Header Banner"
 						},
-						"id": "95ead01e-1830-af9e-4fae-0af2a419d823",
 						"pageElements": [
 							{
 								"definition": {
@@ -79,7 +76,6 @@
 									},
 									"indexed": true
 								},
-								"id": "c2777c61-e4ea-24f6-954a-64978cd0c85b",
 								"type": "Fragment"
 							},
 							{
@@ -108,7 +104,6 @@
 									},
 									"indexed": true
 								},
-								"id": "75b74294-5d1e-047a-117b-daeb7e80ab35",
 								"type": "Fragment"
 							}
 						],
@@ -144,7 +139,6 @@
 					},
 					"name": "Content Container"
 				},
-				"id": "79f633fa-6610-75aa-cec5-6b8b0fbabdd3",
 				"pageElements": [
 					{
 						"definition": {
@@ -168,7 +162,6 @@
 							},
 							"name": "Side Menu Container"
 						},
-						"id": "e6ff3629-f05c-d06d-b7c5-406cadc2dd9b",
 						"pageElements": [
 							{
 								"definition": {
@@ -184,7 +177,6 @@
 									],
 									"indexed": true
 								},
-								"id": "4339b947-7d0f-dae2-8280-9c045518a409",
 								"type": "Fragment"
 							}
 						],
@@ -196,7 +188,6 @@
 							"layout": {},
 							"name": "Main Content Container"
 						},
-						"id": "29e77395-75a9-1e5e-df92-8ece974da04f",
 						"pageElements": [
 							{
 								"definition": {
@@ -213,7 +204,6 @@
 									},
 									"name": "Content Container"
 								},
-								"id": "f2e812f9-4f4d-7b77-4e5f-aa00151fb7b7",
 								"pageElements": [
 									{
 										"definition": {
@@ -238,7 +228,6 @@
 											],
 											"indexed": true
 										},
-										"id": "4f53d5bd-a4dd-44db-6308-e2b65d24bc82",
 										"type": "Fragment"
 									}
 								],
@@ -269,7 +258,6 @@
 									},
 									"name": "Bottom Nav Container"
 								},
-								"id": "166a34ad-2625-d96d-d9a7-8db6b2ac1cde",
 								"pageElements": [
 									{
 										"definition": {
@@ -294,7 +282,6 @@
 											],
 											"indexed": true
 										},
-										"id": "0699ce0f-c66b-c73d-5058-4e94d6248e09",
 										"type": "Fragment"
 									}
 								],
@@ -314,5 +301,5 @@
 		"masterPage": {"key": "liferay-learn"},
 		"themeName": "Dialect"
 	},
-	"version": 1.1
+	"version": 1.0
 }
