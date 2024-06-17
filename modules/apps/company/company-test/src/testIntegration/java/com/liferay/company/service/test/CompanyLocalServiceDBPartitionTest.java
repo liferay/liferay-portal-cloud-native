@@ -337,33 +337,33 @@ public class CompanyLocalServiceDBPartitionTest
 			RandomTestUtil.randomString());
 		String webId = RandomTestUtil.randomString();
 
-		Company newCompany = null;
+		Company copiedCompany = null;
 
 		try {
-			newCompany = companyLocalService.copyDBPartitionCompany(
+			copiedCompany = companyLocalService.copyDBPartitionCompany(
 				company.getCompanyId(), null, name, virtualHostname, webId);
 
 			_assertCopyDBPartitionCompany(
-				newCompany, name, virtualHostname, webId);
+				copiedCompany, name, virtualHostname, webId);
 
-			long newCompanyId = newCompany.getCompanyId();
+			long copiedCompanyId = copiedCompany.getCompanyId();
 
-			companyLocalService.deleteCompany(newCompany);
+			companyLocalService.deleteCompany(copiedCompany);
 
-			newCompany = companyLocalService.copyDBPartitionCompany(
-				company.getCompanyId(), newCompanyId, name, virtualHostname,
+			copiedCompany = companyLocalService.copyDBPartitionCompany(
+				company.getCompanyId(), copiedCompanyId, name, virtualHostname,
 				webId);
 
-			Assert.assertEquals(newCompanyId, newCompany.getCompanyId());
+			Assert.assertEquals(copiedCompanyId, copiedCompany.getCompanyId());
 
 			_assertCopyDBPartitionCompany(
-				newCompany, name, virtualHostname, webId);
+				copiedCompany, name, virtualHostname, webId);
 		}
 		finally {
 			companyLocalService.deleteCompany(company.getCompanyId());
 
-			if (newCompany != null) {
-				companyLocalService.deleteCompany(newCompany.getCompanyId());
+			if (copiedCompany != null) {
+				companyLocalService.deleteCompany(copiedCompany.getCompanyId());
 			}
 		}
 	}
