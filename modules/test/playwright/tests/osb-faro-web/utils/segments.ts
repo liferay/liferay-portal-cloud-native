@@ -3,7 +3,12 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-import {Page} from '@playwright/test';
+import { Page } from "@playwright/test";
+
+export async function createDynamicSegment(page: Page) {
+	await page.getByLabel('Menu').click();
+	await page.getByRole('menuitem', {name: 'Dynamic Segment'}).click();
+}
 
 export async function dragAndDropCriteriaItem(page: Page, itemName: string) {
 	const source = page.getByTestId(`criteria-item-${itemName}`);
