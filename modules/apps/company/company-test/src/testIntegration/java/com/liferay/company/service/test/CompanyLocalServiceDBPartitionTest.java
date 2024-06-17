@@ -589,7 +589,9 @@ public class CompanyLocalServiceDBPartitionTest
 		_virtualHostLocalService.getVirtualHost(virtualHostname);
 	}
 
-	private void _checkPartitionDoesNotExist(long companyId) throws SQLException {
+	private void _checkPartitionDoesNotExist(long companyId)
+		throws SQLException {
+
 		List<String> partitionNames = new ArrayList<>();
 
 		DatabaseMetaData databaseMetaData = connection.getMetaData();
