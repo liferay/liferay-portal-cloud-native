@@ -10,12 +10,19 @@ import {dataApiHelpersTest} from '../../fixtures/dataApiHelpersTest';
 import {loginAnalyticsCloudTest} from '../../fixtures/loginAnalyticsCloudTest';
 import {loginTest} from '../../fixtures/loginTest';
 import {liferayConfig} from '../../liferay.config';
-import {syncAnalyticsCloud} from '../analytics-settings-web/utils/analyticsSettings';
-import {addSegmentField, createDynamicSegment, editCriteriaAttributeValue, editSegment, saveSegment, setSegmentName} from './utils/segments';
-import {navigateTo, navigateToACPage} from './utils/navigation';
-import {changeEventDisplayName} from './utils/definitions';
-import {switchChannel} from './utils/channel';
 import getRandomString from '../../utils/getRandomString';
+import {syncAnalyticsCloud} from '../analytics-settings-web/utils/analyticsSettings';
+import {switchChannel} from './utils/channel';
+import {changeEventDisplayName} from './utils/definitions';
+import {navigateTo, navigateToACPage} from './utils/navigation';
+import {
+	addSegmentField,
+	createDynamicSegment,
+	editCriteriaAttributeValue,
+	editSegment,
+	saveSegment,
+	setSegmentName,
+} from './utils/segments';
 
 export const test = mergeTests(
 	apiHelpersTest,
@@ -70,22 +77,22 @@ test('check if updated custom event displayName is shown on segment criteria car
 	});
 
 	await test.step('Go to Settings > Go to Events > Go to Custom Events Tab', async () => {
-		await navigateTo(page,'Settings');
-		await navigateTo(page,'Definitions');
-		await navigateTo(page,'Events');
-		await navigateTo(page,'Custom Events');
+		await navigateTo(page, 'Settings');
+		await navigateTo(page, 'Definitions');
+		await navigateTo(page, 'Events');
+		await navigateTo(page, 'Custom Events');
 	});
 
 	await test.step('Change the display name of the event', async () => {
-		await changeEventDisplayName(page,customEventName, newCustomEventName);
+		await changeEventDisplayName(page, customEventName, newCustomEventName);
 
 		await expect(page.getByText(newCustomEventName).nth(1)).toBeVisible();
 		await page.locator('button.close').click();
 	});
 
 	await test.step('Go to Segments', async () => {
-		await navigateTo(page,'Exit Settings');
-		await navigateTo(page,'Segments');
+		await navigateTo(page, 'Exit Settings');
+		await navigateTo(page, 'Segments');
 	});
 
 	await test.step('Create dynamic segment', async () => {
@@ -119,7 +126,9 @@ test('check if updated custom event displayName is shown on segment criteria car
 	});
 
 	await test.step('Check that the Segment Criteria card is displaying the segment rule with the name of the updated custom event', async () => {
-		expect(page.getByRole('heading', {name: 'Segment Criteria'})).toBeTruthy();
+		expect(
+			page.getByRole('heading', {name: 'Segment Criteria'})
+		).toBeTruthy();
 		expect(page.getByText(newCustomEventName)).toBeTruthy();
 	});
 
@@ -131,7 +140,7 @@ test('check if updated custom event displayName is shown on segment criteria car
 		expect(
 			page.locator('div').filter({hasText: `/^${newCustomEventName}$/`})
 		).toBeTruthy();
-	
+
 		expect(
 			page.locator('li').filter({hasText: `/^${newCustomEventName}$/`})
 		).toBeTruthy();

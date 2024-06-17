@@ -19,8 +19,17 @@ import {
 import getFragmentDefinition from '../layout-content-page-editor-web/utils/getFragmentDefinition';
 import getPageDefinition from '../layout-content-page-editor-web/utils/getPageDefinition';
 import {createChannel, switchChannel} from './utils/channel';
-import {navigateTo, navigateToACPage, navigateToACPageViaURL} from './utils/navigation';
-import {changeTimeFilterTo, createIndividuals, viewNameListIsNotPresent, viewNameListIsPresent} from './utils/utils';
+import {
+	navigateTo,
+	navigateToACPage,
+	navigateToACPageViaURL,
+} from './utils/navigation';
+import {
+	changeTimeFilterTo,
+	createIndividuals,
+	viewNameListIsNotPresent,
+	viewNameListIsPresent,
+} from './utils/utils';
 
 export const test = mergeTests(
 	apiHelpersTest,
@@ -72,17 +81,14 @@ test('shows individuals who viewed a page less than 24 hours ago', async ({
 	page,
 }) => {
 	const channelName = 'My Property - ' + getRandomString();
-	const {channel, project} = await createChannel(
-		apiHelpers,
-		channelName
-	);
+	const {channel, project} = await createChannel(apiHelpers, channelName);
 	const date1 = new Date();
 	const individualsPresentIn24Hours = ['user1 user1', 'user2 user2'];
 	const individualPresentIn30Days = ['user3 user3'];
 
 	await test.step('Create 3 Individuals and their respective Identity directly in the AC database', async () => {
-        const individualNames = ['user1', 'user2', 'user3'];
-        await createIndividuals(apiHelpers, individualNames);
+		const individualNames = ['user1', 'user2', 'user3'];
+		await createIndividuals(apiHelpers, individualNames);
 
 		await apiHelpers.jsonWebServicesOSBAsah.createIdentities([
 			{
@@ -101,7 +107,7 @@ test('shows individuals who viewed a page less than 24 hours ago', async ({
 				individualId: 'user3@liferay.com',
 			},
 		]);
-    });
+	});
 
 	await test.step('Create events for two of the individuals to appear within the Last 24 hours period in AC', async () => {
 		await apiHelpers.jsonWebServicesOSBAsah.createEvents([
@@ -124,7 +130,7 @@ test('shows individuals who viewed a page less than 24 hours ago', async ({
 				userId: '2',
 			},
 		]);
-    });
+	});
 
 	await test.step('Create events for one of the individuals to appear in periods different than the Last 24 hours in AC', async () => {
 		const date2 = new Date();
@@ -140,19 +146,19 @@ test('shows individuals who viewed a page less than 24 hours ago', async ({
 				views: 1,
 			},
 		]);
-    });
+	});
 
 	await test.step('Go to Analytics Cloud and Switch the property', async () => {
 		await navigateToACPageViaURL(page, project.groupId, channel.id);
 	});
 
 	await test.step('Go to Pages Tab', async () => {
-		await navigateTo(page,'Pages');
+		await navigateTo(page, 'Pages');
 	});
 
 	await test.step('Access one of the pages on the list > Go to Known Individuals Tab', async () => {
-		await navigateTo(page,'Liferay');
-		await navigateTo(page,'Known Individuals');
+		await navigateTo(page, 'Liferay');
+		await navigateTo(page, 'Known Individuals');
 	});
 
 	await test.step('Check that User3 User3 is appearing in the list', async () => {
@@ -160,7 +166,7 @@ test('shows individuals who viewed a page less than 24 hours ago', async ({
 	});
 
 	await test.step('Change the time filter to Last 24 hours', async () => {
-		await changeTimeFilterTo(page,'Last 24 hours');
+		await changeTimeFilterTo(page, 'Last 24 hours');
 	});
 
 	await test.step('Check that User1 User1 and User2 User2 are appearing in the list', async () => {
@@ -209,16 +215,16 @@ test('shows outside pages in path analysis', async ({apiHelpers, page}) => {
 	});
 
 	await test.step('Go to Pages Tab', async () => {
-		await navigateTo(page,'Pages');
+		await navigateTo(page, 'Pages');
 	});
 
 	await test.step('Change the time filter to Last 24 hours', async () => {
-		await changeTimeFilterTo(page,'Last 24 hours');
+		await changeTimeFilterTo(page, 'Last 24 hours');
 	});
 
 	await test.step('Access one of the pages on the list > Go to Path Tab', async () => {
-		await navigateTo(page,'Home - Liferay DXP');
-		await navigateTo(page,'Path');
+		await navigateTo(page, 'Home - Liferay DXP');
+		await navigateTo(page, 'Path');
 	});
 
 	await test.step('Check that Google Page appears the referral pages and the number of views', async () => {
@@ -241,7 +247,7 @@ test('shows outside pages in path analysis', async ({apiHelpers, page}) => {
 		await expect(page.getByText('My Page - Lifer...')).toBeVisible({
 			timeout: 100 * 1000,
 		});
-	
+
 		await expect(page.getByText('1', {exact: true}).nth(2)).toBeVisible({
 			timeout: 100 * 1000,
 		});
@@ -250,7 +256,9 @@ test('shows outside pages in path analysis', async ({apiHelpers, page}) => {
 	await test.step('Delete pages created in DXP during automation execution', async () => {
 		await page.goto(liferayConfig.environment.baseUrl);
 
-		await apiHelpers.jsonWebServicesLayout.deleteLayout(String(sitePage.id));
+		await apiHelpers.jsonWebServicesLayout.deleteLayout(
+			String(sitePage.id)
+		);
 	});
 });
 
@@ -286,16 +294,16 @@ test('shows tracked pages in path analysis', async ({apiHelpers, page}) => {
 	});
 
 	await test.step('Go to Pages Tab', async () => {
-		await navigateTo(page,'Pages');
+		await navigateTo(page, 'Pages');
 	});
 
 	await test.step('Change the time filter to Last 24 hours', async () => {
-		await changeTimeFilterTo(page,'Last 24 hours');
+		await changeTimeFilterTo(page, 'Last 24 hours');
 	});
 
 	await test.step('Access one of the pages on the list > Go to Path Tab', async () => {
-		await navigateTo(page,'My Page 1 - Liferay DXP');
-		await navigateTo(page,'Path');
+		await navigateTo(page, 'My Page 1 - Liferay DXP');
+		await navigateTo(page, 'Path');
 	});
 
 	await test.step('Check that My Page 2 and Direct Traffic appear as referral pages', async () => {
@@ -316,16 +324,20 @@ test('shows tracked pages in path analysis', async ({apiHelpers, page}) => {
 		).toBeVisible({
 			timeout: 100 * 1000,
 		});
-	
+
 		await expect(page.getByText('Drop Offs')).toBeVisible({
 			timeout: 100 * 1000,
 		});
 	});
-	
+
 	await test.step('Delete pages created in DXP during automation execution', async () => {
 		await page.goto(liferayConfig.environment.baseUrl);
 
-		await apiHelpers.jsonWebServicesLayout.deleteLayout(String(sitePage1.id));
-		await apiHelpers.jsonWebServicesLayout.deleteLayout(String(sitePage2.id));
+		await apiHelpers.jsonWebServicesLayout.deleteLayout(
+			String(sitePage1.id)
+		);
+		await apiHelpers.jsonWebServicesLayout.deleteLayout(
+			String(sitePage2.id)
+		);
 	});
 });

@@ -3,10 +3,15 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-import { Page } from "@playwright/test";
-import { searchTerm } from "./utils";
+import {Page} from '@playwright/test';
 
-export async function changeEventDisplayName(page: Page, eventName: string, newEventName: string) {
+import {searchTerm} from './utils';
+
+export async function changeEventDisplayName(
+	page: Page,
+	eventName: string,
+	newEventName: string
+) {
 	await searchTerm(page, eventName);
 	await page.waitForSelector(`text=${eventName}`);
 
@@ -16,5 +21,5 @@ export async function changeEventDisplayName(page: Page, eventName: string, newE
 	await page.getByLabel('Display Name').fill(newEventName);
 	await page.getByRole('button', {name: 'Save'}).click();
 
-	await page.waitForSelector('div.alert-success', { state: 'visible' });
+	await page.waitForSelector('div.alert-success', {state: 'visible'});
 }
