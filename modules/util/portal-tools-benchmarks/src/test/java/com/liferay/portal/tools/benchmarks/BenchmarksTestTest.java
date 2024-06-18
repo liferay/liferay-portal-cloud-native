@@ -22,7 +22,7 @@ public class BenchmarksTestTest {
 		LiferayUnitTestRule.INSTANCE;
 
 	@Test
-	public void testLogin() throws Exception {
+	public void test() throws Exception {
 		BenchmarksTest benchmarksTest = new BenchmarksTest();
 
 		benchmarksTest.execute();
