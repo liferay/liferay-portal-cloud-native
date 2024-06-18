@@ -28,6 +28,11 @@ public class Statistics {
 
 	public void addResults(List<ObjectValuePair<String, Long>> results) {
 		for (ObjectValuePair<String, Long> result : results) {
+			Queue<Long> durations = _durationsMap.computeIfAbsent(
+				result.getKey(), testStepName -> new ConcurrentLinkedQueue<>());
+
+			durations.offer(result.getValue());
+
 			AtomicLong durationSum = _durationSumsMap.computeIfAbsent(
 				result.getKey(),
 				testStepName -> {
@@ -39,11 +44,6 @@ public class Statistics {
 				});
 
 			durationSum.addAndGet(result.getValue());
-
-			Queue<Long> durations = _durationsMap.computeIfAbsent(
-				result.getKey(), testStepName -> new ConcurrentLinkedQueue<>());
-
-			durations.offer(result.getValue());
 		}
 	}
 
