@@ -232,6 +232,15 @@ pre[class*='language-'] {
 	justify-content: space-between;
 	padding: 12px;
 
+	.banner-icon {
+		display: flex;
+		padding: 0 24px;
+		svg {
+			height: 24px;
+			width: 24px;
+		}
+	}
+
 	.banner-options {
 		align-items: center;
 		gap: 1rem;
@@ -250,15 +259,6 @@ pre[class*='language-'] {
 			font-weight: 600;
 		}
 	}
-
-	.banner-icon {
-		display: flex;
-		padding: 0 24px;
-		svg {
-			height: 24px;
-			width: 24px;
-		}
-	}
 }
 
 .course-nav-bottom__menu {
@@ -269,6 +269,7 @@ pre[class*='language-'] {
 	height: 40px;
 	justify-content: space-between;
 	margin-top: 1rem;
+	
 	.menu-previous-lesson {
 		gap: 0.5rem;
 		padding: 8px 16px;
@@ -277,7 +278,7 @@ pre[class*='language-'] {
 	.menu-sign-in a {
 		text-decoration: underline;
 	}
-	
+
 	.previous-lesson-icon {
 		color: var(--color-action-neutral-default, #2b3a4b);
 	}
