@@ -33,9 +33,9 @@ import java.util.function.Function;
 public class BenchmarksTest {
 
 	public BenchmarksTest() {
-		_excludedCompanies = StringUtil.split(
+		_excludedCompanyWebIds = StringUtil.split(
 			System.getProperty(
-				"benchmarks.test.excluded.companies", "liferay.com"));
+				"benchmarks.test.excluded.company.web.ids", "liferay.com"));
 		_jdbcDriverClassName = System.getProperty(
 			"benchmarks.test.jdbc.driverClassName", "com.mysql.cj.jdbc.Driver");
 		_jdbcURL = System.getProperty(
@@ -61,7 +61,7 @@ public class BenchmarksTest {
 		StringBundler sb = new StringBundler(16);
 
 		sb.append("\nCurrent properties:\n	Excluded Companies:");
-		sb.append(_excludedCompanies);
+		sb.append(_excludedCompanyWebIds);
 		sb.append("\n	JDBC Driver Class Name: ");
 		sb.append(_jdbcDriverClassName);
 		sb.append("\n	JDBC URL: ");
@@ -162,15 +162,15 @@ public class BenchmarksTest {
 		sb.append("select hostname, emailAddress from Company as company, ");
 		sb.append("VirtualHost as virtualHost, User_ as user where ");
 
-		if (!_excludedCompanies.isEmpty()) {
+		if (!_excludedCompanyWebIds.isEmpty()) {
 			sb.append("company.webId not in (");
 
-			for (int i = 0; i < _excludedCompanies.size(); i++) {
+			for (int i = 0; i < _excludedCompanyWebIds.size(); i++) {
 				sb.append("'");
-				sb.append(_excludedCompanies.get(i));
+				sb.append(_excludedCompanyWebIds.get(i));
 				sb.append("'");
 
-				if (i < (_excludedCompanies.size() - 1)) {
+				if (i < (_excludedCompanyWebIds.size() - 1)) {
 					sb.append(",");
 				}
 			}
@@ -203,7 +203,7 @@ public class BenchmarksTest {
 		return data.toArray(new String[0][0]);
 	}
 
-	private final List<String> _excludedCompanies;
+	private final List<String> _excludedCompanyWebIds;
 	private final String _jdbcDriverClassName;
 	private final String _jdbcPassword;
 	private final String _jdbcURL;

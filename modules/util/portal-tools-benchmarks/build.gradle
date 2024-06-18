@@ -10,7 +10,7 @@ dependencies {
 test {
 	systemProperties(
 		System.properties.subMap([
-				"benchmarks.test.excluded.companies",
+				"benchmarks.test.excluded.company.web.ids",
 				"benchmarks.test.jdbc.driverClassName",
 				"benchmarks.test.jdbc.password",
 				"benchmarks.test.jdbc.url",
