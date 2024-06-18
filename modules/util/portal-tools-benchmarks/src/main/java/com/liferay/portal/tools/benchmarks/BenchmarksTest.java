@@ -151,7 +151,8 @@ public class BenchmarksTest {
 		StringBundler sb = new StringBundler();
 
 		sb.append("select hostname, emailAddress from Company, VirtualHost, ");
-		sb.append("User_ where ");
+		sb.append("User_ where Company.companyId = User_.companyId and ");
+		sb.append("Company.companyId = VirtualHost.companyId and ");
 
 		if (!_excludedCompanyWebIds.isEmpty()) {
 			sb.append("Company.webId not in (");
@@ -169,8 +170,7 @@ public class BenchmarksTest {
 			sb.append(") and ");
 		}
 
-		sb.append("User_.type_ = 1 and User_.companyId = Company.companyId and ");
-		sb.append("VirtualHost.companyId = Company.companyId;");
+		sb.append("User_.type_ = 1;");
 
 		String sql = sb.toString();
 
