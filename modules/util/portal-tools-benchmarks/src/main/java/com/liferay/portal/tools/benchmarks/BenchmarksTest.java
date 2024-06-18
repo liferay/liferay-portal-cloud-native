@@ -83,7 +83,7 @@ public class BenchmarksTest {
 	public void execute() throws Exception {
 		System.out.println("Running Login test ...");
 
-		Function<String[], BenchmarksTask> benchmarkTaskFunction =
+		Function<String[], BenchmarksTask> benchmarksTaskFunction =
 			testData -> new LoginBenchmarksTask(
 				testData[0], testData[1], _userPassword, 8080);
 
@@ -97,7 +97,7 @@ public class BenchmarksTest {
 			System.out.println("\nStart warming up data ...");
 
 			_executeBenchmarksTask(
-				benchmarkTaskFunction, data, index -> index, data.length, 1);
+				benchmarksTaskFunction, data, index -> index, data.length, 1);
 
 			System.out.println("\nWarming up finished");
 		}
@@ -108,7 +108,7 @@ public class BenchmarksTest {
 		System.out.println("\nStart running test ...");
 
 		_executeBenchmarksTask(
-			benchmarkTaskFunction, data, index -> index % data.length,
+			benchmarksTaskFunction, data, index -> index % data.length,
 			_runCount, _threadCount);
 
 		System.out.println("\nTest run finished");
