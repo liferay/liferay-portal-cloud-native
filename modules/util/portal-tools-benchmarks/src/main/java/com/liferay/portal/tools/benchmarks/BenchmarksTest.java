@@ -91,7 +91,7 @@ public class BenchmarksTest {
 		if (!_skipWarmUp) {
 			System.out.println("\nStart warming up data ...");
 
-			_executeBenchmarksTask(
+			_execute(
 				benchmarksTaskFunction, data, index -> index, data.length, 1);
 
 			System.out.println("\nWarming up finished");
@@ -102,14 +102,14 @@ public class BenchmarksTest {
 
 		System.out.println("\nStart running test ...");
 
-		_executeBenchmarksTask(
+		_execute(
 			benchmarksTaskFunction, data, index -> index % data.length,
 			_runCount, _threadCount);
 
 		System.out.println("\nTest run finished");
 	}
 
-	private void _executeBenchmarksTask(
+	private void _execute(
 			Function<String[], BenchmarksTask> benchmarksTaskFunction,
 			String[][] data, Function<Integer, Integer> indexFunction,
 			int runCount, int threadCount)
