@@ -2473,7 +2473,7 @@ public class DefaultObjectEntryManagerImplTest
 			).build(),
 			childObjectEntry1);
 
-		// Starts With expression
+		// "Starts with" expression
 
 		testGetObjectEntries(
 			HashMapBuilder.put(
