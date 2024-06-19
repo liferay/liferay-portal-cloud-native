@@ -51,7 +51,7 @@ export async function changeTimeFilterTo({
 	}
 }
 
-export async function searchTerm({
+export async function searchByTerm({
 	page,
 	searchTerm,
 }: {

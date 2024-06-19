@@ -5,7 +5,7 @@
 
 import {Page} from '@playwright/test';
 
-import {searchTerm} from './utils';
+import {searchByTerm} from './utils';
 
 export async function changeEventDisplayName({
 	eventName,
@@ -16,7 +16,7 @@ export async function changeEventDisplayName({
 	newEventName: string;
 	page: Page;
 }) {
-	await searchTerm({
+	await searchByTerm({
 		page,
 		searchTerm: eventName,
 	});
