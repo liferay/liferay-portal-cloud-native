@@ -21,7 +21,7 @@
 </style>
 
 <#if themeDisplay?has_content>
-	<#assign isSignedIn = themeDisplay.isSignedIn() />
+	<#assign signedIn = themeDisplay.isSignedIn() />
 </#if>
 
 <#if (CPDefinition_cProductId.getData())??>
@@ -96,7 +96,7 @@
 				${companyDescription}
 			</div>
 
-			<div class="bg-white company-description-icons-container d-flex px-8 py-7<#if isSignedIn?string("yes", "no") == "no"> justify-content-center</#if><#if isSignedIn?string("yes", "no") == "yes"> justify-content-between</#if>">
+			<div class="bg-white company-description-icons-container d-flex px-8 py-7<#if signedIn?string("yes", "no") == "no"> justify-content-center</#if><#if signedIn?string("yes", "no") == "yes"> justify-content-between</#if>">
 				<#if companyWebsite?has_content>
 					<div class="d-flex flex-row">
 						<div class="align-items-center d-flex mr-2">
@@ -113,7 +113,7 @@
 					</div>
 				</#if>
 
-				<#if isSignedIn?string("yes", "no") == "yes">
+				<#if signedIn?string("yes", "no") == "yes">
 					<#if companyEmail?has_content>
 						<div class="d-flex flex-row">
 							<div class="align-items-center d-flex mr-2">
