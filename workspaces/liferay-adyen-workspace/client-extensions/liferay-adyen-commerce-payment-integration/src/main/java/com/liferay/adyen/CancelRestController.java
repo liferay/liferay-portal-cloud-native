@@ -25,7 +25,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,29 +54,13 @@ public class CancelRestController extends BaseRestController {
 			JSONObject typeSettingsJSONObject = jsonObject.getJSONObject(
 				"typeSettings");
 
-			String pspReference = null;
-
-			NotificationRequest notificationRequest =
-				NotificationRequest.fromJson(
-					typeSettingsJSONObject.getString("payload"));
-
-			List<NotificationRequestItem> notificationRequestItems =
-				notificationRequest.getNotificationItems();
-
-			if (!CollectionUtils.isEmpty(notificationRequestItems)) {
-				NotificationRequestItem notificationRequestItem =
-					notificationRequestItems.get(0);
-
-				pspReference = notificationRequestItem.getPspReference();
-			}
-
 			PaymentCancelResponse paymentCancelResponse = new ModificationsApi(
 				new Client(
 					typeSettingsJSONObject.getString("apiKey"),
 					Environment.valueOf(
 						typeSettingsJSONObject.getString("environment")))
 			).cancelAuthorisedPaymentByPspReference(
-				pspReference,
+				_getPspReference(typeSettingsJSONObject),
 				new PaymentCancelRequest(
 				).merchantAccount(
 					typeSettingsJSONObject.getString("merchantAccount")
@@ -108,6 +91,25 @@ public class CancelRestController extends BaseRestController {
 				"paymentStatus", paymentStatus
 			).toString(),
 			HttpStatus.OK);
+	}
+
+	private String _getPspReference(JSONObject typeSettingsJSONObject)
+		throws Exception {
+
+		NotificationRequest notificationRequest = NotificationRequest.fromJson(
+			typeSettingsJSONObject.getString("payload"));
+
+		List<NotificationRequestItem> notificationRequestItems =
+			notificationRequest.getNotificationItems();
+
+		if (notificationRequestItems.isEmpty()) {
+			return null;
+		}
+
+		NotificationRequestItem notificationRequestItem =
+			notificationRequestItems.get(0);
+
+		return notificationRequestItem.getPspReference();
 	}
 
 	private static final Log _log = LogFactory.getLog(
