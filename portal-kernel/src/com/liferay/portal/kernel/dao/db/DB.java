@@ -178,7 +178,8 @@ public interface DB {
 		throws IOException, NamingException, SQLException;
 
 	/**
-	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link #runSQLTemplate(Connection, String, boolean)}
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             #runSQLTemplate(Connection, String, boolean)}
 	 */
 	@Deprecated
 	public default void runSQLTemplateString(
@@ -189,7 +190,8 @@ public interface DB {
 	}
 
 	/**
-	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link #runSQLTemplate(String, boolean)}
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             #runSQLTemplate(String, boolean)}
 	 */
 	@Deprecated
 	public default void runSQLTemplateString(

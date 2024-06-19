@@ -42,7 +42,8 @@ public interface DBProcess {
 		throws IOException, NamingException, SQLException;
 
 	/**
-	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link #runSQLFile(String)}
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             #runSQLFile(String)}
 	 */
 	@Deprecated
 	public default void runSQLTemplate(String path)
@@ -55,7 +56,8 @@ public interface DBProcess {
 		throws IOException, NamingException, SQLException;
 
 	/**
-	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link #runSQLTemplate(String, boolean)}
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             #runSQLTemplate(String, boolean)}
 	 */
 	@Deprecated
 	public default void runSQLTemplateString(
