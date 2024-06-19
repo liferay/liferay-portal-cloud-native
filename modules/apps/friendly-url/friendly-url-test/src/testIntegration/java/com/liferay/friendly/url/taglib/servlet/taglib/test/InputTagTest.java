@@ -197,7 +197,6 @@ public class InputTagTest {
 		InputTag inputTag = new InputTag();
 
 		inputTag.setClassName(Layout.class.getName());
-
 		inputTag.setClassPK(_layout.getPlid());
 
 		MockHttpServletRequest mockHttpServletRequest =
