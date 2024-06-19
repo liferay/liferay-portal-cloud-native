@@ -26,48 +26,44 @@ public class InfoFieldTest {
 
 	@Test
 	public void testEquals() {
-		InfoField<?> infoField1 = InfoField.builder(
-		).infoFieldType(
-			TextInfoFieldType.INSTANCE
-		).uniqueId(
-			"uniquedId"
-		).name(
-			"text"
-		).build();
-
-		InfoField<?> infoField2 = InfoField.builder(
-		).infoFieldType(
-			TextInfoFieldType.INSTANCE
-		).uniqueId(
-			"uniquedId"
-		).name(
-			"text"
-		).build();
-
-		Assert.assertEquals(infoField1, infoField2);
+		Assert.assertEquals(
+			InfoField.builder(
+			).infoFieldType(
+				TextInfoFieldType.INSTANCE
+			).uniqueId(
+				"uniquedId"
+			).name(
+				"text"
+			).build(),
+			InfoField.builder(
+			).infoFieldType(
+				TextInfoFieldType.INSTANCE
+			).uniqueId(
+				"uniquedId"
+			).name(
+				"text"
+			).build());
 	}
 
 	@Test
 	public void testNotEquals() {
-		InfoField<?> infoField1 = InfoField.builder(
-		).infoFieldType(
-			TextInfoFieldType.INSTANCE
-		).uniqueId(
-			RandomTestUtil.randomString()
-		).name(
-			"text"
-		).build();
-
-		InfoField<?> infoField2 = InfoField.builder(
-		).infoFieldType(
-			TextInfoFieldType.INSTANCE
-		).uniqueId(
-			RandomTestUtil.randomString()
-		).name(
-			"text"
-		).build();
-
-		Assert.assertNotEquals(infoField1, infoField2);
+		Assert.assertNotEquals(
+			InfoField.builder(
+			).infoFieldType(
+				TextInfoFieldType.INSTANCE
+			).uniqueId(
+				RandomTestUtil.randomString()
+			).name(
+				"text"
+			).build(),
+			InfoField.builder(
+			).infoFieldType(
+				TextInfoFieldType.INSTANCE
+			).uniqueId(
+				RandomTestUtil.randomString()
+			).name(
+				"text"
+			).build());
 	}
 
 }
