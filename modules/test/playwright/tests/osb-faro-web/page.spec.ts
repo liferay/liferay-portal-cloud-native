@@ -27,10 +27,10 @@ import {
 } from './utils/navigation';
 import {
 	changeTimeFilterTo,
-	createIndividuals,
 	viewNameListIsNotPresent,
 	viewNameListIsPresent,
 } from './utils/utils';
+import {createIndividuals} from './utils/individuals';
 
 export const test = mergeTests(
 	apiHelpersTest,
