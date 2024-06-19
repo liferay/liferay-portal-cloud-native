@@ -136,11 +136,12 @@ public class MarketplaceCommandLineRunner implements CommandLineRunner {
 		Page<Order> page = _getOrdersPage(_ORDER_STATUS_IN_PROGRESS);
 
 		for (Order order : page.getItems()) {
-			Map<String, String> customFields =
-				(Map<String, String>)order.getCustomFields();
-
 			try {
 				ZonedDateTime nowZonedDateTime = ZonedDateTime.now();
+
+				Map<String, String> customFields =
+					(Map<String, String>)order.getCustomFields();
+
 				ZonedDateTime trialEndDateZonedDateTime = ZonedDateTime.parse(
 					customFields.get("trial-end-date"));
 

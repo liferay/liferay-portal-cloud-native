@@ -103,14 +103,14 @@ public class TrialRestController extends BaseRestController {
 
 		Order order = orderResource.getOrder(orderId);
 
-		Map<String, String> customFields =
-			(Map<String, String>)order.getCustomFields();
-
 		UserAccountResource userAccountResource = _getUserAccountResource();
 
 		UserAccount userAccount =
 			userAccountResource.getUserAccountByEmailAddress(
 				order.getCreatorEmailAddress());
+
+		Map<String, String> customFields =
+			(Map<String, String>)order.getCustomFields();
 
 		_postNotificationQueueEntry(
 			order.getCreatorEmailAddress(), "TRY-IT-NOW-EXPIRING-ORDER",
