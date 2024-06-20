@@ -63,8 +63,6 @@ public class UnlockLayoutsSessionActionTest {
 		Lock lock = _lockManager.fetchLock(
 			Layout.class.getName(), draftLayout.getPlid());
 
-		Assert.assertNotNull(lock);
-
 		Assert.assertEquals(
 			String.valueOf(TestPropsValues.getUserId()), lock.getOwner());
 
