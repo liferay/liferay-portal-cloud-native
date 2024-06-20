@@ -39,7 +39,7 @@ export async function searchByTerm({
 	await page.getByPlaceholder('Search').first().press('Enter');
 }
 
-export async function viewNameListIsNotPresent({
+export async function expectNotToBeVisible({
 	itemNames,
 	page,
 }: {
