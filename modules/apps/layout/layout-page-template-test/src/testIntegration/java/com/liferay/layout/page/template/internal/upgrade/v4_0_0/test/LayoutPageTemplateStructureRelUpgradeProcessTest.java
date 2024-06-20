@@ -67,7 +67,7 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 	}
 
 	@Test
-	public void testUpgradeWithInvalidPaginationType() throws Exception {
+	public void testUpgradeWithPaginationTypeRandom() throws Exception {
 		_assertUpgradeWithItemConfig(
 			HashMapBuilder.<String, Object>put(
 				"displayAllItems", false
@@ -80,7 +80,7 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 	}
 
 	@Test
-	public void testUpgradeWithNonePaginationType() throws Exception {
+	public void testUpgradeWithPaginationTypeNone() throws Exception {
 		_assertUpgradeWithItemConfig(
 			HashMapBuilder.<String, Object>put(
 				"displayAllItems", false
@@ -93,7 +93,7 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 	}
 
 	@Test
-	public void testUpgradeWithNullPaginationType() throws Exception {
+	public void testUpgradeWithPaginationTypeNull() throws Exception {
 		_assertUpgradeWithItemConfig(
 			HashMapBuilder.<String, Object>put(
 				"displayAllItems", false
@@ -133,7 +133,7 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 	}
 
 	@Test
-	public void testUpgradeWithNumericPaginationType() throws Exception {
+	public void testUpgradeWithPaginationTypeNumeric() throws Exception {
 		_assertUpgradeWithItemConfig(
 			HashMapBuilder.<String, Object>put(
 				"displayAllItems", false
@@ -148,7 +148,7 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 	}
 
 	@Test
-	public void testUpgradeWithRegularPaginationType() throws Exception {
+	public void testUpgradeWithPaginationTypeRegular() throws Exception {
 		_assertUpgradeWithItemConfig(
 			HashMapBuilder.<String, Object>put(
 				"displayAllItems", false
@@ -198,7 +198,7 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 	}
 
 	@Test
-	public void testUpgradeWithSimplePaginationType() throws Exception {
+	public void testUpgradeWithPaginationTypeSimple() throws Exception {
 		_assertUpgradeWithItemConfig(
 			HashMapBuilder.<String, Object>put(
 				"displayAllItems", false
