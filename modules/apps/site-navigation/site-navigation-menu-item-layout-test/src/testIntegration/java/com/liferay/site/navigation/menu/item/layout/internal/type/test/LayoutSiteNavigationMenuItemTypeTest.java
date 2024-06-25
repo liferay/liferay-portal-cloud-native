@@ -125,7 +125,6 @@ public class LayoutSiteNavigationMenuItemTypeTest {
 			1,
 			_siteNavigationMenuItemLocalService.getSiteNavigationMenuItemsCount(
 				autoSiteNavigationMenu.getSiteNavigationMenuId()));
-
 		Assert.assertEquals(
 			1,
 			_siteNavigationMenuItemLocalService.getSiteNavigationMenuItemsCount(
@@ -213,10 +212,10 @@ public class LayoutSiteNavigationMenuItemTypeTest {
 
 			Assert.assertEquals(
 				StringBundler.concat(
-					"No layout found for site navigation menu item ",
+					"No layout found for site navigation menu item ID ",
 					siteNavigationMenuItem.getSiteNavigationMenuItemId(),
-					" with layoutUuid ", layoutUuid,
-					" and privateLayout false"),
+					" with layout UUID ", layoutUuid,
+					" and private layout false"),
 				logEntry.getMessage());
 		}
 	}

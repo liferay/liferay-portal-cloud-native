@@ -547,9 +547,9 @@ public class LayoutSiteNavigationMenuItemType
 		if ((layout == null) && _log.isWarnEnabled()) {
 			_log.warn(
 				StringBundler.concat(
-					"No layout found for site navigation menu item ",
+					"No layout found for site navigation menu item ID ",
 					siteNavigationMenuItem.getSiteNavigationMenuItemId(),
-					" with layoutUuid ", layoutUuid, " and privateLayout ",
+					" with layout UUID ", layoutUuid, " and private layout ",
 					privateLayout));
 		}
 
