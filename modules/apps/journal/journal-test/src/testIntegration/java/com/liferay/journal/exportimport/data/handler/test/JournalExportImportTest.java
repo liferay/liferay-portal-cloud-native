@@ -388,7 +388,7 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 	}
 
 	@Test
-	public void testExportImportWithCategoryOrSubcategory() throws Exception {
+	public void testExportImportWithAssetCategory() throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(group.getGroupId());
 
@@ -439,8 +439,8 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 			JournalArticleLocalServiceUtil.getArticlesCount(
 				importedGroup.getGroupId()));
 
-		_assertGetCategories(parentAssetCategory, article1.getUuid());
-		_assertGetCategories(childAssetCategory, article2.getUuid());
+		_assertAssetCategory(parentAssetCategory, article1.getUuid());
+		_assertAssetCategory(childAssetCategory, article2.getUuid());
 	}
 
 	@Ignore
@@ -828,7 +828,7 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 			string.contains(substring));
 	}
 
-	private void _assertGetCategories(
+	private void _assertAssetCategory(
 		AssetCategory assetCategory, String uuid) {
 
 		JournalArticle importedArticle =
