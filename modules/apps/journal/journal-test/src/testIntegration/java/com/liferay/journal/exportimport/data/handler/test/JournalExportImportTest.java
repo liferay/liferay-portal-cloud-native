@@ -820,14 +820,6 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 		}
 	}
 
-	private void _assertContains(String string, String substring) {
-		Assert.assertTrue(
-			StringBundler.concat(
-				"The string \"", string, "\" should contain the substring \"",
-				substring, "\""),
-			string.contains(substring));
-	}
-
 	private void _assertAssetCategory(
 		AssetCategory assetCategory, String uuid) {
 
@@ -852,6 +844,14 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 			assetCategory.getUuid(), importedAssetCategory.getUuid());
 		Assert.assertEquals(
 			assetCategory.getName(), importedAssetCategory.getName());
+	}
+
+	private void _assertContains(String string, String substring) {
+		Assert.assertTrue(
+			StringBundler.concat(
+				"The string \"", string, "\" should contain the substring \"",
+				substring, "\""),
+			string.contains(substring));
 	}
 
 	private JSONObject _getArticleReferenceJSONObject(JournalArticle article)
