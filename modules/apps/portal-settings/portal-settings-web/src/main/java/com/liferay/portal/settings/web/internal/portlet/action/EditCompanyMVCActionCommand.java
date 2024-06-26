@@ -229,14 +229,14 @@ public class EditCompanyMVCActionCommand extends BaseFormMVCActionCommand {
 				"Updating company properties " + unicodeProperties.toString());
 
 			_log.debug(
-				"Current complete url: " +
-					actionRequest.getAttribute("CURRENT_COMPLETE_URL"));
+				"Current complete URL: " +
+					actionRequest.getAttribute(WebKeys.CURRENT_COMPLETE_URL));
 
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 			if (themeDisplay != null) {
-				_log.debug("User id: " + themeDisplay.getUserId());
+				_log.debug("User ID: " + themeDisplay.getUserId());
 			}
 		}
 
