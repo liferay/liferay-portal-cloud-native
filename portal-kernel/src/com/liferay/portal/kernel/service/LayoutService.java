@@ -63,7 +63,7 @@ public interface LayoutService extends BaseService {
 	 * etc.
 	 * </p>
 	 *
-	 * @param externalReferenceCode the layout external reference code
+	 * @param externalReferenceCode the layout's external reference code
 	 * @param groupId the primary key of the group
 	 * @param privateLayout whether the layout is private to the group
 	 * @param parentLayoutId the layout ID of the parent layout (optionally
@@ -118,7 +118,7 @@ public interface LayoutService extends BaseService {
 	 * etc.
 	 * </p>
 	 *
-	 * @param externalReferenceCode the layout external reference code
+	 * @param externalReferenceCode the layout's external reference code
 	 * @param groupId the primary key of the group
 	 * @param privateLayout whether the layout is private to the group
 	 * @param parentLayoutId the layout ID of the parent layout (optionally
@@ -169,7 +169,7 @@ public interface LayoutService extends BaseService {
 	 * etc.
 	 * </p>
 	 *
-	 * @param externalReferenceCode the layout external reference code
+	 * @param externalReferenceCode the layout's external reference code
 	 * @param groupId the primary key of the group
 	 * @param privateLayout whether the layout is private to the group
 	 * @param parentLayoutId the layout ID of the parent layout (optionally
@@ -220,7 +220,7 @@ public interface LayoutService extends BaseService {
 	 * etc.
 	 * </p>
 	 *
-	 * @param externalReferenceCode the layout external reference code
+	 * @param externalReferenceCode the layout's external reference code
 	 * @param groupId the primary key of the group
 	 * @param privateLayout whether the layout is private to the group
 	 * @param parentLayoutId the layout ID of the parent layout (optionally
@@ -290,14 +290,6 @@ public interface LayoutService extends BaseService {
 	public void deleteLayout(long plid, ServiceContext serviceContext)
 		throws PortalException;
 
-	/**
-	 * Deletes the layout with the external reference code, also deleting the layout's child
-	 * layouts, and associated resources.
-	 *
-	 * @param externalReferenceCode the external reference code of the layout
-	 * @param groupId the primary key of the group
-	 * @throws PortalException if a portal exception occurred
-	 */
 	public void deleteLayout(String externalReferenceCode, long groupId)
 		throws PortalException;
 
@@ -373,14 +365,6 @@ public interface LayoutService extends BaseService {
 			long groupId, long scopeGroupId, String portletId)
 		throws PortalException;
 
-	/**
-	 * Returns the layout matching the external reference code and group.
-	 *
-	 * @param externalReferenceCode the layout external reference code
-	 * @param groupId the primary key of the group
-	 * @return the matching layout
-	 * @throws PortalException if a portal exception occurred
-	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Layout getLayoutByExternalReferenceCode(
 			String externalReferenceCode, long groupId)

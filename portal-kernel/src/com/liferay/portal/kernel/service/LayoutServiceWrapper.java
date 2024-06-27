@@ -35,7 +35,7 @@ public class LayoutServiceWrapper
 	 * etc.
 	 * </p>
 	 *
-	 * @param externalReferenceCode the layout external reference code
+	 * @param externalReferenceCode the layout's external reference code
 	 * @param groupId the primary key of the group
 	 * @param privateLayout whether the layout is private to the group
 	 * @param parentLayoutId the layout ID of the parent layout (optionally
@@ -100,7 +100,7 @@ public class LayoutServiceWrapper
 	 * etc.
 	 * </p>
 	 *
-	 * @param externalReferenceCode the layout external reference code
+	 * @param externalReferenceCode the layout's external reference code
 	 * @param groupId the primary key of the group
 	 * @param privateLayout whether the layout is private to the group
 	 * @param parentLayoutId the layout ID of the parent layout (optionally
@@ -162,7 +162,7 @@ public class LayoutServiceWrapper
 	 * etc.
 	 * </p>
 	 *
-	 * @param externalReferenceCode the layout external reference code
+	 * @param externalReferenceCode the layout's external reference code
 	 * @param groupId the primary key of the group
 	 * @param privateLayout whether the layout is private to the group
 	 * @param parentLayoutId the layout ID of the parent layout (optionally
@@ -224,7 +224,7 @@ public class LayoutServiceWrapper
 	 * etc.
 	 * </p>
 	 *
-	 * @param externalReferenceCode the layout external reference code
+	 * @param externalReferenceCode the layout's external reference code
 	 * @param groupId the primary key of the group
 	 * @param privateLayout whether the layout is private to the group
 	 * @param parentLayoutId the layout ID of the parent layout (optionally
@@ -321,14 +321,6 @@ public class LayoutServiceWrapper
 		_layoutService.deleteLayout(plid, serviceContext);
 	}
 
-	/**
-	 * Deletes the layout with the external reference code, also deleting the layout's child
-	 * layouts, and associated resources.
-	 *
-	 * @param externalReferenceCode the external reference code of the layout
-	 * @param groupId the primary key of the group
-	 * @throws PortalException if a portal exception occurred
-	 */
 	@Override
 	public void deleteLayout(String externalReferenceCode, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -438,14 +430,6 @@ public class LayoutServiceWrapper
 		return _layoutService.getDefaultPlid(groupId, scopeGroupId, portletId);
 	}
 
-	/**
-	 * Returns the layout matching the external reference code and group.
-	 *
-	 * @param externalReferenceCode the layout external reference code
-	 * @param groupId the primary key of the group
-	 * @return the matching layout
-	 * @throws PortalException if a portal exception occurred
-	 */
 	@Override
 	public Layout getLayoutByExternalReferenceCode(
 			String externalReferenceCode, long groupId)

@@ -61,7 +61,7 @@ public class LayoutLocalServiceUtil {
 	 * etc.
 	 * </p>
 	 *
-	 * @param externalReferenceCode the layout external reference code
+	 * @param externalReferenceCode the layout's external reference code
 	 * @param userId the primary key of the user
 	 * @param groupId the primary key of the group
 	 * @param privateLayout whether the layout is private to the group
@@ -132,7 +132,7 @@ public class LayoutLocalServiceUtil {
 	 * etc.
 	 * </p>
 	 *
-	 * @param externalReferenceCode the layout external reference code
+	 * @param externalReferenceCode the layout's external reference code
 	 * @param userId the primary key of the user
 	 * @param groupId the primary key of the group
 	 * @param privateLayout whether the layout is private to the group
@@ -200,7 +200,7 @@ public class LayoutLocalServiceUtil {
 	 * etc.
 	 * </p>
 	 *
-	 * @param externalReferenceCode the layout external reference code
+	 * @param externalReferenceCode the layout's external reference code
 	 * @param userId the primary key of the user
 	 * @param groupId the primary key of the group
 	 * @param privateLayout whether the layout is private to the group
@@ -268,7 +268,7 @@ public class LayoutLocalServiceUtil {
 	 * etc.
 	 * </p>
 	 *
-	 * @param externalReferenceCode the layout external reference code
+	 * @param externalReferenceCode the layout's external reference code
 	 * @param userId the primary key of the user
 	 * @param groupId the primary key of the group
 	 * @param privateLayout whether the layout is private to the group
@@ -330,7 +330,7 @@ public class LayoutLocalServiceUtil {
 	 * etc.
 	 * </p>
 	 *
-	 * @param externalReferenceCode the layout external reference code
+	 * @param externalReferenceCode the layout's external reference code
 	 * @param userId the primary key of the user
 	 * @param groupId the primary key of the group
 	 * @param privateLayout whether the layout is private to the group
@@ -513,14 +513,6 @@ public class LayoutLocalServiceUtil {
 		getService().deleteLayout(plid, serviceContext);
 	}
 
-	/**
-	 * Deletes the layout with the external reference code, also deleting the layout's child
-	 * layouts, and associated resources.
-	 *
-	 * @param externalReferenceCode the external reference code of the layout
-	 * @param groupId the primary key of the group
-	 * @throws PortalException if a portal exception occurred
-	 */
 	public static void deleteLayout(String externalReferenceCode, long groupId)
 		throws PortalException {
 
