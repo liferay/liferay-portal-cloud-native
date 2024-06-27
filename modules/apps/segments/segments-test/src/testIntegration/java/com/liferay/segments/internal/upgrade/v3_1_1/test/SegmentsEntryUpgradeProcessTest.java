@@ -55,11 +55,7 @@ public class SegmentsEntryUpgradeProcessTest {
 		Locale locale = LocaleUtil.fromLanguageId(
 			UpgradeProcessUtil.getDefaultLanguageId(_group.getCompanyId()));
 
-		_segmentsEntryLocalService.addSegmentsEntry(
-			RandomTestUtil.randomString(),
-			Collections.singletonMap(locale, RandomTestUtil.randomString()),
-			Collections.singletonMap(locale, RandomTestUtil.randomString()),
-			true,
+		_addSegmentsEntry(
 			JSONUtil.put(
 				"operatorName", "eq"
 			).put(
@@ -67,14 +63,8 @@ public class SegmentsEntryUpgradeProcessTest {
 			).put(
 				"value", "test"
 			).toString(),
-			SegmentsEntryConstants.SOURCE_DEFAULT,
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
-
-		_segmentsEntryLocalService.addSegmentsEntry(
-			RandomTestUtil.randomString(),
-			Collections.singletonMap(locale, RandomTestUtil.randomString()),
-			Collections.singletonMap(locale, RandomTestUtil.randomString()),
-			true,
+			locale);
+		_addSegmentsEntry(
 			JSONUtil.put(
 				"operatorName", "eq"
 			).put(
@@ -82,14 +72,8 @@ public class SegmentsEntryUpgradeProcessTest {
 			).put(
 				"value", "test"
 			).toString(),
-			SegmentsEntryConstants.SOURCE_DEFAULT,
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
-
-		_segmentsEntryLocalService.addSegmentsEntry(
-			RandomTestUtil.randomString(),
-			Collections.singletonMap(locale, RandomTestUtil.randomString()),
-			Collections.singletonMap(locale, RandomTestUtil.randomString()),
-			true,
+			locale);
+		_addSegmentsEntry(
 			JSONUtil.put(
 				"operatorName", "eq"
 			).put(
@@ -97,14 +81,8 @@ public class SegmentsEntryUpgradeProcessTest {
 			).put(
 				"value", "1000.0"
 			).toString(),
-			SegmentsEntryConstants.SOURCE_DEFAULT,
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
-
-		_segmentsEntryLocalService.addSegmentsEntry(
-			RandomTestUtil.randomString(),
-			Collections.singletonMap(locale, RandomTestUtil.randomString()),
-			Collections.singletonMap(locale, RandomTestUtil.randomString()),
-			true,
+			locale);
+		_addSegmentsEntry(
 			JSONUtil.put(
 				"operatorName", "eq"
 			).put(
@@ -112,15 +90,8 @@ public class SegmentsEntryUpgradeProcessTest {
 			).put(
 				"value", "1000.0"
 			).toString(),
-			SegmentsEntryConstants.SOURCE_DEFAULT,
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
-
-		_segmentsEntryLocalService.addSegmentsEntry(
-			RandomTestUtil.randomString(),
-			Collections.singletonMap(locale, RandomTestUtil.randomString()),
-			Collections.singletonMap(locale, RandomTestUtil.randomString()),
-			true, null, SegmentsEntryConstants.SOURCE_DEFAULT,
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
+			locale);
+		_addSegmentsEntry(null, locale);
 	}
 
 	@After
@@ -166,6 +137,17 @@ public class SegmentsEntryUpgradeProcessTest {
 
 		Assert.assertEquals(
 			0, _segmentsEntryLocalService.dynamicQueryCount(dynamicQuery));
+	}
+
+	private void _addSegmentsEntry(String criteria, Locale locale)
+		throws Exception {
+
+		_segmentsEntryLocalService.addSegmentsEntry(
+			RandomTestUtil.randomString(),
+			Collections.singletonMap(locale, RandomTestUtil.randomString()),
+			Collections.singletonMap(locale, RandomTestUtil.randomString()),
+			true, criteria, SegmentsEntryConstants.SOURCE_DEFAULT,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}
 
 	private static final String _CLASS_NAME =
