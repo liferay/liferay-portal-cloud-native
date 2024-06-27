@@ -42,10 +42,13 @@ public class IndexWriterHelperImplTest {
 
 		IndexWriterHelper indexWriterHelper = new IndexWriterHelperImpl();
 
-		SearchEngine searchEngine = Mockito.mock(SearchEngine.class);
+		ReflectionTestUtil.setFieldValue(
+			indexWriterHelper, "_commitImmediately", commitImmediately);
 
 		SearchEngineHelper searchEngineHelper = Mockito.mock(
 			SearchEngineHelper.class);
+
+		SearchEngine searchEngine = Mockito.mock(SearchEngine.class);
 
 		Mockito.when(
 			searchEngine.getIndexWriter()
@@ -59,8 +62,6 @@ public class IndexWriterHelperImplTest {
 			searchEngine
 		);
 
-		ReflectionTestUtil.setFieldValue(
-			indexWriterHelper, "_commitImmediately", commitImmediately);
 		ReflectionTestUtil.setFieldValue(
 			indexWriterHelper, "_searchEngineHelper", searchEngineHelper);
 
