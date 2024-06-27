@@ -84,7 +84,7 @@ public class LoginActionTest {
 	}
 
 	@Test
-	public void testExclusiveStateInModalWhenLoginFromAnUtilityPage()
+	public void testExclusiveStateInModalWhenLoginFromALayoutUtilityPageEntry()
 		throws Exception {
 
 		Group group = _groupLocalService.getGroup(
