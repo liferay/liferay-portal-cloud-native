@@ -1143,13 +1143,14 @@ public class DBPartitionUtil {
 				continue;
 			}
 
+			SchedulerEngineHelperUtil.delete(
+				jobName, schedulerResponse.getGroupName(),
+				schedulerResponse.getStorageType());
+
 			message.remove(SchedulerEngine.JOB_STATE);
 
 			message.put("companyId", toCompanyId);
 
-			SchedulerEngineHelperUtil.delete(
-				jobName, schedulerResponse.getGroupName(),
-				schedulerResponse.getStorageType());
 			SchedulerEngineHelperUtil.schedule(
 				schedulerResponse.getTrigger(),
 				schedulerResponse.getStorageType(),

@@ -597,8 +597,8 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 
 		Message message = new Message();
 
-		message.put("companyId", companyId);
 		message.put("JOB_NAME", companyJobName);
+		message.put("companyId", companyId);
 
 		_schedulerEngine.schedule(
 			trigger, StringPool.BLANK, _JOB_GROUP_NAME, message,
