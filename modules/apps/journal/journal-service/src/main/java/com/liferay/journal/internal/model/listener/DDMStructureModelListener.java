@@ -49,7 +49,7 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 			 Objects.equals(
 				 originalDDMStructure.getDefinition(),
 				 ddmStructure.getDefinition())) ||
-			_isPredefinedValuesUpdate(
+			_hasModifiedPredefinedValue(
 				originalDDMStructure.getDDMForm(), ddmStructure.getDDMForm())) {
 
 			return;
@@ -124,7 +124,7 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 		}
 	}
 
-	private boolean _isPredefinedValuesUpdate(
+	private boolean _hasModifiedPredefinedValue(
 		DDMForm ddmForm1, DDMForm ddmForm2) {
 
 		Map<String, DDMFormField> ddmFormFieldsMap1 =
