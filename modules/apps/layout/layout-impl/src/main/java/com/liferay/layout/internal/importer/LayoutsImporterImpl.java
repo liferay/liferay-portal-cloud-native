@@ -1884,7 +1884,6 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 			draftLayout.getUserId(), draftLayout.getPlid(),
 			WorkflowConstants.STATUS_APPROVED,
 			ServiceContextThreadLocal.getServiceContext());
-
 		_layoutLocalService.updateStatus(
 			draftLayout.getUserId(), plid, WorkflowConstants.STATUS_APPROVED,
 			ServiceContextThreadLocal.getServiceContext());
