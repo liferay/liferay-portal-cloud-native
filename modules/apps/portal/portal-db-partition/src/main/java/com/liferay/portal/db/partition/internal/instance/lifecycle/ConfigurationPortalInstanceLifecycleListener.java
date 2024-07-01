@@ -59,7 +59,7 @@ public class ConfigurationPortalInstanceLifecycleListener
 		}
 
 		Map<String, String> configurations = DBPartitionUtil.getConfigurations(
-			PortalInstances.getCompanyInCopyProcess());
+			PortalInstances.getCopyInProcessCompanyId());
 
 		for (Map.Entry<String, String> entry : configurations.entrySet()) {
 			String dictionaryString = entry.getValue();

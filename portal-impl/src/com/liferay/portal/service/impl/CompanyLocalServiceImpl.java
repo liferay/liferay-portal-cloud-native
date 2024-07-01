@@ -537,7 +537,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		validateWebId(webId);
 
-		SafeCloseable safeCloseable1 = PortalInstances.setCompanyInCopyProcess(
+		SafeCloseable safeCloseable1 = PortalInstances.setCopyInProcessCompanyId(
 			fromCompanyId);
 
 		DBPartitionUtil.copyDBPartition(fromCompanyId, toCompanyId);
