@@ -172,10 +172,9 @@ public class BreadcrumbUtilTest {
 		BreadcrumbEntry breadcrumbEntry, String expectedTitle,
 		String expectedURL) {
 
-		Assert.assertEquals(expectedTitle, breadcrumbEntry.getTitle());
-
 		Assert.assertEquals(
 			Validator.isNotNull(expectedURL), breadcrumbEntry.isBrowsable());
+		Assert.assertEquals(expectedTitle, breadcrumbEntry.getTitle());
 		Assert.assertEquals(expectedURL, breadcrumbEntry.getURL());
 	}
 
