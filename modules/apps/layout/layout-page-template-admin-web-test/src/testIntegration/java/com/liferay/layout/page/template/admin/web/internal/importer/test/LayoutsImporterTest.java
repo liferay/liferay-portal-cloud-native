@@ -109,10 +109,10 @@ public class LayoutsImporterTest {
 
 	@Test
 	public void testImportLayoutPageTemplateEntry() throws Exception {
-		String key = "test-text-fragment";
 		String html =
 			"<lfr-editable id=\"element-text\" type=\"text\">Test Text " +
 				"Fragment</lfr-editable>";
+		String key = "test-text-fragment";
 		String name = "Test Text Fragment";
 
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
