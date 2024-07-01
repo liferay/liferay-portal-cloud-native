@@ -297,12 +297,12 @@ public class JournalArticleServiceTest {
 				_group.getGroupId(), "<title>Test Article</title>",
 				ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey());
 
-		String compositeClassName = ResourceActionsUtil.getCompositeModelName(
-			JournalArticle.class.getName(), DDMTemplate.class.getName());
-
 		DDMTemplateLink ddmTemplateLink =
 			_ddmTemplateLinkLocalService.addTemplateLink(
-				_classNameLocalService.getClassNameId(compositeClassName),
+				_classNameLocalService.getClassNameId(
+				ResourceActionsUtil.getCompositeModelName(
+					JournalArticle.class.getName(),
+					DDMTemplate.class.getName())),
 				journalArticle.getId(), ddmTemplate.getTemplateId());
 
 		_journalArticleLocalService.deleteArticle(
