@@ -282,7 +282,7 @@ public class JournalArticleServiceTest {
 	}
 
 	@Test
-	public void testDeleteTemplateSpecifiedByDeletedJournalArticle()
+	public void testDeleteDDMTemplateSpecifiedByDeletedArticle()
 		throws Exception {
 
 		DDMStructure ddmStructure = DDMStructureTestUtil.addStructure(
