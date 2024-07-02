@@ -9,6 +9,7 @@
 
 <#list 0..siblingsJSONArray.length()-1 as i>
 	<#assign sibling = siblingsJSONArray.getJSONObject(i) />
+
 	<#if sibling.getString("title") == "${course.getData()}">
 		<#assign courseData = sibling />
 		<#break>
@@ -97,19 +98,19 @@
 </div>
 
 <script>
-function togglePanel(button) {
-	const courseModuleNumber = button.querySelector('.course-module-number');
-	const liferayNavItem = button.querySelector('.liferay-nav-item');
+	function togglePanel(button) {
+		const courseModuleNumber = button.querySelector('.course-module-number');
+		const liferayNavItem = button.querySelector('.liferay-nav-item');
 
-	if (button.getAttribute('aria-expanded') === 'true') {
-		button.setAttribute('aria-expanded', 'false');
-		courseModuleNumber.classList.remove('highlighted');
-		liferayNavItem.classList.remove('highlightedNavItem');
+		if (button.getAttribute('aria-expanded') === 'true') {
+			button.setAttribute('aria-expanded', 'false');
+			courseModuleNumber.classList.remove('highlighted');
+			liferayNavItem.classList.remove('highlightedNavItem');
+		}
+		else {
+			button.setAttribute('aria-expanded', 'true');
+			courseModuleNumber.classList.add('highlighted');
+			liferayNavItem.classList.add('highlightedNavItem');
+		}
 	}
-	else {
-		button.setAttribute('aria-expanded', 'true');
-		courseModuleNumber.classList.add('highlighted');
-		liferayNavItem.classList.add('highlightedNavItem');
-	}
-}
 </script>
