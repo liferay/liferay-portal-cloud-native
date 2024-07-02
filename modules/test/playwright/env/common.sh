@@ -339,30 +339,30 @@ function start_client_extension_spring_boot_application {
 	then
 		local spring_boot_class_name=$(find ${client_extension_dir} -name "*SpringBootApplication.java" | grep "SpringBootApplication.java" | xargs basename | sed 's/.java//')
 
-		echo "Starting ${spring_boot_class_name}"
+		echo "Starting ${spring_boot_class_name}."
 
 		cd ${client_extension_dir}
 
-		local gradlew=$(get_gradlew)
-
-		local portal_url_scheme=$(echo ${LIFERAY_PORTAL_URL} | awk -F:// '{print $1}')
 		local portal_url_hostname=$(echo ${LIFERAY_PORTAL_URL} | awk -F:// '{print $2}')
 
 		echo "${portal_url_hostname}" > ${LIFERAY_HOME}/routes/default/dxp/com.liferay.lxc.dxp.domains
 		echo "${portal_url_hostname}" > ${LIFERAY_HOME}/routes/default/dxp/com.liferay.lxc.dxp.main.domain
 		echo "${portal_url_hostname}" > ${LIFERAY_HOME}/routes/default/dxp/com.liferay.lxc.dxp.mainDomain
+
+		local portal_url_scheme=$(echo ${LIFERAY_PORTAL_URL} | awk -F:// '{print $1}')
+
 		echo "${portal_url_scheme}" > ${LIFERAY_HOME}/routes/default/dxp/com.liferay.lxc.dxp.server.protocol
 
-		${gradlew} bootRun -Pliferay.workspace.home.dir=${LIFERAY_HOME} &
+		$(get_gradlew) bootRun -Pliferay.workspace.home.dir=${LIFERAY_HOME} &
 
-		local sleep_interval=5
 		local sleep_duration=60
+		local sleep_interval=5
 		local total_duration=0
 
 		while ! curl --output /dev/null --silent --head --fail http://localhost:58081/ready
 		do
 			if [ ${total_duration} -ge ${sleep_duration} ]; then
-				echo "Unable to start ${spring_boot_class_name}"
+				echo "Unable to start ${spring_boot_class_name}."
 
 				exit 1
 			fi
@@ -374,7 +374,7 @@ function start_client_extension_spring_boot_application {
 
 		sleep ${sleep_interval}
 
-		echo "Started ${spring_boot_class_name}"
+		echo "Started ${spring_boot_class_name}."
 	else
 		echo "The directory ${client_extension_dir} does not exist."
 	fi
@@ -406,18 +406,18 @@ function stop_client_extension_spring_boot_application {
 	then
 		local spring_boot_class_name=$(find ${client_extension_dir} -name "*SpringBootApplication.java" | grep "SpringBootApplication.java" | xargs basename | sed 's/.java//')
 
-		echo "Stopping the ${spring_boot_class_name}"
+		echo "Stopping ${spring_boot_class_name}."
 
 		kill -SIGTERM $(jps | grep ${spring_boot_class_name} | awk '{print $1}')
 
-		local sleep_interval=5
 		local sleep_duration=60
+		local sleep_interval=5
 		local total_duration=0
 
 		while curl --output /dev/null --silent --head --fail http://localhost:58081/ready
 		do
 			if [ ${total_duration} -ge ${sleep_duration} ]; then
-				echo "Unable to start ${spring_boot_class_name}"
+				echo "Unable to start ${spring_boot_class_name}."
 
 				exit 1
 			fi
@@ -429,7 +429,7 @@ function stop_client_extension_spring_boot_application {
 
 		sleep ${sleep_interval}
 
-		echo "Stopped ${spring_boot_class_name}"
+		echo "Stopped ${spring_boot_class_name}."
 	else
 		echo "The directory ${client_extension_dir} does not exist."
 	fi
