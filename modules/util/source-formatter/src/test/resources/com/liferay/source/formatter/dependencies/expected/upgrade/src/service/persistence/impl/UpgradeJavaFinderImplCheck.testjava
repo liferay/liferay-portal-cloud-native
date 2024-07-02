@@ -13,5 +13,4 @@ import org.osgi.service.component.annotations.Component;
 @Component(service = UpgradeJavaFinder.class)
 public class UpgradeJavaFinderImplCheck
 	extends UpgradeJavaFinderBaseImplCheck implements UpgradeJavaFinderCheck {
-
 }

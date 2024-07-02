@@ -20,5 +20,4 @@ import org.osgi.service.component.annotations.Component;
 )
 public class UpgradeJavaServiceImplCheck
 	extends UpgradeJavaServiceBaseImplCheck {
-
 }
