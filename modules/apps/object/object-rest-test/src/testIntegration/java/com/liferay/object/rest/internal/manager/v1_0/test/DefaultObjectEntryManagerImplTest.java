@@ -3920,8 +3920,7 @@ public class DefaultObjectEntryManagerImplTest
 	public void testUpdateObjectEntryWithAccountEntryRestricted3()
 		throws Exception {
 
-		// Account roles' permissions should not be restricted by
-		// Account entry
+		// Account roles' permissions should not be restricted by account entry
 
 		ObjectDefinition objectDefinition = _createObjectDefinition(
 			Arrays.asList(
