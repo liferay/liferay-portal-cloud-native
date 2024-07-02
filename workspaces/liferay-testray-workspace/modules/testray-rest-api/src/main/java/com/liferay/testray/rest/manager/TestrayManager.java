@@ -20,7 +20,7 @@ import org.w3c.dom.Document;
 public interface TestrayManager {
 
 	public Map<String, Object> fetchTestrayFlakyScores(
-			long companyId, long testrayCaseId, OffsetDateTime offsetDateTime)
+			long companyId, OffsetDateTime offsetDateTime, long testrayCaseId)
 		throws Exception;
 
 	public void loadTestrayCache(

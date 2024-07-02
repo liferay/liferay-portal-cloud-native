@@ -122,11 +122,11 @@ public class TestrayFlakyTrackerDispatchTaskExecutor
 			Map<String, Object> testrayFlakyScores =
 				_testrayManager.fetchTestrayFlakyScores(
 					dispatchTrigger.getCompanyId(),
-					GetterUtil.getLong(testrayCase.get("c_caseId")),
 					_currentDateTime.minusDays(
 						GetterUtil.getLong(
 							unicodeProperties.getProperty(
-								"testrayFlakyMaxDays"))));
+								"testrayFlakyMaxDays"))),
+					GetterUtil.getLong(testrayCase.get("c_caseId")));
 
 			if (testrayFlakyScores == null) {
 				continue;

@@ -68,7 +68,7 @@ public class TestrayManagerImpl implements TestrayManager {
 
 	@Override
 	public Map<String, Object> fetchTestrayFlakyScores(
-			long companyId, long testrayCaseId, OffsetDateTime offsetDateTime)
+			long companyId, OffsetDateTime offsetDateTime, long testrayCaseId)
 		throws Exception {
 
 		StringBundler sb = new StringBundler(12);
