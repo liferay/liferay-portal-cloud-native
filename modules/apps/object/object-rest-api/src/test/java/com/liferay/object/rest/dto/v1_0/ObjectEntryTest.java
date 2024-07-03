@@ -47,16 +47,16 @@ public class ObjectEntryTest {
 				setProperties(
 					HashMapBuilder.<String, Object>put(
 						"property1",
-						new UnsafeSupplierImpl(atomicInteger1, "value1")
+						new AtomicIntegerUnsafeSupplier(atomicInteger1, "value1")
 					).put(
 						"property2",
-						new UnsafeSupplierImpl(atomicInteger2, "value2")
+						new AtomicIntegerUnsafeSupplier(atomicInteger2, "value2")
 					).put(
 						"property3",
-						new UnsafeSupplierImpl(atomicInteger3, "value3")
+						new AtomicIntegerUnsafeSupplier(atomicInteger3, "value3")
 					).put(
 						"property4",
-						new UnsafeSupplierImpl(atomicInteger4, nullString)
+						new AtomicIntegerUnsafeSupplier(atomicInteger4, nullString)
 					).put(
 						"property5", nullString
 					).build());
@@ -106,10 +106,12 @@ public class ObjectEntryTest {
 		}
 	}
 
-	private class UnsafeSupplierImpl
+	private class AtomicIntegerUnsafeSupplier
 		implements UnsafeSupplier<Object, Exception> {
 
-		public UnsafeSupplierImpl(AtomicInteger atomicInteger, String value) {
+		public AtomicIntegerUnsafeSupplier(
+			AtomicInteger atomicInteger, String value) {
+
 			_atomicInteger = atomicInteger;
 			_value = value;
 		}
