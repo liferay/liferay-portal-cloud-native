@@ -399,48 +399,48 @@ public class TestrayCaseResultResourceImpl
 		Map<String, Object> value) {
 
 		try {
-			if (ArrayUtil.contains(
+			if (!ArrayUtil.contains(
 					contextUser.getRoleIds(),
 					_roleLocalService.getRole(
 						contextUser.getCompanyId(), "Testray Administrator"
 					).getRoleId()
-				) ||
-				ArrayUtil.contains(
+				) &&
+				!ArrayUtil.contains(
 					contextUser.getRoleIds(),
 					_roleLocalService.getRole(
 						contextUser.getCompanyId(), "Testray Lead"
 					).getRoleId()
 				)) {
 
-				URI baseURI = contextUriInfo.getBaseUri();
-
-				String href =
-					baseURI.getScheme() + "://" + baseURI.getAuthority() +
-						"/o/c/caseresults/" + value.get("c_caseResultId_");
-
-				return new HashMap<>(
-					HashMapBuilder.put(
-						"delete",
-						HashMapBuilder.put(
-							"href", href
-						).put(
-							"method", "DELETE"
-						).build()
-					).put(
-						"update",
-						HashMapBuilder.put(
-							"href", href
-						).put(
-							"method", "PUT"
-						).build()
-					).build());
+				return null;
 			}
 		}
 		catch (PortalException portalException) {
 			throw new RuntimeException(portalException);
 		}
 
-		return null;
+		URI baseURI = contextUriInfo.getBaseUri();
+
+		String href =
+			baseURI.getScheme() + "://" + baseURI.getAuthority() +
+				"/o/c/caseresults/" + value.get("c_caseResultId_");
+
+		return new HashMap<>(
+			HashMapBuilder.put(
+				"delete",
+				HashMapBuilder.put(
+					"href", href
+				).put(
+					"method", "DELETE"
+				).build()
+			).put(
+				"update",
+				HashMapBuilder.put(
+					"href", href
+				).put(
+					"method", "PUT"
+				).build()
+			).build());
 	}
 
 	@Reference
