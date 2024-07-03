@@ -416,7 +416,7 @@ public class ObjectEntryDTOConverter
 		}
 	}
 
-	private FileEntry _getAttachmentField(
+	private FileEntry _getFileEntry(
 			ObjectDefinition objectDefinition,
 			com.liferay.object.model.ObjectEntry objectEntry,
 			ObjectField objectField, long fileEntryId, String objectFieldName)
@@ -827,7 +827,7 @@ public class ObjectEntryDTOConverter
 
 				unsafeSuppliers.put(
 					objectFieldName,
-					() -> _getAttachmentField(
+					() -> _getFileEntry(
 						objectDefinition, objectEntry, objectField, fileEntryId,
 						objectFieldName));
 			}
