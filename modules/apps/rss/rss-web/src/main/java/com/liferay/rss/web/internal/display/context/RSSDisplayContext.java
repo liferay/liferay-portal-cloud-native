@@ -54,11 +54,11 @@ public class RSSDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		String ddmTemplateGroupKey = getDisplayStyleGroupKey();
+		String displayStyleGroupKey = getDisplayStyleGroupKey();
 
-		if (Validator.isNotNull(ddmTemplateGroupKey)) {
+		if (Validator.isNotNull(displayStyleGroupKey)) {
 			Group group = GroupLocalServiceUtil.fetchGroup(
-				themeDisplay.getCompanyId(), ddmTemplateGroupKey);
+				themeDisplay.getCompanyId(), displayStyleGroupKey);
 
 			if (group != null) {
 				return group.getGroupId();
