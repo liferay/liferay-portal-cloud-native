@@ -132,8 +132,8 @@ public class DBSchemaDefinitionExporterTest {
 			copyDataSource = DatabaseTestUtil.initSchemaDataSource(
 				_COPY_DB_SCHEMA_NAME);
 
-			DatabaseTestUtil.importFileTo(tablesSQLFile, copyDataSource);
-			DatabaseTestUtil.importFileTo(indexesSQLFile, copyDataSource);
+			DatabaseTestUtil.importFile(tablesSQLFile, copyDataSource);
+			DatabaseTestUtil.importFile(indexesSQLFile, copyDataSource);
 
 			_assertTables(copyDataSource);
 			_assertIndexes(copyDataSource);

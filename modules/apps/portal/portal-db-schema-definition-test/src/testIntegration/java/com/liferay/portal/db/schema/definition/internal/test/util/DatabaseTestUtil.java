@@ -153,7 +153,7 @@ public class DatabaseTestUtil {
 		return tableColumnNames;
 	}
 
-	public static void importFileTo(File file, DataSource targetDataSource)
+	public static void importFile(File file, DataSource targetDataSource)
 		throws Exception {
 
 		DB db = DBManagerUtil.getDB(
