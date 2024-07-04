@@ -65,9 +65,9 @@ public class DatabaseTestUtil {
 	public static List<String> getIndexColumnNames(DataSource dataSource)
 		throws Exception {
 
-		DB db = DBManagerUtil.getDB();
-
 		List<String> indexColumnNames = new ArrayList<>();
+
+		DB db = DBManagerUtil.getDB();
 
 		try (Connection connection = dataSource.getConnection()) {
 			DatabaseMetaData databaseMetaData = connection.getMetaData();
