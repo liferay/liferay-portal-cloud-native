@@ -78,10 +78,10 @@ public class IFrameConfigurationHelper {
 		_defaultIFrameConfiguration = ConfigurableUtil.createConfigurable(
 			IFrameConfiguration.class, properties);
 
-		_defaultWhitelist = SetUtil.fromArray(
-			_defaultIFrameConfiguration.whitelist());
 		_defaultBlacklist = SetUtil.fromArray(
 			_defaultIFrameConfiguration.blacklist());
+		_defaultWhitelist = SetUtil.fromArray(
+			_defaultIFrameConfiguration.whitelist());
 	}
 
 	private Set<String> _getBlacklist(long companyId) {
