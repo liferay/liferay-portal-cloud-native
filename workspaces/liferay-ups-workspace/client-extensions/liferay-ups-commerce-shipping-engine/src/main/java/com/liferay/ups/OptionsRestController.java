@@ -9,9 +9,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.ups.constants.UPSServiceCodeConstants;
 
-import java.util.Arrays;
 import java.util.Base64;
-import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.logging.Log;
@@ -94,10 +92,10 @@ public class OptionsRestController extends BaseRestController {
 		JSONObject typeSettingsJSONObject = jsonObject.getJSONObject(
 			"typeSettings");
 
-		List<String> ratingCodes = Arrays.asList(
-			StringUtil.split(typeSettingsJSONObject.getString("ratingCodes")));
+		for (String code :
+				StringUtil.split(
+					typeSettingsJSONObject.getString("ratingCodes"))) {
 
-		for (String code : ratingCodes) {
 			try {
 				jsonArray.put(
 					_postRate(
