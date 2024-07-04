@@ -210,9 +210,12 @@ public class LayoutPageTemplateServiceUpgradeStepRegistrator
 			UpgradeProcessFactory.runSQL(
 				StringBundler.concat(
 					"update LayoutPageTemplateStructureRel set data_ = ",
-					"REPLACE(data_, '", "com.liferay.object.internal.info.collection.provider.ObjectEntrySingleFormVariationInfoCollectionProvider", "' , '",
-					"com.liferay.object.web.internal.info.collection.provider.ObjectEntrySingleFormVariationInfoCollectionProvider",
-					"') where data_ is not null and data_ != ''")));
+					"REPLACE(data_, 'com.liferay.object.internal.info.",
+					"collection.provider.",
+					"ObjectEntrySingleFormVariationInfoCollectionProvider', '",
+					"com.liferay.object.web.internal.info.collection.provider.",
+					"ObjectEntrySingleFormVariationInfoCollectionProvider') ",
+					"where data_ is not null and data_ != ''")));
 
 		registry.register(
 			"5.4.0", "5.5.0", new LayoutPageTemplateCollectionUpgradeProcess());
