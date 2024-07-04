@@ -150,8 +150,8 @@ public class DBSchemaDefinitionExporterTest {
 	private void _assertIndexes(DataSource copyDataSource) throws Exception {
 		List<String> indexColumnNames = DatabaseTestUtil.getIndexColumnNames(
 			InfrastructureUtil.getDataSource());
-		List<String> copyIndexColumnNames = DatabaseTestUtil.getIndexColumnNames(
-			copyDataSource);
+		List<String> copyIndexColumnNames =
+			DatabaseTestUtil.getIndexColumnNames(copyDataSource);
 
 		Assert.assertEquals(
 			StringUtils.difference(
@@ -159,15 +159,16 @@ public class DBSchemaDefinitionExporterTest {
 			indexColumnNames.size(), copyIndexColumnNames.size());
 
 		for (int i = 0; i < indexColumnNames.size(); i++) {
-			Assert.assertEquals(indexColumnNames.get(i), copyIndexColumnNames.get(i));
+			Assert.assertEquals(
+				indexColumnNames.get(i), copyIndexColumnNames.get(i));
 		}
 	}
 
 	private void _assertTables(DataSource copyDataSource) throws Exception {
 		List<String> tableColumnNames = DatabaseTestUtil.getTableColumnNames(
 			InfrastructureUtil.getDataSource());
-		List<String> copyTableColumnNames = DatabaseTestUtil.getTableColumnNames(
-			copyDataSource);
+		List<String> copyTableColumnNames =
+			DatabaseTestUtil.getTableColumnNames(copyDataSource);
 
 		Assert.assertEquals(
 			StringUtils.difference(
@@ -175,7 +176,8 @@ public class DBSchemaDefinitionExporterTest {
 			tableColumnNames.size(), copyTableColumnNames.size());
 
 		for (int i = 0; i < tableColumnNames.size(); i++) {
-			Assert.assertEquals(tableColumnNames.get(i), copyTableColumnNames.get(i));
+			Assert.assertEquals(
+				tableColumnNames.get(i), copyTableColumnNames.get(i));
 		}
 	}
 
