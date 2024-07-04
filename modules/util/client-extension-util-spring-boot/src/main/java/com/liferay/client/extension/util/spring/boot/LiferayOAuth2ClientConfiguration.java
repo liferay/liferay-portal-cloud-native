@@ -6,7 +6,6 @@
 package com.liferay.client.extension.util.spring.boot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -65,8 +64,8 @@ public class LiferayOAuth2ClientConfiguration {
 	@Bean
 	@Primary
 	public ClientRegistrationRepository clientRegistrationRepository() {
-		List<ClientRegistration> clientRegistrations = new ArrayList<>(
-			Arrays.asList(_getClientRegistrations()));
+		List<ClientRegistration> clientRegistrations =
+			_getClientRegistrations();
 
 		if (_extraInMemoryClientRegistrationRepository != null) {
 			_extraInMemoryClientRegistrationRepository.forEach(
@@ -84,8 +83,8 @@ public class LiferayOAuth2ClientConfiguration {
 	@Bean
 	@Primary
 	public ReactiveClientRegistrationRepository clientRegistrations() {
-		List<ClientRegistration> clientRegistrations = new ArrayList<>(
-			Arrays.asList(_getClientRegistrations()));
+		List<ClientRegistration> clientRegistrations =
+			_getClientRegistrations();
 
 		if (_extraInMemoryReactiveClientRegistrationRepository != null) {
 			_extraInMemoryReactiveClientRegistrationRepository.forEach(
@@ -132,7 +131,7 @@ public class LiferayOAuth2ClientConfiguration {
 		).build();
 	}
 
-	private ClientRegistration[] _getClientRegistrations() {
+	private List<ClientRegistration> _getClientRegistrations() {
 		String liferayOauthApplicationExternalReferenceCodes =
 			_environment.getProperty(
 				"liferay.oauth.application.external.reference.codes");
@@ -197,7 +196,7 @@ public class LiferayOAuth2ClientConfiguration {
 			clientRegistrations.add(clientRegistration);
 		}
 
-		return clientRegistrations.toArray(new ClientRegistration[0]);
+		return clientRegistrations;
 	}
 
 	@Autowired
