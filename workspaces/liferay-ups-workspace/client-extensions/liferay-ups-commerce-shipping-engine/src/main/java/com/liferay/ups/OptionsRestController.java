@@ -55,15 +55,9 @@ public class OptionsRestController extends BaseRestController {
 
 		log(jwt, log, json);
 
-		JSONArray responseJSONArray = new JSONArray();
+		JSONArray jsonArray = new JSONArray();
 
 		JSONObject jsonObject = new JSONObject(json);
-
-		JSONObject typeSettingsJSONObject = jsonObject.getJSONObject(
-			"typeSettings");
-
-		List<String> ratingCodes = Arrays.asList(
-			StringUtil.split(typeSettingsJSONObject.getString("ratingCodes")));
 
 		double depth = 0;
 		double height = 0;
@@ -96,9 +90,15 @@ public class OptionsRestController extends BaseRestController {
 		JSONObject shippingAddressJSONObject = orderJSONObject.getJSONObject(
 			"shippingAddress");
 
+		JSONObject typeSettingsJSONObject = jsonObject.getJSONObject(
+			"typeSettings");
+
+		List<String> ratingCodes = Arrays.asList(
+			StringUtil.split(typeSettingsJSONObject.getString("ratingCodes")));
+
 		for (String code : ratingCodes) {
 			try {
-				responseJSONArray.put(
+				jsonArray.put(
 					new JSONObject(
 						_postRateRequest(
 							_getBody(
@@ -119,8 +119,7 @@ public class OptionsRestController extends BaseRestController {
 		return new ResponseEntity<>(
 			new JSONObject(
 			).put(
-				"shippingOptions",
-				_toShippingOptionsJSONArray(responseJSONArray)
+				"shippingOptions", _toShippingOptionsJSONArray(jsonArray)
 			).toString(),
 			HttpStatus.OK);
 	}
@@ -367,11 +366,11 @@ public class OptionsRestController extends BaseRestController {
 		return StringPool.BLANK;
 	}
 
-	private JSONArray _toShippingOptionsJSONArray(JSONArray responseJSONArray) {
+	private JSONArray _toShippingOptionsJSONArray(JSONArray jsonArray) {
 		JSONArray shippingOptionsJSONArray = new JSONArray();
 
-		for (int i = 0; i < responseJSONArray.length(); i++) {
-			JSONObject jsonObject = responseJSONArray.getJSONObject(i);
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
 			JSONObject rateResponseJSONObject = jsonObject.getJSONObject(
 				"RateResponse");
