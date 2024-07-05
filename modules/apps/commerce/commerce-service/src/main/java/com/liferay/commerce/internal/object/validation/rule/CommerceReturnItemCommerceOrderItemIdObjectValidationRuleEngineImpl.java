@@ -6,17 +6,14 @@
 package com.liferay.commerce.internal.object.validation.rule;
 
 import com.liferay.commerce.model.CommerceOrderItem;
-import com.liferay.commerce.service.CommerceOrderItemService;
+import com.liferay.commerce.service.CommerceOrderItemLocalService;
 import com.liferay.object.model.ObjectDefinition;
 import com.liferay.object.model.ObjectEntry;
 import com.liferay.object.scope.ObjectDefinitionScoped;
 import com.liferay.object.service.ObjectDefinitionLocalService;
 import com.liferay.object.service.ObjectEntryLocalService;
 import com.liferay.object.validation.rule.ObjectValidationRuleEngine;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
@@ -42,64 +39,63 @@ public class CommerceReturnItemCommerceOrderItemIdObjectValidationRuleEngineImpl
 	public Map<String, Object> execute(
 		Map<String, Object> inputObjects, String script) {
 
-		Map<String, Object> results = HashMapBuilder.<String, Object>put(
-			"validationCriteriaMet", false
+		return HashMapBuilder.<String, Object>put(
+			"validationCriteriaMet",
+			() -> {
+				Map<String, Object> entryDTO =
+					(Map<String, Object>)inputObjects.get("entryDTO");
+
+				Map<String, Object> properties =
+					(Map<String, Object>)entryDTO.get("properties");
+
+				CommerceOrderItem commerceOrderItem =
+					_commerceOrderItemLocalService.fetchCommerceOrderItem(
+						GetterUtil.getLong(
+							properties.get(
+								"r_commerceOrderItemToCommerceReturnItems_" +
+									"commerceOrderItemId")));
+
+				if (commerceOrderItem == null) {
+					return false;
+				}
+
+				ObjectDefinition commerceReturnObjectDefinition =
+					_objectDefinitionLocalService.
+						fetchObjectDefinitionByExternalReferenceCode(
+							"L_COMMERCE_RETURN",
+							CompanyThreadLocal.getCompanyId());
+
+				if (commerceReturnObjectDefinition == null) {
+					return false;
+				}
+
+				ObjectEntry commerceReturnObjectEntry =
+					_objectEntryLocalService.fetchObjectEntry(
+						GetterUtil.getString(
+							properties.get(
+								"r_commerceReturnToCommerceReturnItems_c_" +
+									"commerceReturnERC")),
+						commerceReturnObjectDefinition.getObjectDefinitionId());
+
+				if (commerceReturnObjectEntry == null) {
+					return false;
+				}
+
+				Map<String, Serializable> commerceReturnValues =
+					commerceReturnObjectEntry.getValues();
+
+				if (commerceOrderItem.getCommerceOrderId() ==
+						GetterUtil.getLong(
+							commerceReturnValues.get(
+								"r_commerceOrderToCommerceReturns_" +
+									"commerceOrderId"))) {
+
+					return true;
+				}
+
+				return false;
+			}
 		).build();
-
-		try {
-			Map<String, Object> entryDTO =
-				(Map<String, Object>)inputObjects.get("entryDTO");
-
-			Map<String, Object> properties = (Map<String, Object>)entryDTO.get(
-				"properties");
-
-			CommerceOrderItem commerceOrderItem =
-				_commerceOrderItemService.fetchCommerceOrderItem(
-					GetterUtil.getLong(
-						properties.get(
-							"r_commerceOrderItemToCommerceReturnItems" +
-								"_commerceOrderItemId")));
-
-			if (commerceOrderItem == null) {
-				return results;
-			}
-
-			ObjectDefinition commerceReturnObjectDefinition =
-				_objectDefinitionLocalService.
-					fetchObjectDefinitionByExternalReferenceCode(
-						"L_COMMERCE_RETURN", CompanyThreadLocal.getCompanyId());
-
-			if (commerceReturnObjectDefinition == null) {
-				return results;
-			}
-
-			ObjectEntry commerceReturnObjectEntry =
-				_objectEntryLocalService.fetchObjectEntry(
-					GetterUtil.getString(
-						properties.get(
-							"r_commerceReturnToCommerceReturnItems_c" +
-								"_commerceReturnERC")),
-					commerceReturnObjectDefinition.getObjectDefinitionId());
-
-			if (commerceReturnObjectEntry == null) {
-				return results;
-			}
-
-			Map<String, Serializable> commerceReturnValues =
-				commerceReturnObjectEntry.getValues();
-
-			if (commerceOrderItem.getCommerceOrderId() == GetterUtil.getLong(
-					commerceReturnValues.get(
-						"r_commerceOrderToCommerceReturns_commerceOrderId"))) {
-
-				results.put("validationCriteriaMet", true);
-			}
-		}
-		catch (PortalException portalException) {
-			_log.error(portalException);
-		}
-
-		return results;
 	}
 
 	@Override
@@ -118,12 +114,8 @@ public class CommerceReturnItemCommerceOrderItemIdObjectValidationRuleEngineImpl
 			locale, "commerce-return-item-commerce-order-item-id");
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceReturnItemCommerceOrderItemIdObjectValidationRuleEngineImpl.
-			class);
-
 	@Reference
-	private CommerceOrderItemService _commerceOrderItemService;
+	private CommerceOrderItemLocalService _commerceOrderItemLocalService;
 
 	@Reference
 	private Language _language;

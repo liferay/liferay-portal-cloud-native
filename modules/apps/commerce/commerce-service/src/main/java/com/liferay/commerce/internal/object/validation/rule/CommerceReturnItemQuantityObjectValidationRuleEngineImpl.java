@@ -6,13 +6,10 @@
 package com.liferay.commerce.internal.object.validation.rule;
 
 import com.liferay.commerce.model.CommerceOrderItem;
-import com.liferay.commerce.service.CommerceOrderItemService;
+import com.liferay.commerce.service.CommerceOrderItemLocalService;
 import com.liferay.object.scope.ObjectDefinitionScoped;
 import com.liferay.object.validation.rule.ObjectValidationRuleEngine;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.BigDecimalUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
@@ -38,42 +35,39 @@ public class CommerceReturnItemQuantityObjectValidationRuleEngineImpl
 	public Map<String, Object> execute(
 		Map<String, Object> inputObjects, String script) {
 
-		Map<String, Object> results = HashMapBuilder.<String, Object>put(
-			"validationCriteriaMet", false
+		return HashMapBuilder.<String, Object>put(
+			"validationCriteriaMet",
+			() -> {
+				Map<String, Object> entryDTO =
+					(Map<String, Object>)inputObjects.get("entryDTO");
+
+				Map<String, Object> properties =
+					(Map<String, Object>)entryDTO.get("properties");
+
+				CommerceOrderItem commerceOrderItem =
+					_commerceOrderItemLocalService.fetchCommerceOrderItem(
+						GetterUtil.getLong(
+							properties.get(
+								"r_commerceOrderItemToCommerceReturnItems_" +
+									"commerceOrderItemId")));
+
+				if (commerceOrderItem == null) {
+					return false;
+				}
+
+				BigDecimal quantity = BigDecimal.valueOf(
+					GetterUtil.getLong(properties.get("quantity")));
+
+				if (BigDecimalUtil.gte(quantity, BigDecimal.ZERO) &&
+					BigDecimalUtil.lte(
+						quantity, commerceOrderItem.getQuantity())) {
+
+					return true;
+				}
+
+				return false;
+			}
 		).build();
-
-		try {
-			Map<String, Object> entryDTO =
-				(Map<String, Object>)inputObjects.get("entryDTO");
-
-			Map<String, Object> properties = (Map<String, Object>)entryDTO.get(
-				"properties");
-
-			CommerceOrderItem commerceOrderItem =
-				_commerceOrderItemService.fetchCommerceOrderItem(
-					GetterUtil.getLong(
-						properties.get(
-							"r_commerceOrderItemToCommerceReturnItems" +
-								"_commerceOrderItemId")));
-
-			if (commerceOrderItem == null) {
-				return results;
-			}
-
-			BigDecimal quantity = BigDecimal.valueOf(
-				GetterUtil.getLong(properties.get("quantity")));
-
-			if (BigDecimalUtil.gte(quantity, BigDecimal.ZERO) &&
-				BigDecimalUtil.lte(quantity, commerceOrderItem.getQuantity())) {
-
-				results.put("validationCriteriaMet", true);
-			}
-		}
-		catch (PortalException portalException) {
-			_log.error(portalException);
-		}
-
-		return results;
 	}
 
 	@Override
@@ -91,11 +85,8 @@ public class CommerceReturnItemQuantityObjectValidationRuleEngineImpl
 		return _language.get(locale, "commerce-return-item-quantity");
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceReturnItemQuantityObjectValidationRuleEngineImpl.class);
-
 	@Reference
-	private CommerceOrderItemService _commerceOrderItemService;
+	private CommerceOrderItemLocalService _commerceOrderItemLocalService;
 
 	@Reference
 	private Language _language;

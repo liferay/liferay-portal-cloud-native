@@ -31,40 +31,36 @@ public class CommerceReturnCommerceOrderIdObjectValidationRuleEngineImpl
 	public Map<String, Object> execute(
 		Map<String, Object> inputObjects, String script) {
 
-		Map<String, Object> results = HashMapBuilder.<String, Object>put(
-			"validationCriteriaMet", false
+		return HashMapBuilder.<String, Object>put(
+			"validationCriteriaMet",
+			() -> {
+				Map<String, Object> originalEntryDTO =
+					(Map<String, Object>)inputObjects.get("originalEntryDTO");
+
+				if (MapUtil.isEmpty(originalEntryDTO)) {
+					return true;
+				}
+
+				Map<String, Object> entryDTO =
+					(Map<String, Object>)inputObjects.get("entryDTO");
+
+				Map<String, Object> properties =
+					(Map<String, Object>)entryDTO.get("properties");
+
+				long commerceOrderId = GetterUtil.getLong(
+					properties.get(
+						"r_commerceOrderToCommerceReturns_commerceOrderId"));
+
+				Map<String, Object> originalProperties =
+					(Map<String, Object>)originalEntryDTO.get("properties");
+
+				long originalCommerceOrderId = GetterUtil.getLong(
+					originalProperties.get(
+						"r_commerceOrderToCommerceReturns_commerceOrderId"));
+
+				return commerceOrderId == originalCommerceOrderId;
+			}
 		).build();
-
-		Map<String, Object> originalEntryDTO =
-			(Map<String, Object>)inputObjects.get("originalEntryDTO");
-
-		if (MapUtil.isEmpty(originalEntryDTO)) {
-			results.put("validationCriteriaMet", true);
-
-			return results;
-		}
-
-		Map<String, Object> entryDTO = (Map<String, Object>)inputObjects.get(
-			"entryDTO");
-
-		Map<String, Object> properties = (Map<String, Object>)entryDTO.get(
-			"properties");
-
-		long commerceOrderId = GetterUtil.getLong(
-			properties.get("r_commerceOrderToCommerceReturns_commerceOrderId"));
-
-		Map<String, Object> originalProperties =
-			(Map<String, Object>)originalEntryDTO.get("properties");
-
-		long originalCommerceOrderId = GetterUtil.getLong(
-			originalProperties.get(
-				"r_commerceOrderToCommerceReturns_commerceOrderId"));
-
-		if (commerceOrderId == originalCommerceOrderId) {
-			results.put("validationCriteriaMet", true);
-		}
-
-		return results;
 	}
 
 	@Override

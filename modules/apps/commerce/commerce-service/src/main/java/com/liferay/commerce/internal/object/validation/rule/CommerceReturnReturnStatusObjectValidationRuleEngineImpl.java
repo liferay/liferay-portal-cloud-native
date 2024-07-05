@@ -30,28 +30,21 @@ public class CommerceReturnReturnStatusObjectValidationRuleEngineImpl
 	public Map<String, Object> execute(
 		Map<String, Object> inputObjects, String script) {
 
-		Map<String, Object> results = HashMapBuilder.<String, Object>put(
-			"validationCriteriaMet", false
+		return HashMapBuilder.<String, Object>put(
+			"validationCriteriaMet",
+			() -> {
+				Map<String, Object> entryDTO =
+					(Map<String, Object>)inputObjects.get("entryDTO");
+
+				Map<String, Object> properties =
+					(Map<String, Object>)entryDTO.get("properties");
+
+				Map<String, String> returnStatusMap =
+					(Map<String, String>)properties.get("returnStatus");
+
+				return MapUtil.isNotEmpty(returnStatusMap);
+			}
 		).build();
-
-		Map<String, Object> entryDTO = (Map<String, Object>)inputObjects.get(
-			"entryDTO");
-
-		Map<String, Object> properties = (Map<String, Object>)entryDTO.get(
-			"properties");
-
-		if (!properties.containsKey("returnStatus")) {
-			return results;
-		}
-
-		Map<String, String> returnStatusMap =
-			(Map<String, String>)properties.get("returnStatus");
-
-		if (MapUtil.isNotEmpty(returnStatusMap)) {
-			results.put("validationCriteriaMet", true);
-		}
-
-		return results;
 	}
 
 	@Override
