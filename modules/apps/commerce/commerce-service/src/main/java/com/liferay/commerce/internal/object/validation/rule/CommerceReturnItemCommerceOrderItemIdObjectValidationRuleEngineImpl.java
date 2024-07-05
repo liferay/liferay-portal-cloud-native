@@ -59,34 +59,33 @@ public class CommerceReturnItemCommerceOrderItemIdObjectValidationRuleEngineImpl
 					return false;
 				}
 
-				ObjectDefinition commerceReturnObjectDefinition =
+				ObjectDefinition objectDefinition =
 					_objectDefinitionLocalService.
 						fetchObjectDefinitionByExternalReferenceCode(
 							"L_COMMERCE_RETURN",
 							CompanyThreadLocal.getCompanyId());
 
-				if (commerceReturnObjectDefinition == null) {
+				if (objectDefinition == null) {
 					return false;
 				}
 
-				ObjectEntry commerceReturnObjectEntry =
+				ObjectEntry objectEntry =
 					_objectEntryLocalService.fetchObjectEntry(
 						GetterUtil.getString(
 							properties.get(
 								"r_commerceReturnToCommerceReturnItems_c_" +
 									"commerceReturnERC")),
-						commerceReturnObjectDefinition.getObjectDefinitionId());
+						objectDefinition.getObjectDefinitionId());
 
-				if (commerceReturnObjectEntry == null) {
+				if (objectEntry == null) {
 					return false;
 				}
 
-				Map<String, Serializable> commerceReturnValues =
-					commerceReturnObjectEntry.getValues();
+				Map<String, Serializable> values = objectEntry.getValues();
 
 				if (commerceOrderItem.getCommerceOrderId() ==
 						GetterUtil.getLong(
-							commerceReturnValues.get(
+							values.get(
 								"r_commerceOrderToCommerceReturns_" +
 									"commerceOrderId"))) {
 
