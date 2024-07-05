@@ -6,34 +6,45 @@
 package com.liferay.portal.search.similar.results.web.internal.exportimport.portlet.preferences.processor.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
+import com.liferay.exportimport.portlet.preferences.processor.Capability;
 import com.liferay.exportimport.portlet.preferences.processor.ExportImportPortletPreferencesProcessor;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.search.similar.results.web.internal.constants.SimilarResultsPortletKeys;
-import com.liferay.portal.search.test.util.exportimport.BaseExportImportPortletPreferencesProcessorTestCase;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
+import java.util.List;
+
+import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
  * @author Gustavo Lima
  */
 @RunWith(Arquillian.class)
-public class SimilarResultsExportImportPortletPreferencesProcessorTest
-	extends BaseExportImportPortletPreferencesProcessorTestCase {
+public class SimilarResultsExportImportPortletPreferencesProcessorTest {
 
 	@ClassRule
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =
 		new LiferayIntegrationTestRule();
 
-	@Override
-	protected ExportImportPortletPreferencesProcessor
-		getExportImportPortletPreferencesProcessor() {
+	@Test
+	public void testExportImportPortletPreferencesProcessorCapabilities() {
+		Assert.assertNotNull(_exportImportPortletPreferencesProcessor);
 
-		return _exportImportPortletPreferencesProcessor;
+		List<Capability> exportCapabilities =
+			_exportImportPortletPreferencesProcessor.getExportCapabilities();
+
+		Assert.assertFalse(exportCapabilities.isEmpty());
+
+		List<Capability> importCapabilities =
+			_exportImportPortletPreferencesProcessor.getImportCapabilities();
+
+		Assert.assertFalse(importCapabilities.isEmpty());
 	}
 
 	@Inject(
