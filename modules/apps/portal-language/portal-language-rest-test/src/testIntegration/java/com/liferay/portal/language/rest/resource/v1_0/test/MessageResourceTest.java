@@ -83,13 +83,11 @@ public class MessageResourceTest extends BaseMessageResourceTestCase {
 	@Override
 	@Test
 	public void testPostMessageImport() throws Exception {
-		File file = FileUtil.createTempFile("Language_en_US", "properties");
+		File file = FileUtil.createTempFile("properties");
 
 		try {
 			FileUtil.write(
-				file,
-				FileUtil.getBytes(
-					getClass(), "dependencies/Language_en_US.properties"));
+				file, "property-1=Property 1\nproperty-2=Property 2");
 
 			messageResource.postMessageImport(
 				"en_US", null,
