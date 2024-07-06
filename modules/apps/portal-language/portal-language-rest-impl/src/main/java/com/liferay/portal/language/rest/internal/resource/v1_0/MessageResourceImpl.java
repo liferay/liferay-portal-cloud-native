@@ -148,8 +148,8 @@ public class MessageResourceImpl extends BaseMessageResourceImpl {
 			message.getKey(), message.getLanguageId(), message.getValue());
 
 		message.setKey(ploEntry::getKey);
-		message.setValue(ploEntry::getValue);
 		message.setLanguageId(ploEntry::getLanguageId);
+		message.setValue(ploEntry::getValue);
 
 		return message;
 	}

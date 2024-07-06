@@ -111,8 +111,8 @@ public class MessageResourceTest extends BaseMessageResourceTestCase {
 				Message message = new Message();
 
 				message.setKey(enumeration.nextElement());
-				message.setValue(properties.getProperty(key));
 				message.setLanguageId("en_US");
+				message.setValue(properties.getProperty(key));
 
 				_messages.add(message);
 			}
