@@ -1330,9 +1330,9 @@ public class ViewChangesDisplayContext {
 				return true;
 			}
 
-			return !workflowTasks.get(
-				0
-			).isCompleted();
+			WorkflowTask workflowTask = workflowTasks.get(0);
+
+			return !workflowTask.isCompleted();
 		}
 
 		try (SafeCloseable safeCloseable =
