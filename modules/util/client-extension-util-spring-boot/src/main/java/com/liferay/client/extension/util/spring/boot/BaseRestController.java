@@ -40,7 +40,7 @@ public abstract class BaseRestController {
 		).bodyValue(
 			body
 		).exchangeToMono(
-			getExchangeToMono()
+			_getExchangeToMonoFunction()
 		).subscribe();
 	}
 
@@ -54,7 +54,7 @@ public abstract class BaseRestController {
 		).header(
 			HttpHeaders.AUTHORIZATION, authorization
 		).exchangeToMono(
-			getExchangeToMono()
+			_getExchangeToMonoFunction()
 		).subscribe();
 	}
 
@@ -72,7 +72,7 @@ public abstract class BaseRestController {
 		).header(
 			HttpHeaders.AUTHORIZATION, authorization
 		).exchangeToMono(
-			getExchangeToMono()
+			_getExchangeToMonoFunction()
 		).subscribe();
 	}
 
@@ -90,7 +90,7 @@ public abstract class BaseRestController {
 		).header(
 			HttpHeaders.AUTHORIZATION, authorization
 		).exchangeToMono(
-			getExchangeToMono()
+			_getExchangeToMonoFunction()
 		).subscribe();
 	}
 
@@ -108,7 +108,7 @@ public abstract class BaseRestController {
 		).bodyValue(
 			body
 		).exchangeToMono(
-			getExchangeToMono()
+			_getExchangeToMonoFunction()
 		).subscribe();
 	}
 
@@ -125,7 +125,7 @@ public abstract class BaseRestController {
 		).bodyValue(
 			body
 		).exchangeToMono(
-			getExchangeToMono()
+			_getExchangeToMonoFunction()
 		).block();
 	}
 
@@ -139,31 +139,8 @@ public abstract class BaseRestController {
 		).header(
 			HttpHeaders.AUTHORIZATION, authorization
 		).exchangeToMono(
-			getExchangeToMono()
+			_getExchangeToMonoFunction()
 		).block();
-	}
-
-	protected Function<ClientResponse, Mono<String>> getExchangeToMono() {
-		return clientResponse -> {
-			HttpStatus httpStatus = clientResponse.statusCode();
-
-			if (Objects.equals(
-					clientResponse.statusCode(), HttpStatus.NO_CONTENT)) {
-
-				return Mono.just("{}");
-			}
-			else if (httpStatus.is2xxSuccessful()) {
-				return clientResponse.bodyToMono(String.class);
-			}
-			else if (httpStatus.is4xxClientError()) {
-				return Mono.just(httpStatus.getReasonPhrase());
-			}
-
-			Mono<WebClientResponseException> mono =
-				clientResponse.createException();
-
-			return mono.flatMap(Mono::error);
-		};
 	}
 
 	protected WebClient getWebClient() {
@@ -189,7 +166,7 @@ public abstract class BaseRestController {
 		).header(
 			HttpHeaders.AUTHORIZATION, authorization
 		).exchangeToMono(
-			getExchangeToMono()
+			_getExchangeToMonoFunction()
 		).block();
 	}
 
@@ -205,7 +182,7 @@ public abstract class BaseRestController {
 		).header(
 			HttpHeaders.AUTHORIZATION, authorization
 		).exchangeToMono(
-			getExchangeToMono()
+			_getExchangeToMonoFunction()
 		).block();
 	}
 
@@ -221,8 +198,33 @@ public abstract class BaseRestController {
 		).bodyValue(
 			body
 		).exchangeToMono(
-			getExchangeToMono()
+			_getExchangeToMonoFunction()
 		).block();
+	}
+
+	private Function<ClientResponse, Mono<String>>
+		_getExchangeToMonoFunction() {
+
+		return clientResponse -> {
+			HttpStatus httpStatus = clientResponse.statusCode();
+
+			if (Objects.equals(
+					clientResponse.statusCode(), HttpStatus.NO_CONTENT)) {
+
+				return Mono.just("{}");
+			}
+			else if (httpStatus.is2xxSuccessful()) {
+				return clientResponse.bodyToMono(String.class);
+			}
+			else if (httpStatus.is4xxClientError()) {
+				return Mono.just(httpStatus.getReasonPhrase());
+			}
+
+			Mono<WebClientResponseException> mono =
+				clientResponse.createException();
+
+			return mono.flatMap(Mono::error);
+		};
 	}
 
 	@Value("${com.liferay.lxc.dxp.mainDomain}")
