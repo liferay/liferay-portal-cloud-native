@@ -26,7 +26,7 @@ import reactor.core.publisher.Mono;
 public abstract class BaseRestController {
 
 	protected Disposable asyncDelete(
-		String authorization, String bodyValue, String path) {
+		String authorization, String body, String path) {
 
 		return getWebClient(
 		).method(
@@ -38,7 +38,7 @@ public abstract class BaseRestController {
 		).header(
 			HttpHeaders.AUTHORIZATION, authorization
 		).bodyValue(
-			bodyValue
+			body
 		).exchangeToMono(
 			getExchangeToMono()
 		).subscribe();
@@ -95,7 +95,7 @@ public abstract class BaseRestController {
 	}
 
 	protected Disposable asyncPut(
-		String authorization, String bodyValue, String path) {
+		String authorization, String body, String path) {
 
 		return getWebClient(
 		).put(
@@ -106,15 +106,13 @@ public abstract class BaseRestController {
 		).header(
 			HttpHeaders.AUTHORIZATION, authorization
 		).bodyValue(
-			bodyValue
+			body
 		).exchangeToMono(
 			getExchangeToMono()
 		).subscribe();
 	}
 
-	protected String delete(
-		String authorization, String bodyValue, String path) {
-
+	protected String delete(String authorization, String body, String path) {
 		return getWebClient(
 		).method(
 			HttpMethod.DELETE
@@ -125,7 +123,7 @@ public abstract class BaseRestController {
 		).header(
 			HttpHeaders.AUTHORIZATION, authorization
 		).bodyValue(
-			bodyValue
+			body
 		).exchangeToMono(
 			getExchangeToMono()
 		).block();
@@ -169,10 +167,6 @@ public abstract class BaseRestController {
 	}
 
 	protected WebClient getWebClient() {
-		if (_webClient != null) {
-			return _webClient;
-		}
-
 		return WebClient.builder(
 		).baseUrl(
 			_lxcDXPServerProtocol + "://" + _lxcDXPMainDomain
@@ -215,7 +209,7 @@ public abstract class BaseRestController {
 		).block();
 	}
 
-	protected String put(String authorization, String bodyValue, String path) {
+	protected String put(String authorization, String body, String path) {
 		return getWebClient(
 		).put(
 		).uri(
@@ -225,14 +219,10 @@ public abstract class BaseRestController {
 		).header(
 			HttpHeaders.AUTHORIZATION, authorization
 		).bodyValue(
-			bodyValue
+			body
 		).exchangeToMono(
 			getExchangeToMono()
 		).block();
-	}
-
-	protected void setWebClient(WebClient webClient) {
-		_webClient = webClient;
 	}
 
 	@Value("${com.liferay.lxc.dxp.mainDomain}")
@@ -240,7 +230,5 @@ public abstract class BaseRestController {
 
 	@Value("${com.liferay.lxc.dxp.server.protocol}")
 	private String _lxcDXPServerProtocol;
-
-	private WebClient _webClient;
 
 }
