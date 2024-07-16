@@ -372,7 +372,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 	}
 
 	@Override
-	public InfoPage<AssetEntry> getAssetEntries(
+	public InfoPage<AssetEntry> getInfoPage(
 			PortletRequest portletRequest,
 			PortletPreferences portletPreferences,
 			PermissionChecker permissionChecker, long[] groupIds,

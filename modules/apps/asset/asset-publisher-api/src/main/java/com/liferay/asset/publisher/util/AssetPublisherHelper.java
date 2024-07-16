@@ -88,7 +88,7 @@ public interface AssetPublisherHelper {
 			boolean deleteMissingAssetEntries, boolean checkPermission)
 		throws Exception;
 
-	public InfoPage<AssetEntry> getAssetEntries(
+	public InfoPage<AssetEntry> getInfoPage(
 			PortletRequest portletRequest,
 			PortletPreferences portletPreferences,
 			PermissionChecker permissionChecker, long[] groupIds,

@@ -327,7 +327,7 @@ public class AssetPublisherHelperTest {
 			AssetPublisherTestUtil.getAssetEntryXml(assetEntry1),
 			AssetPublisherTestUtil.getAssetEntryXml(assetEntry2));
 
-		InfoPage<AssetEntry> infoPage = _assetPublisherHelper.getAssetEntries(
+		InfoPage<AssetEntry> infoPage = _assetPublisherHelper.getInfoPage(
 			null, portletPreferences,
 			PermissionThreadLocal.getPermissionChecker(),
 			new long[] {_group1.getGroupId()}, null, null, false, false, 0, 2);
@@ -347,7 +347,7 @@ public class AssetPublisherHelperTest {
 			AssetPublisherTestUtil.getAssetEntryXml(assetEntry2),
 			AssetPublisherTestUtil.getAssetEntryXml(assetEntry3));
 
-		infoPage = _assetPublisherHelper.getAssetEntries(
+		infoPage = _assetPublisherHelper.getInfoPage(
 			null, portletPreferences,
 			PermissionThreadLocal.getPermissionChecker(),
 			new long[] {_group1.getGroupId()}, null, null, false, false,

@@ -417,7 +417,7 @@ public class AssetPublisherDisplayContext {
 
 		SearchContainer<AssetEntry> searchContainer = getSearchContainer();
 
-		InfoPage<AssetEntry> infoPage = _getAssetEntries(searchContainer);
+		InfoPage<AssetEntry> infoPage = _getInfoPage(searchContainer);
 
 		if (ListUtil.isEmpty(infoPage.getPageItems())) {
 			return Collections.emptyList();
@@ -2189,7 +2189,7 @@ public class AssetPublisherDisplayContext {
 		return filteredAssetEntries;
 	}
 
-	private InfoPage<AssetEntry> _getAssetEntries(
+	private InfoPage<AssetEntry> _getInfoPage(
 			SearchContainer<AssetEntry> searchContainer)
 		throws Exception {
 
