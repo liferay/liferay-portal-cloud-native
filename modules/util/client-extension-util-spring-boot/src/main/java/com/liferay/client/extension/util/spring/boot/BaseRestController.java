@@ -28,7 +28,7 @@ public abstract class BaseRestController {
 	protected Disposable asyncDelete(
 		String authorization, String body, String path) {
 
-		return getWebClient(
+		return _getWebClient(
 		).method(
 			HttpMethod.DELETE
 		).uri(
@@ -45,7 +45,7 @@ public abstract class BaseRestController {
 	}
 
 	protected Disposable asyncGet(String authorization, String path) {
-		return getWebClient(
+		return _getWebClient(
 		).get(
 		).uri(
 			uriBuilder -> uriBuilder.path(
@@ -61,7 +61,7 @@ public abstract class BaseRestController {
 	protected Disposable asyncPatch(
 		String authorization, String body, String path) {
 
-		return getWebClient(
+		return _getWebClient(
 		).patch(
 		).uri(
 			uriBuilder -> uriBuilder.path(
@@ -79,7 +79,7 @@ public abstract class BaseRestController {
 	protected Disposable asyncPost(
 		String authorization, String body, String path) {
 
-		return getWebClient(
+		return _getWebClient(
 		).post(
 		).uri(
 			uriBuilder -> uriBuilder.path(
@@ -97,7 +97,7 @@ public abstract class BaseRestController {
 	protected Disposable asyncPut(
 		String authorization, String body, String path) {
 
-		return getWebClient(
+		return _getWebClient(
 		).put(
 		).uri(
 			uriBuilder -> uriBuilder.path(
@@ -113,7 +113,7 @@ public abstract class BaseRestController {
 	}
 
 	protected String delete(String authorization, String body, String path) {
-		return getWebClient(
+		return _getWebClient(
 		).method(
 			HttpMethod.DELETE
 		).uri(
@@ -130,7 +130,7 @@ public abstract class BaseRestController {
 	}
 
 	protected String get(String authorization, String path) {
-		return getWebClient(
+		return _getWebClient(
 		).get(
 		).uri(
 			uriBuilder -> uriBuilder.path(
@@ -143,19 +143,8 @@ public abstract class BaseRestController {
 		).block();
 	}
 
-	protected WebClient getWebClient() {
-		return WebClient.builder(
-		).baseUrl(
-			_lxcDXPServerProtocol + "://" + _lxcDXPMainDomain
-		).defaultHeader(
-			HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
-		).defaultHeader(
-			HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
-		).build();
-	}
-
 	protected String patch(String authorization, String body, String path) {
-		return getWebClient(
+		return _getWebClient(
 		).patch(
 		).uri(
 			uriBuilder -> uriBuilder.path(
@@ -171,7 +160,7 @@ public abstract class BaseRestController {
 	}
 
 	protected String post(String authorization, String body, String path) {
-		return getWebClient(
+		return _getWebClient(
 		).post(
 		).uri(
 			uriBuilder -> uriBuilder.path(
@@ -187,7 +176,7 @@ public abstract class BaseRestController {
 	}
 
 	protected String put(String authorization, String body, String path) {
-		return getWebClient(
+		return _getWebClient(
 		).put(
 		).uri(
 			uriBuilder -> uriBuilder.path(
@@ -225,6 +214,17 @@ public abstract class BaseRestController {
 
 			return mono.flatMap(Mono::error);
 		};
+	}
+
+	private WebClient _getWebClient() {
+		return WebClient.builder(
+		).baseUrl(
+			_lxcDXPServerProtocol + "://" + _lxcDXPMainDomain
+		).defaultHeader(
+			HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
+		).defaultHeader(
+			HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
+		).build();
 	}
 
 	@Value("${com.liferay.lxc.dxp.mainDomain}")
