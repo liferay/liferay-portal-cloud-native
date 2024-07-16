@@ -99,34 +99,38 @@ public class CategoryFacetExportImportPortletPreferencesProcessor
 			String className, long primaryKeyLong)
 		throws Exception {
 
-		if (className.equals(AssetVocabulary.class.getName())) {
-			AssetVocabulary assetVocabulary =
-				_assetVocabularyLocalService.fetchAssetVocabulary(
-					primaryKeyLong);
-
-			if (assetVocabulary != null) {
-				String erc = assetVocabulary.getExternalReferenceCode();
-				long groupId = assetVocabulary.getGroupId();
-
-				portletDataContext.addReferenceElement(
-					portlet, portletDataContext.getExportDataRootElement(),
-					assetVocabulary,
-					PortletDataContext.REFERENCE_TYPE_DEPENDENCY, true);
-
-				String groupERC = StringPool.BLANK;
-
-				Group group = _groupLocalService.fetchGroup(groupId);
-
-				if (group != null) {
-					groupERC = group.getExternalReferenceCode();
-				}
-
-				return StringUtil.merge(
-					new Object[] {erc, groupId, groupERC}, StringPool.POUND);
-			}
+		if (!className.equals(AssetVocabulary.class.getName())) {
+			return null;
 		}
 
-		return null;
+		AssetVocabulary assetVocabulary =
+			_assetVocabularyLocalService.fetchAssetVocabulary(primaryKeyLong);
+
+		if (assetVocabulary == null) {
+			return null;
+		}
+
+		long groupId = assetVocabulary.getGroupId();
+
+		portletDataContext.addReferenceElement(
+			portlet, portletDataContext.getExportDataRootElement(),
+			assetVocabulary, PortletDataContext.REFERENCE_TYPE_DEPENDENCY,
+			true);
+
+		String groupExternalReferenceCode = StringPool.BLANK;
+
+		Group group = _groupLocalService.fetchGroup(groupId);
+
+		if (group != null) {
+			groupExternalReferenceCode = group.getExternalReferenceCode();
+		}
+
+		return StringUtil.merge(
+			new Object[] {
+				assetVocabulary.getExternalReferenceCode(), groupId,
+				groupExternalReferenceCode
+			},
+			StringPool.POUND);
 	}
 
 	@Override

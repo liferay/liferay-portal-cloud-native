@@ -45,10 +45,6 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class CategoryFacetExportImportPortletPreferencesProcessorTest {
 
-	public static final String CATEGORY_FACET =
-		"com_liferay_portal_search_web_category_facet_portlet_" +
-			"CategoryFacetPortlet";
-
 	@ClassRule
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =
@@ -63,7 +59,7 @@ public class CategoryFacetExportImportPortletPreferencesProcessorTest {
 		_layout = LayoutTestUtil.addTypePortletLayout(_group.getGroupId());
 
 		LayoutTestUtil.addPortletToLayout(
-			TestPropsValues.getUserId(), _layout, CATEGORY_FACET, "column-1",
+			TestPropsValues.getUserId(), _layout, _PORTLET_ID, "column-1",
 			new HashMap<String, String[]>());
 
 		_portletDataContextExport =
@@ -71,18 +67,18 @@ public class CategoryFacetExportImportPortletPreferencesProcessorTest {
 				_group.getGroupId());
 
 		_portletDataContextExport.setPlid(_layout.getPlid());
-		_portletDataContextExport.setPortletId(CATEGORY_FACET);
+		_portletDataContextExport.setPortletId(_PORTLET_ID);
 
 		_portletDataContextImport =
 			ExportImportTestUtil.getImportPortletDataContext(
 				_group.getGroupId());
 
 		_portletDataContextImport.setPlid(_layout.getPlid());
-		_portletDataContextImport.setPortletId(CATEGORY_FACET);
+		_portletDataContextImport.setPortletId(_PORTLET_ID);
 
 		_portletPreferences =
 			PortletPreferencesFactoryUtil.getStrictPortletSetup(
-				_layout, CATEGORY_FACET);
+				_layout, _PORTLET_ID);
 
 		_portletPreferences.setValue("selectionStyle", "manual");
 	}
@@ -152,7 +148,11 @@ public class CategoryFacetExportImportPortletPreferencesProcessorTest {
 		_portletPreferences.store();
 	}
 
-	@Inject(filter = "javax.portlet.name=" + CATEGORY_FACET)
+	private static final String _PORTLET_ID =
+		"com_liferay_portal_search_web_category_facet_portlet_" +
+			"CategoryFacetPortlet";
+
+	@Inject(filter = "javax.portlet.name=" + _PORTLET_ID)
 	private ExportImportPortletPreferencesProcessor
 		_exportImportPortletPreferencesProcessor;
 
