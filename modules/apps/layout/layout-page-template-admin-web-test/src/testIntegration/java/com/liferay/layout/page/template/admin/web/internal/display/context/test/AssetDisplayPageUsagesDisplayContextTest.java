@@ -163,20 +163,18 @@ public class AssetDisplayPageUsagesDisplayContextTest {
 		throws Exception {
 
 		mockLiferayPortletRenderRequest.setParameter(
+			SearchContainer.DEFAULT_ORDER_BY_TYPE_PARAM, orderByType);
+		mockLiferayPortletRenderRequest.setParameter(
+			"defaultTemplate",
+			String.valueOf(layoutPageTemplateEntry.isDefaultTemplate()));
+		mockLiferayPortletRenderRequest.setParameter(
 			"classNameId",
 			String.valueOf(
 				_classNameLocalService.getClassNameId(BlogsEntry.class)));
-
 		mockLiferayPortletRenderRequest.setParameter(
 			"layoutPageTemplateEntryId",
 			String.valueOf(
 				layoutPageTemplateEntry.getLayoutPageTemplateEntryId()));
-		mockLiferayPortletRenderRequest.setParameter(
-			"defaultTemplate",
-			String.valueOf(layoutPageTemplateEntry.isDefaultTemplate()));
-
-		mockLiferayPortletRenderRequest.setParameter(
-			SearchContainer.DEFAULT_ORDER_BY_TYPE_PARAM, orderByType);
 
 		MVCPortlet mvcPortlet = (MVCPortlet)_portlet;
 
