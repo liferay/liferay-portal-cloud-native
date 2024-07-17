@@ -49,14 +49,12 @@ public class SAPEntryUpgradeProcessTest {
 
 		Company company = CompanyTestUtil.addCompany();
 
-		SAPEntry systemRESTClientTemplateObjectSAPEntry =
-			_sapEntryLocalService.fetchSAPEntry(
-				company.getCompanyId(),
-				_sapConfiguration.systemRESTClientTemplateObjectSAPEntryName());
+		SAPEntry sapEntry = _sapEntryLocalService.fetchSAPEntry(
+			company.getCompanyId(),
+			_sapConfiguration.systemRESTClientTemplateObjectSAPEntryName());
 
-		if (systemRESTClientTemplateObjectSAPEntry != null) {
-			_sapEntryLocalService.deleteSAPEntry(
-				systemRESTClientTemplateObjectSAPEntry);
+		if (sapEntry != null) {
+			_sapEntryLocalService.deleteSAPEntry(sapEntry);
 		}
 
 		_runUpgrade();
