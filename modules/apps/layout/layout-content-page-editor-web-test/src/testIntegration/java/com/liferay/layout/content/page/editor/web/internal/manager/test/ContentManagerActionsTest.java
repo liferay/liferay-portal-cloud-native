@@ -82,10 +82,10 @@ public class ContentManagerActionsTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_group = GroupTestUtil.addGroup();
-
 		_company = _companyLocalService.fetchCompany(
 			TestPropsValues.getCompanyId());
+
+		_group = GroupTestUtil.addGroup();
 
 		_layout = LayoutTestUtil.addTypeContentLayout(_group);
 
