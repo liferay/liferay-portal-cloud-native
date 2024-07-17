@@ -290,12 +290,11 @@ public class SAPAccessControlPolicy extends BaseAccessControlPolicy {
 			HttpServletRequest httpServletRequest =
 				accessControlContext.getRequest();
 
-			boolean localRestClientDispatch = GetterUtil.getBoolean(
-				httpServletRequest.getAttribute(
-					"com.liferay.portal.vulcan.internal.template.servlet." +
-						"RESTClientHttpRequest"));
+			if (GetterUtil.getBoolean(
+					httpServletRequest.getAttribute(
+						"com.liferay.portal.vulcan.internal.template.servlet." +
+							"RESTClientHttpRequest"))) {
 
-			if (localRestClientDispatch) {
 				systemServiceAccessPolicyNames.add(
 					sapConfiguration.
 						systemRESTClientTemplateObjectSAPEntryName());
