@@ -71,7 +71,6 @@ public class CheckCTSchemaVersionPortalInstanceLifecycleListenerTest {
 		Assert.assertNotEquals(
 			ctSchemaVersion.getSchemaVersionId(),
 			ctCollection.getSchemaVersionId());
-
 		Assert.assertEquals(
 			latestCTSchemaVersion.getSchemaVersionId(),
 			ctCollection.getSchemaVersionId());
