@@ -93,9 +93,7 @@
 			<notification>
 				<name>Creator Modification Notification</name>
 				<template>
-					<![CDATA[Your submission was rejected by ${userName}, please modify and resubmit.
-]]>
-
+					<![CDATA[Your submission was rejected by ${userName}, please modify and resubmit.]]>
 				</template>
 				<template-language>freemarker</template-language>
 				<notification-type>email</notification-type>
