@@ -174,7 +174,7 @@ public class FilePropagator {
 	}
 
 	protected void log(String message) {
-		System.out.print("FilePropagator ID: ");
+		System.out.print("File propagator ID: ");
 		System.out.print(_id);
 
 		if (message.contains("\n")) {
