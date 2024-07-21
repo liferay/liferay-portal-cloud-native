@@ -68,7 +68,6 @@ public class DownloadFileEntryMVCResourceCommandTest {
 	public void testServeResource() throws Exception {
 		MockLiferayResourceRequest mockLiferayResourceRequest =
 			_getMockLiferayResourceRequest();
-
 		MockLiferayResourceResponse mockLiferayResourceResponse =
 			new MockLiferayResourceResponse();
 
