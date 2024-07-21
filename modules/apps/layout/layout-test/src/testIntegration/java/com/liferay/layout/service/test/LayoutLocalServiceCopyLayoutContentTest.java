@@ -799,7 +799,6 @@ public class LayoutLocalServiceCopyLayoutContentTest {
 
 		_assertPortletPreferences(0, portletId1);
 		_assertPortletPreferences(count, portletId2);
-
 		_assertPortletPreferences(value, name, portletId2, draftLayout, layout);
 	}
 
