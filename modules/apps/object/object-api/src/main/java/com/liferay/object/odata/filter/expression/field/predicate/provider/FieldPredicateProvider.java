@@ -33,7 +33,7 @@ public interface FieldPredicateProvider {
 		Function<String, Column<?, ?>> objectDefinitionColumnSupplier,
 		Object left, List<Object> rights);
 
-	public Predicate getIsEmptyPredicate(
+	public Predicate getIsNotEmptyPredicate(
 		String fieldName,
 		Function<String, Column<?, ?>> objectDefinitionColumnSupplier);
 

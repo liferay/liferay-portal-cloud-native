@@ -80,13 +80,13 @@ public class KeywordsFieldPredicateProvider implements FieldPredicateProvider {
 	}
 
 	@Override
-	public Predicate getIsEmptyPredicate(
+	public Predicate getIsNotEmptyPredicate(
 		String fieldName,
 		Function<String, Column<?, ?>> objectDefinitionColumnSupplier) {
 
 		Column<?, ?> column = objectDefinitionColumnSupplier.apply("id");
 
-		return column.notIn(
+		return column.in(
 			DSLQueryFactoryUtil.select(
 				AssetEntryTable.INSTANCE.classPK
 			).from(

@@ -5148,8 +5148,8 @@ public class ObjectEntryResourceTest {
 		_postObjectEntryWithKeywords("tag1", "tag2");
 		_postObjectEntryWithKeywords("tag1", "tag2", "tag3");
 
-		_assertFilteredObjectEntries(1, "keywords/any()");
-		_assertFilteredObjectEntries(4, "not keywords/any()");
+		_assertFilteredObjectEntries(4, "keywords/any()");
+		_assertFilteredObjectEntries(1, "not keywords/any()");
 
 		_assertFilteredObjectEntries(4, "keywords/any(k:k eq 'tag1')");
 		_assertFilteredObjectEntries(4, "keywords/any(k:k eq 'TAG1')");
@@ -5245,10 +5245,10 @@ public class ObjectEntryResourceTest {
 			_TAG_1);
 
 		_assertFilteredObjectEntries(
-			1,
+			3,
 			String.format("%s/any()", _OBJECT_FIELD_NAME_MULTISELECT_PICKLIST));
 		_assertFilteredObjectEntries(
-			3,
+			1,
 			String.format(
 				"not %s/any()", _OBJECT_FIELD_NAME_MULTISELECT_PICKLIST));
 		_assertFilteredObjectEntries(
@@ -5407,8 +5407,8 @@ public class ObjectEntryResourceTest {
 		_postObjectEntryWithTaxonomyCategories(
 			taxonomyCategory1, taxonomyCategory2, taxonomyCategory3);
 
-		_assertFilteredObjectEntries(1, "taxonomyCategoryIds/any()");
-		_assertFilteredObjectEntries(3, "not taxonomyCategoryIds/any()");
+		_assertFilteredObjectEntries(3, "taxonomyCategoryIds/any()");
+		_assertFilteredObjectEntries(1, "not taxonomyCategoryIds/any()");
 		_assertFilteredObjectEntries(
 			3,
 			String.format(

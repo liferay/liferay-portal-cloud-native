@@ -809,7 +809,7 @@ public class PredicateExpressionVisitorImpl
 				_getFieldPredicateProvider(
 					collectionPropertyExpression.getName(), objectDefinition);
 
-			return fieldPredicateProvider.getIsEmptyPredicate(
+			return fieldPredicateProvider.getIsNotEmptyPredicate(
 				collectionPropertyExpression.getName(),
 				name -> _getColumn(name, objectDefinition));
 		}
