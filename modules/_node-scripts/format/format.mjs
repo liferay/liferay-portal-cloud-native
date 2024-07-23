@@ -334,6 +334,12 @@ export default async function format(
 			`${totalBad} ${files(totalBad)} ${have(totalBad)} problems`
 		);
 
+		summary.push(
+			badFiles
+				.map((filepath) => `- ${path.relative(rootDir, filepath)}`)
+				.join('\n')
+		);
+
 		throw new Error(summary.join('\n') + '\n');
 	}
 	else {
