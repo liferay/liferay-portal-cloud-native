@@ -27,27 +27,19 @@ public class LanguageImplTest {
 	public void testProcess() {
 		LanguageImpl languageImpl = new LanguageImpl();
 
-		String contentMultiple =
-			"foo;await import('@liferay/language/foo/all.js');bar;" +
-				"await import('@liferay/language/foo/all.js');baz;";
-		String contentSingle =
-			"foo;bar;await import('@liferay/language/foo/all.js');baz;";
-
-		String expectedResultMultiple =
-			"foo;{/*removed: await import('@liferay/language...')*/};bar;" +
-				"{/*removed: await import('@liferay/language...')*/};baz;";
-		String expectedResultSingle =
-			"foo;bar;{/*removed: await import('@liferay/language...')*/};baz;";
-
 		Assert.assertEquals(
-			expectedResultMultiple,
+			"foo;bar;{/*removed: await import('@liferay/language...')*/};baz;",
 			languageImpl.process(
-				null, null, contentMultiple
+				null, null,
+				"foo;bar;await import('@liferay/language/foo/all.js');baz;"
 			).toString());
 		Assert.assertEquals(
-			expectedResultSingle,
+			"foo;{/*removed: await import('@liferay/language...')*/};bar;" +
+				"{/*removed: await import('@liferay/language...')*/};baz;",
 			languageImpl.process(
-				null, null, contentSingle
+				null, null,
+				"foo;await import('@liferay/language/foo/all.js');bar;" +
+					"await import('@liferay/language/foo/all.js');baz;"
 			).toString());
 	}
 
