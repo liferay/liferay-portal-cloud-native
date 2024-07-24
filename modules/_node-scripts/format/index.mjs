@@ -9,6 +9,7 @@ import runPreflight from '../preflight/runPreflight.mjs';
 import {LIFERAY_WORKING_BRANCH, getRootDir} from '../util/constants.mjs';
 import getNamedArguments from '../util/getNamedArguments.mjs';
 import {getCurrentBranchName} from '../util/gitCommands.mjs';
+import maybeUpdateNodeScriptsHash from '../util/maybeUpdateNodeScriptsHash.mjs';
 import format from './format.mjs';
 
 export default async function main() {
@@ -30,6 +31,10 @@ export default async function main() {
 	}
 
 	const rootDir = await getRootDir();
+
+	if (!args.check) {
+		await maybeUpdateNodeScriptsHash();
+	}
 
 	if (path.resolve(process.cwd()) === rootDir) {
 		console.log('🛫 Running preflight...');
