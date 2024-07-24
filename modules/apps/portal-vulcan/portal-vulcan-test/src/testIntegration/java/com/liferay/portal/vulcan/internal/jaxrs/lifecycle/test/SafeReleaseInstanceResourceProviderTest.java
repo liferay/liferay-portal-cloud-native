@@ -166,9 +166,7 @@ public class SafeReleaseInstanceResourceProviderTest {
 
 		System.runFinalization();
 
-		Assert.assertTrue(
-			"The instances have not been released",
-			_instancesCountDownLatch.await(5, TimeUnit.SECONDS));
+		Assert.assertTrue(_instancesCountDownLatch.await(5, TimeUnit.SECONDS));
 	}
 
 	public static class TestApplication extends Application {
