@@ -689,7 +689,6 @@ public class NavigationMenuResourceTest
 		_testGetSiteNavigationMenusPage(
 			classPK, classTypeId, clazz, contentURL, displayPageType, title,
 			type, useCustomName, _getServiceContext(false));
-
 		_testGetSiteNavigationMenusPage(
 			classPK, classTypeId, clazz, contentURL, displayPageType, title,
 			type, useCustomName, _getServiceContext(true));
