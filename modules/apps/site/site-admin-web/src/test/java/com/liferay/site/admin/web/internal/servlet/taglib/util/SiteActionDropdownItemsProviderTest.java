@@ -252,13 +252,13 @@ public class SiteActionDropdownItemsProviderTest {
 	}
 
 	private void _assertDropdownItem(Map<String, String> map) throws Exception {
+		List<DropdownItem> dropdownItems = new ArrayList<>();
+
 		SiteActionDropdownItemsProvider siteActionDropdownItemsProvider =
 			new SiteActionDropdownItemsProvider(
 				_group, _liferayPortletRequest,
 				new MockLiferayPortletActionResponse(),
 				_siteAdminDisplayContext);
-
-		List<DropdownItem> dropdownItems = new ArrayList<>();
 
 		for (DropdownItem dropdownItem :
 				siteActionDropdownItemsProvider.getActionDropdownItems()) {
