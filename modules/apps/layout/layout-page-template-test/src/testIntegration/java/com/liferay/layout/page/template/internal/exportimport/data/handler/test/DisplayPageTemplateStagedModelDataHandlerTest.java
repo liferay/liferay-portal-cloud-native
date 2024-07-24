@@ -83,7 +83,9 @@ public class DisplayPageTemplateStagedModelDataHandlerTest
 	}
 
 	@Test
-	public void testPropagateChangesOfFragmentToLive() throws Exception {
+	public void testPropagateChangesOfFragmentEntryToLiveGroup()
+		throws Exception {
+
 		initExport();
 
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
