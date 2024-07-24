@@ -362,13 +362,6 @@ public class SiteActionDropdownItemsProviderTest {
 	private void _setUpPortalUtil() {
 		PortalUtil portalUtil = new PortalUtil();
 
-		_portal = Mockito.mock(Portal.class);
-
-		_liferayPortletRequest = new MockLiferayPortletActionRequest();
-
-		_httpServletRequest = new MockHttpServletRequest();
-		_themeDisplay = Mockito.mock(ThemeDisplay.class);
-
 		_httpServletRequest.setAttribute(WebKeys.THEME_DISPLAY, _themeDisplay);
 
 		Mockito.when(
@@ -423,11 +416,13 @@ public class SiteActionDropdownItemsProviderTest {
 		_userGroupLocalServiceUtilMockedStatic = Mockito.mockStatic(
 			UserGroupLocalServiceUtil.class);
 
-	private HttpServletRequest _httpServletRequest;
-	private LiferayPortletRequest _liferayPortletRequest;
-	private Portal _portal;
+	private HttpServletRequest _httpServletRequest =
+		new MockHttpServletRequest();
+	private LiferayPortletRequest _liferayPortletRequest =
+		new MockLiferayPortletActionRequest();
+	private Portal _portal = Mockito.mock(Portal.class);
 	private final SiteAdminDisplayContext _siteAdminDisplayContext =
 		Mockito.mock(SiteAdminDisplayContext.class);
-	private ThemeDisplay _themeDisplay;
+	private ThemeDisplay _themeDisplay = Mockito.mock(ThemeDisplay.class);
 
 }
