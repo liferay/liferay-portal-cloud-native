@@ -128,7 +128,7 @@ public class SiteActionDropdownItemsProviderTest {
 	}
 
 	@Test
-	public void testGetActionDropdownItemsWithUpdatePermissionAndNoPublishedPrivatePages()
+	public void testGetActionDropdownItemsWithUpdatePermissionAndNoPublishedPrivateLayouts()
 		throws Exception {
 
 		Mockito.when(
@@ -163,7 +163,7 @@ public class SiteActionDropdownItemsProviderTest {
 	}
 
 	@Test
-	public void testGetActionDropdownItemsWithUpdatePermissionAndNoPublishedPublicPages()
+	public void testGetActionDropdownItemsWithUpdatePermissionAndNoPublishedPublicLayouts()
 		throws Exception {
 
 		Mockito.when(
@@ -198,7 +198,7 @@ public class SiteActionDropdownItemsProviderTest {
 	}
 
 	@Test
-	public void testGetActionDropdownItemsWithUpdatePermissionAndPrivatePages()
+	public void testGetActionDropdownItemsWithUpdatePermissionAndPrivateLayouts()
 		throws Exception {
 
 		Mockito.when(
@@ -225,7 +225,7 @@ public class SiteActionDropdownItemsProviderTest {
 	}
 
 	@Test
-	public void testGetActionDropdownItemsWithUpdatePermissionAndPublicPages()
+	public void testGetActionDropdownItemsWithUpdatePermissionAndPublicLayouts()
 		throws Exception {
 
 		Mockito.when(
