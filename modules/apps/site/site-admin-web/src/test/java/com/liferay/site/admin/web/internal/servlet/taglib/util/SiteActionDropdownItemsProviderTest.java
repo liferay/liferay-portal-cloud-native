@@ -361,7 +361,8 @@ public class SiteActionDropdownItemsProviderTest {
 	private void _setUpPortalUtil() {
 		PortalUtil portalUtil = new PortalUtil();
 
-		MockLiferayPortletURL mockLiferayPortletURL1 = new MockLiferayPortletURL();
+		MockLiferayPortletURL mockLiferayPortletURL1 =
+			new MockLiferayPortletURL();
 
 		mockLiferayPortletURL1.setParameter(
 			"portletId", LayoutAdminPortletKeys.GROUP_PAGES);
@@ -416,13 +417,13 @@ public class SiteActionDropdownItemsProviderTest {
 		_userGroupLocalServiceUtilMockedStatic = Mockito.mockStatic(
 			UserGroupLocalServiceUtil.class);
 
-	private HttpServletRequest _httpServletRequest =
+	private final HttpServletRequest _httpServletRequest =
 		new MockHttpServletRequest();
-	private LiferayPortletRequest _liferayPortletRequest =
+	private final LiferayPortletRequest _liferayPortletRequest =
 		new MockLiferayPortletActionRequest();
-	private Portal _portal = Mockito.mock(Portal.class);
+	private final Portal _portal = Mockito.mock(Portal.class);
 	private final SiteAdminDisplayContext _siteAdminDisplayContext =
 		Mockito.mock(SiteAdminDisplayContext.class);
-	private ThemeDisplay _themeDisplay = Mockito.mock(ThemeDisplay.class);
+	private final ThemeDisplay _themeDisplay = Mockito.mock(ThemeDisplay.class);
 
 }
