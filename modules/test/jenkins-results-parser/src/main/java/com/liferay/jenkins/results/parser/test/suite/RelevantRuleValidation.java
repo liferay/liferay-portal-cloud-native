@@ -70,8 +70,9 @@ public class RelevantRuleValidation {
 
 			for (String relevantRuleName : relevantRuleNames.split(",")) {
 				RelevantRule relevantRule = new RelevantRule(
-					testPropertiesPath.toString(), relevantRuleName,
-					portalAcceptancePullRequestJob, testProperties);
+					testPropertiesPath.toString(),
+					portalAcceptancePullRequestJob, relevantRuleName,
+					testProperties);
 
 				try {
 					relevantRule.validate();

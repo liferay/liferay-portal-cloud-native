@@ -29,11 +29,11 @@ import java.util.Set;
 public class RelevantRule implements Comparable<RelevantRule> {
 
 	public RelevantRule(
-		String filePath, String name, Job job, Properties properties) {
+		String filePath, Job job, String name, Properties properties) {
 
 		_filePath = filePath;
-		_name = name;
 		_job = job;
+		_name = name;
 		_properties = properties;
 	}
 
