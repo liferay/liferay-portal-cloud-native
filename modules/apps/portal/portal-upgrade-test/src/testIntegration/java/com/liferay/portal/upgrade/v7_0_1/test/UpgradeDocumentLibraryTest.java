@@ -80,7 +80,7 @@ public class UpgradeDocumentLibraryTest {
 	public void testUpgrade() throws Exception {
 		Connection connection = DataAccess.getConnection();
 
-		long classNameId = _getClassNameIdFromClassName(
+		long classNameId = _getClassNameId(
 			RawMetadataProcessor.class.getName(), connection);
 
 		try {
@@ -92,7 +92,7 @@ public class UpgradeDocumentLibraryTest {
 
 			Assert.assertEquals(
 				_CLASS_NAME,
-				_getValueFromClassName(classNameId, connection));
+				_getValue(classNameId, connection));
 
 			UpgradeProcess upgradeProcess = new UpgradeDocumentLibrary();
 
@@ -100,7 +100,7 @@ public class UpgradeDocumentLibraryTest {
 
 			Assert.assertEquals(
 				RawMetadataProcessor.class.getName(),
-				_getValueFromClassName(classNameId, connection));
+				_getValue(classNameId, connection));
 		}
 		finally {
 			_updateClassName(
@@ -110,7 +110,7 @@ public class UpgradeDocumentLibraryTest {
 		}
 	}
 
-	private long _getClassNameIdFromClassName(
+	private long _getClassNameId(
 			String className, Connection connection)
 		throws Exception {
 
@@ -129,7 +129,7 @@ public class UpgradeDocumentLibraryTest {
 		}
 	}
 
-	private String _getValueFromClassName(
+	private String _getValue(
 			long classNameId, Connection connection)
 		throws Exception {
 
