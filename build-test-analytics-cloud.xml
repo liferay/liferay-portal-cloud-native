@@ -115,7 +115,7 @@
 							</not>
 						</and>
 						<then>
-							<echo>Set Up Portal for OSB Faro (${portal.base.dir})</echo>
+							<echo>Set up portal for OSB Faro (${portal.base.dir}).</echo>
 
 							<execute dir="${portal.base.dir}">
 								ant setup-profile-dxp
