@@ -290,8 +290,6 @@ public class FileEntryContentDashboardItemTest {
 		ContentDashboardItemSubtype contentDashboardItemSubtype =
 			versionableContentDashboardItem.getContentDashboardItemSubtype();
 
-		Assert.assertNotNull(contentDashboardItemSubtype);
-
 		Assert.assertEquals(
 			"Basic Document (Image)",
 			contentDashboardItemSubtype.getLabel(LocaleUtil.US));
@@ -618,18 +616,12 @@ public class FileEntryContentDashboardItemTest {
 			aspectRatioSpecificInformation = _getSpecificInformation(
 				"content-dashboard-aspect-ratio", specificInformationList);
 
-		Assert.assertNotNull(
-			"aspectRatio not found", aspectRatioSpecificInformation);
-
 		Assert.assertEquals(
 			expectedAspectRatio, aspectRatioSpecificInformation.getValue());
 
 		ContentDashboardItem.SpecificInformation<?>
 			extensionSpecificInformation = _getSpecificInformation(
 				"extension", specificInformationList);
-
-		Assert.assertNotNull(
-			"extension not found", extensionSpecificInformation);
 
 		Assert.assertEquals(
 			expectedExtension, extensionSpecificInformation.getValue());
@@ -638,16 +630,12 @@ public class FileEntryContentDashboardItemTest {
 			resolutionSpecificInformation = _getSpecificInformation(
 				"resolution", specificInformationList);
 
-		Assert.assertNotNull(
-			"resolution not found", resolutionSpecificInformation);
-
 		Assert.assertEquals(
 			expectedResolution, resolutionSpecificInformation.getValue());
 
 		ContentDashboardItem.SpecificInformation<?> sizeSpecificInformation =
 			_getSpecificInformation("size", specificInformationList);
 
-		Assert.assertNotNull("size not found", sizeSpecificInformation);
 		Assert.assertEquals(expectedSize, sizeSpecificInformation.getValue());
 
 		Assert.assertTrue(
@@ -661,9 +649,6 @@ public class FileEntryContentDashboardItemTest {
 				(ContentDashboardItem.SpecificInformation<URL>)
 					_getSpecificInformation(
 						"web-dav-url", specificInformationList);
-
-		Assert.assertNotNull(
-			"web-dav-url not found", webDAVSpecificInformation);
 
 		String url = String.valueOf(webDAVSpecificInformation.getValue());
 
