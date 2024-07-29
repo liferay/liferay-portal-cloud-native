@@ -79,16 +79,25 @@ export async function deleteSegment({
 }
 
 export async function dragAndDropCriteriaItem({
+	nestedSegmentField,
 	page,
 	segmentField,
 }: {
+	nestedSegmentField?: string;
 	page: Page;
 	segmentField: string;
 }) {
 	const source = page.locator(`[data-testid*="criteria-item-"]`, {
 		hasText: segmentField,
 	});
-	const target = page.locator('div.drop-zone-target').last();
+
+	let target: Locator;
+	if (nestedSegmentField) {
+		target = page.locator('.display-value').getByText(nestedSegmentField);
+	}
+	else {
+		target = page.locator('div.drop-zone-target').last();
+	}
 
 	return await source.dragTo(target);
 }
