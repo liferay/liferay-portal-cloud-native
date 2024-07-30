@@ -61,7 +61,7 @@ public class Log4jConfigUtilTest {
 	@NewEnv(type = NewEnv.Type.CLASSLOADER)
 	@Test
 	public void testCompanyWebIdConsoleAppender() throws Exception {
-		PrintStream systemOut = System.out;
+		PrintStream systemOutPrintStream = System.out;
 
 		try (MockedStatic<CompanyThreadLocal> companyThreadLocalMockedStatic =
 				Mockito.mockStatic(CompanyThreadLocal.class);
@@ -95,12 +95,10 @@ public class Log4jConfigUtilTest {
 				companyThreadLocalMockedStatic, portalInstancePoolMockedStatic,
 				byteArrayOutputStream, logger, 0L, new long[0],
 				"Test Log Message", "Test Log Message");
-
 			_testCompanyWebIdConsoleAppender(
 				companyThreadLocalMockedStatic, portalInstancePoolMockedStatic,
 				byteArrayOutputStream, logger, companyId, new long[0],
 				"Test Log Message", "Test Log Message");
-
 			_testCompanyWebIdConsoleAppender(
 				companyThreadLocalMockedStatic, portalInstancePoolMockedStatic,
 				byteArrayOutputStream, logger, companyId,
@@ -108,7 +106,7 @@ public class Log4jConfigUtilTest {
 				"test.com Test Log Message");
 		}
 		finally {
-			System.setOut(systemOut);
+			System.setOut(systemOutPrintStream);
 		}
 	}
 
@@ -505,14 +503,14 @@ public class Log4jConfigUtilTest {
 				sb.append(appenderType);
 				sb.append("\">");
 
-				if (appenderType.equals(_APPENDER_TYPE_CONSOLE)) {
-					sb.append("<Layout type=\"PatternLayout\"/>");
-				}
-				else if (appenderType.equals(
-							_APPENDER_TYPE_COMPANY_WEB_ID_CONSOLE)) {
+				if (appenderType.equals(
+						_APPENDER_TYPE_COMPANY_WEB_ID_CONSOLE)) {
 
 					sb.append("<Layout pattern=\"%X{company.webId} %m%n");
 					sb.append("\" type=\"PatternLayout\"/>");
+				}
+				else if (appenderType.equals(_APPENDER_TYPE_CONSOLE)) {
+					sb.append("<Layout type=\"PatternLayout\"/>");
 				}
 
 				sb.append("</Appender>");

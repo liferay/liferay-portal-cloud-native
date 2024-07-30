@@ -62,7 +62,7 @@ public final class CompanyWebIdConsoleAppender extends AbstractAppender {
 			return;
 		}
 
-		MutableLogEvent mutableLogEvent;
+		MutableLogEvent mutableLogEvent = null;
 
 		if (logEvent instanceof MutableLogEvent) {
 			mutableLogEvent = (MutableLogEvent)logEvent;
