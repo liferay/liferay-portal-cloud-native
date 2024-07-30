@@ -48,6 +48,8 @@ import java.util.Objects;
 import javax.portlet.PortletRequest;
 import javax.portlet.WindowState;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -186,13 +188,12 @@ public class WorkflowTaskUserNotificationHandlerTest {
 			UserNotificationEvent userNotificationEvent)
 		throws Exception {
 
-		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
+		HttpServletRequest httpServletRequest = new MockHttpServletRequest();
 
-		mockHttpServletRequest.setAttribute(
+		httpServletRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, _getThemeDisplay(group, layout));
 
-		serviceContext.setRequest(mockHttpServletRequest);
+		serviceContext.setRequest(httpServletRequest);
 
 		return _userNotificationHandler.interpret(
 			userNotificationEvent, serviceContext);
