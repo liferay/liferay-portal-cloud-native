@@ -708,7 +708,7 @@ public class MediaQueryProviderImplTest {
 
 		@Override
 		public void check(
-				PermissionChecker permissionChecker, FileEntry model,
+				PermissionChecker permissionChecker, FileEntry fileEntry,
 				String actionId)
 			throws PortalException {
 
@@ -730,7 +730,7 @@ public class MediaQueryProviderImplTest {
 
 		@Override
 		public boolean contains(
-				PermissionChecker permissionChecker, FileEntry model,
+				PermissionChecker permissionChecker, FileEntry fileEntry,
 				String actionId)
 			throws PortalException {
 
