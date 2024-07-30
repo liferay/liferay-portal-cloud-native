@@ -33,15 +33,13 @@ public class LiferayDeltaSession extends DeltaSession {
 	public void readObjectData(ObjectInputStream objectInputStream)
 		throws ClassNotFoundException, IOException {
 
-		int size = objectInputStream.readInt();
+		byte[] bytes = new byte[objectInputStream.readInt()];
 
-		byte[] data = new byte[size];
-
-		objectInputStream.readFully(data);
+		objectInputStream.readFully(bytes);
 
 		try (ObjectInput liferayObjectInput =
 				LiferayDeltaManager.toObjectInputStream(
-					new ByteArrayInputStream(data))) {
+					new ByteArrayInputStream(bytes))) {
 
 			super.doReadObject((ObjectInputStream)liferayObjectInput);
 		}
@@ -61,10 +59,10 @@ public class LiferayDeltaSession extends DeltaSession {
 			super.doWriteObject((ObjectOutputStream)liferayObjectOutput);
 		}
 
-		byte[] data = byteArrayOutputStream.toByteArray();
+		byte[] bytes = byteArrayOutputStream.toByteArray();
 
-		objectOutputStream.writeInt(data.length);
-		objectOutputStream.write(data);
+		objectOutputStream.writeInt(bytes.length);
+		objectOutputStream.write(bytes);
 	}
 
 	@Override

@@ -29,15 +29,13 @@ public class LiferayDeltaRequest extends DeltaRequest {
 	public void readExternal(ObjectInput objectInput)
 		throws ClassNotFoundException, IOException {
 
-		int size = objectInput.readInt();
+		byte[] bytes = new byte[objectInput.readInt()];
 
-		byte[] data = new byte[size];
-
-		objectInput.readFully(data);
+		objectInput.readFully(bytes);
 
 		try (ObjectInput liferayObjectInput =
 				LiferayDeltaManager.toObjectInputStream(
-					new ByteArrayInputStream(data))) {
+					new ByteArrayInputStream(bytes))) {
 
 			super.readExternal(liferayObjectInput);
 		}
@@ -55,10 +53,10 @@ public class LiferayDeltaRequest extends DeltaRequest {
 			super.writeExternal(liferayObjectOutput);
 		}
 
-		byte[] data = byteArrayOutputStream.toByteArray();
+		byte[] bytes = byteArrayOutputStream.toByteArray();
 
-		objectOutput.writeInt(data.length);
-		objectOutput.write(data);
+		objectOutput.writeInt(bytes.length);
+		objectOutput.write(bytes);
 	}
 
 }
