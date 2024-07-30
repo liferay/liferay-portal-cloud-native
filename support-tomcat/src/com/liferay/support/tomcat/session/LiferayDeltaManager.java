@@ -47,10 +47,10 @@ public class LiferayDeltaManager extends DeltaManager {
 		InputStream inputStream) {
 
 		try {
-			Function<InputStream, ObjectInputStream> objectInputStreamFunction =
+			Function<InputStream, ObjectInputStream> function =
 				_objectInputStreamFunctionFuture.get();
 
-			return objectInputStreamFunction.apply(inputStream);
+			return function.apply(inputStream);
 		}
 		catch (Exception exception) {
 			throw new RuntimeException(exception);
@@ -61,11 +61,10 @@ public class LiferayDeltaManager extends DeltaManager {
 		OutputStream outputStream) {
 
 		try {
-			Function<OutputStream, ObjectOutputStream>
-				objectOutputStreamFunction =
-					_objectOutputStreamFunctionFuture.get();
+			Function<OutputStream, ObjectOutputStream> function =
+				_objectOutputStreamFunctionFuture.get();
 
-			return objectOutputStreamFunction.apply(outputStream);
+			return function.apply(outputStream);
 		}
 		catch (Exception exception) {
 			throw new RuntimeException(exception);
