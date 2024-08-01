@@ -446,15 +446,19 @@ public class SpeedwellSiteInitializer implements SiteInitializer {
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		Group group = _groupLocalService.getGroup(groupId);
-		Locale locale = LocaleUtil.getSiteDefault();
-		User user = _userLocalService.getUser(PrincipalThreadLocal.getUserId());
-
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
+
+		Group group = _groupLocalService.getGroup(groupId);
+
 		serviceContext.setCompanyId(group.getCompanyId());
-		serviceContext.setLanguageId(_language.getLanguageId(locale));
+
+		serviceContext.setLanguageId(
+			_language.getLanguageId(LocaleUtil.getSiteDefault()));
 		serviceContext.setScopeGroupId(groupId);
+
+		User user = _userLocalService.getUser(PrincipalThreadLocal.getUserId());
+
 		serviceContext.setTimeZone(user.getTimeZone());
 		serviceContext.setUserId(user.getUserId());
 
