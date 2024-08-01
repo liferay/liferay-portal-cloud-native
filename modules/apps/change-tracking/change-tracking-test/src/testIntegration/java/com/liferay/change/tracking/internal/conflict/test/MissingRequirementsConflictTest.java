@@ -56,13 +56,13 @@ public class MissingRequirementsConflictTest {
 
 	@Test
 	public void testGetAllMissingConflicts() throws Exception {
+		List<Long> journalArticleIds = new ArrayList<>();
+
 		JournalFolder journalFolder = JournalTestUtil.addFolder(
 			_group.getGroupId(), RandomTestUtil.randomString());
 
 		CTCollection ctCollection = _addCTCollection(
 			RandomTestUtil.randomString());
-
-		List<Long> journalArticleIds = new ArrayList<>();
 
 		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionIdWithSafeCloseable(
