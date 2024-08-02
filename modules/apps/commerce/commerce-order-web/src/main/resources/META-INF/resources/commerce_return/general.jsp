@@ -22,6 +22,7 @@ CommerceOrder commerceOrder = commerceReturnEditDisplayContext.getCommerceReturn
 	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 
 	<aui:model-context bean="<%= commerceReturn.getObjectEntry() %>" model="<%= ObjectEntry.class %>" />
+
 	<aui:input name="primaryKey" type="hidden" />
 
 	<div class="row">
