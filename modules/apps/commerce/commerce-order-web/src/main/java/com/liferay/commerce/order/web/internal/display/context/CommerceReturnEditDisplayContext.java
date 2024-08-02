@@ -385,7 +385,7 @@ public class CommerceReturnEditDisplayContext {
 			int toBeProcessedCount = GetterUtil.getInteger(
 				returnItemStatusMap.get("toBeProcessedCount"));
 
-			if ((toBeProcessedCount > 0) && _hasCompletedPaymentStatus()) {
+			if ((toBeProcessedCount > 0) && _hasStatusCompleted()) {
 				headerActionModels.add(
 					new HeaderActionModel(
 						"btn-secondary", null,
@@ -534,7 +534,7 @@ public class CommerceReturnEditDisplayContext {
 			QueryUtil.ALL_POS);
 	}
 
-	private boolean _hasCompletedPaymentStatus() throws Exception {
+	private boolean _hasStatusCompleted() throws Exception {
 		CommerceOrder commerceOrder = getCommerceReturnCommerceOrder();
 
 		List<CommercePaymentEntry> commercePaymentEntries =
