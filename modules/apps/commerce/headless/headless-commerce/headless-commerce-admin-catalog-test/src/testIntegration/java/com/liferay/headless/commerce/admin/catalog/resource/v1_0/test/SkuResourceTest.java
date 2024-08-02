@@ -401,13 +401,13 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 		SkuUnitOfMeasure skuUnitOfMeasure = skuUnitOfMeasures[0];
 
 		Assert.assertEquals(
-			skuUnitOfMeasure.getKey(), randomSkuUnitOfMeasure.getKey());
-		Assert.assertEquals(
 			skuUnitOfMeasure.getBasePrice(),
 			randomSkuUnitOfMeasure.getBasePrice(
 			).setScale(
 				2, RoundingMode.HALF_UP
 			));
+		Assert.assertEquals(
+			skuUnitOfMeasure.getKey(), randomSkuUnitOfMeasure.getKey());
 		Assert.assertEquals(
 			skuUnitOfMeasure.getPriority(),
 			randomSkuUnitOfMeasure.getPriority());
