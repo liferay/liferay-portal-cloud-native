@@ -155,12 +155,11 @@ public class SharingDLViewFileVersionDisplayContextTest {
 
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
-		themeDisplay.setLocale(LocaleUtil.getDefault());
-
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		portletDisplay.setPortletName(DLPortletKeys.DOCUMENT_LIBRARY_ADMIN);
 
+		themeDisplay.setLocale(LocaleUtil.getDefault());
 		themeDisplay.setPermissionChecker(
 			PermissionCheckerFactoryUtil.create(TestPropsValues.getUser()));
 		themeDisplay.setSignedIn(signedIn);
