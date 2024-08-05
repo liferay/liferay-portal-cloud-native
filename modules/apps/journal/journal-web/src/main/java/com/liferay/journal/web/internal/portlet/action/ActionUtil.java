@@ -107,19 +107,18 @@ public class ActionUtil {
 
 		String actionName = ParamUtil.getString(
 			httpServletRequest, ActionRequest.ACTION_NAME);
-		String articleId = ParamUtil.getString(httpServletRequest, "articleId");
-		long classPK = ParamUtil.getLong(httpServletRequest, "classPK");
-		long classNameId = ParamUtil.getLong(httpServletRequest, "classNameId");
 
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		long groupId = ParamUtil.getLong(
-			httpServletRequest, "groupId", themeDisplay.getScopeGroupId());
-
 		long resourcePrimKey = ParamUtil.getLong(
 			httpServletRequest, "resourcePrimKey");
+		long groupId = ParamUtil.getLong(
+			httpServletRequest, "groupId", themeDisplay.getScopeGroupId());
+		long classNameId = ParamUtil.getLong(httpServletRequest, "classNameId");
+		long classPK = ParamUtil.getLong(httpServletRequest, "classPK");
+		String articleId = ParamUtil.getString(httpServletRequest, "articleId");
 		int status = ParamUtil.getInteger(
 			httpServletRequest, "status", WorkflowConstants.STATUS_ANY);
 
