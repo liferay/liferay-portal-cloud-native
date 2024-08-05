@@ -2005,6 +2005,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		if (group != null) {
 			_groupLocalService.deleteGroup(group);
+
+			user.setGroup(null);
 		}
 
 		// Portrait
@@ -5433,7 +5435,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			group.setActive(true);
 		}
 
-		_groupLocalService.updateGroup(group);
+		user.setGroup(_groupLocalService.updateGroup(group));
 
 		return user;
 	}
@@ -5660,8 +5662,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			Group group = _groupLocalService.getUserGroup(
 				user.getCompanyId(), userId);
 
-			_groupLocalService.updateFriendlyURL(
-				group.getGroupId(), StringPool.SLASH + screenName);
+			user.setGroup(
+				_groupLocalService.updateFriendlyURL(
+					group.getGroupId(), StringPool.SLASH + screenName));
 		}
 
 		// Groups and organizations
