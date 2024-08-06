@@ -99,20 +99,19 @@ public class BaseAuthFilterTest {
 			_testHttpSessionIsInvalid(
 				HttpAuthorizationHeader.SCHEME_BASIC,
 				_setUpUser(WorkflowConstants.STATUS_APPROVED)));
-
 		Assert.assertTrue(
 			_testHttpSessionIsInvalid(
 				HttpAuthorizationHeader.SCHEME_BASIC,
 				_setUpUser(WorkflowConstants.STATUS_INACTIVE)));
 
 		setUp();
+
 		_mockFilterConfig.addInitParameter("digest_auth", "true");
 
 		Assert.assertFalse(
 			_testHttpSessionIsInvalid(
 				HttpAuthorizationHeader.SCHEME_DIGEST,
 				_setUpUser(WorkflowConstants.STATUS_APPROVED)));
-
 		Assert.assertTrue(
 			_testHttpSessionIsInvalid(
 				HttpAuthorizationHeader.SCHEME_DIGEST,
@@ -322,8 +321,7 @@ public class BaseAuthFilterTest {
 							2, HttpAuthorizationHeader.class);
 
 					Assert.assertEquals(
-						"Incorrect challenge generated.", scheme,
-						httpAuthorizationHeader.getScheme());
+						scheme, httpAuthorizationHeader.getScheme());
 
 					return null;
 				}
