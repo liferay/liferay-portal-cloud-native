@@ -164,7 +164,7 @@ public class CalendarBookingLocalServiceImpl
 					entry.getValue(), null);
 			}
 			else {
-				description = _sanitizeHTMLEntry(entry.getValue());
+				description = _sanitize(entry.getValue());
 			}
 
 			descriptionMap.put(entry.getKey(), description);
@@ -1225,7 +1225,7 @@ public class CalendarBookingLocalServiceImpl
 					entry.getValue(), null);
 			}
 			else {
-				description = _sanitizeHTMLEntry(entry.getValue());
+				description = _sanitize(entry.getValue());
 			}
 
 			descriptionMap.put(entry.getKey(), description);
@@ -2322,7 +2322,7 @@ public class CalendarBookingLocalServiceImpl
 		}
 	}
 
-	private String _sanitizeHTMLEntry(String htmlEntry) {
+	private String _sanitize(String htmlEntry) {
 		if ((htmlEntry == null) || htmlEntry.isEmpty()) {
 			return htmlEntry;
 		}
