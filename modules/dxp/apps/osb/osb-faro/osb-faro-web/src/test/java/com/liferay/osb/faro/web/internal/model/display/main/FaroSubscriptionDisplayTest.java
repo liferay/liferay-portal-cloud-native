@@ -720,15 +720,14 @@ public class FaroSubscriptionDisplayTest {
 	private FaroSubscriptionDisplay _createFaroSubscriptionDisplay(
 		String productEntryId, Date startDate) {
 
+		OSBAccountEntry osbAccountEntry = new OSBAccountEntry();
+
 		OSBOfferingEntry osbOfferingEntry = new OSBOfferingEntry();
 
 		osbOfferingEntry.setProductEntryId(productEntryId);
+		osbOfferingEntry.setStartDate(startDate);
 		osbOfferingEntry.setStatus(
 			ProductConstants.OSB_OFFERING_ENTRY_STATUS_ACTIVE);
-
-		osbOfferingEntry.setStartDate(startDate);
-
-		OSBAccountEntry osbAccountEntry = new OSBAccountEntry();
 
 		osbAccountEntry.setOfferingEntries(
 			Collections.singletonList(osbOfferingEntry));
