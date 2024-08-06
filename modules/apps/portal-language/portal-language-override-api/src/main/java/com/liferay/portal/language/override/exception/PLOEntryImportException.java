@@ -23,7 +23,7 @@ public class PLOEntryImportException extends PortalException {
 	public static class InvalidTranslations extends PLOEntryImportException {
 
 		public InvalidTranslations() {
-			super("Unable to import translations");
+			super("Invalid translations");
 		}
 
 	}
