@@ -253,7 +253,6 @@ public class BlogsViewEntryContentDisplayContextTest {
 
 		serviceContext.setAssetCategoryIds(
 			new long[] {assetCategory.getCategoryId()});
-
 		serviceContext.setAttribute(
 			"friendlyURLAssetCategoryIds",
 			new long[] {assetCategory.getCategoryId()});
