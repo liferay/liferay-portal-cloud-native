@@ -4933,6 +4933,10 @@ public class JournalArticleLocalServiceImpl
 
 		article = journalArticlePersistence.update(article);
 
+		// Friendly URLs
+
+		updateFriendlyURLs(article, urlTitleMap, serviceContext);
+
 		// Article localization
 
 		if (addNewVersion) {
@@ -4945,10 +4949,6 @@ public class JournalArticleLocalServiceImpl
 				article.getCompanyId(), article.getId(), titleMap,
 				descriptionMap);
 		}
-
-		// Friendly URLs
-
-		updateFriendlyURLs(article, urlTitleMap, serviceContext);
 
 		// Resources
 
