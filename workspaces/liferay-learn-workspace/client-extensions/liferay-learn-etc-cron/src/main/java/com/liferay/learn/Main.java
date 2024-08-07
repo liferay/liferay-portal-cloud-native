@@ -553,35 +553,6 @@ public class Main {
 		_errorMessages.add(errorMessage);
 	}
 
-	private String _getTitle(Node node) {
-		if (node instanceof Heading) {
-			Heading heading = (Heading)node;
-
-			if ((heading.getLevel() == 1) && heading.hasChildren()) {
-				TextCollectingVisitor collectingVisitor =
-					new TextCollectingVisitor();
-
-				return collectingVisitor.collectAndGetText(heading);
-			}
-		}
-
-		if ((node instanceof Block) && node.hasChildren()) {
-			Node childNode = node.getFirstChild();
-
-			while (childNode != null) {
-				String title = _getTitle(childNode);
-
-				if (title != null) {
-					return title;
-				}
-
-				childNode = childNode.getNext();
-			}
-		}
-
-		return null;
-	}
-
 	private JSONArray _getBreadcrumbJSONArray(File file) throws Exception {
 		JSONArray breadcrumbJSONArray = new JSONArray();
 
@@ -1162,6 +1133,35 @@ public class Main {
 		}
 
 		return taxonomyCategoryIds.toArray(new Long[0]);
+	}
+
+	private String _getTitle(Node node) {
+		if (node instanceof Heading) {
+			Heading heading = (Heading)node;
+
+			if ((heading.getLevel() == 1) && heading.hasChildren()) {
+				TextCollectingVisitor collectingVisitor =
+					new TextCollectingVisitor();
+
+				return collectingVisitor.collectAndGetText(heading);
+			}
+		}
+
+		if ((node instanceof Block) && node.hasChildren()) {
+			Node childNode = node.getFirstChild();
+
+			while (childNode != null) {
+				String title = _getTitle(childNode);
+
+				if (title != null) {
+					return title;
+				}
+
+				childNode = childNode.getNext();
+			}
+		}
+
+		return null;
 	}
 
 	private String _getTitle(String text) {
