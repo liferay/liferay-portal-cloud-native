@@ -18,10 +18,10 @@ import org.springframework.context.annotation.Import;
  */
 @Import(ClientExtensionUtilSpringBootComponentScan.class)
 @SpringBootApplication
-public class PayPalCheckoutStepBootApplication {
+public class PayPalSpringBootApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PayPalCheckoutStepBootApplication.class, args);
+		SpringApplication.run(PayPalSpringBootApplication.class, args);
 	}
 
 }
