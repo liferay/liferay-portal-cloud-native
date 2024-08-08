@@ -16,11 +16,10 @@ import org.springframework.context.annotation.Import;
  */
 @Import(ClientExtensionUtilSpringBootComponentScan.class)
 @SpringBootApplication
-public class PayPalPaymentIntegrationSpringBootApplication {
+public class PayPalSpringBootApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(
-			PayPalPaymentIntegrationSpringBootApplication.class, args);
+		SpringApplication.run(PayPalSpringBootApplication.class, args);
 	}
 
 }
