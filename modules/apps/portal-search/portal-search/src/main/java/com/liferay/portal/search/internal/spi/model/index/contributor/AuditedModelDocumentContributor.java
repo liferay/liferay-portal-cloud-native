@@ -48,7 +48,8 @@ public class AuditedModelDocumentContributor
 				auditedModel.getUserId(), auditedModel.getUserName()),
 			true);
 		document.addKeyword(
-			"userExternalReferenceCode", _getUserERC(auditedModel));
+			"userExternalReferenceCode",
+			_getUserExternalReferenceCode(auditedModel));
 	}
 
 	@Reference
@@ -57,7 +58,7 @@ public class AuditedModelDocumentContributor
 	@Reference
 	protected UserLocalService userLocalService;
 
-	private String _getUserERC(AuditedModel auditedModel) {
+	private String _getUserExternalReferenceCode(AuditedModel auditedModel) {
 		String userExternalReferenceCode = StringPool.BLANK;
 
 		try {
@@ -68,8 +69,8 @@ public class AuditedModelDocumentContributor
 		catch (PortalException portalException) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to retrieve user " + auditedModel.getUserId() +
-						" while indexing document.",
+					"Unable to get user " + auditedModel.getUserId() +
+						" while indexing document",
 					portalException);
 			}
 		}
