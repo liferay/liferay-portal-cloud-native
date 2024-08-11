@@ -41,14 +41,14 @@ public class AuditedModelDocumentContributor
 		document.addKeyword(Field.COMPANY_ID, auditedModel.getCompanyId());
 		document.addDate(Field.CREATE_DATE, auditedModel.getCreateDate());
 		document.addDate(Field.MODIFIED_DATE, auditedModel.getModifiedDate());
-		document.addKeyword(
-			"userExternalReferenceCode", _getUserERC(auditedModel));
 		document.addKeyword(Field.USER_ID, auditedModel.getUserId());
 		document.addKeyword(
 			Field.USER_NAME,
 			portal.getUserName(
 				auditedModel.getUserId(), auditedModel.getUserName()),
 			true);
+		document.addKeyword(
+			"userExternalReferenceCode", _getUserERC(auditedModel));
 	}
 
 	@Reference
