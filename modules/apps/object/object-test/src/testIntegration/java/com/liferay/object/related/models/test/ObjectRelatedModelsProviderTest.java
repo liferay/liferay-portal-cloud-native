@@ -297,7 +297,48 @@ public class ObjectRelatedModelsProviderTest {
 
 		// Get related models with localized object field
 
-		_assertLocalizedValues(objectEntry1);
+		Map<String, Serializable> expectedLocalizedValues =
+			HashMapBuilder.<String, Serializable>put(
+				"longText_i18n",
+				HashMapBuilder.put(
+					"en_US", RandomTestUtil.randomString()
+				).build()
+			).put(
+				"richText_i18n",
+				HashMapBuilder.put(
+					"en_US", RandomTestUtil.randomString()
+				).build()
+			).put(
+				"text_i18n",
+				HashMapBuilder.put(
+					"en_US", "en_US " + RandomTestUtil.randomString()
+				).build()
+			).build();
+
+		ObjectEntry objectEntry5 = _addObjectEntry(
+			_objectDefinition2,
+			HashMapBuilder.putAll(
+				expectedLocalizedValues
+			).build());
+
+		ObjectRelationshipTestUtil.addObjectRelationshipMappingTableValues(
+			_objectRelationship.getObjectRelationshipId(),
+			objectEntry1.getObjectEntryId(), objectEntry5.getObjectEntryId());
+
+		Map<String, Serializable> actualLocalizedValues =
+			_objectEntryLocalService.getValues(objectEntry5.getObjectEntryId());
+
+		Assert.assertEquals(
+			expectedLocalizedValues.get("longTextLocalized_i18n"),
+			actualLocalizedValues.get("longTextLocalized_i18n"));
+		Assert.assertEquals(
+			expectedLocalizedValues.get("richTextLocalized_i18n"),
+			actualLocalizedValues.get("richTextLocalized_i18n"));
+		Assert.assertEquals(
+			expectedLocalizedValues.get("textLocalized_i18n"),
+			actualLocalizedValues.get("textLocalized_i18n"));
+
+		_objectEntryLocalService.deleteObjectEntry(objectEntry5);
 
 		// Get related models with search
 
@@ -383,7 +424,7 @@ public class ObjectRelatedModelsProviderTest {
 
 		Group group = GroupTestUtil.addGroup();
 
-		ObjectEntry objectEntry5 = ObjectEntryTestUtil.addObjectEntry(
+		ObjectEntry objectEntry6 = ObjectEntryTestUtil.addObjectEntry(
 			group.getGroupId(),
 			scopeSiteObjectDefinition.getObjectDefinitionId(),
 			HashMapBuilder.<String, Serializable>put(
@@ -400,7 +441,7 @@ public class ObjectRelatedModelsProviderTest {
 
 		Assert.assertNull(
 			_objectEntryLocalService.fetchObjectEntry(
-				objectEntry5.getObjectEntryId()));
+				objectEntry6.getObjectEntryId()));
 
 		// Object relationship deletion type disassociate
 
@@ -410,32 +451,32 @@ public class ObjectRelatedModelsProviderTest {
 			ObjectRelationshipConstants.DELETION_TYPE_DISASSOCIATE,
 			_objectRelationship.getLabelMap());
 
-		ObjectEntry objectEntry6 = _addObjectEntry(
+		ObjectEntry objectEntry7 = _addObjectEntry(
 			_objectDefinition1, Collections.emptyMap());
 
-		ObjectEntry objectEntry7 = ObjectEntryTestUtil.addObjectEntry(
+		ObjectEntry objectEntry8 = ObjectEntryTestUtil.addObjectEntry(
 			group.getGroupId(),
 			scopeSiteObjectDefinition.getObjectDefinitionId(),
 			HashMapBuilder.<String, Serializable>put(
 				_relationshipObjectField.getName(),
-				objectEntry6.getObjectEntryId()
+				objectEntry7.getObjectEntryId()
 			).build());
 
 		ObjectRelationshipTestUtil.assertGetRelatedModels(
 			1, _objectRelatedModelsProvider,
 			_objectRelationship.getObjectRelationshipId(),
-			objectEntry6.getObjectEntryId());
+			objectEntry7.getObjectEntryId());
 
-		_objectEntryLocalService.deleteObjectEntry(objectEntry6);
+		_objectEntryLocalService.deleteObjectEntry(objectEntry7);
 
 		Assert.assertNotNull(
 			_objectEntryLocalService.fetchObjectEntry(
-				objectEntry7.getObjectEntryId()));
+				objectEntry8.getObjectEntryId()));
 
 		ObjectRelationshipTestUtil.assertGetRelatedModels(
 			0, _objectRelatedModelsProvider,
 			_objectRelationship.getObjectRelationshipId(),
-			objectEntry6.getObjectEntryId());
+			objectEntry7.getObjectEntryId());
 
 		// Object relationship deletion type prevent
 
@@ -445,20 +486,20 @@ public class ObjectRelatedModelsProviderTest {
 			ObjectRelationshipConstants.DELETION_TYPE_PREVENT,
 			_objectRelationship.getLabelMap());
 
-		ObjectEntry objectEntry8 = _addObjectEntry(
+		ObjectEntry objectEntry9 = _addObjectEntry(
 			_objectDefinition1, Collections.emptyMap());
 
 		_updateObjectEntry(
-			objectEntry7.getObjectEntryId(),
+			objectEntry8.getObjectEntryId(),
 			HashMapBuilder.<String, Serializable>put(
 				_relationshipObjectField.getName(),
-				objectEntry8.getObjectEntryId()
+				objectEntry9.getObjectEntryId()
 			).build());
 
 		ObjectRelationshipTestUtil.assertGetRelatedModels(
 			1, _objectRelatedModelsProvider,
 			_objectRelationship.getObjectRelationshipId(),
-			objectEntry8.getObjectEntryId());
+			objectEntry9.getObjectEntryId());
 
 		AssertUtils.assertFailure(
 			RequiredObjectRelationshipException.class,
@@ -466,12 +507,12 @@ public class ObjectRelatedModelsProviderTest {
 				"Object relationship ",
 				_objectRelationship.getObjectRelationshipId(),
 				" does not allow deletes"),
-			() -> _objectEntryLocalService.deleteObjectEntry(objectEntry8));
+			() -> _objectEntryLocalService.deleteObjectEntry(objectEntry9));
 
 		ObjectRelationshipTestUtil.assertGetRelatedModels(
 			1, _objectRelatedModelsProvider,
 			_objectRelationship.getObjectRelationshipId(),
-			objectEntry8.getObjectEntryId());
+			objectEntry9.getObjectEntryId());
 
 		_objectRelationshipLocalService.deleteObjectRelationship(
 			_objectRelationship);
@@ -631,54 +672,6 @@ public class ObjectRelatedModelsProviderTest {
 			_objectRelatedModelsProviderRegistry.getObjectRelatedModelsProvider(
 				objectDefinition2.getClassName(),
 				objectDefinition2.getCompanyId(), relationshipType);
-	}
-
-	private void _assertLocalizedValues(ObjectEntry parentObjectEntry)
-		throws Exception {
-
-		Map<String, Serializable> expectedLocalizedValues =
-			HashMapBuilder.<String, Serializable>put(
-				"longText_i18n",
-				HashMapBuilder.put(
-					"en_US", RandomTestUtil.randomString()
-				).build()
-			).put(
-				"richText_i18n",
-				HashMapBuilder.put(
-					"en_US", RandomTestUtil.randomString()
-				).build()
-			).put(
-				"text_i18n",
-				HashMapBuilder.put(
-					"en_US", "en_US " + RandomTestUtil.randomString()
-				).build()
-			).build();
-
-		ObjectEntry objectEntry = _addObjectEntry(
-			_objectDefinition2,
-			HashMapBuilder.putAll(
-				expectedLocalizedValues
-			).build());
-
-		ObjectRelationshipTestUtil.addObjectRelationshipMappingTableValues(
-			_objectRelationship.getObjectRelationshipId(),
-			parentObjectEntry.getObjectEntryId(),
-			objectEntry.getObjectEntryId());
-
-		Map<String, Serializable> actualLocalizedValues =
-			_objectEntryLocalService.getValues(objectEntry.getObjectEntryId());
-
-		Assert.assertEquals(
-			expectedLocalizedValues.get("longTextLocalized_i18n"),
-			actualLocalizedValues.get("longTextLocalized_i18n"));
-		Assert.assertEquals(
-			expectedLocalizedValues.get("richTextLocalized_i18n"),
-			actualLocalizedValues.get("richTextLocalized_i18n"));
-		Assert.assertEquals(
-			expectedLocalizedValues.get("textLocalized_i18n"),
-			actualLocalizedValues.get("textLocalized_i18n"));
-
-		_objectEntryLocalService.deleteObjectEntry(objectEntry);
 	}
 
 	private void _assertViewPermission(
