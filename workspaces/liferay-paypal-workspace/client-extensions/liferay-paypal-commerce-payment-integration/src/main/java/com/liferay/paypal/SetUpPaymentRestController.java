@@ -257,7 +257,42 @@ public class SetUpPaymentRestController extends BaseRestController {
 
 		return new JSONObject(
 		).put(
-			"breakdown", _getBreakdownJSONObject(currencyCode, orderJSONObject)
+			"breakdown",
+			new JSONObject(
+			).put(
+				"item_total",
+				new JSONObject(
+				).put(
+					"currency_code", currencyCode
+				).put(
+					"value",
+					BigDecimal.valueOf(
+						orderJSONObject.getDouble("subtotalAmount")
+					).longValue()
+				)
+			).put(
+				"shipping",
+				new JSONObject(
+				).put(
+					"currency_code", currencyCode
+				).put(
+					"value",
+					BigDecimal.valueOf(
+						orderJSONObject.getDouble("shippingAmountValue")
+					).longValue()
+				)
+			).put(
+				"tax_total",
+				new JSONObject(
+				).put(
+					"currency_code", currencyCode
+				).put(
+					"value",
+					BigDecimal.valueOf(
+						orderJSONObject.getDouble("taxAmount")
+					).longValue()
+				)
+			)
 		).put(
 			"currency_code", currencyCode
 		).put(
@@ -268,53 +303,13 @@ public class SetUpPaymentRestController extends BaseRestController {
 		);
 	}
 
-	private JSONObject _getBreakdownJSONObject(
-		String currencyCode, JSONObject orderJSONObject) {
-
-		return new JSONObject(
-		).put(
-			"item_total",
-			new JSONObject(
-			).put(
-				"currency_code", currencyCode
-			).put(
-				"value",
-				BigDecimal.valueOf(
-					orderJSONObject.getDouble("subtotalAmount")
-				).longValue()
-			)
-		).put(
-			"shipping",
-			new JSONObject(
-			).put(
-				"currency_code", currencyCode
-			).put(
-				"value",
-				BigDecimal.valueOf(
-					orderJSONObject.getDouble("shippingAmountValue")
-				).longValue()
-			)
-		).put(
-			"tax_total",
-			new JSONObject(
-			).put(
-				"currency_code", currencyCode
-			).put(
-				"value",
-				BigDecimal.valueOf(
-					orderJSONObject.getDouble("taxAmount")
-				).longValue()
-			)
-		);
-	}
-
 	private JSONObject _getExperienceContextJSONObject(
 		String callbackURL, String cancelURL, String fundingSource) {
 
 		JSONObject experienceContextJSONObject = new JSONObject();
 
-		if (!Objects.equals(fundingSource, "google_pay") &&
-			!Objects.equals(fundingSource, "apple_pay")) {
+		if (!Objects.equals(fundingSource, "apple_pay") &&
+			!Objects.equals(fundingSource, "google_pay")) {
 
 			experienceContextJSONObject.put(
 				"shipping_preference", "SET_PROVIDED_ADDRESS");
@@ -327,8 +322,7 @@ public class SetUpPaymentRestController extends BaseRestController {
 				"return_url", callbackURL
 			);
 		}
-
-		if (Objects.equals(fundingSource, "paypal")) {
+		else if (Objects.equals(fundingSource, "paypal")) {
 			experienceContextJSONObject.put(
 				"cancel_url", cancelURL
 			).put(
