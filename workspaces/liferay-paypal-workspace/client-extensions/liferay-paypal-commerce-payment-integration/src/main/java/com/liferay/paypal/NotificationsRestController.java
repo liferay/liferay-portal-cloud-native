@@ -123,13 +123,14 @@ public class NotificationsRestController extends BaseRestController {
 			StringBundler.concat(
 				"{\"transmission_id\": \"",
 				headers.get("paypal-transmission-id"),
-				"\",\"transmission_time\": \"",
-				headers.get("paypal-transmission-time"), "\",\"cert_url\": \"",
-				headers.get("paypal-cert-url"), "\",\"auth_algo\": \"",
-				headers.get("paypal-auth-algo"), "\",\"transmission_sig\": \"",
-				headers.get("paypal-transmission-sig"), "\",\"webhook_id\": \"",
+				"\", \"transmission_time\": \"",
+				headers.get("paypal-transmission-time"), "\", \"cert_url\": \"",
+				headers.get("paypal-cert-url"), "\", \"auth_algo\": \"",
+				headers.get("paypal-auth-algo"), "\", \"transmission_sig\": \"",
+				headers.get("paypal-transmission-sig"),
+				"\", \"webhook_id\": \"",
 				b9k3PayPalWebhookJSONObject.getString("webhookId"),
-				"\",\"webhook_event\": ", json, "}")
+				"\", \"webhook_event\": ", json, "}")
 		).retrieve(
 		).bodyToMono(
 			String.class
