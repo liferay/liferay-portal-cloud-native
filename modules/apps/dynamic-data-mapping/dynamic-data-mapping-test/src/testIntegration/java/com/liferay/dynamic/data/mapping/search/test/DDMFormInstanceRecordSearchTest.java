@@ -188,9 +188,9 @@ public class DDMFormInstanceRecordSearchTest {
 		String randomDescription = RandomTestUtil.randomString();
 
 		_addDDMFormInstanceRecord(
-			ddmFormInstance, randomDescription, "United States", LocaleUtil.US);
-		_addDDMFormInstanceRecord(
 			ddmFormInstance, randomDescription, "Brasil", LocaleUtil.BRAZIL);
+		_addDDMFormInstanceRecord(
+			ddmFormInstance, randomDescription, "United States", LocaleUtil.US);
 
 		assertSearch("Brasil", 1);
 		assertSearch(randomDescription, 2);
