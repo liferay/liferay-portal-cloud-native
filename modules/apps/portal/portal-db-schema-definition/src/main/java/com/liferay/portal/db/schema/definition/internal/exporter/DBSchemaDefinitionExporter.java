@@ -199,10 +199,10 @@ public class DBSchemaDefinitionExporter {
 			prefix = companyId + StringPool.UNDERLINE;
 		}
 
-		String fileContent = StringUtil.toLowerCase(
+		String content = StringUtil.toLowerCase(
 			FileUtil.read(new File(dirName, prefix + "tables.sql")));
 
-		String[] lines = StringUtil.split(fileContent, StringPool.NEW_LINE);
+		String[] lines = StringUtil.split(content, StringPool.NEW_LINE);
 
 		for (String line : lines) {
 			if (type.equals("TABLE") &&
