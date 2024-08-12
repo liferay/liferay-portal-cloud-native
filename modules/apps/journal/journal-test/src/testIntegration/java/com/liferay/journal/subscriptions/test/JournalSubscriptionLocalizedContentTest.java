@@ -117,7 +117,7 @@ public class JournalSubscriptionLocalizedContentTest
 	}
 
 	@Test
-	public void testSubscriptionLocalizedContentWithMacrosWhenAddingBaseModel()
+	public void testSubscriptionLocalizedContentWithReplacementsWhenAddingBaseModel()
 		throws Exception {
 
 		user = _userLocalService.updateLanguageId(
@@ -145,7 +145,7 @@ public class JournalSubscriptionLocalizedContentTest
 	}
 
 	@Test
-	public void testSubscriptionLocalizedContentWithMacrosWhenUpdatingBaseModel()
+	public void testSubscriptionLocalizedContentWithReplacementsWhenUpdatingBaseModel()
 		throws Exception {
 
 		user = _userLocalService.updateLanguageId(
