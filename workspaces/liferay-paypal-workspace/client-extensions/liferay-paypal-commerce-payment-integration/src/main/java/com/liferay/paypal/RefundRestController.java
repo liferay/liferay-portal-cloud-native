@@ -32,7 +32,7 @@ import org.springframework.web.reactive.function.client.WebClient;
  */
 @RequestMapping("/refund")
 @RestController
-public class RefundRestController extends PayPalBaseRestController {
+public class RefundRestController extends BaseRestController {
 
 	@PostMapping
 	public ResponseEntity<String> post(

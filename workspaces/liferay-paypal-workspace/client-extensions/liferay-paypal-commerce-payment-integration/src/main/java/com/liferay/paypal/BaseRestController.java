@@ -5,8 +5,6 @@
 
 package com.liferay.paypal;
 
-import com.liferay.client.extension.util.spring.boot.BaseRestController;
-
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
@@ -25,7 +23,8 @@ import org.springframework.web.reactive.function.client.WebClient;
  * @author Gregory Amerson
  * @author Brian Wing Shun Chan
  */
-public class PayPalBaseRestController extends BaseRestController {
+public class BaseRestController
+	extends com.liferay.client.extension.util.spring.boot.BaseRestController {
 
 	protected String getAuthorization(
 		String clientId, String clientSecret, String mode) {

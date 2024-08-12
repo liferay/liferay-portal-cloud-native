@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RequestMapping("/authorize")
 @RestController
-public class AuthorizeRestController extends PayPalBaseRestController {
+public class AuthorizeRestController extends BaseRestController {
 
 	@PostMapping
 	public ResponseEntity<String> post(
