@@ -104,7 +104,8 @@ public class NotificationsRestController extends BaseRestController {
 			return false;
 		}
 
-		String verifySignatureResponse = WebClient.create(
+		JSONObject verifyWebhookSignatureResponseJSONObject = new JSONObject(
+			WebClient.create(
 			getPayPalURL(b9k3PayPalWebhookJSONObject.getString("mode"))
 		).post(
 		).uri(
@@ -134,13 +135,10 @@ public class NotificationsRestController extends BaseRestController {
 		).retrieve(
 		).bodyToMono(
 			String.class
-		).block();
-
-		JSONObject verifySignatureResponseJSONObject = new JSONObject(
-			verifySignatureResponse);
+		).block());
 
 		if (Objects.equals(
-				verifySignatureResponseJSONObject.getString(
+				verifyWebhookSignatureResponseJSONObject.getString(
 					"verification_status"),
 				"SUCCESS")) {
 
