@@ -149,7 +149,7 @@ public abstract class BaseRestController {
 		).block();
 	}
 
-	protected String getWebClientBaseURL() {
+	protected String getLXCDXPURL() {
 		return lxcDXPServerProtocol + "://" + lxcDXPMainDomain;
 	}
 
@@ -269,7 +269,7 @@ public abstract class BaseRestController {
 	private WebClient _getWebClient() {
 		return WebClient.builder(
 		).baseUrl(
-			getWebClientBaseURL()
+			getLXCDXPURL()
 		).defaultHeader(
 			HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
 		).defaultHeader(
