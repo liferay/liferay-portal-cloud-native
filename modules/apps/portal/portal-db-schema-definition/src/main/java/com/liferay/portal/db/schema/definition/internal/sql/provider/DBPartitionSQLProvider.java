@@ -40,12 +40,12 @@ public class DBPartitionSQLProvider extends BaseSQLProvider {
 		_rulesTableColumn = null;
 	}
 
-	public DBPartitionSQLProvider(DBType dbType, long companyId)
+	public DBPartitionSQLProvider(long companyId, DBType dbType)
 		throws Exception {
 
 		super(dbType);
 
-		_objectSQLProvider = new ObjectSQLProvider(db, companyId);
+		_objectSQLProvider = new ObjectSQLProvider(companyId, db);
 
 		_partitionName = DBPartitionUtil.getPartitionName(companyId);
 

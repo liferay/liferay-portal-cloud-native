@@ -46,7 +46,7 @@ public class SQLWriter {
 				}
 
 				SQLProvider sqlProvider = new DBPartitionSQLProvider(
-					_dbType, companyId);
+					companyId, _dbType);
 
 				FileUtil.write(
 					new File(directory, companyId + "_indexes.sql"),

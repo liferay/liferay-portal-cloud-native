@@ -40,9 +40,9 @@ import javax.sql.DataSource;
  */
 public class ObjectSQLProvider implements SQLProvider {
 
-	public ObjectSQLProvider(DB db, long companyId) throws Exception {
-		_db = db;
+	public ObjectSQLProvider(long companyId, DB db) throws Exception {
 		_companyId = companyId;
+		_db = db;
 
 		_appendSQL();
 	}
