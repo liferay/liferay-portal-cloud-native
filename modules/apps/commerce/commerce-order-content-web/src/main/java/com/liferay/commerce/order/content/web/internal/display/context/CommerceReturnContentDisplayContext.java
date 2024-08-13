@@ -283,9 +283,8 @@ public class CommerceReturnContentDisplayContext {
 			getCommerceReturnItemFDSActionDropdownItems()
 		throws PortalException {
 
-		HttpServletRequest httpServletRequest = _cpRequestHelper.getRequest();
-
 		CommerceReturn commerceReturn = getCommerceReturn();
+		HttpServletRequest httpServletRequest = _cpRequestHelper.getRequest();
 
 		if (StringUtil.equals(
 				commerceReturn.getReturnStatus(),

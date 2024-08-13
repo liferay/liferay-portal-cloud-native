@@ -21,6 +21,7 @@ import com.liferay.frontend.data.set.provider.FDSDataProvider;
 import com.liferay.frontend.data.set.provider.search.FDSKeywords;
 import com.liferay.frontend.data.set.provider.search.FDSPagination;
 import com.liferay.petra.function.transform.TransformUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -162,23 +163,16 @@ public class CommerceRefundItemFDSDataProvider
 	private String _formatCommercePaymentEntryCreateDate(
 		ThemeDisplay themeDisplay, Date commercePaymentEntryCreateDate) {
 
-		Format commercePaymentEntryCreateDateFormat =
-			FastDateFormatFactoryUtil.getDate(
-				DateFormat.MEDIUM, themeDisplay.getLocale(),
-				themeDisplay.getTimeZone());
+		Format dateFormat = FastDateFormatFactoryUtil.getDate(
+			DateFormat.MEDIUM, themeDisplay.getLocale(),
+			themeDisplay.getTimeZone());
+		Format timeFormat = FastDateFormatFactoryUtil.getTime(
+			DateFormat.MEDIUM, themeDisplay.getLocale(),
+			themeDisplay.getTimeZone());
 
-		Format commercePaymentEntryTimeFormat =
-			FastDateFormatFactoryUtil.getTime(
-				DateFormat.MEDIUM, themeDisplay.getLocale(),
-				themeDisplay.getTimeZone());
-
-		String createDateFormat = commercePaymentEntryCreateDateFormat.format(
-			commercePaymentEntryCreateDate);
-
-		String createDateTimeFormat = commercePaymentEntryTimeFormat.format(
-			commercePaymentEntryCreateDate);
-
-		return createDateFormat + StringPool.SPACE + createDateTimeFormat;
+		return StringBundler.concat(
+			dateFormat.format(commercePaymentEntryCreateDate), StringPool.SPACE,
+			timeFormat.format(commercePaymentEntryCreateDate));
 	}
 
 	private PaymentEntry _toPaymentEntry(
