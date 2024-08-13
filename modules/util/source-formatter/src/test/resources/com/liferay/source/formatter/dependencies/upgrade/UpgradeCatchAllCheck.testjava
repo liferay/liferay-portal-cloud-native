@@ -650,7 +650,7 @@ public class UpgradeCatchAllCheck implements ConfigurationBeanDeclaration {
 	}
 
 	public void method(
-		Long companyId, String webId, String virtualHostname, String mx,
+		long companyId, String webId, String virtualHostname, String mx,
 		int maxUsers, boolean active, String defaultAdminPassword,
 		String defaultAdminScreenName, String defaultAdminEmailAddress,
 		String defaultAdminFirstName, String defaultAdminMiddleName,
