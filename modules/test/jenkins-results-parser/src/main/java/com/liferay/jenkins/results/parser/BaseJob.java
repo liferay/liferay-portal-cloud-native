@@ -1171,9 +1171,9 @@ public abstract class BaseJob implements Job {
 		try {
 			batchTestClassGroups = parallelExecutor.execute();
 
-			if (parallelExecutor.failedExecution()) {
+			if (parallelExecutor.hasFailedTask()) {
 				throw new RuntimeException(
-					"Failed to create BatchTestClassGroups");
+					"Unable to create batch test class groups");
 			}
 
 			for (List<Callable<BatchTestClassGroup>> testBaseDirCallables :
@@ -1185,9 +1185,9 @@ public abstract class BaseJob implements Job {
 
 				batchTestClassGroups.addAll(parallelExecutor.execute());
 
-				if (parallelExecutor.failedExecution()) {
+				if (parallelExecutor.hasFailedTask()) {
 					throw new RuntimeException(
-						"Failed to create BatchTestClassGroups");
+						"Unable to create batch test class groups");
 				}
 			}
 		}

@@ -76,7 +76,7 @@ public class ParallelExecutor<T> {
 		return waitFor(timeoutSeconds);
 	}
 
-	public boolean failedExecution() {
+	public boolean hasFailedTask() {
 		if ((_taskRunnable == null) ||
 			(_taskRunnable.getFailedTaskCount() <= 0)) {
 
