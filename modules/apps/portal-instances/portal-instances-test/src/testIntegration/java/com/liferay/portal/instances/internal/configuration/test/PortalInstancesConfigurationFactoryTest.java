@@ -129,8 +129,6 @@ public class PortalInstancesConfigurationFactoryTest {
 
 		_company = _companyLocalService.getCompanyByWebId(_webId);
 
-		Assert.assertNotNull(_company);
-
 		Assert.assertEquals(
 			0, _userLocalService.getCompanyUsersCount(_company.getCompanyId()));
 	}
