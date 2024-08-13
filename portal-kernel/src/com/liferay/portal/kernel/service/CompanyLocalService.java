@@ -85,12 +85,11 @@ public interface CompanyLocalService
 	 * @param maxUsers the max number of company users (optionally
 	 <code>0</code>)
 	 * @param active whether the company is active
-	 * @param createDefaultAdmin whether to create the default admin user
 	 * @return the company
 	 */
 	public Company addCompany(
 			Long companyId, String webId, String virtualHostname, String mx,
-			int maxUsers, boolean active, boolean createDefaultAdmin,
+			int maxUsers, boolean active, boolean addDefaultAdminUser,
 			String defaultAdminPassword, String defaultAdminScreenName,
 			String defaultAdminEmailAddress, String defaultAdminFirstName,
 			String defaultAdminMiddleName, String defaultAdminLastName)
