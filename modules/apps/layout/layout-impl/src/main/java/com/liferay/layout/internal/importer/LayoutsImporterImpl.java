@@ -344,9 +344,9 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				_fragmentRendererRegistry));
 		_addLayoutStructureItemImporter(new FormLayoutStructureItemImporter());
 		_addLayoutStructureItemImporter(
-			new FormStepItemLayoutStructureItemImporter());
-		_addLayoutStructureItemImporter(
 			new FormStepContainerLayoutStructureItemImporter());
+		_addLayoutStructureItemImporter(
+			new FormStepItemLayoutStructureItemImporter());
 		_addLayoutStructureItemImporter(
 			new FragmentDropZoneLayoutStructureItemImporter());
 		_addLayoutStructureItemImporter(
