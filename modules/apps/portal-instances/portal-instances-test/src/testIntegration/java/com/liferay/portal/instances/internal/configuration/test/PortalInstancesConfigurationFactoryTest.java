@@ -100,7 +100,7 @@ public class PortalInstancesConfigurationFactoryTest {
 	}
 
 	@Test
-	public void testAddCompanyWithPartialAdminProperties() throws Exception {
+	public void testAddCompanyWithSomeAdminProperties() throws Exception {
 		_testAddCompany(
 			HashMapDictionaryBuilder.<String, Object>put(
 				"adminFirstName", "testAdminFirstName"
