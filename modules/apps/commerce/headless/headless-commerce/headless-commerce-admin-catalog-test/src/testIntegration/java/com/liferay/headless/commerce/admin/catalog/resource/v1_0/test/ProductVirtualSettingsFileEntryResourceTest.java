@@ -11,7 +11,6 @@ import com.liferay.commerce.currency.model.CommerceCurrency;
 import com.liferay.commerce.currency.test.util.CommerceCurrencyTestUtil;
 import com.liferay.commerce.product.model.CPDefinition;
 import com.liferay.commerce.product.model.CommerceCatalog;
-import com.liferay.commerce.product.model.CommerceChannel;
 import com.liferay.commerce.product.test.util.CPTestUtil;
 import com.liferay.commerce.product.type.virtual.constants.VirtualCPTypeConstants;
 import com.liferay.commerce.product.type.virtual.model.CPDefinitionVirtualSetting;
@@ -59,9 +58,6 @@ public class ProductVirtualSettingsFileEntryResourceTest
 
 		_commerceCurrency = CommerceCurrencyTestUtil.addCommerceCurrency(
 			testCompany.getCompanyId());
-
-		_commerceChannel = CommerceTestUtil.addCommerceChannel(
-			testCompany.getGroupId(), _commerceCurrency.getCode());
 
 		_commerceCatalog = CommerceTestUtil.addCommerceCatalog(
 			testCompany.getCompanyId(), testCompany.getGroupId(),
@@ -212,9 +208,6 @@ public class ProductVirtualSettingsFileEntryResourceTest
 
 	@DeleteAfterTestRun
 	private CommerceCatalog _commerceCatalog;
-
-	@DeleteAfterTestRun
-	private CommerceChannel _commerceChannel;
 
 	@DeleteAfterTestRun
 	private CommerceCurrency _commerceCurrency;
