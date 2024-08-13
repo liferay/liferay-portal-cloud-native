@@ -10,8 +10,6 @@ import com.liferay.click.to.chat.web.internal.configuration.ClickToChatConfigura
 import com.liferay.portal.kernel.cookies.CookiesManagerUtil;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.LifecycleAction;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -44,35 +42,23 @@ public class LogoutPreAction extends Action {
 		if ((clickToChatConfiguration == null) ||
 			!clickToChatConfiguration.enabled() ||
 			!StringUtil.equals(
-				clickToChatConfiguration.chatProviderId(), _INTERCOM)) {
+				clickToChatConfiguration.chatProviderId(), "intercom")) {
 
 			return;
 		}
 
-		try {
-			String domain = CookiesManagerUtil.getDomain(httpServletRequest);
+		String domain = CookiesManagerUtil.getDomain(httpServletRequest);
 
-			Cookie[] cookies = httpServletRequest.getCookies();
+		Cookie[] cookies = httpServletRequest.getCookies();
 
-			for (Cookie cookie : cookies) {
-				String name = cookie.getName();
+		for (Cookie cookie : cookies) {
+			String name = cookie.getName();
 
-				if (name.startsWith(_INTERCOM_COOKIE_PREFIX)) {
-					CookiesManagerUtil.deleteCookies(
-						domain, httpServletRequest, httpServletResponse, name);
-				}
+			if (name.startsWith("intercom-")) {
+				CookiesManagerUtil.deleteCookies(
+					domain, httpServletRequest, httpServletResponse, name);
 			}
 		}
-		catch (Exception exception) {
-			_log.error(exception);
-		}
 	}
-
-	private static final String _INTERCOM = "intercom";
-
-	private static final String _INTERCOM_COOKIE_PREFIX = "intercom-";
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		LogoutPreAction.class);
 
 }
