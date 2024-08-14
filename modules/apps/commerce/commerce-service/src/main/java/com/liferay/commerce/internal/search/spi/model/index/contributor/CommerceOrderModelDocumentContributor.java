@@ -88,8 +88,6 @@ public class CommerceOrderModelDocumentContributor
 			document.addNumber(
 				"itemsQuantity", _getItemsQuantity(commerceOrder));
 			document.addKeyword("name", commerceOrder.getName());
-			document.addKeyword(
-				"orderItemsName", _getCommerceOrderItemNames(commerceOrder));
 
 			User user = _userLocalService.getUser(commerceOrder.getUserId());
 
@@ -98,6 +96,8 @@ public class CommerceOrderModelDocumentContributor
 
 			document.addDate("orderDate", commerceOrder.getOrderDate());
 			document.addDateSortable("orderDate", commerceOrder.getOrderDate());
+			document.addKeyword(
+				"orderItemsName", _getCommerceOrderItemNames(commerceOrder));
 			document.addKeyword("orderStatus", commerceOrder.getOrderStatus());
 			document.addKeyword(
 				"purchaseOrderNumber", commerceOrder.getPurchaseOrderNumber());
