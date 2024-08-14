@@ -260,20 +260,12 @@ public class VelocityManager extends BaseTemplateManager {
 			extendedProperties.setProperty(
 				VelocityEngine.VM_LIBRARY,
 				_getVelocimacroLibrary(VelocityManager.class));
-
-			boolean cacheEnabled = false;
-
-			if (_velocityTemplateResourceCache.isEnabled()) {
-				cacheEnabled = true;
-			}
-
 			extendedProperties.setProperty(
 				VelocityEngine.VM_LIBRARY_AUTORELOAD,
 				String.valueOf(!_velocityTemplateResourceCache.isEnabled()));
 			extendedProperties.setProperty(
 				VelocityEngine.VM_PERM_ALLOW_INLINE_REPLACE_GLOBAL,
 				String.valueOf(!_velocityTemplateResourceCache.isEnabled()));
-
 			extendedProperties.setProperty(
 				"liferay." + RuntimeConstants.INTROSPECTOR_RESTRICT_CLASSES +
 					".methods",
@@ -286,7 +278,7 @@ public class VelocityManager extends BaseTemplateManager {
 				_velocityTemplateResourceLoader);
 			extendedProperties.setProperty(
 				"liferay." + VelocityEngine.RESOURCE_LOADER + ".cache",
-				String.valueOf(cacheEnabled));
+				String.valueOf(_velocityTemplateResourceCache.isEnabled()));
 			extendedProperties.setProperty(
 				"liferay." + VelocityEngine.RESOURCE_LOADER + ".class",
 				LiferayResourceLoader.class.getName());
