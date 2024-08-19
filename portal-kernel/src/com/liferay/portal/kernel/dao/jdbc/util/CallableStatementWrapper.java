@@ -872,17 +872,17 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public void setNString(int parameterIndex, String value)
+	public void setNString(int parameterIndex, String stringValue)
 		throws SQLException {
 
-		_callableStatement.setNString(parameterIndex, value);
+		_callableStatement.setNString(parameterIndex, stringValue);
 	}
 
 	@Override
-	public void setNString(String parameterName, String value)
+	public void setNString(String parameterName, String stringValue)
 		throws SQLException {
 
-		_callableStatement.setNString(parameterName, value);
+		_callableStatement.setNString(parameterName, stringValue);
 	}
 
 	@Override

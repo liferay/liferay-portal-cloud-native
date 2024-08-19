@@ -255,23 +255,23 @@ public class PreparedStatementWrapper
 	}
 
 	@Override
-	public void setNCharacterStream(int parameterIndex, Reader value)
+	public void setNCharacterStream(int parameterIndex, Reader reader)
 		throws SQLException {
 
-		_preparedStatement.setNCharacterStream(parameterIndex, value);
+		_preparedStatement.setNCharacterStream(parameterIndex, reader);
 	}
 
 	@Override
 	public void setNCharacterStream(
-			int parameterIndex, Reader value, long length)
+			int parameterIndex, Reader reader, long length)
 		throws SQLException {
 
-		_preparedStatement.setNCharacterStream(parameterIndex, value, length);
+		_preparedStatement.setNCharacterStream(parameterIndex, reader, length);
 	}
 
 	@Override
-	public void setNClob(int parameterIndex, NClob value) throws SQLException {
-		_preparedStatement.setNClob(parameterIndex, value);
+	public void setNClob(int parameterIndex, NClob nClob) throws SQLException {
+		_preparedStatement.setNClob(parameterIndex, nClob);
 	}
 
 	@Override
@@ -289,10 +289,10 @@ public class PreparedStatementWrapper
 	}
 
 	@Override
-	public void setNString(int parameterIndex, String value)
+	public void setNString(int parameterIndex, String stringValue)
 		throws SQLException {
 
-		_preparedStatement.setNString(parameterIndex, value);
+		_preparedStatement.setNString(parameterIndex, stringValue);
 	}
 
 	@Override
