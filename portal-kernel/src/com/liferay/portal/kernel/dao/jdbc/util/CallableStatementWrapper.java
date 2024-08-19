@@ -630,17 +630,17 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public void setBytes(int parameterIndex, byte[] byteArray)
+	public void setBytes(int parameterIndex, byte[] bytes)
 		throws SQLException {
 
-		_callableStatement.setBytes(parameterIndex, byteArray);
+		_callableStatement.setBytes(parameterIndex, bytes);
 	}
 
 	@Override
-	public void setBytes(String parameterName, byte[] byteArray)
+	public void setBytes(String parameterName, byte[] bytes)
 		throws SQLException {
 
-		_callableStatement.setBytes(parameterName, byteArray);
+		_callableStatement.setBytes(parameterName, bytes);
 	}
 
 	@Override

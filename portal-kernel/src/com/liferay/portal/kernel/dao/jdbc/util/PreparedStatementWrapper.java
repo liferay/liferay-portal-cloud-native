@@ -170,10 +170,10 @@ public class PreparedStatementWrapper
 	}
 
 	@Override
-	public void setBytes(int parameterIndex, byte[] byteArray)
+	public void setBytes(int parameterIndex, byte[] bytes)
 		throws SQLException {
 
-		_preparedStatement.setBytes(parameterIndex, byteArray);
+		_preparedStatement.setBytes(parameterIndex, bytes);
 	}
 
 	@Override
