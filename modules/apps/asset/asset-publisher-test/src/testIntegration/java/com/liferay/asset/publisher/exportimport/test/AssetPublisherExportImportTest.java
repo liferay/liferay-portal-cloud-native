@@ -18,6 +18,8 @@ import com.liferay.asset.publisher.test.util.AssetPublisherTestUtil;
 import com.liferay.asset.publisher.util.AssetEntryResult;
 import com.liferay.asset.publisher.util.AssetPublisherHelper;
 import com.liferay.asset.test.util.AssetTestUtil;
+import com.liferay.blogs.model.BlogsEntry;
+import com.liferay.blogs.service.BlogsEntryLocalService;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.model.DLFileEntryMetadata;
 import com.liferay.document.library.kernel.model.DLFileEntryType;
@@ -87,6 +89,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -307,19 +310,9 @@ public class AssetPublisherExportImportTest
 		AssetCategory assetCategory2 = AssetTestUtil.addCategory(
 			group.getGroupId(), assetVocabulary.getVocabularyId());
 
-		JournalArticle journalArticle1 = JournalTestUtil.addArticle(
-			group.getGroupId(), 0,
-			ServiceContextTestUtil.getServiceContext(
-				group.getGroupId(), TestPropsValues.getUserId(),
-				new long[] {assetCategory1.getCategoryId()}));
-		JournalArticle journalArticle2 = JournalTestUtil.addArticle(
-			group.getGroupId(), 0,
-			ServiceContextTestUtil.getServiceContext(
-				group.getGroupId(), TestPropsValues.getUserId(),
-				new long[] {
-					assetCategory1.getCategoryId(),
-					assetCategory2.getCategoryId()
-				}));
+		BlogsEntry blogsEntry1 = _addBlogsEntry(assetCategory1.getCategoryId());
+		BlogsEntry blogsEntry2 = _addBlogsEntry(
+			assetCategory1.getCategoryId(), assetCategory2.getCategoryId());
 
 		testDynamicExportImport(
 			HashMapBuilder.put(
@@ -333,7 +326,7 @@ public class AssetPublisherExportImportTest
 				new String[] {String.valueOf(assetCategory1.getCategoryId())}
 			).build(),
 			Arrays.asList(
-				getAssetEntry(journalArticle1), getAssetEntry(journalArticle2)),
+				getAssetEntry(blogsEntry1), getAssetEntry(blogsEntry2)),
 			true);
 	}
 
@@ -1353,6 +1346,16 @@ public class AssetPublisherExportImportTest
 		_assetVocabularyLocalService.deleteVocabulary(assetVocabulary);
 	}
 
+	private BlogsEntry _addBlogsEntry(long... categoryIds) throws Exception {
+		return _blogsEntryLocalService.addEntry(
+			TestPropsValues.getUserId(), RandomTestUtil.randomString(),
+			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
+			RandomTestUtil.randomString(), new Date(), true, true,
+			new String[0], StringPool.BLANK, null, null,
+			ServiceContextTestUtil.getServiceContext(
+				group.getGroupId(), TestPropsValues.getUserId(), categoryIds));
+	}
+
 	private static Configuration _assetPublisherWebConfiguration;
 
 	@Inject
@@ -1366,6 +1369,9 @@ public class AssetPublisherExportImportTest
 
 	@Inject
 	private AssetVocabularyLocalService _assetVocabularyLocalService;
+
+	@Inject
+	private BlogsEntryLocalService _blogsEntryLocalService;
 
 	@Inject
 	private CompanyLocalService _companyLocalService;
