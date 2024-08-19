@@ -106,13 +106,10 @@ public class FragmentEntryStagedModelDataHandlerTest
 
 		FragmentEntry fragmentEntry = (FragmentEntry)stagedModel;
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(
-				stagingGroup.getGroupId(), TestPropsValues.getUserId());
-
 		Repository repository = PortletFileRepositoryUtil.addPortletRepository(
 			stagingGroup.getGroupId(), FragmentPortletKeys.FRAGMENT,
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(
+				stagingGroup.getGroupId(), TestPropsValues.getUserId()));
 
 		Class<?> clazz = getClass();
 
@@ -188,10 +185,6 @@ public class FragmentEntryStagedModelDataHandlerTest
 
 		FragmentEntry fragmentEntry = (FragmentEntry)stagedModel;
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(
-				stagingGroup.getGroupId(), TestPropsValues.getUserId());
-
 		FragmentEntryLink fragmentEntryLink =
 			_fragmentEntryLinkLocalService.addFragmentEntryLink(
 				null, TestPropsValues.getUserId(), stagingGroup.getGroupId(), 0,
@@ -202,7 +195,8 @@ public class FragmentEntryStagedModelDataHandlerTest
 				fragmentEntry.getHtml(), fragmentEntry.getJs(),
 				fragmentEntry.getConfiguration(), StringPool.BLANK,
 				StringPool.BLANK, 0, StringPool.BLANK, fragmentEntry.getType(),
-				serviceContext);
+				ServiceContextTestUtil.getServiceContext(
+					stagingGroup.getGroupId(), TestPropsValues.getUserId()));
 
 		stagedModel = _fragmentEntryLocalService.updateFragmentEntry(
 			TestPropsValues.getUserId(), fragmentEntry.getFragmentEntryId(),
