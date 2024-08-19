@@ -459,7 +459,6 @@ public class AssetPublisherConfigurationActionTest {
 		mockActionRequest.setAttribute(
 			WebKeys.PORTLET_PREFERENCES_MAP, portletPreferencesMap);
 		mockActionRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
-
 		mockActionRequest.setParameter(
 			"preferences--assetListEntryExternalReferenceCode--",
 			assetListEntryExternalReferenceCode);

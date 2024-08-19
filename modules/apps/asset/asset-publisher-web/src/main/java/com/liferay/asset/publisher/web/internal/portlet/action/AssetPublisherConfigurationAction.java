@@ -237,16 +237,17 @@ public class AssetPublisherConfigurationAction
 				}
 
 				if (selectionStyle.equals(
-						AssetPublisherSelectionStyleConstants.TYPE_DYNAMIC)) {
-
-					_updateQueryLogic(actionRequest, portletPreferences);
-				}
-				else if (selectionStyle.equals(
-							AssetPublisherSelectionStyleConstants.
-								TYPE_ASSET_LIST)) {
+						AssetPublisherSelectionStyleConstants.
+							TYPE_ASSET_LIST)) {
 
 					updateAssetListEntryPreferences(
 						actionRequest, portletPreferences);
+				}
+				else if (selectionStyle.equals(
+							AssetPublisherSelectionStyleConstants.
+								TYPE_DYNAMIC)) {
+
+					_updateQueryLogic(actionRequest, portletPreferences);
 				}
 
 				_updateDefaultAssetPublisher(actionRequest);
