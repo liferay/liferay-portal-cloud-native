@@ -73,29 +73,25 @@ public class JournalArticleDDMFieldsUpgradeProcess extends UpgradeProcess {
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
-				long id = resultSet.getLong("id_");
-				long groupId = resultSet.getLong("groupId");
-
 				CompanyThreadLocal.setCompanyId(resultSet.getLong("companyId"));
-
-				String content = resultSet.getString("content");
-
-				String ddmStructureKey = resultSet.getString("DDMStructureKey");
 
 				DDMStructure ddmStructure =
 					_ddmStructureLocalService.getStructure(
-						_portal.getSiteGroupId(groupId), classNameId,
-						ddmStructureKey, true);
-
-				content = _convertFieldNames(content);
+						_portal.getSiteGroupId(resultSet.getLong("groupId")),
+						classNameId, resultSet.getString("DDMStructureKey"),
+						true);
 
 				DDMFormValues ddmFormValues =
 					_fieldsToDDMFormValuesConverter.convert(
 						ddmStructure,
-						_journalConverter.getDDMFields(ddmStructure, content));
+						_journalConverter.getDDMFields(
+							ddmStructure,
+							_convertFieldNames(
+								resultSet.getString("content"))));
 
 				_ddmFieldLocalService.updateDDMFormValues(
-					ddmStructure.getStructureId(), id, ddmFormValues);
+					ddmStructure.getStructureId(), resultSet.getLong("id_"),
+					ddmFormValues);
 			}
 		}
 		finally {
