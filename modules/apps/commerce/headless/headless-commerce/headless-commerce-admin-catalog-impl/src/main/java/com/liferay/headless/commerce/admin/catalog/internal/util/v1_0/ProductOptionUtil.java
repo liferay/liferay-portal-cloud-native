@@ -32,7 +32,8 @@ public class ProductOptionUtil {
 			long cpDefinitionId, ServiceContext serviceContext)
 		throws PortalException {
 
-		CPOption cpOption;
+		CPOption cpOption = null;
+
 		long optionId = GetterUtil.getLong(productOption.getOptionId());
 
 		if (optionId > 0) {
