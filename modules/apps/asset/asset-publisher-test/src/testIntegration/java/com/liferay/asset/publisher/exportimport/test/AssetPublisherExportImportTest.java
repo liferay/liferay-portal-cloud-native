@@ -616,7 +616,7 @@ public class AssetPublisherExportImportTest
 
 		String portletId = LayoutTestUtil.addPortletToLayout(
 			stagingLayout, AssetPublisherPortletKeys.ASSET_PUBLISHER,
-			_getPreferencesMap(
+			_getPreferenceMap(
 				assetListEntry.getExternalReferenceCode(),
 				RandomTestUtil.randomLong(),
 				importedGroup.getExternalReferenceCode()));
@@ -659,7 +659,7 @@ public class AssetPublisherExportImportTest
 
 		String portletId = LayoutTestUtil.addPortletToLayout(
 			stagingLayout, AssetPublisherPortletKeys.ASSET_PUBLISHER,
-			_getPreferencesMap(
+			_getPreferenceMap(
 				RandomTestUtil.randomString(),
 				stagingAssetListEntry.getAssetListEntryId(),
 				RandomTestUtil.randomString()));
@@ -699,7 +699,7 @@ public class AssetPublisherExportImportTest
 
 		String portletId = LayoutTestUtil.addPortletToLayout(
 			stagingLayout, AssetPublisherPortletKeys.ASSET_PUBLISHER,
-			_getPreferencesMap(null, 0, null));
+			_getPreferenceMap(null, 0, null));
 
 		_publishLayouts(stagingGroup);
 
@@ -736,7 +736,7 @@ public class AssetPublisherExportImportTest
 
 		String portletId = LayoutTestUtil.addPortletToLayout(
 			stagingLayout, AssetPublisherPortletKeys.ASSET_PUBLISHER,
-			_getPreferencesMap(
+			_getPreferenceMap(
 				stagingAssetListEntry.getExternalReferenceCode(),
 				RandomTestUtil.randomLong(), null));
 
@@ -1604,7 +1604,7 @@ public class AssetPublisherExportImportTest
 				group.getGroupId(), TestPropsValues.getUserId(), categoryIds));
 	}
 
-	private Map<String, String[]> _getPreferencesMap(
+	private Map<String, String[]> _getPreferenceMap(
 		String assetListEntryExternalReferenceCode, long assetListEntryId,
 		String assetListEntryGroupExternalReferenceCode) {
 
