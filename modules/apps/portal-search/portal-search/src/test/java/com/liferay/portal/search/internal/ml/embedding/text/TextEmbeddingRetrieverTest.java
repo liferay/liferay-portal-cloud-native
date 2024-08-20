@@ -66,18 +66,19 @@ public class TextEmbeddingRetrieverTest {
 		Assert.assertEquals(
 			availableProviderNames.toString(), 1,
 			availableProviderNames.size());
-		Assert.assertTrue(availableProviderNames.contains("testProvider"));
+		Assert.assertTrue(availableProviderNames.contains(_TEST_PROVIDER_NAME));
 	}
 
 	@Test
 	public void testGetEmbeddingProviderConfiguration() {
 		EmbeddingProviderConfiguration embeddingProviderConfiguration =
 			_textEmbeddingRetrieverImpl.getEmbeddingProviderConfiguration(
-				"testProvider");
+				_TEST_PROVIDER_NAME);
 
 		Assert.assertNotNull(embeddingProviderConfiguration);
 		Assert.assertEquals(
-			"testProvider", embeddingProviderConfiguration.getProviderName());
+			_TEST_PROVIDER_NAME,
+			embeddingProviderConfiguration.getProviderName());
 	}
 
 	@Test
@@ -95,13 +96,13 @@ public class TextEmbeddingRetrieverTest {
 				) {
 
 					{
-						providerName = "testProvider";
+						providerName = _TEST_PROVIDER_NAME;
 					}
 				}.toString());
 
 		Assert.assertNotNull(embeddingProviderStatus);
 		Assert.assertEquals(
-			"testProvider", embeddingProviderStatus.getProviderName());
+			_TEST_PROVIDER_NAME, embeddingProviderStatus.getProviderName());
 	}
 
 	@Test
@@ -114,7 +115,7 @@ public class TextEmbeddingRetrieverTest {
 			Arrays.toString(embeddingProviderStatuses), 1,
 			embeddingProviderStatuses.length);
 		Assert.assertEquals(
-			Arrays.toString(embeddingProviderStatuses), "testProvider",
+			Arrays.toString(embeddingProviderStatuses), _TEST_PROVIDER_NAME,
 			embeddingProviderStatuses[0].getProviderName());
 	}
 
@@ -133,7 +134,7 @@ public class TextEmbeddingRetrieverTest {
 				) {
 
 					{
-						providerName = "testProvider";
+						providerName = _TEST_PROVIDER_NAME;
 					}
 				}.toString());
 
@@ -141,7 +142,7 @@ public class TextEmbeddingRetrieverTest {
 		Assert.assertEquals(
 			"Test exception", embeddingProviderStatus.getErrorMessage());
 		Assert.assertEquals(
-			"testProvider", embeddingProviderStatus.getProviderName());
+			_TEST_PROVIDER_NAME, embeddingProviderStatus.getProviderName());
 	}
 
 	@Test
@@ -167,7 +168,7 @@ public class TextEmbeddingRetrieverTest {
 	@Test
 	public void testGetTextEmbedding() {
 		Double[] textEmbedding = _textEmbeddingRetrieverImpl.getTextEmbedding(
-			"testProvider", RandomTestUtil.randomString());
+			_TEST_PROVIDER_NAME, RandomTestUtil.randomString());
 
 		Assert.assertNotNull(textEmbedding);
 		Assert.assertArrayEquals(new Double[] {1.0, 2.0, 3.0}, textEmbedding);
@@ -185,7 +186,7 @@ public class TextEmbeddingRetrieverTest {
 			textEmbeddingProviderConfigurationJSONs.length);
 		Assert.assertTrue(
 			textEmbeddingProviderConfigurationJSONs[0].contains(
-				"testProvider"));
+				_TEST_PROVIDER_NAME));
 	}
 
 	@Test
@@ -216,7 +217,7 @@ public class TextEmbeddingRetrieverTest {
 					{
 						languageIds = embeddingProviderLanguageIds;
 						modelClassNames = embeddingProviderModelClassNames;
-						providerName = "testProvider";
+						providerName = _TEST_PROVIDER_NAME;
 					}
 				}.toString()
 			}
@@ -264,9 +265,12 @@ public class TextEmbeddingRetrieverTest {
 		ReflectionTestUtil.setFieldValue(
 			_textEmbeddingRetrieverImpl, "_textEmbeddingProviders",
 			HashMapBuilder.put(
-				"testProvider", _textEmbeddingProvider
+				_TEST_PROVIDER_NAME, _textEmbeddingProvider
 			).build());
 	}
+
+	private static final String _TEST_PROVIDER_NAME =
+		RandomTestUtil.randomString();
 
 	private final SemanticSearchConfigurationProvider
 		_semanticSearchConfigurationProvider = Mockito.mock(
