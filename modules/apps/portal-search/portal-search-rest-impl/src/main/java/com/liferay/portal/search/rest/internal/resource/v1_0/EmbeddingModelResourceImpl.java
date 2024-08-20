@@ -18,7 +18,6 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.util.Collections;
-import java.util.List;
 
 import javax.ws.rs.NotFoundException;
 
@@ -48,16 +47,10 @@ public class EmbeddingModelResourceImpl extends BaseEmbeddingModelResourceImpl {
 			return null;
 		}
 
-		if (provider.equals("huggingFaceInferenceAPI")) {
-			return Page.of(
-				_getHuggingFaceModels(
-					_getHuggingFaceAPIURL(pagination, search)));
+		if (!provider.equals("huggingFaceInferenceAPI")) {
+			return Page.of(Collections.emptyList());
 		}
 
-		return Page.of(Collections.emptyList());
-	}
-
-	private String _getHuggingFaceAPIURL(Pagination pagination, String search) {
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("https://huggingface.co/api/models?limit=");
@@ -69,19 +62,14 @@ public class EmbeddingModelResourceImpl extends BaseEmbeddingModelResourceImpl {
 			sb.append(URLCodec.encodeURL(search, false));
 		}
 
-		return sb.toString();
-	}
-
-	private List<EmbeddingModel> _getHuggingFaceModels(String apiURL)
-		throws Exception {
-
-		return JSONUtil.toList(
-			_jsonFactory.createJSONArray(_http.URLtoString(apiURL)),
-			jsonObject -> new EmbeddingModel() {
-				{
-					setModelId(() -> jsonObject.getString("modelId"));
-				}
-			});
+		return Page.of(
+			JSONUtil.toList(
+				_jsonFactory.createJSONArray(_http.URLtoString(sb.toString())),
+				jsonObject -> new EmbeddingModel() {
+					{
+						setModelId(() -> jsonObject.getString("modelId"));
+					}
+				}));
 	}
 
 	@Reference
