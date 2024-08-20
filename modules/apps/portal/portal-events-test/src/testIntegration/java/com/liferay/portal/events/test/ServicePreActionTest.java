@@ -119,7 +119,7 @@ public class ServicePreActionTest {
 		try (SafeCloseable safeCloseable1 =
 				PropsValuesTestUtil.swapWithSafeCloseable(
 					"SERVLET_SERVICE_EVENTS_PRE",
-					new String[] {TestAction.class.getName()});
+					new String[] {TestLifecycleAction.class.getName()});
 			SafeCloseable safeCloseable2 =
 				PropsValuesTestUtil.swapWithSafeCloseable(
 					"SERVLET_SERVICE_EVENTS_PRE_ERROR_PAGE",
@@ -135,7 +135,7 @@ public class ServicePreActionTest {
 		try (SafeCloseable safeCloseable1 =
 				PropsValuesTestUtil.swapWithSafeCloseable(
 					"SERVLET_SERVICE_EVENTS_PRE",
-					new String[] {TestAction.class.getName()});
+					new String[] {TestLifecycleAction.class.getName()});
 			SafeCloseable safeCloseable2 =
 				PropsValuesTestUtil.swapWithSafeCloseable(
 					"SERVLET_SERVICE_EVENTS_PRE_ERROR_PAGE",
@@ -151,7 +151,7 @@ public class ServicePreActionTest {
 		try (SafeCloseable safeCloseable =
 				PropsValuesTestUtil.swapWithSafeCloseable(
 					"SERVLET_SERVICE_EVENTS_PRE",
-					new String[] {TestAction.class.getName()})) {
+					new String[] {TestLifecycleAction.class.getName()})) {
 
 			_testErrorPage(false, false, false, "http://localhost:8080");
 			_testErrorPage(false, false, false, "http://localhost:8080/c");
@@ -165,7 +165,7 @@ public class ServicePreActionTest {
 		try (SafeCloseable safeCloseable =
 				PropsValuesTestUtil.swapWithSafeCloseable(
 					"SERVLET_SERVICE_EVENTS_PRE",
-					new String[] {TestAction.class.getName()})) {
+					new String[] {TestLifecycleAction.class.getName()})) {
 
 			_testErrorPage(false, false, true, "http://localhost:8080");
 			_testErrorPage(false, false, true, "http://localhost:8080/c");
@@ -416,8 +416,8 @@ public class ServicePreActionTest {
 		throws Exception {
 
 		InstancePool.put(
-			TestAction.class.getName(),
-			new TestAction(
+			TestLifecycleAction.class.getName(),
+			new TestLifecycleAction(
 				includeInvalidRenderPortlet, includeServletJspExceptions));
 
 		String expectedMessage = ServicePreActionTest.class.getName();
@@ -502,9 +502,9 @@ public class ServicePreActionTest {
 	@Inject
 	private UserLocalService _userLocalService;
 
-	private class TestAction implements LifecycleAction {
+	private class TestLifecycleAction implements LifecycleAction {
 
-		public TestAction(
+		public TestLifecycleAction(
 			boolean includeInvalidRenderPortlet,
 			boolean includeServletJspExceptions) {
 
