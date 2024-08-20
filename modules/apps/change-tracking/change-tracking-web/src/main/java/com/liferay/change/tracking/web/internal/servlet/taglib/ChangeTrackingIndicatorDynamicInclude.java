@@ -658,8 +658,7 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 			panelCategoryHelper.containsPortlet(
 				portletId, PanelCategoryKeys.SITE_ADMINISTRATION) &&
 			!panelCategoryHelper.containsPortlet(
-				portletId,
-				PanelCategoryKeys.SITE_ADMINISTRATION_PUBLISHING)) {
+				portletId, PanelCategoryKeys.SITE_ADMINISTRATION_PUBLISHING)) {
 
 			return true;
 		}
