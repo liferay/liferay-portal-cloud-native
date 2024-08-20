@@ -7,11 +7,8 @@ package com.liferay.portal.search.rest.internal.resource.v1_0;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.feature.flag.FeatureFlagManagerUtil;
-import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
-import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.kernel.util.Validator;
@@ -20,7 +17,6 @@ import com.liferay.portal.search.rest.resource.v1_0.EmbeddingModelResource;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -76,35 +72,17 @@ public class EmbeddingModelResourceImpl extends BaseEmbeddingModelResourceImpl {
 		return sb.toString();
 	}
 
-	private List<EmbeddingModel> _getHuggingFaceModels(String apiURL) {
-		List<EmbeddingModel> embeddingModels = new ArrayList<>();
+	private List<EmbeddingModel> _getHuggingFaceModels(String apiURL)
+		throws Exception {
 
-		try {
-			JSONArray jsonArray = _jsonFactory.createJSONArray(
-				_http.URLtoString(apiURL));
-
-			jsonArray.forEach(
-				object -> {
-					JSONObject jsonObject = (JSONObject)object;
-
-					embeddingModels.add(
-						new EmbeddingModel() {
-							{
-								setModelId(
-									() -> jsonObject.getString("modelId"));
-							}
-						});
-				});
-		}
-		catch (Exception exception) {
-			_log.error(exception);
-		}
-
-		return embeddingModels;
+		return JSONUtil.toList(
+			_jsonFactory.createJSONArray(_http.URLtoString(apiURL)),
+			jsonObject -> new EmbeddingModel() {
+				{
+					setModelId(() -> jsonObject.getString("modelId"));
+				}
+			});
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		EmbeddingModelResourceImpl.class);
 
 	@Reference
 	private Http _http;
