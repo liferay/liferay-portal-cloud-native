@@ -48,14 +48,16 @@ public class TextEmbeddingRetrieverTest {
 
 	@Test
 	public void testDisabledProvider() {
+		String providerName = RandomTestUtil.randomString();
+
 		_textEmbeddingRetrieverImpl.addProvider(
-			new String[] {"disabledProvider"}, "disabledProvider",
+			new String[] {providerName}, providerName,
 			Mockito.mock(TextEmbeddingProvider.class));
 
 		List<String> availableProviderNames =
 			_textEmbeddingRetrieverImpl.getAvailableProviderNames();
 
-		Assert.assertFalse(availableProviderNames.contains("disabledProvider"));
+		Assert.assertFalse(availableProviderNames.contains(providerName));
 	}
 
 	@Test
@@ -85,7 +87,7 @@ public class TextEmbeddingRetrieverTest {
 	public void testGetEmbeddingProviderConfigurationNotFound() {
 		Assert.assertNull(
 			_textEmbeddingRetrieverImpl.getEmbeddingProviderConfiguration(
-				"notFoundProvider"));
+				RandomTestUtil.randomString()));
 	}
 
 	@Test
@@ -121,11 +123,13 @@ public class TextEmbeddingRetrieverTest {
 
 	@Test
 	public void testGetEmbeddingProviderStatusWithException() {
+		String message = RandomTestUtil.randomString();
+
 		Mockito.when(
 			_textEmbeddingProvider.getEmbedding(
 				Mockito.any(), Mockito.anyString())
 		).thenThrow(
-			new RuntimeException("Test exception")
+			new RuntimeException(message)
 		);
 
 		EmbeddingProviderStatus embeddingProviderStatus =
@@ -139,30 +143,31 @@ public class TextEmbeddingRetrieverTest {
 				}.toString());
 
 		Assert.assertNotNull(embeddingProviderStatus);
-		Assert.assertEquals(
-			"Test exception", embeddingProviderStatus.getErrorMessage());
+		Assert.assertEquals(message, embeddingProviderStatus.getErrorMessage());
 		Assert.assertEquals(
 			_TEST_PROVIDER_NAME, embeddingProviderStatus.getProviderName());
 	}
 
 	@Test
 	public void testGetEmbeddingProviderStatusWithProviderNotFound() {
+		String invalidProviderName = RandomTestUtil.randomString();
+
 		EmbeddingProviderStatus embeddingProviderStatus =
 			_textEmbeddingRetrieverImpl.getEmbeddingProviderStatus(
 				new EmbeddingProviderConfiguration(
 				) {
 
 					{
-						providerName = "notFoundProvider";
+						providerName = invalidProviderName;
 					}
 				}.toString());
 
 		Assert.assertNotNull(embeddingProviderStatus);
 		Assert.assertEquals(
-			"Embedding provider notFoundProvider was not found",
+			"Embedding provider " + invalidProviderName + " was not found",
 			embeddingProviderStatus.getErrorMessage());
 		Assert.assertEquals(
-			"notFoundProvider", embeddingProviderStatus.getProviderName());
+			invalidProviderName, embeddingProviderStatus.getProviderName());
 	}
 
 	@Test
