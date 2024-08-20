@@ -406,13 +406,13 @@ public class SiteNavigationMenuConfigurationActionTest {
 
 		_siteNavigationMenuConfigurationAction.groupLocalService =
 			_getGroupLocalService(group);
-		_siteNavigationMenuConfigurationAction.siteNavigationMenuService =
-			_getSiteNavigationMenuService(
-				siteNavigationMenuExternalReferenceCode);
 		_siteNavigationMenuConfigurationAction.
 			siteNavigationMenuItemLocalService =
 				_getSiteNavigationMenuItemLocalService(
 					siteNavigationMenuItemExternalReferenceCode);
+		_siteNavigationMenuConfigurationAction.siteNavigationMenuService =
+			_getSiteNavigationMenuService(
+				siteNavigationMenuExternalReferenceCode);
 	}
 
 	private static final long _COMPANY_ID = RandomTestUtil.randomLong();
