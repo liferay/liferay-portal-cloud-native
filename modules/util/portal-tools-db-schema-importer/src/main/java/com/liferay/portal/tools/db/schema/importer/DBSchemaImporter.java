@@ -59,10 +59,10 @@ public class DBSchemaImporter {
 			String jdbcURL, String password, String userName)
 		throws Exception {
 
-		String driverClassName = _MYSQL_DRIVER;
+		String driverClassName = "com.mysql.cj.jdbc.Driver";
 
 		if (jdbcURL.indexOf("postgresql") > 0) {
-			driverClassName = _POSTGRESQL_DRIVER;
+			driverClassName = "org.postgresql.Driver";
 		}
 
 		Class.forName(driverClassName);
@@ -114,9 +114,5 @@ public class DBSchemaImporter {
 	private static final int _LIFERAY_COMMON_EXIT_CODE_HELP = 2;
 
 	private static final int _LIFERAY_COMMON_EXIT_CODE_OK = 0;
-
-	private static final String _MYSQL_DRIVER = "com.mysql.cj.jdbc.Driver";
-
-	private static final String _POSTGRESQL_DRIVER = "org.postgresql.Driver";
 
 }
