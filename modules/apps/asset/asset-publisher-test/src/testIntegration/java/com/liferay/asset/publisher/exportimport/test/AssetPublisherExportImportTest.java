@@ -789,7 +789,6 @@ public class AssetPublisherExportImportTest
 			_ddmTemplateLocalService.getTemplate(
 				importedGroup.getGroupId(), classNameId,
 				ddmTemplate.getTemplateKey()));
-
 		Assert.assertEquals(
 			PortletDisplayTemplate.DISPLAY_STYLE_PREFIX +
 				ddmTemplate.getTemplateKey(),
