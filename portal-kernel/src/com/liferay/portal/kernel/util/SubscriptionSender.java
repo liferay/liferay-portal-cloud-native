@@ -1157,12 +1157,11 @@ public class SubscriptionSender implements Serializable {
 	}
 
 	private long _getNotificationClassNameId() {
-		if (_notificationClassName != null) {
-			return ClassNameLocalServiceUtil.getClassNameId(
-				_notificationClassName);
+		if (_notificationClassName == null) {
+			return 0;
 		}
 
-		return 0;
+		return ClassNameLocalServiceUtil.getClassNameId(_notificationClassName);
 	}
 
 	private String _getPortletName(Locale locale) {
