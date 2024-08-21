@@ -239,7 +239,7 @@ public class ElasticsearchConnectionFixture
 
 		IngestClient ingestClient = restHighLevelClient.ingest();
 
-		String source = JSONUtil.put(
+		String json = JSONUtil.put(
 			"description", "Adds timestamp to documents"
 		).put(
 			"processors",
@@ -255,7 +255,7 @@ public class ElasticsearchConnectionFixture
 
 		PutPipelineRequest putPipelineRequest = new PutPipelineRequest(
 			"timestamp",
-			new BytesArray(source.getBytes(StandardCharsets.UTF_8)),
+			new BytesArray(json.getBytes(StandardCharsets.UTF_8)),
 			XContentType.JSON);
 
 		try {
