@@ -304,7 +304,7 @@ public class OrderResourceTest extends BaseOrderResourceTestCase {
 	public void testPatchOrder() throws Exception {
 		super.testPatchOrder();
 
-		_testPatchOrderWithAddressAndTermExternalReferenceCode();
+		_testPatchOrderWithMoreExternalReferenceCodes();
 	}
 
 	@Override
@@ -312,7 +312,7 @@ public class OrderResourceTest extends BaseOrderResourceTestCase {
 	public void testPatchOrderByExternalReferenceCode() throws Exception {
 		super.testPatchOrderByExternalReferenceCode();
 
-		_testPatchOrderByExternalReferenceCodeWithAddressAndTermExternalReferenceCode();
+		_testPatchOrderByExternalReferenceCodeWithMoreExternalReferenceCodes();
 	}
 
 	@Override
@@ -320,7 +320,7 @@ public class OrderResourceTest extends BaseOrderResourceTestCase {
 	public void testPostOrder() throws Exception {
 		super.testPostOrder();
 
-		_testPostOrderWithAddressAndTermExternalReferenceCode();
+		_testPostOrderWithMoreExternalReferenceCodes();
 		_testPostOrderWithOrderItems(
 			CommerceOrderConstants.ORDER_STATUS_COMPLETED);
 		_testPostOrderWithOrderItems(CommerceOrderConstants.ORDER_STATUS_OPEN);
@@ -482,7 +482,7 @@ public class OrderResourceTest extends BaseOrderResourceTestCase {
 		return order;
 	}
 
-	private void _testPatchOrderByExternalReferenceCodeWithAddressAndTermExternalReferenceCode()
+	private void _testPatchOrderByExternalReferenceCodeWithMoreExternalReferenceCodes()
 		throws Exception {
 
 		Order postOrder = orderResource.postOrder(randomOrder());
@@ -551,7 +551,7 @@ public class OrderResourceTest extends BaseOrderResourceTestCase {
 			getOrder.getShippingAddressExternalReferenceCode());
 	}
 
-	private void _testPatchOrderWithAddressAndTermExternalReferenceCode()
+	private void _testPatchOrderWithMoreExternalReferenceCodes()
 		throws Exception {
 
 		Order postOrder = orderResource.postOrder(randomOrder());
@@ -619,7 +619,7 @@ public class OrderResourceTest extends BaseOrderResourceTestCase {
 			getOrder.getShippingAddressExternalReferenceCode());
 	}
 
-	private void _testPostOrderWithAddressAndTermExternalReferenceCode()
+	private void _testPostOrderWithMoreExternalReferenceCodes()
 		throws Exception {
 
 		Order randomOrder = randomOrder();
