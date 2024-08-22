@@ -2387,7 +2387,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			return StringPool.BLANK;
 		}
 
-		StringBundler sb = new StringBundler(6);
+		StringBundler sb = new StringBundler();
 
 		sb.append(baseDiffsURL);
 

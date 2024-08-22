@@ -27,8 +27,6 @@ import java.util.Map;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -44,20 +42,17 @@ public class WikiPageWorkflowHandler extends BaseWorkflowHandler<WikiPage> {
 
 	@Override
 	public void contributeServiceContext(ServiceContext serviceContext) {
-		HttpServletRequest httpServletRequest = serviceContext.getRequest();
-
 		PortletURL portletURL = null;
-		long plid = serviceContext.getPlid();
 
-		if (plid == LayoutConstants.DEFAULT_PLID) {
+		if (serviceContext.getPlid() == LayoutConstants.DEFAULT_PLID) {
 			portletURL = _portal.getControlPanelPortletURL(
-				httpServletRequest, WikiPortletKeys.WIKI_ADMIN,
+				serviceContext.getRequest(), WikiPortletKeys.WIKI_ADMIN,
 				PortletRequest.RENDER_PHASE);
 		}
 		else {
 			portletURL = _portletURLFactory.create(
-				httpServletRequest, WikiPortletKeys.WIKI, plid,
-				PortletRequest.RENDER_PHASE);
+				serviceContext.getRequest(), WikiPortletKeys.WIKI,
+				serviceContext.getPlid(), PortletRequest.RENDER_PHASE);
 		}
 
 		serviceContext.setAttribute("baseDiffsURL", portletURL.toString());
