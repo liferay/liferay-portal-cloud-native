@@ -296,16 +296,15 @@ public class ObjectEntryLocalServiceImpl
 		Map<String, Serializable> insertedValues = new HashMap<>();
 
 		_insertIntoLocalizationTable(
-			objectDefinition, objectEntryId, values, workflowAction,
-			insertedValues);
+			insertedValues, objectDefinition, objectEntryId, values,
+			workflowAction);
 
 		boolean dynamicObjectDefinitionStaticValues = _insertIntoTable(
-			_getDynamicObjectDefinitionTable(objectDefinitionId), objectEntryId,
-			values, workflowAction, insertedValues);
-
+			_getDynamicObjectDefinitionTable(objectDefinitionId),
+			insertedValues, objectEntryId, values, workflowAction);
 		boolean extensionDynamicObjectDefinitionStaticValues = _insertIntoTable(
 			_getExtensionDynamicObjectDefinitionTable(objectDefinitionId),
-			objectEntryId, values, workflowAction, insertedValues);
+			insertedValues, objectEntryId, values, workflowAction);
 
 		ObjectEntry objectEntry = objectEntryPersistence.create(objectEntryId);
 
@@ -1432,8 +1431,8 @@ public class ObjectEntryLocalServiceImpl
 		}
 		else {
 			_insertIntoTable(
-				dynamicObjectDefinitionTable, primaryKey, values,
-				WorkflowConstants.ACTION_PUBLISH, new HashMap<>());
+				dynamicObjectDefinitionTable, new HashMap<>(), primaryKey,
+				values, WorkflowConstants.ACTION_PUBLISH);
 		}
 	}
 
@@ -1543,8 +1542,8 @@ public class ObjectEntryLocalServiceImpl
 
 		_deleteFromLocalizationTable(objectDefinition, objectEntryId);
 		_insertIntoLocalizationTable(
-			objectDefinition, objectEntryId, values, workflowAction,
-			new HashMap<>());
+			new HashMap<>(), objectDefinition, objectEntryId, values,
+			workflowAction);
 		_updateTable(
 			_getDynamicObjectDefinitionTable(
 				objectEntry.getObjectDefinitionId()),
@@ -3483,9 +3482,9 @@ public class ObjectEntryLocalServiceImpl
 	}
 
 	private void _insertIntoLocalizationTable(
+			Map<String, Serializable> insertedValues,
 			ObjectDefinition objectDefinition, long objectEntryId,
-			Map<String, Serializable> values, int workflowAction,
-			Map<String, Serializable> insertedValues)
+			Map<String, Serializable> values, int workflowAction)
 		throws PortalException {
 
 		DynamicObjectDefinitionLocalizationTable
@@ -3606,8 +3605,8 @@ public class ObjectEntryLocalServiceImpl
 
 	private boolean _insertIntoTable(
 			DynamicObjectDefinitionTable dynamicObjectDefinitionTable,
-			long objectEntryId, Map<String, Serializable> values,
-			int workflowAction, Map<String, Serializable> insertedValues)
+			Map<String, Serializable> insertedValues, long objectEntryId,
+			Map<String, Serializable> values, int workflowAction)
 		throws PortalException {
 
 		StringBundler sb = new StringBundler();
