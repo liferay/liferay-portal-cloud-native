@@ -862,8 +862,6 @@ public class DefaultObjectEntryManagerImpl
 
 		Map<String, Object> properties = objectEntry.getProperties();
 
-		long primaryKey = serviceBuilderObjectEntry.getPrimaryKey();
-
 		for (Map.Entry<String, ObjectRelationship> entry :
 				objectRelationships.entrySet()) {
 
@@ -905,7 +903,8 @@ public class DefaultObjectEntryManagerImpl
 							dtoConverterContext.getUser(), nestedObjectEntry);
 
 					_relateNestedObjectEntry(
-						objectDefinition, objectRelationship, primaryKey,
+						objectDefinition, objectRelationship,
+						serviceBuilderObjectEntry.getPrimaryKey(),
 						nestedObjectEntryId, new ServiceContext());
 
 					nestedExternalReferenceCodes.add(
@@ -936,7 +935,8 @@ public class DefaultObjectEntryManagerImpl
 							objectDefinition.getPKObjectFieldName());
 
 						nestedObjectEntryProperties.put(
-							objectRelationshipName, primaryKey);
+							objectRelationshipName,
+							serviceBuilderObjectEntry.getPrimaryKey());
 					}
 
 					nestedObjectEntry = objectEntryManager.updateObjectEntry(
@@ -946,7 +946,8 @@ public class DefaultObjectEntryManagerImpl
 
 					if (!manyToOneObjectRelationship) {
 						_relateNestedObjectEntry(
-							objectDefinition, objectRelationship, primaryKey,
+							objectDefinition, objectRelationship,
+							serviceBuilderObjectEntry.getPrimaryKey(),
 							nestedObjectEntry.getId(),
 							ServiceContextUtil.createServiceContext(
 								nestedObjectEntry,
@@ -961,7 +962,8 @@ public class DefaultObjectEntryManagerImpl
 			long[] toDisassociatePrimaryKeys =
 				TransformUtil.transformToLongArray(
 					_getRelatedModels(
-						objectDefinition, objectRelationship, primaryKey,
+						objectDefinition, objectRelationship,
+						serviceBuilderObjectEntry.getPrimaryKey(),
 						relatedObjectDefinition),
 					relatedModel -> {
 						ExternalReferenceCodeModel externalReferenceCodeModel =
@@ -979,7 +981,8 @@ public class DefaultObjectEntryManagerImpl
 
 			if (toDisassociatePrimaryKeys.length > 0) {
 				_disassociateRelatedModels(
-					objectDefinition, objectRelationship, primaryKey,
+					objectDefinition, objectRelationship,
+					serviceBuilderObjectEntry.getPrimaryKey(),
 					toDisassociatePrimaryKeys, relatedObjectDefinition,
 					dtoConverterContext.getUserId());
 			}
@@ -989,7 +992,8 @@ public class DefaultObjectEntryManagerImpl
 			}
 		}
 
-		return objectEntryLocalService.getObjectEntry(primaryKey);
+		return objectEntryLocalService.getObjectEntry(
+			serviceBuilderObjectEntry.getPrimaryKey());
 	}
 
 	private void _checkObjectEntryObjectDefinitionId(

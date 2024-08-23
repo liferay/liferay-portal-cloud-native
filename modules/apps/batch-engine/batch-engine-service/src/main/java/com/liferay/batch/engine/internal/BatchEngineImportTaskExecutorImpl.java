@@ -102,13 +102,13 @@ public class BatchEngineImportTaskExecutorImpl
 			batchEngineImportTask.getCompanyId(),
 			CTCollectionThreadLocal.getCTCollectionId());
 
-		File tempContentFile;
+		File file;
 
 		try (InputStream inputStream =
 				_batchEngineImportTaskLocalService.openContentInputStream(
 					batchEngineImportTask.getBatchEngineImportTaskId())) {
 
-			tempContentFile = FileUtil.createTempFile(inputStream);
+			file = FileUtil.createTempFile(inputStream);
 		}
 		catch (Throwable throwable) {
 			_log.error(
@@ -133,9 +133,7 @@ public class BatchEngineImportTaskExecutorImpl
 					BatchEngineTaskContentType.valueOf(
 						batchEngineImportTask.getContentType()));
 
-			try (InputStream inputStream = new FileInputStream(
-					tempContentFile)) {
-
+			try (InputStream inputStream = new FileInputStream(file)) {
 				batchEngineImportTask.setTotalItemsCount(
 					batchEngineTaskProgress.getTotalItemsCount(inputStream));
 			}
@@ -146,8 +144,7 @@ public class BatchEngineImportTaskExecutorImpl
 			BatchEngineTaskExecutorUtil.execute(
 				checkPermissions,
 				() -> _importItems(
-					batchEngineImportTask, tempContentFile,
-					batchEngineTaskItemDelegate),
+					batchEngineImportTask, batchEngineTaskItemDelegate, file),
 				_userLocalService.getUser(batchEngineImportTask.getUserId()));
 
 			_updateBatchEngineImportTask(
@@ -165,7 +162,7 @@ public class BatchEngineImportTaskExecutorImpl
 				throwable.toString());
 		}
 		finally {
-			tempContentFile.delete();
+			file.delete();
 
 			// LPS-167011 Because of call to _updateBatchEngineImportTask when
 			// catching a Throwable
@@ -319,14 +316,15 @@ public class BatchEngineImportTaskExecutorImpl
 	}
 
 	private void _importItems(
-			BatchEngineImportTask batchEngineImportTask, File contentFile,
-			BatchEngineTaskItemDelegate<?> batchEngineTaskItemDelegate)
+			BatchEngineImportTask batchEngineImportTask,
+			BatchEngineTaskItemDelegate<?> batchEngineTaskItemDelegate,
+			File file)
 		throws Throwable {
 
 		Map<String, Serializable> parameters = _getParameters(
 			batchEngineImportTask);
 
-		try (InputStream inputStream = new FileInputStream(contentFile);
+		try (InputStream inputStream = new FileInputStream(file);
 			BatchEngineImportTaskItemReader batchEngineImportTaskItemReader =
 				_getBatchEngineImportTaskItemReader(
 					batchEngineImportTask, inputStream, parameters)) {

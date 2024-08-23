@@ -38,7 +38,7 @@ public class ObjectFieldSettingUtil {
 		List<ObjectFieldSetting> objectFieldSettings =
 			objectField.getObjectFieldSettings();
 
-		ObjectFieldSetting defaultValueObjectFieldSetting = _findByName(
+		ObjectFieldSetting defaultValueObjectFieldSetting = _getObjectFieldSetting(
 			objectFieldSettings,
 			ObjectFieldSettingConstants.NAME_DEFAULT_VALUE);
 
@@ -46,7 +46,7 @@ public class ObjectFieldSettingUtil {
 			return null;
 		}
 
-		ObjectFieldSetting defaultValueTypeObjectFieldSetting = _findByName(
+		ObjectFieldSetting defaultValueTypeObjectFieldSetting = _getObjectFieldSetting(
 			objectFieldSettings,
 			ObjectFieldSettingConstants.NAME_DEFAULT_VALUE_TYPE);
 
@@ -127,7 +127,7 @@ public class ObjectFieldSettingUtil {
 				objectFieldSetting));
 	}
 
-	private static ObjectFieldSetting _findByName(
+	private static ObjectFieldSetting _getObjectFieldSetting(
 		List<ObjectFieldSetting> objectFieldSettings, String name) {
 
 		for (ObjectFieldSetting objectFieldSetting : objectFieldSettings) {
