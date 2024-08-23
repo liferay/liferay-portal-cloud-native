@@ -337,17 +337,9 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 	}
 
 	private String _adjustMySQLJDBCURL(String url) {
-		boolean mySQL = false;
+		if (!url.startsWith("jdbc:mariadb://") &&
+			!url.startsWith("jdbc:mysql://")) {
 
-		for (String mysqlJDBCURLPrefix : _MYSQL_JDBC_URL_PREFIXES) {
-			if (url.startsWith(mysqlJDBCURLPrefix)) {
-				mySQL = true;
-
-				break;
-			}
-		}
-
-		if (!mySQL) {
 			return url;
 		}
 
@@ -525,10 +517,6 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 		{"rewriteBatchedStatements", "true"}, {"serverTimezone", "GMT"},
 		{"useFastDateParsing", "false"}, {"useLocalSessionState", "true"},
 		{"useLocalTransactionState", "true"}, {"useUnicode", "true"}
-	};
-
-	private static final String[] _MYSQL_JDBC_URL_PREFIXES = {
-		"jdbc:mariadb://", "jdbc:mysql://"
 	};
 
 	private static final Log _log = LogFactoryUtil.getLog(
