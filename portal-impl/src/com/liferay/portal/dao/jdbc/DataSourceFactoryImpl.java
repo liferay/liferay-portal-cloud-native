@@ -243,7 +243,7 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 			if (StringUtil.equalsIgnoreCase(key, "url")) {
 				key = "jdbcUrl";
 
-				value = _adjustMySQLJDBCURL(value);
+				value = _rewriteJDBCURL(value);
 			}
 
 			// Set HikariCP property
@@ -336,7 +336,7 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 		}
 	}
 
-	private String _adjustMySQLJDBCURL(String url) {
+	private String _rewriteJDBCURL(String url) {
 		if (!url.startsWith("jdbc:mariadb://") &&
 			!url.startsWith("jdbc:mysql://")) {
 
