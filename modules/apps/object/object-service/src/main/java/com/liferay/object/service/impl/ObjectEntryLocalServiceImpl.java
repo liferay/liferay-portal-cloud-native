@@ -4417,15 +4417,13 @@ public class ObjectEntryLocalServiceImpl
 			return;
 		}
 
-		sb.append(" where ");
-
 		Column<DynamicObjectDefinitionTable, Long> primaryKeyColumn =
 			dynamicObjectDefinitionTable.getPrimaryKeyColumn();
 
-		sb.append(primaryKeyColumn.getName());
-
 		columnNames.add(primaryKeyColumn.getName());
 
+		sb.append(" where ");
+		sb.append(primaryKeyColumn.getName());
 		sb.append(" = ?");
 
 		String sql = sb.toString();
