@@ -351,44 +351,38 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 			return url;
 		}
 
-		Map<String, String> existingParameters = new TreeMap<>();
+		Map<String, String> existingParameterValues = new TreeMap<>();
 
 		int index = url.indexOf(CharPool.QUESTION);
 
 		if (index != -1) {
-			String parametersQueryString = url.substring(index + 1);
+			String queryString = url.substring(index + 1);
 
 			for (String parameterString :
-					StringUtil.split(
-						parametersQueryString, CharPool.AMPERSAND)) {
+					StringUtil.split(queryString, CharPool.AMPERSAND)) {
 
-				String[] keyValuePair = StringUtil.split(
+				String[] parameter = StringUtil.split(
 					parameterString, CharPool.EQUAL);
 
-				if (keyValuePair.length == 2) {
-					existingParameters.put(keyValuePair[0], keyValuePair[1]);
+				if (parameter.length == 2) {
+					existingParameterValues.put(parameter[0], parameter[1]);
 				}
 			}
 		}
 
-		for (String[] defaultMySQLJDBCParameter :
-				_DEFAULT_MYSQL_JDBC_PARAMETERS) {
-
-			if (existingParameters.containsKey(defaultMySQLJDBCParameter[0])) {
+		for (String[] parameter : _MYSQL_DEFAULT_PARAMETERS) {
+			if (existingParameterValues.containsKey(parameter[0])) {
 				if (_log.isDebugEnabled()) {
-					_log.debug(
-						"Skipped " +
-							Arrays.toString(defaultMySQLJDBCParameter));
+					_log.debug("Skipped " + Arrays.toString(parameter));
 				}
 			}
 			else {
-				existingParameters.put(
-					defaultMySQLJDBCParameter[0], defaultMySQLJDBCParameter[1]);
+				existingParameterValues.put(parameter[0], parameter[1]);
 			}
 		}
 
 		StringBundler sb = new StringBundler(
-			(existingParameters.size() * 4) + 2);
+			(existingParameterValues.size() * 4) + 2);
 
 		if (index == -1) {
 			sb.append(url);
@@ -398,14 +392,16 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 			sb.append(url.substring(0, index + 1));
 		}
 
-		for (Map.Entry<String, String> entry : existingParameters.entrySet()) {
+		for (Map.Entry<String, String> entry :
+				existingParameterValues.entrySet()) {
+
 			sb.append(entry.getKey());
 			sb.append(CharPool.EQUAL);
 			sb.append(entry.getValue());
 			sb.append(CharPool.AMPERSAND);
 		}
 
-		if (!existingParameters.isEmpty()) {
+		if (!existingParameterValues.isEmpty()) {
 			sb.setIndex(sb.index() - 1);
 		}
 
@@ -414,7 +410,7 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 		if (!Objects.equals(url, newURL) && _log.isInfoEnabled()) {
 			_log.info(
 				StringBundler.concat(
-					"Rewrite jdbc url from: ", url, " to ", newURL));
+					"Rewrite JDBC URL from ", url, " to ", newURL));
 		}
 
 		return newURL;
@@ -521,7 +517,7 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 		}
 	}
 
-	private static final String[][] _DEFAULT_MYSQL_JDBC_PARAMETERS = {
+	private static final String[][] _MYSQL_DEFAULT_PARAMETERS = {
 		{"cachePrepStmts", "true"}, {"characterEncoding", "UTF-8"},
 		{"dontTrackOpenResources", "true"},
 		{"holdResultsOpenOverStatementClose", "true"},
