@@ -137,13 +137,13 @@ public class AddDefaultLayoutInitialRequestPortalInstanceLifecycleListener
 			String siteInitializerKey = SiteInitializerThreadLocal.getKey();
 
 			if (siteInitializerKey == null) {
-				siteInitializerKey = _WELCOME_SITE_INITIALIZER_KEY;
+				siteInitializerKey = _SITE_INITIALIZER_KEY_WELCOME;
 			}
 
 			if (!Objects.equals(
-					siteInitializerKey, _WELCOME_SITE_INITIALIZER_KEY) &&
+					siteInitializerKey, _SITE_INITIALIZER_KEY_WELCOME) &&
 				!Objects.equals(
-					siteInitializerKey, _BLANK_SITE_INITIALIZER_KEY)) {
+					siteInitializerKey, _SITE_INITIALIZER_KEY_BLANK)) {
 
 				_layoutLocalService.deleteLayouts(
 					group.getGroupId(), false, new ServiceContext());
@@ -288,10 +288,10 @@ public class AddDefaultLayoutInitialRequestPortalInstanceLifecycleListener
 		return serviceContext;
 	}
 
-	private static final String _BLANK_SITE_INITIALIZER_KEY =
+	private static final String _SITE_INITIALIZER_KEY_BLANK =
 		"blank-site-initializer";
 
-	private static final String _WELCOME_SITE_INITIALIZER_KEY =
+	private static final String _SITE_INITIALIZER_KEY_WELCOME =
 		"com.liferay.site.initializer.welcome";
 
 	private static final Log _log = LogFactoryUtil.getLog(

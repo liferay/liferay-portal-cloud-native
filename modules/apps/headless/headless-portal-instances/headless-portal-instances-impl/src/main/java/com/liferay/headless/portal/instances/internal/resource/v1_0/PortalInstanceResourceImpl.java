@@ -114,7 +114,7 @@ public class PortalInstanceResourceImpl extends BasePortalInstanceResourceImpl {
 			companyId = 0L;
 		}
 
-		Long finalCompanyId = companyId;
+		long finalCompanyId = companyId;
 
 		Company company = PortalInstances.addCompany(
 			() -> _companyService.addCompany(
