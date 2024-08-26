@@ -207,13 +207,14 @@ renderResponse.setTitle(blogsEditEntryDisplayContext.getPageTitle(resourceBundle
 
 							<clay:alert
 								dismissible="<%= true %>"
-								message="to-avoid-conflicts,-ensure-your-url-is-unique"
+								message="ensure-your-url-unique-to-avoid-conflicts"
 							/>
 
 							<label><liferay-ui:message key="customize-the-url" /></label>
 
 							<p class="small text-secondary">
-								<liferay-ui:message key="add-and-re-order-categories-to-customize-the-friendly-url-to-your-preferences" />
+								<liferay-ui:message key="add-and-reorder-categories-to-customize-the-friendly-url" />
+
 								<liferay-ui:message key="categories-will-only-appear-in-the-url-when-the-blog-entry-is-associated-to-a-display-page" />
 							</p>
 
