@@ -660,12 +660,12 @@ public class BaseNotificationTypeTest {
 			}
 
 			if (list.get(0) instanceof KeyLocalizedLabelPair) {
-				List<KeyLocalizedLabelPair> listTypeEntries =
+				List<KeyLocalizedLabelPair> keyLocalizedLabelPairs =
 					(List<KeyLocalizedLabelPair>)termValue;
 
 				return StringUtil.merge(
 					TransformUtil.transform(
-						listTypeEntries,
+						keyLocalizedLabelPairs,
 						keyLocalizedLabelPair -> keyLocalizedLabelPair.getLabel(
 							LocaleUtil.US)),
 					StringPool.COMMA);
