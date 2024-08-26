@@ -123,9 +123,7 @@ public class HttpInvoker {
 	}
 
 	public HttpInvoker path(String name, Object value) {
-		_path = _path.replaceFirst(
-			"\\{" + name + "\\}",
-			Matcher.quoteReplacement(String.valueOf(value)));
+		_path = _path.replaceFirst("\\{" + name + "\\}", Matcher.quoteReplacement(String.valueOf(value)));
 
 		return this;
 	}
