@@ -297,8 +297,7 @@ public class FreeMarkerTool {
 				continue;
 			}
 
-			String referenceName = getReferenceName(
-				allOfSchema.getReference());
+			String referenceName = getReferenceName(allOfSchema.getReference());
 
 			allOfSchema = schemas.get(referenceName);
 
