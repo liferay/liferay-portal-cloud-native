@@ -340,16 +340,18 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 			HttpServletRequest httpServletRequest)
 		throws Exception {
 
+		StringBundler sb = new StringBundler(3);
+
+		sb.append("/o");
+
 		Map<String, Object> properties = fdsEntryObjectEntry.getProperties();
 
 		String restApplication = String.valueOf(
 			properties.get("restApplication"));
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("/o");
 		sb.append(
 			StringUtil.replaceLast(restApplication, "/v1.0", StringPool.BLANK));
+
 		sb.append(String.valueOf(properties.get("restEndpoint")));
 
 		return _resolveParameters(

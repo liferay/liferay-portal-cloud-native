@@ -36,35 +36,34 @@ public class FDSAPIURLResolverRegistryImpl
 	public FDSAPIURLResolver getResolver(
 		String restApplication, String restSchema) {
 
-		String resolverKey = StringBundler.concat(
+		String key = StringBundler.concat(
 			restApplication, "/", restSchema);
 
-		ServiceWrapper<FDSAPIURLResolver> resolverServiceWrapper =
-			_serviceTrackerMap.getService(resolverKey);
+		ServiceWrapper<FDSAPIURLResolver> serviceWrapper =
+			_serviceTrackerMap.getService(key);
 
-		if (resolverServiceWrapper == null) {
+		if (serviceWrapper == null) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"No rest application found for: \"" + resolverKey + "\"");
+				_log.debug("No REST application found for " + key);
 			}
 
 			return null;
 		}
 
-		return resolverServiceWrapper.getService();
+		return serviceWrapper.getService();
 	}
 
 	@Override
 	public List<FDSAPIURLResolver> getResolvers() {
 		List<FDSAPIURLResolver> resolvers = new ArrayList<>();
 
-		List<ServiceWrapper<FDSAPIURLResolver>> resolversServiceWrappers =
+		List<ServiceWrapper<FDSAPIURLResolver>> serviceWrappers =
 			ListUtil.fromCollection(_serviceTrackerMap.values());
 
-		for (ServiceWrapper<FDSAPIURLResolver> resolverServiceWrapper :
-				resolversServiceWrappers) {
+		for (ServiceWrapper<FDSAPIURLResolver> serviceWrapper :
+				serviceWrappers) {
 
-			resolvers.add(resolverServiceWrapper.getService());
+			resolvers.add(serviceWrapper.getService());
 		}
 
 		return Collections.unmodifiableList(resolvers);
