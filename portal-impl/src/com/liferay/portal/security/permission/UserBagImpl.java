@@ -36,11 +36,12 @@ public class UserBagImpl implements UserBag {
 
 		_userId = userId;
 		_userGroupIds = _toSortedLongArray(userGroupIds);
+		_userUserGroupGroupIds = _toSortedLongArray(userUserGroupGroupIds);
+
 		_userOrgIds = _toSortedLongArray(userOrgs);
 		_userOrgGroupIds = _toSortedLongArray(
 			ArrayUtil.toLongArray(userOrgGroups));
 		_userUserGroupIds = _toSortedLongArray(userUserGroups);
-		_userUserGroupGroupIds = _toSortedLongArray(userUserGroupGroupIds);
 		_userRoleIds = _toSortedLongArray(userRoles);
 	}
 
@@ -51,12 +52,13 @@ public class UserBagImpl implements UserBag {
 
 		_userId = userId;
 		_userGroupIds = _toSortedLongArray(userGroupIds);
+		_userUserGroupGroupIds = _toSortedLongArray(userUserGroupGroupIds);
+		_userRoleIds = _toSortedLongArray(userRoleIds);
+
 		_userOrgIds = _toSortedLongArray(userOrgs);
 		_userOrgGroupIds = _toSortedLongArray(
 			ArrayUtil.toLongArray(userOrgGroups));
 		_userUserGroupIds = _toSortedLongArray(userUserGroups);
-		_userUserGroupGroupIds = _toSortedLongArray(userUserGroupGroupIds);
-		_userRoleIds = _toSortedLongArray(userRoleIds);
 	}
 
 	@Override
