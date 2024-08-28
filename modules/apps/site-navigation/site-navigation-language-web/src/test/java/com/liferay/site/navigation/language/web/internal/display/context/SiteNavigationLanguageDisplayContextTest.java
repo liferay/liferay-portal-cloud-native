@@ -197,11 +197,13 @@ public class SiteNavigationLanguageDisplayContextTest {
 		).thenReturn(
 			RandomTestUtil.randomString()
 		);
+
 		Mockito.when(
 			group.getGroupId()
 		).thenReturn(
 			RandomTestUtil.randomLong()
 		);
+
 		Mockito.when(
 			group.getGroupKey()
 		).thenReturn(

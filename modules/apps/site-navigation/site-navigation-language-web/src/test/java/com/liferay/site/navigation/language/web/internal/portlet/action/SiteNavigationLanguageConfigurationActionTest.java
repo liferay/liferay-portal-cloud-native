@@ -61,6 +61,7 @@ public class SiteNavigationLanguageConfigurationActionTest {
 		).fetchGroup(
 			0, group.getGroupKey()
 		);
+
 		Mockito.verify(
 			portletPreferences
 		).setValue(
@@ -93,6 +94,7 @@ public class SiteNavigationLanguageConfigurationActionTest {
 		).fetchGroup(
 			0, StringPool.BLANK
 		);
+
 		Mockito.verify(
 			portletPreferences
 		).reset(
@@ -124,6 +126,7 @@ public class SiteNavigationLanguageConfigurationActionTest {
 		).fetchGroup(
 			0, group.getGroupKey()
 		);
+
 		Mockito.verify(
 			portletPreferences
 		).reset(
@@ -139,11 +142,13 @@ public class SiteNavigationLanguageConfigurationActionTest {
 		).thenReturn(
 			RandomTestUtil.randomString()
 		);
+
 		Mockito.when(
 			group.getGroupId()
 		).thenReturn(
 			groupId
 		);
+
 		Mockito.when(
 			group.getGroupKey()
 		).thenReturn(
@@ -201,6 +206,7 @@ public class SiteNavigationLanguageConfigurationActionTest {
 			).thenReturn(
 				null
 			);
+
 			Mockito.when(
 				_groupLocalService.getGroup(Mockito.anyLong())
 			).thenReturn(
@@ -213,6 +219,7 @@ public class SiteNavigationLanguageConfigurationActionTest {
 			).thenReturn(
 				group
 			);
+
 			Mockito.when(
 				_groupLocalService.getGroup(group.getGroupId())
 			).thenReturn(
