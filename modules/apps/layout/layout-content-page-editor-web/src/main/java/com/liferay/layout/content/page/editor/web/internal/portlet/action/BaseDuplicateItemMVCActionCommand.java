@@ -171,7 +171,7 @@ public abstract class BaseDuplicateItemMVCActionCommand
 		if (exception instanceof NoSuchEntryLinkException) {
 			errorMessage = language.format(
 				themeDisplay.getRequest(),
-				"the-section-could-not-be-x-because-it-has-been-deleted",
+				"the-section-could-not-be-x-because-it-no-longer-exists",
 				getActionLabel());
 		}
 		else if (exception instanceof NoninstanceablePortletException) {
