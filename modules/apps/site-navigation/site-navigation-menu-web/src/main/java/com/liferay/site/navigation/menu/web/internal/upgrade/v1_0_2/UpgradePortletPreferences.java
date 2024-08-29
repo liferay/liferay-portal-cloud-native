@@ -18,10 +18,9 @@ import javax.portlet.PortletPreferences;
 /**
  * @author Javier Moral
  */
-public class PortletPreferencesUpgradeProcess
-	extends BaseUpgradePortletPreferences {
+public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 
-	public PortletPreferencesUpgradeProcess(
+	public UpgradePortletPreferences(
 		SiteNavigationMenuItemLocalService siteNavigationMenuItemLocalService,
 		SiteNavigationMenuLocalService siteNavigationMenuLocalService) {
 
