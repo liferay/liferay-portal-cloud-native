@@ -34,7 +34,7 @@ import org.junit.runner.RunWith;
  * @author Javier Moral
  */
 @RunWith(Arquillian.class)
-public class PortletPreferencesUpgradeProcessTest
+public class UpgradePortletPreferencesTest
 	extends BaseUpgradePortletPreferencesTestCase {
 
 	@Test
