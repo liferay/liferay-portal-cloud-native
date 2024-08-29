@@ -44,14 +44,15 @@ public class FrontendIconsSpritemapTopHeadDynamicInclude
 		sb.append(" data-senna-track=\"temporary\">");
 		sb.append("var Liferay = window.Liferay || {};");
 		sb.append("Liferay.Icons = Liferay.Icons || {};");
+		sb.append("Liferay.Icons.controlPanelSpritemap = '");
 
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		sb.append("Liferay.Icons.controlPanelSpritemap = '");
 		sb.append(themeDisplay.getPathControlPanelSpritemap());
-		sb.append("';Liferay.Icons.spritemap = '");
+
+		sb.append("'; Liferay.Icons.spritemap = '");
 		sb.append(themeDisplay.getPathThemeSpritemap());
 		sb.append("';</script>\n");
 
