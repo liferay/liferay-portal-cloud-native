@@ -49,7 +49,6 @@ public class AnalyticsCloudClient {
 
 			url = HttpComponentsUtil.addParameter(url, "assetId", assetId);
 			url = HttpComponentsUtil.addParameter(url, "channelId", channelId);
-
 			url = HttpComponentsUtil.addParameter(
 				url, "identityType", identityType);
 
