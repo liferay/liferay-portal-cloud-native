@@ -69,7 +69,7 @@ public class DBSchemaImporterProcess {
 	}
 
 	public void run() throws Exception {
-		_runSQLTemplateConcurrently(
+		_runSQLTemplate(
 			_targetDataSource, _readFile(new File(_path, "tables.sql")));
 
 		_loadColumnNamesMap(
@@ -83,7 +83,7 @@ public class DBSchemaImporterProcess {
 
 		AutoBatchPreparedStatementUtil.stop();
 
-		_runSQLTemplateConcurrently(
+		_runSQLTemplate(
 			_targetDataSource, _readFile(new File(_path, "indexes.sql")));
 
 		_executorService.shutdownNow();
@@ -533,8 +533,7 @@ public class DBSchemaImporterProcess {
 			Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
 	}
 
-	private void _runSQLTemplateConcurrently(
-			DataSource dataSource, String template)
+	private void _runSQLTemplate(DataSource dataSource, String template)
 		throws Exception {
 
 		_preprocessSQLTemplate(template);
