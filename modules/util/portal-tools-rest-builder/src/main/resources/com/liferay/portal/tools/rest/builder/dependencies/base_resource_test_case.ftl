@@ -444,7 +444,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 								post${schemaName}.getId()
 							</#if>
 						, post${schemaName}.getExternalReferenceCode(), RoleConstants.GUEST);
-
 					<#else>
 						Page<Permission> page = ${schemaVarName}Resource.${javaMethodSignature.methodName}(
 							<#if stringUtil.equals("assetLibraryId", firstParameterName)>
@@ -457,7 +456,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 								post${schemaName}.getId()
 							</#if>
 						, RoleConstants.GUEST);
-
 					</#if>
 
 					Assert.assertNotNull(page);
