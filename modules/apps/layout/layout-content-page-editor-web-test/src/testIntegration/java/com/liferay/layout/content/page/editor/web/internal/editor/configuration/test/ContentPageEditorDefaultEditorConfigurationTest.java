@@ -75,30 +75,22 @@ public class ContentPageEditorDefaultEditorConfigurationTest {
 
 		Assert.assertEquals(
 			_ALLOWED_CONTENT, jsonObject.getString("allowedContent"));
-
 		Assert.assertFalse(jsonObject.getBoolean("autoParagraph"));
-
 		_assertItemSelectorURL(
 			"selectItem", jsonObject.getString("documentBrowseLinkUrl"));
-
 		Assert.assertEquals(
 			_EXTRA_PLUGINS, jsonObject.getString("extraPlugins"));
-
 		_assertItemSelectorURL(
 			"selectItem",
 			jsonObject.getString("filebrowserImageBrowseLinkUrl"));
 		_assertItemSelectorURL(
 			"selectItem", jsonObject.getString("filebrowserImageBrowseUrl"));
-
 		Assert.assertEquals(
 			_REMOVE_PLUGINS, jsonObject.getString("removePlugins"));
-
 		Assert.assertEquals("moono-lisa", jsonObject.getString("skin"));
-
 		Assert.assertEquals(
 			_themeDisplay.getPathThemeSpritemap(),
 			jsonObject.getString("spritemap"));
-
 		_assertToolbarsJSONObject(jsonObject.getJSONObject("toolbars"));
 	}
 
@@ -127,22 +119,17 @@ public class ContentPageEditorDefaultEditorConfigurationTest {
 		Assert.assertEquals(
 			StringPool.BLANK, jsonObject.getString("allowedContent"));
 		Assert.assertEquals("br", jsonObject.getString("disallowedContent"));
-
 		_assertItemSelectorURL(
 			"selectItem", jsonObject.getString("documentBrowseLinkUrl"));
-
 		Assert.assertEquals(2, jsonObject.getInt("enterMode"));
 		Assert.assertEquals(extraPlugins, jsonObject.getString("extraPlugins"));
-
 		_assertItemSelectorURL(
 			"selectImage",
 			jsonObject.getString("filebrowserImageBrowseLinkUrl"));
 		_assertItemSelectorURL(
 			"selectImage", jsonObject.getString("filebrowserImageBrowseUrl"));
-
 		Assert.assertEquals(
 			_REMOVE_PLUGINS, jsonObject.getString("removePlugins"));
-
 		Assert.assertEquals("moono-lisa", jsonObject.getString("skin"));
 
 		JSONObject toolbarsJSONObject = jsonObject.getJSONObject("toolbars");
