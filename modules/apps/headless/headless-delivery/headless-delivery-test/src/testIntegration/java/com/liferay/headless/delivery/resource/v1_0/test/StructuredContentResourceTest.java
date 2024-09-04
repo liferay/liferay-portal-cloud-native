@@ -1838,15 +1838,16 @@ public class StructuredContentResourceTest
 		Fields fields = _ddmFormValuesToFieldsConverter.convert(
 			ddmStructure, ddmFormValues);
 
-		JournalArticle article = JournalTestUtil.addArticleWithXMLContent(
-			testGroup.getGroupId(),
-			_journalConverter.getContent(
-				ddmStructure, fields, testGroup.getGroupId()),
-			ddmStructure.getStructureKey(), null);
+		JournalArticle journalArticle =
+			JournalTestUtil.addArticleWithXMLContent(
+				testGroup.getGroupId(),
+				_journalConverter.getContent(
+					ddmStructure, fields, testGroup.getGroupId()),
+				ddmStructure.getStructureKey(), null);
 
 		StructuredContent getStructuredContent =
 			structuredContentResource.getStructuredContent(
-				article.getResourcePrimKey());
+				journalArticle.getResourcePrimKey());
 
 		ContentField[] contentFields = getStructuredContent.getContentFields();
 
