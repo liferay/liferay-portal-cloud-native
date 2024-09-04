@@ -729,6 +729,14 @@ public class UsersAdminPortletTest {
 		MockLiferayPortletActionRequest mockLiferayPortletActionRequest =
 			new MockLiferayPortletActionRequest();
 
+		mockLiferayPortletActionRequest.addParameter(
+			ActionRequest.ACTION_NAME, actionName);
+
+		for (Map.Entry<String, String> entry : params.entrySet()) {
+			mockLiferayPortletActionRequest.addParameter(
+				entry.getKey(), entry.getValue());
+		}
+
 		mockLiferayPortletActionRequest.setAttribute(
 			PortletServlet.PORTLET_SERVLET_REQUEST,
 			mockLiferayPortletActionRequest.getHttpServletRequest());
@@ -737,14 +745,6 @@ public class UsersAdminPortletTest {
 			WebKeys.PORTLET_ID, UsersAdminPortletKeys.USERS_ADMIN);
 		mockLiferayPortletActionRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, _getThemeDisplay());
-
-		mockLiferayPortletActionRequest.addParameter(
-			ActionRequest.ACTION_NAME, actionName);
-
-		for (Map.Entry<String, String> entry : params.entrySet()) {
-			mockLiferayPortletActionRequest.addParameter(
-				entry.getKey(), entry.getValue());
-		}
 
 		LiferayActionRequest liferayActionRequest = ActionRequestFactory.create(
 			mockLiferayPortletActionRequest.getHttpServletRequest(),
