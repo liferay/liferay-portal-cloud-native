@@ -500,16 +500,16 @@ public class ProductResourceTest extends BaseProductResourceTestCase {
 	}
 
 	private void _testPostProductVirtual() throws Exception {
-		User omniAdminUser = UserTestUtil.addOmniadminUser();
+		User omniadminUser = UserTestUtil.addOmniadminUser();
 
 		String password = RandomTestUtil.randomString();
 
 		_userLocalService.updatePassword(
-			omniAdminUser.getUserId(), password, password, false, true);
+			omniadminUser.getUserId(), password, password, false, true);
 
 		ProductResource productResource = ProductResource.builder(
 		).authentication(
-			omniAdminUser.getEmailAddress(), password
+			omniadminUser.getEmailAddress(), password
 		).locale(
 			LocaleUtil.getDefault()
 		).parameters(
