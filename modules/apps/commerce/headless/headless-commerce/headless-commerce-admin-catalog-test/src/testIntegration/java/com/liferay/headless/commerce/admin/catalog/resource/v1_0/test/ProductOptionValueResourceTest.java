@@ -62,9 +62,6 @@ public class ProductOptionValueResourceTest
 			_commerceCatalog.getGroupId(), SimpleCPTypeConstants.NAME, false,
 			false);
 
-		_cpInstance = CPTestUtil.addCPInstanceWithRandomSku(
-			testGroup.getGroupId(), BigDecimal.TEN);
-
 		_cpOption = CPTestUtil.addCPOption(testGroup.getGroupId(), false);
 
 		_cpDefinitionOptionRel =
@@ -78,6 +75,9 @@ public class ProductOptionValueResourceTest
 				ServiceContextTestUtil.getServiceContext(
 					testCompany.getCompanyId(), testGroup.getGroupId(),
 					_user.getUserId()));
+
+		_cpInstance = CPTestUtil.addCPInstanceWithRandomSku(
+			testGroup.getGroupId(), BigDecimal.TEN);
 	}
 
 	@Ignore
