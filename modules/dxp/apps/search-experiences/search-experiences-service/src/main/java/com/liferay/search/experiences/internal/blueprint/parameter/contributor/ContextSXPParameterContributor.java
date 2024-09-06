@@ -108,7 +108,6 @@ public class ContextSXPParameterContributor implements SXPParameterContributor {
 					new BooleanSXPParameter(
 						"context.is_staging_group", true,
 						group.isStagingGroup()));
-
 				sxpParameters.add(
 					new StringSXPParameter(
 						"context.scope_group_external_reference_code", true,

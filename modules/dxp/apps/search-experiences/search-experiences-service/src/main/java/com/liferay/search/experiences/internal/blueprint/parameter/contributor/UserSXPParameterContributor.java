@@ -491,10 +491,6 @@ public class UserSXPParameterContributor implements SXPParameterContributor {
 				"user.first_name", true, user.getFirstName()));
 		sxpParameters.add(
 			new StringSXPParameter("user.full_name", true, user.getFullName()));
-		sxpParameters.add(
-			new LongArraySXPParameter(
-				"user.group_ids", true,
-				ArrayUtil.toLongArray(user.getGroupIds())));
 
 		List<Group> groups = _groupLocalService.getGroups(user.getGroupIds());
 
@@ -507,6 +503,10 @@ public class UserSXPParameterContributor implements SXPParameterContributor {
 						String.class)));
 		}
 
+		sxpParameters.add(
+			new LongArraySXPParameter(
+				"user.group_ids", true,
+				ArrayUtil.toLongArray(user.getGroupIds())));
 		sxpParameters.add(
 			new LongSXPParameter("user.id", true, user.getUserId()));
 		sxpParameters.add(
@@ -539,17 +539,16 @@ public class UserSXPParameterContributor implements SXPParameterContributor {
 
 		if (!userGroups.isEmpty()) {
 			sxpParameters.add(
-				new LongArraySXPParameter(
-					"user.user_group_ids", true,
-					TransformUtil.transformToArray(
-						userGroups, UserGroup::getUserGroupId, Long.class)));
-
-			sxpParameters.add(
 				new StringArraySXPParameter(
 					"user.user_group_external_reference_codes", true,
 					TransformUtil.transformToArray(
 						userGroups, UserGroup::getExternalReferenceCode,
 						String.class)));
+			sxpParameters.add(
+				new LongArraySXPParameter(
+					"user.user_group_ids", true,
+					TransformUtil.transformToArray(
+						userGroups, UserGroup::getUserGroupId, Long.class)));
 		}
 
 		_addAssetCategories(sxpParameters, user);
