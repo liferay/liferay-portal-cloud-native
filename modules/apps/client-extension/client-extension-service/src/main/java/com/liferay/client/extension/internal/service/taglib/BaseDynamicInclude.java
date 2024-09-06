@@ -218,7 +218,6 @@ public abstract class BaseDynamicInclude implements DynamicInclude {
 
 			printWriter.print(StringPool.SPACE);
 			printWriter.print(loadType);
-			printWriter.print(StringPool.SPACE);
 		}
 
 		printWriter.print(StringPool.SPACE);
