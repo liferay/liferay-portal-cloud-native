@@ -115,7 +115,7 @@ public class SXPBlueprintAndSXPElementUpgradeProcessTest {
 
 		PortletPreferenceValue lowLevelSearchOptionsPortletPreferenceValue =
 			_addPortletPreferenceValue(
-				null, "attributes", _LOW_LEVEL_SEARCH_OPTIONS_PORTLET_ID,
+				null, "attributes", _PORTLET_ID_LOW_LEVEL_SEARCH_OPTIONS,
 				JSONUtil.put(
 					JSONUtil.put(
 						"key", "search.experiences.blueprint.id"
@@ -144,16 +144,16 @@ public class SXPBlueprintAndSXPElementUpgradeProcessTest {
 		PortletPreferenceValue searchBarSuggestionsPortletPreferenceValue =
 			_addPortletPreferenceValue(
 				searchBarSuggestionsLargeValueJSONObject.toString(),
-				"suggestionsContributorConfigurations", _SEARCH_BAR_PORTLET_ID,
+				"suggestionsContributorConfigurations", _PORTLET_ID_SEARCH_BAR,
 				null);
 
 		PortletPreferenceValue sxpBlueprintOptionsPortletPreferenceValue =
 			_addPortletPreferenceValue(
-				null, "sxpBlueprintId", _SXP_BLUEPRINT_OPTIONS_PORTLET_ID,
+				null, "sxpBlueprintId", _PORTLET_ID_SXP_BLUEPRINT_OPTIONS,
 				String.valueOf(sxpBlueprintId));
 
 		_addPortletPreferenceValue(
-			null, "sxpBlueprintId", _SXP_BLUEPRINT_OPTIONS_PORTLET_ID,
+			null, "sxpBlueprintId", _PORTLET_ID_SXP_BLUEPRINT_OPTIONS,
 			String.valueOf(sxpBlueprintId + 1));
 
 		_runUpgrade("v3_0_0.SXPBlueprintUpgradeProcess");
@@ -446,14 +446,14 @@ public class SXPBlueprintAndSXPElementUpgradeProcessTest {
 		_multiVMPool.clear();
 	}
 
-	private static final String _LOW_LEVEL_SEARCH_OPTIONS_PORTLET_ID =
+	private static final String _PORTLET_ID_LOW_LEVEL_SEARCH_OPTIONS =
 		"com_liferay_portal_search_web_low_level_search_options_portlet_" +
 			"LowLevelSearchOptionsPortlet";
 
-	private static final String _SEARCH_BAR_PORTLET_ID =
+	private static final String _PORTLET_ID_SEARCH_BAR =
 		"com_liferay_portal_search_web_search_bar_portlet_SearchBarPortlet";
 
-	private static final String _SXP_BLUEPRINT_OPTIONS_PORTLET_ID =
+	private static final String _PORTLET_ID_SXP_BLUEPRINT_OPTIONS =
 		"com_liferay_search_experiences_web_internal_blueprint_options_" +
 			"portlet_SXPBlueprintOptionsPortlet";
 
