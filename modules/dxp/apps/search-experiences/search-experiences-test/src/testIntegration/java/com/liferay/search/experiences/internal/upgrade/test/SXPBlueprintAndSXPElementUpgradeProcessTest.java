@@ -173,9 +173,8 @@ public class SXPBlueprintAndSXPElementUpgradeProcessTest {
 			lowLevelSearchOptionsPortletPreferenceValue.
 				getPortletPreferenceValueId());
 
-		JSONObject attributesJSONObject =
-			suggestionsJSONObject.getJSONObject(
-				"attributes");
+		JSONObject attributesJSONObject = suggestionsJSONObject.getJSONObject(
+			"attributes");
 
 		attributesJSONObject.put(
 			"sxpBlueprintExternalReferenceCode",
@@ -187,8 +186,7 @@ public class SXPBlueprintAndSXPElementUpgradeProcessTest {
 		_assertPortletPreferenceValue(
 			suggestionsJSONObject.toString(),
 			"suggestionsContributorConfigurations", StringPool.BLANK,
-			searchBarPortletPreferenceValue.
-				getPortletPreferenceValueId());
+			searchBarPortletPreferenceValue.getPortletPreferenceValueId());
 
 		_assertPortletPreferenceValue(
 			StringPool.BLANK, "sxpBlueprintExternalReferenceCode",
