@@ -55,7 +55,6 @@ public class MyAccountViewMVCRenderCommand implements MVCRenderCommand {
 
 			dynamicServletRequest.setParameter(
 				"p_u_i_d", String.valueOf(user.getUserId()));
-
 			dynamicServletRequest.setParameter(
 				"ctCollectionId",
 				String.valueOf(CTConstants.CT_COLLECTION_ID_PRODUCTION));

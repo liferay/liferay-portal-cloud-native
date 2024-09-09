@@ -160,9 +160,9 @@ String tempImageFileName = ParamUtil.getString(request, "tempImageFileName");
 			<portlet:actionURL name="/image_uploader/upload_image" var="addTempImageURL">
 				<portlet:param name="mvcRenderCommandName" value="/image_uploader/upload_image" />
 				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD_TEMP %>" />
+				<portlet:param name="ctCollectionId" value="<%= String.valueOf(ctCollectionId) %>" />
 				<portlet:param name="aspectRatio" value="<%= String.valueOf(aspectRatio) %>" />
 				<portlet:param name="preserveRatio" value="<%= String.valueOf(preserveRatio) %>" />
-				<portlet:param name="ctCollectionId" value="<%= String.valueOf(ctCollectionId) %>" />
 			</portlet:actionURL>
 
 			var imageUploadedInput = A.one('#<portlet:namespace />imageUploaded');
