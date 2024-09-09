@@ -67,8 +67,25 @@ public class DBSchemaImporter {
 
 			dbSchemaImporterProcess.run();
 
-			_generateReport(
-				dbSchemaImporterProcess, commandLine.getOptionValue("path"));
+			try (PrintWriter printWriter = new PrintWriter(
+					new File(
+						commandLine.getOptionValue("path"),
+						"db_schema_import_report.info"))) {
+
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+					DateUtil.ISO_8601_PATTERN);
+
+				printWriter.println(
+					StringUtil.merge(
+						new Object[] {
+							"Export date: " +
+								simpleDateFormat.format(new Date()),
+							dbSchemaImporterProcess.getReleaseInfo(),
+							StringPool.NEW_LINE, StringPool.NEW_LINE,
+							dbSchemaImporterProcess.getDataSourceInfos()
+						},
+						StringPool.NEW_LINE));
+			}
 
 			System.exit(_LIFERAY_COMMON_EXIT_CODE_OK);
 		}
@@ -76,28 +93,6 @@ public class DBSchemaImporter {
 			exception.printStackTrace(System.err);
 
 			System.exit(_LIFERAY_COMMON_EXIT_CODE_BAD);
-		}
-	}
-
-	private static void _generateReport(
-			DBSchemaImporterProcess dbSchemaImporterProcess, String dirName)
-		throws Exception {
-
-		try (PrintWriter printWriter = new PrintWriter(
-				new File(dirName, "db_schema_import_report.info"))) {
-
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				DateUtil.ISO_8601_PATTERN);
-
-			printWriter.println(
-				StringUtil.merge(
-					new Object[] {
-						"Export date: " + simpleDateFormat.format(new Date()),
-						dbSchemaImporterProcess.getReleaseInfo(),
-						StringPool.NEW_LINE, StringPool.NEW_LINE,
-						dbSchemaImporterProcess.getDataSourceInfos()
-					},
-					StringPool.NEW_LINE));
 		}
 	}
 
