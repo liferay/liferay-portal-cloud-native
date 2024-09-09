@@ -115,6 +115,12 @@ public class DBSchemaImporterProcess {
 		_executorService.awaitTermination(10, TimeUnit.SECONDS);
 	}
 
+	private String _asymmetricDifference(Set<String> set1, Set<String> set2) {
+		return StringUtil.merge(
+			SetUtil.asymmetricDifference(set1, set2),
+			StringPool.COMMA_AND_SPACE);
+	}
+
 	private void _copyTables() throws Exception {
 		AutoBatchPreparedStatementUtil.start();
 
@@ -151,7 +157,6 @@ public class DBSchemaImporterProcess {
 								DataSourceFactoryUtil.initDataSource(
 									_sourceJDBCURL, _sourcePassword,
 									_sourceUser, partitionName);
-
 							DataSource targetDataSource =
 								DataSourceFactoryUtil.initDataSource(
 									_targetJDBCURL, _targetPassword,
@@ -225,28 +230,14 @@ public class DBSchemaImporterProcess {
 			DataSource targetDataSource)
 		throws Exception {
 
-		Set<String> sourceTableNames = _getElement(sourceDataSource, "TABLE");
-		Set<String> sourceViewNames = _getElement(sourceDataSource, "VIEW");
-
-		Set<String> targetTableNames = _getElement(targetDataSource, "TABLE");
-		Set<String> targetViewNames = _getElement(targetDataSource, "VIEW");
-
 		if (Validator.isNull(partitionName)) {
 			partitionName = "Default";
 		}
 
-		String asymmetricDifferenceTargetSourceTables = StringUtil.merge(
-			SetUtil.asymmetricDifference(targetTableNames, sourceTableNames),
-			StringPool.COMMA_AND_SPACE);
-		String asymmetricDifferenceTargetSourceViews = StringUtil.merge(
-			SetUtil.asymmetricDifference(targetViewNames, sourceViewNames),
-			StringPool.COMMA_AND_SPACE);
-		String asymmetricDifferenceSourceTargetTables = StringUtil.merge(
-			SetUtil.asymmetricDifference(sourceTableNames, targetTableNames),
-			StringPool.COMMA_AND_SPACE);
-		String asymmetricDifferenceSourceTargetViews = StringUtil.merge(
-			SetUtil.asymmetricDifference(sourceViewNames, targetViewNames),
-			StringPool.COMMA_AND_SPACE);
+		Set<String> sourceTableNames = _getElement(sourceDataSource, "TABLE");
+		Set<String> sourceViewNames = _getElement(sourceDataSource, "VIEW");
+		Set<String> targetTableNames = _getElement(targetDataSource, "TABLE");
+		Set<String> targetViewNames = _getElement(targetDataSource, "VIEW");
 
 		return StringUtil.merge(
 			new Object[] {
@@ -259,13 +250,13 @@ public class DBSchemaImporterProcess {
 				partitionName + " partition target views: " +
 					targetViewNames.size(),
 				partitionName + " partition missing source tables: " +
-					asymmetricDifferenceTargetSourceTables,
+					_asymmetricDifference(targetTableNames, sourceTableNames),
 				partitionName + " partition missing source views: " +
-					asymmetricDifferenceTargetSourceViews,
+					_asymmetricDifference(targetViewNames, sourceViewNames),
 				partitionName + " partition missing target tables: " +
-					asymmetricDifferenceSourceTargetTables,
+					_asymmetricDifference(sourceTableNames, targetTableNames),
 				partitionName + " partition missing target views: " +
-					asymmetricDifferenceSourceTargetViews,
+					_asymmetricDifference(sourceViewNames, targetViewNames),
 				StringPool.NEW_LINE
 			},
 			StringPool.NEW_LINE);
