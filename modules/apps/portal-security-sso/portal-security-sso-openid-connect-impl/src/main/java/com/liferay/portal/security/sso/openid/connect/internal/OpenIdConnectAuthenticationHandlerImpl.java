@@ -262,20 +262,6 @@ public class OpenIdConnectAuthenticationHandlerImpl
 			httpServletRequest, httpServletResponse);
 	}
 
-	private Map<String, Object> _getUserInfoClaims(JWT jwt)
-		throws java.text.ParseException {
-
-		JWTClaimsSet jwtClaimsSet = jwt.getJWTClaimsSet();
-
-		Map<String, Object> claims = jwtClaimsSet.toJSONObject();
-
-		claims.put("email", jwtClaimsSet.getStringClaim("email"));
-		claims.put("family_name", jwtClaimsSet.getStringClaim("family_name"));
-		claims.put("given_name", jwtClaimsSet.getStringClaim("given_name"));
-
-		return claims;
-	}
-
 	private URI _getAuthenticationRequestURI(
 			URI authenticationEndpointURI,
 			String authenticationRequestParametersJSON, String clientId,
@@ -396,6 +382,20 @@ public class OpenIdConnectAuthenticationHandlerImpl
 					uriSyntaxException.getMessage(),
 				uriSyntaxException);
 		}
+	}
+
+	private Map<String, Object> _getUserInfoClaims(JWT jwt)
+		throws java.text.ParseException {
+
+		JWTClaimsSet jwtClaimsSet = jwt.getJWTClaimsSet();
+
+		Map<String, Object> claims = jwtClaimsSet.toJSONObject();
+
+		claims.put("email", jwtClaimsSet.getStringClaim("email"));
+		claims.put("family_name", jwtClaimsSet.getStringClaim("family_name"));
+		claims.put("given_name", jwtClaimsSet.getStringClaim("given_name"));
+
+		return claims;
 	}
 
 	private String _requestUserInfoJSON(
