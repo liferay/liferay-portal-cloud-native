@@ -184,13 +184,13 @@ public class JSONPackageJSONCheck extends BaseFileCheck {
 	private JSONArray _sortTestMatch(String testMatch) throws JSONException {
 		JSONArray testMatchJSONArray = new JSONArrayImpl(testMatch);
 
-		List<Object> objectList = JSONUtil.toObjectList(testMatchJSONArray);
+		List<Object> objects = JSONUtil.toObjectList(testMatchJSONArray);
 
-		Collections.sort(objectList, new TestMatchComparator());
+		Collections.sort(objects, new TestMatchComparator());
 
 		testMatchJSONArray = new JSONArrayImpl();
 
-		for (Object object : objectList) {
+		for (Object object : objects) {
 			testMatchJSONArray.put(object);
 		}
 
