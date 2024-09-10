@@ -75,15 +75,6 @@ public class ServiceTrackerListImpl<S, T> implements ServiceTrackerList<T> {
 	}
 
 	@Override
-	public boolean isEmpty() {
-		if (size() == 0) {
-			return true;
-		}
-
-		return false;
-	}
-
-	@Override
 	public Iterator<T> iterator() {
 		_serviceTrackerManager.open();
 

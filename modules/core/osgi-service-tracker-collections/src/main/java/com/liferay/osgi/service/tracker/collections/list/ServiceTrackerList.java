@@ -21,7 +21,13 @@ public interface ServiceTrackerList<T> extends Closeable, Iterable<T> {
 	@Override
 	public void close();
 
-	public boolean isEmpty();
+	public default boolean isEmpty() {
+		if (size() == 0) {
+			return true;
+		}
+
+		return false;
+	}
 
 	@Override
 	public Iterator<T> iterator();
