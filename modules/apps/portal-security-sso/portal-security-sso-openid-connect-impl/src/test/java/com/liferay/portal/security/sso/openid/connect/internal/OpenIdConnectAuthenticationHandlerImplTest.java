@@ -14,7 +14,6 @@ import com.nimbusds.jwt.JWTClaimsSet;
 import java.util.Map;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -30,12 +29,6 @@ public class OpenIdConnectAuthenticationHandlerImplTest {
 	@Rule
 	public static final LiferayUnitTestRule liferayUnitTestRule =
 		LiferayUnitTestRule.INSTANCE;
-
-	@Before
-	public void setUp() {
-		_openIdConnectAuthenticationHandlerImpl =
-			new OpenIdConnectAuthenticationHandlerImpl();
-	}
 
 	@Test
 	public void testWhenEmailIsInJWTClaimSet() throws Exception {
@@ -79,6 +72,7 @@ public class OpenIdConnectAuthenticationHandlerImplTest {
 	}
 
 	private OpenIdConnectAuthenticationHandlerImpl
-		_openIdConnectAuthenticationHandlerImpl;
+		_openIdConnectAuthenticationHandlerImpl =
+			new OpenIdConnectAuthenticationHandlerImpl();
 
 }
