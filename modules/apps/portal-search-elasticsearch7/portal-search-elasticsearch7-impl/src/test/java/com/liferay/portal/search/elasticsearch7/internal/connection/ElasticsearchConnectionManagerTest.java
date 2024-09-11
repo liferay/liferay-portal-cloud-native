@@ -278,31 +278,39 @@ public class ElasticsearchConnectionManagerTest {
 		_enableRemoteMode();
 
 		String[] networkHostAddresses = RandomTestUtil.randomStrings(10);
-		String proxyHost = RandomTestUtil.randomString();
-		String proxyPassword = RandomTestUtil.randomString();
-		int proxyPort = RandomTestUtil.randomInt();
-		String proxyUserName = RandomTestUtil.randomString();
 
 		Mockito.when(
 			_elasticsearchConfigurationWrapper.networkHostAddresses()
 		).thenReturn(
 			networkHostAddresses
 		);
+
+		String proxyHost = RandomTestUtil.randomString();
+
 		Mockito.when(
 			_elasticsearchConfigurationWrapper.proxyHost()
 		).thenReturn(
 			proxyHost
 		);
+
+		String proxyPassword = RandomTestUtil.randomString();
+
 		Mockito.when(
 			_elasticsearchConfigurationWrapper.proxyPassword()
 		).thenReturn(
 			proxyPassword
 		);
+
+		int proxyPort = RandomTestUtil.randomInt();
+
 		Mockito.when(
 			_elasticsearchConfigurationWrapper.proxyPort()
 		).thenReturn(
 			proxyPort
 		);
+
+		String proxyUserName = RandomTestUtil.randomString();
+
 		Mockito.when(
 			_elasticsearchConfigurationWrapper.proxyUserName()
 		).thenReturn(
