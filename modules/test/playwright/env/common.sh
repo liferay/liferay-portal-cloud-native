@@ -79,7 +79,9 @@ function deploy_client_extensions {
 
 	if [[ -n $(cat ${client_extensions_list_file}) ]]
 	then
-		echo "Deploying Client Extensions in ${client_extensions_list_file}"
+		echo "Deploying client extensions in ${client_extensions_list_file}."
+
+		local client_extension_name
 
 		for client_extension_name in $(cat ${client_extensions_list_file})
 		do
@@ -87,11 +89,11 @@ function deploy_client_extensions {
 
 			if [[ $(echo ${client_extension_dir} | wc -w | grep -o -E '[0-9]+') > 1 ]]
 			then
-				echo "Duplicate Client Extensions found for ${client_extension_name}:"
+				echo "Duplicate client extensions found for ${client_extension_name}:"
 
 				printf "%s\n" ${client_extension_dir}
 
-				echo "Please replace \"${client_extension_name}\" in ${client_extensions_list_file} with one of the following:"
+				echo "Replace \"${client_extension_name}\" in ${client_extensions_list_file} with one of the following:"
 
 				for dir in ${client_extension_dir}
 				do
@@ -103,7 +105,7 @@ function deploy_client_extensions {
 
 			if [[ -d ${client_extension_dir} ]]
 			then
-				echo "Deploying ${client_extension_dir}"
+				echo "Deploying ${client_extension_dir}."
 
 				cd ${client_extension_dir}
 
@@ -113,7 +115,7 @@ function deploy_client_extensions {
 
 				wait_for_portal_log_inactivity
 			else
-				echo "Unable to find Client Extension directory at ${client_extension_dir}"
+				echo "Unable to find client extension in ${client_extension_dir}."
 			fi
 		done
 	fi
@@ -146,7 +148,9 @@ function deploy_osgi_modules {
 
 	if [[ -n $(cat ${osgi_modules_list_file}) ]]
 	then
-		echo "Deploying OSGi modules in ${osgi_modules_list_file}"
+		echo "Deploying OSGi modules in ${osgi_modules_list_file}."
+
+		local osgi_module_name
 
 		for osgi_module_name in $(cat ${osgi_modules_list_file})
 		do
@@ -158,7 +162,7 @@ function deploy_osgi_modules {
 
 				printf "%s\n" ${osgi_module_dir}
 
-				echo "Please replace \"${osgi_module_name}\" in ${osgi_modules_list_file} with one of the following:"
+				echo "Replace \"${osgi_module_name}\" in ${osgi_modules_list_file} with one of the following:"
 
 				for dir in ${osgi_module_dir}
 				do
@@ -170,7 +174,7 @@ function deploy_osgi_modules {
 
 			if [[ -f ${osgi_module_dir}/build.gradle ]]
 			then
-				echo "Deploying ${osgi_module_dir}"
+				echo "Deploying ${osgi_module_dir}."
 
 				cd ${osgi_module_dir}
 
@@ -180,7 +184,7 @@ function deploy_osgi_modules {
 
 				wait_for_portal_log_inactivity
 			else
-				echo "Unable to find OSGi module directory at ${osgi_module_dir}"
+				echo "Unable to find OSGi module in ${osgi_module_dir}."
 			fi
 		done
 	fi
