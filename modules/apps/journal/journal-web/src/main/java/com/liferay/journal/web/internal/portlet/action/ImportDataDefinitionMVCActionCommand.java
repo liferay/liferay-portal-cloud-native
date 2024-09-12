@@ -62,6 +62,8 @@ public class ImportDataDefinitionMVCActionCommand extends BaseMVCActionCommand {
 					ParamUtil.getString(actionRequest, "name")
 				).build());
 
+			DataDefinitionUtil.validateDefinitionFields(dataDefinition);
+
 			DataDefinitionResource.Builder dataDefinitionResourcedBuilder =
 				_dataDefinitionResourceFactory.create();
 
@@ -69,8 +71,6 @@ public class ImportDataDefinitionMVCActionCommand extends BaseMVCActionCommand {
 				dataDefinitionResourcedBuilder.user(
 					themeDisplay.getUser()
 				).build();
-
-			DataDefinitionUtil.validateDefinitionFields(dataDefinition);
 
 			dataDefinitionResource.postSiteDataDefinitionByContentType(
 				themeDisplay.getScopeGroupId(), "journal", dataDefinition);
