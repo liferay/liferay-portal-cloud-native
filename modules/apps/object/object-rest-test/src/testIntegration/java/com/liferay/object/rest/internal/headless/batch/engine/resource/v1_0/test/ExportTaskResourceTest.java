@@ -49,7 +49,7 @@ public class ExportTaskResourceTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testExportTaskInDifferentCompany() throws Exception {
+	public void testPostExportTask() throws Exception {
 		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
 				"com.liferay.batch.engine.internal." +
 					"BatchEngineExportTaskExecutorImpl",
@@ -65,7 +65,7 @@ public class ExportTaskResourceTest {
 					ObjectDefinitionConstants.SCOPE_COMPANY,
 					TestPropsValues.getUserId());
 
-			_testExportTask("COMPLETED", objectDefinition1);
+			_testPostExportTask("COMPLETED", objectDefinition1);
 
 			JSONObject jsonObject = HTTPTestUtil.invokeToJSONObject(
 				JSONUtil.put(
@@ -90,7 +90,7 @@ public class ExportTaskResourceTest {
 							_OBJECT_FIELD_NAME_TEXT)),
 					ObjectDefinitionConstants.SCOPE_COMPANY, user.getUserId());
 
-			_testExportTask("FAILED", objectDefinition2);
+			_testPostExportTask("FAILED", objectDefinition2);
 
 			HTTPTestUtil.customize(
 			).withBaseURL(
@@ -99,8 +99,8 @@ public class ExportTaskResourceTest {
 				"test@able.com", PropsValues.DEFAULT_ADMIN_PASSWORD
 			).apply(
 				() -> {
-					_testExportTask("COMPLETED", objectDefinition2);
-					_testExportTask("FAILED", objectDefinition1);
+					_testPostExportTask("COMPLETED", objectDefinition2);
+					_testPostExportTask("FAILED", objectDefinition1);
 				}
 			);
 
@@ -113,7 +113,7 @@ public class ExportTaskResourceTest {
 		}
 	}
 
-	private void _testExportTask(
+	private void _testPostExportTask(
 			String expectedExecuteStatus, ObjectDefinition objectDefinition)
 		throws Exception {
 
