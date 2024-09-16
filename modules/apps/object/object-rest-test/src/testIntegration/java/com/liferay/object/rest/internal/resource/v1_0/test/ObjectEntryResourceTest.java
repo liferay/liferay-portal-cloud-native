@@ -7766,7 +7766,7 @@ public class ObjectEntryResourceTest {
 	@Test
 	public void testPostCustomObjectEntryWithStatus() throws Exception {
 
-		// With code subfield inside status
+		// With code inside status
 
 		Assert.assertEquals(
 			200,
@@ -7778,7 +7778,7 @@ public class ObjectEntryResourceTest {
 				).toString(),
 				_objectDefinition1.getRESTContextPath(), Http.Method.POST));
 
-		// Without code subfield inside status
+		// Without code inside status
 
 		Assert.assertEquals(
 			400,
@@ -7790,7 +7790,7 @@ public class ObjectEntryResourceTest {
 				).toString(),
 				_objectDefinition1.getRESTContextPath(), Http.Method.POST));
 
-		// Without status field
+		// Without status
 
 		Assert.assertEquals(
 			200,
