@@ -30,10 +30,9 @@ public class ScanCodeProject {
 
 	public ScanCodeProject(String buildURL, String pipelineName) {
 		_buildURL = buildURL;
+		_pipelineName = pipelineName;
 
 		_labels.add("automated");
-
-		_pipelineName = pipelineName;
 	}
 
 	public void addPipeline(String pipelineName)
