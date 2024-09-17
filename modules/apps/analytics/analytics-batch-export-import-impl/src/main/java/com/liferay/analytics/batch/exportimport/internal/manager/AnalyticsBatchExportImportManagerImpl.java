@@ -323,11 +323,11 @@ public class AnalyticsBatchExportImportManagerImpl
 
 			if (_log.isDebugEnabled()) {
 				if (deleted) {
-					_log.debug("Deleted temp file: " + tempFile.getName());
+					_log.debug("Deleted temp file " + tempFile.getName());
 				}
 				else {
 					_log.debug(
-						"Unable to delete temp file: " + tempFile.getName());
+						"Unable to delete temp file " + tempFile.getName());
 				}
 			}
 
