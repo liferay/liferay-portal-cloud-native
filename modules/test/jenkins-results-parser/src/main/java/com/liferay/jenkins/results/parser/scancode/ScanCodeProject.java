@@ -31,8 +31,6 @@ public class ScanCodeProject {
 	public ScanCodeProject(String buildURL, String pipelineName) {
 		_buildURL = buildURL;
 		_pipelineName = pipelineName;
-
-		_labels.add("automated");
 	}
 
 	public void addPipeline(String pipelineName)
@@ -103,15 +101,12 @@ public class ScanCodeProject {
 	public JSONObject getAnalyzeDockerImageJSONObject(String dockerTag) {
 		JSONObject jsonObject = new JSONObject();
 
-		_labels.add("docker");
-		_labels.add(dockerTag);
-
 		jsonObject.put(
 			"execute_now", true
 		).put(
 			"input_urls", "docker://liferay/" + dockerTag
 		).put(
-			"labels", _labels
+			"labels", _getLabels("docker", dockerTag)
 		).put(
 			"name",
 			JenkinsResultsParserUtil.combine(
@@ -127,8 +122,6 @@ public class ScanCodeProject {
 	public JSONObject getInspectPackagesJSONObject() {
 		JSONObject jsonObject = new JSONObject();
 
-		_labels.add("master");
-
 		jsonObject.put(
 			"execute_now", true
 		).put(
@@ -136,7 +129,7 @@ public class ScanCodeProject {
 			"https://github.com/liferay/liferay-portal/archive/refs/heads" +
 				"/master.tar.gz"
 		).put(
-			"labels", _labels
+			"labels", _getLabels("master")
 		).put(
 			"name", "Master Daily Scan-" + _simpleDateFormat.format(new Date())
 		).put(
@@ -167,14 +160,12 @@ public class ScanCodeProject {
 			JenkinsResultsParserUtil.getBuildParameter(
 				_buildURL, "TEST_PORTAL_RELEASE_VERSION");
 
-		_labels.add(portalReleaseVersion);
-
 		jsonObject.put(
 			"execute_now", true
 		).put(
 			"input_urls", inputURLS
 		).put(
-			"labels", _labels
+			"labels", _getLabels(portalReleaseVersion)
 		).put(
 			"name",
 			JenkinsResultsParserUtil.combine(
@@ -402,6 +393,18 @@ public class ScanCodeProject {
 		setProjectURL(_projectID, _projectName);
 	}
 
+	private List<String> _getLabels(String... labelsArray) {
+		List<String> labels = new ArrayList<>();
+
+		labels.add("automated");
+
+		for (String label : labelsArray) {
+			labels.add(label);
+		}
+
+		return labels;
+	}
+
 	private static final String _API_KEY;
 
 	private static final String _API_URL =
@@ -426,7 +429,6 @@ public class ScanCodeProject {
 	}
 
 	private final String _buildURL;
-	private final List<String> _labels = new ArrayList<>();
 	private final String _pipelineName;
 	private String _projectAPIURL;
 	private String _projectID;
