@@ -41,7 +41,7 @@ public class ScanCodeProject {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("curl ");
-		sb.append(_projectApiURL);
+		sb.append(_projectAPIURL);
 		sb.append("add_pipeline/");
 		sb.append(" --data ");
 
@@ -263,7 +263,7 @@ public class ScanCodeProject {
 
 			JSONObject outputJSONObject = new JSONObject(output);
 
-			_projectApiURL = outputJSONObject.getString("url");
+			_projectAPIURL = outputJSONObject.getString("url");
 			_projectID = outputJSONObject.getString("uuid");
 			_projectName = outputJSONObject.getString("name");
 		}
@@ -348,7 +348,7 @@ public class ScanCodeProject {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("curl ");
-		sb.append(_projectApiURL);
+		sb.append(_projectAPIURL);
 		sb.append(" --header ");
 		sb.append(_CONTENT_TYPE);
 		sb.append(" --header ");
@@ -428,7 +428,7 @@ public class ScanCodeProject {
 	private final String _buildURL;
 	private final List<String> _labels = new ArrayList<>();
 	private final String _pipelineName;
-	private String _projectApiURL;
+	private String _projectAPIURL;
 	private String _projectID;
 	private String _projectName;
 	private String _projectNameFromURL;
