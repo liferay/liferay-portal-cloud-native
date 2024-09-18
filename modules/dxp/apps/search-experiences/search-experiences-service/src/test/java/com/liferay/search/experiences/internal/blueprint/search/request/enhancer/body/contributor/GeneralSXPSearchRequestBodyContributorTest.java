@@ -35,33 +35,20 @@ public class GeneralSXPSearchRequestBodyContributorTest {
 		LiferayUnitTestRule.INSTANCE;
 
 	@Test
-	public void testContributeEmptySearchableAssetTypes() {
+	public void testContribute() {
 		List<String> entryClassNames = new ArrayList<>();
 
 		_testContribute(entryClassNames, entryClassNames, new String[0]);
-	}
-
-	@Test
-	public void testContributeEmptySearchableAssetTypesDontOverrideEntryClassNames() {
-		List<String> entryClassNames = new ArrayList<>();
-
-		entryClassNames.add("com.liferay.journal.model.JournalArticle");
-
-		_testContribute(
-			entryClassNames, new ArrayList<>(), new String[0],
-			searchContext -> searchContext.setEntryClassNames(
-				entryClassNames.toArray(new String[1])));
-	}
-
-	@Test
-	public void testContributeSearchableAssetType() {
-		List<String> entryClassNames = new ArrayList<>();
 
 		entryClassNames.add("com.liferay.journal.model.JournalArticle");
 
 		_testContribute(
 			entryClassNames, entryClassNames,
 			entryClassNames.toArray(new String[1]));
+		_testContribute(
+			entryClassNames, new ArrayList<>(), new String[0],
+			searchContext -> searchContext.setEntryClassNames(
+				entryClassNames.toArray(new String[1])));
 	}
 
 	private Configuration _setUpConfiguration(String[] entryClassNameArray) {
