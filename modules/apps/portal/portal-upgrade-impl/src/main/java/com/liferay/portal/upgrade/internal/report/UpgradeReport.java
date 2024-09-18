@@ -172,7 +172,7 @@ public class UpgradeReport {
 			}
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("The file path could not be parsed", exception);
+					_log.warn(exception);
 				}
 			}
 		}
