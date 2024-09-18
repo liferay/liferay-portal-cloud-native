@@ -152,7 +152,8 @@ public abstract class BaseRestController {
 	}
 
 	protected ExchangeFilterFunction getExchangeFilterFunction() {
-		return (clientRequest, next) -> next.exchange(clientRequest);
+		return (clientRequest, exchangeFunction) -> exchangeFunction.exchange(
+			clientRequest);
 	}
 
 	protected String getLXCDXPURL() {
