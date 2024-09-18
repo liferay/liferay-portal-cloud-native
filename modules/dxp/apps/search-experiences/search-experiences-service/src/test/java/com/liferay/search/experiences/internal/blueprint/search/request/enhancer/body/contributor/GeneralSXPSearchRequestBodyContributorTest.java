@@ -46,7 +46,7 @@ public class GeneralSXPSearchRequestBodyContributorTest {
 
 		_testContribute(
 			entryClassNames, entryClassNames,
-			entryClassNames.toArray(new String[1]));
+			entryClassNames.toArray(new String[0]));
 		_testContribute(
 			entryClassNames, new ArrayList<>(), new String[0],
 			searchContext -> searchContext.setEntryClassNames(
