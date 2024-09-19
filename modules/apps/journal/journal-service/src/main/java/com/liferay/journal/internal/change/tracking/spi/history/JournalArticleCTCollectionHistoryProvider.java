@@ -93,27 +93,29 @@ public class JournalArticleCTCollectionHistoryProvider
 			searchContext.setAttribute(
 				"modelClassNameId", new Long[] {classNameId});
 
-			if (journalArticle != null) {
-				List<Long> modelClassPKs = _ctCollectionLocalService.dslQuery(
-					DSLQueryFactoryUtil.select(
-						CTEntryTable.INSTANCE.modelClassPK
-					).from(
-						CTEntryTable.INSTANCE
-					).where(
-						CTEntryTable.INSTANCE.modelClassPK.in(
-							DSLQueryFactoryUtil.select(
-								JournalArticleTable.INSTANCE.id
-							).from(
-								JournalArticleTable.INSTANCE
-							).where(
-								JournalArticleTable.INSTANCE.resourcePrimKey.eq(
-									journalArticle.getResourcePrimKey())
-							))
-					));
-
-				searchContext.setAttribute(
-					"modelClassPK", ArrayUtil.toLongArray(modelClassPKs));
+			if (journalArticle == null) {
+				return;
 			}
+
+			List<Long> modelClassPKs = _ctCollectionLocalService.dslQuery(
+				DSLQueryFactoryUtil.select(
+					CTEntryTable.INSTANCE.modelClassPK
+				).from(
+					CTEntryTable.INSTANCE
+				).where(
+					CTEntryTable.INSTANCE.modelClassPK.in(
+						DSLQueryFactoryUtil.select(
+							JournalArticleTable.INSTANCE.id
+						).from(
+							JournalArticleTable.INSTANCE
+						).where(
+							JournalArticleTable.INSTANCE.resourcePrimKey.eq(
+								journalArticle.getResourcePrimKey())
+						))
+				));
+
+			searchContext.setAttribute(
+				"modelClassPK", ArrayUtil.toLongArray(modelClassPKs));
 		};
 	}
 
