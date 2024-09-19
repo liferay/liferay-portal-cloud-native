@@ -574,7 +574,7 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 			});
 	}
 
-	private String _getId(String sourceType, String fieldName) {
+	private String _getId(String fieldName, String sourceType) {
 		if (Objects.equals(sourceType, "API_REST_APPLICATION")) {
 			return fieldName;
 		}
@@ -661,7 +661,7 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 					).put(
 						"entityFieldType", FDSEntityFieldTypes.STRING
 					).put(
-						"id", _getId(sourceType, fieldName)
+						"id", _getId(fieldName, sourceType)
 					).put(
 						"label", _getValue("label", "fieldName", properties)
 					).put(
