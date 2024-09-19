@@ -57,10 +57,10 @@ public class ConsoleService extends BaseRestController {
 	}
 
 	public String getAuthorization() throws Exception {
-		if ((_accessToken != null) &&
+		if ((_authorization != null) &&
 			(System.currentTimeMillis() < (_tokenExpirationMillis - 30000))) {
 
-			return _accessToken;
+			return _authorization;
 		}
 
 		String json = post(
@@ -83,11 +83,11 @@ public class ConsoleService extends BaseRestController {
 			"token"
 		);
 
-		_accessToken = "Bearer " + token;
+		_authorization = "Bearer " + token;
 
 		_tokenExpirationMillis = System.currentTimeMillis() + 900000;
 
-		return _accessToken;
+		return _authorization;
 	}
 
 	public String getProjectsUsage(String userEmail) throws Exception {
@@ -218,7 +218,7 @@ public class ConsoleService extends BaseRestController {
 
 	private static final Log _log = LogFactory.getLog(ConsoleService.class);
 
-	private String _accessToken;
+	private String _authorization;
 
 	@Value("${liferay.marketplace.console.auth.email.address}")
 	private String _consoleAuthEmailAddress;
