@@ -105,7 +105,7 @@ public class AnalyticsRestController extends BaseRestController {
 			).with(
 				"name", jsonObject.getString("name")
 			).with(
-				"serverLocation", _ANALYTICS_PROVISIONING_SERVER_LOCATION
+				"serverLocation", "us-west1-ac-uat-c1"
 			).with(
 				"sharedCluster", "false"
 			).with(
@@ -125,9 +125,6 @@ public class AnalyticsRestController extends BaseRestController {
 	protected String getLXCDXPURL() {
 		return _analyticsAuthUrl;
 	}
-
-	private static final String _ANALYTICS_PROVISIONING_SERVER_LOCATION =
-		"us-west1-ac-uat-c1";
 
 	@Value("${liferay.marketplace.analytics.auth.basic}")
 	private String _analyticsAuthBasic;
