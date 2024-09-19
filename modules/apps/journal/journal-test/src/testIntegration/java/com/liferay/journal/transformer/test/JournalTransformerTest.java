@@ -730,7 +730,6 @@ public class JournalTransformerTest {
 			ddmFormField, rootElement, LocaleUtil.getDefault(),
 			new ThemeDisplay());
 
-		Assert.assertFalse(MapUtil.isEmpty(templateNode.getAttributes()));
 		Assert.assertEquals(
 			jsonObject.getString("fileEntryId"),
 			templateNode.getAttribute("fileEntryId"));
