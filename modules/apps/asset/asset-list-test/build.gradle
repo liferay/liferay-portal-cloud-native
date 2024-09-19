@@ -1,6 +1,5 @@
 dependencies {
 	testImplementation group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
-
 	testImplementation project(":apps:asset:asset-api")
 	testImplementation project(":apps:asset:asset-list-api")
 	testImplementation project(":apps:asset:asset-list-service")
