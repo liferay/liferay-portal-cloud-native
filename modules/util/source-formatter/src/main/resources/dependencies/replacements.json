@@ -3328,6 +3328,14 @@
 		"classNames": [
 			"DDMFormViewFormInstanceRecordsDisplayContext"
 		],
+		"from": "getFormViewRecordsDisplayContext",
+		"issueKey": "LPD-36646",
+		"to": "getDDMFormViewFormInstanceRecordsDisplayContext"
+	},
+	{
+		"classNames": [
+			"DDMFormViewFormInstanceRecordsDisplayContext"
+		],
 		"from": "getSearch",
 		"issueKey": "LPD-36648",
 		"to": "getSearchContainer"
