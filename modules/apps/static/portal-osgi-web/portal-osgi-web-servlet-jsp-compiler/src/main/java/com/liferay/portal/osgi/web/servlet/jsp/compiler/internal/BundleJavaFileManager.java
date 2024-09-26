@@ -68,19 +68,19 @@ public class BundleJavaFileManager
 		String packageName = className.substring(
 			0, className.lastIndexOf(CharPool.PERIOD));
 
-		Map<String, JavaFileObject> packageJavaFileObjects = _packageMap.get(
+		Map<String, JavaFileObject> javaFileObjects = _javaFileObjectsMap.get(
 			packageName);
 
 		BytecodeJavaFileObject bytecodeJavaFileObject =
 			new BytecodeJavaFileObject(className);
 
-		if (packageJavaFileObjects == null) {
-			packageJavaFileObjects = new ConcurrentHashMap<>();
+		if (javaFileObjects == null) {
+			javaFileObjects = new ConcurrentHashMap<>();
 
-			_packageMap.put(packageName, packageJavaFileObjects);
+			_javaFileObjectsMap.put(packageName, javaFileObjects);
 		}
 
-		packageJavaFileObjects.put(className, bytecodeJavaFileObject);
+		javaFileObjects.put(className, bytecodeJavaFileObject);
 
 		_bytecodeJavaFileObjects.add(bytecodeJavaFileObject);
 
@@ -123,7 +123,8 @@ public class BundleJavaFileManager
 		if ((location == StandardLocation.CLASS_PATH) &&
 			packageName.startsWith(Constants.JSP_PACKAGE_NAME)) {
 
-			Map<String, Map<String, JavaFileObject>> packageMap = _packageMap;
+			Map<String, Map<String, JavaFileObject>> packageMap =
+				_javaFileObjectsMap;
 
 			Map<String, JavaFileObject> packageFiles = packageMap.get(
 				packageName);
@@ -175,7 +176,7 @@ public class BundleJavaFileManager
 	private final List<BytecodeJavaFileObject> _bytecodeJavaFileObjects;
 	private final ClassLoader _classLoader;
 	private final List<JavaFileObjectResolver> _javaFileObjectResolvers;
-	private final Map<String, Map<String, JavaFileObject>> _packageMap =
+	private final Map<String, Map<String, JavaFileObject>> _javaFileObjectsMap =
 		new ConcurrentHashMap<>();
 
 }
