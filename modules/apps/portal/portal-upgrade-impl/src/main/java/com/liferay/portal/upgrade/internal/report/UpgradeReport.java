@@ -104,7 +104,7 @@ public class UpgradeReport {
 			_log.info("Starting upgrade report generation");
 		}
 
-		_executionDate = _getExecutionDate();
+		_executionDateString = _getExecutionDateString();
 		_executionTime =
 			(DBUpgrader.getUpgradeTime() / Time.SECOND) + " seconds";
 		_rootDir = _getRootDir();
@@ -136,7 +136,7 @@ public class UpgradeReport {
 		return 0;
 	}
 
-	private String _getExecutionDate() {
+	private String _getExecutionDateString() {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
 			"EEE, MMM dd, yyyy hh:mm:ss z");
 
@@ -211,7 +211,7 @@ public class UpgradeReport {
 		Set<String> propertiesFilePathStrings = _getPropertiesFilePathStrings();
 
 		return LinkedHashMapBuilder.<String, Object>put(
-			"execution.date", _executionDate
+			"execution.date", _executionDateString
 		).put(
 			"execution.time", _executionTime
 		).put(
@@ -543,7 +543,7 @@ public class UpgradeReport {
 		UpgradeRecorder upgradeRecorder) {
 
 		return LinkedHashMapBuilder.<String, Object>put(
-			"execution.date", _executionDate
+			"execution.date", _executionDateString
 		).put(
 			"execution.time", _executionTime
 		).put(
@@ -975,7 +975,7 @@ public class UpgradeReport {
 
 	private double _dlSize;
 	private final Thread _dlSizeThread = new DLSizeThread();
-	private String _executionDate;
+	private String _executionDateString;
 	private String _executionTime;
 	private final int _initialBuildNumber;
 	private Map<String, Integer> _initialTableCounts;
