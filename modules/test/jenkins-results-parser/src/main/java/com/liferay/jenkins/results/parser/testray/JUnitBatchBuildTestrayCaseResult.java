@@ -134,15 +134,13 @@ public class JUnitBatchBuildTestrayCaseResult
 				JenkinsResultsParserUtil.combine(testName, ": ", errorMessage));
 		}
 
-		int errorMessageSize = errorMessages.size();
-
-		if (errorMessageSize > 1) {
+		if (errorMessages.size() > 1) {
 			return JenkinsResultsParserUtil.combine(
-				String.valueOf(errorMessageSize), " Failed tests: ",
+				String.valueOf(errorMessages.size()), " Failed tests: ",
 				JenkinsResultsParserUtil.join(
 					", ", new ArrayList<>(errorMessages.keySet())));
 		}
-		else if (errorMessageSize == 1) {
+		else if (errorMessages.size() == 1) {
 			List<String> values = new ArrayList<>(errorMessages.values());
 
 			return values.get(0);
