@@ -46,9 +46,8 @@ export default async function () {
 	 */
 	for (const projectPath of projects) {
 
-		// Check if deeply nested passed a project root
-		// or
-		// Check if shallowly nested before several project roots
+		// Check if deeply nested passed a project root or check if shallowly
+		// nested before several project roots
 
 		if (
 			cwd.includes(projectPath) ||
