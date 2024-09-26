@@ -762,11 +762,11 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 
 		// Send email with an object definition restricted by account entry
 
-		ObjectDefinition objectDefinitionAccountEntryRestricted =
+		ObjectDefinition accountEntryRestrictedObjectDefinition =
 			_addAndPublishCustomObjectDefinition(true);
 
 		ObjectAction objectAction2 = _addObjectAction(
-			objectDefinitionAccountEntryRestricted.getObjectDefinitionId(),
+			accountEntryRestrictedObjectDefinition.getObjectDefinitionId(),
 			ObjectActionTriggerConstants.KEY_ON_AFTER_DELETE,
 			notificationTemplate1.getNotificationTemplateId());
 
@@ -774,7 +774,7 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 			accountEntry1, StringPool.BLANK, BaseNotificationTypeTest.user2, 1,
 			user1.getEmailAddress(),
 			ObjectActionTriggerConstants.KEY_ON_AFTER_DELETE,
-			objectDefinitionAccountEntryRestricted);
+			accountEntryRestrictedObjectDefinition);
 		_testSendNotificationWithRoles(
 			accountEntry2, user2.getEmailAddress(),
 			BaseNotificationTypeTest.user2, 1,
@@ -782,7 +782,7 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 				ListUtil.fromArray(
 					user1.getEmailAddress(), user3.getEmailAddress())),
 			ObjectActionTriggerConstants.KEY_ON_AFTER_DELETE,
-			objectDefinitionAccountEntryRestricted);
+			accountEntryRestrictedObjectDefinition);
 
 		AccountEntry accountEntry3 = _addAccountEntry();
 
@@ -827,7 +827,7 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 					user5.getEmailAddress(), user6.getEmailAddress())),
 			BaseNotificationTypeTest.user2, 1, user2.getEmailAddress(),
 			ObjectActionTriggerConstants.KEY_ON_AFTER_DELETE,
-			objectDefinitionAccountEntryRestricted);
+			accountEntryRestrictedObjectDefinition);
 
 		_accountEntryOrganizationRelLocalService.
 			deleteAccountEntryOrganizationRel(
@@ -842,7 +842,7 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 			accountEntry3, user6.getEmailAddress(),
 			BaseNotificationTypeTest.user2, 1, user2.getEmailAddress(),
 			ObjectActionTriggerConstants.KEY_ON_AFTER_DELETE,
-			objectDefinitionAccountEntryRestricted);
+			accountEntryRestrictedObjectDefinition);
 
 		_accountEntryUserRelLocalService.addAccountEntryUserRels(
 			accountEntry1.getAccountEntryId(),
@@ -946,21 +946,21 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 				ListUtil.fromArray(
 					user5.getEmailAddress(), user6.getEmailAddress())),
 			ObjectActionTriggerConstants.KEY_ON_AFTER_DELETE,
-			objectDefinitionAccountEntryRestricted);
+			accountEntryRestrictedObjectDefinition);
 		_testSendNotificationWithRoles(
 			accountEntry2, user3.getEmailAddress(),
 			BaseNotificationTypeTest.user2, 1, user4.getEmailAddress(),
 			ObjectActionTriggerConstants.KEY_ON_AFTER_DELETE,
-			objectDefinitionAccountEntryRestricted);
+			accountEntryRestrictedObjectDefinition);
 		_testSendNotificationWithRoles(
 			accountEntry3, null, BaseNotificationTypeTest.user2, 1,
 			user5.getEmailAddress(),
 			ObjectActionTriggerConstants.KEY_ON_AFTER_DELETE,
-			objectDefinitionAccountEntryRestricted);
+			accountEntryRestrictedObjectDefinition);
 
 		objectDefinitionLocalService.deleteObjectDefinition(objectDefinition);
 		objectDefinitionLocalService.deleteObjectDefinition(
-			objectDefinitionAccountEntryRestricted);
+			accountEntryRestrictedObjectDefinition);
 	}
 
 	@Test
