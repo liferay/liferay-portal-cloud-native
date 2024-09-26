@@ -319,7 +319,7 @@ public class ViewChangesDisplayContext {
 
 		return ListUtil.fromArray(
 			new ChangeTypeSelectionFDSFilter(),
-			new SiteSelectionFDSFilter(siteNames, groupId),
+			new SiteSelectionFDSFilter(groupId, siteNames),
 			new TypeNameSelectionFDSFilter(typeNames, modelClassNameId),
 			new UserSelectionFDSFilter(usersJSONObject.toMap()));
 	}

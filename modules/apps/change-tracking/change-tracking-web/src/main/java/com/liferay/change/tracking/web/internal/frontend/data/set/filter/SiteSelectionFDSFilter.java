@@ -24,10 +24,10 @@ import org.osgi.service.component.annotations.Component;
 public class SiteSelectionFDSFilter extends BaseSelectionFDSFilter {
 
 	public SiteSelectionFDSFilter(
-		Map<Long, String> siteNamesMap, long selectedSiteName) {
+		long selectedSiteName, Map<Long, String> siteNamesMap) {
 
-		_siteNamesMap = siteNamesMap;
 		_selectedSiteName = selectedSiteName;
+		_siteNamesMap = siteNamesMap;
 	}
 
 	@Override
