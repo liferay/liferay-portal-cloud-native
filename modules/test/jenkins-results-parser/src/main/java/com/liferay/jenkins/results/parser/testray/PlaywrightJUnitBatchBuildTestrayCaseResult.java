@@ -34,7 +34,6 @@ public class PlaywrightJUnitBatchBuildTestrayCaseResult
 		super(testrayBuild, topLevelBuild, axisTestClassGroup, testClass);
 
 		_playwrightJUnitTestClass = (PlaywrightJUnitTestClass)testClass;
-
 		_playwrightTestClassMethod = (PlaywrightTestClassMethod)testClassMethod;
 	}
 
