@@ -349,7 +349,6 @@ public class CommerceReturnContentDisplayContext {
 					dropdownItem.setHref(
 						liferayPortletResponse.getNamespace() +
 							"editCommerceReturnableItems");
-
 					dropdownItem.setLabel(
 						_language.get(
 							_cpRequestHelper.getRequest(), "add-return-item"));
@@ -586,7 +585,7 @@ public class CommerceReturnContentDisplayContext {
 		return _getTotalAmount();
 	}
 
-	public HashMap<String, Object> getReturnableOrderItemsContextParams() {
+	public Map<String, Object> getReturnableOrderItemsContextParams() {
 		try {
 			CommerceReturn commerceReturn = getCommerceReturn();
 
