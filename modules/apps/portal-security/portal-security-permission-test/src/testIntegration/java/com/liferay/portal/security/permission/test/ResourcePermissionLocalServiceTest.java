@@ -123,45 +123,45 @@ public class ResourcePermissionLocalServiceTest {
 		Role guestRole = _roleLocalService.getRole(
 			TestPropsValues.getCompanyId(), RoleConstants.GUEST);
 
-		List<String> actualGuestActions =
+		List<String> actualGuestActionIds =
 			_resourcePermissionLocalService.
 				getAvailableResourcePermissionActionIds(
 					TestPropsValues.getCompanyId(), resourceName,
 					ResourceConstants.SCOPE_INDIVIDUAL, String.valueOf(primKey),
 					guestRole.getRoleId(), supportActionIds);
 
-		Collections.sort(actualGuestActions);
+		Collections.sort(actualGuestActionIds);
 
-		Assert.assertEquals(expectedGuestDefaultActions, actualGuestActions);
+		Assert.assertEquals(expectedGuestDefaultActions, actualGuestActionIds);
 
 		Role ownerRole = _roleLocalService.getRole(
 			TestPropsValues.getCompanyId(), RoleConstants.OWNER);
 
-		List<String> actualOwnerActions =
+		List<String> actualOwnerActionIds =
 			_resourcePermissionLocalService.
 				getAvailableResourcePermissionActionIds(
 					TestPropsValues.getCompanyId(), resourceName,
 					ResourceConstants.SCOPE_INDIVIDUAL, String.valueOf(primKey),
 					ownerRole.getRoleId(), supportActionIds);
 
-		Collections.sort(actualOwnerActions);
+		Collections.sort(actualOwnerActionIds);
 
-		Assert.assertEquals(expectedOwnerDefaultActions, actualOwnerActions);
+		Assert.assertEquals(expectedOwnerDefaultActions, actualOwnerActionIds);
 
 		Role siteMemberRole = _roleLocalService.getRole(
 			TestPropsValues.getCompanyId(), RoleConstants.SITE_MEMBER);
 
-		List<String> actualSiteMemberActions =
+		List<String> actualSiteMemberActionIds =
 			_resourcePermissionLocalService.
 				getAvailableResourcePermissionActionIds(
 					TestPropsValues.getCompanyId(), resourceName,
 					ResourceConstants.SCOPE_INDIVIDUAL, String.valueOf(primKey),
 					siteMemberRole.getRoleId(), supportActionIds);
 
-		Collections.sort(actualSiteMemberActions);
+		Collections.sort(actualSiteMemberActionIds);
 
 		Assert.assertEquals(
-			expectedSiteMemberDefaultActions, actualSiteMemberActions);
+			expectedSiteMemberDefaultActions, actualSiteMemberActionIds);
 	}
 
 	private Resource _createResource(int scope) {
