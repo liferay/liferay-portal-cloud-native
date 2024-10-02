@@ -24,15 +24,19 @@ interface FormatData extends AssetMetricComplement {
 	metricName: MetricName;
 }
 
+export function getSelectedHistogram(data: Data, metricName: MetricName) {
+	return data.histograms.find(
+		({metricName: currentMetricName}) => metricName === currentMetricName
+	);
+}
+
 export function formatVisitorsBehaviorData({
 	data: initialData,
 	metricName,
 	metricType,
 	visitorsBehaviorTooltipTitle,
 }: FormatData): FormattedData {
-	const selectedHistogram = initialData.histograms.find(
-		({metricName: currentMetricName}) => metricName === currentMetricName
-	);
+	const selectedHistogram = getSelectedHistogram(initialData, metricName);
 
 	const data = {
 		[VisitorsBehaviorDataKey.Metric]: {
@@ -98,6 +102,15 @@ export function formatVisitorsBehaviorData({
 		data,
 		intervals: [],
 	};
+}
+
+export function sortPublishedDates(dates: {date: string; version: string}[]) {
+	return dates.sort((a, b) => {
+		const versionA = parseFloat(a.version);
+		const versionB = parseFloat(b.version);
+
+		return versionA - versionB;
+	});
 }
 
 export function mapPublishedDatesToHistogram(

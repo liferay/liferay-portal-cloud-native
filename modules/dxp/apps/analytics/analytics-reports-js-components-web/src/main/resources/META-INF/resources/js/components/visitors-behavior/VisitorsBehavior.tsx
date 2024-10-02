@@ -8,12 +8,17 @@ import React, {useContext, useEffect, useState} from 'react';
 import {AnalyticsReportsContext} from '../../AnalyticsReportsContext';
 import {fetchAssetMetricHistogram} from '../../apis/analytics-reports';
 import {fetchBlogPosting} from '../../apis/headless-dxp';
-import {AssetTypes, MetricName} from '../../types/global';
-import {assetMetrics} from '../../utils/metrics';
+import {AssetTypes, MetricName, MetricType} from '../../types/global';
+import {assetMetrics, metricNameByType} from '../../utils/metrics';
 import StateRenderer from '../StateRenderer';
 import Title from '../Title';
 import VisitorsBehaviorChart from './VisitorsBehaviorChart';
-import {formatPublishedDate, mapPublishedDatesToHistogram} from './utils';
+import {
+	formatPublishedDate,
+	getSelectedHistogram,
+	mapPublishedDatesToHistogram,
+	sortPublishedDates,
+} from './utils';
 
 export type Histogram = {
 	metricName: MetricName;
@@ -85,6 +90,13 @@ const VisitorsBehavior = () => {
 				let publishedVersionData: PublishedVersionData | null = null;
 				let dates = [];
 
+				const metricName =
+					metricNameByType[filters?.metric || MetricType.Undefined];
+				const selectedHistogram = getSelectedHistogram(
+					visitorsBehaviorData,
+					metricName
+				) as Histogram;
+
 				if (versions) {
 					dates = versions.map(({createDate, version}) => ({
 						date: formatPublishedDate(createDate),
@@ -93,8 +105,8 @@ const VisitorsBehavior = () => {
 
 					publishedVersionData = {
 						histogram: mapPublishedDatesToHistogram(
-							dates,
-							visitorsBehaviorData.histograms[0]
+							sortPublishedDates(dates),
+							selectedHistogram
 						),
 						total: versions.length,
 					};
@@ -128,7 +140,7 @@ const VisitorsBehavior = () => {
 					publishedVersionData = {
 						histogram: mapPublishedDatesToHistogram(
 							dates,
-							visitorsBehaviorData.histograms[0]
+							selectedHistogram
 						),
 						total: 1,
 					};
@@ -154,6 +166,7 @@ const VisitorsBehavior = () => {
 		assetId,
 		assetType,
 		filters.individual,
+		filters?.metric,
 		filters.rangeSelector,
 		groupId,
 		versions,
