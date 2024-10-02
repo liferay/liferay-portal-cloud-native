@@ -129,7 +129,6 @@ public class QuestionsConfigurationUpgradeProcessTest {
 		Dictionary<String, Object> properties = configuration.getProperties();
 
 		Assert.assertNotNull(properties);
-
 		Assert.assertEquals(
 			rootTopicExternalReferenceCode,
 			properties.get("rootTopicExternalReferenceCode"));
