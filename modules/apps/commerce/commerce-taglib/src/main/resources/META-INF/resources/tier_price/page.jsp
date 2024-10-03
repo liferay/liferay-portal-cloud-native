@@ -33,6 +33,8 @@ String randomNamespace = StringUtil.randomId() + StringPool.UNDERLINE;
 
 					<%
 					for (CommerceTierPriceEntry commerceTierPriceEntry : commerceTierPriceEntries) {
+						String id = StringUtil.randomId();
+
 						CommercePriceEntry commercePriceEntry = commerceTierPriceEntry.getCommercePriceEntry();
 
 						BigDecimal price = commercePriceEntry.getPrice();
@@ -56,8 +58,6 @@ String randomNamespace = StringUtil.randomId() + StringPool.UNDERLINE;
 						BigDecimal discountPercent = discount.divide(price, RoundingMode.HALF_EVEN);
 
 						discountPercent = discountPercent.multiply(BigDecimal.valueOf(100));
-
-						String id = StringUtil.randomId();
 
 						BigDecimal total = commerceTierPriceEntryPrice.multiply(minQuantity);
 
