@@ -8,7 +8,7 @@ clean {
 }
 
 dependencies {
-	compileOnly group: "com.liferay", name: "com.liferay.jenkins.results.parser", version: "1.0.1462"
+	compileOnly group: "com.liferay", name: "com.liferay.jenkins.results.parser", version: "1.0.1463"
 	compileOnly group: "org.apache.ant", name: "ant", transitive: false, version: "1.10.14"
 }
 
