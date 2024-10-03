@@ -37,10 +37,13 @@ public class TextHTMLDDMFormFieldValueRenderer
 				Value value = ddmFormFieldValue.getValue();
 
 				StringBundler sb = new StringBundler(12);
-				String id = StringUtil.randomId();
 
 				sb.append("<a href=\"javascript:void(0);\" id=\"");
+
+				String id = StringUtil.randomId();
+
 				sb.append(id);
+
 				sb.append("\">(");
 				sb.append(LanguageUtil.get(locale, "preview"));
 				sb.append(")</a><script");

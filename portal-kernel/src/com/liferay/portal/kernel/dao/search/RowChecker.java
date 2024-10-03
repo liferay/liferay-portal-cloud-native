@@ -193,10 +193,13 @@ public class RowChecker {
 		}
 
 		StringBundler sb = new StringBundler(16);
-		String id = StringUtil.randomId();
 
 		sb.append("<label><input id=\"");
+
+		String id = StringUtil.randomId();
+
 		sb.append(id);
+
 		sb.append("\" name=\"");
 		sb.append(name);
 		sb.append("\" title=\"");
