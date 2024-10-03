@@ -108,7 +108,9 @@ public class TestrayUtil {
 	}
 
 	public static String interpolateParams(List<Object> params, String values) {
-		Object[] valuesObjectArray;
+		StringBundler sb = new StringBundler();
+
+		Object[] valuesObjectArray = null;
 
 		if (Validator.isNotNull(StringUtil.extractDigits(values))) {
 			valuesObjectArray = ArrayUtil.toLongArray(
@@ -117,8 +119,6 @@ public class TestrayUtil {
 		else {
 			valuesObjectArray = StringUtil.split(values);
 		}
-
-		StringBundler sb = new StringBundler();
 
 		for (Object value : valuesObjectArray) {
 			sb.append("? ");
