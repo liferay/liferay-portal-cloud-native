@@ -1255,7 +1255,7 @@ public class RESTBuilder {
 			return yamlString;
 		}
 
-		do {
+		while (index != -1) {
 			int startIndex = index + enumString.length() + 1;
 			int endIndex = yamlString.indexOf(
 				"]", index + enumString.length() + 1);
@@ -1283,7 +1283,6 @@ public class RESTBuilder {
 
 			index = yamlString.indexOf(enumString, index + enumString.length());
 		}
-		while (index != -1);
 
 		return yamlString;
 	}
