@@ -143,10 +143,12 @@ public class HitDocumentTranslatorImpl implements HitDocumentTranslator {
 
 			JsonArray jsonArray = jsonObject.getJsonArray("coordinates");
 
-			JsonNumber lat = jsonArray.getJsonNumber(1);
-			JsonNumber lon = jsonArray.getJsonNumber(0);
+			JsonNumber latitudeJsonNumber = jsonArray.getJsonNumber(1);
+			JsonNumber longitudeJsonNumber = jsonArray.getJsonNumber(0);
 
-			return new GeoLocationPoint(lat.doubleValue(), lon.doubleValue());
+			return new GeoLocationPoint(
+				latitudeJsonNumber.doubleValue(),
+				longitudeJsonNumber.doubleValue());
 		}
 
 		String location = jsonValue.toString();

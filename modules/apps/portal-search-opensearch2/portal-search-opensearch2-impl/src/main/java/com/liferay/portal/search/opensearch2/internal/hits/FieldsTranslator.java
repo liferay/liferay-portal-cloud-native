@@ -140,11 +140,12 @@ public class FieldsTranslator {
 
 			JsonArray jsonArray = jsonObject.getJsonArray("coordinates");
 
-			JsonNumber lat = jsonArray.getJsonNumber(1);
-			JsonNumber lon = jsonArray.getJsonNumber(0);
+			JsonNumber latitudeJsonNumber = jsonArray.getJsonNumber(1);
+			JsonNumber longitudeJsonNumber = jsonArray.getJsonNumber(0);
 
 			return _geoBuilders.geoLocationPoint(
-				lat.doubleValue(), lon.doubleValue());
+				latitudeJsonNumber.doubleValue(),
+				longitudeJsonNumber.doubleValue());
 		}
 
 		String coordinates = jsonValue.toString();
