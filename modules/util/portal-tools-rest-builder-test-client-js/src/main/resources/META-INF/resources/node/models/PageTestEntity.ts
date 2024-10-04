@@ -9,8 +9,8 @@ export type PageTestEntity = {
     facets?: Array<Facet>;
     items?: Array<TestEntity>;
     lastPage?: number;
-    pageSize?: number;
     page?: number;
+    pageSize?: number;
     totalCount?: number;
 };
 

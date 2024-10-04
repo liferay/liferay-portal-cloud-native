@@ -2050,25 +2050,17 @@ public class RESTBuilder {
 
 		Process process = processBuilder.start();
 
-		System.out.printf(
-			"Invoking TypeScript %s client generator%n", targetClientType);
-
 		process.waitFor();
 
 		if (process.exitValue() > 0) {
-			System.out.println("TypeScript client generator failed");
-
 			Scanner scanner = new Scanner(process.getErrorStream());
 
 			scanner.useDelimiter("\n");
 
 			while (scanner.hasNext()) {
-				System.out.println("[codegen] " + scanner.next());
+				System.out.println(
+					"Unable to generate client JS: " + scanner.next());
 			}
-		}
-		else {
-			System.out.printf(
-				"TypeScript client generated at %s%n", outputPathString);
 		}
 	}
 
