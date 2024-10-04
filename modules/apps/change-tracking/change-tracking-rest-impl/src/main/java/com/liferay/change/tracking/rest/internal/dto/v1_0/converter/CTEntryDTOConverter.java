@@ -185,7 +185,8 @@ public class CTEntryDTOConverter
 						Field.STATUS));
 				setStatusMessage(
 					() -> _getStatusMessage(
-						Integer.valueOf(document.get("ctCollectionStatus")),
+						GetterUtil.getInteger(
+							document.get("ctCollectionStatus")),
 						getCtCollectionStatusDate(),
 						getCtCollectionStatusUserName(),
 						dtoConverterContext.getHttpServletRequest()));
@@ -208,7 +209,7 @@ public class CTEntryDTOConverter
 			return null;
 		}
 
-		int status = Integer.valueOf(document.get(fieldName));
+		int status = GetterUtil.getInteger(document.get(fieldName));
 
 		String statusLabel = WorkflowConstants.getStatusLabel(status);
 
