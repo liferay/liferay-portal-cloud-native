@@ -128,12 +128,12 @@ public class ConsoleRestController extends BaseRestController {
 		try {
 			_consoleService.uninstallApp(orderId);
 
+			JSONObject jsonObject = new JSONObject(json);
+
 			Order order = _marketplaceService.getOrder(orderId);
 
 			Map<String, String> customFields =
 				(Map<String, String>)order.getCustomFields();
-
-			JSONObject jsonObject = new JSONObject(json);
 
 			JSONArray cloudProvisioningJSONArray = new JSONArray(
 				customFields.get("cloud-provisioning"));
