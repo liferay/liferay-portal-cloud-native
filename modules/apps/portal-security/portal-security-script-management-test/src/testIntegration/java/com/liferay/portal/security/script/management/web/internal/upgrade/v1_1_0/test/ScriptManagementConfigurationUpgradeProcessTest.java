@@ -275,8 +275,7 @@ public class ScriptManagementConfigurationUpgradeProcessTest {
 		}
 	}
 
-	private void _testUpgrade(
-			UnsafeSupplier<Object, Exception> unsafeSupplier)
+	private void _testUpgrade(UnsafeSupplier<Object, Exception> unsafeSupplier)
 		throws Exception {
 
 		try (Closeable closeable =
