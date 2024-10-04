@@ -2030,12 +2030,12 @@ public class RESTBuilder {
 	}
 
 	private void _invokeClientJSGenerator(
-			File baseClientDir, String clientName, File openAPIYAMLFile,
+			File baseClientJSDir, String clientName, File openAPIYAMLFile,
 			String targetClientType)
 		throws Exception {
 
 		String outputDirPath = StringBundler.concat(
-			baseClientDir.getPath(), "/src/main/resources/META-INF/resources/",
+			baseClientJSDir.getPath(), "/src/main/resources/META-INF/resources/",
 			targetClientType);
 
 		ProcessBuilder processBuilder = new ProcessBuilder(
@@ -2073,24 +2073,22 @@ public class RESTBuilder {
 	private void _invokeClientJSGenerator(String openAPIYAMLString)
 		throws Exception {
 
-		File baseClientDir = new File(
+		File baseClientJSDir = new File(
 			StringUtil.removeLast(_configDir.getPath(), "-impl") +
 				"-client-js");
 
 		FileUtil.write(
-			new File(baseClientDir, "build.gradle"), StringPool.BLANK);
-
+			new File(baseClientJSDir, "build.gradle"), StringPool.BLANK);
 		FileUtil.write(
-			new File(baseClientDir, "node-scripts.config.js"),
+			new File(baseClientJSDir, "node-scripts.config.js"),
 			FreeMarkerUtil.processTemplate(
-				null, null, "node_scripts_config", null));
-
+				null, null, "node_scripts_config_js", null));
 		FileUtil.write(
-			new File(baseClientDir, "package.json"),
+			new File(baseClientJSDir, "package.json"),
 			FreeMarkerUtil.processTemplate(
 				null, null, "package_json",
 				HashMapBuilder.<String, Object>put(
-					"clientName", baseClientDir.getName()
+					"clientName", baseClientJSDir.getName()
 				).build()));
 
 		// Constructs client name from the api package path
@@ -2112,9 +2110,9 @@ public class RESTBuilder {
 		File openAPIYAMLFile = _prepareForJSClientGenerator(openAPIYAMLString);
 
 		_invokeClientJSGenerator(
-			baseClientDir, clientName, openAPIYAMLFile, "fetch");
+			baseClientJSDir, clientName, openAPIYAMLFile, "fetch");
 		_invokeClientJSGenerator(
-			baseClientDir, clientName, openAPIYAMLFile, "node");
+			baseClientJSDir, clientName, openAPIYAMLFile, "node");
 
 		FileUtil.delete(openAPIYAMLFile);
 	}
