@@ -445,13 +445,12 @@ public class ResourceOpenAPIParser {
 	public static boolean hasResourceGetPageJavaMethodSignature(
 		String javaDataType, List<JavaMethodSignature> javaMethodSignatures) {
 
-		javaMethodSignatures = getResourceGetPageJavaMethodSignatures(
-			javaMethodSignatures);
-
 		String pageJavaDataType = StringBundler.concat(
 			Page.class.getName(), "<", javaDataType, ">");
 
-		for (JavaMethodSignature javaMethodSignature : javaMethodSignatures) {
+		for (JavaMethodSignature javaMethodSignature :
+				getResourceGetPageJavaMethodSignatures(javaMethodSignatures)) {
+
 			if (StringUtil.equals(
 					pageJavaDataType, javaMethodSignature.getReturnType())) {
 

@@ -555,12 +555,15 @@ public class RESTBuilder {
 	private String _addSchema(String schemaYAMLString, String yamlString) {
 		schemaYAMLString = StringUtil.replace(
 			schemaYAMLString, new String[] {"$", "\t", "\n"},
-			new String[] {"\\$", _REGEX_GROUP_1, "\n" + _REGEX_GROUP_1 + _REGEX_GROUP_1});
+			new String[] {
+				"\\$", _REGEX_GROUP_1, "\n" + _REGEX_GROUP_1 + _REGEX_GROUP_1
+			});
 
 		return yamlString.replaceAll(
 			"([ \\t]+)schemas:",
 			StringBundler.concat(
-				_REGEX_GROUP_1, "schemas:\n", _REGEX_GROUP_1, _REGEX_GROUP_1, schemaYAMLString));
+				_REGEX_GROUP_1, "schemas:\n", _REGEX_GROUP_1, _REGEX_GROUP_1,
+				schemaYAMLString));
 	}
 
 	private void _checkOpenAPIYAMLFile(FreeMarkerTool freeMarkerTool, File file)
@@ -2035,8 +2038,8 @@ public class RESTBuilder {
 		throws Exception {
 
 		String outputPathString = StringBundler.concat(
-			baseClientJSDir.getPath(), "/src/main/resources/META-INF/resources/",
-			targetClientType);
+			baseClientJSDir.getPath(),
+			"/src/main/resources/META-INF/resources/", targetClientType);
 
 		ProcessBuilder processBuilder = new ProcessBuilder(
 			Arrays.asList(

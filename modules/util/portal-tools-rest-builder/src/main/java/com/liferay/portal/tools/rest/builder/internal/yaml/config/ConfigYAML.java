@@ -90,12 +90,12 @@ public class ConfigYAML {
 		return _generateBatch;
 	}
 
-	public boolean isGenerateGraphQL() {
-		return _generateGraphQL;
-	}
-
 	public boolean isGenerateClientJS() {
 		return _generateClientJS;
+	}
+
+	public boolean isGenerateGraphQL() {
+		return _generateGraphQL;
 	}
 
 	public boolean isGenerateOpenAPI() {
@@ -180,12 +180,12 @@ public class ConfigYAML {
 		_generateBatch = generateBatch;
 	}
 
-	public void setGenerateGraphQL(boolean generateGraphQL) {
-		_generateGraphQL = generateGraphQL;
-	}
-
 	public void setGenerateClientJS(boolean generateClientJS) {
 		_generateClientJS = generateClientJS;
+	}
+
+	public void setGenerateGraphQL(boolean generateGraphQL) {
+		_generateGraphQL = generateGraphQL;
 	}
 
 	public void setGenerateOpenAPI(boolean generateOpenAPI) {
@@ -242,8 +242,8 @@ public class ConfigYAML {
 	private boolean _forcePredictableSchemaPropertyName = true;
 	private boolean _generateActionProviders;
 	private boolean _generateBatch = true;
-	private boolean _generateGraphQL = true;
 	private boolean _generateClientJS;
+	private boolean _generateGraphQL = true;
 	private boolean _generateOpenAPI = true;
 	private boolean _generateREST = true;
 	private String _graphQLNamespace;
