@@ -151,13 +151,13 @@ public class HitDocumentTranslatorImpl implements HitDocumentTranslator {
 				longitudeJsonNumber.doubleValue());
 		}
 
-		String location = jsonValue.toString();
+		String coordinates = jsonValue.toString();
 
-		String[] locationParts = location.split(",");
+		String[] coordinatesParts = coordinates.split(",");
 
 		return new GeoLocationPoint(
-			Double.valueOf(StringUtil.trim(locationParts[0])),
-			Double.valueOf(StringUtil.trim(locationParts[1])));
+			Double.valueOf(StringUtil.trim(coordinatesParts[0])),
+			Double.valueOf(StringUtil.trim(coordinatesParts[1])));
 	}
 
 	private boolean _isInvalidFieldName(String fieldName) {
