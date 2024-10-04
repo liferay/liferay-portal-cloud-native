@@ -373,10 +373,10 @@ public class RESTBuilder {
 				}
 			}
 
-			if (_configYAML.isGenerateJSClient() &&
+			if (_configYAML.isGenerateClientJS() &&
 				Validator.isNotNull(_configYAML.getClientDir())) {
 
-				_invokeJSClientGenerator(yamlString);
+				_invokeClientJSGenerator(yamlString);
 			}
 		}
 
@@ -2029,7 +2029,7 @@ public class RESTBuilder {
 		return freeMarkerTool.getSchemaVarName(reference.substring(index + 1));
 	}
 
-	private void _invokeJSClientGenerator(
+	private void _invokeClientJSGenerator(
 			File baseClientDir, String clientName, File openAPIYAMLFile,
 			String targetClientType)
 		throws Exception {
@@ -2070,7 +2070,7 @@ public class RESTBuilder {
 		}
 	}
 
-	private void _invokeJSClientGenerator(String openAPIYAMLString)
+	private void _invokeClientJSGenerator(String openAPIYAMLString)
 		throws Exception {
 
 		File baseClientDir = new File(
@@ -2111,9 +2111,9 @@ public class RESTBuilder {
 
 		File openAPIYAMLFile = _prepareForJSClientGenerator(openAPIYAMLString);
 
-		_invokeJSClientGenerator(
+		_invokeClientJSGenerator(
 			baseClientDir, clientName, openAPIYAMLFile, "fetch");
-		_invokeJSClientGenerator(
+		_invokeClientJSGenerator(
 			baseClientDir, clientName, openAPIYAMLFile, "node");
 
 		FileUtil.delete(openAPIYAMLFile);
