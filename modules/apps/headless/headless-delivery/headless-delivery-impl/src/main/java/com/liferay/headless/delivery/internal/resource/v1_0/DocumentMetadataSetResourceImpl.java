@@ -49,13 +49,12 @@ public class DocumentMetadataSetResourceImpl
 			throw new UnsupportedOperationException();
 		}
 
-		DataDefinitionResource.Builder dataDefinitionResourceBuilder =
+		DataDefinitionResource.Builder builder =
 			_dataDefinitionResourceFactory.create();
 
-		DataDefinitionResource dataDefinitionResource =
-			dataDefinitionResourceBuilder.user(
-				contextUser
-			).build();
+		DataDefinitionResource dataDefinitionResource = builder.user(
+			contextUser
+		).build();
 
 		dataDefinitionResource.deleteDataDefinition(documentMetadataSetId);
 	}
