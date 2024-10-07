@@ -23,6 +23,7 @@ import com.liferay.document.library.kernel.service.DLFolderLocalService;
 import com.liferay.document.library.test.util.DLTestUtil;
 import com.liferay.headless.admin.taxonomy.client.dto.v1_0.TaxonomyCategory;
 import com.liferay.headless.admin.taxonomy.client.resource.v1_0.TaxonomyCategoryResource;
+import com.liferay.headless.delivery.dto.v1_0.Creator;
 import com.liferay.list.type.entry.util.ListTypeEntryUtil;
 import com.liferay.list.type.model.ListTypeDefinition;
 import com.liferay.list.type.service.ListTypeDefinitionLocalService;
@@ -4653,9 +4654,7 @@ public class ObjectEntryResourceTest {
 	}
 
 	@Test
-	public void testGetCreatorExternalReferenceCodeFromObjectEntry()
-		throws Exception {
-
+	public void testGetCreatorExternalReferenceCode() throws Exception {
 		ObjectDefinition objectDefinition =
 			_objectDefinitionLocalService.addCustomObjectDefinition(
 				TestPropsValues.getUserId(), 0, false, true, false, false,
@@ -4692,11 +4691,11 @@ public class ObjectEntryResourceTest {
 		com.liferay.object.rest.dto.v1_0.ObjectEntry objectEntry =
 			objectEntryResource.getObjectEntry(objectEntryId);
 
-		String creatorExternalReferenceCode = objectEntry.getCreator(
-		).getExternalReferenceCode();
+		Creator creator = objectEntry.getCreator();
 
 		Assert.assertEquals(
-			user.getExternalReferenceCode(), creatorExternalReferenceCode);
+			user.getExternalReferenceCode(),
+			creator.getExternalReferenceCode());
 
 		_objectDefinitionLocalService.deleteObjectDefinition(objectDefinition);
 	}
