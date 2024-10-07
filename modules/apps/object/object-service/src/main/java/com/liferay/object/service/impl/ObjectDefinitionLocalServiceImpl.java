@@ -1962,9 +1962,9 @@ public class ObjectDefinitionLocalServiceImpl
 
 		objectDefinition = objectDefinitionPersistence.update(objectDefinition);
 
-		objectDefinition = _updateNode(objectDefinition);
+		objectDefinition = _updateNodeObjectDefinition(objectDefinition);
 
-		_updateDescendantNodes(objectDefinition);
+		_updateDescendantNodeObjectDefinitions(objectDefinition);
 
 		_createLocalizationTable(
 			DynamicObjectDefinitionLocalizationTableFactory.create(
@@ -2014,7 +2014,8 @@ public class ObjectDefinitionLocalServiceImpl
 		}
 	}
 
-	private void _updateDescendantNodes(ObjectDefinition objectDefinition1)
+	private void _updateDescendantNodeObjectDefinitions(
+			ObjectDefinition objectDefinition1)
 		throws PortalException {
 
 		List<ObjectRelationship> objectRelationships =
@@ -2071,7 +2072,8 @@ public class ObjectDefinitionLocalServiceImpl
 		}
 	}
 
-	private ObjectDefinition _updateNode(ObjectDefinition objectDefinition2)
+	private ObjectDefinition _updateNodeObjectDefinition(
+			ObjectDefinition objectDefinition2)
 		throws PortalException {
 
 		ObjectRelationship objectRelationship =
