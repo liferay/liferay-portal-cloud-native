@@ -1282,8 +1282,8 @@ public class ObjectRelationshipLocalServiceImpl
 				objectDefinitionLocalService.deployObjectDefinition(
 					objectDefinition1);
 
-				if (!objectRelationship.isNew() &&
-					objectDefinition2.isApproved()) {
+				if (objectDefinition2.isApproved() &&
+					!objectRelationship.isNew()) {
 
 					_objectEntryLocalService.updateRootObjectEntryIds(
 						objectDefinition1, objectDefinition2,
