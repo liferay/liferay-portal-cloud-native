@@ -179,31 +179,6 @@ String aggregationType = customFacetDisplayContext.getAggregationType();
 									</li>
 								</c:if>
 
-								<c:if test='<%= aggregationType.equals("range") %>'>
-									<div class="<%= !customRangeBucketDisplayContext.isSelected() ? "hide" : StringPool.BLANK %> date-custom-range" id="<portlet:namespace />customRange">
-										<div class="col-md-6" id="<portlet:namespace />customRangeFrom">
-											<aui:field-wrapper>
-												<aui:input id="fromInput" label="from" name="fromInput" type="number" value="<%= customFacetDisplayContext.getFromParameterValue() %>" />
-											</aui:field-wrapper>
-										</div>
-
-										<div class="col-md-6" id="<portlet:namespace />customRangeTo">
-											<aui:field-wrapper>
-												<aui:input id="toInput" label="to" name="toInput" type="number" value="<%= customFacetDisplayContext.getToParameterValue() %>" />
-											</aui:field-wrapper>
-										</div>
-
-										<clay:button
-											aria-label='<%= LanguageUtil.get(request, "search") %>'
-											cssClass="custom-range-filter-button"
-											displayType="secondary"
-											id='<%= liferayPortletResponse.getNamespace() + "searchCustomRangeButton" %>'
-											label="search"
-											name='<%= liferayPortletResponse.getNamespace() + "searchCustomRangeButton" %>'
-										/>
-									</div>
-								</c:if>
-
 								<c:if test='<%= aggregationType.equals("dateRange") %>'>
 									<div class="<%= !customFacetCalendarDisplayContext.isSelected() ? "hide" : StringPool.BLANK %> date-custom-range" id="<portlet:namespace />customRange">
 										<clay:col
@@ -250,6 +225,31 @@ String aggregationType = customFacetDisplayContext.getAggregationType();
 											aria-label='<%= LanguageUtil.get(request, "search") %>'
 											cssClass="custom-range-filter-button"
 											disabled="<%= customFacetCalendarDisplayContext.isRangeBackwards() %>"
+											displayType="secondary"
+											id='<%= liferayPortletResponse.getNamespace() + "searchCustomRangeButton" %>'
+											label="search"
+											name='<%= liferayPortletResponse.getNamespace() + "searchCustomRangeButton" %>'
+										/>
+									</div>
+								</c:if>
+
+								<c:if test='<%= aggregationType.equals("range") %>'>
+									<div class="<%= !customRangeBucketDisplayContext.isSelected() ? "hide" : StringPool.BLANK %> date-custom-range" id="<portlet:namespace />customRange">
+										<div class="col-md-6" id="<portlet:namespace />customRangeFrom">
+											<aui:field-wrapper>
+												<aui:input id="fromInput" label="from" name="fromInput" type="number" value="<%= customFacetDisplayContext.getFromParameterValue() %>" />
+											</aui:field-wrapper>
+										</div>
+
+										<div class="col-md-6" id="<portlet:namespace />customRangeTo">
+											<aui:field-wrapper>
+												<aui:input id="toInput" label="to" name="toInput" type="number" value="<%= customFacetDisplayContext.getToParameterValue() %>" />
+											</aui:field-wrapper>
+										</div>
+
+										<clay:button
+											aria-label='<%= LanguageUtil.get(request, "search") %>'
+											cssClass="custom-range-filter-button"
 											displayType="secondary"
 											id='<%= liferayPortletResponse.getNamespace() + "searchCustomRangeButton" %>'
 											label="search"
