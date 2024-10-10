@@ -34,6 +34,7 @@ import com.liferay.portal.util.PropsUtil;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.servlet.FilterChain;
@@ -373,12 +374,10 @@ public abstract class BaseAuthFilter extends BasePortalFilter {
 			return false;
 		}
 
-		String digest = (String)httpSession.getAttribute(
-			WebKeys.USER_DIGEST);
-
 		user = UserLocalServiceUtil.getUser(user.getUserId());
 
-		return !StringUtil.equals(digest, user.getDigest());
+		return !Objects.equals(
+			user.getDigest(), httpSession.getAttribute(WebKeys.USER_DIGEST));
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(BaseAuthFilter.class);
