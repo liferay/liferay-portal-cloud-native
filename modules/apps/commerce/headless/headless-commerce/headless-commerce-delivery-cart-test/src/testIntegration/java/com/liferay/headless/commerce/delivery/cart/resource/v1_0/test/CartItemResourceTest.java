@@ -139,8 +139,6 @@ public class CartItemResourceTest extends BaseCartItemResourceTestCase {
 		assertEquals(randomCartItem, postCartItem1);
 		assertValid(postCartItem1);
 
-		// Test showSeparateOrderItems enabled
-
 		Settings settings = FallbackKeysSettingsUtil.getSettings(
 			new GroupServiceSettingsLocator(
 				_commerceChannel.getGroupId(),
