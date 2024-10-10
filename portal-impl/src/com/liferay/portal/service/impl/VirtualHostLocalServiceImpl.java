@@ -127,15 +127,15 @@ public class VirtualHostLocalServiceImpl
 
 	@Override
 	public List<VirtualHost> getVirtualHosts(long companyId, long layoutSetId) {
-		if (_cacheableQueryLimitVirtualhosts <= 0) {
+		if (_cacheableQueryLimitLPD27353 <= 0) {
 			return virtualHostPersistence.findByC_L(companyId, layoutSetId);
 		}
 
 		List<VirtualHost> virtualHosts = virtualHostPersistence.findByCompanyId(
 			companyId);
 
-		if (virtualHosts.size() > _cacheableQueryLimitVirtualhosts) {
-			_cacheableQueryLimitVirtualhosts = 0;
+		if (virtualHosts.size() > _cacheableQueryLimitLPD27353) {
+			_cacheableQueryLimitLPD27353 = 0;
 		}
 
 		List<VirtualHost> filteredVirtualHosts = null;
@@ -315,9 +315,8 @@ public class VirtualHostLocalServiceImpl
 	private static final Log _log = LogFactoryUtil.getLog(
 		VirtualHostLocalServiceImpl.class);
 
-	private volatile int _cacheableQueryLimitVirtualhosts =
-		GetterUtil.getInteger(
-			PropsUtil.get("cacheable.query.limit.virtualhosts"));
+	private volatile int _cacheableQueryLimitLPD27353 = GetterUtil.getInteger(
+		PropsUtil.get("cacheable.query.limit.LPD-27353"));
 
 	@BeanReference(type = CompanyPersistence.class)
 	private CompanyPersistence _companyPersistence;

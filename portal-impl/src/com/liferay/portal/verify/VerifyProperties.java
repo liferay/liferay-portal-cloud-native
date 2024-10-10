@@ -2268,11 +2268,11 @@ public class VerifyProperties {
 		{"sql.data.max.parameters", "database.max.parameters"},
 		{
 			"staging.groups.in.memory.filter.limit",
-			"cacheable.query.limit.staging.groups"
+			"cacheable.query.limit.LPD-28122"
 		},
 		{
 			"virtual.hosts.per.company.in.memory.filter.limit",
-			"cacheable.query.limit.virtualhosts"
+			"cacheable.query.limit.LPD-27353"
 		}
 	};
 

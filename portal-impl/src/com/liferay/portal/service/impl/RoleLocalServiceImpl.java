@@ -1231,7 +1231,7 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 
 		Set<Role> roles = new HashSet<>(userPersistence.getRoles(userId));
 
-		if (groupIds.length <= _CACHEABLE_QUERY_LIMIT_ROLES) {
+		if (groupIds.length <= _CACHEABLE_QUERY_LIMIT_LPD_38877) {
 			for (long groupId : groupIds) {
 				roles.addAll(groupPersistence.getRoles(groupId));
 			}
@@ -2150,8 +2150,8 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 		return propertyDescription;
 	}
 
-	private static final int _CACHEABLE_QUERY_LIMIT_ROLES =
-		GetterUtil.getInteger(PropsUtil.get("cacheable.query.limit.roles"));
+	private static final int _CACHEABLE_QUERY_LIMIT_LPD_38877 =
+		GetterUtil.getInteger(PropsUtil.get("cacheable.query.limit.LPD-38877"));
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		RoleLocalServiceImpl.class);
