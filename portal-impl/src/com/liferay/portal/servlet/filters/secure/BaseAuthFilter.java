@@ -375,9 +375,7 @@ public abstract class BaseAuthFilter extends BasePortalFilter {
 
 			user = UserLocalServiceUtil.getUser(user.getUserId());
 
-			if (!StringUtil.equals(digest, user.getDigest())) {
-				return true;
-			}
+			return !StringUtil.equals(digest, user.getDigest());
 		}
 
 		return false;
