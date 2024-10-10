@@ -579,7 +579,7 @@ public class CartResourceImpl extends BaseCartResourceImpl {
 					commerceOrder.getGroupId(),
 					CommerceConstants.SERVICE_NAME_COMMERCE_ORDER));
 
-		CommerceOrderItem commerceOrderItem;
+		CommerceOrderItem commerceOrderItem = null;
 
 		if (commerceOrderCheckoutConfiguration.showSeparateOrderItems()) {
 			commerceOrderItem = _commerceOrderItemService.addCommerceOrderItem(
