@@ -10,14 +10,14 @@
 	},
 	"items": [
 		{
-			"key": "sample-key",
+			"key": "do-you-like-to-eat-bananas",
 			"languageId": "en",
-			"value": "Sample Value"
+			"value": "Do you like to eat bananas?"
 		},
 		{
-			"key": "sample-key",
+			"key": "do-you-like-to-eat-bananas",
 			"languageId": "es_AR",
-			"value": "Valor de muestra"
+			"value": "¿Te gusta comer plátanos?"
 		}
 	]
 }
