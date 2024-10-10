@@ -2364,8 +2364,8 @@ public class ObjectRelationshipLocalServiceTest {
 
 		AssertUtils.assertFailure(
 			ObjectActionActiveException.class,
-			"Cannot activate object action if trigger is onAfterRootUpdate " +
-				"but object definition is not a root node",
+			"Object action if trigger is onAfterRootUpdate but object " +
+				"definition is not a root node",
 			() -> _objectActionLocalService.updateObjectAction(
 				finalObjectAction.getExternalReferenceCode(),
 				finalObjectAction.getObjectActionId(), true,

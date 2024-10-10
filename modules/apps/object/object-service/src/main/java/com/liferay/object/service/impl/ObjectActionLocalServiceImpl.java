@@ -485,7 +485,7 @@ public class ObjectActionLocalServiceImpl
 				ObjectActionTriggerConstants.KEY_ON_AFTER_ROOT_UPDATE)) {
 
 			throw new ObjectActionActiveException(
-				"Cannot activate object action if trigger is " +
+				"Object action trigger is " +
 					ObjectActionTriggerConstants.KEY_ON_AFTER_ROOT_UPDATE +
 						" but object definition is not a root node");
 		}
