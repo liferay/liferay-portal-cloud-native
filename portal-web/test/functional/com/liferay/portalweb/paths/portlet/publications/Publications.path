@@ -187,7 +187,7 @@
 </tr>
 <tr>
 	<td>PUBLICATION_CONFLICT_BUTTON</td>
-	<td>//div[contains(@title,'New changes to this content has been published to production.')]</td>
+	<td>//div[contains(@title,'New changes to this content have been published to production.')]</td>
 	<td></td>
 </tr>
 <tr>
