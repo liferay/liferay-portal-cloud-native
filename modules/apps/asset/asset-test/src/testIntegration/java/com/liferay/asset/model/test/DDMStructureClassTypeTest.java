@@ -69,7 +69,7 @@ public class DDMStructureClassTypeTest {
 	}
 
 	@Test
-	public void testClassTypeFieldsContainsDateTime() throws Exception {
+	public void testGetClassTypeFields() throws Exception {
 		Assert.assertTrue(
 			ListUtil.exists(
 				_ddmStructureClassType.getClassTypeFields(),
