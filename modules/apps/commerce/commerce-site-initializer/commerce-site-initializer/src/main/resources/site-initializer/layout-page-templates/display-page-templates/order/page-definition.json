@@ -879,7 +879,7 @@
 																			},
 																			"fragmentConfig": {
 																				"buttonStyle": "secondary",
-																				"field": "deliveryTerm",
+																				"field": "deliveryTermId",
 																				"label": "Delivery Terms",
 																				"readOnly": false
 																			},
@@ -995,7 +995,7 @@
 																			},
 																			"fragmentConfig": {
 																				"buttonStyle": "secondary",
-																				"field": "paymentTerm",
+																				"field": "paymentTermId",
 																				"label": "Payment Terms",
 																				"readOnly": false
 																			},
