@@ -148,13 +148,11 @@ public class InlineEditableOrderFieldFragmentRenderer
 			httpServletRequest.setAttribute(
 				"liferay-commerce:inline-editable-order-field:fieldValue",
 				_getFieldValue(commerceOrder, field));
-
 			httpServletRequest.setAttribute(
 				"liferay-commerce:inline-editable-order-field:hasPermission",
 				_commerceOrderModelResourcePermission.contains(
 					PermissionThreadLocal.getPermissionChecker(), commerceOrder,
 					ActionKeys.UPDATE));
-
 			httpServletRequest.setAttribute(
 				"liferay-commerce:inline-editable-order-field:label",
 				_language.get(

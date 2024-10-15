@@ -229,7 +229,6 @@ public class OrderActionsFragmentRenderer implements FragmentRenderer {
 					).setTarget(
 						"submitWithConfirmation"
 					).build());
-
 				dropdownItems.add(
 					DropdownItemBuilder.setData(
 						HashMapBuilder.<String, Object>put(
