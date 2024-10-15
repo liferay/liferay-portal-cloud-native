@@ -143,6 +143,10 @@ public class OrderItemsDataSetFragmentRenderer implements FragmentRenderer {
 				_getAPIURL(commerceOrder.getCommerceOrderId(), fdsName));
 			httpServletRequest.setAttribute(
 				"liferay-commerce:order-data-set:name", fdsName);
+			httpServletRequest.setAttribute(
+				"liferay-commerce:order-data-set:additionalProps",
+				_getFDSAdditionalProps(
+					commerceOrder.getCommerceOrderId(), httpServletRequest));
 
 			FragmentEntryLink fragmentEntryLink =
 				fragmentRendererContext.getFragmentEntryLink();
@@ -151,11 +155,8 @@ public class OrderItemsDataSetFragmentRenderer implements FragmentRenderer {
 				fragmentRendererContext, fragmentEntryLink, "displayStyle");
 
 			httpServletRequest.setAttribute(
-				"liferay-commerce:order-data-set:additionalProps",
-				_getFDSAdditionalProps(
-					commerceOrder.getCommerceOrderId(), httpServletRequest));
-			httpServletRequest.setAttribute(
 				"liferay-commerce:order-data-set:displayStyle", displayStyle);
+
 			httpServletRequest.setAttribute(
 				"liferay-commerce:order-data-set:fdsActionDropdownItems",
 				_getFDSActionDropdownItems(fdsName, httpServletRequest));
