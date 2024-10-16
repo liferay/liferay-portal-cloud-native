@@ -110,7 +110,7 @@ public class PlacedOrderDTOConverter
 
 						FriendlyURLSeparatorProvider
 							friendlyURLSeparatorProvider =
-								_friendlyURLSeparatorProvider.get();
+								_friendlyURLSeparatorProviderSnapshot.get();
 
 						if (friendlyURLSeparatorProvider == null) {
 							return null;
@@ -624,7 +624,7 @@ public class PlacedOrderDTOConverter
 	}
 
 	private static final Snapshot<FriendlyURLSeparatorProvider>
-		_friendlyURLSeparatorProvider = new Snapshot<>(
+		_friendlyURLSeparatorProviderSnapshot = new Snapshot<>(
 			PlacedOrderDTOConverter.class, FriendlyURLSeparatorProvider.class);
 
 	@Reference
