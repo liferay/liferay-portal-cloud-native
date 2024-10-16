@@ -116,7 +116,7 @@ public class ConsoleRestController extends BaseRestController {
 			_log.error("Unable to install app for order " + orderId);
 		}
 
-		_deleteDeployment(cloudProvisioningJSONObject, temporaryDeploymentId);
+		_deleteDeployment(temporaryDeploymentId, cloudProvisioningJSONObject);
 
 		customFields.put(
 			"cloud-provisioning", cloudProvisioningJSONArray.toString());
@@ -149,7 +149,7 @@ public class ConsoleRestController extends BaseRestController {
 					jsonObject.getLong("orderItemId"));
 
 			_deleteDeployment(
-				cloudProvisioningJSONObject, jsonObject.getString("id"));
+				jsonObject.getString("id"), cloudProvisioningJSONObject);
 
 			cloudProvisioningJSONObject.put(
 				"shippedQuantity",
@@ -220,14 +220,16 @@ public class ConsoleRestController extends BaseRestController {
 		return uuid.toString();
 	}
 
-	private void _deleteDeployment(JSONObject jsonObject, String id) {
+	private void _deleteDeployment(String deploymentId, JSONObject jsonObject) {
 		JSONArray deploymentsJSONArray = jsonObject.getJSONArray("deployments");
 
 		for (int i = 0; i < deploymentsJSONArray.length(); i++) {
 			JSONObject deploymentJSONObject =
 				deploymentsJSONArray.getJSONObject(i);
 
-			if (Objects.equals(deploymentJSONObject.getString("id"), id)) {
+			if (Objects.equals(
+					deploymentJSONObject.getString("id"), deploymentId)) {
+
 				deploymentsJSONArray.remove(i);
 			}
 		}
