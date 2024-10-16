@@ -195,8 +195,7 @@ public class ConsoleRestController extends BaseRestController {
 		Map<String, String> customFields =
 			(Map<String, String>)order.getCustomFields();
 
-		String uuid = UUID.randomUUID(
-		).toString();
+		UUID uuid = UUID.randomUUID();
 
 		jsonObject.put(
 			"deployments",
@@ -205,7 +204,7 @@ public class ConsoleRestController extends BaseRestController {
 			).put(
 				new JSONObject(
 				).put(
-					"id", uuid
+					"id", uuid.toString()
 				).put(
 					"loading", true
 				).put(
@@ -218,7 +217,7 @@ public class ConsoleRestController extends BaseRestController {
 		_marketplaceService.updateOrder(
 			customFields, order.getId(), order.getOrderStatus());
 
-		return uuid;
+		return uuid.toString();
 	}
 
 	private void _deleteDeployment(JSONObject jsonObject, String id) {
