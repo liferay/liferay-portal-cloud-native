@@ -192,9 +192,6 @@ public class ConsoleRestController extends BaseRestController {
 			String projectId)
 		throws Exception {
 
-		Map<String, String> customFields =
-			(Map<String, String>)order.getCustomFields();
-
 		UUID uuid = UUID.randomUUID();
 
 		jsonObject.put(
@@ -211,6 +208,9 @@ public class ConsoleRestController extends BaseRestController {
 					"projectId", projectId
 				)
 			));
+
+		Map<String, String> customFields =
+			(Map<String, String>)order.getCustomFields();
 
 		customFields.put("cloud-provisioning", jsonArray.toString());
 
