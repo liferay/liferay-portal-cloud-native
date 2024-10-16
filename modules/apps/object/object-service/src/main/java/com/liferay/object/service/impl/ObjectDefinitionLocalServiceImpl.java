@@ -2027,11 +2027,10 @@ public class ObjectDefinitionLocalServiceImpl
 
 		deployObjectDefinition(objectDefinition1);
 
+		boolean containsDraftDescendantNodeObjectDefinitions = false;
 		ObjectDefinitionTreeFactory objectDefinitionTreeFactory =
 			new ObjectDefinitionTreeFactory(
 				objectDefinitionLocalService, _objectRelationshipLocalService);
-
-		boolean containsDraftDescendantNodeObjectDefinitions = false;
 
 		for (ObjectRelationship objectRelationship : objectRelationships) {
 			ObjectDefinition objectDefinition2 =
