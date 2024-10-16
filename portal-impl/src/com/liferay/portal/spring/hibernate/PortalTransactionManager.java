@@ -310,7 +310,7 @@ public class PortalTransactionManager
 
 		SessionHolder sessionHolder =
 			SpringHibernateThreadLocalUtil.getResource(
-				resources, _sessionFactory);
+				_sessionFactory, resources);
 
 		if (sessionHolder != null) {
 			LastSessionRecorderUtil.setLastSession(sessionHolder.getSession());
@@ -319,7 +319,7 @@ public class PortalTransactionManager
 		}
 
 		hibernateTransactionObject.setConnectionHolder(
-			SpringHibernateThreadLocalUtil.getResource(resources, _dataSource));
+			SpringHibernateThreadLocalUtil.getResource(_dataSource, resources));
 
 		return hibernateTransactionObject;
 	}

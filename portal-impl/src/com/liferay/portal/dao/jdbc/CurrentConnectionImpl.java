@@ -23,7 +23,7 @@ public class CurrentConnectionImpl implements CurrentConnection {
 	public Connection getConnection(DataSource dataSource) {
 		ConnectionHolder connectionHolder =
 			(ConnectionHolder)SpringHibernateThreadLocalUtil.getResource(
-				SpringHibernateThreadLocalUtil.getResources(false), dataSource);
+				dataSource, SpringHibernateThreadLocalUtil.getResources(false));
 
 		if ((connectionHolder == null) ||
 			(connectionHolder.getConnectionHandle() == null)) {

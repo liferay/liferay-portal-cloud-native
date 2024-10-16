@@ -103,7 +103,7 @@ public class PortletTransactionManager implements PlatformTransactionManager {
 
 		SessionHolder portalSessionHolder =
 			(SessionHolder)SpringHibernateThreadLocalUtil.getResource(
-				resources, _portalTransactionManager.getSessionFactory());
+				_portalTransactionManager.getSessionFactory(), resources);
 
 		if (portalSessionHolder == null) {
 			return portalTransactionStatus;
@@ -115,7 +115,7 @@ public class PortletTransactionManager implements PlatformTransactionManager {
 
 		SessionHolder portletSessionHolder =
 			(SessionHolder)SpringHibernateThreadLocalUtil.getResource(
-				resources, portletSessionFactory);
+				portletSessionFactory, resources);
 
 		if (portletSessionHolder != null) {
 			if (portalConnection == _getConnection(portletSessionHolder)) {

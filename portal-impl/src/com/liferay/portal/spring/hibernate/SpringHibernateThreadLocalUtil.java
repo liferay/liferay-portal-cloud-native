@@ -23,7 +23,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  */
 public class SpringHibernateThreadLocalUtil {
 
-	public static <T> T getResource(Map<Object, Object> resources, Object key) {
+	public static <T> T getResource(Object key, Map<Object, Object> resources) {
 		if ((resources == null) || resources.isEmpty()) {
 			return null;
 		}
