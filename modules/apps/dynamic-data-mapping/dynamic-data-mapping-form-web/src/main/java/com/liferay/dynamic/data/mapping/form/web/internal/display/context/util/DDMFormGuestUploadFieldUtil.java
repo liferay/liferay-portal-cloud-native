@@ -45,10 +45,10 @@ public class DDMFormGuestUploadFieldUtil {
 			return false;
 		}
 
+		int count = 0;
+
 		DDMFormInstanceRecordLocalService ddmFormInstanceRecordLocalService =
 			_ddmFormInstanceRecordLocalServiceSnapshot.get();
-
-		int count = 0;
 
 		for (DDMFormInstanceRecord ddmFormInstanceRecord :
 				ddmFormInstanceRecordLocalService.getFormInstanceRecords(
