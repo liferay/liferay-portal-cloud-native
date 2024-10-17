@@ -183,27 +183,6 @@ public class CartTransitionResourceImpl extends BaseCartTransitionResourceImpl {
 			new ObjectValuePair<>(workflowTaskId, name));
 	}
 
-	private boolean _isShippable(
-		CommerceOrder commerceOrder,
-		List<CommerceOrderItem> commerceOrderItems) {
-
-		for (CommerceOrderItem commerceOrderItem : commerceOrderItems) {
-			if (commerceOrderItem.isShippable()) {
-				if ((commerceOrder.getShippingAddressId() > 0) &&
-					(commerceOrder.getCommerceShippingMethodId() > 0) &&
-					Validator.isNotNull(
-						commerceOrder.getShippingOptionName())) {
-
-					return true;
-				}
-
-				return false;
-			}
-		}
-
-		return true;
-	}
-
 	private long _getCommercePaymentMethodGroupRelId(
 		CommerceOrder commerceOrder) {
 
@@ -276,6 +255,27 @@ public class CartTransitionResourceImpl extends BaseCartTransitionResourceImpl {
 		}
 
 		return 0;
+	}
+
+	private boolean _isShippable(
+		CommerceOrder commerceOrder,
+		List<CommerceOrderItem> commerceOrderItems) {
+
+		for (CommerceOrderItem commerceOrderItem : commerceOrderItems) {
+			if (commerceOrderItem.isShippable()) {
+				if ((commerceOrder.getShippingAddressId() > 0) &&
+					(commerceOrder.getCommerceShippingMethodId() > 0) &&
+					Validator.isNotNull(
+						commerceOrder.getShippingOptionName())) {
+
+					return true;
+				}
+
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	private CartTransition _toCartTransition(
