@@ -16,7 +16,6 @@ buildscript {
 }
 
 apply plugin: "com.liferay.source.formatter"
-apply plugin: "idea"
 apply plugin: "java-library"
 apply plugin: "org.springframework.boot"
 
