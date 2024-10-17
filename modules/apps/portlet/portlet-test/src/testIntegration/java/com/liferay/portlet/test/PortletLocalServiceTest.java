@@ -27,7 +27,6 @@ import java.util.Objects;
 import javax.portlet.Portlet;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -57,10 +56,8 @@ public class PortletLocalServiceTest {
 
 		BundleContext bundleContext = bundle.getBundleContext();
 
-		TestCustomAttributesDisplay
-			disabledFFCustomAttributesDisplay =
-				new TestCustomAttributesDisplay(
-					RandomTestUtil.randomString());
+		TestCustomAttributesDisplay disabledFFCustomAttributesDisplay =
+			new TestCustomAttributesDisplay(RandomTestUtil.randomString());
 
 		String portletName = RandomTestUtil.randomString();
 
@@ -74,28 +71,23 @@ public class PortletLocalServiceTest {
 		String enabledFFKey = RandomTestUtil.randomString();
 
 		PropsTestUtil.setProps(
-			"feature.flag." + enabledFFKey,
-			Boolean.TRUE.toString());
+			"feature.flag." + enabledFFKey, Boolean.TRUE.toString());
 
-		TestCustomAttributesDisplay
-			enabledFFCustomAttributesDisplay =
-				new TestCustomAttributesDisplay(enabledFFKey);
+		TestCustomAttributesDisplay enabledFFCustomAttributesDisplay =
+			new TestCustomAttributesDisplay(enabledFFKey);
 
 		serviceRegistrations.add(
 			bundleContext.registerService(
-				CustomAttributesDisplay.class,
-				enabledFFCustomAttributesDisplay,
+				CustomAttributesDisplay.class, enabledFFCustomAttributesDisplay,
 				MapUtil.singletonDictionary(
 					"javax.portlet.name", portletName)));
 
-		TestCustomAttributesDisplay
-			nullFFCustomAttributesDisplay =
-				new TestCustomAttributesDisplay(null);
+		TestCustomAttributesDisplay nullFFCustomAttributesDisplay =
+			new TestCustomAttributesDisplay(null);
 
 		serviceRegistrations.add(
 			bundleContext.registerService(
-				CustomAttributesDisplay.class,
-				nullFFCustomAttributesDisplay,
+				CustomAttributesDisplay.class, nullFFCustomAttributesDisplay,
 				MapUtil.singletonDictionary(
 					"javax.portlet.name", portletName)));
 
@@ -126,10 +118,10 @@ public class PortletLocalServiceTest {
 			customAttributesDisplays.contains(
 				enabledFFCustomAttributesDisplay));
 		Assert.assertTrue(
-			customAttributesDisplays.contains(
-				nullFFCustomAttributesDisplay));
+			customAttributesDisplays.contains(nullFFCustomAttributesDisplay));
 		Assert.assertEquals(
-			2, customAttributesDisplays.size());
+			customAttributesDisplays.toString(), 2,
+			customAttributesDisplays.size());
 
 		PropsUtil.setProps(_props);
 
