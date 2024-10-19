@@ -67,13 +67,11 @@ public class PortalAcceptancePullRequestJob
 			if (Objects.equals(getTestSuiteName(), "stable") &&
 				relevantEngineEnabled) {
 
-				List<BatchTestClassGroup> stableBatches =
-					getBatchTestClassGroups(getStableRuleBatchNames());
-
 				batchTestClassGroups = Collections.synchronizedList(
 					new ArrayList<BatchTestClassGroup>());
 
-				batchTestClassGroups.addAll(stableBatches);
+				batchTestClassGroups.addAll(
+					getBatchTestClassGroups(getStableRuleBatchNames()));
 
 				return batchTestClassGroups;
 			}
