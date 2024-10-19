@@ -68,9 +68,6 @@ public class PortalAcceptancePullRequestJob
 				relevantEngineEnabled) {
 
 				batchTestClassGroups = Collections.synchronizedList(
-					new ArrayList<BatchTestClassGroup>());
-
-				batchTestClassGroups.addAll(
 					getBatchTestClassGroups(getStableRuleBatchNames()));
 
 				return batchTestClassGroups;
