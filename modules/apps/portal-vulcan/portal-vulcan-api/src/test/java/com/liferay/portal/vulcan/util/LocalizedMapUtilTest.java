@@ -121,8 +121,8 @@ public class LocalizedMapUtilTest {
 	@Test
 	public void testPopulateI18nMap() {
 
-		// Do not populate i18nMap if both default language and site default
-		// value are undefined
+		// Do not populate international map if both default language and site
+		// default value are undefined
 
 		Map<String, String> i18nMap = HashMapBuilder.put(
 			"pt_BR", RandomTestUtil.randomString()
@@ -131,7 +131,8 @@ public class LocalizedMapUtilTest {
 		Assert.assertEquals(
 			i18nMap, LocalizedMapUtil.populateI18nMap(null, i18nMap, null));
 
-		// Do not populate i18nMap if site default value is already defined
+		// Do not populate international map if site default value is already
+		// defined
 
 		i18nMap = HashMapBuilder.put(
 			"en_US", RandomTestUtil.randomString()
@@ -143,7 +144,7 @@ public class LocalizedMapUtilTest {
 				RandomTestUtil.randomString(), i18nMap,
 				RandomTestUtil.randomString()));
 
-		// Populate i18nMap with default language value
+		// Populate international map with default language value
 
 		String defaultValue = RandomTestUtil.randomString();
 
@@ -160,8 +161,8 @@ public class LocalizedMapUtilTest {
 				).build(),
 				RandomTestUtil.randomString()));
 
-		// Populate i18nMap with site default value when default language
-		// is undefined
+		// Populate international map with site default value when default
+		// language is undefined
 
 		String siteDefaultValue = RandomTestUtil.randomString();
 
