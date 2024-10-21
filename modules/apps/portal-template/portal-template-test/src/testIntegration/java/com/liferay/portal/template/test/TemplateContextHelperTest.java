@@ -36,19 +36,24 @@ public class TemplateContextHelperTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testHelperRestrictedUtilitiesHaveBlankNonceAttribute() {
+	public void testGetHelperUtilities() {
 		TemplateContextHelper templateContextHelper =
 			new TemplateContextHelper();
 
 		Map<String, Object> helperUtilities =
-			templateContextHelper.getHelperUtilities(true);
+			templateContextHelper.getHelperUtilities(false);
+
+		Assert.assertEquals(
+			StringPool.BLANK, helperUtilities.get("nonceAttribute"));
+
+		helperUtilities = templateContextHelper.getHelperUtilities(true);
 
 		Assert.assertEquals(
 			StringPool.BLANK, helperUtilities.get("nonceAttribute"));
 	}
 
 	@Test
-	public void testPrepareOverridesBlankNonceAttribute() {
+	public void testPrepare() {
 		TemplateContextHelper templateContextHelper =
 			new TemplateContextHelper();
 
@@ -69,18 +74,6 @@ public class TemplateContextHelperTest {
 
 		Assert.assertEquals(
 			" nonce=\"TEST_NONCE\"", contextObjects.get("nonceAttribute"));
-	}
-
-	@Test
-	public void testUnrestrictedHelperUtilitiesHaveBlankNonceAttribute() {
-		TemplateContextHelper templateContextHelper =
-			new TemplateContextHelper();
-
-		Map<String, Object> helperUtilities =
-			templateContextHelper.getHelperUtilities(false);
-
-		Assert.assertEquals(
-			StringPool.BLANK, helperUtilities.get("nonceAttribute"));
 	}
 
 }
