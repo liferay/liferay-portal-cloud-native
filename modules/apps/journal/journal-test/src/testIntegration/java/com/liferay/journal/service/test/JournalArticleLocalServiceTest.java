@@ -1180,32 +1180,22 @@ public class JournalArticleLocalServiceTest {
 				article.getResourcePrimKey());
 
 		Assert.assertNotNull(persistedModel);
-	}
-
-	@Test
-	public void testFetchPersistedModelByResourcePrimKeyReturnsLastApproved()
-		throws Exception {
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
 
-		JournalArticle approvedArticle = JournalTestUtil.addArticle(
-			_group.getGroupId(),
-			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-
 		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
 
 		JournalTestUtil.updateArticle(
-			approvedArticle, RandomTestUtil.randomString(),
-			approvedArticle.getContent(), false, false, serviceContext);
+			article, RandomTestUtil.randomString(), article.getContent(), false,
+			false, serviceContext);
 
-		JournalArticle retrievedArticle =
+		JournalArticle persistedArticle =
 			(JournalArticle)_journalArticleLocalService.fetchPersistedModel(
-				approvedArticle.getResourcePrimKey());
+				article.getResourcePrimKey());
 
-		Assert.assertNotNull(retrievedArticle);
-		Assert.assertEquals(retrievedArticle.getId(), approvedArticle.getId());
+		Assert.assertEquals(persistedArticle.getId(), article.getId());
 	}
 
 	@Test
