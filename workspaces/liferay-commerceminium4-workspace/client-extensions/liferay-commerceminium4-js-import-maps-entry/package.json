@@ -17,7 +17,7 @@
 		"vite": "^5.0.2",
 		"vitest": "^0.34.6"
 	},
-	"name": "minium-primary-navigation",
+	"name": "@liferay/liferay-commerceminium4-js-import-maps-entry",
 	"private": true,
 	"scripts": {
 		"build": "vite build",
