@@ -113,6 +113,13 @@ public class WebServerServletTest {
 	}
 
 	private void _testGetStatus(int status) throws Exception {
+		MockHttpServletRequest mockHttpServletRequest =
+			new MockHttpServletRequest();
+
+		mockHttpServletRequest.setAttribute(
+			WebKeys.USER,
+			UserLocalServiceUtil.getGuestUser(_group.getCompanyId()));
+
 		Repository repository = _repositoryLocalService.addRepository(
 			null, TestPropsValues.getUserId(), _group.getGroupId(),
 			PortalUtil.getClassNameId(LiferayRepository.class.getName()),
@@ -147,12 +154,6 @@ public class WebServerServletTest {
 			fileEntry.getFileEntryId(), RoleConstants.SITE_MEMBER,
 			ActionKeys.DOWNLOAD);
 
-		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setAttribute(
-			WebKeys.USER,
-			UserLocalServiceUtil.getGuestUser(_group.getCompanyId()));
 		mockHttpServletRequest.setRequestURI(
 			StringBundler.concat(
 				"/", repository.getRepositoryId(), "/", fileEntry.getUuid()));
