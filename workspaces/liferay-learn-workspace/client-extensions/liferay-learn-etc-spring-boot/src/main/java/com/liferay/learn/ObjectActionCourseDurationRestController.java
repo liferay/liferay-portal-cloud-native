@@ -29,7 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RequestMapping("/object/action/course/duration")
 @RestController
-public class LearnRestController extends BaseRestController {
+public class ObjectActionCourseDurationRestController
+	extends BaseRestController {
 
 	@PostMapping
 	public ResponseEntity<String> post(
@@ -94,7 +95,7 @@ public class LearnRestController extends BaseRestController {
 	}
 
 	private static final Log _log = LogFactory.getLog(
-		LearnRestController.class);
+		ObjectActionCourseDurationRestController.class);
 
 	@Value("${liferay.learn.dxp.site.group.id}")
 	private long _siteGroupId;
