@@ -95,8 +95,7 @@ public class WebServerServletTest {
 						"promptEnabled", true
 					).build())) {
 
-			_testGetStatus(
-				HttpServletResponse.SC_MOVED_TEMPORARILY);
+			_testGetStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
 		}
 	}
 
@@ -114,9 +113,6 @@ public class WebServerServletTest {
 	}
 
 	private void _testGetStatus(int status) throws Exception {
-		User guestUser = UserLocalServiceUtil.getGuestUser(
-			_group.getCompanyId());
-
 		Repository repository = _repositoryLocalService.addRepository(
 			null, TestPropsValues.getUserId(), _group.getGroupId(),
 			PortalUtil.getClassNameId(LiferayRepository.class.getName()),
@@ -154,7 +150,9 @@ public class WebServerServletTest {
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
 
-		mockHttpServletRequest.setAttribute(WebKeys.USER, guestUser);
+		mockHttpServletRequest.setAttribute(
+			WebKeys.USER,
+			UserLocalServiceUtil.getGuestUser(_group.getCompanyId()));
 		mockHttpServletRequest.setRequestURI(
 			StringBundler.concat(
 				"/", repository.getRepositoryId(), "/", fileEntry.getUuid()));
