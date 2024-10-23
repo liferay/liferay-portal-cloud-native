@@ -106,7 +106,7 @@ public class IconOptionsTag extends IncludeTag {
 		return new DropdownItemList() {
 			{
 				for (List<PortletConfigurationIcon> portletConfigurationIcons :
-						_getGroupPortletConfigurationIcons()) {
+						_getPortletConfigurationIconsList()) {
 
 					addGroup(
 						dropdownGroupItem -> {
@@ -134,15 +134,15 @@ public class IconOptionsTag extends IncludeTag {
 	}
 
 	private List<List<PortletConfigurationIcon>>
-		_getGroupPortletConfigurationIcons() {
+		_getPortletConfigurationIconsList() {
 
-		List<List<PortletConfigurationIcon>> groupPortletConfigurationIcons =
+		List<List<PortletConfigurationIcon>> portletConfigurationIconsList =
 			new ArrayList<>();
 
 		List<PortletConfigurationIcon> portletConfigurationIcons =
 			new ArrayList<>();
 
-		groupPortletConfigurationIcons.add(portletConfigurationIcons);
+		portletConfigurationIconsList.add(portletConfigurationIcons);
 
 		for (PortletConfigurationIcon portletConfigurationIcon :
 				_getPortletConfigurationIcons()) {
@@ -152,11 +152,11 @@ public class IconOptionsTag extends IncludeTag {
 			if (portletConfigurationIcon.hasSeparator()) {
 				portletConfigurationIcons = new ArrayList<>();
 
-				groupPortletConfigurationIcons.add(portletConfigurationIcons);
+				portletConfigurationIconsList.add(portletConfigurationIcons);
 			}
 		}
 
-		return groupPortletConfigurationIcons;
+		return portletConfigurationIconsList;
 	}
 
 	private String _getId() {
