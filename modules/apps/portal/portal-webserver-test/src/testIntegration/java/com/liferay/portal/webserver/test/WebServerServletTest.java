@@ -75,9 +75,7 @@ public class WebServerServletTest {
 	}
 
 	@Test
-	public void testWebServerServletResponseWhenGuestAndAuthLoginIsDisabled()
-		throws Exception {
-
+	public void testGetStatus() throws Exception {
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
 				new ConfigurationTemporarySwapper(
 					"com.liferay.login.web.internal.configuration." +
@@ -86,13 +84,8 @@ public class WebServerServletTest {
 						"promptEnabled", false
 					).build())) {
 
-			_testWebServerServletResponse(HttpServletResponse.SC_NOT_FOUND);
+			_testGetStatus(HttpServletResponse.SC_NOT_FOUND);
 		}
-	}
-
-	@Test
-	public void testWebServerServletResponseWhenGuestAndAuthLoginIsEnabled()
-		throws Exception {
 
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
 				new ConfigurationTemporarySwapper(
@@ -102,7 +95,7 @@ public class WebServerServletTest {
 						"promptEnabled", true
 					).build())) {
 
-			_testWebServerServletResponse(
+			_testGetStatus(
 				HttpServletResponse.SC_MOVED_TEMPORARILY);
 		}
 	}
@@ -120,7 +113,7 @@ public class WebServerServletTest {
 			guestRole.getRoleId(), actionId);
 	}
 
-	private void _testWebServerServletResponse(int status) throws Exception {
+	private void _testGetStatus(int status) throws Exception {
 		User guestUser = UserLocalServiceUtil.getGuestUser(
 			_group.getCompanyId());
 
