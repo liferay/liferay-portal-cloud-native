@@ -116,14 +116,6 @@ public class LayoutPageTemplateEntryRemoteStagingTest {
 					_remoteLiveGroup.getGroupId()));
 	}
 
-	private void _setStagingAttribute(
-		ServiceContext serviceContext, String key, Object value) {
-
-		serviceContext.setAttribute(
-			StagingConstants.STAGED_PREFIX + key + StringPool.DOUBLE_DASH,
-			String.valueOf(value));
-	}
-
 	private void _enableRemoteStaging(
 			Group remoteLiveGroup, Group remoteStagingGroup)
 		throws Exception {
@@ -159,6 +151,14 @@ public class LayoutPageTemplateEntryRemoteStagingTest {
 
 			GroupUtil.clearCache();
 		}
+	}
+
+	private void _setStagingAttribute(
+		ServiceContext serviceContext, String key, Object value) {
+
+		serviceContext.setAttribute(
+			StagingConstants.STAGED_PREFIX + key + StringPool.DOUBLE_DASH,
+			String.valueOf(value));
 	}
 
 	@Inject
