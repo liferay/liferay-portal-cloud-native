@@ -271,7 +271,7 @@ public class SiteNavigationMenuServiceTest {
 
 		SiteNavigationMenu siteNavigationMenu =
 			SiteNavigationMenuTestUtil.addSiteNavigationMenu(
-				_group, _user.getUserId());
+				_user.getUserId(), _group);
 
 		UserTestUtil.setUser(_groupUser);
 
@@ -283,7 +283,7 @@ public class SiteNavigationMenuServiceTest {
 	public void testDeleteSiteNavigationMenuWithPermissions() throws Exception {
 		SiteNavigationMenu siteNavigationMenu =
 			SiteNavigationMenuTestUtil.addSiteNavigationMenu(
-				_group, _groupUser.getUserId());
+				_groupUser.getUserId(), _group);
 
 		_addSiteMemberRoleResourcePermission(
 			SiteNavigationMenu.class.getName(), ActionKeys.DELETE);
@@ -301,7 +301,7 @@ public class SiteNavigationMenuServiceTest {
 	public void testFetchSiteNavigationMenuWithPermissions() throws Exception {
 		SiteNavigationMenu siteNavigationMenu =
 			SiteNavigationMenuTestUtil.addSiteNavigationMenu(
-				_group, _groupUser.getUserId());
+				_groupUser.getUserId(), _group);
 
 		_addSiteMemberRoleResourcePermission(
 			SiteNavigationMenu.class.getName(), ActionKeys.VIEW);
@@ -527,7 +527,7 @@ public class SiteNavigationMenuServiceTest {
 
 		SiteNavigationMenu siteNavigationMenu =
 			SiteNavigationMenuTestUtil.addSiteNavigationMenu(
-				_group, _user.getUserId());
+				_user.getUserId(), _group);
 
 		UserTestUtil.setUser(_groupUser);
 
@@ -544,7 +544,7 @@ public class SiteNavigationMenuServiceTest {
 
 		SiteNavigationMenu siteNavigationMenu =
 			SiteNavigationMenuTestUtil.addSiteNavigationMenu(
-				_group, _user.getUserId());
+				_user.getUserId(), _group);
 
 		UserTestUtil.setUser(_groupUser);
 
@@ -565,7 +565,7 @@ public class SiteNavigationMenuServiceTest {
 
 		SiteNavigationMenu siteNavigationMenu =
 			SiteNavigationMenuTestUtil.addSiteNavigationMenu(
-				_group, _groupUser.getUserId());
+				_groupUser.getUserId(), _group);
 
 		_addSiteMemberRoleResourcePermission(
 			SiteNavigationMenu.class.getName(), ActionKeys.UPDATE);
@@ -591,7 +591,7 @@ public class SiteNavigationMenuServiceTest {
 
 		SiteNavigationMenu siteNavigationMenu =
 			SiteNavigationMenuTestUtil.addSiteNavigationMenu(
-				_group, _groupUser.getUserId());
+				_groupUser.getUserId(), _group);
 
 		_addSiteMemberRoleResourcePermission(
 			SiteNavigationMenu.class.getName(), ActionKeys.UPDATE);

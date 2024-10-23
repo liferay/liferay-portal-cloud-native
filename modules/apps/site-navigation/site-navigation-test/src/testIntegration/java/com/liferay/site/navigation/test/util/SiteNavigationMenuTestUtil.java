@@ -69,7 +69,7 @@ public class SiteNavigationMenuTestUtil {
 	}
 
 	public static SiteNavigationMenu addSiteNavigationMenu(
-			Group group, long userId)
+			long userId, Group group)
 		throws PortalException {
 
 		ServiceContext serviceContext =
@@ -91,7 +91,7 @@ public class SiteNavigationMenuTestUtil {
 	}
 
 	public static SiteNavigationMenu addSiteNavigationMenu(
-			Group group, String externalReferenceCode, String name)
+			String externalReferenceCode, Group group, String name)
 		throws PortalException {
 
 		return SiteNavigationMenuLocalServiceUtil.addSiteNavigationMenu(
