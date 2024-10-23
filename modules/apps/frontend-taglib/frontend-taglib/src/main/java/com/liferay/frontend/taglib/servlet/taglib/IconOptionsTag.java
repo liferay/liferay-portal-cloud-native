@@ -102,7 +102,7 @@ public class IconOptionsTag extends IncludeTag {
 			_getPortletConfigurationIcons());
 	}
 
-	private UnsafeConsumer<DropdownItem, Exception> _getDropdownItem(
+	private UnsafeConsumer<DropdownItem, Exception> _getUnsafeConsumer(
 		PortletConfigurationIcon portletConfigurationIcon) {
 
 		return dropdownItem -> {
@@ -161,20 +161,23 @@ public class IconOptionsTag extends IncludeTag {
 					addGroup(
 						dropdownGroupItem -> {
 							dropdownGroupItem.setDropdownItems(
-								new DropdownItemList() {
-									{
-										for (PortletConfigurationIcon
-												portletConfigurationIcon :
-													portletConfigurationIcons) {
-
-											add(
-												_getDropdownItem(
-													portletConfigurationIcon));
-										}
-									}
-								});
+								_getDropdownItems(portletConfigurationIcons));
 							dropdownGroupItem.setSeparator(true);
 						});
+				}
+			}
+		};
+	}
+
+	private List<DropdownItem> _getDropdownItems(
+		List<PortletConfigurationIcon> portletConfigurationIcons) {
+
+		return new DropdownItemList() {
+			{
+				for (PortletConfigurationIcon portletConfigurationIcon :
+						portletConfigurationIcons) {
+
+					add(_getUnsafeConsumer(portletConfigurationIcon));
 				}
 			}
 		};
