@@ -43,7 +43,6 @@ public class NullConvertibleEntryTest {
 				nullConvertibleEntry,
 				_nullConvertibleEntryLocalService.fetchNullConvertibleEntry(
 					null));
-
 			Assert.assertEquals(
 				nullConvertibleEntry.getName(), StringPool.BLANK);
 		}
