@@ -58,7 +58,7 @@ public class SearchPortletUpgradeProcessTest {
 	}
 
 	@Test
-	public void testRemoveDateFacetPortletData() throws Exception {
+	public void testUpgrade() throws Exception {
 		String countSQL1 = StringBundler.concat(
 			"select count(*) from Layout where typeSettings like '%",
 			_DATE_FACET_PORTLET_KEY, "%'");
