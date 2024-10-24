@@ -148,13 +148,12 @@ public class SearchPortletUpgradeProcessTest {
 				RandomTestUtil.randomInt(), ")"));
 		_db.runSQL(
 			StringBundler.concat(
-				"insert into ResourceAction (",
-				"name, resourceActionId) values ('", _PORTLET_ID,
-				"', ", RandomTestUtil.randomInt(), ")"));
+				"insert into ResourceAction (name, resourceActionId) values ('",
+				_PORTLET_ID, "', ", RandomTestUtil.randomInt(), ")"));
 		_db.runSQL(
 			StringBundler.concat(
-				"insert into ResourcePermission (",
-				"ctCollectionId, name, resourcePermissionId) values (",
+				"insert into ResourcePermission (ctCollectionId, name, ",
+				"resourcePermissionId) values (",
 				RandomTestUtil.randomInt(), ", '", _PORTLET_ID,
 				"', ", RandomTestUtil.randomInt(), ")"));
 	}
