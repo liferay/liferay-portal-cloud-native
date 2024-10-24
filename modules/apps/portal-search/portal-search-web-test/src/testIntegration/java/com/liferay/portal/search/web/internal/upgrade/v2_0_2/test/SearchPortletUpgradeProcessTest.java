@@ -63,14 +63,14 @@ public class SearchPortletUpgradeProcessTest {
 			"select count(*) from Layout where typeSettings like '%",
 			_PORTLET_ID, "%'");
 		String sql2 = StringBundler.concat(
-			"select count(*) from Portlet where portletId = '",
-			_PORTLET_ID, "'");
+			"select count(*) from Portlet where portletId = '", _PORTLET_ID,
+			"'");
 		String sql3 = StringBundler.concat(
 			"select count(*) from PortletPreferences where portletId like '",
 			_PORTLET_ID, "%'");
 		String sql4 = StringBundler.concat(
-			"select count(*) from ResourceAction where name = '",
-			_PORTLET_ID, "'");
+			"select count(*) from ResourceAction where name = '", _PORTLET_ID,
+			"'");
 		String sql5 = StringBundler.concat(
 			"select count(*) from ResourcePermission where name = '",
 			_PORTLET_ID, "'");
@@ -96,8 +96,7 @@ public class SearchPortletUpgradeProcessTest {
 			UnicodePropertiesBuilder.put(
 				LayoutTypePortletConstants.COLUMN_PREFIX + 1,
 				StringBundler.concat(
-					_PORTLET_ID, "_INSTANCE_",
-					RandomTestUtil.randomString())
+					_PORTLET_ID, "_INSTANCE_", RandomTestUtil.randomString())
 			).buildString());
 
 		LayoutTestUtil.addTypePortletLayout(
@@ -122,9 +121,9 @@ public class SearchPortletUpgradeProcessTest {
 
 	private int _count(String sql) throws Exception {
 		try (Connection connection = DataAccess.getConnection();
-			 PreparedStatement preparedStatement =
-			 	connection.prepareStatement(sql);
-			 ResultSet resultSet = preparedStatement.executeQuery()) {
+			PreparedStatement preparedStatement = connection.prepareStatement(
+				sql);
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			resultSet.next();
 
@@ -138,14 +137,12 @@ public class SearchPortletUpgradeProcessTest {
 		_db.runSQL(
 			StringBundler.concat(
 				"insert into Portlet (id_, portletId) values (",
-				RandomTestUtil.randomInt(), ", '", _PORTLET_ID,
-				"')"));
+				RandomTestUtil.randomInt(), ", '", _PORTLET_ID, "')"));
 		_db.runSQL(
 			StringBundler.concat(
 				"insert into PortletPreferences (ctCollectionId, portletId, ",
 				"portletPreferencesId) values (", RandomTestUtil.randomInt(),
-				", '", _PORTLET_ID, "', ",
-				RandomTestUtil.randomInt(), ")"));
+				", '", _PORTLET_ID, "', ", RandomTestUtil.randomInt(), ")"));
 		_db.runSQL(
 			StringBundler.concat(
 				"insert into ResourceAction (name, resourceActionId) values ('",
@@ -153,9 +150,8 @@ public class SearchPortletUpgradeProcessTest {
 		_db.runSQL(
 			StringBundler.concat(
 				"insert into ResourcePermission (ctCollectionId, name, ",
-				"resourcePermissionId) values (",
-				RandomTestUtil.randomInt(), ", '", _PORTLET_ID,
-				"', ", RandomTestUtil.randomInt(), ")"));
+				"resourcePermissionId) values (", RandomTestUtil.randomInt(),
+				", '", _PORTLET_ID, "', ", RandomTestUtil.randomInt(), ")"));
 	}
 
 	private void _setUpSearchPortletUpgradeProcess() {
