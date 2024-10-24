@@ -177,7 +177,7 @@ public class ReportController extends BaseFaroController {
 			return _reportControllerResponseFactory.create(
 				"The \"type\" query parameter must be either \"blog\", " +
 					"\"document\", \"event\", \"form\", \"individual\", " +
-						"\"membership\", \"journal\", or \"page\".",
+						"\"journal\", \"membership\", or \"page\".",
 				Response.Status.BAD_REQUEST);
 		}
 
