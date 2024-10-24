@@ -678,13 +678,11 @@ public class LayoutStagedModelDataHandlerTest
 				stagingGroup.getGroupId(),
 				segmentsExperience1.getSegmentsExperienceKey(),
 				stagingLayout.getPlid());
-
 		SegmentsExperience stagingSegmentsExperience2 =
 			_segmentsExperienceLocalService.fetchSegmentsExperience(
 				stagingGroup.getGroupId(),
 				segmentsExperience2.getSegmentsExperienceKey(),
 				stagingLayout.getPlid());
-
 		SegmentsExperience stagingSegmentsExperience3 =
 			_segmentsExperienceLocalService.fetchSegmentsExperience(
 				stagingGroup.getGroupId(),

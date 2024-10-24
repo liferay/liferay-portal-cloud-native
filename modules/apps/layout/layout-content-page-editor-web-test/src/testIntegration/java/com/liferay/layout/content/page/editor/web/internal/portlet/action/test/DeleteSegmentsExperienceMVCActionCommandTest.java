@@ -77,9 +77,7 @@ public class DeleteSegmentsExperienceMVCActionCommandTest {
 
 	@Test
 	@TestInfo("LPS-187444")
-	public void testGetPortletPreferencesAfterDeleteSegmentsExperience()
-		throws Exception {
-
+	public void testGetPortletSetup() throws Exception {
 		Layout layout = LayoutTestUtil.addTypeContentLayout(_group);
 
 		Layout draftLayout = layout.fetchDraftLayout();
@@ -163,9 +161,8 @@ public class DeleteSegmentsExperienceMVCActionCommandTest {
 			(MockHttpServletResponse)
 				mockLiferayPortletActionResponse.getHttpServletResponse();
 
-		String content = mockHttpServletResponse.getContentAsString();
-
-		JSONObject jsonObject = _jsonFactory.createJSONObject(content);
+		JSONObject jsonObject = _jsonFactory.createJSONObject(
+			mockHttpServletResponse.getContentAsString());
 
 		JSONObject segmentsExperienceJSONObject = jsonObject.getJSONObject(
 			"segmentsExperience");
