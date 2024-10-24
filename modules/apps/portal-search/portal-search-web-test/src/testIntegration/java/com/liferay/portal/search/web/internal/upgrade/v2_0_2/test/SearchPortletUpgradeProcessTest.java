@@ -59,35 +59,35 @@ public class SearchPortletUpgradeProcessTest {
 
 	@Test
 	public void testUpgrade() throws Exception {
-		String countSQL1 = StringBundler.concat(
+		String sql1 = StringBundler.concat(
 			"select count(*) from Layout where typeSettings like '%",
 			_DATE_FACET_PORTLET_KEY, "%'");
-		String countSQL2 = StringBundler.concat(
+		String sql2 = StringBundler.concat(
 			"select count(*) from Portlet where portletId = '",
 			_DATE_FACET_PORTLET_KEY, "'");
-		String countSQL3 = StringBundler.concat(
+		String sql3 = StringBundler.concat(
 			"select count(*) from PortletPreferences where portletId like '",
 			_DATE_FACET_PORTLET_KEY, "%'");
-		String countSQL4 = StringBundler.concat(
+		String sql4 = StringBundler.concat(
 			"select count(*) from ResourceAction where name = '",
 			_DATE_FACET_PORTLET_KEY, "'");
-		String countSQL5 = StringBundler.concat(
+		String sql5 = StringBundler.concat(
 			"select count(*) from ResourcePermission where name = '",
 			_DATE_FACET_PORTLET_KEY, "'");
 
-		Assert.assertEquals(countSQL1, 3, _getCount(countSQL1));
-		Assert.assertEquals(countSQL2, 1, _getCount(countSQL2));
-		Assert.assertEquals(countSQL3, 1, _getCount(countSQL3));
-		Assert.assertEquals(countSQL3, 1, _getCount(countSQL4));
-		Assert.assertEquals(countSQL3, 1, _getCount(countSQL4));
+		Assert.assertEquals(sql1, 3, _getCount(sql1));
+		Assert.assertEquals(sql2, 1, _getCount(sql2));
+		Assert.assertEquals(sql3, 1, _getCount(sql3));
+		Assert.assertEquals(sql3, 1, _getCount(sql4));
+		Assert.assertEquals(sql3, 1, _getCount(sql4));
 
 		_searchPortletUpgradeProcess.upgrade();
 
-		Assert.assertEquals(countSQL1, 0, _getCount(countSQL1));
-		Assert.assertEquals(countSQL2, 0, _getCount(countSQL2));
-		Assert.assertEquals(countSQL3, 0, _getCount(countSQL3));
-		Assert.assertEquals(countSQL3, 0, _getCount(countSQL4));
-		Assert.assertEquals(countSQL3, 0, _getCount(countSQL5));
+		Assert.assertEquals(sql1, 0, _getCount(sql1));
+		Assert.assertEquals(sql2, 0, _getCount(sql2));
+		Assert.assertEquals(sql3, 0, _getCount(sql3));
+		Assert.assertEquals(sql3, 0, _getCount(sql4));
+		Assert.assertEquals(sql3, 0, _getCount(sql5));
 	}
 
 	private void _createLayouts() throws Exception {
@@ -120,10 +120,10 @@ public class SearchPortletUpgradeProcessTest {
 			).buildString());
 	}
 
-	private int _getCount(String countSQL) throws Exception {
+	private int _getCount(String sql) throws Exception {
 		try (Connection connection = DataAccess.getConnection();
 
-			 PreparedStatement preparedStatement = connection.prepareStatement(countSQL);
+			 PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
 			 ResultSet resultSet = preparedStatement.executeQuery()) {
 
