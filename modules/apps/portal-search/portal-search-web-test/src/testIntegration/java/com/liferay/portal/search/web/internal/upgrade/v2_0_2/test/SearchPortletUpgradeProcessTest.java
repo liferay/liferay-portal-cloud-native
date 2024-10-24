@@ -90,7 +90,7 @@ public class SearchPortletUpgradeProcessTest {
 		Assert.assertEquals(sql3, 0, _getCount(sql5));
 	}
 
-	private void _createLayouts() throws Exception {
+	private void _addLayouts() throws Exception {
 		LayoutTestUtil.addTypePortletLayout(
 			_group.getGroupId(),
 			UnicodePropertiesBuilder.put(
@@ -134,7 +134,7 @@ public class SearchPortletUpgradeProcessTest {
 	}
 
 	private void _setUpDateFacetPortletData() throws Exception {
-		_createLayouts();
+		_addLayouts();
 
 		_db.runSQL(
 			StringBundler.concat(
