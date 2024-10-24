@@ -53,7 +53,7 @@ public class SearchPortletUpgradeProcessTest {
 		_db = DBManagerUtil.getDB();
 		_group = GroupTestUtil.addGroup();
 
-		_setUpDateFacetPortletData();
+		_setUpData();
 		_setUpSearchPortletUpgradeProcess();
 	}
 
@@ -132,7 +132,7 @@ public class SearchPortletUpgradeProcessTest {
 		}
 	}
 
-	private void _setUpDateFacetPortletData() throws Exception {
+	private void _setUpData() throws Exception {
 		_addLayouts();
 
 		_db.runSQL(
