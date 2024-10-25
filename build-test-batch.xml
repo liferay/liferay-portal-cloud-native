@@ -4912,6 +4912,10 @@ information. Make sure to commit in all format-javadoc results.
 		<run-functional-test app.server.type="wildfly" app.server.version="26.1.0" database.type="mariadb" test.portal.log.assert="true" />
 	</target>
 
+	<target name="functional-smoke-wildfly261-mysql57">
+		<antcall target="functional-wildfly261-mysql57" />
+	</target>
+
 	<target name="functional-smoke-wildfly261-mysql57-jdk21_zulu">
 		<antcall target="functional-wildfly261-mysql57-jdk21_zulu" />
 	</target>
