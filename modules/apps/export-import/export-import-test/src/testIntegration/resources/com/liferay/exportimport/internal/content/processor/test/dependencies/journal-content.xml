@@ -6,7 +6,7 @@
 			<![CDATA[
 				<img alt="" data-fileentryid="[$IMAGE_ID$]" src="/documents/d/[$GROUP_NAME$]/[$FILE_ENTRY_FRIENDLY_URL$]" />&nbsp;
 				<br />
-				<a href="/documents/[$GROUP_ID_DELETED$]/0/[$TITLE_DELETED$]/[$UUID_DELETED$]">UUID</a>
+				<a href="/documents/[$DELETED_GROUP_ID$]/0/[$DELETED_TITLE$]/[$DELETED_UUID$]">UUID</a>
 			]]>
 		</dynamic-content>
 	</dynamic-element>

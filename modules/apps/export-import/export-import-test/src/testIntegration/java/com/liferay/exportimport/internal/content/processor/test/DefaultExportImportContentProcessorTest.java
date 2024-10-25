@@ -887,7 +887,7 @@ public class DefaultExportImportContentProcessorTest {
 		content = StringUtil.replace(
 			content,
 			new String[] {
-				"[$GROUP_ID_DELETED$]", "[$TITLE_DELETED$]", "[$UUID_DELETED$]"
+				"[$DELETED_GROUP_ID$]", "[$DELETED_TITLE$]", "[$DELETED_UUID$]"
 			},
 			new String[] {
 				String.valueOf(deletedFileEntry.getGroupId()),
