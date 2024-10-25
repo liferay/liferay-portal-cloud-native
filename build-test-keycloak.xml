@@ -43,7 +43,7 @@
 			<if>
 				<contains string="${curl.output}" substring="200" />
 				<then>
-					<echo>Keycloak started succesfully</echo>
+					<echo>Keycloak started succesfully.</echo>
 				</then>
 				<else>
 					<fail>Keycloak startup failed.</fail>
