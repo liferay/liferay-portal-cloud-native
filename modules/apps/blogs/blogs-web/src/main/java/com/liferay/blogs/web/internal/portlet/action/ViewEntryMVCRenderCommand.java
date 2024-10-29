@@ -71,10 +71,11 @@ public class ViewEntryMVCRenderCommand implements MVCRenderCommand {
 			HttpServletRequest httpServletRequest =
 				_portal.getHttpServletRequest(renderRequest);
 
-			BlogsEntry entry = ActionUtil.getEntry(renderRequest);
-
 			httpServletRequest.setAttribute(
 				CTTimelineKeys.CLASS_NAME, BlogsEntry.class.getName());
+
+			BlogsEntry entry = ActionUtil.getEntry(renderRequest);
+
 			httpServletRequest.setAttribute(
 				CTTimelineKeys.CLASS_PK, entry.getPrimaryKey());
 

@@ -62,13 +62,12 @@ public class EditEntryMVCRenderCommand implements MVCRenderCommand {
 		throws PortletException {
 
 		try {
+			HttpServletRequest httpServletRequest =
+				_portal.getHttpServletRequest(renderRequest);
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 			BlogsEntry entry = ActionUtil.getEntry(renderRequest);
-
-			HttpServletRequest httpServletRequest =
-				_portal.getHttpServletRequest(renderRequest);
 
 			if (entry != null) {
 				_blogsEntryModelResourcePermission.check(
