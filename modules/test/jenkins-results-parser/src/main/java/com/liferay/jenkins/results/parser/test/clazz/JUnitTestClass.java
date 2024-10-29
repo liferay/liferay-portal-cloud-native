@@ -117,6 +117,8 @@ public class JUnitTestClass extends BaseTestClass {
 
 		super(batchTestClassGroup, jsonObject);
 
+		_classIgnored = jsonObject.getBoolean("ignored");
+
 		File modulesBaseDir = getPortalModulesBaseDir();
 
 		if ((modulesBaseDir != null) && modulesBaseDir.exists()) {
@@ -125,8 +127,6 @@ public class JUnitTestClass extends BaseTestClass {
 		else {
 			_modulesBaseDir = null;
 		}
-
-		_classIgnored = jsonObject.getBoolean("ignored");
 
 		if (jsonObject.has("test_properties_file")) {
 			_testPropertiesFile = new File(
