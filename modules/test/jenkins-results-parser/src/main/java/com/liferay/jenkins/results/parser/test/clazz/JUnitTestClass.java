@@ -60,7 +60,7 @@ public class JUnitTestClass extends BaseTestClass {
 
 		super(batchTestClassGroup, testClassFile);
 
-		File modulesBaseDir = getPortalModulesBaseDir();
+		File modulesBaseDir = _getPortalModulesBaseDir();
 
 		if ((modulesBaseDir != null) && modulesBaseDir.exists()) {
 			_modulesBaseDir = modulesBaseDir;
@@ -86,7 +86,7 @@ public class JUnitTestClass extends BaseTestClass {
 
 				testrayMainComponentName = JenkinsResultsParserUtil.getProperty(
 					JenkinsResultsParserUtil.getProperties(
-						getParentTestPropertiesFile(testPropertiesBaseDir)),
+						_getParentTestPropertiesFile(testPropertiesBaseDir)),
 					"testray.main.component.name");
 			}
 
@@ -119,7 +119,7 @@ public class JUnitTestClass extends BaseTestClass {
 
 		_classIgnored = jsonObject.getBoolean("ignored");
 
-		File modulesBaseDir = getPortalModulesBaseDir();
+		File modulesBaseDir = _getPortalModulesBaseDir();
 
 		if ((modulesBaseDir != null) && modulesBaseDir.exists()) {
 			_modulesBaseDir = modulesBaseDir;
@@ -145,14 +145,14 @@ public class JUnitTestClass extends BaseTestClass {
 		if ((testrayMainComponentName == null) && _modulesBaseDir.exists()) {
 			testrayMainComponentName = JenkinsResultsParserUtil.getProperty(
 				JenkinsResultsParserUtil.getProperties(
-					getParentTestPropertiesFile(testPropertiesBaseDir)),
+					_getParentTestPropertiesFile(testPropertiesBaseDir)),
 				"testray.main.component.name");
 		}
 
 		_testrayMainComponentName = testrayMainComponentName;
 	}
 
-	protected File getParentTestPropertiesFile(File currentDir) {
+	private File _getParentTestPropertiesFile(File currentDir) {
 		if (currentDir.compareTo(_modulesBaseDir) == 0) {
 			return null;
 		}
@@ -165,10 +165,10 @@ public class JUnitTestClass extends BaseTestClass {
 			return parentPropertiesFile;
 		}
 
-		return getParentTestPropertiesFile(parentDir);
+		return _getParentTestPropertiesFile(parentDir);
 	}
 
-	protected File getPortalModulesBaseDir() {
+	private File _getPortalModulesBaseDir() {
 		PortalGitWorkingDirectory portalGitWorkingDirectory =
 			getPortalGitWorkingDirectory();
 
