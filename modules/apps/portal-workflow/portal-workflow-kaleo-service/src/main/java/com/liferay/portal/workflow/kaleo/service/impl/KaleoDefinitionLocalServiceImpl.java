@@ -118,7 +118,6 @@ public class KaleoDefinitionLocalServiceImpl
 			kaleoDefinitionId);
 
 		kaleoDefinition.setExternalReferenceCode(externalReferenceCode);
-
 		kaleoDefinition.setGroupId(
 			_staging.getLiveGroupId(serviceContext.getScopeGroupId()));
 
