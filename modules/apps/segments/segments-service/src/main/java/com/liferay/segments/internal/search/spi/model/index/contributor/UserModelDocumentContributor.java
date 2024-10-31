@@ -33,16 +33,16 @@ public class UserModelDocumentContributor
 	@Override
 	public void contribute(Document document, User user) {
 		try {
-			long[] segmentsEntryIds = _getSegmentsEntryIds(user);
-
-			if (ArrayUtil.isNotEmpty(segmentsEntryIds)) {
-				document.addKeyword("segmentsEntryIds", segmentsEntryIds);
-			}
-
 			long[] inheritedRoleIds = _getInheritedRoleIds(user);
 
 			if (ArrayUtil.isNotEmpty(inheritedRoleIds)) {
 				document.addKeyword("inheritedRoleIds", inheritedRoleIds);
+			}
+
+			long[] segmentsEntryIds = _getSegmentsEntryIds(user);
+
+			if (ArrayUtil.isNotEmpty(segmentsEntryIds)) {
+				document.addKeyword("segmentsEntryIds", segmentsEntryIds);
 			}
 		}
 		catch (Exception exception) {
