@@ -67,15 +67,10 @@ public abstract class BaseSystemObjectRelatedModelsProviderTestCase {
 	}
 
 	@Test
-	public void testSystemObjectEntry1toMObjectRelatedModelsCompanyScoped()
+	public void testSystemObjectEntry1toMObjectRelatedModels()
 		throws Exception {
 
 		_testSystemObjectEntry1toMObjectRelatedModels(0);
-	}
-
-	@Test
-	public void testSystemObjectEntry1toMObjectRelatedModelsSiteScoped()
-		throws Exception {
 
 		_objectDefinition.setScope(ObjectDefinitionConstants.SCOPE_SITE);
 
@@ -88,15 +83,10 @@ public abstract class BaseSystemObjectRelatedModelsProviderTestCase {
 	}
 
 	@Test
-	public void testSystemObjectEntryMtoMObjectRelatedModelsCompanyScoped()
+	public void testSystemObjectEntryMtoMObjectRelatedModels()
 		throws Exception {
 
 		_testSystemObjectEntryMtoMObjectRelatedModels(0);
-	}
-
-	@Test
-	public void testSystemObjectEntryMtoMObjectRelatedModelsSiteScoped()
-		throws Exception {
 
 		_objectDefinition.setScope(ObjectDefinitionConstants.SCOPE_SITE);
 
