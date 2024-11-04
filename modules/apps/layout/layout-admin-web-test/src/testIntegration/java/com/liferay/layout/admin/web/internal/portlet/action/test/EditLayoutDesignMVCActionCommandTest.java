@@ -217,15 +217,14 @@ public class EditLayoutDesignMVCActionCommandTest {
 
 		draftLayout = _layoutLocalService.fetchLayout(draftLayout.getPlid());
 
+		Assert.assertTrue(
+			MapUtil.toString(draftLayout.getNameMap()),
+			MapUtil.isEmpty(draftLayout.getNameMap()));
 		Assert.assertFalse(
 			GetterUtil.getBoolean(
 				draftLayout.getTypeSettingsProperty(
 					LayoutTypeSettingsConstants.
 						KEY_DESIGN_CONFIGURATION_MODIFIED)));
-
-		Assert.assertTrue(
-			MapUtil.toString(draftLayout.getNameMap()),
-			MapUtil.isEmpty(draftLayout.getNameMap()));
 	}
 
 	@Test
@@ -279,12 +278,6 @@ public class EditLayoutDesignMVCActionCommandTest {
 
 		draftLayout = _layoutLocalService.getLayout(draftLayout.getPlid());
 
-		Assert.assertTrue(
-			GetterUtil.getBoolean(
-				draftLayout.getTypeSettingsProperty(
-					LayoutTypeSettingsConstants.
-						KEY_DESIGN_CONFIGURATION_MODIFIED)));
-
 		Map<Locale, String> nameMap = draftLayout.getNameMap();
 
 		Assert.assertEquals(MapUtil.toString(nameMap), 1, nameMap.size());
@@ -292,6 +285,12 @@ public class EditLayoutDesignMVCActionCommandTest {
 		Assert.assertEquals(
 			layoutPageTemplateEntry.getName(),
 			draftLayout.getName(_portal.getSiteDefaultLocale(_group)));
+
+		Assert.assertTrue(
+			GetterUtil.getBoolean(
+				draftLayout.getTypeSettingsProperty(
+					LayoutTypeSettingsConstants.
+						KEY_DESIGN_CONFIGURATION_MODIFIED)));
 	}
 
 	private MockActionRequest _getMockActionRequest(Layout layout)
