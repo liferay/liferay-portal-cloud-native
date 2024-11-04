@@ -391,14 +391,14 @@ public class LayoutStagedModelDataHandlerTest
 
 		_assertContentReference(importedFileEntry, languageId, importedLayout);
 
-		String curContent = ContentLayoutTestUtil.getRenderLayoutHTML(
+		String html = ContentLayoutTestUtil.getRenderLayoutHTML(
 			importedLayout, _layoutServiceContextHelper,
 			_layoutStructureProvider, importedLayoutSegmentsExperienceId);
 
 		Assert.assertTrue(
-			curContent,
+			html,
 			StringUtil.contains(
-				curContent,
+				html,
 				StringBundler.concat(
 					"<a href=\"https://www.liferay.com/\"><img alt=\"\" ",
 					"class=\"w-100\" data-lfr-editable-id=\"image-square\" ",
@@ -413,9 +413,9 @@ public class LayoutStagedModelDataHandlerTest
 				StringPool.BLANK));
 
 		Assert.assertFalse(
-			curContent,
+			html,
 			StringUtil.contains(
-				curContent,
+				html,
 				"style=\"--background-image-file-entry-id:" +
 					importedFileEntry.getFileEntryId(),
 				StringPool.BLANK));
@@ -426,7 +426,7 @@ public class LayoutStagedModelDataHandlerTest
 			importedLayout.getPlid());
 
 		Assert.assertEquals(
-			curContent,
+			html,
 			ContentLayoutTestUtil.getRenderLayoutHTML(
 				importedLayout, _layoutServiceContextHelper,
 				_layoutStructureProvider, importedLayoutSegmentsExperienceId));
@@ -434,15 +434,15 @@ public class LayoutStagedModelDataHandlerTest
 		ContentLayoutTestUtil.publishLayout(
 			importedLayout.fetchDraftLayout(), importedLayout);
 
-		curContent = ContentLayoutTestUtil.getRenderLayoutHTML(
+		html = ContentLayoutTestUtil.getRenderLayoutHTML(
 			_layoutLocalService.getLayout(importedLayout.getPlid()),
 			_layoutServiceContextHelper, _layoutStructureProvider,
 			importedLayoutSegmentsExperienceId);
 
 		Assert.assertTrue(
-			curContent,
+			html,
 			StringUtil.contains(
-				curContent,
+				html,
 				StringBundler.concat(
 					"<a href=\"https://learn.liferay.com/\"><img alt=\"\" ",
 					"class=\"w-100\" data-lfr-editable-id=\"image-square\" ",
@@ -457,9 +457,9 @@ public class LayoutStagedModelDataHandlerTest
 				StringPool.BLANK));
 
 		Assert.assertTrue(
-			curContent,
+			html,
 			StringUtil.contains(
-				curContent,
+				html,
 				"style=\"--background-image-file-entry-id:" +
 					importedFileEntry.getFileEntryId(),
 				StringPool.BLANK));
