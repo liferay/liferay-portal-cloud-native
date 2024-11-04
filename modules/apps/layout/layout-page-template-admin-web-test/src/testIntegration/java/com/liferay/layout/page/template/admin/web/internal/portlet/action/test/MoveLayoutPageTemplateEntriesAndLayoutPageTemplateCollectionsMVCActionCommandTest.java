@@ -211,14 +211,14 @@ public class
 	private ServiceContext _getServiceContext(Group group, long userId)
 		throws Exception {
 
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(group, userId);
+
 		HttpServletRequest httpServletRequest = new MockHttpServletRequest();
 
 		httpServletRequest.setAttribute(
 			JavaConstants.JAVAX_PORTLET_RESPONSE,
 			new MockLiferayPortletActionResponse());
-
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group, userId);
 
 		serviceContext.setRequest(httpServletRequest);
 
