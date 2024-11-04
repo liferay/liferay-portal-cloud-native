@@ -89,10 +89,6 @@ public class DisplayPageTemplateFolderResourceImpl
 		Group group = _groupLocalService.getGroupByExternalReferenceCode(
 			siteExternalReferenceCode, contextCompany.getCompanyId());
 
-		String parentDisplayPageTemplateFolderExternalReferenceCode =
-			displayPageTemplateFolder.
-				getParentDisplayPageTemplateFolderExternalReferenceCode();
-
 		long parentDisplayPageTemplateFolderId =
 			LayoutPageTemplateConstants.
 				PARENT_LAYOUT_PAGE_TEMPLATE_COLLECTION_ID_DEFAULT;
@@ -100,7 +96,8 @@ public class DisplayPageTemplateFolderResourceImpl
 		LayoutPageTemplateCollection parentLayoutPageTemplateCollection =
 			_layoutPageTemplateCollectionService.
 				fetchLayoutPageTemplateCollection(
-					parentDisplayPageTemplateFolderExternalReferenceCode,
+					displayPageTemplateFolder.
+						getParentDisplayPageTemplateFolderExternalReferenceCode(),
 					group.getGroupId());
 
 		if (parentLayoutPageTemplateCollection != null) {
