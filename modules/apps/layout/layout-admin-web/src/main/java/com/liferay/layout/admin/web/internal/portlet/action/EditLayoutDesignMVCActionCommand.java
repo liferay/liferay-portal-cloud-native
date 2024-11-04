@@ -185,10 +185,11 @@ public class EditLayoutDesignMVCActionCommand extends BaseMVCActionCommand {
 			UploadPortletRequest uploadPortletRequest)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		try {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
+
 			long groupId = ParamUtil.getLong(actionRequest, "groupId");
 			long liveGroupId = ParamUtil.getLong(actionRequest, "liveGroupId");
 			long stagingGroupId = ParamUtil.getLong(
