@@ -101,7 +101,7 @@ public class FragmentEntryLinkManagerTest {
 	}
 
 	@Test
-	public void testAssertActionsForNonexistingPortlet() throws Exception {
+	public void testAssertActionsForNonexistentPortlet() throws Exception {
 		Layout layout = LayoutTestUtil.addTypeContentLayout(_group);
 
 		Layout draftLayout = layout.fetchDraftLayout();

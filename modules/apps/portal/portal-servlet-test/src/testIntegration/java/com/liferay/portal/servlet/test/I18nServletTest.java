@@ -331,7 +331,7 @@ public class I18nServletTest extends I18nServlet {
 				StringBundler.concat(
 					PropsValues.
 						LAYOUT_FRIENDLY_URL_PRIVATE_USER_SERVLET_MAPPING,
-					"/nonexistingfriendlyurl", RandomTestUtil.randomString()));
+					"/nonexistentfriendlyurl", RandomTestUtil.randomString()));
 
 			String expectedI18nErrorPath =
 				StringPool.SLASH + LocaleUtil.SPAIN.getLanguage();

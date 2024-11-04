@@ -657,9 +657,9 @@ public class CommercePriceListLocalServiceTest {
 	@Test(expected = NoSuchPriceListException.class)
 	public void testUpdateCommercePriceList2() throws Exception {
 		frutillaRule.scenario(
-			"Update a nonexisting Price List"
+			"Update a nonexistent Price List"
 		).given(
-			"A nonexisting Price List ID"
+			"A nonexistent Price List ID"
 		).when(
 			"The value is used in the method invocation"
 		).then(
