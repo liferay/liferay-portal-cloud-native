@@ -304,15 +304,15 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 				_getFDSViewsJSONArray(
 					fragmentEntryLink.getCompanyId(),
 					_getRelatedObjectEntries(
-						dataSetObjectDefinition, dataSetObjectEntry,
-						null, "dataSetToDataSetCardsSections"),
+						dataSetObjectDefinition, dataSetObjectEntry, null,
+						"dataSetToDataSetCardsSections"),
 					String.valueOf(
 						dataSetObjectEntryProperties.get(
 							"defaultVisualizationMode")),
 					dataSetTableSectionObjectEntries,
 					_getRelatedObjectEntries(
-						dataSetObjectDefinition, dataSetObjectEntry,
-						null, "dataSetToDataSetListSections"),
+						dataSetObjectDefinition, dataSetObjectEntry, null,
+						"dataSetToDataSetListSections"),
 					httpServletRequest)
 			).build(),
 			httpServletRequest, writer);
@@ -403,7 +403,7 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 
 		return _getSortedRelatedObjectEntries(
 			dataSetObjectDefinition, dataSetObjectEntry, "tableSectionsOrder",
-			"dataSetToDataSetTableSections");
+			(Predicate)null, "dataSetToDataSetTableSections");
 	}
 
 	private JSONObject _getDateJSONObject(Object isoDate) {
@@ -575,7 +575,7 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 		return JSONUtil.toJSONArray(
 			_getSortedRelatedObjectEntries(
 				dataSetObjectDefinition, dataSetObjectEntry, "filtersOrder",
-				"dataSetToDataSetClientExtensionFilters",
+				(Predicate)null, "dataSetToDataSetClientExtensionFilters",
 				"dataSetToDataSetDateFilters",
 				"dataSetToDataSetSelectionFilters"),
 			(ObjectEntry objectEntry) -> {
@@ -1037,24 +1037,11 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 		for (String relationshipName : relationshipNames) {
 			objectEntries.addAll(
 				_getRelatedObjectEntries(
-					dataSetObjectDefinition, dataSetObjectEntry,
-					predicate, relationshipName));
+					dataSetObjectDefinition, dataSetObjectEntry, predicate,
+					relationshipName));
 		}
 
 		return objectEntries;
-	}
-
-	private Set<ObjectEntry> _getSortedRelatedObjectEntries(
-			ObjectDefinition dataSetObjectDefinition,
-			ObjectEntry dataSetObjectEntry,
-			String dataSetObjectEntryComparatorIdsPropertyKey,
-			String... relationshipNames)
-		throws Exception {
-
-		return _getSortedRelatedObjectEntries(
-			dataSetObjectDefinition, dataSetObjectEntry,
-			dataSetObjectEntryComparatorIdsPropertyKey, null,
-			relationshipNames);
 	}
 
 	private JSONArray _getSortsJSONArray(
@@ -1065,7 +1052,7 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 		return JSONUtil.toJSONArray(
 			_getSortedRelatedObjectEntries(
 				dataSetObjectDefinition, dataSetObjectEntry, "sortsOrder",
-				"dataSetToDataSetSorts"),
+				(Predicate)null, "dataSetToDataSetSorts"),
 			(ObjectEntry objectEntry) -> {
 				Map<String, Object> properties = objectEntry.getProperties();
 
