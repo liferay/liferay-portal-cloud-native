@@ -86,6 +86,10 @@ public class ObjectActionCourseRestController extends BaseRestController {
 		for (int i = 0; i < moduleJSONArray.length(); i++) {
 			JSONObject moduleJSONObject = moduleJSONArray.getJSONObject(i);
 
+			durationMinutes += moduleJSONObject.getLong(
+				"lessonDurationMinutes");
+			durationMinutes += moduleJSONObject.getLong("quizDurationMinutes");
+
 			if (moduleJSONObject.has("lessons")) {
 				totalAssets += moduleJSONObject.getInt("lessons");
 			}
@@ -93,10 +97,6 @@ public class ObjectActionCourseRestController extends BaseRestController {
 			if (moduleJSONObject.has("quizzes")) {
 				totalAssets += moduleJSONObject.getInt("quizzes");
 			}
-
-			durationMinutes += moduleJSONObject.getLong(
-				"lessonDurationMinutes");
-			durationMinutes += moduleJSONObject.getLong("quizDurationMinutes");
 		}
 
 		return new JSONObject(
