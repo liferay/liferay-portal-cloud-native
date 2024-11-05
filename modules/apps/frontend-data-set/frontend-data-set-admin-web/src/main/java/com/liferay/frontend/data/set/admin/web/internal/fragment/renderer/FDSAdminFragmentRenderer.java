@@ -305,14 +305,14 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 					fragmentEntryLink.getCompanyId(),
 					_getRelatedObjectEntries(
 						dataSetObjectDefinition, dataSetObjectEntry,
-						"dataSetToDataSetCardsSections"),
+						null, "dataSetToDataSetCardsSections"),
 					String.valueOf(
 						dataSetObjectEntryProperties.get(
 							"defaultVisualizationMode")),
 					dataSetTableSectionObjectEntries,
 					_getRelatedObjectEntries(
 						dataSetObjectDefinition, dataSetObjectEntry,
-						"dataSetToDataSetListSections"),
+						null, "dataSetToDataSetListSections"),
 					httpServletRequest)
 			).build(),
 			httpServletRequest, writer);
@@ -954,18 +954,8 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 
 	private Collection<ObjectEntry> _getRelatedObjectEntries(
 			ObjectDefinition dataSetObjectDefinition,
-			ObjectEntry dataSetObjectEntry, String relationshipName)
-		throws Exception {
-
-		return _getRelatedObjectEntries(
-			dataSetObjectDefinition, dataSetObjectEntry, relationshipName,
-			null);
-	}
-
-	private Collection<ObjectEntry> _getRelatedObjectEntries(
-			ObjectDefinition dataSetObjectDefinition,
-			ObjectEntry dataSetObjectEntry, String relationshipName,
-			Predicate<ObjectEntry> predicate)
+			ObjectEntry dataSetObjectEntry, Predicate<ObjectEntry> predicate,
+			String relationshipName)
 		throws Exception {
 
 		DTOConverterContext dtoConverterContext =
@@ -1048,7 +1038,7 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 			objectEntries.addAll(
 				_getRelatedObjectEntries(
 					dataSetObjectDefinition, dataSetObjectEntry,
-					relationshipName, predicate));
+					predicate, relationshipName));
 		}
 
 		return objectEntries;
