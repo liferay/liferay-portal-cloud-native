@@ -36,18 +36,18 @@ public class LayoutPrivateLayoutsUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		String value;
-
-		if (ReleaseFeatureFlagManagerUtil.isEnabled(
-				ReleaseFeatureFlag.DISABLE_PRIVATE_LAYOUTS)) {
-
-			value = Boolean.FALSE.toString();
-		}
-		else {
-			value = Boolean.TRUE.toString();
-		}
-
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
+			String value;
+
+			if (ReleaseFeatureFlagManagerUtil.isEnabled(
+					ReleaseFeatureFlag.DISABLE_PRIVATE_LAYOUTS)) {
+
+				value = Boolean.FALSE.toString();
+			}
+			else {
+				value = Boolean.TRUE.toString();
+			}
+
 			_companyLocalService.forEachCompanyId(
 				companyId -> {
 					try {
