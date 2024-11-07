@@ -159,7 +159,6 @@ public class DocumentMetadataSetResourceTest
 
 		String randomDescription = StringUtil.toLowerCase(
 			RandomTestUtil.randomString());
-
 		String randomName = StringUtil.toLowerCase(
 			RandomTestUtil.randomString());
 

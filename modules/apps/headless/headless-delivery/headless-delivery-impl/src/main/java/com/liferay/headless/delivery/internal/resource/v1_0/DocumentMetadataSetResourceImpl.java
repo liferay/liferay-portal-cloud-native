@@ -28,7 +28,6 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portlet.documentlibrary.constants.DLConstants;
 
-import java.util.Locale;
 import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
@@ -163,14 +162,6 @@ public class DocumentMetadataSetResourceImpl
 			contextUser
 		).build();
 
-		Map<Locale, String> descriptionMap = LocalizedMapUtil.getLocalizedMap(
-			contextAcceptLanguage.getPreferredLocale(),
-			documentMetadataSet.getDescription(),
-			documentMetadataSet.getDescription_i18n());
-		Map<Locale, String> nameMap = LocalizedMapUtil.getLocalizedMap(
-			contextAcceptLanguage.getPreferredLocale(),
-			documentMetadataSet.getName(), documentMetadataSet.getName_i18n());
-
 		DataDefinition dataDefinition =
 			dataDefinitionResource.postSiteDataDefinitionByContentType(
 				siteId, "document-library",
@@ -184,10 +175,17 @@ public class DocumentMetadataSetResourceImpl
 							documentMetadataSet::getDataLayout);
 						setDescription(
 							() -> LocalizedValueUtil.toStringObjectMap(
-								descriptionMap));
+								LocalizedMapUtil.getLocalizedMap(
+									contextAcceptLanguage.getPreferredLocale(),
+									documentMetadataSet.getDescription(),
+									documentMetadataSet.
+										getDescription_i18n())));
 						setName(
 							() -> LocalizedValueUtil.toStringObjectMap(
-								nameMap));
+								LocalizedMapUtil.getLocalizedMap(
+									contextAcceptLanguage.getPreferredLocale(),
+									documentMetadataSet.getName(),
+									documentMetadataSet.getName_i18n())));
 						setSiteId(() -> siteId);
 						setUserId(contextUser::getUserId);
 					}
