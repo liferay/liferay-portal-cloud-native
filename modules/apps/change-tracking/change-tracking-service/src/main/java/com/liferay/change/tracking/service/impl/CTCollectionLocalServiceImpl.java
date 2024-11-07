@@ -184,9 +184,7 @@ public class CTCollectionLocalServiceImpl
 		throws PortalException {
 
 		Map<Long, List<ConflictInfo>> conflictInfoMap = new HashMap<>();
-
 		Map<Long, CTConflictChecker<?>> ctConflictCheckers = new HashMap<>();
-
 		CTConflictConfiguration ctConflictConfiguration =
 			_configurationProvider.getCompanyConfiguration(
 				CTConflictConfiguration.class, companyId);

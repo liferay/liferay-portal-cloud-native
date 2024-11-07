@@ -59,7 +59,7 @@ public class ModificationDeletionConflictTest {
 	}
 
 	@Test
-	public void testModificationDeletionConflictConfigurationDisabled()
+	public void testModificationDeletionConflictCheckEnabled()
 		throws Exception {
 
 		JournalFolder journalFolder = _journalFolderFixture.addFolder(
