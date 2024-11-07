@@ -68,6 +68,7 @@ public class AccountRoleResourceUpgradeProcessTest {
 		_runUpgrade();
 
 		CacheRegistryUtil.clear();
+
 		_entityCache.clearCache(ResourceActionImpl.class);
 		_finderCache.clearCache(ResourceActionImpl.class);
 
