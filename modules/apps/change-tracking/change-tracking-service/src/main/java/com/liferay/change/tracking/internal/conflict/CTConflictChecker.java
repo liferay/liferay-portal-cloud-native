@@ -143,7 +143,6 @@ public class CTConflictChecker<T extends CTModel<T>> {
 
 		_checkAdditions(
 			connection, ctPersistence, conflictInfos, primaryKeyName);
-
 		_checkDeletions(
 			connection, ctPersistence, conflictInfos, primaryKeyName);
 
