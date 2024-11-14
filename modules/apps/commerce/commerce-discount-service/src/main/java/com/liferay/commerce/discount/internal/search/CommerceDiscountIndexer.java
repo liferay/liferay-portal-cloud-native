@@ -157,12 +157,12 @@ public class CommerceDiscountIndexer extends BaseIndexer<CommerceDiscount> {
 
 			termsSetFilterBuilder.setValues(values);
 
-			Filter termFilter = new TermFilter(
-				"commerceAccountGroupIds_required_matches", "0");
-
 			BooleanFilter fieldBooleanFilter = new BooleanFilter();
 
-			fieldBooleanFilter.add(termFilter, BooleanClauseOccur.SHOULD);
+			fieldBooleanFilter.add(
+				new TermFilter(
+					"commerceAccountGroupIds_required_matches", "0"),
+					BooleanClauseOccur.SHOULD);
 			fieldBooleanFilter.add(
 				termsSetFilterBuilder.build(), BooleanClauseOccur.SHOULD);
 
@@ -177,10 +177,9 @@ public class CommerceDiscountIndexer extends BaseIndexer<CommerceDiscount> {
 			BooleanFilter groupBooleanFilter = new BooleanFilter();
 
 			for (long groupId : groupIds) {
-				Filter termFilter = new TermFilter(
-					FIELD_GROUP_IDS, String.valueOf(groupId));
-
-				groupBooleanFilter.add(termFilter, BooleanClauseOccur.SHOULD);
+				groupBooleanFilter.add(
+					new TermFilter(
+					FIELD_GROUP_IDS, String.valueOf(groupId)), BooleanClauseOccur.SHOULD);
 			}
 
 			groupBooleanFilter.add(

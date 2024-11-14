@@ -91,11 +91,9 @@ public class CPDefinitionModelPreFilterContributor
 			BooleanFilter accountGroupIdsBooleanFilter = new BooleanFilter();
 
 			for (long accountGroupId : accountGroupIds) {
-				Filter termFilter = new TermFilter(
-					"commerceAccountGroupIds", String.valueOf(accountGroupId));
-
 				accountGroupIdsBooleanFilter.add(
-					termFilter, BooleanClauseOccur.SHOULD);
+					new TermFilter(
+					"commerceAccountGroupIds", String.valueOf(accountGroupId)), BooleanClauseOccur.SHOULD);
 			}
 
 			accountGroupsFilterEnableBooleanFilter.add(

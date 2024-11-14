@@ -60,11 +60,9 @@ public class CommerceShippingFixedOptionIndexer
 			"commerceShippingMethodId");
 
 		if (commerceShippingMethodId != -1) {
-			TermFilter termFilter = new TermFilter(
+			contextBooleanFilter.add(new TermFilter(
 				"commerceShippingMethodId",
-				String.valueOf(commerceShippingMethodId));
-
-			contextBooleanFilter.add(termFilter, BooleanClauseOccur.MUST);
+				String.valueOf(commerceShippingMethodId)), BooleanClauseOccur.MUST);
 		}
 	}
 

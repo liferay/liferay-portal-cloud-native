@@ -138,12 +138,10 @@ public class CommercePriceListIndexer extends BaseIndexer<CommercePriceList> {
 
 			termsSetFilterBuilder.setValues(values);
 
-			Filter termFilter = new TermFilter(
-				"commerceAccountGroupIds_required_matches", "0");
-
 			BooleanFilter fieldBooleanFilter = new BooleanFilter();
 
-			fieldBooleanFilter.add(termFilter, BooleanClauseOccur.SHOULD);
+			fieldBooleanFilter.add(new TermFilter(
+				"commerceAccountGroupIds_required_matches", "0"), BooleanClauseOccur.SHOULD);
 			fieldBooleanFilter.add(
 				termsSetFilterBuilder.build(), BooleanClauseOccur.SHOULD);
 

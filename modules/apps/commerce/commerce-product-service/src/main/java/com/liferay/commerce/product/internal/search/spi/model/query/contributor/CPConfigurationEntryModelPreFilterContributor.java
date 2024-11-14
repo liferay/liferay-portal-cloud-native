@@ -9,7 +9,6 @@ import com.liferay.commerce.product.constants.CPField;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
-import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.search.filter.TermFilter;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.search.spi.model.query.contributor.ModelPreFilterContributor;
@@ -39,11 +38,11 @@ public class CPConfigurationEntryModelPreFilterContributor
 			searchContext.getAttribute(CPField.CP_CONFIGURATION_LIST_ID));
 
 		if (cpConfigurationListId > 0) {
-			Filter filter = new TermFilter(
-				CPField.CP_CONFIGURATION_LIST_ID,
-				String.valueOf(cpConfigurationListId));
-
-			booleanFilter.add(filter, BooleanClauseOccur.MUST);
+			booleanFilter.add(
+				new TermFilter(
+					CPField.CP_CONFIGURATION_LIST_ID,
+					String.valueOf(cpConfigurationListId)),
+				BooleanClauseOccur.MUST);
 		}
 	}
 

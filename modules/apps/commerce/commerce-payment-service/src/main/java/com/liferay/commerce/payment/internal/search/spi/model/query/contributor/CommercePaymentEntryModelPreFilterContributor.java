@@ -53,11 +53,9 @@ public class CommercePaymentEntryModelPreFilterContributor
 		BooleanFilter classNameIdsBooleanFilter = new BooleanFilter();
 
 		for (long classNameId : classNameIds) {
-			Filter termFilter = new TermFilter(
-				"classNameId", String.valueOf(classNameId));
-
 			classNameIdsBooleanFilter.add(
-				termFilter, BooleanClauseOccur.SHOULD);
+				new TermFilter(
+				"classNameId", String.valueOf(classNameId)), BooleanClauseOccur.SHOULD);
 		}
 
 		classNameIdsBooleanFilter.add(
@@ -79,10 +77,8 @@ public class CommercePaymentEntryModelPreFilterContributor
 		BooleanFilter classPKsBooleanFilter = new BooleanFilter();
 
 		for (long classPK : classPKs) {
-			Filter termFilter = new TermFilter(
-				"classPK", String.valueOf(classPK));
-
-			classPKsBooleanFilter.add(termFilter, BooleanClauseOccur.SHOULD);
+			classPKsBooleanFilter.add(new TermFilter(
+				"classPK", String.valueOf(classPK)), BooleanClauseOccur.SHOULD);
 		}
 
 		classPKsBooleanFilter.add(
@@ -104,11 +100,9 @@ public class CommercePaymentEntryModelPreFilterContributor
 		BooleanFilter currencyCodesBooleanFilter = new BooleanFilter();
 
 		for (String currencyCode : currencyCodes) {
-			Filter termFilter = new TermFilter(
-				"currencyCode", String.valueOf(currencyCode));
-
 			currencyCodesBooleanFilter.add(
-				termFilter, BooleanClauseOccur.SHOULD);
+				new TermFilter(
+				"currencyCode", String.valueOf(currencyCode)), BooleanClauseOccur.SHOULD);
 		}
 
 		currencyCodesBooleanFilter.add(
@@ -130,11 +124,9 @@ public class CommercePaymentEntryModelPreFilterContributor
 		BooleanFilter paymentMethodNamesBooleanFilter = new BooleanFilter();
 
 		for (String paymentMethodName : paymentMethodNames) {
-			Filter termFilter = new TermFilter(
-				"paymentMethodName", String.valueOf(paymentMethodName));
-
 			paymentMethodNamesBooleanFilter.add(
-				termFilter, BooleanClauseOccur.SHOULD);
+				new TermFilter(
+				"paymentMethodName", String.valueOf(paymentMethodName)), BooleanClauseOccur.SHOULD);
 		}
 
 		paymentMethodNamesBooleanFilter.add(
@@ -157,10 +149,8 @@ public class CommercePaymentEntryModelPreFilterContributor
 		BooleanFilter statusesBooleanFilter = new BooleanFilter();
 
 		for (long paymentStatus : paymentStatuses) {
-			Filter termFilter = new TermFilter(
-				"paymentStatus", String.valueOf(paymentStatus));
-
-			statusesBooleanFilter.add(termFilter, BooleanClauseOccur.SHOULD);
+			statusesBooleanFilter.add(new TermFilter(
+				"paymentStatus", String.valueOf(paymentStatus)), BooleanClauseOccur.SHOULD);
 		}
 
 		statusesBooleanFilter.add(

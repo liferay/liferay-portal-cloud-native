@@ -69,11 +69,9 @@ public class CommerceShipmentIndexer extends BaseIndexer<CommerceShipment> {
 			BooleanFilter commerceAccountIdBooleanFilter = new BooleanFilter();
 
 			for (long commerceAccountId : commerceAccountIds) {
-				Filter termFilter = new TermFilter(
-					"commerceAccountId", String.valueOf(commerceAccountId));
-
 				commerceAccountIdBooleanFilter.add(
-					termFilter, BooleanClauseOccur.SHOULD);
+					new TermFilter(
+					"commerceAccountId", String.valueOf(commerceAccountId)), BooleanClauseOccur.SHOULD);
 			}
 
 			commerceAccountIdBooleanFilter.add(
@@ -91,11 +89,9 @@ public class CommerceShipmentIndexer extends BaseIndexer<CommerceShipment> {
 			BooleanFilter shipmentStatusesBooleanFilter = new BooleanFilter();
 
 			for (long shipmentStatus : shipmentStatuses) {
-				Filter termFilter = new TermFilter(
-					Field.STATUS, String.valueOf(shipmentStatus));
-
 				shipmentStatusesBooleanFilter.add(
-					termFilter, BooleanClauseOccur.SHOULD);
+					new TermFilter(
+					Field.STATUS, String.valueOf(shipmentStatus)), BooleanClauseOccur.SHOULD);
 			}
 
 			shipmentStatusesBooleanFilter.add(
