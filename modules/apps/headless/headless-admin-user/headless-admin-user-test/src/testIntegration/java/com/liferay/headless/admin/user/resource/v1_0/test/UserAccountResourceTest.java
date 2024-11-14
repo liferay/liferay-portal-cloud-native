@@ -1289,6 +1289,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		return userAccountResource.getUserAccount(_testUser.getUserId());
 	}
 
+	@Override
 	protected UserAccount
 			testGetOrganizationByExternalReferenceCodeUserAccountsPage_addUserAccount(
 				String externalReferenceCode, UserAccount userAccount)

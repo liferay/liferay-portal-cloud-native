@@ -776,14 +776,18 @@ public class OrganizationResourceTest extends BaseOrganizationResourceTestCase {
 			Organization organization, String parentOrganizationId)
 		throws Exception {
 
-		if (Validator.isNotNull(parentOrganizationId)) {
-			organization.setParentOrganization(
-				new Organization() {
+		organization.setParentOrganization(
+			() -> {
+				if (Validator.isNull(parentOrganizationId)) {
+					return null;
+				}
+
+				return new Organization() {
 					{
 						id = parentOrganizationId;
 					}
-				});
-		}
+				};
+			});
 
 		return organizationResource.postOrganization(organization);
 	}
@@ -877,6 +881,7 @@ public class OrganizationResourceTest extends BaseOrganizationResourceTestCase {
 
 		assertEquals(randomOrganization, postOrganization);
 		assertValid(postOrganization);
+
 		Assert.assertNotNull(postOrganization.getCustomFields());
 
 		CustomField postOrganizationCustomField =
