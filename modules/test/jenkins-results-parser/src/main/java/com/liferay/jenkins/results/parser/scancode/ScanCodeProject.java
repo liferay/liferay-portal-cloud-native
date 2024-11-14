@@ -46,10 +46,10 @@ public class ScanCodeProject {
 				errorType);
 
 			if (errorType.equals("warning")) {
-				_warningCountMap.put(key, errorTypeJSONArray.length());
+				_warningCountsMap.put(key, errorTypeJSONArray.length());
 			}
 			else {
-				_errorCountMap.put(key, errorTypeJSONArray.length());
+				_errorCountsMap.put(key, errorTypeJSONArray.length());
 			}
 		}
 	}
@@ -196,7 +196,7 @@ public class ScanCodeProject {
 	}
 
 	public String getComplianceAlertString(
-		HashMap<String, Integer> map, String errorType) {
+		Map<String, Integer> map, String errorType) {
 
 		StringBuilder sb = new StringBuilder();
 
@@ -370,15 +370,15 @@ public class ScanCodeProject {
 
 		String subject = "ScanCode pipeline is complete";
 
-		if ((_errorCountMap != null) && !_errorCountMap.isEmpty()) {
+		if ((_errorCountsMap != null) && !_errorCountsMap.isEmpty()) {
 			subject = ":red-alert: Release blocker :red-alert:";
 		}
 
 		String complianceAlertString = getComplianceAlertString(
-			_errorCountMap, "error");
+			_errorCountsMap, "error");
 
 		complianceAlertString += getComplianceAlertString(
-			_warningCountMap, "warning");
+			_warningCountsMap, "warning");
 
 		if (!JenkinsResultsParserUtil.isNullOrEmpty(complianceAlertString)) {
 			sb.append("*Compliance alerts:* ");
@@ -542,9 +542,8 @@ public class ScanCodeProject {
 	private static final Pattern _dockerTagPattern = Pattern.compile(
 		"(?<buildProfile>portal|dxp):(?<releaseVersion>" +
 			"\\d+.\\d+.\\d+[.\\d+]*-(ga|u)\\d+|\\d{4}.[qQ]\\d+.\\d+)");
-	private static final HashMap<String, Integer> _errorCountMap =
-		new HashMap<>();
-	private static final HashMap<String, Integer> _warningCountMap =
+	private static final Map<String, Integer> _errorCountsMap = new HashMap<>();
+	private static final Map<String, Integer> _warningCountsMap =
 		new HashMap<>();
 
 	static {
