@@ -39,11 +39,10 @@ public class FriendlyUrlHistoryResourceTest
 		String defaultLanguageId = LocaleUtil.toLanguageId(
 			LocaleUtil.getSiteDefault());
 
-		for (i < 0; i < 3) {
+		for (int i = 0; i < 3; i++) {
 			_layoutLocalService.updateFriendlyURL(
 				TestPropsValues.getUserId(), layout.getPlid(),
-				"/" + RandomTestUtil.randomString(),
-				defaultLanguageId);
+				"/" + RandomTestUtil.randomString(), defaultLanguageId);
 		}
 
 		Page<FriendlyUrlHistory> friendlyUrlHistoryPage =
