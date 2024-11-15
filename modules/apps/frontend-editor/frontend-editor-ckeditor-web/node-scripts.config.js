@@ -10,5 +10,4 @@ module.exports = {
 		'ckeditor5/ckeditor5.css',
 	],
 	main: 'src/main/resources/META-INF/resources/js/index.ts',
-	npmscripts: {},
 };

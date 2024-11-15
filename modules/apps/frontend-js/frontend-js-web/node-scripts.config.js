@@ -36,9 +36,6 @@ module.exports = {
 		},
 	},
 	main: 'src/main/resources/META-INF/resources/index.es.js',
-	npmscripts: {
-		bridges: ['lodash.groupby', 'lodash.isequal', 'svg4everybody'],
-	},
 	typescript: {
 		main: 'src/main/resources/META-INF/resources/index.d.ts',
 	},

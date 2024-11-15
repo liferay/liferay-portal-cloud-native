@@ -17,5 +17,4 @@ module.exports = {
 		'url',
 		'util',
 	],
-	npmscripts: {},
 };

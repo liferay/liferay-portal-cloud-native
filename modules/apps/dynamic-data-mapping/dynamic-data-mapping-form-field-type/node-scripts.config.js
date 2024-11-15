@@ -6,5 +6,4 @@
 module.exports = {
 	exports: ['leaflet/dist/leaflet.css'],
 	main: 'src/main/resources/META-INF/resources/index.ts',
-	npmscripts: {},
 };

@@ -5,5 +5,4 @@
 
 module.exports = {
 	main: 'src/main/resources/META-INF/resources/publications/js/index.js',
-	npmscripts: {},
 };

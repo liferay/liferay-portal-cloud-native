@@ -5,7 +5,7 @@
 
 module.exports = {
 	main: 'src/main/resources/META-INF/resources/index.js',
-	npmscripts: {},
+
 	typescript: {
 		main: 'src/main/resources/META-INF/resources/index.ts',
 	},

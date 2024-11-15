@@ -50,5 +50,4 @@ module.exports = {
 		'@clayui/upper-toolbar',
 	],
 	main: 'src/main/resources/META-INF/resources/index.js',
-	npmscripts: {},
 };
