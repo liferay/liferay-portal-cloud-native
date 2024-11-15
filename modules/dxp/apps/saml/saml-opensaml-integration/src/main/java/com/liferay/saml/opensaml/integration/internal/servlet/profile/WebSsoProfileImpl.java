@@ -575,6 +575,12 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 			OpenSamlUtil.signObject(authnRequest, credential, idpSSODescriptor);
 		}
 
+		SAMLBindingContext samlBindingContext =
+			outboundMessageContext.getSubcontext(
+				SAMLBindingContext.class, true);
+
+		samlBindingContext.setRelayState(authnRequest.getID());
+
 		SAMLEndpointContext samlPeerEndpointContext =
 			samlPeerEntityContext.getSubcontext(
 				SAMLEndpointContext.class, true);
@@ -587,12 +593,6 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 		_samlSpAuthRequestLocalService.addSamlSpAuthRequest(
 			samlPeerEntityContext.getEntityId(), relayState,
 			authnRequest.getID(), serviceContext);
-
-		SAMLBindingContext samlBindingContext =
-			outboundMessageContext.getSubcontext(
-				SAMLBindingContext.class, true);
-
-		samlBindingContext.setRelayState(authnRequest.getID());
 
 		sendSamlMessage(messageContext, httpServletResponse);
 	}
@@ -1765,6 +1765,8 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 			throw new StatusException(statusCodeURI);
 		}
 
+		verifyDestination(messageContext, samlResponse.getDestination());
+
 		String redirect = verifyInResponseTo(samlResponse);
 
 		if (Validator.isNull(redirect)) {
@@ -1776,8 +1778,6 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 		}
 
 		httpServletRequest.setAttribute(WebKeys.REDIRECT, redirect);
-
-		verifyDestination(messageContext, samlResponse.getDestination());
 
 		Issuer issuer = samlResponse.getIssuer();
 
