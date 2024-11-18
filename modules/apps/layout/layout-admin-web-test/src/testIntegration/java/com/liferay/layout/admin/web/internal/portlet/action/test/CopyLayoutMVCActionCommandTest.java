@@ -426,9 +426,6 @@ public class CopyLayoutMVCActionCommandTest {
 		MockLiferayPortletActionRequest mockLiferayPortletActionRequest =
 			new MockLiferayPortletActionRequest();
 
-		mockLiferayPortletActionRequest.setAttribute(
-			WebKeys.THEME_DISPLAY, _getThemeDisplay());
-
 		mockLiferayPortletActionRequest.addParameter(
 			"copyPermissions", String.valueOf(copyPermissions));
 		mockLiferayPortletActionRequest.addParameter(
@@ -443,6 +440,9 @@ public class CopyLayoutMVCActionCommandTest {
 			mockLiferayPortletActionRequest.addParameter(
 				entry.getKey(), entry.getValue());
 		}
+
+		mockLiferayPortletActionRequest.setAttribute(
+			WebKeys.THEME_DISPLAY, _getThemeDisplay());
 
 		_mvcActionCommand.processAction(
 			mockLiferayPortletActionRequest,
