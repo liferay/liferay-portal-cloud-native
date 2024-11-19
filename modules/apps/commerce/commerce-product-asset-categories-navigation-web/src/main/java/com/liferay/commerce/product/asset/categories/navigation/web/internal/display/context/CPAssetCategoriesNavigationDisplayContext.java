@@ -224,11 +224,11 @@ public class CPAssetCategoriesNavigationDisplayContext {
 			return _displayStyleGroupKey;
 		}
 
+		Group group = _themeDisplay.getScopeGroup();
+
 		String displayStyleGroupExternalReferenceCode =
 			_cpAssetCategoriesNavigationPortletInstanceConfiguration.
 				displayStyleGroupExternalReferenceCode();
-
-		Group group = _themeDisplay.getScopeGroup();
 
 		if (Validator.isNotNull(displayStyleGroupExternalReferenceCode)) {
 			group = GroupLocalServiceUtil.fetchGroupByExternalReferenceCode(

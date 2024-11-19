@@ -537,6 +537,19 @@ public class CommerceProductServiceUpgradeStepRegistrator
 						String portletId, PortletPreferences portletPreferences)
 					throws Exception {
 
+					long assetVocabularyId = GetterUtil.getLong(
+						portletPreferences.getValue("assetVocabularyId", null));
+
+					AssetVocabulary assetVocabulary =
+						_assetVocabularyLocalService.fetchAssetVocabulary(
+							assetVocabularyId);
+
+					if (assetVocabulary != null) {
+						portletPreferences.setValue(
+							"assetVocabularyExternalReferenceCode",
+							assetVocabulary.getExternalReferenceCode());
+					}
+
 					long rootAssetCategoryId = GetterUtil.getLong(
 						portletPreferences.getValue(
 							"rootAssetCategoryId", null));
@@ -549,19 +562,6 @@ public class CommerceProductServiceUpgradeStepRegistrator
 						portletPreferences.setValue(
 							"rootAssetCategoryExternalReferenceCode",
 							assetCategory.getExternalReferenceCode());
-					}
-
-					long assetVocabularyId = GetterUtil.getLong(
-						portletPreferences.getValue("assetVocabularyId", null));
-
-					AssetVocabulary assetVocabulary =
-						_assetVocabularyLocalService.fetchAssetVocabulary(
-							assetVocabularyId);
-
-					if (assetVocabulary != null) {
-						portletPreferences.setValue(
-							"assetVocabularyExternalReferenceCode",
-							assetVocabulary.getExternalReferenceCode());
 					}
 				}
 
