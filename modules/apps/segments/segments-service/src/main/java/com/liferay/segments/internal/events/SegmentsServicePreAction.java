@@ -6,7 +6,6 @@
 package com.liferay.segments.internal.events;
 
 import com.liferay.layout.content.page.editor.constants.ContentPageEditorPortletKeys;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.LifecycleAction;
@@ -146,15 +145,14 @@ public class SegmentsServicePreAction extends Action {
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
+		String portletNamespace = _portal.getPortletNamespace(
+			ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET);
+
 		SegmentsExperience segmentsExperience =
 			_segmentsExperienceLocalService.fetchSegmentsExperience(
 				ParamUtil.getLong(
 					httpServletRequest,
-					String.join(
-						StringPool.BLANK, StringPool.UNDERLINE,
-						ContentPageEditorPortletKeys.
-							CONTENT_PAGE_EDITOR_PORTLET,
-						"_segmentsExperienceId")));
+					portletNamespace + "segmentsExperienceId"));
 
 		if (permissionChecker.isGroupAdmin(themeDisplay.getScopeGroupId()) &&
 			Objects.equals(
