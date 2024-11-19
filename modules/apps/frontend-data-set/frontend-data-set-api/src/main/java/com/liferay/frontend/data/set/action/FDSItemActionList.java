@@ -24,7 +24,7 @@ public interface FDSItemActionList {
 			HttpServletResponse httpServletResponse)
 		throws PortalException;
 
-	public default FDSEntryItemImportPolicy getImportPolicy() {
+	public default FDSEntryItemImportPolicy getFDSEntryItemImportPolicy() {
 		return FDSEntryItemImportPolicy.ITEM_PROXY;
 	}
 
