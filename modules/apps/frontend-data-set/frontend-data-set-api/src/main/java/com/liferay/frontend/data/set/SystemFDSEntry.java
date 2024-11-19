@@ -16,10 +16,6 @@ public interface SystemFDSEntry {
 		return 10;
 	}
 
-	public default String getListOfItemsPerPage() {
-		return "4, 10, 20, 40, 60";
-	}
-
 	public String getName();
 
 	public String getRESTApplication();
