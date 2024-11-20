@@ -44,11 +44,11 @@ public class UpgradeCatchAllCheckTest extends BaseSourceProcessorTestCase {
 		String[] issueKeys = StringUtil.split(
 			System.getProperty("issue.key", null), StringPool.COMMA);
 
-		ClassLoader classLoader = UpgradeCatchAllCheck.class.getClassLoader();
-
 		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
 
 		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
+
+		ClassLoader classLoader = UpgradeCatchAllCheck.class.getClassLoader();
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray(
 			StringUtil.read(
