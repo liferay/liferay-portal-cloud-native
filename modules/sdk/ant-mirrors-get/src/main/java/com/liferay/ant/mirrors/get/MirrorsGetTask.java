@@ -308,7 +308,7 @@ public class MirrorsGetTask extends Task {
 
 			System.out.println(
 				"The src attribute has an unnecessary reference to " +
-					hostname);
+					hostname + ".");
 
 			_path = _path.substring(hostname.length());
 
@@ -349,7 +349,7 @@ public class MirrorsGetTask extends Task {
 					if (_verbose) {
 						System.out.println(
 							"Unable to connect to " + mirrorsURL +
-								", defaulting to " + localURL);
+								", defaulting to " + localURL + ".");
 					}
 
 					try {
@@ -361,7 +361,7 @@ public class MirrorsGetTask extends Task {
 						if (_verbose) {
 							System.out.println(
 								"Unable to connect to " + localURL +
-									", defaulting to " + remoteURL);
+									", defaulting to " + remoteURL + ".");
 						}
 
 						_downloadFile(remoteURL, mirrorsCacheTempFile, 0);
@@ -380,7 +380,7 @@ public class MirrorsGetTask extends Task {
 					if (_verbose) {
 						System.out.println(
 							"Unable to connect to " + localURL +
-								", defaulting to " + remoteURL);
+								", defaulting to " + remoteURL + ".");
 					}
 
 					_downloadFile(remoteURL, mirrorsCacheTempFile, 0);
@@ -693,7 +693,7 @@ public class MirrorsGetTask extends Task {
 		}
 		catch (Exception exception) {
 			if (_verbose) {
-				System.out.println("Unable to access MD5 file");
+				System.out.println("Unable to access MD5 file.");
 			}
 
 			return true;
