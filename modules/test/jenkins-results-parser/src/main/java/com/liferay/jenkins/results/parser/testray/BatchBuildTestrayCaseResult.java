@@ -446,12 +446,11 @@ public class BatchBuildTestrayCaseResult extends BuildTestrayCaseResult {
 			return Status.FAILED;
 		}
 
-		if (testResult.isSkipped()) {
-			return Status.UNTESTED;
-		}
-
 		if (testResult.isFailing()) {
 			return Status.FAILED;
+		}
+		else if (testResult.isSkipped()) {
+			return Status.UNTESTED;
 		}
 
 		return Status.PASSED;
