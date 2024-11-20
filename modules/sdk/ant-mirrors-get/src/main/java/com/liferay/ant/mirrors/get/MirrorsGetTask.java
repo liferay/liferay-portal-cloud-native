@@ -779,7 +779,7 @@ public class MirrorsGetTask extends Task {
 
 		System.out.println(sb.toString());
 
-		sourceFile.renameTo(destFile)
+		sourceFile.renameTo(destFile);
 	}
 
 	private URLConnection _openConnection(URL url) throws IOException {
