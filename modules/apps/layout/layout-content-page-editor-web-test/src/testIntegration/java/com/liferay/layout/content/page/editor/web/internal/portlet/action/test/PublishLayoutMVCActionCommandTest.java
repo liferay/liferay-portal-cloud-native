@@ -467,8 +467,7 @@ public class PublishLayoutMVCActionCommandTest {
 			_segmentsExperienceId);
 
 		for (String portletId : portletIds) {
-			Assert.assertFalse(
-				html + " contain " + portletId, html.contains(portletId));
+			Assert.assertFalse(html.contains(portletId));
 		}
 
 		for (String portletId : portletIds) {
@@ -482,9 +481,7 @@ public class PublishLayoutMVCActionCommandTest {
 			_segmentsExperienceId);
 
 		for (String portletId : portletIds) {
-			Assert.assertTrue(
-				html + " does not contain " + portletId,
-				html.contains(portletId));
+			Assert.assertTrue(html.contains(portletId));
 		}
 	}
 
