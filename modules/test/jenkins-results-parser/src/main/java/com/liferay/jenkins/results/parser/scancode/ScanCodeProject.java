@@ -120,7 +120,7 @@ public class ScanCodeProject {
 					complianceAlertJSONObject.getJSONArray(
 						complianceAlertType.toString());
 
-				_complianceAlertsCountsMap.put(
+				_complianceAlertCountsMap.put(
 					key + "-" + complianceAlertType,
 					complianceAlertTypeJSONArray.length());
 			}
@@ -199,7 +199,7 @@ public class ScanCodeProject {
 		StringBuilder sb = new StringBuilder();
 
 		for (Map.Entry<String, Integer> entry :
-				_complianceAlertsCountsMap.entrySet()) {
+				_complianceAlertCountsMap.entrySet()) {
 
 			String key = entry.getKey();
 
@@ -557,7 +557,7 @@ public class ScanCodeProject {
 	}
 
 	private boolean _hasErrors() {
-		for (String key : _complianceAlertsCountsMap.keySet()) {
+		for (String key : _complianceAlertCountsMap.keySet()) {
 			if (key.endsWith(ComplianceAlertType.ERROR.toString())) {
 				return true;
 			}
@@ -578,7 +578,7 @@ public class ScanCodeProject {
 		"attribution", "cyclonedx", "spdx", "xls"
 	};
 
-	private static final Map<String, Integer> _complianceAlertsCountsMap =
+	private static final Map<String, Integer> _complianceAlertCountsMap =
 		new HashMap<>();
 	private static final Pattern _dockerTagPattern = Pattern.compile(
 		"(?<buildProfile>portal|dxp):(?<releaseVersion>" +
