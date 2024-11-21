@@ -5,7 +5,7 @@
 
 package com.liferay.dynamic.data.mapping.data.provider.web.internal.portlet;
 
-import com.liferay.change.tracking.spi.history.util.CTCollectionTimelineUtil;
+import com.liferay.change.tracking.spi.history.util.CTTimelineUtil;
 import com.liferay.dynamic.data.mapping.constants.DDMPortletKeys;
 import com.liferay.dynamic.data.mapping.data.provider.DDMDataProviderRegistry;
 import com.liferay.dynamic.data.mapping.data.provider.web.internal.display.context.DDMDataProviderDisplayContext;
@@ -65,7 +65,7 @@ public class DDMDataProviderPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		CTCollectionTimelineUtil.setClassName(
+		CTTimelineUtil.setClassName(
 			renderRequest, DDMDataProviderInstance.class);
 
 		if (Objects.equals(
@@ -75,7 +75,7 @@ public class DDMDataProviderPortlet extends MVCPortlet {
 			long dataProviderInstanceId = ParamUtil.getLong(
 				renderRequest, "dataProviderInstanceId");
 
-			CTCollectionTimelineUtil.setCTTimelineKeys(
+			CTTimelineUtil.setCTTimelineKeys(
 				renderRequest, DDMDataProviderInstance.class,
 				dataProviderInstanceId);
 		}

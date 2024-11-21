@@ -9,7 +9,7 @@ import com.liferay.asset.constants.AssetWebKeys;
 import com.liferay.asset.util.AssetHelper;
 import com.liferay.blogs.constants.BlogsPortletKeys;
 import com.liferay.blogs.model.BlogsEntry;
-import com.liferay.change.tracking.spi.history.util.CTCollectionTimelineUtil;
+import com.liferay.change.tracking.spi.history.util.CTTimelineUtil;
 import com.liferay.portal.kernel.model.Release;
 import com.liferay.trash.TrashHelper;
 import com.liferay.trash.util.TrashWebKeys;
@@ -62,7 +62,7 @@ public class BlogsAdminPortlet extends BaseBlogsPortlet {
 		renderRequest.setAttribute(AssetWebKeys.ASSET_HELPER, _assetHelper);
 		renderRequest.setAttribute(TrashWebKeys.TRASH_HELPER, _trashHelper);
 
-		CTCollectionTimelineUtil.setClassName(renderRequest, BlogsEntry.class);
+		CTTimelineUtil.setClassName(renderRequest, BlogsEntry.class);
 
 		super.render(renderRequest, renderResponse);
 	}

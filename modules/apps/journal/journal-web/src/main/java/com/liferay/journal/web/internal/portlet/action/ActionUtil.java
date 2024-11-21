@@ -5,7 +5,7 @@
 
 package com.liferay.journal.web.internal.portlet.action;
 
-import com.liferay.change.tracking.spi.history.util.CTCollectionTimelineUtil;
+import com.liferay.change.tracking.spi.history.util.CTTimelineUtil;
 import com.liferay.dynamic.data.mapping.exception.TemplateScriptException;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalServiceUtil;
@@ -188,7 +188,7 @@ public class ActionUtil {
 			}
 		}
 
-		CTCollectionTimelineUtil.setCTTimelineKeys(
+		CTTimelineUtil.setCTTimelineKeys(
 			httpServletRequest, JournalArticle.class, article.getPrimaryKey());
 
 		return article;

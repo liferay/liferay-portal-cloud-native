@@ -7,7 +7,7 @@ package com.liferay.bookmarks.web.internal.portlet.action;
 
 import com.liferay.bookmarks.constants.BookmarksPortletKeys;
 import com.liferay.bookmarks.model.BookmarksEntry;
-import com.liferay.change.tracking.spi.history.util.CTCollectionTimelineUtil;
+import com.liferay.change.tracking.spi.history.util.CTTimelineUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -43,7 +43,7 @@ public class EditEntryMVCRenderCommand extends BaseEntryMVCRenderCommand {
 
 		long entryId = ParamUtil.getLong(renderRequest, "entryId");
 
-		CTCollectionTimelineUtil.setCTTimelineKeys(
+		CTTimelineUtil.setCTTimelineKeys(
 			renderRequest, BookmarksEntry.class, entryId);
 
 		return super.render(renderRequest, renderResponse);

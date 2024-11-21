@@ -5,7 +5,7 @@
 
 package com.liferay.journal.web.internal.display.context;
 
-import com.liferay.change.tracking.spi.history.util.CTCollectionTimelineUtil;
+import com.liferay.change.tracking.spi.history.util.CTTimelineUtil;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureVersion;
@@ -175,7 +175,7 @@ public class JournalEditDDMStructuresDisplayContext {
 		_ddmStructureId = ParamUtil.getLong(
 			_httpServletRequest, "ddmStructureId");
 
-		CTCollectionTimelineUtil.setCTTimelineKeys(
+		CTTimelineUtil.setCTTimelineKeys(
 			_httpServletRequest, DDMStructure.class, _ddmStructureId);
 
 		return _ddmStructureId;

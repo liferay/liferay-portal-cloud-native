@@ -10,7 +10,7 @@ import com.liferay.bookmarks.constants.BookmarksWebKeys;
 import com.liferay.bookmarks.exception.NoSuchFolderException;
 import com.liferay.bookmarks.model.BookmarksEntry;
 import com.liferay.bookmarks.model.BookmarksFolder;
-import com.liferay.change.tracking.spi.history.util.CTCollectionTimelineUtil;
+import com.liferay.change.tracking.spi.history.util.CTTimelineUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.portlet.toolbar.contributor.PortletToolbarContributor;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
@@ -52,7 +52,7 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 				BookmarksWebKeys.BOOKMARKS_PORTLET_TOOLBAR_CONTRIBUTOR,
 				_bookmarksPortletToolbarContributor);
 
-			CTCollectionTimelineUtil.setClassName(
+			CTTimelineUtil.setClassName(
 				renderRequest, BookmarksEntry.class);
 		}
 		catch (Exception exception) {

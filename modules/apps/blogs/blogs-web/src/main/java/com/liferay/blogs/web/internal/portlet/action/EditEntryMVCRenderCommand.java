@@ -14,7 +14,7 @@ import com.liferay.blogs.exception.NoSuchEntryException;
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.settings.BlogsGroupServiceSettings;
 import com.liferay.blogs.web.internal.display.context.BlogsEditEntryDisplayContext;
-import com.liferay.change.tracking.spi.history.util.CTCollectionTimelineUtil;
+import com.liferay.change.tracking.spi.history.util.CTTimelineUtil;
 import com.liferay.depot.group.provider.SiteConnectedGroupGroupProvider;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
@@ -74,7 +74,7 @@ public class EditEntryMVCRenderCommand implements MVCRenderCommand {
 					themeDisplay.getPermissionChecker(), entry,
 					ActionKeys.UPDATE);
 
-				CTCollectionTimelineUtil.setCTTimelineKeys(
+				CTTimelineUtil.setCTTimelineKeys(
 					renderRequest, BlogsEntry.class, entry.getPrimaryKey());
 			}
 

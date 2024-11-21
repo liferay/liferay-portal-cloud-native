@@ -11,7 +11,7 @@ import com.liferay.blogs.constants.BlogsPortletKeys;
 import com.liferay.blogs.exception.NoSuchEntryException;
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.web.internal.util.BlogsEntryAssetEntryUtil;
-import com.liferay.change.tracking.spi.history.util.CTCollectionTimelineUtil;
+import com.liferay.change.tracking.spi.history.util.CTTimelineUtil;
 import com.liferay.friendly.url.model.FriendlyURLEntry;
 import com.liferay.friendly.url.service.FriendlyURLEntryLocalService;
 import com.liferay.info.item.ClassPKInfoItemIdentifier;
@@ -73,7 +73,7 @@ public class ViewEntryMVCRenderCommand implements MVCRenderCommand {
 
 			BlogsEntry entry = ActionUtil.getEntry(renderRequest);
 
-			CTCollectionTimelineUtil.setCTTimelineKeys(
+			CTTimelineUtil.setCTTimelineKeys(
 				renderRequest, BlogsEntry.class, entry.getPrimaryKey());
 
 			ThemeDisplay themeDisplay =

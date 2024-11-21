@@ -11,7 +11,7 @@ import com.liferay.asset.util.AssetHelper;
 import com.liferay.blogs.constants.BlogsPortletKeys;
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.web.internal.display.context.BlogsViewEntryContentDisplayContext;
-import com.liferay.change.tracking.spi.history.util.CTCollectionTimelineUtil;
+import com.liferay.change.tracking.spi.history.util.CTTimelineUtil;
 import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.trash.TrashHelper;
@@ -86,7 +86,7 @@ public class BlogsPortlet extends BaseBlogsPortlet {
 				_portal.getLiferayPortletRequest(renderRequest),
 				_portal.getLiferayPortletResponse(renderResponse)));
 
-		CTCollectionTimelineUtil.setClassName(renderRequest, BlogsEntry.class);
+		CTTimelineUtil.setClassName(renderRequest, BlogsEntry.class);
 
 		super.doDispatch(renderRequest, renderResponse);
 	}

@@ -5,7 +5,7 @@
 
 package com.liferay.dynamic.data.mapping.form.web.internal.portlet.action;
 
-import com.liferay.change.tracking.spi.history.util.CTCollectionTimelineUtil;
+import com.liferay.change.tracking.spi.history.util.CTTimelineUtil;
 import com.liferay.dynamic.data.mapping.constants.DDMPortletKeys;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstance;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
@@ -46,7 +46,7 @@ public class EditFormInstanceMVCRenderCommand implements MVCRenderCommand {
 			renderRequest, "formInstanceId");
 
 		if (formInstanceId > 0) {
-			CTCollectionTimelineUtil.setCTTimelineKeys(
+			CTTimelineUtil.setCTTimelineKeys(
 				renderRequest, DDMFormInstance.class, formInstanceId);
 		}
 

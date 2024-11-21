@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Cheryl Tang
  */
-public class CTCollectionTimelineUtil {
+public class CTTimelineUtil {
 
 	public static void setClassName(
 		HttpServletRequest httpServletRequest, Class<?> clazz) {

@@ -5,7 +5,7 @@
 
 package com.liferay.dynamic.data.mapping.form.web.internal.portlet;
 
-import com.liferay.change.tracking.spi.history.util.CTCollectionTimelineUtil;
+import com.liferay.change.tracking.spi.history.util.CTTimelineUtil;
 import com.liferay.dynamic.data.mapping.constants.DDMPortletKeys;
 import com.liferay.dynamic.data.mapping.form.builder.context.DDMFormBuilderContextFactory;
 import com.liferay.dynamic.data.mapping.form.builder.context.DDMFormContextDeserializer;
@@ -162,7 +162,7 @@ public class DDMFormAdminPortlet extends MVCPortlet {
 					_ddmStructureService, _jsonFactory, _npmResolver,
 					_objectDefinitionLocalService, _portal));
 
-			CTCollectionTimelineUtil.setClassName(
+			CTTimelineUtil.setClassName(
 				renderRequest, DDMStructure.class);
 		}
 		else {
@@ -185,7 +185,7 @@ public class DDMFormAdminPortlet extends MVCPortlet {
 					_ddmStructureService, _jsonFactory, _npmResolver,
 					_objectDefinitionLocalService, _portal));
 
-			CTCollectionTimelineUtil.setClassName(
+			CTTimelineUtil.setClassName(
 				renderRequest, DDMFormInstance.class);
 		}
 	}

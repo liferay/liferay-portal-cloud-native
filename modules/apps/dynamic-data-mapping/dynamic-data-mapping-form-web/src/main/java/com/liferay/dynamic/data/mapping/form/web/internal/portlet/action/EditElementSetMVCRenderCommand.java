@@ -5,7 +5,7 @@
 
 package com.liferay.dynamic.data.mapping.form.web.internal.portlet.action;
 
-import com.liferay.change.tracking.spi.history.util.CTCollectionTimelineUtil;
+import com.liferay.change.tracking.spi.history.util.CTTimelineUtil;
 import com.liferay.dynamic.data.mapping.constants.DDMPortletKeys;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
@@ -45,7 +45,7 @@ public class EditElementSetMVCRenderCommand implements MVCRenderCommand {
 		long structureId = ParamUtil.getLong(renderRequest, "structureId");
 
 		if (structureId > 0) {
-			CTCollectionTimelineUtil.setCTTimelineKeys(
+			CTTimelineUtil.setCTTimelineKeys(
 				renderRequest, DDMStructure.class, structureId);
 		}
 
