@@ -360,8 +360,7 @@ public class JspCompiler {
 	}
 
 	private void _collectTLDMappings(
-			Bundle bundle,
-			Map<TldResourcePath, TaglibXml> taglibXmls,
+			Bundle bundle, Map<TldResourcePath, TaglibXml> taglibXmls,
 			Map<String, TldResourcePath> tldResourcePaths)
 		throws IOException {
 
@@ -397,8 +396,7 @@ public class JspCompiler {
 
 		for (URL url : urls) {
 			_populateTldMappings(
-				tldResourcePaths, taglibXmls,
-				url.getPath(), url);
+				tldResourcePaths, taglibXmls, url.getPath(), url);
 		}
 	}
 
@@ -421,13 +419,11 @@ public class JspCompiler {
 		ServletContext servletContext, Options options) {
 
 		Map<String, TldResourcePath> tldResourcePaths = new HashMap<>();
-		Map<TldResourcePath, TaglibXml> taglibXmls =
-			new HashMap<>();
+		Map<TldResourcePath, TaglibXml> taglibXmls = new HashMap<>();
 
 		try {
 			for (Bundle bundle : _allParticipatingBundles) {
-				_collectTLDMappings(
-					bundle, taglibXmls, tldResourcePaths );
+				_collectTLDMappings(bundle, taglibXmls, tldResourcePaths);
 			}
 		}
 		catch (Exception exception) {
@@ -447,8 +443,7 @@ public class JspCompiler {
 						TldResourcePath tldResourcePath = new TldResourcePath(
 							url, entry.getValue());
 
-						tldResourcePaths.put(
-							entry.getValue(), tldResourcePath);
+						tldResourcePaths.put(entry.getValue(), tldResourcePath);
 
 						TldParser tldParser = new TldParser(true, false, true);
 
