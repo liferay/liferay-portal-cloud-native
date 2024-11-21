@@ -59,7 +59,7 @@ public class AccountEntryOrganizationRelModelListenerTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testReindex() throws Exception {
+	public void test() throws Exception {
 		ObjectDefinition objectDefinition =
 			ObjectDefinitionTestUtil.addCustomObjectDefinition(
 				"A" + RandomTestUtil.randomString());

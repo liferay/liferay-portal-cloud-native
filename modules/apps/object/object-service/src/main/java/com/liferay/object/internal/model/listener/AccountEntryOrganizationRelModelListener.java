@@ -104,21 +104,19 @@ public class AccountEntryOrganizationRelModelListener
 					continue;
 				}
 
-				String filterString = StringBundler.concat(
-					objectField.getName(), " eq '",
-					accountEntryOrganizationRel.getAccountEntryId(), "'");
+				int count = _objectEntryLocalService.getValuesListCount(
+					0, accountEntryOrganizationRel.getCompanyId(),
+					objectDefinition.getUserId(),
+					objectDefinition.getObjectDefinitionId(),
+					_filterFactory.create(
+						StringBundler.concat(
+							objectField.getName(), " eq '",
+							accountEntryOrganizationRel.getAccountEntryId(),
+							"'"),
+						objectDefinition),
+					null);
 
-				Predicate predicate = _filterFactory.create(
-					filterString, objectDefinition);
-
-				int valuesListCount =
-					_objectEntryLocalService.getValuesListCount(
-						0, accountEntryOrganizationRel.getCompanyId(),
-						objectDefinition.getUserId(),
-						objectDefinition.getObjectDefinitionId(), predicate,
-						null);
-
-				if (valuesListCount <= 0) {
+				if (count <= 0) {
 					continue;
 				}
 			}
