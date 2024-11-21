@@ -5076,7 +5076,7 @@ public class ObjectEntryResourceTest {
 			},
 			Type.ONE_TO_MANY);
 
-		// No transactions
+		// Transactions
 
 		try (TransactionCounter transactionCounter = new TransactionCounter(
 				_objectEntryLocalService, _objectEntryService)) {
