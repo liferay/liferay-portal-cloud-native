@@ -138,8 +138,12 @@ public class ObjectDefinitionsRelationshipsDisplayContext
 			_objectDefinitionService.getObjectDefinition(
 				objectRelationship.getObjectDefinitionId2());
 
-		JSONObject objectRelationshipJSONObject = JSONUtil.put(
+		return JSONUtil.put(
 			"deletionType", objectRelationship.getDeletionType()
+		).put(
+			"edge",
+			FeatureFlagManagerUtil.isEnabled("LPS-187142") ?
+				objectRelationship.isEdge() : null
 		).put(
 			"id", Long.valueOf(objectRelationship.getObjectRelationshipId())
 		).put(
@@ -185,13 +189,6 @@ public class ObjectDefinitionsRelationshipsDisplayContext
 		).put(
 			"type", objectRelationship.getType()
 		);
-
-		if (FeatureFlagManagerUtil.isEnabled("LPS-187142")) {
-			objectRelationshipJSONObject.put(
-				"edge", objectRelationship.isEdge());
-		}
-
-		return objectRelationshipJSONObject;
 	}
 
 	public Set<String> getObjectRelationshipTypes(
