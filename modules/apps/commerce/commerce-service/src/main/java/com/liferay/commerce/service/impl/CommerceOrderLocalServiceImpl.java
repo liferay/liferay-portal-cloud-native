@@ -1030,7 +1030,6 @@ public class CommerceOrderLocalServiceImpl
 		}
 
 		String commerceCurrencyCode = commerceOrder.getCommerceCurrencyCode();
-
 		boolean recalculate = false;
 
 		CommerceCurrency commerceContextCommerceCurrency =
@@ -1042,7 +1041,6 @@ public class CommerceOrderLocalServiceImpl
 				commerceCurrencyCode)) {
 
 			commerceCurrencyCode = commerceContextCommerceCurrency.getCode();
-
 			recalculate = true;
 		}
 
