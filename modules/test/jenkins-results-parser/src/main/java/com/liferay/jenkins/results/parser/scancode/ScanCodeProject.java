@@ -45,16 +45,11 @@ public class ScanCodeProject {
 
 		sb.append("curl ");
 		sb.append(_projectAPIURL);
-		sb.append("add_input/");
-		sb.append(" --form ");
-		sb.append("'upload_file=@");
+		sb.append("add_input/ --form 'upload_file=@");
 		sb.append(filePath);
-		sb.append("'");
-		sb.append(" --header ");
-		sb.append("\"Authorization:Token ");
+		sb.append("' --header \"Authorization:Token ");
 		sb.append(_API_KEY);
-		sb.append("\"");
-		sb.append(" --request POST ");
+		sb.append("\" --request POST ");
 
 		Process process = JenkinsResultsParserUtil.executeBashCommands(
 			sb.toString());
@@ -331,11 +326,9 @@ public class ScanCodeProject {
 		sb.append(_projectAPIURL);
 		sb.append(" --header ");
 		sb.append(_CONTENT_TYPE);
-		sb.append(" --header ");
-		sb.append("\"Authorization:Token ");
+		sb.append(" --header \"Authorization:Token ");
 		sb.append(_API_KEY);
-		sb.append("\"");
-		sb.append(" --request GET ");
+		sb.append("\" --request GET ");
 
 		try {
 			Process process = JenkinsResultsParserUtil.executeBashCommands(
@@ -537,12 +530,9 @@ public class ScanCodeProject {
 
 		sb.append("curl ");
 		sb.append(pipelineRunURL);
-		sb.append("start_pipeline/");
-		sb.append(" --header ");
-		sb.append("\"Authorization:Token ");
+		sb.append("start_pipeline/ --header \"Authorization:Token ");
 		sb.append(_API_KEY);
-		sb.append("\"");
-		sb.append(" --request POST ");
+		sb.append("\" --request POST ");
 
 		Process process = JenkinsResultsParserUtil.executeBashCommands(
 			sb.toString());
