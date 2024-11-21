@@ -45,7 +45,6 @@ public class JspTaglibIDUtil {
 		_resolveId(
 			systemIdsMap, XmlIdentifiers.TLD_21_XSD,
 			"web-jsptaglibrary_2_1.xsd", false);
-
 		_resolveId(systemIdsMap, "jsp_2_0.xsd", "jsp_2_0.xsd", true);
 		_resolveId(systemIdsMap, "jsp_2_1.xsd", "jsp_2_1.xsd", true);
 		_resolveId(systemIdsMap, "jsp_2_2.xsd", "jsp_2_2.xsd", true);
