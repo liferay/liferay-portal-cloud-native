@@ -304,19 +304,21 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		try {
 			_callDBPartitionMigrationValidatorTool(
 				Arrays.asList(
-					"export", "--jdbc-url", _URL, "--output-dir",
+					"export", "--jdbc-url", _JDBC_URL, "--output-dir",
 					outputDirectory.getAbsolutePath(), "--password", password,
 					"--schema-name", schemaName, "--user", user),
 				Arrays.asList(
-					_getJVMArg(_COMPANIES_PROPERTY_NAME, _serialize(companies)),
 					_getJVMArg(
-						_COMPANY_IDS_PROPERTY_NAME, _serialize(companyIds)),
+						_SYSTEM_PROPERTY_KEY_COMPANIES, _serialize(companies)),
 					_getJVMArg(
-						_DEFAULT_PARTITION_PROPERTY_NAME,
+						_SYSTEM_PROPERTY_KEY_COMPANY_IDS,
+						_serialize(companyIds)),
+					_getJVMArg(
+						_SYSTEM_PROPERTY_KEY_DEFAULT_PARTITION,
 						String.valueOf(defaultPartition)),
-					_getJVMArg(_PASSWORD_PROPERTY_NAME, password),
-					_getJVMArg(_SCHEMA_NAME_PROPERTY_NAME, schemaName),
-					_getJVMArg(_USER_PROPERTY_NAME, user)));
+					_getJVMArg(_SYSTEM_PROPERTY_KEY_PASSWORD, password),
+					_getJVMArg(_SYSTEM_PROPERTY_KEY_SCHEMA_NAME, schemaName),
+					_getJVMArg(_SYSTEM_PROPERTY_KEY_USER, user)));
 		}
 		catch (RuntimeException runtimeException) {
 			String errorFileContent = new String(
@@ -410,25 +412,25 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		unsafeRunnable.run();
 	}
 
-	private static final String _COMPANIES_PROPERTY_NAME =
-		"dbpartitionmigrationvalidatortest.companies";
-
-	private static final String _COMPANY_IDS_PROPERTY_NAME =
-		"dbpartitionmigrationvalidatortest.company.ids";
-
-	private static final String _DEFAULT_PARTITION_PROPERTY_NAME =
-		"dbpartitionmigrationvalidatortest.defaultPartition";
-
-	private static final String _PASSWORD_PROPERTY_NAME =
-		"dbpartitionmigrationvalidatortest.password";
-
-	private static final String _SCHEMA_NAME_PROPERTY_NAME =
-		"dbpartitionmigrationvalidatortest.schemaName";
-
-	private static final String _URL =
+	private static final String _JDBC_URL =
 		"jdbc:mysql://localhost:3306/lportal?useUnicode=true";
 
-	private static final String _USER_PROPERTY_NAME =
+	private static final String _SYSTEM_PROPERTY_KEY_COMPANIES =
+		"dbpartitionmigrationvalidatortest.companies";
+
+	private static final String _SYSTEM_PROPERTY_KEY_COMPANY_IDS =
+		"dbpartitionmigrationvalidatortest.company.ids";
+
+	private static final String _SYSTEM_PROPERTY_KEY_DEFAULT_PARTITION =
+		"dbpartitionmigrationvalidatortest.defaultPartition";
+
+	private static final String _SYSTEM_PROPERTY_KEY_PASSWORD =
+		"dbpartitionmigrationvalidatortest.password";
+
+	private static final String _SYSTEM_PROPERTY_KEY_SCHEMA_NAME =
+		"dbpartitionmigrationvalidatortest.schemaName";
+
+	private static final String _SYSTEM_PROPERTY_KEY_USER =
 		"dbpartitionmigrationvalidatortest.user";
 
 	private static final List<Release> _releases = Arrays.asList(
@@ -443,19 +445,20 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		public static void main(String[] args) throws Exception {
 			if (args[0].equals("export")) {
 				List<Company> companies = _deserializeObjectBase64(
-					System.getProperty(_COMPANIES_PROPERTY_NAME),
+					System.getProperty(_SYSTEM_PROPERTY_KEY_COMPANIES),
 					new TypeReference<List<Company>>() {
 					});
 				List<Long> companyIds = _deserializeObjectBase64(
-					System.getProperty(_COMPANY_IDS_PROPERTY_NAME),
+					System.getProperty(_SYSTEM_PROPERTY_KEY_COMPANY_IDS),
 					new TypeReference<List<Long>>() {
 					});
 				boolean defaultPartition = Boolean.parseBoolean(
-					System.getProperty(_DEFAULT_PARTITION_PROPERTY_NAME));
-				String password = System.getProperty(_PASSWORD_PROPERTY_NAME);
+					System.getProperty(_SYSTEM_PROPERTY_KEY_DEFAULT_PARTITION));
+				String password = System.getProperty(
+					_SYSTEM_PROPERTY_KEY_PASSWORD);
 				String schemaName = System.getProperty(
-					_SCHEMA_NAME_PROPERTY_NAME);
-				String user = System.getProperty(_USER_PROPERTY_NAME);
+					_SYSTEM_PROPERTY_KEY_SCHEMA_NAME);
+				String user = System.getProperty(_SYSTEM_PROPERTY_KEY_USER);
 
 				_mockDatabase(
 					companies, companyIds, companyIds, defaultPartition,
@@ -463,7 +466,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 					Arrays.asList(
 						"Company", "Object_x_" + companyIds.get(0), "Table1",
 						"Table2"),
-					_URL, user);
+					_JDBC_URL, user);
 			}
 
 			DBPartitionMigrationValidator.main(args);
