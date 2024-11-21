@@ -162,8 +162,7 @@ public class DDMFormAdminPortlet extends MVCPortlet {
 					_ddmStructureService, _jsonFactory, _npmResolver,
 					_objectDefinitionLocalService, _portal));
 
-			CTTimelineUtil.setClassName(
-				renderRequest, DDMStructure.class);
+			CTTimelineUtil.setClassName(renderRequest, DDMStructure.class);
 		}
 		else {
 			renderRequest.setAttribute(
@@ -185,8 +184,7 @@ public class DDMFormAdminPortlet extends MVCPortlet {
 					_ddmStructureService, _jsonFactory, _npmResolver,
 					_objectDefinitionLocalService, _portal));
 
-			CTTimelineUtil.setClassName(
-				renderRequest, DDMFormInstance.class);
+			CTTimelineUtil.setClassName(renderRequest, DDMFormInstance.class);
 		}
 	}
 

@@ -52,8 +52,7 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 				BookmarksWebKeys.BOOKMARKS_PORTLET_TOOLBAR_CONTRIBUTOR,
 				_bookmarksPortletToolbarContributor);
 
-			CTTimelineUtil.setClassName(
-				renderRequest, BookmarksEntry.class);
+			CTTimelineUtil.setClassName(renderRequest, BookmarksEntry.class);
 		}
 		catch (Exception exception) {
 			if (exception instanceof NoSuchFolderException ||
