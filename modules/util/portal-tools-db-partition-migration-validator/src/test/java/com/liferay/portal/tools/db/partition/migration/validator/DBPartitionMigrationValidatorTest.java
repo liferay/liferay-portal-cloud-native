@@ -216,7 +216,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		mockGetTables(defaultPartition);
 	}
 
-	private void _callDBPartitionMigrationValidatorTool(
+	private void _execute(
 			List<String> args, List<String> jvmArgs)
 		throws Exception {
 
@@ -302,7 +302,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		File outputDirectory = temporaryFolder.newFolder();
 
 		try {
-			_callDBPartitionMigrationValidatorTool(
+			_execute(
 				Arrays.asList(
 					"export", "--jdbc-url", _JDBC_URL, "--output-dir",
 					outputDirectory.getAbsolutePath(), "--password", password,
@@ -402,7 +402,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 			args.add("--target-file");
 			args.add(_getPathString(targetFileName));
 
-			_callDBPartitionMigrationValidatorTool(
+			_execute(
 				args, Collections.emptyList());
 		}
 		catch (RuntimeException runtimeException) {
