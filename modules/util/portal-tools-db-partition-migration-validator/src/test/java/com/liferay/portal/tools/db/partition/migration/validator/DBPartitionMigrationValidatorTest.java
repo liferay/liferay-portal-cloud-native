@@ -14,6 +14,7 @@ import com.liferay.petra.function.UnsafeRunnable;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.version.Version;
 import com.liferay.portal.tools.db.partition.migration.validator.util.BaseTestCase;
@@ -216,8 +217,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		mockGetTables(defaultPartition);
 	}
 
-	private void _execute(
-			List<String> args, List<String> jvmArgs)
+	private void _execute(List<String> args, List<String> jvmArgs)
 		throws Exception {
 
 		List<String> commands = new ArrayList<>();
@@ -402,8 +402,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 			args.add("--target-file");
 			args.add(_getPathString(targetFileName));
 
-			_execute(
-				args, Collections.emptyList());
+			_execute(args, Collections.emptyList());
 		}
 		catch (RuntimeException runtimeException) {
 			unsafeConsumer.accept(runtimeException);
@@ -452,7 +451,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 					System.getProperty(_SYSTEM_PROPERTY_KEY_COMPANY_IDS),
 					new TypeReference<List<Long>>() {
 					});
-				boolean defaultPartition = Boolean.parseBoolean(
+				boolean defaultPartition = GetterUtil.getBoolean(
 					System.getProperty(_SYSTEM_PROPERTY_KEY_DEFAULT_PARTITION));
 				String password = System.getProperty(
 					_SYSTEM_PROPERTY_KEY_PASSWORD);
