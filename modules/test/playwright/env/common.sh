@@ -561,7 +561,7 @@ function stop_additional_bundles {
 
 		local leading_port_number=$((8 + ${app_server_bundles_size}))
 
-		local liferay_portal_url="${LIFERAY_PORTAL_URL/\:8/\:"$leading_port_number"}"
+		local liferay_portal_url="${LIFERAY_PORTAL_URL/\:8/\:"${leading_port_number}"}"
 
 		stop_app_server ${liferay_home} ${liferay_portal_url}
 	done
