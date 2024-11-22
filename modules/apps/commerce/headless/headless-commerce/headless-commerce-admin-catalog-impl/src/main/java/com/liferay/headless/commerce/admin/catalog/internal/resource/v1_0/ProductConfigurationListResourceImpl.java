@@ -90,8 +90,6 @@ public class ProductConfigurationListResourceImpl
 			String search, Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		long companyId = contextCompany.getCompanyId();
-
 		return SearchUtil.search(
 			null, booleanQuery -> booleanQuery.getPreBooleanFilter(), filter,
 			CPConfigurationList.class.getName(), search, pagination,
@@ -100,10 +98,11 @@ public class ProductConfigurationListResourceImpl
 			object -> {
 				SearchContext searchContext = (SearchContext)object;
 
-				searchContext.setCompanyId(companyId);
+				searchContext.setCompanyId(contextCompany.getCompanyId());
 
 				long[] commerceCatalogGroupIds = transformToLongArray(
-					_commerceCatalogLocalService.search(companyId),
+					_commerceCatalogLocalService.search(
+						contextCompany.getCompanyId()),
 					CommerceCatalog::getGroupId);
 
 				if ((commerceCatalogGroupIds != null) &&
