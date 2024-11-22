@@ -356,7 +356,7 @@ function get_playwright_project_dir {
 }
 
 function get_portal_log_file_size {
-	wc --lines --total=always $1/logs/liferay.*.log | grep total | awk '{print $1}'
+	wc --lines --total=always ${1}/logs/liferay.*.log | grep total | awk '{print $1}'
 }
 
 function get_portal_project_dir {
