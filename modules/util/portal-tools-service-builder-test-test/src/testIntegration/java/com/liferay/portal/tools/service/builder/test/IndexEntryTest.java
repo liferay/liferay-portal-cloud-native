@@ -43,13 +43,13 @@ public class IndexEntryTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testDatabaseIndexCoverAllFinders() throws Exception {
+	public void test() throws Exception {
 		List<String> missingIndexForFinderNames = new ArrayList<>();
 
 		try (Connection connection = DataAccess.getConnection()) {
 			DB db = DBManagerUtil.getDB();
 
-			List<IndexMetadata> indexMetadataList = db.getIndexMetadatas(
+			List<IndexMetadata> indexMetadatas = db.getIndexMetadatas(
 				connection, "IndexEntry", null, false);
 
 			for (Field field :
@@ -66,32 +66,27 @@ public class IndexEntryTest {
 				}
 				else if (fieldName.startsWith("_finderPathFetchBy")) {
 					finderName = fieldName.substring(18);
-
 					unique = true;
 				}
 
 				if ((finderName != null) &&
-					!_hasIndexForFinder(
-						indexMetadataList,
+					!_hasIndex(
 						(FinderPath)field.get(_indexEntryPersistence),
-						unique)) {
+						indexMetadatas, unique)) {
 
 					missingIndexForFinderNames.add(finderName);
 				}
 			}
 		}
 
-		Assert.assertTrue(
-			"Unable to find corresponding index in database for finders " +
-				missingIndexForFinderNames,
-			missingIndexForFinderNames.isEmpty());
+		Assert.assertTrue(missingIndexForFinderNames.isEmpty());
 	}
 
-	private boolean _hasIndexForFinder(
-		List<IndexMetadata> indexMetadataList, FinderPath finderPath,
+	private boolean _hasIndex(
+		FinderPath finderPath, List<IndexMetadata> indexMetadatas,
 		boolean unique) {
 
-		for (IndexMetadata indexMetadata : indexMetadataList) {
+		for (IndexMetadata indexMetadata : indexMetadatas) {
 			if (unique) {
 				String[] expectedIndexColumnNames = ArrayUtil.append(
 					finderPath.getColumnNames(), "ctCollectionId");
