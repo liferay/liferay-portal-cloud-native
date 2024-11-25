@@ -28,8 +28,7 @@ public class BridgeCompiler extends Compiler {
 		Supplier<Compiler> supplier = _supplier;
 
 		if (supplier == null) {
-			throw new IllegalStateException(
-				"Compiler supplier is not initialized");
+			throw new IllegalStateException("Compiler supplier is null");
 		}
 
 		_compiler = supplier.get();
