@@ -312,15 +312,13 @@ public class DDMStructureLocalServiceImpl
 			structureKey = StringUtil.toUpperCase(structureKey.trim());
 		}
 
-		long structureId = counterLocalService.increment();
-
-		DDMStructure structure = ddmStructurePersistence.create(structureId);
-
 		_validateExternalReferenceCode(
 			externalReferenceCode, 0, groupId, classNameId);
 
-		structure.setExternalReferenceCode(externalReferenceCode);
+		DDMStructure structure = ddmStructurePersistence.create(
+			counterLocalService.increment());
 
+		structure.setExternalReferenceCode(externalReferenceCode);
 		structure.setUuid(serviceContext.getUuid());
 		structure.setGroupId(groupId);
 		structure.setCompanyId(user.getCompanyId());
@@ -1583,11 +1581,11 @@ public class DDMStructureLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		DDMStructure structure = ddmStructurePersistence.findByPrimaryKey(
-			structureId);
-
 		_validateExternalReferenceCode(
 			externalReferenceCode, structureId, groupId, classNameId);
+
+		DDMStructure structure = ddmStructurePersistence.findByPrimaryKey(
+			structureId);
 
 		structure.setExternalReferenceCode(externalReferenceCode);
 
@@ -1656,12 +1654,10 @@ public class DDMStructureLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		long structureId = counterLocalService.increment();
-
-		DDMStructure structure = ddmStructurePersistence.create(structureId);
+		DDMStructure structure = ddmStructurePersistence.create(
+			counterLocalService.increment());
 
 		structure.setExternalReferenceCode(externalReferenceCode);
-
 		structure.setUuid(serviceContext.getUuid());
 		structure.setGroupId(groupId);
 		structure.setCompanyId(user.getCompanyId());
