@@ -56,25 +56,27 @@ public class DDMFormPortletPreferencesUpgradeProcess
 		String formInstanceId = portletPreferences.getValue(
 			"formInstanceId", StringPool.BLANK);
 
-		if (Validator.isNotNull(formInstanceId)) {
-			DDMFormInstance ddmFormInstance =
-				_ddmFormInstanceLocalService.getFormInstance(
-					GetterUtil.getLong(formInstanceId));
-
-			DDMStructure ddmStructure =
-				_ddmStructureLocalService.getDDMStructure(
-					ddmFormInstance.getStructureId());
-
-			portletPreferences.setValue(
-				"ddmStructureExternalReferenceCode",
-				ddmStructure.getExternalReferenceCode());
-
-			Group group = _groupLocalService.getGroup(
-				ddmStructure.getGroupId());
-
-			portletPreferences.setValue(
-				"groupExternalReferenceCode", group.getExternalReferenceCode());
+		if (Validator.isNull(formInstanceId)) {
+			return xml;
 		}
+
+		DDMFormInstance ddmFormInstance =
+			_ddmFormInstanceLocalService.getFormInstance(
+				GetterUtil.getLong(formInstanceId));
+
+		DDMStructure ddmStructure =
+			_ddmStructureLocalService.getDDMStructure(
+				ddmFormInstance.getStructureId());
+
+		portletPreferences.setValue(
+			"ddmStructureExternalReferenceCode",
+			ddmStructure.getExternalReferenceCode());
+
+		Group group = _groupLocalService.getGroup(
+			ddmStructure.getGroupId());
+
+		portletPreferences.setValue(
+			"groupExternalReferenceCode", group.getExternalReferenceCode());
 
 		return PortletPreferencesFactoryUtil.toXML(portletPreferences);
 	}
