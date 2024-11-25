@@ -2247,16 +2247,19 @@ public class RESTBuilder {
 		}
 	}
 
-	private void _prependPath(ProcessBuilder processBuilder, String newPath) {
+	private void _prependPath(
+		ProcessBuilder processBuilder, String newPathString) {
+
 		Map<String, String> environment = processBuilder.environment();
 
-		String path = environment.get("PATH");
+		String pathString = environment.get("PATH");
 
-		if (path != null) {
-			environment.put("PATH", newPath + File.pathSeparator + path);
+		if (pathString != null) {
+			environment.put(
+				"PATH", newPathString + File.pathSeparator + pathString);
 		}
 		else {
-			environment.put("PATH", newPath);
+			environment.put("PATH", newPathString);
 		}
 	}
 
