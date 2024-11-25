@@ -1654,7 +1654,14 @@ import org.osgi.service.component.annotations.Reference;
 
 					if ((db.getDBType() != DBType.DB2) &&
 						(db.getDBType() != DBType.MYSQL) &&
-						(db.getDBType() != DBType.MARIADB)) {
+						(db.getDBType() != DBType.MARIADB)
+
+						<#if serviceBuilder.isVersionLTE_7_3_0()>
+							&& (db.getDBType() != DBType.SYBASE)
+						</#if>
+
+						) {
+
 
 						_useTempFile = true;
 					}
