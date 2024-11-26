@@ -161,7 +161,7 @@ public class WarehouseAccountGroupResourceImpl
 			WarehouseAccountGroup warehouseAccountGroup)
 		throws Exception {
 
-		AccountGroup accountGroup;
+		AccountGroup accountGroup = null;
 
 		if (Validator.isNull(
 				warehouseAccountGroup.getAccountGroupExternalReferenceCode())) {

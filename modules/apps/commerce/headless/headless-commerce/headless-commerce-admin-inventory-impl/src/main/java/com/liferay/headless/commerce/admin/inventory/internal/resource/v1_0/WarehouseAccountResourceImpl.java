@@ -158,7 +158,7 @@ public class WarehouseAccountResourceImpl
 			WarehouseAccount warehouseAccount)
 		throws Exception {
 
-		AccountEntry accountEntry;
+		AccountEntry accountEntry = null;
 
 		if (Validator.isNull(
 				warehouseAccount.getAccountExternalReferenceCode())) {
