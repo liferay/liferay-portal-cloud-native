@@ -67,6 +67,9 @@ public class CommercePriceModifierTestUtil {
 			long groupId, double priority, long commerceCurrencyId)
 		throws Exception {
 
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(groupId);
+
 		User user = UserLocalServiceUtil.getGuestUser(
 			serviceContext.getCompanyId());
 
@@ -75,9 +78,6 @@ public class CommercePriceModifierTestUtil {
 				commerceCurrencyId);
 
 		Calendar calendar = CalendarFactoryUtil.getCalendar(user.getTimeZone());
-
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(groupId);
 
 		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
 
