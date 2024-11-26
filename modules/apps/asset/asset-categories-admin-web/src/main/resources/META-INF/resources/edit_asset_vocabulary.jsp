@@ -16,8 +16,6 @@ AssetVocabulary vocabulary = null;
 
 if (vocabularyId > 0) {
 	vocabulary = AssetVocabularyServiceUtil.fetchVocabulary(vocabularyId);
-
-	CTTimelineUtil.setCTTimelineKeys(renderRequest, AssetVocabulary.class);
 }
 
 portletDisplay.setShowBackIcon(true);
