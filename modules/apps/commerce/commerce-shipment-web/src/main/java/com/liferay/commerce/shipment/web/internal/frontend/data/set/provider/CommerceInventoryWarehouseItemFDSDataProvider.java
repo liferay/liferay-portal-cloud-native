@@ -79,8 +79,6 @@ public class CommerceInventoryWarehouseItemFDSDataProvider
 			_commerceOrderItemService.getCommerceOrderItem(
 				commerceShipmentItem.getCommerceOrderItemId());
 
-		CommerceOrder commerceOrder = commerceOrderItem.getCommerceOrder();
-
 		CommerceChannel commerceChannel =
 			_commerceChannelLocalService.fetchCommerceChannelByGroupClassPK(
 				commerceOrderItem.getGroupId());
@@ -88,6 +86,8 @@ public class CommerceInventoryWarehouseItemFDSDataProvider
 		_commerceChannelModelResourcePermission.check(
 			PermissionThreadLocal.getPermissionChecker(),
 			commerceChannel.getCommerceChannelId(), ActionKeys.VIEW);
+
+		CommerceOrder commerceOrder = commerceOrderItem.getCommerceOrder();
 
 		List<CommerceInventoryWarehouse> commerceInventoryWarehouses =
 			_commerceInventoryWarehouseLocalService.
@@ -220,8 +220,6 @@ public class CommerceInventoryWarehouseItemFDSDataProvider
 			_commerceOrderItemService.getCommerceOrderItem(
 				commerceShipmentItem.getCommerceOrderItemId());
 
-		CommerceOrder commerceOrder = commerceOrderItem.getCommerceOrder();
-
 		CommerceChannel commerceChannel =
 			_commerceChannelLocalService.fetchCommerceChannelByGroupClassPK(
 				commerceOrderItem.getGroupId());
@@ -229,6 +227,8 @@ public class CommerceInventoryWarehouseItemFDSDataProvider
 		_commerceChannelModelResourcePermission.check(
 			PermissionThreadLocal.getPermissionChecker(),
 			commerceChannel.getCommerceChannelId(), ActionKeys.VIEW);
+
+		CommerceOrder commerceOrder = commerceOrderItem.getCommerceOrder();
 
 		return _commerceInventoryWarehouseItemLocalService.
 			getCommerceInventoryWarehouseItemsCount(

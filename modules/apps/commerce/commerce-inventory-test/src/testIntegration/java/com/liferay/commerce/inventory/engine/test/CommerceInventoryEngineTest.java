@@ -833,7 +833,6 @@ public class CommerceInventoryEngineTest {
 					_group.getCompanyId(), 0, _cpInstance1.getGroupId(),
 					_commerceChannel.getGroupId(), _cpInstance1.getSku(),
 					StringPool.BLANK)));
-
 		Assert.assertTrue(
 			BigDecimalUtil.eq(
 				new BigDecimal(20),

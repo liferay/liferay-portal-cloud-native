@@ -92,16 +92,14 @@ public class AvailabilityCommerceOrderValidatorImpl
 			_commerceInventoryBookedQuantityLocalService.
 				fetchCommerceInventoryBookedQuantity(
 					commerceOrderItem.getCommerceInventoryBookedQuantityId());
-
+		CommerceOrder commerceOrder = commerceOrderItem.getCommerceOrder();
 		BigDecimal quantity = commerceOrderItem.getQuantity();
 
-		CommerceOrder commerceOrder = commerceOrderItem.getCommerceOrder();
-
-		if (!_cpAvailabilityChecker.isAvailable(
+		if ((commerceInventoryBookedQuantity == null) &&
+			!_cpAvailabilityChecker.isAvailable(
 				commerceOrder.getCommerceAccountId(),
 				commerceOrderItem.getGroupId(), cpInstance,
-				commerceOrderItem.getUnitOfMeasureKey(), quantity) &&
-			(commerceInventoryBookedQuantity == null)) {
+				commerceOrderItem.getUnitOfMeasureKey(), quantity)) {
 
 			return new CommerceOrderValidatorResult(
 				commerceOrderItem.getCommerceOrderItemId(), false,
