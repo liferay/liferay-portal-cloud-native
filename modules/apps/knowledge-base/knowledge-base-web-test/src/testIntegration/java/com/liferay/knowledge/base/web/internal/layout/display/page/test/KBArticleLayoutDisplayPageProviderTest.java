@@ -40,7 +40,7 @@ public class KBArticleLayoutDisplayPageProviderTest {
 	}
 
 	@Test
-	public void testGetLayoutDisplayPageObjectProviderWithEmptyURLTitle() {
+	public void testGetLayoutDisplayPageObjectProvider() {
 		Assert.assertNull(
 			_layoutDisplayPageProvider.getLayoutDisplayPageObjectProvider(
 				_group.getGroupId(), StringPool.BLANK));
