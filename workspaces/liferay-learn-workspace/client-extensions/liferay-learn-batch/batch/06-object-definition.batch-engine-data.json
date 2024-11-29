@@ -25,38 +25,6 @@
 			"name": "P2S3LearningPath",
 			"objectFields": [
 				{
-					"DBType": "Long",
-					"businessType": "Attachment",
-					"externalReferenceCode": "IMAGE",
-					"indexed": true,
-					"indexedAsKeyword": false,
-					"indexedLanguageId": "en_US",
-					"label": {
-						"en_US": "Image"
-					},
-					"localized": false,
-					"name": "image",
-					"objectFieldSettings": [
-						{
-							"name": "acceptedFileExtensions",
-							"value": "jpeg, jpg, pdf, png"
-						},
-						{
-							"name": "fileSource",
-							"value": "documentsAndMedia"
-						},
-						{
-							"name": "maximumFileSize",
-							"value": 100
-						}
-					],
-					"readOnly": "false",
-					"required": false,
-					"state": false,
-					"type": "Long",
-					"unique": false
-				},
-				{
 					"DBType": "Clob",
 					"businessType": "RichText",
 					"externalReferenceCode": "CONTENT",
@@ -115,6 +83,38 @@
 					"required": true,
 					"state": false,
 					"type": "String",
+					"unique": false
+				},
+				{
+					"DBType": "Long",
+					"businessType": "Attachment",
+					"externalReferenceCode": "IMAGE",
+					"indexed": true,
+					"indexedAsKeyword": false,
+					"indexedLanguageId": "en_US",
+					"label": {
+						"en_US": "Image"
+					},
+					"localized": false,
+					"name": "image",
+					"objectFieldSettings": [
+						{
+							"name": "acceptedFileExtensions",
+							"value": "jpeg, jpg, pdf, png"
+						},
+						{
+							"name": "fileSource",
+							"value": "documentsAndMedia"
+						},
+						{
+							"name": "maximumFileSize",
+							"value": 100
+						}
+					],
+					"readOnly": "false",
+					"required": false,
+					"state": false,
+					"type": "Long",
 					"unique": false
 				},
 				{
