@@ -26,7 +26,7 @@ public class ClassicSystemFDSEntry implements SystemFDSEntry {
 
 	@Override
 	public String getDescription() {
-		return "The \"Classic\" sample of Frontend Data Set";
+		return "This is the \"Classic\" sample of a frontend data set.";
 	}
 
 	@Override

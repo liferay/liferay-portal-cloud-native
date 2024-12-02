@@ -26,7 +26,7 @@ public class CustomizedSystemFDSEntry implements SystemFDSEntry {
 
 	@Override
 	public String getDescription() {
-		return "The \"Customized\" sample of Frontend Data Set";
+		return "This is the \"Customized\" sample of a frontend data set.";
 	}
 
 	@Override
