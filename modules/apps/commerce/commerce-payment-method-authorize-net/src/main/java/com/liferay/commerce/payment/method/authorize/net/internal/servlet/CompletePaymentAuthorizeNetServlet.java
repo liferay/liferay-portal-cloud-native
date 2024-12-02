@@ -54,10 +54,10 @@ public class CompletePaymentAuthorizeNetServlet extends HttpServlet {
 					httpServletRequest.getSession());
 			}
 
+			URL portalURL = new URL(_portal.getPortalURL(httpServletRequest));
+
 			String redirect = ParamUtil.getString(
 				httpServletRequest, "redirect");
-
-			URL portalURL = new URL(_portal.getPortalURL(httpServletRequest));
 
 			URL url = new URL(redirect);
 

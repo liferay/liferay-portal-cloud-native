@@ -53,15 +53,13 @@ public class MercanetServletTest {
 
 		PrincipalThreadLocal.setName(user.getUserId());
 
-		mockHttpServletRequest.setAttribute(WebKeys.USER, user);
+		String redirect = "https://www.google.com";
 
-		mockHttpServletRequest.setParameter("Data", "data");
-
-		String redirectURL = "https://www.google.com";
-
-		mockHttpServletRequest.addParameter("redirect", redirectURL);
+		mockHttpServletRequest.addParameter("redirect", redirect);
 
 		mockHttpServletRequest.addParameter("type", "normal");
+		mockHttpServletRequest.setAttribute(WebKeys.USER, user);
+		mockHttpServletRequest.setParameter("Data", "data");
 
 		MockHttpServletResponse mockHttpServletResponse =
 			new MockHttpServletResponse();
@@ -69,7 +67,7 @@ public class MercanetServletTest {
 		_servlet.service(mockHttpServletRequest, mockHttpServletResponse);
 
 		Assert.assertNotEquals(
-			redirectURL, mockHttpServletResponse.getRedirectedUrl());
+			redirect, mockHttpServletResponse.getRedirectedUrl());
 	}
 
 	@Inject(

@@ -53,11 +53,11 @@ public class CompletePaymentAuthorizeNetServletTest {
 
 		PrincipalThreadLocal.setName(user.getUserId());
 
+		String redirect = "https://www.google.com";
+
+		mockHttpServletRequest.addParameter("redirect", redirect);
+
 		mockHttpServletRequest.setAttribute(WebKeys.USER, user);
-
-		String redirectURL = "https://www.google.com";
-
-		mockHttpServletRequest.addParameter("redirect", redirectURL);
 
 		MockHttpServletResponse mockHttpServletResponse =
 			new MockHttpServletResponse();
@@ -65,7 +65,7 @@ public class CompletePaymentAuthorizeNetServletTest {
 		_servlet.service(mockHttpServletRequest, mockHttpServletResponse);
 
 		Assert.assertNotEquals(
-			redirectURL, mockHttpServletResponse.getRedirectedUrl());
+			redirect, mockHttpServletResponse.getRedirectedUrl());
 	}
 
 	@Inject(

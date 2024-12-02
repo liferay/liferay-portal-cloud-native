@@ -116,11 +116,11 @@ public class MercanetServlet extends HttpServlet {
 					PermissionCheckerFactoryUtil.create(
 						_portal.getUser(httpServletRequest)));
 
-				String redirect = ParamUtil.getString(
-					httpServletRequest, "redirect");
-
 				URL portalURL = new URL(
 					_portal.getPortalURL(httpServletRequest));
+
+				String redirect = ParamUtil.getString(
+					httpServletRequest, "redirect");
 
 				URL url = new URL(redirect);
 

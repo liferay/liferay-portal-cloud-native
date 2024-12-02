@@ -46,6 +46,10 @@ public class CommercePaymentMethodPayPalServletTest {
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest("GET", "/mercanet-payment");
 
+		String redirect = "https://www.google.com";
+
+		mockHttpServletRequest.addParameter("redirect", redirect);
+
 		User user = UserTestUtil.addUser();
 
 		PermissionThreadLocal.setPermissionChecker(
@@ -55,17 +59,13 @@ public class CommercePaymentMethodPayPalServletTest {
 
 		mockHttpServletRequest.setAttribute(WebKeys.USER, user);
 
-		String redirectURL = "https://www.google.com";
-
-		mockHttpServletRequest.addParameter("redirect", redirectURL);
-
 		MockHttpServletResponse mockHttpServletResponse =
 			new MockHttpServletResponse();
 
 		_servlet.service(mockHttpServletRequest, mockHttpServletResponse);
 
 		Assert.assertNotEquals(
-			redirectURL, mockHttpServletResponse.getRedirectedUrl());
+			redirect, mockHttpServletResponse.getRedirectedUrl());
 	}
 
 	@Inject(
