@@ -757,9 +757,7 @@ gradle.beforeProject {
 
 							File jakartaFile = new File(jakartaTransformerDir, jakartaFileName)
 
-							org.eclipse.transformer.cli.JakartaTransformerCLI.runWith(
-								new org.eclipse.transformer.cli.JakartaTransformerCLI(
-									System.out, System.out, new String[] {it.getAbsolutePath(), jakartaFile.getAbsolutePath()}))
+							org.eclipse.transformer.cli.JakartaTransformerCLI.runWith(new org.eclipse.transformer.cli.JakartaTransformerCLI(System.out, System.out, new String[] {it.getAbsolutePath(), jakartaFile.getAbsolutePath()}))
 
 							logger.lifecycle "Jakarta: ${project.name} ${it.name} -> ${FileUtil.relativize(jakartaFile, project.projectDir.parentFile)}"
 						}
