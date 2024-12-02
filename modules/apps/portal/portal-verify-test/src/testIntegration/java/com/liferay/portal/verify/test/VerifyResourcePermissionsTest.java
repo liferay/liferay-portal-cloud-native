@@ -63,9 +63,7 @@ public class VerifyResourcePermissionsTest extends BaseVerifyProcessTestCase {
 	}
 
 	@Test
-	public void testVerifyResourcePermissionsInnerQueriesCount()
-		throws Exception {
-
+	public void testGetVerifiableResourcedModelsCount() throws Exception {
 		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
 				"com.liferay.portal.kernel.util.LoggingTimer",
 				LoggerTestUtil.INFO)) {
