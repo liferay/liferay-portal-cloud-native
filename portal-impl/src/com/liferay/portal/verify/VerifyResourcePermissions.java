@@ -76,7 +76,7 @@ public class VerifyResourcePermissions extends VerifyProcess {
 			});
 	}
 
-	private int _getVerifiableResourcedModelCount(
+	private int _getVerifiableResourcedModelsCount(
 		Role role, VerifiableResourcedModel verifiableResourcedModel) {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer(
@@ -150,7 +150,7 @@ public class VerifyResourcePermissions extends VerifyProcess {
 				verifiableResourcedModel.getTableName())) {
 
 			AtomicInteger atomicInteger = new AtomicInteger();
-			DCLSingleton<Integer> verifiableResourcedModelCount =
+			DCLSingleton<Integer> verifiableResourcedModelsCount =
 				new DCLSingleton<>();
 
 			processConcurrently(
@@ -179,8 +179,8 @@ public class VerifyResourcePermissions extends VerifyProcess {
 						_log.info(
 							StringBundler.concat(
 								"Processed ", processedCount, " of ",
-								verifiableResourcedModelCount.getSingleton(
-									() -> _getVerifiableResourcedModelCount(
+								verifiableResourcedModelsCount.getSingleton(
+									() -> _getVerifiableResourcedModelsCount(
 										role, verifiableResourcedModel)),
 								" resource permissions for company ", companyId,
 								" and model ", modelName));
