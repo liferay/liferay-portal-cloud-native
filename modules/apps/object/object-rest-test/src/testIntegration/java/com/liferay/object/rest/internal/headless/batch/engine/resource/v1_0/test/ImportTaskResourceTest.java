@@ -48,7 +48,7 @@ public class ImportTaskResourceTest extends BaseTaskResourceTestCase {
 				"?nestedFields=permissions"),
 			Http.Method.GET);
 
-		// With 'restrictedFieldNames' query parameter
+		// With "restrictedFieldNames" query parameter
 
 		waitForFinish(
 			"COMPLETED", true,
@@ -86,7 +86,7 @@ public class ImportTaskResourceTest extends BaseTaskResourceTestCase {
 			).toString(),
 			afterImport1JSONObject.toString(), JSONCompareMode.LENIENT);
 
-		// Without 'restrictedFieldNames' query parameter
+		// Without "restrictedFieldNames" query parameter
 
 		waitForFinish(
 			"COMPLETED", true,
