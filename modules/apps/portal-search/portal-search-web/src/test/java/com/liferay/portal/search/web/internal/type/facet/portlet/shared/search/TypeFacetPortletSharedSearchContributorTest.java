@@ -154,6 +154,8 @@ public class TypeFacetPortletSharedSearchContributorTest {
 		List<String> initialEntryClassNames,
 		List<String> searchableAssetTypes) {
 
+		Collections.sort(expectedEntryClassNames);
+
 		SearchRequestBuilder searchRequestBuilder = _setUpSearchRequestBuilder(
 			searchContext -> searchContext.setEntryClassNames(
 				initialEntryClassNames.toArray(new String[0])));
@@ -169,8 +171,6 @@ public class TypeFacetPortletSharedSearchContributorTest {
 			searchRequest.getEntryClassNames());
 
 		Collections.sort(actualEntryClassNames);
-
-		Collections.sort(expectedEntryClassNames);
 
 		Assert.assertEquals(expectedEntryClassNames, actualEntryClassNames);
 	}
