@@ -367,11 +367,11 @@ public class BatchBuildTestrayCaseResult extends BuildTestrayCaseResult {
 	}
 
 	protected String getTestResultErrors() {
-		TestResult testResult = getTestResult();
+		String testResultErrors = null;
 
 		Build build = getBuild();
 
-		String testResultErrors;
+		TestResult testResult = getTestResult();
 
 		if (testResult == null) {
 			if (build == null) {
@@ -395,13 +395,13 @@ public class BatchBuildTestrayCaseResult extends BuildTestrayCaseResult {
 				testResultErrors = "Unable to run test on CI";
 			}
 
-			String buildFailureMessage = build.getFailureMessage();
+			String failureMessage = build.getFailureMessage();
 
-			if (JenkinsResultsParserUtil.isNullOrEmpty(buildFailureMessage)) {
+			if (JenkinsResultsParserUtil.isNullOrEmpty(failureMessage)) {
 				return testResultErrors;
 			}
 
-			return testResultErrors + ": " + buildFailureMessage;
+			return testResultErrors + ": " + failureMessage;
 		}
 
 		if (testResult.isSkipped()) {
