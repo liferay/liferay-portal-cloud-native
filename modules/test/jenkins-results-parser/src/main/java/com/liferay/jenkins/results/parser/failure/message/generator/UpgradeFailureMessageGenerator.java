@@ -17,11 +17,11 @@ public class UpgradeFailureMessageGenerator
 			return null;
 		}
 
-		int start = consoleText.indexOf(_LIFERAY_UPGRADE_ERROR_TEXT);
+		int index = consoleText.indexOf(_LIFERAY_UPGRADE_ERROR_TEXT);
 
-		start = consoleText.lastIndexOf("\n", start);
+		index = consoleText.lastIndexOf("\n", index);
 
-		return getConsoleTextSnippetByStart(consoleText, start);
+		return getConsoleTextSnippetByStart(consoleText, index);
 	}
 
 	private static final String _LIFERAY_UPGRADE_ERROR_TEXT =
