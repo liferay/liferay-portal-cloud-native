@@ -436,17 +436,17 @@ public class PageSpecificationResourceTest
 			Assert.assertNull(settings.getThemeSettings());
 		}
 		else {
-			Map<String, String> themeSettingMap = settings.getThemeSettings();
+			Map<String, String> themeSettings = settings.getThemeSettings();
 
 			Assert.assertEquals(
-				MapUtil.toString(themeSettingMap),
-				themeSettingsUnicodeProperties.size(), themeSettingMap.size());
+				MapUtil.toString(themeSettings),
+				themeSettingsUnicodeProperties.size(), themeSettings.size());
 
 			for (Map.Entry<String, String> entry :
 					themeSettingsUnicodeProperties.entrySet()) {
 
 				Assert.assertEquals(
-					entry.getValue(), themeSettingMap.get(entry.getKey()));
+					entry.getValue(), themeSettings.get(entry.getKey()));
 			}
 		}
 	}

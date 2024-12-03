@@ -309,22 +309,22 @@ public class PageSpecificationDTOConverter
 					});
 				setThemeSettings(
 					() -> {
-						Map<String, String> themeSettingsMap = new HashMap<>();
+						Map<String, String> themeSettings = new HashMap<>();
 
 						for (String key : unicodeProperties.keySet()) {
 							if (!key.startsWith("lfr-theme:")) {
 								continue;
 							}
 
-							themeSettingsMap.put(
+							themeSettings.put(
 								key, unicodeProperties.getProperty(key, null));
 						}
 
-						if (MapUtil.isEmpty(themeSettingsMap)) {
+						if (MapUtil.isEmpty(themeSettings)) {
 							return null;
 						}
 
-						return themeSettingsMap;
+						return themeSettings;
 					});
 				setThemeSpritemapClientExtension(
 					() -> _getClientExtension(
