@@ -84,7 +84,7 @@ public class PageExperienceDTOConverter
 		};
 	}
 
-	private PageElement[] _getChildPageElement(
+	private PageElement[] _getChildPageElements(
 			LayoutStructure layoutStructure,
 			LayoutStructureItem layoutStructureItem)
 		throws Exception {
@@ -116,7 +116,7 @@ public class PageExperienceDTOConverter
 			layoutStructureItem);
 
 		pageElement.setPageElements(
-			() -> _getChildPageElement(layoutStructure, layoutStructureItem));
+			() -> _getChildPageElements(layoutStructure, layoutStructureItem));
 
 		pageElement.setPosition(() -> position);
 
