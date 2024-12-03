@@ -127,6 +127,8 @@ public class PageExperienceDTOConverter
 			LayoutPageTemplateStructureRel layoutPageTemplateStructureRel)
 		throws Exception {
 
+		List<PageElement> pageElements = new ArrayList<>();
+
 		LayoutStructure layoutStructure = LayoutStructure.of(
 			layoutPageTemplateStructureRel.getData());
 
@@ -135,8 +137,6 @@ public class PageExperienceDTOConverter
 
 		List<String> childrenItemIds =
 			rootLayoutStructureItem.getChildrenItemIds();
-
-		List<PageElement> pageElements = new ArrayList<>();
 
 		for (int i = 0; i < childrenItemIds.size(); i++) {
 			PageElement pageElement = _getPageElement(
