@@ -786,8 +786,7 @@ public class CPDefinitionWrapper
 
 	@Override
 	public CPConfigurationList getMasterCPConfigurationList()
-		throws com.liferay.commerce.product.exception.
-			NoSuchCPConfigurationListException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return model.getMasterCPConfigurationList();
 	}
