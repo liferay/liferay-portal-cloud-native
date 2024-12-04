@@ -306,8 +306,8 @@ public class JiraRestController extends BaseRestController {
 			sb.append(" ASC");
 
 			JSONObject jsonObject = _search(
-				sb.toString(), _securityVulnerabilitiesIssueFields,
-				_calculateStartAt(page, pageSize), pageSize);
+				sb.toString(), pageSize, _securityVulnerabilitiesIssueFields,
+				_calculateStartAt(page, pageSize));
 
 			JSONObject responseJSONObject = _transformSearchResults(jsonObject);
 
@@ -427,7 +427,7 @@ public class JiraRestController extends BaseRestController {
 	}
 
 	private JSONObject _search(
-			String jql, String[] returnFields, int startAt, int maxResults)
+			String jql, int maxResults, String[] returnFields, int startAt)
 		throws Exception {
 
 		try {
