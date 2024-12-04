@@ -417,12 +417,12 @@ public class JiraRestController extends BaseRestController {
 	}
 
 	private List<String> _getUserRoleNames(Jwt jwt) {
+		List<String> rolesNames = new ArrayList<>();
+
 		JSONObject userJSONObject = _getMyUserAccountJSONObject(jwt);
 
 		JSONArray roleBriefsJSONArray = userJSONObject.getJSONArray(
 			"roleBriefs");
-
-		List<String> rolesNames = new ArrayList<>();
 
 		for (int i = 0; i < roleBriefsJSONArray.length(); i++) {
 			JSONObject roleBriefJSONObject = roleBriefsJSONArray.getJSONObject(
@@ -466,11 +466,11 @@ public class JiraRestController extends BaseRestController {
 	}
 
 	private boolean _hasEarlyPublishAccess(Jwt jwt) {
-		List<String> userRoles = _getUserRoleNames(jwt);
+		List<String> userRoleNames = _getUserRoleNames(jwt);
 
-		if (userRoles.contains(RoleConstants.NAME_ADMINISTRATOR) ||
-			userRoles.contains(RoleConstants.NAME_LIFERAY_STAFF) ||
-			userRoles.contains(RoleConstants.NAME_PARTNER)) {
+		if (userRoleNames.contains(RoleConstants.NAME_ADMINISTRATOR) ||
+			userRoleNames.contains(RoleConstants.NAME_LIFERAY_STAFF) ||
+			userRoleNames.contains(RoleConstants.NAME_PARTNER)) {
 
 			return true;
 		}
