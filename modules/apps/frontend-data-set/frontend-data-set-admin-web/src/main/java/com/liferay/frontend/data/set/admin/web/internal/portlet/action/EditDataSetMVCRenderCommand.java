@@ -68,7 +68,7 @@ public class EditDataSetMVCRenderCommand implements MVCRenderCommand {
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
-			checkPermissions(
+			_checkPermissions(
 				themeDisplay.getPermissionChecker(), objectDefinition,
 				objectEntry);
 
@@ -84,7 +84,7 @@ public class EditDataSetMVCRenderCommand implements MVCRenderCommand {
 		}
 	}
 
-	protected void checkPermissions(
+	private void _checkPermissions(
 			PermissionChecker permissionChecker,
 			ObjectDefinition objectDefinition, ObjectEntry objectEntry)
 		throws PortalException {
