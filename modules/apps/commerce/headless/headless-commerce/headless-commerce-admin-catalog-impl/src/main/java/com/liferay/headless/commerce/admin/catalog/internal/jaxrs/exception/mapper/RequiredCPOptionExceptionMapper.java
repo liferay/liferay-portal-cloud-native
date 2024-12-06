@@ -33,7 +33,7 @@ public class RequiredCPOptionExceptionMapper
 		RequiredCPOptionException requiredCPOptionException) {
 
 		return new Problem(
-			Response.Status.FORBIDDEN, "Option is linked to a Product");
+			Response.Status.FORBIDDEN, "Option is linked to a product");
 	}
 
 }
