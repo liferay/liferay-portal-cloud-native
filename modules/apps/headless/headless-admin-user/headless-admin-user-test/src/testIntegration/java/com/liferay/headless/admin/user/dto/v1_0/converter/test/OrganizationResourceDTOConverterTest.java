@@ -91,7 +91,7 @@ public class OrganizationResourceDTOConverterTest {
 	}
 
 	@Test
-	public void testToAddressCountry_i18n() throws Exception {
+	public void testToDTO() throws Exception {
 		Set<Locale> originalAvailableLocales =
 			_language.getCompanyAvailableLocales(
 				TestPropsValues.getCompanyId());

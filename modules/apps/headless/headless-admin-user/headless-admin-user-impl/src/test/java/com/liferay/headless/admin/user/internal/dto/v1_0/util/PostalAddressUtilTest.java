@@ -113,7 +113,7 @@ public class PostalAddressUtilTest {
 	}
 
 	@Test
-	public void testGetAddressCountry_i18n() {
+	public void testToPostalAddress() {
 		PostalAddress postalAddress = PostalAddressUtil.toPostalAddress(
 			true, _address, 0, LocaleUtil.getDefault());
 
