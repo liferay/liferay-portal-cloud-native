@@ -153,7 +153,7 @@ public class CommercePriceFormatterImpl implements CommercePriceFormatter {
 
 		if (Objects.equals(
 				decimalFormatSymbols.getDecimalSeparator(), CharPool.PERIOD) &&
-			_validateCommaDecimalPattern(price)) {
+			_hasCommaDecimalPattern(price)) {
 
 			price = StringUtil.replace(
 				price, CharPool.PERIOD, StringPool.BLANK);
@@ -166,7 +166,7 @@ public class CommercePriceFormatterImpl implements CommercePriceFormatter {
 				  Objects.equals(
 					  decimalFormatSymbols.getDecimalSeparator(),
 					  CharPool.ARABIC_DECIMAL_SEPARATOR)) &&
-				 _validatePeriodDecimalPattern(price)) {
+				 _hasPeriodDecimalPattern(price)) {
 
 			price = StringUtil.replace(price, CharPool.COMMA, StringPool.BLANK);
 
@@ -227,13 +227,13 @@ public class CommercePriceFormatterImpl implements CommercePriceFormatter {
 		return decimalFormat;
 	}
 
-	private boolean _validateCommaDecimalPattern(String price) {
+	private boolean _hasCommaDecimalPattern(String price) {
 		Matcher matcher = _commaDecimalPattern.matcher(price);
 
 		return matcher.find();
 	}
 
-	private boolean _validatePeriodDecimalPattern(String price) {
+	private boolean _hasPeriodDecimalPattern(String price) {
 		Matcher matcher = _periodDecimalPattern.matcher(price);
 
 		return matcher.find();
@@ -243,8 +243,8 @@ public class CommercePriceFormatterImpl implements CommercePriceFormatter {
 		throws Exception {
 
 		if (Validator.isNotNull(className) &&
-			!_validateCommaDecimalPattern(price) &&
-			!_validatePeriodDecimalPattern(price)) {
+			!_hasCommaDecimalPattern(price) &&
+			!_hasPeriodDecimalPattern(price)) {
 
 			if (Objects.equals(className, CommerceDiscount.class.getName())) {
 				throw new CommerceDiscountAmountException();
