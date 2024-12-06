@@ -128,7 +128,7 @@
 			"objectRelationships": [
 				{
 					"deletionType": "disassociate",
-					"externalReferenceCode": "P2S3_ASSESSMENT_TO_LEARNING_PATHS",
+					"externalReferenceCode": "P2S3_ASSESSMENT_TO_P2S3_LEARNING_PATHS",
 					"label": {
 						"en_US": "P2S3 Assessment to P2S3 Learning Paths"
 					},
@@ -370,7 +370,7 @@
 			"objectRelationships": [
 				{
 					"deletionType": "disassociate",
-					"externalReferenceCode": "P2S3_CERTIFICATION_TO_ASSESSMENTS",
+					"externalReferenceCode": "P2S3_CERTIFICATION_TO_P2S3_ASSESSMENTS",
 					"label": {
 						"en_US": "P2S3 Certification to P2S3 Assessments"
 					},
@@ -577,7 +577,7 @@
 			"objectRelationships": [
 				{
 					"deletionType": "disassociate",
-					"externalReferenceCode": "P2S3_COURSE_TO_ENROLLMENTS",
+					"externalReferenceCode": "P2S3_COURSE_TO_P2S3_ENROLLMENTS",
 					"label": {
 						"en_US": "P2S3 Course to P2S3 Enrollments"
 					},
@@ -588,7 +588,7 @@
 				},
 				{
 					"deletionType": "disassociate",
-					"externalReferenceCode": "P2S3_COURSE_TO_MODULES",
+					"externalReferenceCode": "P2S3_COURSE_TO_P2S3_MODULES",
 					"label": {
 						"en_US": "P2S3 Course to P2S3 Modules"
 					},
@@ -992,7 +992,7 @@
 			"objectRelationships": [
 				{
 					"deletionType": "disassociate",
-					"externalReferenceCode": "P2S3_LEARNING_PATH_TO_ENROLLMENTS",
+					"externalReferenceCode": "P2S3_LEARNING_PATH_TO_P2S3_ENROLLMENTS",
 					"label": {
 						"en_US": "P2S3 Learning Path to P2S3 Learning Path Steps"
 					},
@@ -1003,7 +1003,7 @@
 				},
 				{
 					"deletionType": "disassociate",
-					"externalReferenceCode": "P2S3_LEARNING_PATH_TO_LEARNING_PATH_STEPS",
+					"externalReferenceCode": "P2S3_LEARNING_PATH_TO_P2S3_LEARNING_PATH_STEPS",
 					"label": {
 						"en_US": "P2S3 Learning Path to P2S3 Learning Path Steps"
 					},
@@ -1140,7 +1140,7 @@
 			"objectRelationships": [
 				{
 					"deletionType": "disassociate",
-					"externalReferenceCode": "P2S3_LEARNING_PATH_STEP_TO_COURSES",
+					"externalReferenceCode": "P2S3_LEARNING_PATH_STEP_TO_P2S3_COURSES",
 					"label": {
 						"en_US": "P2S3 Learning Path Step to P2S3 Courses"
 					},
@@ -1151,7 +1151,7 @@
 				},
 				{
 					"deletionType": "disassociate",
-					"externalReferenceCode": "P2S3_LEARNING_PATH_STEP_TO_EXTERNAL_MEDIAS",
+					"externalReferenceCode": "P2S3_LEARNING_PATH_STEP_TO_P2S3_EXTERNAL_MEDIAS",
 					"label": {
 						"en_US": "P2S3 Learning Path Step to P2S3 External Medias"
 					},
@@ -1460,7 +1460,7 @@
 			"objectRelationships": [
 				{
 					"deletionType": "disassociate",
-					"externalReferenceCode": "P2S3_MODULE_TO_LESSONS",
+					"externalReferenceCode": "P2S3_MODULE_TO_P2S3_LESSONS",
 					"label": {
 						"en_US": "P2S3 Module to P2S3 Lessons"
 					},
@@ -1471,7 +1471,7 @@
 				},
 				{
 					"deletionType": "disassociate",
-					"externalReferenceCode": "P2S3_MODULE_TO_QUIZZES",
+					"externalReferenceCode": "P2S3_MODULE_TO_P2S3_QUIZZES",
 					"label": {
 						"en_US": "P2S3 Module to P2S3 Quizzes"
 					},
@@ -1634,7 +1634,7 @@
 			"objectRelationships": [
 				{
 					"deletionType": "disassociate",
-					"externalReferenceCode": "P2S3_QUIZ_TO_BADGES",
+					"externalReferenceCode": "P2S3_QUIZ_TO_P2S3_BADGES",
 					"label": {
 						"en_US": "P2S3 Quiz to P2S3 Badges"
 					},
@@ -1645,7 +1645,7 @@
 				},
 				{
 					"deletionType": "disassociate",
-					"externalReferenceCode": "P2S3_QUIZ_TO_QUIZ_QUESTIONS",
+					"externalReferenceCode": "P2S3_QUIZ_TO_P2S3_QUIZ_QUESTIONS",
 					"label": {
 						"en_US": "P2S3 Quiz to P2S3 Quiz Questions"
 					},
@@ -1656,7 +1656,7 @@
 				},
 				{
 					"deletionType": "disassociate",
-					"externalReferenceCode": "P2S3_QUIZ_TO_QUIZ_RESULTS",
+					"externalReferenceCode": "P2S3_QUIZ_TO_P2S3_QUIZ_RESULTS",
 					"label": {
 						"en_US": "P2S3 Quiz to P2S3 Quiz Results"
 					},
@@ -1890,7 +1890,7 @@
 			"objectRelationships": [
 				{
 					"deletionType": "disassociate",
-					"externalReferenceCode": "P2S3_QUIZ_QUESTION_TO_QUIZ_ANSWERS",
+					"externalReferenceCode": "P2S3_QUIZ_QUESTION_TO_P2S3_QUIZ_ANSWERS",
 					"label": {
 						"en_US": "P2S3 Quiz Question to P2S3 Quiz Answers"
 					},
