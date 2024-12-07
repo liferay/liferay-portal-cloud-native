@@ -315,8 +315,6 @@ public class UserResourceTest extends BaseUserResourceTestCase {
 
 		assertEquals(user2, User.toDTO(httpResponse.getContent()));
 
-		// Update an existing user provided by another SCIM client
-
 		ScimTestUtil.saveSCIMClientId(
 			com.liferay.portal.kernel.model.User.class.getName(),
 			GetterUtil.getLong(user2.getId()), TestPropsValues.getCompanyId(),
