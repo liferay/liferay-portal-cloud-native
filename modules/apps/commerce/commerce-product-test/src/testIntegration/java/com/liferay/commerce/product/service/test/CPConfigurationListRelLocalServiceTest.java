@@ -67,20 +67,18 @@ public class CPConfigurationListRelLocalServiceTest {
 		_serviceContext = ServiceContextTestUtil.getServiceContext(
 			_group.getGroupId(), _user.getUserId());
 
-		_commerceCatalog = _commerceCatalogService.addCommerceCatalog(
-			RandomTestUtil.randomString(),
-			AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT,
-			RandomTestUtil.randomString(), "USD", "en_US", _serviceContext);
-
 		_accountEntry = CommerceAccountTestUtil.addBusinessAccountEntry(
 			_user.getUserId(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString() + "@liferay.com",
 			RandomTestUtil.randomString(), new long[] {_user.getUserId()}, null,
 			_serviceContext);
-
 		_accountGroup = _accountGroupLocalService.addAccountGroup(
 			_serviceContext.getUserId(), null, RandomTestUtil.randomString(),
 			_serviceContext);
+		_commerceCatalog = _commerceCatalogService.addCommerceCatalog(
+			RandomTestUtil.randomString(),
+			AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT,
+			RandomTestUtil.randomString(), "USD", "en_US", _serviceContext);
 
 		Date date = new Date();
 
