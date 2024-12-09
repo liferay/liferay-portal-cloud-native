@@ -13,7 +13,6 @@ import org.json.JSONObject;
 public class Settings {
 
 	public Settings(JSONObject jsonObject) {
-		active = true;
 		apiKey = jsonObject.getString("apiKey");
 		imageModel = jsonObject.getJSONObject(
 			"imageModel"
@@ -32,7 +31,6 @@ public class Settings {
 		);
 	}
 
-	public boolean active;
 	public String apiKey;
 	public long id;
 	public String imageModel;
