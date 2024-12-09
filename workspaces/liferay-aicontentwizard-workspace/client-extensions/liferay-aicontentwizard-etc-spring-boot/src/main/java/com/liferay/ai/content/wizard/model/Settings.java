@@ -19,13 +19,13 @@ public class Settings {
 		).getString(
 			"name"
 		);
-		provider = jsonObject.getJSONObject(
-			"provider"
+		model = jsonObject.getJSONObject(
+			"model"
 		).getString(
 			"name"
 		);
-		model = jsonObject.getJSONObject(
-			"model"
+		provider = jsonObject.getJSONObject(
+			"provider"
 		).getString(
 			"name"
 		);
