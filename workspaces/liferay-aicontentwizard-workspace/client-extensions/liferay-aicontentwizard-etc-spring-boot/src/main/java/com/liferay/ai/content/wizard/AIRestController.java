@@ -53,12 +53,7 @@ public class AIRestController extends BaseRestController {
 		Settings settings = _settingsService.getActiveSettings(jwt);
 
 		if (settings == null) {
-			return new ResponseEntity<>(
-				new JSONObject(
-				).put(
-					"message", "Settings not found"
-				).toString(),
-				HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		JSONObject jsonObject = new JSONObject(json);
