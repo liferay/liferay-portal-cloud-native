@@ -468,6 +468,7 @@ public class ProductConfigurationResourceImpl
 
 		long classNameId = _portal.getClassNameId(CPDefinition.class.getName());
 		long classPK = GetterUtil.getLong(productConfiguration.getEntityId());
+
 		ProductConfiguration.EntityType entityType =
 			productConfiguration.getEntityType();
 
