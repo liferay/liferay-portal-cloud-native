@@ -6,7 +6,7 @@
 package com.liferay.ai.content.wizard;
 
 import com.liferay.ai.content.wizard.model.Settings;
-import com.liferay.ai.content.wizard.services.SettingsService;
+import com.liferay.ai.content.wizard.service.SettingsService;
 import com.liferay.client.extension.util.spring.boot.BaseRestController;
 import com.liferay.petra.string.StringBundler;
 

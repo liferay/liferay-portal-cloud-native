@@ -12,7 +12,7 @@ import com.liferay.ai.content.wizard.langchain4j.tools.SitePageTools;
 import com.liferay.ai.content.wizard.langchain4j.tools.SiteTools;
 import com.liferay.ai.content.wizard.langchain4j.tools.ToolsContext;
 import com.liferay.ai.content.wizard.model.Settings;
-import com.liferay.ai.content.wizard.services.SettingsService;
+import com.liferay.ai.content.wizard.service.SettingsService;
 import com.liferay.client.extension.util.spring.boot.BaseRestController;
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
