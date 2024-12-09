@@ -83,7 +83,21 @@ public class SettingsRestController extends BaseRestController {
 
 		JSONObject jsonObject = new JSONObject(json);
 
-		JSONObject settingsJSONObject = _save(jwt, json);
+		JSONObject settingsJSONObject = null;
+
+		if (jsonObject.has("id")) {
+			settingsJSONObject = new JSONObject(
+				patch(
+					"Bearer " + jwt.getTokenValue(), json,
+					"/o/c/k9l6aicontentwizardsettings/" +
+						jsonObject.getLong("id")));
+		}
+		else {
+			settingsJSONObject = new JSONObject(
+				post(
+					"Bearer " + jwt.getTokenValue(), json,
+					"/o/c/k9l6aicontentwizardsettings"));
+		}
 
 		if (jsonObject.getBoolean("active")) {
 			_settingsService.setActiveSettings(settingsJSONObject);
@@ -142,23 +156,6 @@ public class SettingsRestController extends BaseRestController {
 		}
 
 		return get("Bearer " + jwt.getTokenValue(), url);
-	}
-
-	private JSONObject _save(Jwt jwt, String json) {
-		JSONObject jsonObject = new JSONObject(json);
-
-		if (jsonObject.has("id")) {
-			return new JSONObject(
-				patch(
-					"Bearer " + jwt.getTokenValue(), json,
-					"/o/c/k9l6aicontentwizardsettings/" +
-						jsonObject.getLong("id")));
-		}
-
-		return new JSONObject(
-			post(
-				"Bearer " + jwt.getTokenValue(), json,
-				"/o/c/k9l6aicontentwizardsettings"));
 	}
 
 	private static final Log _log = LogFactory.getLog(
