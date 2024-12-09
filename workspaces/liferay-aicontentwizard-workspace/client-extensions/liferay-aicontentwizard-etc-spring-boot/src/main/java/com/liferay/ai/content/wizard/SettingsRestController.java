@@ -61,10 +61,7 @@ public class SettingsRestController extends BaseRestController {
 	public ResponseEntity<String> getStatus(@AuthenticationPrincipal Jwt jwt) {
 		Settings settings = _settingsService.getActiveSettings(jwt);
 
-		JSONObject jsonObject = new JSONObject(
-		).put(
-			"active", false
-		);
+		JSONObject jsonObject = new JSONObject();
 
 		if (settings != null) {
 			jsonObject.put(
@@ -72,6 +69,9 @@ public class SettingsRestController extends BaseRestController {
 			).put(
 				"provider", settings.providerName
 			);
+		}
+		else {
+			jsonObject.put("active", false);
 		}
 
 		return new ResponseEntity<>(jsonObject.toString(), HttpStatus.OK);
