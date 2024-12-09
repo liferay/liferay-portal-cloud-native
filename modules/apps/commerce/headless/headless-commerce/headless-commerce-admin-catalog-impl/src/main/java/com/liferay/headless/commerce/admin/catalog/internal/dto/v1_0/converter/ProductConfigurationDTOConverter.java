@@ -58,11 +58,11 @@ public class ProductConfigurationDTOConverter
 
 		if (FeatureFlagManagerUtil.isEnabled("LPD-10889")) {
 			CPConfigurationEntry cpConfigurationEntry;
-			CPDefinition cpDefinition;
 
 			if (dtoConverterContext.getId() != null) {
-				cpDefinition = _cpDefinitionService.getCPDefinition(
-					(Long)dtoConverterContext.getId());
+				CPDefinition cpDefinition =
+					_cpDefinitionService.getCPDefinition(
+						(Long)dtoConverterContext.getId());
 
 				cpConfigurationEntry =
 					cpDefinition.fetchMasterCPConfigurationEntry();
