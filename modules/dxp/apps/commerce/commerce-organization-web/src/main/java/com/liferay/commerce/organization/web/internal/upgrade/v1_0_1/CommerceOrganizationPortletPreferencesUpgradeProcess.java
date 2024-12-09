@@ -11,6 +11,7 @@ import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.service.OrganizationLocalService;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,7 +59,7 @@ public class CommerceOrganizationPortletPreferencesUpgradeProcess
 
 						Organization organization =
 							_organizationLocalService.fetchOrganization(
-								Long.valueOf(smallValue));
+								GetterUtil.getLong(smallValue));
 
 						if (organization == null) {
 							updatePreparedStatement.setString(2, null);

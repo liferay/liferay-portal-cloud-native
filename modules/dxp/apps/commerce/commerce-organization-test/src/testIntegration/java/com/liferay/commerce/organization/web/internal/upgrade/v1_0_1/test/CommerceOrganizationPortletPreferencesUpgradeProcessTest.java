@@ -48,9 +48,7 @@ public class CommerceOrganizationPortletPreferencesUpgradeProcessTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testUpdateCommerceOrganizationPortletPreferencesExternalReferenceCode()
-		throws Exception {
-
+	public void testUpgrade() throws Exception {
 		UserTestUtil.setUser(TestPropsValues.getUser());
 
 		Group group = GroupTestUtil.addGroup();
