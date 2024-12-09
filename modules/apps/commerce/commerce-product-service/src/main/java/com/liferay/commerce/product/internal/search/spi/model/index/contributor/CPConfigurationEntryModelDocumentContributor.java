@@ -44,9 +44,6 @@ public class CPConfigurationEntryModelDocumentContributor
 			}
 
 			document.addKeyword(
-				CPField.EXTERNAL_REFERENCE_CODE,
-				cpConfigurationEntry.getExternalReferenceCode());
-			document.addKeyword(
 				CPField.CP_CONFIGURATION_LIST_ID,
 				cpConfigurationEntry.getCPConfigurationListId());
 			document.addNumber(
@@ -66,6 +63,9 @@ public class CPConfigurationEntryModelDocumentContributor
 						return cpConfigurationEntry.getCPConfigurationListId();
 					},
 					Long.class));
+			document.addKeyword(
+				CPField.EXTERNAL_REFERENCE_CODE,
+				cpConfigurationEntry.getExternalReferenceCode());
 			document.addText(
 				Field.CLASS_NAME_ID,
 				String.valueOf(cpConfigurationEntry.getClassNameId()));
@@ -74,7 +74,6 @@ public class CPConfigurationEntryModelDocumentContributor
 				cpConfigurationEntry.getCPConfigurationEntryId());
 			document.addKeyword(
 				Field.ENTRY_CLASS_PK, cpConfigurationEntry.getClassPK());
-
 			document.addKeyword(
 				Field.HIDDEN, !cpConfigurationEntry.isVisible());
 			document.addKeyword(
