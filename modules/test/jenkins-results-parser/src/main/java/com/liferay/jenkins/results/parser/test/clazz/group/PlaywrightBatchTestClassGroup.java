@@ -523,7 +523,7 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 
 		File rootDir = new File(configJSONObject.getString("rootDir"));
 
-		Map<File, Set<String>> specFileTitlesMap = new HashMap<>();
+		Map<File, Set<String>> specTitlesMap = new HashMap<>();
 
 		for (JSONObject specJSONObject : getSpecJSONObjects()) {
 			JSONArray testsJSONArray = specJSONObject.optJSONArray("tests");
@@ -542,7 +542,7 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 
 			File specFile = new File(rootDir, specJSONObject.getString("file"));
 
-			Set<String> specTitles = specFileTitlesMap.get(specFile);
+			Set<String> specTitles = specTitlesMap.get(specFile);
 
 			if (specTitles == null) {
 				specTitles = new HashSet<>();
@@ -557,7 +557,7 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 				specTitles.add(specJSONObject.getString("title"));
 			}
 
-			specFileTitlesMap.put(specFile, specTitles);
+			specTitlesMap.put(specFile, specTitles);
 		}
 
 		if (isRootCauseAnalysis()) {
@@ -581,8 +581,7 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 					this, specFile);
 
 				for (String specTitle :
-						specFileTitlesMap.getOrDefault(
-							specFile, new HashSet<>())) {
+						specTitlesMap.getOrDefault(specFile, new HashSet<>())) {
 
 					testClass.addTestClassMethod(
 						TestClassFactory.newTestClassMethod(
@@ -595,9 +594,7 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 			}
 		}
 
-		for (Map.Entry<File, Set<String>> entry :
-				specFileTitlesMap.entrySet()) {
-
+		for (Map.Entry<File, Set<String>> entry : specTitlesMap.entrySet()) {
 			TestClass testClass = TestClassFactory.newTestClass(
 				this, entry.getKey());
 
