@@ -24,24 +24,24 @@ import org.springframework.stereotype.Component;
 public class SettingsService extends BaseService {
 
 	public Settings getActiveSettings(Jwt jwt) {
-		if (_activeSettings == null) {
-			JSONObject jsonObject = new JSONObject(
-				get(
-					"Bearer " + jwt.getTokenValue(),
-					"/o/c/k9l6aicontentwizardsettings?filter=active eq true"));
+		if (_activeSettings != null) {
+			return _activeSettings;
+		}
 
-			int totalCount = jsonObject.getInt("totalCount");
+		JSONObject jsonObject = new JSONObject(
+			get(
+				"Bearer " + jwt.getTokenValue(),
+				"/o/c/k9l6aicontentwizardsettings?filter=active eq true"));
 
-			if (totalCount > 0) {
-				JSONArray jsonArray = jsonObject.getJSONArray("items");
+		int totalCount = jsonObject.getInt("totalCount");
 
-				_activeSettings = new Settings(jsonArray.getJSONObject(0));
-
-				return _activeSettings;
-			}
-
+		if (totalCount == 0) {
 			return null;
 		}
+
+		JSONArray jsonArray = jsonObject.getJSONArray("items");
+
+		_activeSettings = new Settings(jsonArray.getJSONObject(0));
 
 		return _activeSettings;
 	}
