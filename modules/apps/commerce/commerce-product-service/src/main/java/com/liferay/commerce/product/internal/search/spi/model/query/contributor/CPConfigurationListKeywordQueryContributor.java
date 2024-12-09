@@ -38,9 +38,9 @@ public class CPConfigurationListKeywordQueryContributor
 			booleanQuery, searchContext, CPField.EXTERNAL_REFERENCE_CODE,
 			false);
 		_queryHelper.addSearchTerm(
-			booleanQuery, searchContext, Field.GROUP_ID, false);
-		_queryHelper.addSearchTerm(
 			booleanQuery, searchContext, Field.ENTRY_CLASS_PK, false);
+		_queryHelper.addSearchTerm(
+			booleanQuery, searchContext, Field.GROUP_ID, false);
 		_queryHelper.addSearchTerm(
 			booleanQuery, searchContext, Field.NAME, false);
 		_queryHelper.addSearchTerm(
