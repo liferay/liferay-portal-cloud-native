@@ -256,13 +256,13 @@ public class DocumentMetadataSetResourceImpl
 		DataDefinition dataDefinition =
 			dataDefinitionResource.postSiteDataDefinitionByContentType(
 				groupId, "document-library",
-				_getDataDefinition(documentMetadataSet));
+				_toDataDefinition(documentMetadataSet));
 
 		return _toDocumentMetadataSet(
 			_ddmStructureService.getStructure(dataDefinition.getId()));
 	}
 
-	private DataDefinition _getDataDefinition(
+	private DataDefinition _toDataDefinition(
 		DocumentMetadataSet documentMetadataSet) {
 
 		return new DataDefinition() {
@@ -351,7 +351,7 @@ public class DocumentMetadataSetResourceImpl
 		DataDefinition dataDefinition =
 			dataDefinitionResource.patchDataDefinition(
 				ddmStructure.getStructureId(),
-				_getDataDefinition(documentMetadataSet));
+				_toDataDefinition(documentMetadataSet));
 
 		return _toDocumentMetadataSet(
 			_ddmStructureService.getStructure(dataDefinition.getId()));
