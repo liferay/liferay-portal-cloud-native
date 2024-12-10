@@ -29,14 +29,14 @@ public class CTEntryModelListener extends BaseModelListener<CTEntry> {
 	public void onAfterCreate(CTEntry ctEntry) {
 		_ctClosureFactory.clearCache(ctEntry.getCtCollectionId());
 
-		_updateScore(ctEntry, true);
+		_updateCTScore(ctEntry, true);
 	}
 
 	@Override
 	public void onAfterRemove(CTEntry ctEntry) {
 		_ctClosureFactory.clearCache(ctEntry.getCtCollectionId());
 
-		_updateScore(ctEntry, false);
+		_updateCTScore(ctEntry, false);
 	}
 
 	@Override
@@ -48,15 +48,15 @@ public class CTEntryModelListener extends BaseModelListener<CTEntry> {
 
 			_ctClosureFactory.clearCache(originalCTEntry.getCtCollectionId());
 
-			_updateScore(originalCTEntry, false);
+			_updateCTScore(originalCTEntry, false);
 
-			_updateScore(ctEntry, true);
+			_updateCTScore(ctEntry, true);
 		}
 
 		_ctClosureFactory.clearCache(ctEntry.getCtCollectionId());
 	}
 
-	private void _updateScore(CTEntry ctEntry, boolean increment) {
+	private void _updateCTScore(CTEntry ctEntry, boolean increment) {
 		TransactionCommitCallbackUtil.registerCallback(
 			() -> {
 				Message message = new Message();
