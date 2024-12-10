@@ -455,16 +455,14 @@ public class JiraRestController extends BaseRestController {
 			"yyyy-MM-dd'T'HH:mm:ss.SSSx");
 
 		if (_hasEarlyPublishAccess(jwt)) {
-			String publishingDate = fieldsJSONObject.optString(
-				"partnerPublishingDate");
-
-			return LocalDateTime.parse(publishingDate, dateTimeFormatter);
+			return LocalDateTime.parse(
+				fieldsJSONObject.optString("partnerPublishingDate"),
+				dateTimeFormatter);
 		}
 
-		String publishingDate = fieldsJSONObject.optString(
-			"customerPublishingDate");
-
-		return LocalDateTime.parse(publishingDate, dateTimeFormatter);
+		return LocalDateTime.parse(
+			fieldsJSONObject.optString("customerPublishingDate"),
+			dateTimeFormatter);
 	}
 
 	private JSONObject _search(
