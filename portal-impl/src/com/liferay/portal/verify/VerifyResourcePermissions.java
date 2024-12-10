@@ -245,11 +245,6 @@ public class VerifyResourcePermissions extends VerifyProcess {
 						}
 					}
 
-					long companyId = role.getCompanyId();
-					long roleId = role.getRoleId();
-
-					String modelName = verifiableResourcedModel.getModelName();
-
 					int processedCount = atomicInteger.getAndIncrement();
 
 					if (_log.isInfoEnabled() && (processedCount > 0) &&
@@ -261,32 +256,35 @@ public class VerifyResourcePermissions extends VerifyProcess {
 								verifiableResourcedModelsCount.getSingleton(
 									() -> _getVerifiableResourcedModelsCount(
 										role, verifiableResourcedModel)),
-								" resource permissions for company ", companyId,
-								" and model ", modelName));
+								" resource permissions for company ",
+								role.getCompanyId(), " and model ",
+								verifiableResourcedModel.getModelName()));
 					}
 
 					if (_log.isDebugEnabled()) {
 						_log.debug(
 							StringBundler.concat(
-								"No resource found for {", companyId, ", ",
-								modelName, ", ",
-								ResourceConstants.SCOPE_INDIVIDUAL, ", ",
-								primKey, ", ", roleId, "}"));
+								"No resource found for {", role.getCompanyId(),
+								", ", verifiableResourcedModel.getModelName(),
+								", ", ResourceConstants.SCOPE_INDIVIDUAL, ", ",
+								primKey, ", ", role.getRoleId(), "}"));
 					}
 
 					try {
 						ResourceLocalServiceUtil.addResources(
-							companyId, groupId, ownerId, modelName,
+							role.getCompanyId(), groupId, ownerId,
+							verifiableResourcedModel.getModelName(),
 							String.valueOf(primKey), false, addGroupPermission,
 							addGuestPermission);
 					}
 					catch (Exception exception) {
 						_log.error(
 							StringBundler.concat(
-								"Unable to add resource for {", companyId, ", ",
-								modelName, ", ",
+								"Unable to add resource for {",
+								role.getCompanyId(), ", ",
+								verifiableResourcedModel.getModelName(), ", ",
 								ResourceConstants.SCOPE_INDIVIDUAL, ", ",
-								primKey, ", ", roleId, "}"),
+								primKey, ", ", role.getRoleId(), "}"),
 							exception);
 					}
 				},
