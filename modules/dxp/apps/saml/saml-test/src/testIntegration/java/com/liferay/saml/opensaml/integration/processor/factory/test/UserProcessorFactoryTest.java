@@ -43,7 +43,7 @@ public class UserProcessorFactoryTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testCreateAndUpdateUser() throws Exception {
+	public void testAddUserAndUpdateUser() throws Exception {
 		_user = _userLocalService.createUser(0);
 
 		_user.setCompanyId(TestPropsValues.getCompanyId());
@@ -52,16 +52,11 @@ public class UserProcessorFactoryTest {
 
 		Assert.assertNotEquals(0, _user.getUserId());
 
-		// Assert handling case-insensitive email addresses during update
-
+		_assertProcess(
+			"Jane", "Doena", "jane.doena@example.com", "jane.doena");
 		_assertProcess(
 			"John-changed", "Doe-changed", "JOHN.DOE@example.com",
 			"john.doe.changed");
-
-		// Updated email entirely changed
-
-		_assertProcess("Jane", "Doena", "jane.doena@example.com", "jane.doena");
-
 		_assertProcess(null, null, "jane.doena@example.com", null);
 	}
 
@@ -117,10 +112,10 @@ public class UserProcessorFactoryTest {
 		UserProcessor userProcessor = _userProcessorFactory.create(
 			_user, _userFieldExpressionHandlerRegistry);
 
-		_set(userProcessor, "emailAddress", emailAddress);
-		_set(userProcessor, "firstName", firstName);
-		_set(userProcessor, "lastName", lastName);
-		_set(userProcessor, "screenName", screenName);
+		_setValueArray(userProcessor, "emailAddress", emailAddress);
+		_setValueArray(userProcessor, "firstName", firstName);
+		_setValueArray(userProcessor, "lastName", lastName);
+		_setValueArray(userProcessor, "screenName", screenName);
 
 		User user2 = userProcessor.process(
 			ServiceContextTestUtil.getServiceContext());
@@ -137,7 +132,7 @@ public class UserProcessorFactoryTest {
 		_user = user2;
 	}
 
-	private void _set(
+	private void _setValueArray(
 		UserProcessor userProcessor, String fieldExpression, String value) {
 
 		if (value != null) {
