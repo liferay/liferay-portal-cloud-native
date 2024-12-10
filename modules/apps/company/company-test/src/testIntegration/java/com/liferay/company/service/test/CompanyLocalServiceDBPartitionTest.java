@@ -222,16 +222,15 @@ public class CompanyLocalServiceDBPartitionTest
 	public void testAddDBPartitionCompany() throws Exception {
 		Company company = CompanyTestUtil.addCompany();
 
-		String pid = _createFactoryConfiguration(
-			company.getCompanyId()
-		).getPid();
+		Configuration configuration = _createFactoryConfiguration(
+			company.getCompanyId());
 
 		companyLocalService.extractDBPartitionCompany(company.getCompanyId());
 
 		boolean standaloneDBPartition = true;
 
 		try {
-			_assertConfiguration(pid, false);
+			_assertConfiguration(configuration.getPid(), false);
 
 			String name = "new" + company.getName();
 			String virtualHostName = "new" + company.getVirtualHostname();
@@ -254,7 +253,7 @@ public class CompanyLocalServiceDBPartitionTest
 					CompanyThreadLocal.setCompanyIdWithSafeCloseable(
 						company.getCompanyId())) {
 
-				_assertConfiguration(pid, true);
+				_assertConfiguration(configuration.getPid(), true);
 			}
 		}
 		finally {
@@ -516,9 +515,8 @@ public class CompanyLocalServiceDBPartitionTest
 	public void testDeleteCompany() throws Exception {
 		Company company = CompanyTestUtil.addCompany();
 
-		String pid = _createFactoryConfiguration(
-			company.getCompanyId()
-		).getPid();
+		Configuration configuration = _createFactoryConfiguration(
+			company.getCompanyId());
 
 		int dbPartitionsCount = _getDBPartitionsCount();
 
@@ -539,7 +537,7 @@ public class CompanyLocalServiceDBPartitionTest
 
 		Assert.assertTrue(serviceReferences.isEmpty());
 
-		_assertConfiguration(pid, false);
+		_assertConfiguration(configuration.getPid(), false);
 	}
 
 	@Test
@@ -576,13 +574,11 @@ public class CompanyLocalServiceDBPartitionTest
 	@Test
 	public void testExtractDBPartitionCompany() throws Exception {
 		Company company = CompanyTestUtil.addCompany();
-
 		boolean standaloneDBPartition = false;
 
 		try {
-			String pid = _createFactoryConfiguration(
-				company.getCompanyId()
-			).getPid();
+			Configuration configuration = _createFactoryConfiguration(
+				company.getCompanyId());
 
 			companyLocalService.extractDBPartitionCompany(
 				company.getCompanyId());
@@ -608,7 +604,7 @@ public class CompanyLocalServiceDBPartitionTest
 
 			Assert.assertTrue(serviceReferences.isEmpty());
 
-			_assertConfiguration(pid, false);
+			_assertConfiguration(configuration.getPid(), false);
 		}
 		finally {
 			if (standaloneDBPartition) {
