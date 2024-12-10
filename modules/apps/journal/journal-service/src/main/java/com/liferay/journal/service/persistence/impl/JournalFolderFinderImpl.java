@@ -511,9 +511,9 @@ public class JournalFolderFinderImpl
 
 		StringBundler sb = new StringBundler(5);
 
-		sb.append(" AND ");
+		sb.append(" and ");
 		sb.append(tableName);
-		sb.append(".status NOT IN (");
+		sb.append(".status not in (");
 
 		for (int i = 0; i < statuses.length; i++) {
 			sb.append(statuses[i]);
