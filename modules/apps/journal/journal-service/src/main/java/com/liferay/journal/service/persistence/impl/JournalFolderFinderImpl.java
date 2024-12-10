@@ -90,7 +90,8 @@ public class JournalFolderFinderImpl
 		int[] excludedStatuses, QueryDefinition<?> queryDefinition) {
 
 		return doCountF_A_ByG_F_DDMSI_NotS(
-			groupId, folderId, ddmStructureId, excludedStatuses, queryDefinition, true);
+			groupId, folderId, ddmStructureId, excludedStatuses,
+			queryDefinition, true);
 	}
 
 	@Override
@@ -159,8 +160,9 @@ public class JournalFolderFinderImpl
 	}
 
 	protected int doCountF_A_ByG_F_DDMSI_NotS(
-		long groupId, long folderId, long ddmStructureId, int[] excludedStatuses,
-		QueryDefinition<?> queryDefinition, boolean inlineSQLHelper) {
+		long groupId, long folderId, long ddmStructureId,
+		int[] excludedStatuses, QueryDefinition<?> queryDefinition,
+		boolean inlineSQLHelper) {
 
 		Session session = null;
 
@@ -459,6 +461,32 @@ public class JournalFolderFinderImpl
 		return sb.toString();
 	}
 
+	protected String getExcludedStatuses(
+		int[] excludedStatuses, String tableName) {
+
+		if (ArrayUtil.isEmpty(excludedStatuses)) {
+			return StringPool.BLANK;
+		}
+
+		StringBundler sb = new StringBundler(5);
+
+		sb.append(" and ");
+		sb.append(tableName);
+		sb.append(".status not in (");
+
+		for (int i = 0; i < excludedStatuses.length; i++) {
+			sb.append(excludedStatuses[i]);
+
+			if (i != (excludedStatuses.length - 1)) {
+				sb.append(", ");
+			}
+		}
+
+		sb.append(")");
+
+		return sb.toString();
+	}
+
 	protected String getFolderId(long folderId, String tableName) {
 		if (folderId < 0) {
 			return StringPool.BLANK;
@@ -498,34 +526,9 @@ public class JournalFolderFinderImpl
 		return sql;
 	}
 
-	protected String getExcludedStatuses(
-		int[] excludedStatuses, String tableName) {
-
-		if (ArrayUtil.isEmpty(excludedStatuses)) {
-			return StringPool.BLANK;
-		}
-
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(" and ");
-		sb.append(tableName);
-		sb.append(".status not in (");
-
-		for (int i = 0; i < excludedStatuses.length; i++) {
-			sb.append(excludedStatuses[i]);
-
-			if (i != (excludedStatuses.length - 1)) {
-				sb.append(", ");
-			}
-		}
-
-		sb.append(")");
-
-		return sb.toString();
-	}
-
 	protected String updateSQL(
-		String sql, long folderId, long ddmStructureId, int[] excludedStatuses) {
+		String sql, long folderId, long ddmStructureId,
+		int[] excludedStatuses) {
 
 		return StringUtil.replace(
 			sql,
