@@ -71,7 +71,7 @@ public class CTEntryModelListener extends BaseModelListener<CTEntry> {
 					).build());
 
 				_messageBus.sendMessage(
-					CTDestinationNames.CT_COLLECTION_SCORE, message);
+					CTDestinationNames.CT_SCORE, message);
 
 				return null;
 			});

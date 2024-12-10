@@ -26,7 +26,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author David Truong
  */
 @Component(
-	property = "destination.name=" + CTDestinationNames.CT_COLLECTION_SCORE,
+	property = "destination.name=" + CTDestinationNames.CT_SCORE,
 	service = MessageListener.class
 )
 public class CTScoreMessageListener extends BaseMessageListener {
@@ -36,7 +36,7 @@ public class CTScoreMessageListener extends BaseMessageListener {
 		DestinationConfiguration destinationConfiguration =
 			new DestinationConfiguration(
 				DestinationConfiguration.DESTINATION_TYPE_SERIAL,
-				CTDestinationNames.CT_COLLECTION_SCORE);
+				CTDestinationNames.CT_SCORE);
 
 		Destination destination = _destinationFactory.createDestination(
 			destinationConfiguration);
