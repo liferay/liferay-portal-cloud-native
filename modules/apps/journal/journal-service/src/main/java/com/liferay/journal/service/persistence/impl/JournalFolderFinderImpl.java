@@ -86,11 +86,11 @@ public class JournalFolderFinderImpl
 
 	@Override
 	public int filterCountF_A_ByG_F_DDMSI_NotS(
-		long groupId, long folderId, long ddmStructureId, int[] statuses,
-		QueryDefinition<?> queryDefinition) {
+		long groupId, long folderId, long ddmStructureId,
+		int[] excludedStatuses, QueryDefinition<?> queryDefinition) {
 
 		return doCountF_A_ByG_F_DDMSI_NotS(
-			groupId, folderId, ddmStructureId, statuses, queryDefinition, true);
+			groupId, folderId, ddmStructureId, excludedStatuses, queryDefinition, true);
 	}
 
 	@Override
@@ -114,10 +114,10 @@ public class JournalFolderFinderImpl
 
 	public List<Object> filterFindF_A_ByG_F_DDMSI_L_NotS(
 		long groupId, long folderId, long ddmStructureId, Locale locale,
-		int[] statuses, QueryDefinition<?> queryDefinition) {
+		int[] excludedStatuses, QueryDefinition<?> queryDefinition) {
 
 		return doFindF_A_ByG_F_DDMSI_L_NotS(
-			groupId, folderId, ddmStructureId, locale, statuses,
+			groupId, folderId, ddmStructureId, locale, excludedStatuses,
 			queryDefinition, true);
 	}
 
@@ -159,7 +159,7 @@ public class JournalFolderFinderImpl
 	}
 
 	protected int doCountF_A_ByG_F_DDMSI_NotS(
-		long groupId, long folderId, long ddmStructureId, int[] statuses,
+		long groupId, long folderId, long ddmStructureId, int[] excludedStatuses,
 		QueryDefinition<?> queryDefinition, boolean inlineSQLHelper) {
 
 		Session session = null;
@@ -178,7 +178,7 @@ public class JournalFolderFinderImpl
 						COUNT_A_BY_G_U_F_DDMSI_NOT_S, groupId, queryDefinition,
 						inlineSQLHelper),
 					StringPool.CLOSE_PARENTHESIS),
-				folderId, ddmStructureId, statuses);
+				folderId, ddmStructureId, excludedStatuses);
 
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
@@ -331,7 +331,7 @@ public class JournalFolderFinderImpl
 
 	protected List<Object> doFindF_A_ByG_F_DDMSI_L_NotS(
 		long groupId, long folderId, long ddmStructureId, Locale locale,
-		int[] statuses, QueryDefinition<?> queryDefinition,
+		int[] excludedStatuses, QueryDefinition<?> queryDefinition,
 		boolean inlineSQLHelper) {
 
 		Session session = null;
@@ -350,7 +350,7 @@ public class JournalFolderFinderImpl
 						FIND_A_BY_G_U_F_DDMSI_L_NOT_S, groupId, queryDefinition,
 						inlineSQLHelper),
 					StringPool.CLOSE_PARENTHESIS),
-				folderId, ddmStructureId, statuses);
+				folderId, ddmStructureId, excludedStatuses);
 
 			sql = _customSQL.replaceOrderBy(
 				sql, queryDefinition.getOrderByComparator());
@@ -498,8 +498,10 @@ public class JournalFolderFinderImpl
 		return sql;
 	}
 
-	protected String getExcludedStatuses(int[] statuses, String tableName) {
-		if (ArrayUtil.isEmpty(statuses)) {
+	protected String getExcludedStatuses(
+		int[] excludedStatuses, String tableName) {
+
+		if (ArrayUtil.isEmpty(excludedStatuses)) {
 			return StringPool.BLANK;
 		}
 
@@ -509,10 +511,10 @@ public class JournalFolderFinderImpl
 		sb.append(tableName);
 		sb.append(".status not in (");
 
-		for (int i = 0; i < statuses.length; i++) {
-			sb.append(statuses[i]);
+		for (int i = 0; i < excludedStatuses.length; i++) {
+			sb.append(excludedStatuses[i]);
 
-			if (i != (statuses.length - 1)) {
+			if (i != (excludedStatuses.length - 1)) {
 				sb.append(", ");
 			}
 		}
@@ -523,7 +525,7 @@ public class JournalFolderFinderImpl
 	}
 
 	protected String updateSQL(
-		String sql, long folderId, long ddmStructureId, int[] statuses) {
+		String sql, long folderId, long ddmStructureId, int[] excludedStatuses) {
 
 		return StringUtil.replace(
 			sql,
@@ -534,7 +536,8 @@ public class JournalFolderFinderImpl
 			new String[] {
 				getFolderId(folderId, JournalArticleImpl.TABLE_NAME),
 				getDDMStructureId(ddmStructureId),
-				getExcludedStatuses(statuses, JournalArticleImpl.TABLE_NAME),
+				getExcludedStatuses(
+					excludedStatuses, JournalArticleImpl.TABLE_NAME),
 				getFolderId(folderId, JournalFolderImpl.TABLE_NAME)
 			});
 	}
