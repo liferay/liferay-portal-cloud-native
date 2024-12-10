@@ -513,7 +513,7 @@ public class JournalFolderFinderImpl
 
 		sb.append(" AND ");
 		sb.append(tableName);
-		sb.append(".Status NOT IN (");
+		sb.append(".status NOT IN (");
 
 		for (int i = 0; i < statuses.length; i++) {
 			sb.append(statuses[i]);
