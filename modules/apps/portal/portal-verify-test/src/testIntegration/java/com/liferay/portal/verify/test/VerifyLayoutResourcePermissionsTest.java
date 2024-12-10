@@ -90,7 +90,7 @@ public class VerifyLayoutResourcePermissionsTest
 	}
 
 	@Test
-	public void testVerifyLayoutResourcedModel() throws Exception {
+	public void testVerify() throws Exception {
 		Layout publicLayout1 = LayoutTestUtil.addTypePortletLayout(_group);
 		Layout publicLayout2 = LayoutTestUtil.addTypePortletLayout(_group);
 
@@ -149,7 +149,7 @@ public class VerifyLayoutResourcePermissionsTest
 
 	@Test
 	@TestInfo("LPD-37372")
-	public void testVerifyLayoutResourcedModelWithSkip() throws Exception {
+	public void testIsSkipVerifyResourcePermissions() throws Exception {
 		Layout publicLayout1 = LayoutTestUtil.addTypePortletLayout(_group);
 		Layout publicLayout2 = LayoutTestUtil.addTypePortletLayout(_group);
 
