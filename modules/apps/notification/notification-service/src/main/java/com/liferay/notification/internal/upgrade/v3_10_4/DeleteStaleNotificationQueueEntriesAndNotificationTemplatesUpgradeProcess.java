@@ -79,9 +79,11 @@ public class
 					notificationQueueEntryId);
 
 				deletePreparedStatement1.setLong(1, notificationQueueEntryId);
-				deletePreparedStatement2.setLong(1, notificationQueueEntryId);
 
 				deletePreparedStatement1.addBatch();
+
+				deletePreparedStatement2.setLong(1, notificationQueueEntryId);
+
 				deletePreparedStatement2.addBatch();
 
 				selectPreparedStatement1.setLong(
@@ -230,7 +232,7 @@ public class
 
 		return connection.prepareStatement(
 			StringBundler.concat(
-				"SELECT * from ", tableName,
+				"select * from ", tableName,
 				" where not exists (select 1 from Company where ",
 				"Company.companyId = ", tableName, ".companyId)"));
 	}

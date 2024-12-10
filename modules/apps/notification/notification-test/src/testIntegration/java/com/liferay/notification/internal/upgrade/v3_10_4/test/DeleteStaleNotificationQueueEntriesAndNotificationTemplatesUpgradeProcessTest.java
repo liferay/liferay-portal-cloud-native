@@ -33,7 +33,6 @@ import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -51,86 +50,76 @@ public class
 	public static final AggregateTestRule aggregateTestRule =
 		new LiferayIntegrationTestRule();
 
-	@Before
-	public void setUp() {
-		_companyId = RandomTestUtil.nextLong();
-		_notificationQueueEntryAttachmentId = RandomTestUtil.nextLong();
-		_notificationQueueEntryId = RandomTestUtil.nextLong();
-		_notificationRecipientSettingId1 = RandomTestUtil.nextLong();
-		_notificationRecipientSettingId2 = RandomTestUtil.nextLong();
-		_notificationTemplateAttachmentId = RandomTestUtil.nextLong();
-		_notificationTemplateId = RandomTestUtil.nextLong();
-		_timestamp = new Timestamp(System.currentTimeMillis());
-	}
-
 	@Test
 	public void testUpgrade() throws Exception {
 		_insertNotificationQueueEntry();
 		_insertNotificationQueueEntryAttachment();
 		_insertNotificationRecipient(
 			PortalUtil.getClassNameId(NotificationQueueEntry.class),
-			_notificationQueueEntryId);
+			_NOTIFICATION_QUEUE_ENTRY_ID);
 		_insertNotificationRecipient(
 			PortalUtil.getClassNameId(NotificationTemplate.class),
-			_notificationTemplateId);
-		_insertNotificationRecipientSetting(_notificationRecipientSettingId1);
-		_insertNotificationRecipientSetting(_notificationRecipientSettingId2);
+			_NOTIFICATION_TEMPLATE_ID);
+		_insertNotificationRecipientSetting(
+			_NOTIFICATION_RECIPIENT_SETTING_ID_1);
+		_insertNotificationRecipientSetting(
+			_NOTIFICATION_RECIPIENT_SETTING_ID_2);
 		_insertNotificationTemplate();
 		_insertNotificationTemplateAttachment();
 
 		Assert.assertNotNull(
 			_notificationQueueEntryLocalService.fetchNotificationQueueEntry(
-				_notificationQueueEntryId));
+				_NOTIFICATION_QUEUE_ENTRY_ID));
 		Assert.assertNotNull(
 			_notificationQueueEntryAttachmentLocalService.
 				fetchNotificationQueueEntryAttachment(
-					_notificationQueueEntryAttachmentId));
+					_NOTIFICATION_QUEUE_ENTRY_ATTACHMENT_ID));
 		Assert.assertNotNull(
 			_notificationRecipientLocalService.fetchNotificationRecipient(
 				_notificationRecipientId));
 		Assert.assertNotNull(
 			_notificationRecipientSettingLocalService.
 				fetchNotificationRecipientSetting(
-					_notificationRecipientSettingId1));
+					_NOTIFICATION_RECIPIENT_SETTING_ID_1));
 		Assert.assertNotNull(
 			_notificationRecipientSettingLocalService.
 				fetchNotificationRecipientSetting(
-					_notificationRecipientSettingId2));
+					_NOTIFICATION_RECIPIENT_SETTING_ID_2));
 		Assert.assertNotNull(
 			_notificationTemplateLocalService.fetchNotificationTemplate(
-				_notificationTemplateId));
+				_NOTIFICATION_TEMPLATE_ID));
 		Assert.assertNotNull(
 			_notificationTemplateAttachmentLocalService.
 				fetchNotificationTemplateAttachment(
-					_notificationTemplateAttachmentId));
+					_NOTIFICATION_TEMPLATE_ATTACHMENT_ID));
 
 		_runUpgradeProcess();
 
 		Assert.assertNull(
 			_notificationQueueEntryLocalService.fetchNotificationQueueEntry(
-				_notificationQueueEntryId));
+				_NOTIFICATION_QUEUE_ENTRY_ID));
 		Assert.assertNull(
 			_notificationQueueEntryAttachmentLocalService.
 				fetchNotificationQueueEntryAttachment(
-					_notificationQueueEntryAttachmentId));
+					_NOTIFICATION_QUEUE_ENTRY_ATTACHMENT_ID));
 		Assert.assertNull(
 			_notificationRecipientLocalService.fetchNotificationRecipient(
 				_notificationRecipientId));
 		Assert.assertNull(
 			_notificationRecipientSettingLocalService.
 				fetchNotificationRecipientSetting(
-					_notificationRecipientSettingId1));
+					_NOTIFICATION_RECIPIENT_SETTING_ID_1));
 		Assert.assertNull(
 			_notificationRecipientSettingLocalService.
 				fetchNotificationRecipientSetting(
-					_notificationRecipientSettingId2));
+					_NOTIFICATION_RECIPIENT_SETTING_ID_2));
 		Assert.assertNull(
 			_notificationTemplateLocalService.fetchNotificationTemplate(
-				_notificationTemplateId));
+				_NOTIFICATION_TEMPLATE_ID));
 		Assert.assertNull(
 			_notificationTemplateAttachmentLocalService.
 				fetchNotificationTemplateAttachment(
-					_notificationTemplateAttachmentId));
+					_NOTIFICATION_TEMPLATE_ATTACHMENT_ID));
 	}
 
 	private void _insertNotificationQueueEntry() throws Exception {
@@ -145,8 +134,8 @@ public class
 					"?, ?, ?, ?, ?)"))) {
 
 			preparedStatement.setLong(1, RandomTestUtil.nextLong());
-			preparedStatement.setLong(2, _notificationQueueEntryId);
-			preparedStatement.setLong(3, _companyId);
+			preparedStatement.setLong(2, _NOTIFICATION_QUEUE_ENTRY_ID);
+			preparedStatement.setLong(3, _COMPANY_ID);
 			preparedStatement.setLong(4, RandomTestUtil.nextLong());
 			preparedStatement.setString(5, RandomTestUtil.randomString());
 			preparedStatement.setTimestamp(6, _timestamp);
@@ -174,10 +163,11 @@ public class
 					"notificationQueueEntryId) VALUES (?, ?, ?, ?, ?)"))) {
 
 			preparedStatement.setLong(1, RandomTestUtil.nextLong());
-			preparedStatement.setLong(2, _notificationQueueEntryAttachmentId);
-			preparedStatement.setLong(3, _companyId);
+			preparedStatement.setLong(
+				2, _NOTIFICATION_QUEUE_ENTRY_ATTACHMENT_ID);
+			preparedStatement.setLong(3, _COMPANY_ID);
 			preparedStatement.setLong(4, RandomTestUtil.nextLong());
-			preparedStatement.setLong(5, _notificationQueueEntryId);
+			preparedStatement.setLong(5, _NOTIFICATION_QUEUE_ENTRY_ID);
 
 			preparedStatement.executeUpdate();
 		}
@@ -254,7 +244,7 @@ public class
 			preparedStatement.setLong(1, RandomTestUtil.nextLong());
 			preparedStatement.setString(2, RandomTestUtil.randomString());
 			preparedStatement.setString(3, RandomTestUtil.randomString());
-			preparedStatement.setLong(4, _notificationTemplateId);
+			preparedStatement.setLong(4, _NOTIFICATION_TEMPLATE_ID);
 			preparedStatement.setLong(5, RandomTestUtil.nextLong());
 			preparedStatement.setLong(6, RandomTestUtil.nextLong());
 			preparedStatement.setString(7, RandomTestUtil.randomString());
@@ -284,9 +274,9 @@ public class
 					"?, ?)"))) {
 
 			preparedStatement.setLong(1, RandomTestUtil.nextLong());
-			preparedStatement.setLong(2, _notificationTemplateAttachmentId);
-			preparedStatement.setLong(3, _companyId);
-			preparedStatement.setLong(4, _notificationTemplateId);
+			preparedStatement.setLong(2, _NOTIFICATION_TEMPLATE_ATTACHMENT_ID);
+			preparedStatement.setLong(3, _COMPANY_ID);
+			preparedStatement.setLong(4, _NOTIFICATION_TEMPLATE_ID);
 			preparedStatement.setLong(5, RandomTestUtil.nextLong());
 
 			preparedStatement.executeUpdate();
@@ -311,23 +301,37 @@ public class
 			"DeleteStaleNotificationQueueEntriesAndNotification" +
 				"TemplatesUpgradeProcess";
 
+	private static final long _COMPANY_ID = RandomTestUtil.nextLong();
+
+	private static final long _NOTIFICATION_QUEUE_ENTRY_ATTACHMENT_ID =
+		RandomTestUtil.nextLong();
+
+	private static final long _NOTIFICATION_QUEUE_ENTRY_ID =
+		RandomTestUtil.nextLong();
+
+	private static final long _NOTIFICATION_RECIPIENT_SETTING_ID_1 =
+		RandomTestUtil.nextLong();
+
+	private static final long _NOTIFICATION_RECIPIENT_SETTING_ID_2 =
+		RandomTestUtil.nextLong();
+
+	private static final long _NOTIFICATION_TEMPLATE_ATTACHMENT_ID =
+		RandomTestUtil.nextLong();
+
+	private static final long _NOTIFICATION_TEMPLATE_ID =
+		RandomTestUtil.nextLong();
+
 	@Inject(
 		filter = "component.name=com.liferay.notification.internal.upgrade.registry.NotificationUpgradeStepRegistrator"
 	)
 	private static UpgradeStepRegistrator _upgradeStepRegistrator;
 
-	private long _companyId;
-
 	@Inject
 	private MultiVMPool _multiVMPool;
-
-	private long _notificationQueueEntryAttachmentId;
 
 	@Inject
 	private NotificationQueueEntryAttachmentLocalService
 		_notificationQueueEntryAttachmentLocalService;
-
-	private long _notificationQueueEntryId;
 
 	@Inject
 	private NotificationQueueEntryLocalService
@@ -339,24 +343,18 @@ public class
 	private NotificationRecipientLocalService
 		_notificationRecipientLocalService;
 
-	private long _notificationRecipientSettingId1;
-	private long _notificationRecipientSettingId2;
-
 	@Inject
 	private NotificationRecipientSettingLocalService
 		_notificationRecipientSettingLocalService;
-
-	private long _notificationTemplateAttachmentId;
 
 	@Inject
 	private NotificationTemplateAttachmentLocalService
 		_notificationTemplateAttachmentLocalService;
 
-	private long _notificationTemplateId;
-
 	@Inject
 	private NotificationTemplateLocalService _notificationTemplateLocalService;
 
-	private Timestamp _timestamp;
+	private final Timestamp _timestamp = new Timestamp(
+		System.currentTimeMillis());
 
 }
