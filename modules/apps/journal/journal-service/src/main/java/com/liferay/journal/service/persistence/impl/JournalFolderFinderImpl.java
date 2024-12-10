@@ -504,7 +504,7 @@ public class JournalFolderFinderImpl
 		return sql;
 	}
 
-	protected String getStatuses(int[] statuses, String tableName) {
+	protected String getExcludedStatuses(int[] statuses, String tableName) {
 		if (ArrayUtil.isEmpty(statuses)) {
 			return StringPool.BLANK;
 		}
@@ -540,7 +540,7 @@ public class JournalFolderFinderImpl
 			new String[] {
 				getFolderId(folderId, JournalArticleImpl.TABLE_NAME),
 				getDDMStructureId(ddmStructureId),
-				getStatuses(statuses, JournalArticleImpl.TABLE_NAME),
+				getExcludedStatuses(statuses, JournalArticleImpl.TABLE_NAME),
 				getFolderId(folderId, JournalFolderImpl.TABLE_NAME)
 			});
 	}
