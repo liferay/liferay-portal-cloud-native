@@ -235,6 +235,7 @@ public class JiraRestController extends BaseRestController {
 			String[] securityVulnerabilitiesIssueFields = {
 				_FIELD_COMPONENTS, _FIELD_ISSUE_KEY, _FIELD_VERSIONS,
 				_jiraSecurityVulnerabilityFieldAffectedVersionsDetails,
+				_jiraSecurityVulnerabilityFieldAffects,
 				_jiraSecurityVulnerabilityFieldCategories,
 				_jiraSecurityVulnerabilityFieldCustomerPortalDescription,
 				_jiraSecurityVulnerabilityFieldCustomerPortalSummary,
@@ -522,6 +523,10 @@ public class JiraRestController extends BaseRestController {
 			issueFieldsJSONObject.optString(
 				_jiraSecurityVulnerabilityFieldAffectedVersionsDetails)
 		).put(
+			"affects",
+			issueFieldsJSONObject.optString(
+				_jiraSecurityVulnerabilityFieldAffects)
+		).put(
 			"affectedVersions",
 			_flattenJSONArray(
 				issueFieldsJSONObject.getJSONArray(_FIELD_VERSIONS))
@@ -637,6 +642,9 @@ public class JiraRestController extends BaseRestController {
 		"${liferay.customer.jira.security.vulnerability.field.affected.versions.details}"
 	)
 	private String _jiraSecurityVulnerabilityFieldAffectedVersionsDetails;
+
+	@Value("${liferay.customer.jira.security.vulnerability.field.affects}")
+	private String _jiraSecurityVulnerabilityFieldAffects;
 
 	@Value("${liferay.customer.jira.security.vulnerability.field.categories}")
 	private String _jiraSecurityVulnerabilityFieldCategories;
