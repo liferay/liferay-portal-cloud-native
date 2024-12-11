@@ -13,6 +13,7 @@ import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.kernel.service.AssetCategoryLocalServiceWrapper;
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ModelHintsUtil;
@@ -21,7 +22,6 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceWrapper;
 import com.liferay.portal.kernel.util.LocaleUtil;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -131,20 +131,18 @@ public class AssetEntryAssetCategoryRelAssetCategoryLocalServiceWrapper
 					AssetEntryAssetCategoryRelAssetCategoryIdComparator.
 						getInstance(true));
 
-		List<AssetCategory> categories = new ArrayList<>();
+		return TransformUtil.transform(
+			assetEntryAssetCategoryRels,
+			assetEntryAssetCategoryRel -> {
+				AssetCategory category = fetchAssetCategory(
+					assetEntryAssetCategoryRel.getAssetCategoryId());
 
-		for (AssetEntryAssetCategoryRel assetEntryAssetCategoryRel :
-				assetEntryAssetCategoryRels) {
+				if (category != null) {
+					return category;
+				}
 
-			AssetCategory category = fetchAssetCategory(
-				assetEntryAssetCategoryRel.getAssetCategoryId());
-
-			if (category != null) {
-				categories.add(category);
-			}
-		}
-
-		return categories;
+				return null;
+			});
 	}
 
 	private List<AssetEntry> _getAssetEntriesByAssetCategoryId(
@@ -155,20 +153,18 @@ public class AssetEntryAssetCategoryRelAssetCategoryLocalServiceWrapper
 				getAssetEntryAssetCategoryRelsByAssetCategoryId(
 					assetCategoryId);
 
-		List<AssetEntry> entries = new ArrayList<>();
+		return TransformUtil.transform(
+			assetEntryAssetCategoryRels,
+			assetEntryAssetCategoryRel -> {
+				AssetEntry entry = _assetEntryLocalService.fetchEntry(
+					assetEntryAssetCategoryRel.getAssetEntryId());
 
-		for (AssetEntryAssetCategoryRel assetEntryAssetCategoryRel :
-				assetEntryAssetCategoryRels) {
+				if (entry != null) {
+					return entry;
+				}
 
-			AssetEntry entry = _assetEntryLocalService.fetchEntry(
-				assetEntryAssetCategoryRel.getAssetEntryId());
-
-			if (entry != null) {
-				entries.add(entry);
-			}
-		}
-
-		return entries;
+				return null;
+			});
 	}
 
 	@Reference
