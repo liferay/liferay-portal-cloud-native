@@ -549,15 +549,11 @@ public class DisplayPageTemplateResourceTest
 	private DisplayPageTemplateResource _getDisplayPageTemplateResource()
 		throws Exception {
 
-		User testCompanyAdminUser = UserTestUtil.getAdminUser(
-			testCompany.getCompanyId());
+		User user = UserTestUtil.getAdminUser(testCompany.getCompanyId());
 
-		DisplayPageTemplateResource.Builder builder =
-			DisplayPageTemplateResource.builder();
-
-		return builder.authentication(
-			testCompanyAdminUser.getEmailAddress(),
-			PropsValues.DEFAULT_ADMIN_PASSWORD
+		return DisplayPageTemplateResource.builder(
+		).authentication(
+			user.getEmailAddress(), PropsValues.DEFAULT_ADMIN_PASSWORD
 		).endpoint(
 			testCompany.getVirtualHostname(), 8080, "http"
 		).locale(

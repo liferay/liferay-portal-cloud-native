@@ -397,14 +397,11 @@ public class UtilityPageResourceTest extends BaseUtilityPageResourceTestCase {
 	}
 
 	private UtilityPageResource _getUtilityPageResource() throws Exception {
-		User testCompanyAdminUser = UserTestUtil.getAdminUser(
-			testCompany.getCompanyId());
+		User user = UserTestUtil.getAdminUser(testCompany.getCompanyId());
 
-		UtilityPageResource.Builder builder = UtilityPageResource.builder();
-
-		return builder.authentication(
-			testCompanyAdminUser.getEmailAddress(),
-			PropsValues.DEFAULT_ADMIN_PASSWORD
+		return UtilityPageResource.builder(
+		).authentication(
+			user.getEmailAddress(), PropsValues.DEFAULT_ADMIN_PASSWORD
 		).endpoint(
 			testCompany.getVirtualHostname(), 8080, "http"
 		).locale(
