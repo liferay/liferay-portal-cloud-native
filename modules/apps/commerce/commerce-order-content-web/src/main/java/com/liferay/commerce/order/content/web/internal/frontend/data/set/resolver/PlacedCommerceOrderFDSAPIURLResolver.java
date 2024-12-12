@@ -52,16 +52,14 @@ public class PlacedCommerceOrderFDSAPIURLResolver implements FDSAPIURLResolver {
 			commerceContext.getCommerceChannelId());
 
 		if (baseURL.startsWith("/v1.0/channels/by-externalReferenceCode")) {
-			return _replacePlaceholders(
+			return _replace(
 				baseURL, _commerceChannel.getExternalReferenceCode());
 		}
 
-		return _replacePlaceholders(baseURL, StringPool.BLANK);
+		return _replace(baseURL, StringPool.BLANK);
 	}
 
-	private String _replacePlaceholders(
-		String baseURL, String externalReferenceCode) {
-
+	private String _replace(String baseURL, String externalReferenceCode) {
 		return StringUtil.replace(
 			baseURL,
 			new String[] {
