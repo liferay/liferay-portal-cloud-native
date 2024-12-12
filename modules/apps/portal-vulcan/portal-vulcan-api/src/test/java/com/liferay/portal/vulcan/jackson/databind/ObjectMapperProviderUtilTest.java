@@ -39,14 +39,14 @@ public class ObjectMapperProviderUtilTest {
 	public void test() throws Exception {
 		ObjectMapper objectMapper = ObjectMapperProviderUtil.getObjectMapper();
 
-		ObjectWriter writer = objectMapper.writer();
+		ObjectWriter objectWriter = objectMapper.writer();
 
 		Assert.assertEquals(
 			"{\n  \"type\" : \"test\"\n}",
-			writer.writeValueAsString(new TestSubClass()));
+			objectWriter.writeValueAsString(new TestSubClass()));
 		Assert.assertEquals(
 			"{\n  \"type\" : \"ObjectMapperProviderUtilTest$1\"\n}",
-			writer.writeValueAsString(
+			objectWriter.writeValueAsString(
 				new TestSubClass() {
 					{
 					}
@@ -54,7 +54,7 @@ public class ObjectMapperProviderUtilTest {
 		Assert.assertEquals(
 			"{\n  \"type\" : \"ObjectMapperProviderUtilTest$2\",\n  \"type\" " +
 				": \"test\"\n}",
-			writer.writeValueAsString(
+			objectWriter.writeValueAsString(
 				new TestSubClass() {
 					{
 						type = "test";
