@@ -1343,13 +1343,13 @@ public class ObjectRelationshipLocalServiceImpl
 				}
 			}
 
-			ObjectDefinition rootObjectDefinition1 =
+			ObjectDefinition rootObjectDefinition =
 				_objectDefinitionPersistence.findByPrimaryKey(
 					objectDefinition1.getRootObjectDefinitionId());
 
-			if (rootObjectDefinition1.isApproved()) {
+			if (rootObjectDefinition.isApproved()) {
 				objectDefinitionLocalService.deployObjectDefinition(
-					rootObjectDefinition1);
+					rootObjectDefinition);
 			}
 		}
 		else {
