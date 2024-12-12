@@ -85,6 +85,9 @@ public class FormLayoutStructureItemMapper
 													saveInlineContent,
 													saveMappingConfiguration,
 													formStyledLayoutStructureItem));
+										setFormType(
+											() -> _toFormType(
+												formStyledLayoutStructureItem));
 
 										if (FeatureFlagManagerUtil.isEnabled(
 												"LPD-37927")) {
@@ -94,9 +97,6 @@ public class FormLayoutStructureItemMapper
 													formStyledLayoutStructureItem));
 										}
 
-										setFormType(
-											() -> _toFormType(
-												formStyledLayoutStructureItem));
 										setNumberOfSteps(
 											formStyledLayoutStructureItem::
 												getNumberOfSteps);
