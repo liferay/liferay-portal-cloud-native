@@ -43,11 +43,11 @@ public class ObjectMapperProviderUtilTest {
 
 		Assert.assertEquals(
 			"{\n  \"type\" : \"test\"\n}",
-			objectWriter.writeValueAsString(new TestSubClass()));
+			objectWriter.writeValueAsString(new TestSubclass()));
 		Assert.assertEquals(
 			"{\n  \"type\" : \"ObjectMapperProviderUtilTest$1\"\n}",
 			objectWriter.writeValueAsString(
-				new TestSubClass() {
+				new TestSubclass() {
 					{
 					}
 				}));
@@ -55,7 +55,7 @@ public class ObjectMapperProviderUtilTest {
 			"{\n  \"type\" : \"ObjectMapperProviderUtilTest$2\",\n  \"type\" " +
 				": \"test\"\n}",
 			objectWriter.writeValueAsString(
-				new TestSubClass() {
+				new TestSubclass() {
 					{
 						type = "test";
 					}
@@ -63,7 +63,7 @@ public class ObjectMapperProviderUtilTest {
 	}
 
 	@JsonSubTypes(
-		{@JsonSubTypes.Type(name = "test", value = TestSubClass.class)}
+		{@JsonSubTypes.Type(name = "test", value = TestSubclass.class)}
 	)
 	@JsonTypeInfo(
 		include = JsonTypeInfo.As.PROPERTY, property = "type",
@@ -83,7 +83,7 @@ public class ObjectMapperProviderUtilTest {
 
 	}
 
-	public static class TestSubClass extends TestClass {
+	public static class TestSubclass extends TestClass {
 	}
 
 }
