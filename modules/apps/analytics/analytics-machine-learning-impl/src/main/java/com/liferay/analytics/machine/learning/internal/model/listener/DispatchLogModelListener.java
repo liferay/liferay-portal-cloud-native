@@ -94,7 +94,7 @@ public class DispatchLogModelListener extends BaseModelListener<DispatchLog> {
 				}
 			}
 
-			_sendUserNotiticationEvent(
+			_sendUserNotiticationEvents(
 				dispatchLog.getCompanyId(), dispatchTrigger.getName(),
 				dispatchLog.getStatus());
 		}
@@ -149,7 +149,7 @@ public class DispatchLogModelListener extends BaseModelListener<DispatchLog> {
 		return jsonObject;
 	}
 
-	private void _sendUserNotiticationEvent(
+	private void _sendUserNotiticationEvents(
 			long companyId, String name, int status)
 		throws Throwable {
 
