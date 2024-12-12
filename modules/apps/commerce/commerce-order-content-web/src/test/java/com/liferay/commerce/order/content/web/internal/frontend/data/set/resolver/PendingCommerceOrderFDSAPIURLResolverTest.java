@@ -105,17 +105,14 @@ public class PendingCommerceOrderFDSAPIURLResolverTest {
 
 	@Test
 	public void testResolve() throws PortalException {
-		String baseURL = StringBundler.concat(
-			"/v1.0/channels/by-externalReferenceCode",
-			"/{accountExternalReferenceCode}/{accountId}/{cartId}",
-			"/{channelExternalReferenceCode}/{channelId}",
-			"/{externalReferenceCode}");
-
-		String resolvedURL = _pendingCommerceOrderFDSAPIURLResolver.resolve(
-			baseURL, _mockHttpServletRequest);
-
 		Assert.assertEquals(
-			resolvedURL,
+			_pendingCommerceOrderFDSAPIURLResolver.resolve(
+				StringBundler.concat(
+					"/v1.0/channels/by-externalReferenceCode",
+					"/{accountExternalReferenceCode}/{accountId}/{cartId}",
+					"/{channelExternalReferenceCode}/{channelId}",
+					"/{externalReferenceCode}"),
+				_mockHttpServletRequest),
 			StringBundler.concat(
 				"/v1.0/channels/by-externalReferenceCode/",
 				_accountEntry.getExternalReferenceCode(), "/",

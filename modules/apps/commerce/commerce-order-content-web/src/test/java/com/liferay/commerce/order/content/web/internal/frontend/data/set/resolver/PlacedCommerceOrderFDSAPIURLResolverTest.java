@@ -99,32 +99,24 @@ public class PlacedCommerceOrderFDSAPIURLResolverTest {
 
 	@Test
 	public void testResolve() throws PortalException {
-		String baseURL =
-			"/v1.0/accounts/by-externalReferenceCode" +
-				"/{accountExternalReferenceCode}/{accountId}" +
-					"/{channelExternalReferenceCode}/{channelId}";
-
-		String resolvedURL = _placedCommerceOrderFDSAPIURLResolver.resolve(
-			baseURL, _mockHttpServletRequest);
-
 		Assert.assertEquals(
-			resolvedURL,
+			_placedCommerceOrderFDSAPIURLResolver.resolve(
+				"/v1.0/accounts/by-externalReferenceCode" +
+					"/{accountExternalReferenceCode}/{accountId}" +
+						"/{channelExternalReferenceCode}/{channelId}",
+				_mockHttpServletRequest),
 			StringBundler.concat(
 				"/v1.0/accounts/by-externalReferenceCode/",
 				_accountEntry.getExternalReferenceCode(), "/",
 				_accountEntry.getAccountEntryId(), "/",
 				_commerceChannel.getExternalReferenceCode(), "/",
 				_commerceChannel.getCommerceChannelId()));
-
-		baseURL =
-			"/v1.0/channels/by-externalReferenceCode/{externalReferenceCode}" +
-				"/{channelId}/{accountExternalReferenceCode}/{accountId}/";
-
-		resolvedURL = _placedCommerceOrderFDSAPIURLResolver.resolve(
-			baseURL, _mockHttpServletRequest);
-
 		Assert.assertEquals(
-			resolvedURL,
+			_placedCommerceOrderFDSAPIURLResolver.resolve(
+				"/v1.0/channels/by-externalReferenceCode" +
+					"/{externalReferenceCode}/{channelId}" +
+						"/{accountExternalReferenceCode}/{accountId}/",
+				_mockHttpServletRequest),
 			StringBundler.concat(
 				"/v1.0/channels/by-externalReferenceCode/",
 				_commerceChannel.getExternalReferenceCode(), "/",
