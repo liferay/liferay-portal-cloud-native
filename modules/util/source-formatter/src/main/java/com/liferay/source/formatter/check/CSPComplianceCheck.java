@@ -111,7 +111,7 @@ public class CSPComplianceCheck extends BaseTagAttributesCheck {
 				int z = previousPart.lastIndexOf(liferayUiCspTagOpen);
 
 				if (z > y) {
-					continue outerLoop;
+					continue;
 				}
 
 				addMessage(
