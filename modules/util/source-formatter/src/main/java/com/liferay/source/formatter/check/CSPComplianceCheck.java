@@ -43,22 +43,22 @@ public class CSPComplianceCheck extends BaseTagAttributesCheck {
 		String lowerCaseContent) {
 
 		List<String> ignoredTagPrefixes = new ArrayList<>();
-		String liferayUiCspTagOpen = StringPool.BLANK;
 		String liferayUiCspTagClose = StringPool.BLANK;
+		String liferayUiCspTagOpen = StringPool.BLANK;
 
 		if (fileName.endsWith(".ftl")) {
 			ignoredTagPrefixes = getAttributeValues(
 				_IGNORED_FTL_TAG_PREFIXES_KEY, absolutePath);
-			liferayUiCspTagOpen = "<@liferay_ui.csp>";
 			liferayUiCspTagClose = "</@liferay_ui.csp>";
+			liferayUiCspTagOpen = "<@liferay_ui.csp>";
 		}
 		else if (fileName.endsWith(".jsp") || fileName.endsWith(".jspf") ||
 				 fileName.endsWith(".jspx")) {
 
 			ignoredTagPrefixes = getAttributeValues(
 				_IGNORED_JSP_TAG_PREFIXES_KEY, absolutePath);
-			liferayUiCspTagOpen = "<liferay-ui:csp>";
 			liferayUiCspTagClose = "</liferay-ui:csp>";
+			liferayUiCspTagOpen = "<liferay-ui:csp>";
 		}
 
 		if (ListUtil.isEmpty(ignoredTagPrefixes)) {
