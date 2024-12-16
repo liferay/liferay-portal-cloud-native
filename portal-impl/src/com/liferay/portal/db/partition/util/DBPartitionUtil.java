@@ -541,7 +541,6 @@ public class DBPartitionUtil {
 								"update ", partitionTableName, " set classPK ",
 								"= ", toCompanyId, " where classPK = ",
 								fromCompanyId));
-
 						statement.executeUpdate(
 							StringBundler.concat(
 								"update ", partitionTableName, " set groupKey ",

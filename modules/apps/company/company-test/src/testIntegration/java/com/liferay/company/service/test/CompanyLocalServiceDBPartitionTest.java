@@ -410,7 +410,6 @@ public class CompanyLocalServiceDBPartitionTest
 
 			_assertCopyDBPartitionCompany(
 				copiedCompany, name, virtualHostname, webId);
-
 			_assertCopyDBPartitionCompanyId(
 				company.getCompanyId(), copiedCompany.getCompanyId());
 
@@ -751,10 +750,10 @@ public class CompanyLocalServiceDBPartitionTest
 			long companyId, long copiedCompanyId)
 		throws Exception {
 
+		DBInspector dbInspector = new DBInspector(connection);
 		List<String> tableNames = new ArrayList<>();
 
 		DatabaseMetaData databaseMetaData = connection.getMetaData();
-		DBInspector dbInspector = new DBInspector(connection);
 
 		try (ResultSet resultSet = databaseMetaData.getTables(
 				dbPartitionDB.getCatalog(
@@ -810,8 +809,9 @@ public class CompanyLocalServiceDBPartitionTest
 							Assert.fail(
 								StringBundler.concat(
 									"Company ID ", companyId,
-									" is present in copied database schema at ",
-									tableName, StringPool.PERIOD, columnName));
+									" is present in the copied database ",
+									"schema in ", tableName, StringPool.PERIOD,
+									columnName));
 						}
 					}
 				}
