@@ -57,8 +57,8 @@ public class ModulesCompilationFailureMessageGenerator
 
 	@Override
 	public Element getMessageElement(String consoleText) {
-		if (!consoleText.contains(_TOKEN_COULD_NOT_RESOLVE_CONFIG) ||
-			!consoleText.contains(_TOKEN_COMPILATION_FAILED)) {
+		if (!consoleText.contains(_TOKEN_COMPILATION_FAILED) ||
+			!consoleText.contains(_TOKEN_COULD_NOT_RESOLVE_CONFIG)) {
 
 			return null;
 		}
