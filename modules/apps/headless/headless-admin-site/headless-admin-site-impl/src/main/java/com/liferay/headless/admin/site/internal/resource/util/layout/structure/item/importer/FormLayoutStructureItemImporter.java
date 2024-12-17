@@ -78,12 +78,11 @@ public class FormLayoutStructureItemImporter
 
 		formStyledLayoutStructureItem.setFormType(
 			_toFormType(formConfig.getFormType()));
-		formStyledLayoutStructureItem.setNumberOfSteps(
-			formConfig.getNumberOfSteps());
-
 		formStyledLayoutStructureItem.setIndexed(
 			pageFormDefinition.getIndexed());
 		formStyledLayoutStructureItem.setName(pageFormDefinition.getName());
+		formStyledLayoutStructureItem.setNumberOfSteps(
+			formConfig.getNumberOfSteps());
 
 		return formStyledLayoutStructureItem;
 	}
