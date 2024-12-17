@@ -415,12 +415,12 @@ public class FragmentEntryInputTemplateNodeContextHelperTest {
 					LocaleUtil.US, RandomTestUtil.randomString()),
 				false, _listTypeEntries);
 
-		ObjectField myRichText = ObjectFieldUtil.createObjectField(
+		ObjectField myRichTextObjectField = ObjectFieldUtil.createObjectField(
 			ObjectFieldConstants.BUSINESS_TYPE_RICH_TEXT,
 			ObjectFieldConstants.DB_TYPE_STRING, RandomTestUtil.randomString(),
 			"myRichText", false);
 
-		myRichText.setLocalized(true);
+		myRichTextObjectField.setLocalized(true);
 
 		List<ObjectField> objectFields = Arrays.asList(
 			new AttachmentObjectFieldBuilder(
@@ -485,7 +485,7 @@ public class FragmentEntryInputTemplateNodeContextHelperTest {
 				ObjectFieldConstants.BUSINESS_TYPE_PRECISION_DECIMAL,
 				ObjectFieldConstants.DB_TYPE_BIG_DECIMAL,
 				RandomTestUtil.randomString(), "myPrecisionDecimal", false),
-			myRichText);
+			myRichTextObjectField);
 
 		objectDefinition =
 			_objectDefinitionLocalService.addCustomObjectDefinition(
