@@ -35,7 +35,6 @@ public class AnalyticsConfigurationModelListener
 		properties.put(
 			"previousContentRecommenderMostPopularItemsEnabled",
 			analyticsConfiguration.contentRecommenderMostPopularItemsEnabled());
-
 		properties.put(
 			"previousContentRecommenderUserPersonalizationEnabled",
 			analyticsConfiguration.
