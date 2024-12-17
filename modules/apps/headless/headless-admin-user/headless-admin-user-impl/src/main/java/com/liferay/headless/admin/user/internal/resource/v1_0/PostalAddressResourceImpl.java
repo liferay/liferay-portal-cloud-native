@@ -419,7 +419,7 @@ public class PostalAddressResourceImpl extends BasePostalAddressResourceImpl {
 		return country;
 	}
 
-	private Long _getListTypeId(Address address, PostalAddress postalAddress)
+	private long _getListTypeId(Address address, PostalAddress postalAddress)
 		throws Exception {
 
 		String type = AccountListTypeConstants.ACCOUNT_ENTRY_ADDRESS;
