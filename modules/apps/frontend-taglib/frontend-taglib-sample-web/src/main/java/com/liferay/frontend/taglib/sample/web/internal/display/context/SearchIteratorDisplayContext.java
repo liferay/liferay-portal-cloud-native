@@ -56,19 +56,19 @@ public class SearchIteratorDisplayContext {
 				_renderRequest, SamplePortletKeys.SAMPLE_PORTLET,
 				"order-by-type", "asc"));
 
-		List<String> itemList = new ArrayList<>();
+		List<String> results = new ArrayList<>();
 
 		for (int i = 1; i < 500; i++) {
-			itemList.add(String.valueOf(i));
+			results.add(String.valueOf(i));
 		}
 
 		int[] startAndEnd = SearchPaginationUtil.calculateStartAndEnd(
 			searchContainer.getStart(), searchContainer.getEnd(),
-			itemList.size());
+			results.size());
 
 		searchContainer.setResultsAndTotal(
-			() -> itemList.subList(startAndEnd[0], startAndEnd[1]),
-			itemList.size());
+			() -> results.subList(startAndEnd[0], startAndEnd[1]),
+			results.size());
 
 		return searchContainer;
 	}
