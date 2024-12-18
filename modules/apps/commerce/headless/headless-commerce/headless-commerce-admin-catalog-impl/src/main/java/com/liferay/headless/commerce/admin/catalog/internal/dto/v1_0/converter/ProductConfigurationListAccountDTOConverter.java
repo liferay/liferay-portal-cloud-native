@@ -46,7 +46,6 @@ public class ProductConfigurationListAccountDTOConverter
 
 		AccountEntry accountEntry = _accountEntryLocalService.getAccountEntry(
 			cpConfigurationListRel.getClassPK());
-
 		CPConfigurationList cpConfigurationList =
 			_cpConfigurationListService.getCPConfigurationList(
 				cpConfigurationListRel.getCPConfigurationListId());
