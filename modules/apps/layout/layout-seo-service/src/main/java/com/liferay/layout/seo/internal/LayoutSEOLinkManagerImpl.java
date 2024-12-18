@@ -114,9 +114,8 @@ public class LayoutSEOLinkManagerImpl implements LayoutSEOLinkManager {
 		Locale siteDefaultLocale = _portal.getSiteDefaultLocale(
 			layout.getGroupId());
 
-		Map<Locale, String> alternateCanonicalURLs =
-			_getAlternateCanonicalURLMap(
-				alternateURLs, layout, siteDefaultLocale);
+		Map<Locale, String> alternateCanonicalURLs = _getAlternateCanonicalURLs(
+			alternateURLs, layout, siteDefaultLocale);
 
 		for (Map.Entry<Locale, String> entry :
 				alternateCanonicalURLs.entrySet()) {
@@ -174,7 +173,7 @@ public class LayoutSEOLinkManagerImpl implements LayoutSEOLinkManager {
 		_alternateURLMapperProvider = null;
 	}
 
-	private Map<Locale, String> _getAlternateCanonicalURLMap(
+	private Map<Locale, String> _getAlternateCanonicalURLs(
 		Map<Locale, String> alternateURLs, Layout layout,
 		Locale siteDefaultLocale) {
 
@@ -189,6 +188,8 @@ public class LayoutSEOLinkManagerImpl implements LayoutSEOLinkManager {
 			return alternateURLs;
 		}
 
+		Map<Locale, String> alternateCanonicalURLs = new HashMap<>();
+
 		try {
 			siteDefaultLocale = _portal.getSiteDefaultLocale(
 				layout.getGroupId());
@@ -199,7 +200,6 @@ public class LayoutSEOLinkManagerImpl implements LayoutSEOLinkManager {
 
 		String currentCanonicalURL = layoutSEOEntry.getCanonicalURL(
 			siteDefaultLocale);
-		Map<Locale, String> map = new HashMap<>();
 
 		for (Map.Entry<Locale, String> entry : alternateURLs.entrySet()) {
 			Locale locale = entry.getKey();
@@ -213,10 +213,10 @@ public class LayoutSEOLinkManagerImpl implements LayoutSEOLinkManager {
 				alternateCanonicalURL = entry.getValue();
 			}
 
-			map.put(locale, alternateCanonicalURL);
+			alternateCanonicalURLs.put(locale, alternateCanonicalURL);
 		}
 
-		return map;
+		return alternateCanonicalURLs;
 	}
 
 	private HttpServletRequest _getHttpServletRequest() {
