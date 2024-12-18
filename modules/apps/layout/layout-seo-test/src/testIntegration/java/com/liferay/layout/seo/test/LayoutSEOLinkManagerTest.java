@@ -131,7 +131,7 @@ public class LayoutSEOLinkManagerTest {
 	public void testGetClassicLayoutLocalizedLayoutSEOLinksWithDefaultLocale()
 		throws Exception {
 
-		_setupForTestingLayoutLocalizedLayoutSEOLinks();
+		_setUpForTestingLayoutLocalizedLayoutSEOLinks();
 
 		_testWithLayoutSEOCompanyConfiguration(
 			"default-language-url",
@@ -145,7 +145,7 @@ public class LayoutSEOLinkManagerTest {
 	public void testGetClassicLayoutLocalizedLayoutSEOLinksWithNoDefaultLocale()
 		throws Exception {
 
-		_setupForTestingLayoutLocalizedLayoutSEOLinks();
+		_setUpForTestingLayoutLocalizedLayoutSEOLinks();
 
 		_testWithLayoutSEOCompanyConfiguration(
 			"default-language-url",
@@ -187,7 +187,7 @@ public class LayoutSEOLinkManagerTest {
 	public void testGetDefaultLayoutLocalizedLayoutSEOLinksWithDefaultLocale()
 		throws Exception {
 
-		_setupForTestingLayoutLocalizedLayoutSEOLinks();
+		_setUpForTestingLayoutLocalizedLayoutSEOLinks();
 
 		_testWithLayoutSEOCompanyConfiguration(
 			"localized-url",
@@ -201,7 +201,7 @@ public class LayoutSEOLinkManagerTest {
 	public void testGetDefaultLayoutLocalizedLayoutSEOLinksWithNoDefaultLocale()
 		throws Exception {
 
-		_setupForTestingLayoutLocalizedLayoutSEOLinks();
+		_setUpForTestingLayoutLocalizedLayoutSEOLinks();
 
 		_testWithLayoutSEOCompanyConfiguration(
 			"localized-url",
@@ -216,7 +216,7 @@ public class LayoutSEOLinkManagerTest {
 	public void testGetLocalizedLayoutSEOLinksWithDefaultLocaleCanonical()
 		throws Exception {
 
-		_setupForTestingLayoutLocalizedLayoutSEOLinks();
+		_setUpForTestingLayoutLocalizedLayoutSEOLinks();
 
 		Locale siteDefaultLocale = LocaleUtil.getSiteDefault();
 		String canonicalURL = RandomTestUtil.randomString();
@@ -468,7 +468,7 @@ public class LayoutSEOLinkManagerTest {
 			_expectedFriendlyURLs.get(LocaleUtil.US));
 	}
 
-	private void _setupForTestingLayoutLocalizedLayoutSEOLinks()
+	private void _setUpForTestingLayoutLocalizedLayoutSEOLinks()
 		throws Exception {
 
 		_layout = LayoutTestUtil.addTypePortletLayout(_group);
