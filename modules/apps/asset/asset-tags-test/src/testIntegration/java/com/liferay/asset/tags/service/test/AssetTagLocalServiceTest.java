@@ -335,10 +335,10 @@ public class AssetTagLocalServiceTest {
 	public void testGetTagSizeWithCaseInsensitive() throws Exception {
 		String[] tagNames = {"tag1", "Tag1"};
 
-		_addArticle(tagNames);
-		_addArticle(tagNames);
+		_addJournalArticle(tagNames);
+		_addJournalArticle(tagNames);
 
-		_addArticle(new String[] {"TAG1"});
+		_addJournalArticle(new String[] {"TAG1"});
 
 		long classNameId = _classNameLocalService.getClassNameId(
 			JournalArticle.class.getName());
@@ -366,7 +366,7 @@ public class AssetTagLocalServiceTest {
 		Arrays.sort(expectedTagNames);
 
 		_addBlogsEntry(expectedTagNames);
-		_addArticle(expectedTagNames);
+		_addJournalArticle(expectedTagNames);
 
 		_assertGetTags(
 			BlogsEntry.class.getName(), expectedTagNames.length,
@@ -495,7 +495,7 @@ public class AssetTagLocalServiceTest {
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
 
-	private void _addArticle(String[] tagNames) throws Exception {
+	private void _addJournalArticle(String[] tagNames) throws Exception {
 		_serviceContext.setAssetTagNames(tagNames);
 
 		JournalTestUtil.addArticle(
