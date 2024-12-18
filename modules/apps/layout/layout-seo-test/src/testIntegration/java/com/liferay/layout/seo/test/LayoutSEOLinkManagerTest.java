@@ -20,7 +20,6 @@ import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryLocalService;
 import com.liferay.layout.seo.kernel.LayoutSEOLink;
 import com.liferay.layout.seo.kernel.LayoutSEOLinkManager;
-import com.liferay.layout.seo.model.LayoutSEOEntry;
 import com.liferay.layout.seo.service.LayoutSEOEntryLocalService;
 import com.liferay.layout.test.util.LayoutFriendlyURLRandomizerBumper;
 import com.liferay.layout.test.util.LayoutTestUtil;
@@ -220,11 +219,14 @@ public class LayoutSEOLinkManagerTest {
 		_setupForTestingLayoutLocalizedLayoutSEOLinks();
 
 		Locale siteDefaultLocale = LocaleUtil.getSiteDefault();
-
 		String canonicalURL = RandomTestUtil.randomString();
 
-		_updateLayoutSEOEntry(
-			Collections.singletonMap(siteDefaultLocale, canonicalURL));
+		_layoutSEOEntryLocalService.updateLayoutSEOEntry(
+			TestPropsValues.getUserId(), _layout.getGroupId(), false,
+			_layout.getLayoutId(), true,
+			Collections.singletonMap(siteDefaultLocale, canonicalURL),
+			ServiceContextTestUtil.getServiceContext(
+				_layout.getGroupId(), TestPropsValues.getUserId()));
 
 		String languageTag = siteDefaultLocale.toLanguageTag();
 
@@ -582,17 +584,6 @@ public class LayoutSEOLinkManagerTest {
 			GroupLocalServiceUtil.updateGroup(
 				groupId, unicodeProperties.toString());
 		}
-	}
-
-	private LayoutSEOEntry _updateLayoutSEOEntry(
-			Map<Locale, String> canonicalURLMap)
-		throws Exception {
-
-		return _layoutSEOEntryLocalService.updateLayoutSEOEntry(
-			TestPropsValues.getUserId(), _layout.getGroupId(), false,
-			_layout.getLayoutId(), true, canonicalURLMap,
-			ServiceContextTestUtil.getServiceContext(
-				_layout.getGroupId(), TestPropsValues.getUserId()));
 	}
 
 	private static final String _LAYOUT_SEO_CONFIGURATION_PID =
