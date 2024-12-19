@@ -103,14 +103,11 @@ public class ProductConfigurationListAccountGroupResourceTest
 	public void testDeleteProductConfigurationListAccountGroup()
 		throws Exception {
 
-		long cpConfigurationListId =
-			_cpConfigurationList.getCPConfigurationListId();
-
 		ProductConfigurationListAccountGroup
 			productConfigurationListAccountGroup =
 				productConfigurationListAccountGroupResource.
 					postProductConfigurationListIdProductConfigurationListAccountGroup(
-						cpConfigurationListId,
+						_cpConfigurationList.getCPConfigurationListId(),
 						randomProductConfigurationListAccountGroup());
 
 		productConfigurationListAccountGroupResource.
@@ -121,8 +118,8 @@ public class ProductConfigurationListAccountGroupResourceTest
 		Page<ProductConfigurationListAccountGroup> page =
 			productConfigurationListAccountGroupResource.
 				getProductConfigurationListIdProductConfigurationListAccountGroupsPage(
-					cpConfigurationListId, null, null, Pagination.of(1, 10),
-					null);
+					_cpConfigurationList.getCPConfigurationListId(), null, null,
+					Pagination.of(1, 10), null);
 
 		Assert.assertEquals(0, page.getTotalCount());
 	}
