@@ -176,7 +176,7 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 	public Map<Long, List<ServiceRegistration<?>>> deploy(
 		long companyId, List<ObjectDefinition> objectDefinitions) {
 
-		Map<Long, List<ServiceRegistration<?>>> activeServiceRegistrationsMap =
+		Map<Long, List<ServiceRegistration<?>>> serviceRegistrationsMap =
 			new ConcurrentHashMap<>();
 
 		Map<Long, List<ObjectLayout>> objectLayoutsMap =
@@ -184,14 +184,14 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 		Map<Long, List<ObjectRelationship>> objectRelationshipsMap =
 			_objectRelationshipLocalService.getObjectRelationshipsMap(
 				companyId);
-		Map<Long, List<ObjectAction>> standaloneObjectActionsMap =
+		Map<Long, List<ObjectAction>> objectActionsMap =
 			_objectActionLocalService.getObjectActionsMap(
 				companyId, true, ObjectActionTriggerConstants.KEY_STANDALONE);
 
 		for (ObjectDefinition objectDefinition : objectDefinitions) {
 			long objectDefinitionId = objectDefinition.getObjectDefinitionId();
 
-			activeServiceRegistrationsMap.put(
+			serviceRegistrationsMap.put(
 				objectDefinitionId,
 				_deploy(
 					objectLayoutsMap.getOrDefault(
@@ -199,11 +199,11 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 					objectDefinition,
 					objectRelationshipsMap.getOrDefault(
 						objectDefinitionId, Collections.emptyList()),
-					standaloneObjectActionsMap.getOrDefault(
+					objectActionsMap.getOrDefault(
 						objectDefinitionId, Collections.emptyList())));
 		}
 
-		return activeServiceRegistrationsMap;
+		return serviceRegistrationsMap;
 	}
 
 	@Override
