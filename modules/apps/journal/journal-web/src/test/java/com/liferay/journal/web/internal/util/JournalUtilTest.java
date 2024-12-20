@@ -100,6 +100,7 @@ public class JournalUtilTest {
 	private void _setUpJournalArticleServiceUtil() {
 		_journalArticleServiceUtilMockedStatic = Mockito.mockStatic(
 			JournalArticleServiceUtil.class);
+
 		Mockito.when(
 			JournalArticleServiceUtil.getArticlesByArticleId(
 				Mockito.anyLong(), Mockito.anyString(), Mockito.anyInt(),
