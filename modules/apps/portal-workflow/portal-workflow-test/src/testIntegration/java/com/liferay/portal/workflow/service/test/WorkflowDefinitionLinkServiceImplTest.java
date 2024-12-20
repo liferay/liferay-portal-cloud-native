@@ -221,7 +221,6 @@ public class WorkflowDefinitionLinkServiceImplTest {
 		Assert.assertEquals(
 			"com.liferay.account.model.AccountEntry",
 			workflowDefinitionLink2.getClassName());
-
 		Assert.assertEquals(
 			kaleoDefinition.getName(),
 			workflowDefinitionLink2.getWorkflowDefinitionName());
