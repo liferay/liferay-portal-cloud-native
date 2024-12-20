@@ -66,27 +66,27 @@ public class JournalUtilTest {
 	private JournalArticle _getJournalArticle(
 		Date modifiedDate, double version, long statusByUserId) {
 
-		JournalArticle article = Mockito.mock(JournalArticle.class);
+		JournalArticle journalArticle = Mockito.mock(JournalArticle.class);
 
 		Mockito.when(
-			article.getModifiedDate()
+			journalArticle.getModifiedDate()
 		).thenReturn(
 			modifiedDate
 		);
 
 		Mockito.when(
-			article.getVersion()
+			journalArticle.getVersion()
 		).thenReturn(
 			version
 		);
 
 		Mockito.when(
-			article.getStatusByUserId()
+			journalArticle.getStatusByUserId()
 		).thenReturn(
 			statusByUserId
 		);
 
-		return article;
+		return journalArticle;
 	}
 
 	private List<JournalArticle> _getJournalArticles() {
