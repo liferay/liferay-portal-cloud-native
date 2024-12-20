@@ -540,7 +540,6 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 				Portlet portlet = _portletLocalService.getPortletById(
 					portletName);
 
-				Assert.assertNotNull(portlet);
 				Assert.assertEquals(
 					company.getCompanyId(), portlet.getCompanyId());
 			}
@@ -552,7 +551,6 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 				Portlet portlet = _portletLocalService.getPortletById(
 					portletName);
 
-				Assert.assertNotNull(portlet);
 				Assert.assertEquals(defaultCompanyId, portlet.getCompanyId());
 			}
 
