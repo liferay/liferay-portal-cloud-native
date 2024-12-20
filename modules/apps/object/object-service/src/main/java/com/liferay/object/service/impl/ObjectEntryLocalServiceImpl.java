@@ -1740,6 +1740,8 @@ public class ObjectEntryLocalServiceImpl
 			return objectEntry;
 		}
 
+		ObjectEntry originalObjectEntry = (ObjectEntry)objectEntry.clone();
+
 		objectEntry.setStatus(status);
 
 		User user = _userLocalService.getUser(userId);
@@ -1763,6 +1765,10 @@ public class ObjectEntryLocalServiceImpl
 			objectEntry = objectEntryPersistence.update(objectEntry);
 		}
 
+		ObjectDefinition objectDefinition =
+			_objectDefinitionPersistence.fetchByPrimaryKey(
+				objectEntry.getObjectDefinitionId());
+
 		if (serviceContext.isStrictAdd()) {
 			boolean indexingEnabled = serviceContext.isIndexingEnabled();
 
@@ -1781,16 +1787,20 @@ public class ObjectEntryLocalServiceImpl
 			}
 		}
 		else {
-			ObjectDefinition objectDefinition =
-				_objectDefinitionPersistence.fetchByPrimaryKey(
-					objectEntry.getObjectDefinitionId());
-
 			_assetEntryLocalService.updateEntry(
 				objectDefinition.getClassName(), objectEntry.getObjectEntryId(),
 				null, null, true, objectEntry.isApproved());
 		}
 
 		_reindex(objectEntry);
+
+		if (!ObjectActionThreadLocal.isSkipObjectActionExecution()) {
+			_executeObjectActions(
+				objectEntry.getCompanyId(),
+				ObjectActionTriggerConstants.KEY_ON_AFTER_UPDATE,
+				objectDefinition, objectEntry, originalObjectEntry,
+				serviceContext.getLanguageId(), user);
+		}
 
 		return objectEntry;
 	}
@@ -4552,10 +4562,15 @@ public class ObjectEntryLocalServiceImpl
 			_objectDefinitionPersistence.findByPrimaryKey(
 				objectEntry.getObjectDefinitionId());
 
+		boolean skipObjectActionExecution =
+			ObjectActionThreadLocal.isSkipObjectActionExecution();
+
 		boolean workflowEnabled = WorkflowThreadLocal.isEnabled();
 
 		try {
 			_skipModelListeners.set(skipModelListener);
+
+			ObjectActionThreadLocal.setSkipObjectActionExecution(true);
 
 			WorkflowThreadLocal.setEnabled(true);
 
@@ -4566,6 +4581,9 @@ public class ObjectEntryLocalServiceImpl
 		}
 		finally {
 			_skipModelListeners.set(false);
+
+			ObjectActionThreadLocal.setSkipObjectActionExecution(
+				skipObjectActionExecution);
 
 			WorkflowThreadLocal.setEnabled(workflowEnabled);
 		}
