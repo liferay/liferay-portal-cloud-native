@@ -179,14 +179,14 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 		Map<Long, List<ServiceRegistration<?>>> serviceRegistrationsMap =
 			new ConcurrentHashMap<>();
 
+		Map<Long, List<ObjectAction>> objectActionsMap =
+			_objectActionLocalService.getObjectActionsMap(
+				companyId, true, ObjectActionTriggerConstants.KEY_STANDALONE);
 		Map<Long, List<ObjectLayout>> objectLayoutsMap =
 			_objectLayoutLocalService.getObjectLayoutsMap(companyId);
 		Map<Long, List<ObjectRelationship>> objectRelationshipsMap =
 			_objectRelationshipLocalService.getObjectRelationshipsMap(
 				companyId);
-		Map<Long, List<ObjectAction>> objectActionsMap =
-			_objectActionLocalService.getObjectActionsMap(
-				companyId, true, ObjectActionTriggerConstants.KEY_STANDALONE);
 
 		for (ObjectDefinition objectDefinition : objectDefinitions) {
 			long objectDefinitionId = objectDefinition.getObjectDefinitionId();
