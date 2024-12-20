@@ -7,7 +7,6 @@ package com.liferay.headless.builder.internal.object.deployer;
 
 import com.liferay.headless.builder.internal.object.related.models.DeleteOnDisassociateObjectRelatedModelsProvider;
 import com.liferay.object.constants.ObjectDefinitionConstants;
-import com.liferay.object.constants.ObjectRelatedModelsProviderConstants;
 import com.liferay.object.constants.ObjectRelationshipConstants;
 import com.liferay.object.deployer.ObjectDefinitionDeployer;
 import com.liferay.object.model.ObjectDefinition;
@@ -70,10 +69,11 @@ public class APIPropertyObjectDefinitionDeployerImpl
 			StringBundler.concat(
 				"(&(objectClass=", ObjectRelatedModelsProvider.class.getName(),
 				")(",
-				ObjectRelatedModelsProviderRegistryUtil.KEY_OBJECT_DEFINITION_ERC,
+				ObjectRelatedModelsProviderRegistryUtil.
+					KEY_OBJECT_DEFINITION_ERC,
 				"=L_API_PROPERTY)(",
-				ObjectRelatedModelsProviderRegistryUtil.KEY_RELATIONSHIP_TYPE, "=",
-				ObjectRelationshipConstants.TYPE_ONE_TO_MANY, "))"),
+				ObjectRelatedModelsProviderRegistryUtil.KEY_RELATIONSHIP_TYPE,
+				"=", ObjectRelationshipConstants.TYPE_ONE_TO_MANY, "))"),
 			new ObjectRelatedModelsProviderServiceTrackerCustomizer());
 
 		try {
