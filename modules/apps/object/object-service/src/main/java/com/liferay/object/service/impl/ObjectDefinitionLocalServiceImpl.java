@@ -926,15 +926,16 @@ public class ObjectDefinitionLocalServiceImpl
 							objectDefinition -> objectDefinition.isActive())));
 
 				for (ObjectDefinition objectDefinition : objectDefinitions) {
-					if (!objectDefinition.isActive()) {
-						_inactiveServiceRegistrationsMap.put(
-							objectDefinition.getObjectDefinitionId(),
-							InactiveObjectDefinitionDeployerUtil.deploy(
-								_bundleContext, _objectEntryService,
-								_objectFieldLocalService,
-								_objectRelationshipLocalService,
-								objectDefinition));
+					if (objectDefinition.isActive()) {
+						continue;
 					}
+
+					_inactiveServiceRegistrationsMap.put(
+						objectDefinition.getObjectDefinitionId(),
+						InactiveObjectDefinitionDeployerUtil.deploy(
+							_bundleContext, _objectEntryService,
+							_objectFieldLocalService,
+							_objectRelationshipLocalService, objectDefinition));
 				}
 			});
 
