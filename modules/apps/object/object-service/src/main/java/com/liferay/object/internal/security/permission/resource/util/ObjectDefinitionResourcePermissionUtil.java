@@ -97,15 +97,13 @@ public class ObjectDefinitionResourcePermissionUtil {
 
 		String objectActionPermissionKeys = StringPool.BLANK;
 
-		List<ObjectAction> objectActions = standaloneObjectActions;
-
-		if (objectActions == null) {
-			objectActions = objectActionLocalService.getObjectActions(
+		if (standaloneObjectActions == null) {
+			standaloneObjectActions = objectActionLocalService.getObjectActions(
 				objectDefinitionId,
 				ObjectActionTriggerConstants.KEY_STANDALONE);
 		}
 
-		for (ObjectAction objectAction : objectActions) {
+		for (ObjectAction objectAction : standaloneObjectActions) {
 			objectActionPermissionKeys = StringBundler.concat(
 				objectActionPermissionKeys, "<action-key>",
 				objectAction.getName(), "</action-key>");
