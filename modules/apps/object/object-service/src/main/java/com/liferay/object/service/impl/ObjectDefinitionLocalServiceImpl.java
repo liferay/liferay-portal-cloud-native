@@ -641,7 +641,7 @@ public class ObjectDefinitionLocalServiceImpl
 		for (Map.Entry
 				<ObjectDefinitionDeployer,
 				 Map<Long, List<ServiceRegistration<?>>>> entry :
-					_serviceRegistrationsMaps.entrySet()) {
+					_activeServiceRegistrationsMaps.entrySet()) {
 
 			ObjectDefinitionDeployer objectDefinitionDeployer = entry.getKey();
 			Map<Long, List<ServiceRegistration<?>>> serviceRegistrationsMap =
@@ -939,7 +939,7 @@ public class ObjectDefinitionLocalServiceImpl
 				}
 			});
 
-		_serviceRegistrationsMaps.put(
+		_activeServiceRegistrationsMaps.put(
 			objectDefinitionDeployer, activeServiceRegistrationsMap);
 
 		_objectDefinitionDeployerServiceTracker = new ServiceTracker<>(
@@ -985,7 +985,7 @@ public class ObjectDefinitionLocalServiceImpl
 
 					Map<Long, List<ServiceRegistration<?>>>
 						serviceRegistrationsMap =
-							_serviceRegistrationsMaps.remove(
+							_activeServiceRegistrationsMaps.remove(
 								objectDefinitionDeployer);
 
 					for (List<ServiceRegistration<?>> serviceRegistrations :
@@ -1020,7 +1020,7 @@ public class ObjectDefinitionLocalServiceImpl
 		for (Map.Entry
 				<ObjectDefinitionDeployer,
 				 Map<Long, List<ServiceRegistration<?>>>> entry :
-					_serviceRegistrationsMaps.entrySet()) {
+					_activeServiceRegistrationsMaps.entrySet()) {
 
 			ObjectDefinitionDeployer objectDefinitionDeployer = entry.getKey();
 
@@ -1334,7 +1334,7 @@ public class ObjectDefinitionLocalServiceImpl
 							objectDefinition -> objectDefinition.isActive())));
 			});
 
-		_serviceRegistrationsMaps.put(
+		_activeServiceRegistrationsMaps.put(
 			objectDefinitionDeployer, serviceRegistrationsMap);
 
 		return objectDefinitionDeployer;
@@ -2788,7 +2788,7 @@ public class ObjectDefinitionLocalServiceImpl
 
 	private final Map
 		<ObjectDefinitionDeployer, Map<Long, List<ServiceRegistration<?>>>>
-			_serviceRegistrationsMaps = Collections.synchronizedMap(
+			_activeServiceRegistrationsMaps = Collections.synchronizedMap(
 				new LinkedHashMap<>());
 
 	@Reference
