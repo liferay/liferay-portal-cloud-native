@@ -194,9 +194,9 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 			serviceRegistrationsMap.put(
 				objectDefinitionId,
 				_deploy(
+					objectDefinition,
 					objectLayoutsMap.getOrDefault(
 						objectDefinitionId, Collections.emptyList()),
-					objectDefinition,
 					objectRelationshipsMap.getOrDefault(
 						objectDefinitionId, Collections.emptyList()),
 					objectActionsMap.getOrDefault(
@@ -210,7 +210,7 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 	public List<ServiceRegistration<?>> deploy(
 		ObjectDefinition objectDefinition) {
 
-		return _deploy(null, objectDefinition, null, null);
+		return _deploy(objectDefinition, null, null, null);
 	}
 
 	@Override
@@ -228,8 +228,7 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 	}
 
 	private List<ServiceRegistration<?>> _deploy(
-		List<ObjectLayout> defaultObjectLayouts,
-		ObjectDefinition objectDefinition,
+		ObjectDefinition objectDefinition, List<ObjectLayout> objectLayouts,
 		List<ObjectRelationship> objectRelationships,
 		List<ObjectAction> standaloneObjectActions) {
 
@@ -447,12 +446,12 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 
 		ObjectLayout objectLayout = null;
 
-		if (defaultObjectLayouts == null) {
+		if (objectLayouts == null) {
 			objectLayout = _objectLayoutLocalService.fetchDefaultObjectLayout(
 				objectDefinition.getObjectDefinitionId());
 		}
-		else if (!defaultObjectLayouts.isEmpty()) {
-			objectLayout = defaultObjectLayouts.get(0);
+		else if (!objectLayouts.isEmpty()) {
+			objectLayout = objectLayouts.get(0);
 		}
 
 		if (objectLayout != null) {
