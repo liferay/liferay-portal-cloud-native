@@ -381,21 +381,21 @@ public class ModulesStructureTest {
 
 			scanDeque.add(module.getId());
 
-			List<String> pathList = new ArrayList<>();
+			List<String> pathsList = new ArrayList<>();
 
 			String dependencyId = null;
 
 			while ((dependencyId = scanDeque.pollFirst()) != null) {
 				if (Objects.equals(dependencyId, "REMOVE_LAST_HOLDER")) {
-					pathList.remove(pathList.size() - 1);
+					pathsList.remove(pathsList.size() - 1);
 
 					continue;
 				}
 
-				int index = pathList.indexOf(dependencyId);
+				int index = pathsList.indexOf(dependencyId);
 
 				if (index == -1) {
-					pathList.add(dependencyId);
+					pathsList.add(dependencyId);
 
 					scanDeque.push("REMOVE_LAST_HOLDER");
 
@@ -412,19 +412,19 @@ public class ModulesStructureTest {
 					}
 				}
 				else {
-					pathList = pathList.subList(index, pathList.size());
+					pathsList = pathsList.subList(index, pathsList.size());
 
-					String minPath = Collections.min(pathList);
+					String minPath = Collections.min(pathsList);
 
-					int minIndex = pathList.indexOf(minPath);
+					int minIndex = pathsList.indexOf(minPath);
 
 					StringBundler sb = new StringBundler(
-						((pathList.size() - index) * 2) + 1);
+						((pathsList.size() - index) * 2) + 1);
 
-					for (int i = minIndex; i < (minIndex + pathList.size());
+					for (int i = minIndex; i < (minIndex + pathsList.size());
 						 i++) {
 
-						sb.append(pathList.get(i % pathList.size()));
+						sb.append(pathsList.get(i % pathsList.size()));
 						sb.append(" -> ");
 					}
 
