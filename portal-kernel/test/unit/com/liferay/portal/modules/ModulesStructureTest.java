@@ -350,25 +350,25 @@ public class ModulesStructureTest {
 
 						Path buildGradlePath = dirPath.resolve("build.gradle");
 
-						if (Files.exists(buildGradlePath) &&
-							Files.exists(dirPath.resolve("src"))) {
+						if (!Files.exists(buildGradlePath) ||
+							!Files.exists(dirPath.resolve("src"))) {
 
-							String relativePathString = String.valueOf(
-								_modulesDirPath.relativize(dirPath));
-
-							Module module = new Module(
-								":".concat(
-									StringUtil.replace(
-										relativePathString, '/', ':')),
-								ModulesStructureTestUtil.
-									getProjectDependencyIds(buildGradlePath));
-
-							modules.put(module.getId(), module);
-
-							return FileVisitResult.SKIP_SUBTREE;
+							return FileVisitResult.CONTINUE;
 						}
 
-						return FileVisitResult.CONTINUE;
+						String relativePathString = String.valueOf(
+							_modulesDirPath.relativize(dirPath));
+
+						Module module = new Module(
+							":".concat(
+								StringUtil.replace(
+									relativePathString, '/', ':')),
+							ModulesStructureTestUtil.
+								getProjectDependencyIds(buildGradlePath));
+
+						modules.put(module.getId(), module);
+
+						return FileVisitResult.SKIP_SUBTREE;
 					}
 
 				});
