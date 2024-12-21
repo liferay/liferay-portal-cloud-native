@@ -54,10 +54,10 @@ public class Module {
 	public String toString() {
 		StringBundler sb = new StringBundler(5);
 
-		sb.append("{id=");
-		sb.append(_id);
-		sb.append(", _dependencyIds=");
+		sb.append("{_dependencyIds=");
 		sb.append(_dependencyIds);
+		sb.append(", _id=");
+		sb.append(_id);
 		sb.append("}");
 
 		return sb.toString();
