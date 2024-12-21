@@ -335,7 +335,7 @@ public class ModulesStructureTest {
 
 	@Test
 	public void testScanCircularProjectDependencies() throws IOException {
-		Map<String, Module> moduleMap = new TreeMap<>();
+		Map<String, Module> modules = new TreeMap<>();
 
 		for (String includeDirName : _includedDirNames) {
 			Files.walkFileTree(
@@ -363,7 +363,7 @@ public class ModulesStructureTest {
 								ModulesStructureTestUtil.
 									getProjectDependencyIds(buildGradlePath));
 
-							moduleMap.put(module.getId(), module);
+							modules.put(module.getId(), module);
 
 							return FileVisitResult.SKIP_SUBTREE;
 						}
@@ -376,7 +376,7 @@ public class ModulesStructureTest {
 
 		Set<String> circularPaths = new TreeSet<>();
 
-		for (Module module : moduleMap.values()) {
+		for (Module module : modules.values()) {
 			Deque<String> scanDeque = new LinkedList<>();
 
 			scanDeque.add(module.getId());
@@ -399,7 +399,7 @@ public class ModulesStructureTest {
 
 					scanDeque.push("REMOVE_LAST_HOLDER");
 
-					Module dependencyModule = moduleMap.get(dependencyId);
+					Module dependencyModule = modules.get(dependencyId);
 
 					List<String> dependencyIdList = new ArrayList<>(
 						dependencyModule.getDependencyIds());
