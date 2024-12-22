@@ -129,6 +129,7 @@ public class BndBundleUtil {
 			Headers.TEST_BRIDGE_REPORT_SERVER_PORT, String.valueOf(port));
 		project.setProperty(
 			Headers.TEST_BRIDGE_PASS_CODE, String.valueOf(passCode));
+		project.setProperty("-contract", "!JavaPortlet,!JavaServlet");
 		project.setProperty(
 			"Bundle-Activator", TestBundleActivator.class.getCanonicalName());
 
@@ -147,8 +148,6 @@ public class BndBundleUtil {
 
 		project.setProperty(
 			"Import-Package", StringUtil.merge(importPackages, ","));
-
-		project.setProperty("-contract", "!JavaPortlet,!JavaServlet");
 
 		Set<String> includeResources = new LinkedHashSet<>();
 
