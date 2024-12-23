@@ -363,19 +363,19 @@ public class LoginPostAction extends Action {
 			String cookieName = cookie.getName();
 
 			if (cookieName.startsWith(_COOKIE_NAME_PREFIX_ACCOUNT_ENTRY)) {
-				Map<String, String> accountInformation =
+				Map<String, String> accountEntryInformation =
 					_parseAccountEntryInformation(
 						_commerceAccountHelper.getCommerceSiteType(
 							_getCommerceChannelGroupId(cookieName)),
 						cookie.getValue(), user);
 
-				String userEmailAddress = accountInformation.get(
+				String userEmailAddress = accountEntryInformation.get(
 					"userEmailAddress");
 
 				if (userEmailAddress.equals(user.getEmailAddress())) {
-					String accountEntryName = accountInformation.get(
+					String accountEntryName = accountEntryInformation.get(
 						"accountEntryName");
-					String accountEntryType = accountInformation.get(
+					String accountEntryType = accountEntryInformation.get(
 						"accountEntryType");
 
 					accountEntry = _createAccountEntry(
