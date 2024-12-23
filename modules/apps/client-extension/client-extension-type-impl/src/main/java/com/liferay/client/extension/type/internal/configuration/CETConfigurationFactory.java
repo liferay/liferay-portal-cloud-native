@@ -91,8 +91,8 @@ public class CETConfigurationFactory {
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							StringBundler.concat(
-								"Adding client extension relations for client ",
-								"extension ", externalReferenceCode,
+								"Adding client extension entry relations for ",
+								"client extension ", externalReferenceCode,
 								" and company ", companyId));
 					}
 
@@ -107,8 +107,8 @@ public class CETConfigurationFactory {
 				catch (Exception exception) {
 					_log.error(
 						StringBundler.concat(
-							"Unable to add CET for client extension ",
-							externalReferenceCode, " and company ", companyId),
+							"Unable to activate client extension ",
+							externalReferenceCode, " for company ", companyId),
 						exception);
 
 					throw exception;
@@ -141,8 +141,8 @@ public class CETConfigurationFactory {
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							StringBundler.concat(
-								"Deleting client extension relations for ",
-								"client extension ", externalReferenceCode,
+								"Deleting client extension entry relations ",
+								"for client extension ", externalReferenceCode,
 								" and company ", companyId));
 					}
 
@@ -153,8 +153,8 @@ public class CETConfigurationFactory {
 				catch (Exception exception) {
 					_log.error(
 						StringBundler.concat(
-							"Unable to delete CET for client extension ",
-							externalReferenceCode, " and company ", companyId),
+							"Unable to deactivate client extension ",
+							externalReferenceCode, " for company ", companyId),
 						exception);
 
 					throw exception;
@@ -210,8 +210,8 @@ public class CETConfigurationFactory {
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							StringBundler.concat(
-								"Deleting client extension relations for ",
-								"client extension ", externalReferenceCode,
+								"Deleting client extension entry relations ",
+								"for client extension ", externalReferenceCode,
 								" and company ", companyId));
 					}
 
@@ -222,8 +222,8 @@ public class CETConfigurationFactory {
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							StringBundler.concat(
-								"Adding client extension relations for client ",
-								"extension ", externalReferenceCode,
+								"Adding client extension entry relations for ",
+								"client extension ", externalReferenceCode,
 								" and company ", companyId));
 					}
 
@@ -238,8 +238,8 @@ public class CETConfigurationFactory {
 				catch (Exception exception) {
 					_log.error(
 						StringBundler.concat(
-							"Unable to update CET for client extension ",
-							externalReferenceCode, " and company ", companyId),
+							"Unable to modify client extension ",
+							externalReferenceCode, " for company ", companyId),
 						exception);
 
 					throw exception;
