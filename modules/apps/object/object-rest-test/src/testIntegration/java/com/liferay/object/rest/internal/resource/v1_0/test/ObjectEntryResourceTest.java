@@ -13313,18 +13313,17 @@ public class ObjectEntryResourceTest {
 					"DefaultObjectEntryManagerImpl",
 				LoggerTestUtil.ERROR)) {
 
-			String hostDownFileURL = StringBundler.concat(
+			String url = StringBundler.concat(
 				"http://", company.getVirtualHostname(), ":8081");
 
 			_testPatchPutCustomObjectEntryWithAttachmentField(
 				fileEntry -> JSONUtil.put(
 					"status", "BAD_REQUEST"
 				).put(
-					"title", "Unable to download file from " + hostDownFileURL
+					"title", "Unable to download file from " + url
 				),
 				_toFileEntry(
-					RandomTestUtil.randomString() + ".txt", hostDownFileURL,
-					null, null),
+					RandomTestUtil.randomString() + ".txt", url, null, null),
 				httpMethod, null, objectDefinition,
 				_OBJECT_FIELD_NAME_ATTACHMENT_DOCS_AND_MEDIA_SOURCE,
 				useExternalReferenceCode);
@@ -13332,24 +13331,23 @@ public class ObjectEntryResourceTest {
 
 		// File from URL malformed
 
-		String malformedFileURL = StringBundler.concat(
-			"http//", company.getVirtualHostname(), ":8080/",
-			RandomTestUtil.randomString());
-
 		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
 				"com.liferay.object.rest.internal.manager.v1_0." +
 					"DefaultObjectEntryManagerImpl",
 				LoggerTestUtil.ERROR)) {
 
+			String url = StringBundler.concat(
+				"http//", company.getVirtualHostname(), ":8080/",
+				RandomTestUtil.randomString());
+
 			_testPatchPutCustomObjectEntryWithAttachmentField(
 				fileEntry -> JSONUtil.put(
 					"status", "BAD_REQUEST"
 				).put(
-					"title", "Unable to download file from " + malformedFileURL
+					"title", "Unable to download file from " + url
 				),
 				_toFileEntry(
-					RandomTestUtil.randomString() + ".txt", malformedFileURL,
-					null, null),
+					RandomTestUtil.randomString() + ".txt", url, null, null),
 				httpMethod, null, objectDefinition,
 				_OBJECT_FIELD_NAME_ATTACHMENT_DOCS_AND_MEDIA_SOURCE,
 				useExternalReferenceCode);
@@ -13357,7 +13355,7 @@ public class ObjectEntryResourceTest {
 
 		// File from URL not found
 
-		String resourceNotFoundFileURL = StringBundler.concat(
+		String httpCode404URL = StringBundler.concat(
 			"http://", company.getVirtualHostname(), ":8080/",
 			RandomTestUtil.randomString());
 
@@ -13366,19 +13364,19 @@ public class ObjectEntryResourceTest {
 				"status", "BAD_REQUEST"
 			).put(
 				"title",
-				"Unable to download file from " + resourceNotFoundFileURL +
+				"Unable to download file from " + httpCode404URL +
 					", unexpected HTTP code: 404"
 			),
 			_toFileEntry(
-				RandomTestUtil.randomString() + ".txt", resourceNotFoundFileURL,
-				null, null),
+				RandomTestUtil.randomString() + ".txt", httpCode404URL, null,
+				null),
 			httpMethod, null, objectDefinition,
 			_OBJECT_FIELD_NAME_ATTACHMENT_DOCS_AND_MEDIA_SOURCE,
 			useExternalReferenceCode);
 
 		// File from URL with unsupported protocol
 
-		String unsupportedProtocolURL = StringBundler.concat(
+		String unsupportedProtocolFileURL = StringBundler.concat(
 			"file://", company.getVirtualHostname(), ":8080");
 
 		_testPatchPutCustomObjectEntryWithAttachmentField(
@@ -13386,12 +13384,12 @@ public class ObjectEntryResourceTest {
 				"status", "BAD_REQUEST"
 			).put(
 				"title",
-				"Unable to download file from " + unsupportedProtocolURL +
+				"Unable to download file from " + unsupportedProtocolFileURL +
 					", unsupported protocol: file"
 			),
 			_toFileEntry(
-				RandomTestUtil.randomString() + ".txt", unsupportedProtocolURL,
-				null, null),
+				RandomTestUtil.randomString() + ".txt",
+				unsupportedProtocolFileURL, null, null),
 			httpMethod, null, objectDefinition,
 			_OBJECT_FIELD_NAME_ATTACHMENT_DOCS_AND_MEDIA_SOURCE,
 			useExternalReferenceCode);
