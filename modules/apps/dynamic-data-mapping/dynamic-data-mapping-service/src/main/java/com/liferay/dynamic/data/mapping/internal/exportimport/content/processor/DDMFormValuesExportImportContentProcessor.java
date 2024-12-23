@@ -204,6 +204,24 @@ public class DDMFormValuesExportImportContentProcessor
 			}
 		}
 
+		protected String toJSON(Layout layout, Locale locale, String name)
+			throws PortalException {
+
+			return JSONUtil.put(
+				"groupId", layout.getGroupId()
+			).put(
+				"id", layout.getUuid()
+			).put(
+				"layoutId", layout.getLayoutId()
+			).put(
+				"name", _getName(layout, locale, name)
+			).put(
+				"privateLayout", layout.isPrivateLayout()
+			).put(
+				"value", layout.getFriendlyURL(locale)
+			).toString();
+		}
+
 		private Layout _fetchImportedLayout(
 			PortletDataContext portletDataContext, JSONObject jsonObject) {
 
@@ -222,24 +240,6 @@ public class DDMFormValuesExportImportContentProcessor
 			}
 
 			return layout;
-		}
-
-		protected String toJSON(Layout layout, Locale locale, String name)
-			throws PortalException {
-
-			return JSONUtil.put(
-				"groupId", layout.getGroupId()
-			).put(
-				"id", layout.getUuid()
-			).put(
-				"layoutId", layout.getLayoutId()
-			).put(
-				"name", _getName(layout, locale, name)
-			).put(
-				"privateLayout", layout.isPrivateLayout()
-			).put(
-				"value", layout.getFriendlyURL(locale)
-			).toString();
 		}
 
 		private String _getName(Layout layout, Locale locale, String name)
