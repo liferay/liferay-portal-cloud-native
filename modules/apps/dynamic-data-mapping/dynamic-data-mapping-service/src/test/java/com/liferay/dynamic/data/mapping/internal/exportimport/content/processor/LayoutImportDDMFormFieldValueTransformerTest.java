@@ -38,19 +38,13 @@ public class LayoutImportDDMFormFieldValueTransformerTest {
 		throws PortalException {
 
 		Mockito.when(
-			_layout.getGroupId()
-		).thenReturn(
-			RandomTestUtil.randomLong()
-		);
-
-		Mockito.when(
 			_layout.getUuid()
 		).thenReturn(
 			RandomTestUtil.randomString()
 		);
 
 		Mockito.when(
-			_layout.getLayoutId()
+			_layout.getGroupId()
 		).thenReturn(
 			RandomTestUtil.randomLong()
 		);
@@ -59,6 +53,12 @@ public class LayoutImportDDMFormFieldValueTransformerTest {
 			_layout.isPrivateLayout()
 		).thenReturn(
 			false
+		);
+
+		Mockito.when(
+			_layout.getLayoutId()
+		).thenReturn(
+			RandomTestUtil.randomLong()
 		);
 
 		Locale locale = LocaleUtil.US;
@@ -85,8 +85,7 @@ public class LayoutImportDDMFormFieldValueTransformerTest {
 			LayoutImportDDMFormFieldValueTransformer
 				layoutImportDDMFormFieldValueTransformer =
 					mockDDMFormValuesExportImportContentProcessor.
-						getLayoutImportDDMFormFieldValueTransformer(
-							_portletDataContext);
+						getLayoutImportDDMFormFieldValueTransformer();
 
 		Assert.assertEquals(
 			JSONUtil.put(
@@ -107,18 +106,15 @@ public class LayoutImportDDMFormFieldValueTransformerTest {
 	}
 
 	private final Layout _layout = Mockito.mock(Layout.class);
-	private final PortletDataContext _portletDataContext = Mockito.mock(
-		PortletDataContext.class);
 
 	private static class MockDDMFormValuesExportImportContentProcessor
 		extends DDMFormValuesExportImportContentProcessor {
 
 		public LayoutImportDDMFormFieldValueTransformer
-			getLayoutImportDDMFormFieldValueTransformer(
-				PortletDataContext portletDataContext) {
+			getLayoutImportDDMFormFieldValueTransformer() {
 
 			return new LayoutImportDDMFormFieldValueTransformer(
-				portletDataContext);
+				Mockito.mock(PortletDataContext.class));
 		}
 
 	}
