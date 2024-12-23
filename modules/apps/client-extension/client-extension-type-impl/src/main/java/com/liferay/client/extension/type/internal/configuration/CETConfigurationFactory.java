@@ -57,23 +57,19 @@ public class CETConfigurationFactory {
 
 	@Activate
 	protected void activate(Map<String, Object> properties) throws Exception {
-		String externalReferenceCode = _getExternalReferenceCode(properties);
+		_properties = properties;
 
-		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Notified from OSGi about activation of client extension " +
-					externalReferenceCode);
-		}
+		String externalReferenceCode = _getExternalReferenceCode(properties);
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Properties for activated client extension ",
-					externalReferenceCode, ":\n",
-					MapUtil.toString(properties)));
+					"Activate client extension ", externalReferenceCode,
+					"with properties:\n", MapUtil.toString(properties)));
 		}
-
-		_properties = properties;
+		else if (_log.isInfoEnabled()) {
+			_log.info("Activate client extension " + externalReferenceCode);
+		}
 
 		ConfigurationFactoryUtil.executeAsCompany(
 			_companyLocalService, properties,
