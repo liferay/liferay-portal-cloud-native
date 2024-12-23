@@ -329,11 +329,7 @@ public class SalesforceObjectEntryManagerImplTest
 
 		LocalDateTime localDateTime1 = LocalDateTime.now();
 
-		String localDateTime1String = localDateTime1.toString();
-
-		if (localDateTime1String.split("\\.")[1].length() > 3) {
-			localDateTime1 = localDateTime1.truncatedTo(ChronoUnit.MILLIS);
-		}
+		localDateTime1 = localDateTime1.truncatedTo(ChronoUnit.MILLIS);
 
 		ObjectEntry objectEntry2 = _addObjectEntry(
 			"started", new Date(date.getTime() - Time.DAY), true,
