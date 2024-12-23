@@ -154,13 +154,13 @@ public class DDMFormValuesExportImportContentProcessor
 					continue;
 				}
 
-				Layout importedLayout = fetchImportedLayout(
+				Layout importedLayout = _fetchImportedLayout(
 					_portletDataContext, jsonObject);
 
 				if (importedLayout != null) {
 					value.addString(
 						locale,
-						toJSON(
+						_toJSON(
 							importedLayout, locale,
 							jsonObject.getString("name")));
 
@@ -197,14 +197,14 @@ public class DDMFormValuesExportImportContentProcessor
 				if (importedLayout != null) {
 					value.addString(
 						locale,
-						toJSON(
+						_toJSON(
 							importedLayout, locale,
 							jsonObject.getString("name")));
 				}
 			}
 		}
 
-		protected Layout fetchImportedLayout(
+		private Layout _fetchImportedLayout(
 			PortletDataContext portletDataContext, JSONObject jsonObject) {
 
 			Map<Long, Layout> layouts =
@@ -224,7 +224,7 @@ public class DDMFormValuesExportImportContentProcessor
 			return layout;
 		}
 
-		protected String toJSON(Layout layout, Locale locale, String name)
+		private String _toJSON(Layout layout, Locale locale, String name)
 			throws PortalException {
 
 			return JSONUtil.put(
@@ -429,7 +429,7 @@ public class DDMFormValuesExportImportContentProcessor
 					continue;
 				}
 
-				value.addString(locale, toJSON(importedFileEntry, type));
+				value.addString(locale, _toJSON(importedFileEntry, type));
 			}
 		}
 
@@ -487,7 +487,7 @@ public class DDMFormValuesExportImportContentProcessor
 			return null;
 		}
 
-		protected String toJSON(FileEntry fileEntry, String type) {
+		private String _toJSON(FileEntry fileEntry, String type) {
 			return JSONUtil.put(
 				"classPK", fileEntry.getFileEntryId()
 			).put(
