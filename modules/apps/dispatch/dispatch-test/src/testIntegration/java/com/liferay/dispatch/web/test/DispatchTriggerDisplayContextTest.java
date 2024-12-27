@@ -150,16 +150,16 @@ public class DispatchTriggerDisplayContextTest {
 		DispatchTaskClusterMode dispatchTaskClusterMode =
 			DispatchTaskClusterMode.ALL_NODES;
 
-		Calendar nowCalendar = CalendarFactoryUtil.getCalendar();
+		Calendar calendar = CalendarFactoryUtil.getCalendar();
 
-		nowCalendar.setTime(new Date());
+		calendar.setTime(new Date());
 
-		Calendar endCalendar = (Calendar)nowCalendar.clone();
+		Calendar endCalendar = (Calendar)calendar.clone();
 
 		endCalendar.add(Calendar.DAY_OF_MONTH, 1);
 		endCalendar.add(Calendar.HOUR, 1);
 
-		Calendar startCalendar = (Calendar)nowCalendar.clone();
+		Calendar startCalendar = (Calendar)calendar.clone();
 
 		startCalendar.add(Calendar.DAY_OF_MONTH, -1);
 		startCalendar.add(Calendar.HOUR, -1);

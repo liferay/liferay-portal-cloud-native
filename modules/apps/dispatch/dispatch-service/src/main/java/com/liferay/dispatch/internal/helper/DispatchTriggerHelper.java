@@ -37,16 +37,16 @@ public class DispatchTriggerHelper {
 			String timeZoneId)
 		throws DispatchTriggerSchedulerException {
 
-		Date now = new Date();
+		Date date = new Date();
 
 		Date endDate = dispatchTrigger.getEndDate();
 		Date startDate = dispatchTrigger.getStartDate();
 
-		if ((startDate != null) && startDate.before(now) &&
+		if ((startDate != null) && startDate.before(date) &&
 			((endDate == null) ||
-			 (startDate.before(endDate) && endDate.after(now)))) {
+			 (startDate.before(endDate) && endDate.after(date)))) {
 
-			startDate = now;
+			startDate = date;
 		}
 
 		Trigger trigger = _triggerFactory.createTrigger(

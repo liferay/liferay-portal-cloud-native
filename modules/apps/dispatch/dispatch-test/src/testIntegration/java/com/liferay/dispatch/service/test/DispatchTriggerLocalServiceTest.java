@@ -474,11 +474,11 @@ public class DispatchTriggerLocalServiceTest {
 	public void testUpdateDispatchTriggerWithDifferentStartDate()
 		throws Exception {
 
-		Calendar nowCalendar = CalendarFactoryUtil.getCalendar();
+		Calendar calendar = CalendarFactoryUtil.getCalendar();
 
-		nowCalendar.setTime(new Date());
+		calendar.setTime(new Date());
 
-		Calendar futureCalendar = (Calendar)nowCalendar.clone();
+		Calendar futureCalendar = (Calendar)calendar.clone();
 
 		futureCalendar.add(Calendar.HOUR_OF_DAY, 12);
 
@@ -489,7 +489,7 @@ public class DispatchTriggerLocalServiceTest {
 
 		// Start Date in the future, after the cron expression
 
-		Calendar startCalendar = (Calendar)nowCalendar.clone();
+		Calendar startCalendar = (Calendar)calendar.clone();
 
 		startCalendar.add(Calendar.HOUR_OF_DAY, 14);
 
@@ -499,7 +499,7 @@ public class DispatchTriggerLocalServiceTest {
 
 		// Start Date in the future, before the cron expression
 
-		startCalendar = (Calendar)nowCalendar.clone();
+		startCalendar = (Calendar)calendar.clone();
 
 		startCalendar.add(Calendar.HOUR_OF_DAY, 10);
 
@@ -509,7 +509,7 @@ public class DispatchTriggerLocalServiceTest {
 
 		// Start Date in the past, before the cron expression
 
-		startCalendar = (Calendar)nowCalendar.clone();
+		startCalendar = (Calendar)calendar.clone();
 
 		startCalendar.add(Calendar.DAY_OF_MONTH, -1);
 
@@ -519,7 +519,7 @@ public class DispatchTriggerLocalServiceTest {
 
 		// Start Date in the past, after the cron expression
 
-		startCalendar = (Calendar)nowCalendar.clone();
+		startCalendar = (Calendar)calendar.clone();
 
 		startCalendar.add(Calendar.DAY_OF_MONTH, -1);
 		startCalendar.add(Calendar.HOUR_OF_DAY, 14);
