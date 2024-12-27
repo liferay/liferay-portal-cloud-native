@@ -474,6 +474,8 @@ public class DispatchTriggerLocalServiceTest {
 	public void testUpdateDispatchTriggerWithCronExpressions()
 		throws Exception {
 
+		// Future start date after the cron expression
+
 		Calendar calendar = CalendarFactoryUtil.getCalendar();
 
 		calendar.setTime(new Date());
@@ -486,8 +488,6 @@ public class DispatchTriggerLocalServiceTest {
 			futureCalendar.get(Calendar.SECOND), " ",
 			futureCalendar.get(Calendar.MINUTE), " ",
 			futureCalendar.get(Calendar.HOUR_OF_DAY), " * * ? *");
-
-		// Future start date after the cron expression
 
 		Calendar startCalendar = (Calendar)calendar.clone();
 
