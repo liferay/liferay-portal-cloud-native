@@ -519,15 +519,14 @@ public class LanguageResourcesExtenderTest {
 			Assert.assertNotNull(resourceBundle1);
 			Assert.assertNotNull(resourceBundle2);
 
-			Assert.assertEquals(
-				value1, resourceBundle1.getString("language-key-1"));
 			Assert.assertEquals(value1, resourceBundle1.getString("about"));
 			Assert.assertEquals(
+				value1, resourceBundle1.getString("language-key-1"));
+			Assert.assertEquals(
 				value1, resourceBundle1.getString("shared-language-key"));
-
+			Assert.assertEquals(value2, resourceBundle2.getString("about"));
 			Assert.assertEquals(
 				value2, resourceBundle2.getString("language-key-2"));
-			Assert.assertEquals(value2, resourceBundle2.getString("about"));
 			Assert.assertEquals(
 				value2, resourceBundle2.getString("shared-language-key"));
 
