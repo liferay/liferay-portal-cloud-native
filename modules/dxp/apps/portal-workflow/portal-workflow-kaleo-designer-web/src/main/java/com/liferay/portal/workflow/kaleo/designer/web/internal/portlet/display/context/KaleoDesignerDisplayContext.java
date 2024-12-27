@@ -190,8 +190,9 @@ public class KaleoDesignerDisplayContext {
 				_kaleoDefinitionVersionLocalService.
 					getLatestKaleoDefinitionVersions(
 						_kaleoDesignerRequestHelper.getCompanyId(),
-						_getKeywords(), _kaleoDesignerRequestHelper.getLocale(),
-						status, kaleoDefinitionVersionSearch.getStart(),
+						_getKeywords(), status,
+						_kaleoDesignerRequestHelper.getLocale(),
+						kaleoDefinitionVersionSearch.getStart(),
 						kaleoDefinitionVersionSearch.getEnd(),
 						kaleoDefinitionVersionSearch.getOrderByComparator()),
 			_kaleoDefinitionVersionLocalService.

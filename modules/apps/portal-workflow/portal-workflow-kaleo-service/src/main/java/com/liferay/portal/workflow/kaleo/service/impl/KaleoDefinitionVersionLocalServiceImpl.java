@@ -346,7 +346,7 @@ public class KaleoDefinitionVersionLocalServiceImpl
 
 	@Override
 	public List<KaleoDefinitionVersion> getLatestKaleoDefinitionVersions(
-		long companyId, String keywords, Locale locale, int status, int start,
+		long companyId, String keywords, int status, Locale locale, int start,
 		int end, OrderByComparator<KaleoDefinitionVersion> orderByComparator) {
 
 		List<Long> kaleoDefinitionVersionIds = _getKaleoDefinitionVersionIds(

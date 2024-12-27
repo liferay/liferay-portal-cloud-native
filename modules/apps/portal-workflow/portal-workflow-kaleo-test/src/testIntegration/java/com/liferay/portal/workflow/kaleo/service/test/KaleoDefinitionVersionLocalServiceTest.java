@@ -125,8 +125,8 @@ public class KaleoDefinitionVersionLocalServiceTest
 				kaleoDefinition3LatestKaleoDefinitionVersion),
 			kaleoDefinitionVersionLocalService.getLatestKaleoDefinitionVersions(
 				kaleoDefinition1.getCompanyId(),
-				"kaleodefinitionversiondescription", LocaleUtil.US,
-				WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
+				"kaleodefinitionversiondescription",
+				WorkflowConstants.STATUS_ANY, LocaleUtil.US, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, kaleoDefinitionVersionTitleComparator));
 		Assert.assertEquals(
 			Arrays.asList(
@@ -134,7 +134,7 @@ public class KaleoDefinitionVersionLocalServiceTest
 				kaleoDefinition2LatestKaleoDefinitionVersion),
 			kaleoDefinitionVersionLocalService.getLatestKaleoDefinitionVersions(
 				kaleoDefinition1.getCompanyId(), "kaleodefinitionversionname",
-				LocaleUtil.US, WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
+				WorkflowConstants.STATUS_ANY, LocaleUtil.US, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, kaleoDefinitionVersionTitleComparator));
 		Assert.assertEquals(
 			Arrays.asList(
@@ -142,7 +142,7 @@ public class KaleoDefinitionVersionLocalServiceTest
 				kaleoDefinition3LatestKaleoDefinitionVersion),
 			kaleoDefinitionVersionLocalService.getLatestKaleoDefinitionVersions(
 				kaleoDefinition1.getCompanyId(), "kaleodefinitionversiontitle",
-				LocaleUtil.US, WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
+				WorkflowConstants.STATUS_ANY, LocaleUtil.US, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, kaleoDefinitionVersionTitleComparator));
 	}
 

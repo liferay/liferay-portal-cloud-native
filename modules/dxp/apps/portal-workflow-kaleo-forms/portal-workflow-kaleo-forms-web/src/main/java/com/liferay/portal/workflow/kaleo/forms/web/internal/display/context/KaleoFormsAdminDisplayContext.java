@@ -405,8 +405,9 @@ public class KaleoFormsAdminDisplayContext {
 					_kaleoDefinitionVersionLocalService.
 						getLatestKaleoDefinitionVersions(
 							_kaleoFormsAdminRequestHelper.getCompanyId(), null,
+							_getStatus(),
 							_kaleoFormsAdminRequestHelper.getLocale(),
-							_getStatus(), searchContainer.getStart(),
+							searchContainer.getStart(),
 							searchContainer.getEnd(), null),
 				_kaleoDefinitionVersionLocalService.
 					getLatestKaleoDefinitionVersionsCount(
