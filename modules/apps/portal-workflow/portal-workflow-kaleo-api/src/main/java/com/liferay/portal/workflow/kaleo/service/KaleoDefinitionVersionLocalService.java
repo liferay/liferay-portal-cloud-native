@@ -329,7 +329,7 @@ public interface KaleoDefinitionVersionLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoDefinitionVersion> getLatestKaleoDefinitionVersions(
-		long companyId, String keywords, Locale locale, int status, int start,
+		long companyId, String keywords, int status, Locale locale, int start,
 		int end, OrderByComparator<KaleoDefinitionVersion> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

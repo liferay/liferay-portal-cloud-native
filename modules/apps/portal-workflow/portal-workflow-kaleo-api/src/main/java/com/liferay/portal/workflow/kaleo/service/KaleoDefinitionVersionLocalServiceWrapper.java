@@ -459,14 +459,14 @@ public class KaleoDefinitionVersionLocalServiceWrapper
 	@Override
 	public java.util.List<KaleoDefinitionVersion>
 		getLatestKaleoDefinitionVersions(
-			long companyId, String keywords, java.util.Locale locale,
-			int status, int start, int end,
+			long companyId, String keywords, int status,
+			java.util.Locale locale, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
 				<KaleoDefinitionVersion> orderByComparator) {
 
 		return _kaleoDefinitionVersionLocalService.
 			getLatestKaleoDefinitionVersions(
-				companyId, keywords, locale, status, start, end,
+				companyId, keywords, status, locale, start, end,
 				orderByComparator);
 	}
 
