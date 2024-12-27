@@ -358,6 +358,25 @@ public class KaleoDefinitionVersionLocalServiceImpl
 
 		SearchSearchRequest searchSearchRequest = new SearchSearchRequest();
 
+		String[] orderByFields = orderByComparator.getOrderByFields();
+
+		String orderByField = orderByFields[0];
+
+		if (Objects.equals(orderByField, "modifiedDate")) {
+			orderByField = Field.MODIFIED_DATE;
+		}
+		else if (Objects.equals(orderByField, "title")) {
+			orderByField =
+				Field.TITLE + StringPool.UNDERLINE + locale.toString();
+		}
+
+		searchSearchRequest.addSorts(
+			_sorts.field(Field.getSortableFieldName("active"), SortOrder.DESC),
+			_sorts.field(
+				Field.getSortableFieldName(orderByField),
+				orderByComparator.isAscending() ? SortOrder.ASC :
+					SortOrder.DESC));
+
 		searchSearchRequest.setIndexNames(
 			_indexNameBuilder.getIndexName(companyId));
 
@@ -380,25 +399,6 @@ public class KaleoDefinitionVersionLocalServiceImpl
 			searchSearchRequest.setSize(end - start);
 			searchSearchRequest.setStart(start);
 		}
-
-		String[] orderByFields = orderByComparator.getOrderByFields();
-
-		String orderByField = orderByFields[0];
-
-		if (Objects.equals(orderByField, "modifiedDate")) {
-			orderByField = Field.MODIFIED_DATE;
-		}
-		else if (Objects.equals(orderByField, "title")) {
-			orderByField =
-				Field.TITLE + StringPool.UNDERLINE + locale.toString();
-		}
-
-		searchSearchRequest.addSorts(
-			_sorts.field(Field.getSortableFieldName("active"), SortOrder.DESC),
-			_sorts.field(
-				Field.getSortableFieldName(orderByField),
-				orderByComparator.isAscending() ? SortOrder.ASC :
-					SortOrder.DESC));
 
 		SearchSearchResponse searchSearchResponse =
 			_searchRequestExecutor.executeSearchRequest(searchSearchRequest);
