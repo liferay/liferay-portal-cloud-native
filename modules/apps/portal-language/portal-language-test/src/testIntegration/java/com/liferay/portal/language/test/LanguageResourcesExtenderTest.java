@@ -151,11 +151,11 @@ public class LanguageResourcesExtenderTest {
 			ResourceBundle resourceBundle1 =
 				resourceBundleLoader1.loadResourceBundle(LocaleUtil.ENGLISH);
 
+			Assert.assertEquals(value1, resourceBundle1.getString("about"));
 			Assert.assertEquals(
 				value1, resourceBundle1.getString("language-key-1"));
 			Assert.assertFalse(resourceBundle1.containsKey("language-key-2"));
 			Assert.assertFalse(resourceBundle1.containsKey("language-key-3"));
-			Assert.assertEquals(value1, resourceBundle1.getString("about"));
 			Assert.assertEquals(
 				value1, resourceBundle1.getString("shared-language-key"));
 
@@ -166,11 +166,11 @@ public class LanguageResourcesExtenderTest {
 			ResourceBundle resourceBundle2 =
 				resourceBundleLoader2.loadResourceBundle(LocaleUtil.ENGLISH);
 
+			Assert.assertEquals(value2, resourceBundle2.getString("about"));
 			Assert.assertFalse(resourceBundle2.containsKey("language-key-1"));
 			Assert.assertEquals(
 				value2, resourceBundle2.getString("language-key-2"));
 			Assert.assertFalse(resourceBundle2.containsKey("language-key-3"));
-			Assert.assertEquals(value2, resourceBundle2.getString("about"));
 			Assert.assertEquals(
 				value2, resourceBundle2.getString("shared-language-key"));
 
@@ -181,13 +181,13 @@ public class LanguageResourcesExtenderTest {
 			ResourceBundle resourceBundle3 =
 				resourceBundleLoader3.loadResourceBundle(LocaleUtil.ENGLISH);
 
+			Assert.assertEquals(value2, resourceBundle3.getString("about"));
 			Assert.assertEquals(
 				value1, resourceBundle3.getString("language-key-1"));
 			Assert.assertEquals(
 				value2, resourceBundle3.getString("language-key-2"));
 			Assert.assertEquals(
 				value3, resourceBundle3.getString("language-key-3"));
-			Assert.assertEquals(value2, resourceBundle3.getString("about"));
 			Assert.assertEquals(
 				value2, resourceBundle3.getString("shared-language-key"));
 		}
@@ -216,10 +216,10 @@ public class LanguageResourcesExtenderTest {
 			_getProvideCapabilityLegacy(
 				bundleSymbolicName, servletContextName, 1, false, true));
 
-		Assert.assertNull(
-			LanguageResources.getMessage(LocaleUtil.ENGLISH, "language-key-1"));
 		Assert.assertEquals(
 			"About", LanguageResources.getMessage(LocaleUtil.ENGLISH, "about"));
+		Assert.assertNull(
+			LanguageResources.getMessage(LocaleUtil.ENGLISH, "language-key-1"));
 
 		Assert.assertNull(
 			ResourceBundleLoaderUtil.
@@ -235,11 +235,11 @@ public class LanguageResourcesExtenderTest {
 
 			Assert.assertEquals(
 				value,
-				LanguageResources.getMessage(
-					LocaleUtil.ENGLISH, "language-key-1"));
+				LanguageResources.getMessage(LocaleUtil.ENGLISH, "about"));
 			Assert.assertEquals(
 				value,
-				LanguageResources.getMessage(LocaleUtil.ENGLISH, "about"));
+				LanguageResources.getMessage(
+					LocaleUtil.ENGLISH, "language-key-1"));
 
 			Assert.assertNull(
 				ResourceBundleLoaderUtil.
@@ -335,11 +335,10 @@ public class LanguageResourcesExtenderTest {
 
 			Assert.assertNotNull(resourceBundle);
 
+			Assert.assertEquals(value, resourceBundle.getString("about"));
+			Assert.assertFalse(resourceBundle.containsKey("enabled"));
 			Assert.assertEquals(
 				value, resourceBundle.getString("language-key-1"));
-			Assert.assertEquals(value, resourceBundle.getString("about"));
-
-			Assert.assertFalse(resourceBundle.containsKey("enabled"));
 		}
 		finally {
 			bundle.uninstall();
@@ -356,9 +355,9 @@ public class LanguageResourcesExtenderTest {
 		Bundle bundle = _installResourceBundle(
 			bundleSymbolicName,
 			HashMapBuilder.put(
-				StringPool.BLANK, "language-key-1=" + value
-			).put(
 				String.valueOf(LocaleUtil.ENGLISH), "about=" + value
+			).put(
+				StringPool.BLANK, "language-key-1=" + value
 			).build(),
 			servletContextName, 1, false, true, null);
 
@@ -404,11 +403,10 @@ public class LanguageResourcesExtenderTest {
 			).build(),
 			servletContextName, 1, false, true, null);
 
-		Assert.assertNull(
-			LanguageResources.getMessage(LocaleUtil.ENGLISH, "language-key-1"));
-
 		Assert.assertEquals(
 			"About", LanguageResources.getMessage(LocaleUtil.ENGLISH, "about"));
+		Assert.assertNull(
+			LanguageResources.getMessage(LocaleUtil.ENGLISH, "language-key-1"));
 
 		Assert.assertNull(
 			ResourceBundleLoaderUtil.
@@ -422,13 +420,12 @@ public class LanguageResourcesExtenderTest {
 		try {
 			bundle.start();
 
-			Assert.assertNull(
-				LanguageResources.getMessage(
-					LocaleUtil.ENGLISH, "language-key-1"));
-
 			Assert.assertEquals(
 				"About",
 				LanguageResources.getMessage(LocaleUtil.ENGLISH, "about"));
+			Assert.assertNull(
+				LanguageResources.getMessage(
+					LocaleUtil.ENGLISH, "language-key-1"));
 
 			ResourceBundleLoader resourceBundleLoader1 =
 				ResourceBundleLoaderUtil.
@@ -450,13 +447,12 @@ public class LanguageResourcesExtenderTest {
 			Assert.assertNotNull(resourceBundle1);
 			Assert.assertNotNull(resourceBundle2);
 
+			Assert.assertEquals(value, resourceBundle1.getString("about"));
 			Assert.assertEquals(
 				value, resourceBundle1.getString("language-key-1"));
+			Assert.assertEquals(value, resourceBundle2.getString("about"));
 			Assert.assertEquals(
 				value, resourceBundle2.getString("language-key-1"));
-
-			Assert.assertEquals(value, resourceBundle1.getString("about"));
-			Assert.assertEquals(value, resourceBundle2.getString("about"));
 
 			Assert.assertEquals(
 				"Enabled", resourceBundle1.getString("enabled"));
