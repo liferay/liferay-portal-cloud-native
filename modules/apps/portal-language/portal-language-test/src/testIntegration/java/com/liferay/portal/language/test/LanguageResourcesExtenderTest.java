@@ -77,15 +77,14 @@ public class LanguageResourcesExtenderTest {
 
 			Assert.assertEquals(
 				value,
-				LanguageResources.getMessage(
-					LocaleUtil.ENGLISH, "language-key-1"));
-			Assert.assertEquals(
-				value,
 				LanguageResources.getMessage(LocaleUtil.ENGLISH, "about"));
-
 			Assert.assertEquals(
 				"Enabled",
 				LanguageResources.getMessage(LocaleUtil.ENGLISH, "enabled"));
+			Assert.assertEquals(
+				value,
+				LanguageResources.getMessage(
+					LocaleUtil.ENGLISH, "language-key-1"));
 		}
 		finally {
 			bundle.uninstall();
