@@ -1052,6 +1052,7 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 		_objectEntryManager.deleteObjectEntry(
 			testCompany.getCompanyId(), dtoConverterContext,
 			objectEntry.getExternalReferenceCode(), objectDefinition, "0");
+
 		_objectDefinitionLocalService.deleteObjectDefinition(
 			objectDefinition.getObjectDefinitionId());
 	}
@@ -1250,6 +1251,7 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 		_objectEntryManager.deleteObjectEntry(
 			testCompany.getCompanyId(), dtoConverterContext,
 			objectEntry2.getExternalReferenceCode(), objectDefinition, "0");
+
 		_objectDefinitionLocalService.deleteObjectDefinition(objectDefinition);
 	}
 
