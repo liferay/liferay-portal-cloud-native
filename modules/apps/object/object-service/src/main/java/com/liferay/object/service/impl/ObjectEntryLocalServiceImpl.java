@@ -5248,7 +5248,7 @@ public class ObjectEntryLocalServiceImpl
 			throw new ObjectEntryValuesException.Required(
 				objectField.getName());
 		}
- 		else if (StringUtil.equals(
+		else if (StringUtil.equals(
 					objectField.getBusinessType(),
 					ObjectFieldConstants.BUSINESS_TYPE_ATTACHMENT)) {
 
@@ -5318,7 +5318,9 @@ public class ObjectEntryLocalServiceImpl
 					objectField.getBusinessType(),
 					ObjectFieldConstants.BUSINESS_TYPE_RELATIONSHIP)) {
 
-			if (Validator.isNull(GetterUtil.getLong(value)) && objectField.isRequired()){
+			if (Validator.isNull(GetterUtil.getLong(value)) &&
+				objectField.isRequired()) {
+
 				throw new ObjectEntryValuesException.Required(
 					objectField.getName());
 			}
