@@ -104,6 +104,7 @@ public class DDMFieldAttributeUpgradeProcess extends UpgradeProcess {
 					(smallAttributeValue.length() > 255)) {
 
 					largeAttributeValue = smallAttributeValue;
+
 					smallAttributeValue = null;
 				}
 
