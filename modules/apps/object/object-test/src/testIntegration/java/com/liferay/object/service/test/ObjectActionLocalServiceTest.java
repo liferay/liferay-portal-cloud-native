@@ -1959,7 +1959,7 @@ public class ObjectActionLocalServiceTest {
 	}
 
 	@Test
-	public void testExecuteObjectActionWithConditionExpressionInSystemObjectDefinition()
+	public void testExecuteObjectActionWithConditionExpression()
 		throws Exception {
 
 		ObjectDefinition objectDefinition =
