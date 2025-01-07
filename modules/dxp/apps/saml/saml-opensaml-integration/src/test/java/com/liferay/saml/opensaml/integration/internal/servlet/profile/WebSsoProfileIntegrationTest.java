@@ -331,7 +331,7 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		MockHttpServletRequest mockHttpServletRequest =
 			getMockHttpServletRequest(
 				StringBundler.concat(
-					SSO_URL, "?entityId=", SP_ENTITY_ID, "&saml_message_id=",
+					SSO_URL, "?entityId=", SP_ENTITY_ID, "&samlMessageId=",
 					idpInitiatedSamlMessageId));
 
 		_setSamlSsoRequestContexts(
@@ -374,7 +374,7 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		MockHttpServletRequest mockHttpServletRequest =
 			getMockHttpServletRequest(
 				StringBundler.concat(
-					SSO_URL, "?entityId=", SP_ENTITY_ID, "&saml_message_id=",
+					SSO_URL, "?entityId=", SP_ENTITY_ID, "&samlMessageId=",
 					idpInitiatedSamlMessageId));
 
 		_setSamlSsoRequestContexts(
@@ -456,7 +456,7 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 			});
 
 		mockHttpServletRequest = getMockHttpServletRequest(
-			SSO_URL + "?saml_message_id=" + messageIdAtomicReference.get());
+			SSO_URL + "?samlMessageId=" + messageIdAtomicReference.get());
 
 		samlSsoRequestContext.setSAMLMessageContext(null);
 
@@ -543,7 +543,7 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 			});
 
 		mockHttpServletRequest = getMockHttpServletRequest(
-			SSO_URL + "?saml_message_id=" + messageIdAtomicReference.get());
+			SSO_URL + "?samlMessageId=" + messageIdAtomicReference.get());
 
 		samlSsoRequestContext.setSAMLMessageContext(null);
 

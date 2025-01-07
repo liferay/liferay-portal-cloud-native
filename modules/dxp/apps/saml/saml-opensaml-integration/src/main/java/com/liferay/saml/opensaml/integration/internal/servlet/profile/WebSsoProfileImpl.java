@@ -334,7 +334,7 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 		SamlSsoRequestContext samlSsoRequestContext = null;
 
 		String samlMessageId = ParamUtil.getString(
-			httpServletRequest, "saml_message_id");
+			httpServletRequest, "samlMessageId");
 
 		if (!Validator.isBlank(samlMessageId)) {
 			samlSsoRequestContext = _decodeAuthnConversationAfterLogin(
@@ -1096,7 +1096,7 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 
 		if (samlSsoRequestContexts != null) {
 			samlSsoRequestContext = samlSsoRequestContexts.remove(
-				ParamUtil.getString(httpServletRequest, "saml_message_id"));
+				ParamUtil.getString(httpServletRequest, "samlMessageId"));
 		}
 
 		if (samlSsoRequestContext != null) {
@@ -1944,7 +1944,7 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 					httpSession, samlMessageInfoContext.getMessageId(),
 					samlSsoRequestContext);
 
-				redirectSB.append("?saml_message_id=");
+				redirectSB.append("?samlMessageId=");
 				redirectSB.append(
 					URLCodec.encodeURL(samlMessageInfoContext.getMessageId()));
 			}
@@ -1958,7 +1958,7 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 			redirectSB.append("?entityId=");
 			redirectSB.append(
 				URLCodec.encodeURL(samlPeerEntityContext.getEntityId()));
-			redirectSB.append("&saml_message_id=");
+			redirectSB.append("&samlMessageId=");
 			redirectSB.append(samlMessageId);
 		}
 
