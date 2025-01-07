@@ -443,7 +443,6 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 			new AtomicReference<>();
 
 		_assertInboundMessageContext(
-			samlSsoRequestContext,
 			inboundMessageContext -> {
 				SAMLMessageInfoContext samlMessageInfoContext =
 					inboundMessageContext.getSubcontext(
@@ -453,7 +452,8 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 					samlMessageInfoContext.getMessageId());
 
 				Assert.assertNotNull(messageIdAtomicReference.get());
-			});
+			},
+			samlSsoRequestContext);
 
 		mockHttpServletRequest = getMockHttpServletRequest(
 			SSO_URL + "?samlMessageId=" + messageIdAtomicReference.get());
@@ -480,7 +480,6 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		Assert.assertEquals(1000, samlSsoRequestContext.getUserId());
 
 		_assertInboundMessageContext(
-			samlSsoRequestContext,
 			inboundMessageContext -> {
 				Assert.assertNotNull(inboundMessageContext.getMessage());
 
@@ -491,7 +490,8 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 				Assert.assertEquals(
 					messageIdAtomicReference.get(),
 					samlMessageInfoContext.getMessageId());
-			});
+			},
+			samlSsoRequestContext);
 
 		_assertSamlSsoRequestContexts(0, mockHttpServletRequest.getSession());
 	}
@@ -530,7 +530,6 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 			new AtomicReference<>();
 
 		_assertInboundMessageContext(
-			samlSsoRequestContext,
 			inboundMessageContext -> {
 				SAMLMessageInfoContext samlMessageInfoContext =
 					inboundMessageContext.getSubcontext(
@@ -540,7 +539,8 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 					samlMessageInfoContext.getMessageId());
 
 				Assert.assertNotNull(messageIdAtomicReference.get());
-			});
+			},
+			samlSsoRequestContext);
 
 		mockHttpServletRequest = getMockHttpServletRequest(
 			SSO_URL + "?samlMessageId=" + messageIdAtomicReference.get());
@@ -572,7 +572,6 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		Assert.assertEquals(1000, samlSsoRequestContext.getUserId());
 
 		_assertInboundMessageContext(
-			samlSsoRequestContext,
 			inboundMessageContext -> {
 				Assert.assertNotNull(inboundMessageContext.getMessage());
 
@@ -583,7 +582,8 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 				Assert.assertEquals(
 					messageIdAtomicReference.get(),
 					messageInfoContext.getMessageId());
-			});
+			},
+			samlSsoRequestContext);
 
 		_assertSamlSsoRequestContexts(1, mockHttpServletRequest.getSession());
 	}
@@ -630,14 +630,14 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 			SP_ENTITY_ID, SPSSODescriptor.class);
 
 		_assertInboundMessageContext(
-			samlSsoRequestContext,
 			inboundMessageContext -> {
 				AuthnRequest authnRequest =
 					(AuthnRequest)inboundMessageContext.getMessage();
 
 				Assert.assertEquals(identifiers.get(0), authnRequest.getID());
 				Assert.assertFalse(authnRequest.isForceAuthn());
-			});
+			},
+			samlSsoRequestContext);
 
 		Assert.assertEquals(2, identifiers.size());
 		Assert.assertTrue(samlSsoRequestContext.isNewSession());
@@ -723,13 +723,13 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 				new MockHttpServletResponse());
 
 		_assertInboundMessageContext(
-			samlSsoRequestContext,
 			inboundMessageContext -> {
 				AuthnRequest authnRequest =
 					(AuthnRequest)inboundMessageContext.getMessage();
 
 				Assert.assertTrue(authnRequest.isForceAuthn());
-			});
+			},
+			samlSsoRequestContext);
 	}
 
 	@Test(expected = SignatureException.class)
@@ -1259,8 +1259,8 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 	}
 
 	private void _assertInboundMessageContext(
-		SamlSsoRequestContext samlSsoRequestContext,
-		Consumer<MessageContext<?>> consumer) {
+		Consumer<MessageContext<?>> consumer,
+		SamlSsoRequestContext samlSsoRequestContext) {
 
 		InOutOperationContext<?, ?> inOutOperationContext =
 			_getMessageContextSubcontext(
