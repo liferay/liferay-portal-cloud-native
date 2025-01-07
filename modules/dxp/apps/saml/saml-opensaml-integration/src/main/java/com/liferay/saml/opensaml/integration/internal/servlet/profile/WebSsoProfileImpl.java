@@ -1086,13 +1086,13 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 			HttpServletResponse httpServletResponse)
 		throws Exception {
 
+		SamlSsoRequestContext samlSsoRequestContext = null;
+
 		HttpSession httpSession = httpServletRequest.getSession();
 
 		Map<String, SamlSsoRequestContext> samlSsoRequestContexts =
 			(Map<String, SamlSsoRequestContext>)httpSession.getAttribute(
 				SamlWebKeys.SAML_SSO_REQUEST_CONTEXT);
-
-		SamlSsoRequestContext samlSsoRequestContext = null;
 
 		if (samlSsoRequestContexts != null) {
 			samlSsoRequestContext = samlSsoRequestContexts.remove(
