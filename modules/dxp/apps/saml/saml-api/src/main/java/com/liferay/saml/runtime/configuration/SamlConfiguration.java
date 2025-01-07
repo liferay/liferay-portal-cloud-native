@@ -55,11 +55,6 @@ public interface SamlConfiguration {
 	)
 	public int getIdpSsoSessionCheckInterval();
 
-	/**
-	 * Set the maximum amount of SAML SSO Request Contexts which can exist
-	 * within one session.  Once the maximum amount has been reached, new
-	 * contexts will begin replacing the oldest contexts.
-	 */
 	@Meta.AD(
 		deflt = "50",
 		description = "saml-max-saml-sso-request-contexts-description",
