@@ -77,16 +77,16 @@ public class RESTClientTemplateContextContributor
 		private Object _get(String path) throws Exception {
 			UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
-			ServletContext servletContext = _getServletContext();
-
-			RequestDispatcher requestDispatcher =
-				servletContext.getRequestDispatcher(Portal.PATH_MODULE + path);
+			AccessControlContext accessControlContext =
+				AccessControlUtil.getAccessControlContext();
 
 			HttpServletResponse httpServletResponse = new PipingServletResponse(
 				new RESTClientHttpResponse(), unsyncStringWriter);
 
-			AccessControlContext accessControlContext =
-				AccessControlUtil.getAccessControlContext();
+			ServletContext servletContext = _getServletContext();
+
+			RequestDispatcher requestDispatcher =
+				servletContext.getRequestDispatcher(Portal.PATH_MODULE + path);
 
 			PermissionChecker permissionChecker =
 				PermissionThreadLocal.getPermissionChecker();
@@ -105,7 +105,6 @@ public class RESTClientTemplateContextContributor
 			}
 			finally {
 				AccessControlUtil.setAccessControlContext(accessControlContext);
-
 				PermissionThreadLocal.setPermissionChecker(permissionChecker);
 			}
 
