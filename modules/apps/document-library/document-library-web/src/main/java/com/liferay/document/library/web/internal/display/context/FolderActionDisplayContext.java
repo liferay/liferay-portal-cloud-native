@@ -1064,13 +1064,14 @@ public class FolderActionDisplayContext {
 			return _subscribed;
 		}
 
-		_subscribed = false;
-
 		if (_hasSubscribePermission()) {
 			_subscribed = DLSubscriptionUtil.isSubscribedToFolder(
 				_dlRequestHelper.getCompanyId(),
 				_dlRequestHelper.getScopeGroupId(), _themeDisplay.getUserId(),
 				_getFolderId());
+		}
+		else {
+			_subscribed = false;
 		}
 
 		return _subscribed;
