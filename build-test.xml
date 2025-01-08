@@ -7897,7 +7897,6 @@ ${docker.start.error}</fail>
 									}
 								}
 							}
-						}
 						]]>
 					</beanshell>
 				</then>
