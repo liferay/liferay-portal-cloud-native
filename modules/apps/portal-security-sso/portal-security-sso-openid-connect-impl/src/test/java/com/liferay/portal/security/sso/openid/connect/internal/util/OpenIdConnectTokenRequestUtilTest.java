@@ -72,35 +72,6 @@ public class OpenIdConnectTokenRequestUtilTest {
 		_refreshToken = Mockito.mock(RefreshToken.class);
 		_tokenRequestParameters = "{}";
 
-		HTTPRequest httpRequest = Mockito.mock(HTTPRequest.class);
-
-		HTTPResponse httpResponse = Mockito.mock(HTTPResponse.class);
-
-		new MockServerClient(
-			"localhost", 63636
-		).when(
-			HttpRequest.request(
-			).withMethod(
-				"POST"
-			),
-			Times.unlimited()
-		).respond(
-			HttpResponse.response(
-			).withBody(
-				String.valueOf(httpResponse)
-			).withHeader(
-				new Header("Content-Type", "application/json")
-			).withStatusCode(
-				200
-			)
-		);
-
-		Mockito.when(
-			httpRequest.send()
-		).thenReturn(
-			httpResponse
-		);
-
 		Mockito.when(
 			_authenticationSuccessResponse.getAuthorizationCode()
 		).thenReturn(
@@ -186,6 +157,8 @@ public class OpenIdConnectTokenRequestUtilTest {
 			new URI[] {URI.create("http://localhost:63636")}
 		);
 
+		HTTPRequest httpRequest = _setUpHttpRequest();
+
 		Mockito.when(
 			Mockito.mock(
 				TokenRequest.class
@@ -219,6 +192,39 @@ public class OpenIdConnectTokenRequestUtilTest {
 			OpenIdConnectTokenRequestUtil.request(
 				_oidcClientInformation, _oidcProviderMetadata, _refreshToken,
 				_tokenRequestParameters));
+	}
+
+	private static HTTPRequest _setUpHttpRequest() throws Exception {
+		HTTPRequest httpRequest = Mockito.mock(HTTPRequest.class);
+
+		HTTPResponse httpResponse = Mockito.mock(HTTPResponse.class);
+
+		new MockServerClient(
+			"localhost", 63636
+		).when(
+			HttpRequest.request(
+			).withMethod(
+				"POST"
+			),
+			Times.unlimited()
+		).respond(
+			HttpResponse.response(
+			).withBody(
+				String.valueOf(httpResponse)
+			).withHeader(
+				new Header("Content-Type", "application/json")
+			).withStatusCode(
+				200
+			)
+		);
+
+		Mockito.when(
+			httpRequest.send()
+		).thenReturn(
+			httpResponse
+		);
+
+		return httpRequest;
 	}
 
 	private static AuthenticationSuccessResponse _authenticationSuccessResponse;
