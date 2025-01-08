@@ -28,9 +28,9 @@ import com.nimbusds.openid.connect.sdk.token.OIDCTokens;
 
 import java.net.URI;
 
-import org.junit.AfterClass;
+import org.junit.After;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -55,8 +55,8 @@ public class OpenIdConnectTokenRequestUtilTest {
 	public static final LiferayUnitTestRule liferayUnitTestRule =
 		LiferayUnitTestRule.INSTANCE;
 
-	@BeforeClass
-	public static void setUpClass() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		Mockito.when(
 			_authenticationSuccessResponse.getAuthorizationCode()
 		).thenReturn(
@@ -153,25 +153,28 @@ public class OpenIdConnectTokenRequestUtilTest {
 		);
 	}
 
-	@AfterClass
-	public static void tearDownClass() {
+	@After
+	public void tearDown() {
 		_clientAndServer.stop();
 		_oidcTokenResponseParserMockedStatic.close();
 		_openIdConnectRequestParametersUtilMockedStatic.close();
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void testRequestOIDCAuthorizationGrantWithNullIdToken()
-		throws Exception {
-
-		OpenIdConnectTokenRequestUtil.request(
-			_authenticationSuccessResponse, _codeVerifier, _nonce,
-			_oidcClientInformation, _oidcProviderMetadata,
-			URI.create("http://localhost:63636"), _TOKEN_REQUEST_PARAMETERS);
-	}
-
 	@Test
-	public void testRequestOIDCTokenRefreshWithNullIdToken() throws Exception {
+	public void testRequest() throws Exception {
+		try {
+			OpenIdConnectTokenRequestUtil.request(
+				_authenticationSuccessResponse, _codeVerifier, _nonce,
+				_oidcClientInformation, _oidcProviderMetadata,
+				URI.create("http://localhost:63636"),
+				_TOKEN_REQUEST_PARAMETERS);
+
+			Assert.fail();
+		}
+		catch (NullPointerException nullPointerException) {
+			Assert.assertNotNull(nullPointerException);
+		}
+
 		Assert.assertEquals(
 			_oidcTokens,
 			OpenIdConnectTokenRequestUtil.request(
@@ -179,7 +182,7 @@ public class OpenIdConnectTokenRequestUtilTest {
 				_TOKEN_REQUEST_PARAMETERS));
 	}
 
-	private static HTTPRequest _setUpHttpRequest() throws Exception {
+	private HTTPRequest _setUpHttpRequest() throws Exception {
 		HTTPRequest httpRequest = Mockito.mock(HTTPRequest.class);
 
 		HTTPResponse httpResponse = Mockito.mock(HTTPResponse.class);
@@ -214,27 +217,23 @@ public class OpenIdConnectTokenRequestUtilTest {
 
 	private static final String _TOKEN_REQUEST_PARAMETERS = "{}";
 
-	private static final AuthenticationSuccessResponse
-		_authenticationSuccessResponse = Mockito.mock(
-			AuthenticationSuccessResponse.class);
-	private static final ClientAndServer _clientAndServer =
+	private final AuthenticationSuccessResponse _authenticationSuccessResponse =
+		Mockito.mock(AuthenticationSuccessResponse.class);
+	private final ClientAndServer _clientAndServer =
 		ClientAndServer.startClientAndServer(63636);
-	private static final CodeVerifier _codeVerifier = Mockito.mock(
-		CodeVerifier.class);
-	private static final Nonce _nonce = Mockito.mock(Nonce.class);
-	private static final OIDCClientInformation _oidcClientInformation =
-		Mockito.mock(OIDCClientInformation.class);
-	private static final OIDCProviderMetadata _oidcProviderMetadata =
-		Mockito.mock(OIDCProviderMetadata.class);
-	private static final MockedStatic<OIDCTokenResponseParser>
+	private final CodeVerifier _codeVerifier = Mockito.mock(CodeVerifier.class);
+	private final Nonce _nonce = Mockito.mock(Nonce.class);
+	private final OIDCClientInformation _oidcClientInformation = Mockito.mock(
+		OIDCClientInformation.class);
+	private final OIDCProviderMetadata _oidcProviderMetadata = Mockito.mock(
+		OIDCProviderMetadata.class);
+	private final MockedStatic<OIDCTokenResponseParser>
 		_oidcTokenResponseParserMockedStatic = Mockito.mockStatic(
 			OIDCTokenResponseParser.class);
-	private static final OIDCTokens _oidcTokens = Mockito.mock(
-		OIDCTokens.class);
-	private static final MockedStatic<OpenIdConnectRequestParametersUtil>
+	private final OIDCTokens _oidcTokens = Mockito.mock(OIDCTokens.class);
+	private final MockedStatic<OpenIdConnectRequestParametersUtil>
 		_openIdConnectRequestParametersUtilMockedStatic = Mockito.mockStatic(
 			OpenIdConnectRequestParametersUtil.class);
-	private static final RefreshToken _refreshToken = Mockito.mock(
-		RefreshToken.class);
+	private final RefreshToken _refreshToken = Mockito.mock(RefreshToken.class);
 
 }
