@@ -55,7 +55,7 @@ public class PlaywrightBatchBuildTestrayCaseResult
 
 	@Override
 	public String getErrors() {
-		String testResultErrors = null;
+		String errors = null;
 
 		Build build = getBuild();
 
@@ -66,30 +66,30 @@ public class PlaywrightBatchBuildTestrayCaseResult
 				return "Unable to run build on CI";
 			}
 
+			errors = "Failed prior to running test";
+
 			String result = build.getResult();
 
-			testResultErrors = "Failed prior to running test";
-
 			if (result == null) {
-				testResultErrors = "Unable to finish build on CI";
+				errors = "Unable to finish build on CI";
 			}
 
 			if (result.equals("ABORTED")) {
-				testResultErrors =
+				errors =
 					build.getJobName() + " timed out after 2 hours";
 			}
 
 			if (result.equals("SUCCESS") || result.equals("UNSTABLE")) {
-				testResultErrors = "Unable to run test on CI";
+				errors = "Unable to run test on CI";
 			}
 
 			String failureMessage = build.getFailureMessage();
 
 			if (JenkinsResultsParserUtil.isNullOrEmpty(failureMessage)) {
-				return testResultErrors;
+				return errors;
 			}
 
-			return testResultErrors + ": " + failureMessage;
+			return errors + ": " + failureMessage;
 		}
 
 		if (testResult.isSkipped()) {
@@ -100,36 +100,36 @@ public class PlaywrightBatchBuildTestrayCaseResult
 			return null;
 		}
 
-		testResultErrors = testResult.getErrorDetails();
+		errors = testResult.getErrorDetails();
 
-		if (JenkinsResultsParserUtil.isNullOrEmpty(testResultErrors)) {
-			testResultErrors = build.getFailureMessage();
+		if (JenkinsResultsParserUtil.isNullOrEmpty(errors)) {
+			errors = build.getFailureMessage();
 		}
 
-		if (JenkinsResultsParserUtil.isNullOrEmpty(testResultErrors)) {
+		if (JenkinsResultsParserUtil.isNullOrEmpty(errors)) {
 			return "Failed for unknown reason";
 		}
 
-		String testResultStackTrace = testResult.getErrorStackTrace();
+		String stackTrace = testResult.getErrorStackTrace();
 
-		if (testResultStackTrace.length() > 500) {
-			int index = testResultStackTrace.indexOf("›");
+		if (stackTrace.length() > 500) {
+			int index = stackTrace.indexOf("›");
 
-			return testResultStackTrace.substring(index, 500);
+			return stackTrace.substring(index, 500);
 		}
 
-		if (testResultErrors.contains("\n")) {
-			testResultErrors = testResultErrors.substring(
-				0, testResultErrors.indexOf("\n"));
+		if (errors.contains("\n")) {
+			errors = errors.substring(
+				0, errors.indexOf("\n"));
 		}
 
-		testResultErrors = testResultErrors.trim();
+		errors = errors.trim();
 
-		if (JenkinsResultsParserUtil.isNullOrEmpty(testResultErrors)) {
+		if (JenkinsResultsParserUtil.isNullOrEmpty(errors)) {
 			return "Failed for unknown reason";
 		}
 
-		return testResultErrors;
+		return errors;
 	}
 
 	@Override
