@@ -112,7 +112,7 @@ public class AssetPublisherDisplayContextTest {
 	}
 
 	@Test
-	public void testGetAssetEntryResultsFilterAssetsByTags() throws Exception {
+	public void testGetAssetEntryResultsFilterByAssetTags() throws Exception {
 		String assetTagName = RandomTestUtil.randomString();
 
 		JournalArticle journalArticle = _addJournalArticle(new String[] {assetTagName});
@@ -129,13 +129,13 @@ public class AssetPublisherDisplayContextTest {
 
 		portletPreferences.setValue("selectionStyle", "dynamic");
 
-		_testGetAssetEntryResultsFilterAssetsByTags(_getAssetEntryResults(portletPreferences), 2);
+		_testGetAssetEntryResultsFilterByAssetTags(_getAssetEntryResults(portletPreferences), 2);
 
 		portletPreferences.setValue("queryContains0", "true");
 		portletPreferences.setValue("queryName0", "assetTags");
 		portletPreferences.setValue("queryValues0", assetTagName);
 
-		List<AssetEntry> assetEntries = _testGetAssetEntryResultsFilterAssetsByTags(
+		List<AssetEntry> assetEntries = _testGetAssetEntryResultsFilterByAssetTags(
 			_getAssetEntryResults(portletPreferences), 1);
 
 		Assert.assertEquals(expectedAssetEntry, assetEntries.get(0));
@@ -199,7 +199,7 @@ public class AssetPublisherDisplayContextTest {
 		return _assetEntryLocalService.updateAssetEntry(assetEntry);
 	}
 
-	private List<AssetEntry> _testGetAssetEntryResultsFilterAssetsByTags(
+	private List<AssetEntry> _testGetAssetEntryResultsFilterByAssetTags(
 		List<AssetEntryResult> assetEntryResults, int expectedAssetEntries) {
 
 		Assert.assertEquals(
