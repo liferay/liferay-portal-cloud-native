@@ -129,13 +129,13 @@ public class AssetPublisherDisplayContextTest {
 
 		portletPreferences.setValue("selectionStyle", "dynamic");
 
-		_assertAndGetAssetEntries(_getAssetEntryResults(portletPreferences), 2);
+		_testGetAssetEntryResultsFilterAssetsByTags(_getAssetEntryResults(portletPreferences), 2);
 
 		portletPreferences.setValue("queryContains0", "true");
 		portletPreferences.setValue("queryName0", "assetTags");
 		portletPreferences.setValue("queryValues0", assetTagName);
 
-		List<AssetEntry> assetEntries = _assertAndGetAssetEntries(
+		List<AssetEntry> assetEntries = _testGetAssetEntryResultsFilterAssetsByTags(
 			_getAssetEntryResults(portletPreferences), 1);
 
 		Assert.assertEquals(expectedAssetEntry, assetEntries.get(0));
@@ -199,7 +199,7 @@ public class AssetPublisherDisplayContextTest {
 		return _assetEntryLocalService.updateAssetEntry(entry);
 	}
 
-	private List<AssetEntry> _assertAndGetAssetEntries(
+	private List<AssetEntry> _testGetAssetEntryResultsFilterAssetsByTags(
 		List<AssetEntryResult> assetEntryResults, int expectedAssetEntries) {
 
 		Assert.assertEquals(
