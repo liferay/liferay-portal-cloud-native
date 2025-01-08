@@ -25,14 +25,15 @@ public class CompanyCentralizedThreadLocal<T>
 		List<CompanyCentralizedThreadLocal<?>> companyCentralizedThreadLocals =
 			new ArrayList<>();
 
-		for (CentralizedThreadLocal<?> shortLivedThreadLocal :
-				getShortLivedThreadLocals().keySet()) {
+		for (CentralizedThreadLocal<?> shortLivedCentralizedThreadLocal :
+				getShortLivedCentralizedThreadLocals().keySet()) {
 
-			if (shortLivedThreadLocal instanceof
+			if (shortLivedCentralizedThreadLocal instanceof
 					CompanyCentralizedThreadLocal) {
 
 				companyCentralizedThreadLocals.add(
-					(CompanyCentralizedThreadLocal<?>)shortLivedThreadLocal);
+					(CompanyCentralizedThreadLocal<?>)
+						shortLivedCentralizedThreadLocal);
 			}
 		}
 
