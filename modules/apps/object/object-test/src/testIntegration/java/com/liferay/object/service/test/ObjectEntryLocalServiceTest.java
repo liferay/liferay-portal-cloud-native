@@ -3201,15 +3201,6 @@ public class ObjectEntryLocalServiceTest {
 				"listTypeEntryKeyRequired", "listTypeEntryKey1"
 			).build());
 
-		ObjectField objectField = _objectFieldLocalService.getObjectField(
-			_objectRelationship.getObjectFieldId2());
-
-		String objectRelationshipERCObjectFieldName =
-			ObjectFieldSettingUtil.getValue(
-				ObjectFieldSettingConstants.
-					NAME_OBJECT_RELATIONSHIP_ERC_OBJECT_FIELD_NAME,
-				objectField);
-
 		Map<String, Serializable> systemValues =
 			_objectEntryLocalService.getSystemValues(objectEntry);
 
@@ -3242,6 +3233,9 @@ public class ObjectEntryLocalServiceTest {
 		Map<String, Serializable> values = _objectEntryLocalService.getValues(
 			objectEntry.getObjectEntryId());
 
+		ObjectField objectField = _objectFieldLocalService.getObjectField(
+			_objectRelationship.getObjectFieldId2());
+
 		Assert.assertEquals(0L, values.get("ageOfDeath"));
 		Assert.assertFalse((boolean)values.get("authorOfGospel"));
 		Assert.assertEquals(null, values.get("birthday"));
@@ -3262,7 +3256,12 @@ public class ObjectEntryLocalServiceTest {
 		Assert.assertEquals(0D, values.get("weight"));
 		Assert.assertEquals(0L, values.get(objectField.getName()));
 		Assert.assertEquals(
-			"", values.get(objectRelationshipERCObjectFieldName));
+			"",
+			values.get(
+				ObjectFieldSettingUtil.getValue(
+					ObjectFieldSettingConstants.
+						NAME_OBJECT_RELATIONSHIP_ERC_OBJECT_FIELD_NAME,
+					objectField)));
 		Assert.assertEquals(
 			objectEntry.getObjectEntryId(),
 			values.get(_objectDefinition.getPKObjectFieldName()));
