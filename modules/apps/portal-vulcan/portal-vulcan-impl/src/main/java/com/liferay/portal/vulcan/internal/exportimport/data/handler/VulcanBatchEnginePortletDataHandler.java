@@ -145,7 +145,7 @@ public class VulcanBatchEnginePortletDataHandler
 		ManifestSummary manifestSummary,
 		PortletDataHandlerControl[] portletDataHandlerControls) {
 
-		// TODO The object will not be displayed without count
+		// TODO LPD-45048
 
 		return 1;
 	}
@@ -157,7 +157,7 @@ public class VulcanBatchEnginePortletDataHandler
 				_batchEngineExportTaskService.openContentInputStream(
 					batchEngineExportTask.getBatchEngineExportTaskId())) {
 
-			// TODO We should export the unzipped JSON file
+			// TODO LPD-45048
 
 			File batchZipFile = FileUtil.createTempFile(inputStream);
 
