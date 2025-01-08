@@ -113,9 +113,9 @@ public class AssetPublisherDisplayContextTest {
 
 	@Test
 	public void testGetAssetEntryResultsFilterAssetsByTags() throws Exception {
-		String tag = RandomTestUtil.randomString();
+		String assetTagName = RandomTestUtil.randomString();
 
-		JournalArticle journalArticle = _addJournalArticle(new String[] {tag});
+		JournalArticle journalArticle = _addJournalArticle(new String[] {assetTagName});
 
 		AssetEntry expectedAssetEntry = _assetEntryLocalService.getEntry(
 			JournalArticle.class.getName(),
@@ -133,7 +133,7 @@ public class AssetPublisherDisplayContextTest {
 
 		portletPreferences.setValue("queryContains0", "true");
 		portletPreferences.setValue("queryName0", "assetTags");
-		portletPreferences.setValue("queryValues0", tag);
+		portletPreferences.setValue("queryValues0", assetTagName);
 
 		List<AssetEntry> assetEntries = _assertAndGetAssetEntries(
 			_getAssetEntryResults(portletPreferences), 1);
@@ -167,11 +167,11 @@ public class AssetPublisherDisplayContextTest {
 			Arrays.asList(assetEntry2, assetEntry3, assetEntry1));
 	}
 
-	private JournalArticle _addJournalArticle(String[] tagNames) throws Exception {
+	private JournalArticle _addJournalArticle(String[] assetTagNames) throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		serviceContext.setAssetTagNames(tagNames);
+		serviceContext.setAssetTagNames(assetTagNames);
 
 		return JournalTestUtil.addArticle(
 			_group.getGroupId(),
