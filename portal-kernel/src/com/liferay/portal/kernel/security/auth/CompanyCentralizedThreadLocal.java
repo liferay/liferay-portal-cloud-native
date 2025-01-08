@@ -25,8 +25,12 @@ public class CompanyCentralizedThreadLocal<T>
 		List<CompanyCentralizedThreadLocal<?>> companyCentralizedThreadLocals =
 			new ArrayList<>();
 
+		Map<CentralizedThreadLocal<?>, Object>
+			shortLivedCentralizedThreadLocals =
+				getShortLivedCentralizedThreadLocals();
+
 		for (CentralizedThreadLocal<?> shortLivedCentralizedThreadLocal :
-				getShortLivedCentralizedThreadLocals().keySet()) {
+				shortLivedCentralizedThreadLocals.keySet()) {
 
 			if (shortLivedCentralizedThreadLocal instanceof
 					CompanyCentralizedThreadLocal) {
