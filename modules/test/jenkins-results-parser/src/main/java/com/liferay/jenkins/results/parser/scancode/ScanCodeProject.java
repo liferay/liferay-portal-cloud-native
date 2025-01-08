@@ -473,12 +473,10 @@ public class ScanCodeProject {
 		sb.append("|");
 		sb.append(_projectName);
 		sb.append(">\n");
-
 		sb.append(
 			JenkinsResultsParserUtil.getNounForm(
 				_pipelineNames.size(), "*Pipelines:* ", "*Pipeline:* "));
 		sb.append(String.join(", ", _pipelineNames));
-
 		sb.append("\n");
 		sb.append("*Status:* ");
 		sb.append(
