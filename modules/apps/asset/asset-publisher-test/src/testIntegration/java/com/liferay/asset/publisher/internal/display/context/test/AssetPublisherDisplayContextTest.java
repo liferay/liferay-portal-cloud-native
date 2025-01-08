@@ -94,11 +94,6 @@ public class AssetPublisherDisplayContextTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_group = GroupTestUtil.addGroup();
-
-		_company = _companyLocalService.getCompany(_group.getCompanyId());
-		_layout = LayoutTestUtil.addTypePortletLayout(_group);
-
 		_assetPublisherWebConfiguration = _configurationAdmin.getConfiguration(
 			"com.liferay.asset.publisher.web.internal.configuration." +
 				"AssetPublisherWebConfiguration",
@@ -109,6 +104,11 @@ public class AssetPublisherDisplayContextTest {
 			HashMapDictionaryBuilder.<String, Object>put(
 				"searchWithIndex", false
 			).build());
+
+		_group = GroupTestUtil.addGroup();
+
+		_company = _companyLocalService.getCompany(_group.getCompanyId());
+		_layout = LayoutTestUtil.addTypePortletLayout(_group);
 	}
 
 	@Test
