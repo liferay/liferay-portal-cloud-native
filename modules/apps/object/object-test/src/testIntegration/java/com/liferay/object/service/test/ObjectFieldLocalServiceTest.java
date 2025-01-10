@@ -2619,20 +2619,17 @@ public class ObjectFieldLocalServiceTest {
 			ObjectDefinitionTestUtil.addCustomObjectDefinition(
 				false, Collections.emptyList());
 
-		for (Map.Entry<String, String> readOnlyObjectFieldDBType :
+		for (Map.Entry<String, String> entry :
 				_readOnlyObjectFieldDBTypes.entrySet()) {
 
 			_assertReadOnlyTrue(
 				_objectFieldLocalService.getObjectField(
-					objectDefinition1.getObjectDefinitionId(),
-					readOnlyObjectFieldDBType.getKey()));
+					objectDefinition1.getObjectDefinitionId(), entry.getKey()));
 
 			ObjectField objectField = _objectFieldLocalService.getObjectField(
-				objectDefinition1.getObjectDefinitionId(),
-				readOnlyObjectFieldDBType.getKey());
+				objectDefinition1.getObjectDefinitionId(), entry.getKey());
 
-			Assert.assertEquals(
-				readOnlyObjectFieldDBType.getValue(), objectField.getDBType());
+			Assert.assertEquals(entry.getValue(), objectField.getDBType());
 		}
 
 		_assertReadOnlyFalse(
