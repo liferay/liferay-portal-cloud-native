@@ -284,6 +284,20 @@ const SetupLiferayExperienceCloudPage = ({
 							</Button>
 
 							<hr />
+
+							<ClayForm.Group className="mb-0 pb-1">
+								<Input
+									groupStyle="pb-1"
+									label={i18n.translate('analytics-cloud-owner')}
+									name="lxc.analyticsCloudOwner"
+									required
+									type="text"
+									validations={[
+										(value) =>
+											isValidEmail(value, bannedDomains),
+									]}
+								/>
+							</ClayForm.Group>
 						</>
 					)}
 				/>

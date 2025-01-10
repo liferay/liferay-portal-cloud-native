@@ -90,6 +90,8 @@ export default function useSubmitLXCEnvironment(
 					variables: {
 						LiferayExperienceCloudEnvironment: {
 							accountKey: project.accountKey,
+							analyticsCloudOwner:
+								lxcActivationFields.analyticsCloudOwner,
 							incidentManagementEmailAddress:
 								lxcActivationFields.incidentManagementEmail,
 							incidentManagementFullName:
@@ -150,10 +152,10 @@ export default function useSubmitLXCEnvironment(
 								const lastName = lastNames.join(' ');
 
 								return `
-                                <strong>First Name -</strong> ${firstName}<br>
-                                <strong>Last Name - </strong>${lastName}<br>
-                                <strong>Email Address - </strong>${email}
-                                <br><br>`;
+									<strong>First Name -</strong> ${firstName}<br>
+									<strong>Last Name - </strong>${lastName}<br>
+									<strong>Email Address - </strong>${email}
+									<br><br>`;
 							}
 						);
 
@@ -163,6 +165,8 @@ export default function useSubmitLXCEnvironment(
 						await notificationTemplateService.send(
 							'SETUP-LXC-ENVIRONMENT-NOTIFICATION-TEMPLATE',
 							{
+								'[%ANALYTICS_CLOUD_OWNER%]':
+									lxcActivationFields.analyticsCloudOwner,
 								'[%DATE_AND_TIME_SUBMITTED%]':
 									new Date().toUTCString(),
 								'[%PROJECT_ADMIN%]': adminInfo.join(''),
