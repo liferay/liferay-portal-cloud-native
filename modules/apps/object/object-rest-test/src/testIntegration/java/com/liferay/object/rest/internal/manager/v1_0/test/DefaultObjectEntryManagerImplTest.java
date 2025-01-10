@@ -2335,7 +2335,8 @@ public class DefaultObjectEntryManagerImplTest
 
 		_assignAccountEntryRole(accountEntry1, _buyerRole, _user);
 
-		_testDeleteObjectEntryWithAccountEntryRestricted2(ActionKeys.DELETE, tree);
+		_testDeleteObjectEntryWithAccountEntryRestricted2(
+			ActionKeys.DELETE, tree);
 
 		// Users can delete object entries from accounts that they belong to
 
@@ -2368,12 +2369,14 @@ public class DefaultObjectEntryManagerImplTest
 		_addResourcePermission(
 			ActionKeys.DELETE, _rootObjectDefinition, _accountManagerRole);
 
-		_testDeleteObjectEntryWithAccountEntryRestricted2(ActionKeys.VIEW, tree);
+		_testDeleteObjectEntryWithAccountEntryRestricted2(
+			ActionKeys.VIEW, tree);
 
 		_addResourcePermission(
 			ActionKeys.VIEW, _rootObjectDefinition, _accountManagerRole);
 
-		_testDeleteObjectEntryWithAccountEntryRestricted2(ActionKeys.VIEW, tree);
+		_testDeleteObjectEntryWithAccountEntryRestricted2(
+			ActionKeys.VIEW, tree);
 	}
 
 	@Test
@@ -4708,7 +4711,8 @@ public class DefaultObjectEntryManagerImplTest
 
 		_assignAccountEntryRole(accountEntry1, _buyerRole, _user);
 
-		_testUpdateObjectEntryWithAccountEntryRestricted2(ActionKeys.UPDATE, tree);
+		_testUpdateObjectEntryWithAccountEntryRestricted2(
+			ActionKeys.UPDATE, tree);
 
 		// Users can delete object entries from accounts that they belong to
 
@@ -4742,12 +4746,14 @@ public class DefaultObjectEntryManagerImplTest
 		_addResourcePermission(
 			ActionKeys.UPDATE, _rootObjectDefinition, _accountManagerRole);
 
-		_testUpdateObjectEntryWithAccountEntryRestricted2(ActionKeys.VIEW, tree);
+		_testUpdateObjectEntryWithAccountEntryRestricted2(
+			ActionKeys.VIEW, tree);
 
 		_addResourcePermission(
 			ActionKeys.VIEW, _rootObjectDefinition, _accountManagerRole);
 
-		_testUpdateObjectEntryWithAccountEntryRestricted2(ActionKeys.VIEW, tree);
+		_testUpdateObjectEntryWithAccountEntryRestricted2(
+			ActionKeys.VIEW, tree);
 	}
 
 	@Test
@@ -5353,59 +5359,6 @@ public class DefaultObjectEntryManagerImplTest
 			});
 	}
 
-	private void _testDeleteObjectEntryWithAccountEntryRestricted2(String actionId, Tree tree)
-		throws Exception {
-
-		Node rootNode = tree.getRootNode();
-
-		TreeTestUtil.forEachNodeObjectEntry(
-			tree.iterator(TreeConstants.ITERATOR_TYPE_POST_ORDER),
-			_objectEntryLocalService,
-			objectEntry -> {
-				ObjectDefinition objectDefinition =
-					objectDefinitionLocalService.fetchObjectDefinition(
-						objectEntry.getObjectDefinitionId());
-
-				AssertUtils.assertFailure(
-					PrincipalException.MustHavePermission.class,
-					StringBundler.concat(
-						"User ", _user.getUserId(), " must have ", actionId,
-						" permission for ",
-						_rootObjectDefinition.getClassName(), StringPool.SPACE,
-						rootNode.getPrimaryKey()),
-					() -> _defaultObjectEntryManager.deleteObjectEntry(
-						objectDefinition, objectEntry.getObjectEntryId()));
-			});
-	}
-
-	private void _testUpdateObjectEntryWithAccountEntryRestricted2(String actionId, Tree tree)
-		throws Exception {
-
-		Node rootNode = tree.getRootNode();
-
-		TreeTestUtil.forEachNodeObjectEntry(
-			tree.iterator(), _objectEntryLocalService,
-			objectEntry -> {
-				ObjectDefinition objectDefinition =
-					objectDefinitionLocalService.fetchObjectDefinition(
-						objectEntry.getObjectDefinitionId());
-
-				AssertUtils.assertFailure(
-					PrincipalException.MustHavePermission.class,
-					StringBundler.concat(
-						"User ", _user.getUserId(), " must have ", actionId,
-						" permission for ",
-						_rootObjectDefinition.getClassName(), StringPool.SPACE,
-						rootNode.getPrimaryKey()),
-					() -> _defaultObjectEntryManager.updateObjectEntry(
-						_simpleDTOConverterContext, objectDefinition,
-						objectEntry.getObjectEntryId(),
-						_defaultObjectEntryManager.getObjectEntry(
-							_simpleDTOConverterContext, objectDefinition,
-							objectEntry.getObjectEntryId())));
-			});
-	}
-
 	private void _assertFilteredObjectEntriesSize(
 			String filterString, ObjectDefinition objectDefinition, long size)
 		throws Exception {
@@ -5850,6 +5803,61 @@ public class DefaultObjectEntryManagerImplTest
 
 		_removeResourcePermission(
 			ObjectActionKeys.ADD_OBJECT_ENTRY, _buyerRole);
+	}
+
+	private void _testDeleteObjectEntryWithAccountEntryRestricted2(
+			String actionId, Tree tree)
+		throws Exception {
+
+		Node rootNode = tree.getRootNode();
+
+		TreeTestUtil.forEachNodeObjectEntry(
+			tree.iterator(TreeConstants.ITERATOR_TYPE_POST_ORDER),
+			_objectEntryLocalService,
+			objectEntry -> {
+				ObjectDefinition objectDefinition =
+					objectDefinitionLocalService.fetchObjectDefinition(
+						objectEntry.getObjectDefinitionId());
+
+				AssertUtils.assertFailure(
+					PrincipalException.MustHavePermission.class,
+					StringBundler.concat(
+						"User ", _user.getUserId(), " must have ", actionId,
+						" permission for ",
+						_rootObjectDefinition.getClassName(), StringPool.SPACE,
+						rootNode.getPrimaryKey()),
+					() -> _defaultObjectEntryManager.deleteObjectEntry(
+						objectDefinition, objectEntry.getObjectEntryId()));
+			});
+	}
+
+	private void _testUpdateObjectEntryWithAccountEntryRestricted2(
+			String actionId, Tree tree)
+		throws Exception {
+
+		Node rootNode = tree.getRootNode();
+
+		TreeTestUtil.forEachNodeObjectEntry(
+			tree.iterator(), _objectEntryLocalService,
+			objectEntry -> {
+				ObjectDefinition objectDefinition =
+					objectDefinitionLocalService.fetchObjectDefinition(
+						objectEntry.getObjectDefinitionId());
+
+				AssertUtils.assertFailure(
+					PrincipalException.MustHavePermission.class,
+					StringBundler.concat(
+						"User ", _user.getUserId(), " must have ", actionId,
+						" permission for ",
+						_rootObjectDefinition.getClassName(), StringPool.SPACE,
+						rootNode.getPrimaryKey()),
+					() -> _defaultObjectEntryManager.updateObjectEntry(
+						_simpleDTOConverterContext, objectDefinition,
+						objectEntry.getObjectEntryId(),
+						_defaultObjectEntryManager.getObjectEntry(
+							_simpleDTOConverterContext, objectDefinition,
+							objectEntry.getObjectEntryId())));
+			});
 	}
 
 	private void _updateAndAssertObjectEntryWithPicklistObjectField(
