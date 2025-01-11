@@ -724,7 +724,7 @@ public class MirrorsGetTask extends Task {
 			return true;
 		}
 		catch (IOException ioException) {
-			System.out.println(file.getPath() + " is an invalid Tar Gz file.");
+			System.out.println(file.getPath() + " is an invalid TAR GZ file.");
 
 			return false;
 		}
