@@ -364,7 +364,7 @@ public class JiraRestController extends BaseRestController {
 			return new JSONArray(affectedVersions);
 		}
 		catch (Exception exception) {
-			_log.error("Unable to fetch affected versions", exception);
+			_log.error("Unable to get affected versions", exception);
 		}
 
 		return _affectedVersionsJSONArray;
@@ -397,7 +397,7 @@ public class JiraRestController extends BaseRestController {
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to fetch Jira issue with key " + issueKey,
+					"Unable to get Jira issue with key " + issueKey,
 					exception);
 			}
 		}
@@ -428,7 +428,7 @@ public class JiraRestController extends BaseRestController {
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to fetch user account", exception);
+				_log.warn("Unable to get user account", exception);
 			}
 		}
 
@@ -538,7 +538,7 @@ public class JiraRestController extends BaseRestController {
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to fetch Jira issues with jql " + jql, exception);
+					"Unable to get Jira issues with JQL " + jql, exception);
 			}
 		}
 
