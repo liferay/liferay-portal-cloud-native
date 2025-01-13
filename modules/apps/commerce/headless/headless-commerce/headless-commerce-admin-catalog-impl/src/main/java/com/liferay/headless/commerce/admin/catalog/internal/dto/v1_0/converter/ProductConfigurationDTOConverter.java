@@ -306,12 +306,6 @@ public class ProductConfigurationDTOConverter
 				differences.add("CPTaxCategoryId");
 			}
 
-			if (jsonObject.getBoolean("freeShipping", false) !=
-					cpConfigurationEntry.isFreeShipping()) {
-
-				differences.add("freeShipping");
-			}
-
 			if (jsonObject.getDouble("depth") !=
 					cpConfigurationEntry.getDepth()) {
 
@@ -328,6 +322,12 @@ public class ProductConfigurationDTOConverter
 					cpConfigurationEntry.isDisplayStockQuantity()) {
 
 				differences.add("displayStockQuantity");
+			}
+
+			if (jsonObject.getBoolean("freeShipping", false) !=
+					cpConfigurationEntry.isFreeShipping()) {
+
+				differences.add("freeShipping");
 			}
 
 			if (jsonObject.getDouble("height") !=
