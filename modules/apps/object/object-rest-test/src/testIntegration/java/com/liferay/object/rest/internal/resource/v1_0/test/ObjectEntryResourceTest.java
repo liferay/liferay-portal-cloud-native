@@ -9188,11 +9188,9 @@ public class ObjectEntryResourceTest {
 
 		fileEntry1.setExternalReferenceCode(RandomTestUtil.randomString());
 
-		Group group = GroupTestUtil.addGroup();
-
 		Scope scope = new Scope();
 
-		scope.setExternalReferenceCode(group.getExternalReferenceCode());
+		scope.setExternalReferenceCode(_group.getExternalReferenceCode());
 		scope.setType(Scope.Type.SITE);
 
 		fileEntry1.setScope(scope);
@@ -9235,8 +9233,6 @@ public class ObjectEntryResourceTest {
 			null, Base64.encode(fileContent2.getBytes()),
 			localizedAttachmentI18nValuesJSONObject.getJSONObject("pt_BR"),
 			_jsonFactory.createJSONObject(scope.toString()));
-
-		GroupTestUtil.deleteGroup(group);
 
 		// File with an existing external reference code
 
