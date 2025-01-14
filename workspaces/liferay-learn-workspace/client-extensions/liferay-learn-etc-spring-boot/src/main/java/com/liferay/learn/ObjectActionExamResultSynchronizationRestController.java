@@ -43,7 +43,7 @@ public class ObjectActionExamResultSynchronizationRestController
 		@AuthenticationPrincipal Jwt jwt, @RequestBody String json) {
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Exam result synchronization started");
+			_log.info("Started exam result synchronization");
 		}
 
 		int examResultAmount = 0;
@@ -79,7 +79,7 @@ public class ObjectActionExamResultSynchronizationRestController
 		}
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Exam result synchronization finished");
+			_log.info("Finished exam result synchronization");
 		}
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
