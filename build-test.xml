@@ -7889,8 +7889,8 @@ ${docker.start.error}</fail>
 
 									String javaJDKHome = project.getProperty("java.jdk.home");
 
-									if (!JenkinsResultsParserUtil.isNullOrEmpty(path) &&
-										!JenkinsResultsParserUtil.isNullOrEmpty(javaJDKHome) &&
+									if (!JenkinsResultsParserUtil.isNullOrEmpty(javaJDKHome) &&
+										!JenkinsResultsParserUtil.isNullOrEmpty(path) &&
 										!javaHome.equals(javaJDKHome)) {
 
 										path = javaJDKHome + "/bin:" + path;
