@@ -62,18 +62,13 @@ public class MarketplaceUtil {
 
 		portletPreferences.setValue(
 			"marketplaceAccessToken", jsonObject.getString("access_token"));
-
-		portletPreferences.setValue("marketplaceCode", code);
-
 		portletPreferences.setValue(
 			"marketplaceAccessTokenExpirationTime",
 			String.valueOf(accessTokenExpirationTime));
-
+		portletPreferences.setValue("marketplaceCode", code);
 		portletPreferences.setValue(
 			"marketplaceRefreshToken", jsonObject.getString("refresh_token"));
-
 		portletPreferences.setValue("marketplaceServiceURL", serviceURL);
-
 		portletPreferences.setValue("marketplaceSettings", settings);
 
 		portletPreferences.store();
