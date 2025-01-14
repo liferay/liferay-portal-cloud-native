@@ -510,9 +510,9 @@ public class CPContentHelperImpl implements CPContentHelper {
 			(CommerceContext)httpServletRequest.getAttribute(
 				CommerceWebKeys.COMMERCE_CONTEXT);
 
-		CommerceOrder commerceOrder = commerceContext.getCommerceOrder();
-
 		long commerceOrderTypeId = 0;
+
+		CommerceOrder commerceOrder = commerceContext.getCommerceOrder();
 
 		if (commerceOrder != null) {
 			commerceOrderTypeId = commerceOrder.getCommerceOrderTypeId();
@@ -682,9 +682,9 @@ public class CPContentHelperImpl implements CPContentHelper {
 			(CommerceContext)httpServletRequest.getAttribute(
 				CommerceWebKeys.COMMERCE_CONTEXT);
 
-		CommerceOrder commerceOrder = commerceContext.getCommerceOrder();
-
 		long commerceOrderTypeId = 0;
+
+		CommerceOrder commerceOrder = commerceContext.getCommerceOrder();
 
 		if (commerceOrder != null) {
 			commerceOrderTypeId = commerceOrder.getCommerceOrderTypeId();

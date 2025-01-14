@@ -142,9 +142,9 @@ public class CPDefinitionInfoItemFieldValuesProvider
 			_cpDefinitionInventoryEngineRegistry.getCPDefinitionInventoryEngine(
 				cpDefinitionInventory);
 
-		CommerceContext commerceContext = CommerceContextThreadLocal.get();
-
 		long cpConfigurationListId = 0;
+
+		CommerceContext commerceContext = CommerceContextThreadLocal.get();
 
 		if (commerceContext != null) {
 			cpConfigurationListId = commerceContext.getCPConfigurationListId(
@@ -582,9 +582,9 @@ public class CPDefinitionInfoItemFieldValuesProvider
 			_cpDefinitionInventoryEngineRegistry.getCPDefinitionInventoryEngine(
 				cpDefinitionInventory);
 
-		CommerceContext commerceContext = CommerceContextThreadLocal.get();
-
 		long cpConfigurationListId = 0;
+
+		CommerceContext commerceContext = CommerceContextThreadLocal.get();
 
 		if (commerceContext != null) {
 			cpConfigurationListId = commerceContext.getCPConfigurationListId(
