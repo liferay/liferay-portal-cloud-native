@@ -6,7 +6,6 @@
 package com.liferay.marketplace.settings.web.internal.util;
 
 import com.liferay.marketplace.settings.web.internal.model.Authorization;
-import com.liferay.marketplace.settings.web.internal.model.Payload;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -15,7 +14,6 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.util.PropsValues;
 
 import java.net.URLEncoder;
@@ -31,15 +29,16 @@ import javax.portlet.PortletPreferences;
 public class MarketplaceHttpUtil {
 
 	public static Authorization exchangeToken(
-			long companyId, Payload payload, String refreshToken)
+			long companyId, String code, String codeVerifier,
+			String refreshToken, String serviceURL, String settings)
 		throws Exception {
 
 		HashMap<String, String> hashMapBuilder = HashMapBuilder.put(
 			"client_id", PropsValues.MARKETPLACE_CLIENT_ID
 		).put(
-			"code", payload.code
+			"code", code
 		).put(
-			"code_verifier", payload.codeVerifier
+			"code_verifier", codeVerifier
 		).put(
 			"grant_type", "authorization_code"
 		).put(
@@ -74,24 +73,19 @@ public class MarketplaceHttpUtil {
 				(jsonObject.getLong("expires_in") * 1000);
 
 		portletPreferences.setValue(
-			"marketplaceAccessToken",
-			jsonObject.getString("access_token"));
+			"marketplaceAccessToken", jsonObject.getString("access_token"));
 
-		portletPreferences.setValue("marketplaceCode", payload.code);
-
-		portletPreferences.setValue(
-			"marketplaceAccessTokenExpiresIn",
-			String.valueOf(tokenExpiresIn));
+		portletPreferences.setValue("marketplaceCode", code);
 
 		portletPreferences.setValue(
-			"marketplaceRefreshToken",
-			jsonObject.getString("refresh_token"));
+			"marketplaceAccessTokenExpiresIn", String.valueOf(tokenExpiresIn));
 
 		portletPreferences.setValue(
-			"marketplaceServiceURL", payload.serviceURL);
+			"marketplaceRefreshToken", jsonObject.getString("refresh_token"));
 
-		portletPreferences.setValue(
-			"marketplaceSettings", payload.settings);
+		portletPreferences.setValue("marketplaceServiceURL", serviceURL);
+
+		portletPreferences.setValue("marketplaceSettings", settings);
 
 		portletPreferences.store();
 

@@ -7,7 +7,6 @@ package com.liferay.marketplace.settings.web.internal.portlet.action;
 
 import com.liferay.configuration.admin.constants.ConfigurationAdminPortletKeys;
 import com.liferay.marketplace.settings.web.internal.model.Authorization;
-import com.liferay.marketplace.settings.web.internal.model.Payload;
 import com.liferay.marketplace.settings.web.internal.util.MarketplaceHttpUtil;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
@@ -15,7 +14,6 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCResourceCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import javax.portlet.ResourceRequest;
@@ -46,8 +44,7 @@ public class GetAuthorizationMVCResourceCommand extends BaseMVCResourceCommand {
 
 		Authorization authorization = new Authorization(
 			PrefsPropsUtil.getString(
-				themeDisplay.getCompanyId(),
-				"marketplaceAccessToken"),
+				themeDisplay.getCompanyId(), "marketplaceAccessToken"),
 			PrefsPropsUtil.getLong(
 				themeDisplay.getCompanyId(),
 				"marketplaceAccessTokenExpiresIn"));
@@ -55,20 +52,15 @@ public class GetAuthorizationMVCResourceCommand extends BaseMVCResourceCommand {
 		if (System.currentTimeMillis() > authorization.expiresIn) {
 			authorization = MarketplaceHttpUtil.exchangeToken(
 				themeDisplay.getCompanyId(),
-				new Payload(
-					PrefsPropsUtil.getString(
-						themeDisplay.getCompanyId(),
-						"marketplaceCode"),
-					null,
-					PrefsPropsUtil.getString(
-						themeDisplay.getCompanyId(),
-						"marketplaceServiceURL"),
-					PrefsPropsUtil.getString(
-						themeDisplay.getCompanyId(),
-						"marketplaceSettings")),
 				PrefsPropsUtil.getString(
-					themeDisplay.getCompanyId(),
-					"marketplaceRefreshToken"));
+					themeDisplay.getCompanyId(), "marketplaceCode"),
+				null,
+				PrefsPropsUtil.getString(
+					themeDisplay.getCompanyId(), "marketplaceRefreshToken"),
+				PrefsPropsUtil.getString(
+					themeDisplay.getCompanyId(), "marketplaceServiceURL"),
+				PrefsPropsUtil.getString(
+					themeDisplay.getCompanyId(), "marketplaceSettings"));
 		}
 
 		JSONPortletResponseUtil.writeJSON(

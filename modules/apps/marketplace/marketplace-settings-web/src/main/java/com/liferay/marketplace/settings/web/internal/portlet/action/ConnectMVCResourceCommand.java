@@ -7,7 +7,6 @@ package com.liferay.marketplace.settings.web.internal.portlet.action;
 
 import com.liferay.configuration.admin.constants.ConfigurationAdminPortletKeys;
 import com.liferay.marketplace.settings.web.internal.model.Authorization;
-import com.liferay.marketplace.settings.web.internal.model.Payload;
 import com.liferay.marketplace.settings.web.internal.util.MarketplaceHttpUtil;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
@@ -55,12 +54,10 @@ public class ConnectMVCResourceCommand extends BaseMVCResourceCommand {
 
 		Authorization authorization = MarketplaceHttpUtil.exchangeToken(
 			themeDisplay.getCompanyId(),
-			new Payload(
-				ParamUtil.getString(resourceRequest, "code"),
-				ParamUtil.getString(resourceRequest, "codeVerifier"),
-				ParamUtil.getString(resourceRequest, "serviceURL"),
-				ParamUtil.getString(resourceRequest, "settings")),
-			null);
+			ParamUtil.getString(resourceRequest, "code"),
+			ParamUtil.getString(resourceRequest, "codeVerifier"), null,
+			ParamUtil.getString(resourceRequest, "serviceURL"),
+			ParamUtil.getString(resourceRequest, "settings"));
 
 		JSONPortletResponseUtil.writeJSON(
 			resourceRequest, resourceResponse,

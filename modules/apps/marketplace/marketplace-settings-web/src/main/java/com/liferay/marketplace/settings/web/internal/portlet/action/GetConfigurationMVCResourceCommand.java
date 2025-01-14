@@ -45,8 +45,7 @@ public class GetConfigurationMVCResourceCommand extends BaseMVCResourceCommand {
 
 		boolean authorized = Validator.isNotNull(
 			PrefsPropsUtil.getString(
-				themeDisplay.getCompanyId(),
-				"marketplaceAccessToken"));
+				themeDisplay.getCompanyId(), "marketplaceAccessToken"));
 
 		JSONObject jsonObject = _jsonFactory.createJSONObject(
 		).put(
@@ -60,14 +59,12 @@ public class GetConfigurationMVCResourceCommand extends BaseMVCResourceCommand {
 				).put(
 					"serviceURL",
 					PrefsPropsUtil.getString(
-						themeDisplay.getCompanyId(),
-						"marketplaceServiceURL")
+						themeDisplay.getCompanyId(), "marketplaceServiceURL")
 				).put(
 					"settings",
 					_jsonFactory.createJSONObject(
 						PrefsPropsUtil.getString(
-							themeDisplay.getCompanyId(),
-							"marketplaceSettings"))
+							themeDisplay.getCompanyId(), "marketplaceSettings"))
 				).put(
 					"url", PrefsPropsUtil.getString(PropsKeys.MARKETPLACE_URL)
 				));
