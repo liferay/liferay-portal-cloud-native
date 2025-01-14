@@ -6,9 +6,9 @@
 package com.liferay.marketplace.settings.web.internal.portlet.action;
 
 import com.liferay.configuration.admin.constants.ConfigurationAdminPortletKeys;
-import com.liferay.marketplace.settings.web.internal.model.Authorization;
 import com.liferay.marketplace.settings.web.internal.util.MarketplaceHttpUtil;
 import com.liferay.portal.kernel.json.JSONFactory;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCResourceCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
@@ -52,7 +52,7 @@ public class ConnectMVCResourceCommand extends BaseMVCResourceCommand {
 			throw new PrincipalException.MustBeCompanyAdmin(permissionChecker);
 		}
 
-		Authorization authorization = MarketplaceHttpUtil.exchangeToken(
+		JSONObject jsonObject = MarketplaceHttpUtil.exchangeToken(
 			themeDisplay.getCompanyId(),
 			ParamUtil.getString(resourceRequest, "code"),
 			ParamUtil.getString(resourceRequest, "codeVerifier"), null,
@@ -63,7 +63,8 @@ public class ConnectMVCResourceCommand extends BaseMVCResourceCommand {
 			resourceRequest, resourceResponse,
 			_jsonFactory.createJSONObject(
 			).put(
-				"success", Validator.isNotNull(authorization.accessToken)
+				"success",
+				Validator.isNotNull(jsonObject.getString("access_token"))
 			));
 	}
 

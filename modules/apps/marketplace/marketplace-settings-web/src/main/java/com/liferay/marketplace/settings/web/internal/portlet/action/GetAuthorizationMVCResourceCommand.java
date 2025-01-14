@@ -6,9 +6,9 @@
 package com.liferay.marketplace.settings.web.internal.portlet.action;
 
 import com.liferay.configuration.admin.constants.ConfigurationAdminPortletKeys;
-import com.liferay.marketplace.settings.web.internal.model.Authorization;
 import com.liferay.marketplace.settings.web.internal.util.MarketplaceHttpUtil;
 import com.liferay.portal.kernel.json.JSONFactory;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCResourceCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
@@ -42,15 +42,14 @@ public class GetAuthorizationMVCResourceCommand extends BaseMVCResourceCommand {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Authorization authorization = new Authorization(
-			PrefsPropsUtil.getString(
-				themeDisplay.getCompanyId(), "marketplaceAccessToken"),
-			PrefsPropsUtil.getLong(
-				themeDisplay.getCompanyId(),
-				"marketplaceAccessTokenExpiresIn"));
+		String accessToken = PrefsPropsUtil.getString(
+			themeDisplay.getCompanyId(), "marketplaceAccessToken");
+		long accessTokenExpirationTime = PrefsPropsUtil.getLong(
+			themeDisplay.getCompanyId(),
+			"marketplaceAccessTokenExpirationTime");
 
-		if (System.currentTimeMillis() > authorization.expiresIn) {
-			authorization = MarketplaceHttpUtil.exchangeToken(
+		if (System.currentTimeMillis() > accessTokenExpirationTime) {
+			JSONObject jsonObject = MarketplaceHttpUtil.exchangeToken(
 				themeDisplay.getCompanyId(),
 				PrefsPropsUtil.getString(
 					themeDisplay.getCompanyId(), "marketplaceCode"),
@@ -61,15 +60,19 @@ public class GetAuthorizationMVCResourceCommand extends BaseMVCResourceCommand {
 					themeDisplay.getCompanyId(), "marketplaceServiceURL"),
 				PrefsPropsUtil.getString(
 					themeDisplay.getCompanyId(), "marketplaceSettings"));
+
+			accessToken = jsonObject.getString("access_token");
+			accessTokenExpirationTime = jsonObject.getLong(
+				"access_token_expiration_time");
 		}
 
 		JSONPortletResponseUtil.writeJSON(
 			resourceRequest, resourceResponse,
 			_jsonFactory.createJSONObject(
 			).put(
-				"accessToken", authorization.accessToken
+				"accessToken", accessToken
 			).put(
-				"expiresIn", authorization.expiresIn
+				"accessTokenExpirationTime", accessTokenExpirationTime
 			));
 	}
 

@@ -51,7 +51,7 @@ public class DisconnectMVCResourceCommand extends BaseMVCResourceCommand {
 			themeDisplay.getCompanyId());
 
 		portletPreferences.reset("marketplaceAccessToken");
-		portletPreferences.reset("marketplaceAccessTokenExpiresIn");
+		portletPreferences.reset("marketplaceAccessTokenExpirationTime");
 		portletPreferences.reset("marketplaceCode");
 		portletPreferences.reset("marketplaceServiceURL");
 		portletPreferences.reset("marketplaceRefreshToken");

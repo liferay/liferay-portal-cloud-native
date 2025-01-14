@@ -5,7 +5,6 @@
 
 package com.liferay.marketplace.settings.web.internal.util;
 
-import com.liferay.marketplace.settings.web.internal.model.Authorization;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -28,7 +27,7 @@ import javax.portlet.PortletPreferences;
  */
 public class MarketplaceHttpUtil {
 
-	public static Authorization exchangeToken(
+	public static JSONObject exchangeToken(
 			long companyId, String code, String codeVerifier,
 			String refreshToken, String serviceURL, String settings)
 		throws Exception {
@@ -65,12 +64,15 @@ public class MarketplaceHttpUtil {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			new String(HttpUtil.URLtoByteArray(options)));
 
-		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(
-			companyId);
-
-		long tokenExpiresIn =
+		long accessTokenExpirationTime =
 			System.currentTimeMillis() +
 				(jsonObject.getLong("expires_in") * 1000);
+
+		jsonObject.put(
+			"access_token_expiration_time", accessTokenExpirationTime);
+
+		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(
+			companyId);
 
 		portletPreferences.setValue(
 			"marketplaceAccessToken", jsonObject.getString("access_token"));
@@ -78,7 +80,8 @@ public class MarketplaceHttpUtil {
 		portletPreferences.setValue("marketplaceCode", code);
 
 		portletPreferences.setValue(
-			"marketplaceAccessTokenExpiresIn", String.valueOf(tokenExpiresIn));
+			"marketplaceAccessTokenExpirationTime",
+			String.valueOf(accessTokenExpirationTime));
 
 		portletPreferences.setValue(
 			"marketplaceRefreshToken", jsonObject.getString("refresh_token"));
@@ -89,8 +92,7 @@ public class MarketplaceHttpUtil {
 
 		portletPreferences.store();
 
-		return new Authorization(
-			jsonObject.getString("access_token"), tokenExpiresIn);
+		return jsonObject;
 	}
 
 	private static String _toFormEncodedString(Map<String, String> map)
