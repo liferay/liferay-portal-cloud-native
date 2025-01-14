@@ -47,10 +47,10 @@ public class GetAuthorizationMVCResourceCommand extends BaseMVCResourceCommand {
 		Authorization authorization = new Authorization(
 			PrefsPropsUtil.getString(
 				themeDisplay.getCompanyId(),
-				PropsKeys.MARKETPLACE_ACCESS_TOKEN),
+				"marketplaceAccessToken"),
 			PrefsPropsUtil.getLong(
 				themeDisplay.getCompanyId(),
-				PropsKeys.MARKETPLACE_ACCESS_TOKEN_EXPIRES_IN));
+				"marketplaceAccessTokenExpiresIn"));
 
 		if (System.currentTimeMillis() > authorization.expiresIn) {
 			authorization = MarketplaceHttpUtil.exchangeToken(
@@ -58,17 +58,17 @@ public class GetAuthorizationMVCResourceCommand extends BaseMVCResourceCommand {
 				new Payload(
 					PrefsPropsUtil.getString(
 						themeDisplay.getCompanyId(),
-						PropsKeys.MARKETPLACE_CODE),
+						"marketplaceCode"),
 					null,
 					PrefsPropsUtil.getString(
 						themeDisplay.getCompanyId(),
-						PropsKeys.MARKETPLACE_SERVICE_URL),
+						"marketplaceServiceURL"),
 					PrefsPropsUtil.getString(
 						themeDisplay.getCompanyId(),
-						PropsKeys.MARKETPLACE_SETTINGS)),
+						"marketplaceSettings")),
 				PrefsPropsUtil.getString(
 					themeDisplay.getCompanyId(),
-					PropsKeys.MARKETPLACE_REFRESH_TOKEN));
+					"marketplaceRefreshToken"));
 		}
 
 		JSONPortletResponseUtil.writeJSON(

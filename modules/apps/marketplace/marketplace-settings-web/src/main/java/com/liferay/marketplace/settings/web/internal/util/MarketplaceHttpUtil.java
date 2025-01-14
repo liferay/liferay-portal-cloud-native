@@ -74,24 +74,24 @@ public class MarketplaceHttpUtil {
 				(jsonObject.getLong("expires_in") * 1000);
 
 		portletPreferences.setValue(
-			PropsKeys.MARKETPLACE_ACCESS_TOKEN,
+			"marketplaceAccessToken",
 			jsonObject.getString("access_token"));
 
-		portletPreferences.setValue(PropsKeys.MARKETPLACE_CODE, payload.code);
+		portletPreferences.setValue("marketplaceCode", payload.code);
 
 		portletPreferences.setValue(
-			PropsKeys.MARKETPLACE_ACCESS_TOKEN_EXPIRES_IN,
+			"marketplaceAccessTokenExpiresIn",
 			String.valueOf(tokenExpiresIn));
 
 		portletPreferences.setValue(
-			PropsKeys.MARKETPLACE_REFRESH_TOKEN,
+			"marketplaceRefreshToken",
 			jsonObject.getString("refresh_token"));
 
 		portletPreferences.setValue(
-			PropsKeys.MARKETPLACE_SERVICE_URL, payload.serviceURL);
+			"marketplaceServiceURL", payload.serviceURL);
 
 		portletPreferences.setValue(
-			PropsKeys.MARKETPLACE_SETTINGS, payload.settings);
+			"marketplaceSettings", payload.settings);
 
 		portletPreferences.store();
 

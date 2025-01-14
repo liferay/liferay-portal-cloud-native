@@ -51,11 +51,11 @@ public class DisconnectMVCResourceCommand extends BaseMVCResourceCommand {
 		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(
 			themeDisplay.getCompanyId());
 
-		portletPreferences.reset(PropsKeys.MARKETPLACE_ACCESS_TOKEN);
-		portletPreferences.reset(PropsKeys.MARKETPLACE_ACCESS_TOKEN_EXPIRES_IN);
-		portletPreferences.reset(PropsKeys.MARKETPLACE_CODE);
-		portletPreferences.reset(PropsKeys.MARKETPLACE_SERVICE_URL);
-		portletPreferences.reset(PropsKeys.MARKETPLACE_REFRESH_TOKEN);
+		portletPreferences.reset("marketplaceAccessToken");
+		portletPreferences.reset("marketplaceAccessTokenExpiresIn");
+		portletPreferences.reset("marketplaceCode");
+		portletPreferences.reset("marketplaceServiceURL");
+		portletPreferences.reset("marketplaceRefreshToken");
 	}
 
 }
