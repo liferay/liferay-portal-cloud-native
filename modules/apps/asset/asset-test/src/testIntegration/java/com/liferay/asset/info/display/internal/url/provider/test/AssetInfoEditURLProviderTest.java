@@ -78,8 +78,6 @@ public class AssetInfoEditURLProviderTest {
 			JournalArticle.class.getName(), journalArticle.getResourcePrimKey(),
 			mockHttpServletRequest);
 
-		Assert.assertNotNull(url);
-
 		Assert.assertTrue(
 			url.contains("articleId=" + journalArticle.getArticleId()));
 		Assert.assertTrue(
