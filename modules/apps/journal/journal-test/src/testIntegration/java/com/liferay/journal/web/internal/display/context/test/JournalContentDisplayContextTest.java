@@ -77,11 +77,9 @@ public class JournalContentDisplayContextTest {
 		mvcPortlet.render(
 			renderRequest, new MockLiferayPortletRenderResponse());
 
-		Object journalContentDisplayContext = renderRequest.getAttribute(
-			"JOURNAL_CONTENT_DISPLAY_CONTEXT#");
-
 		return ReflectionTestUtil.invoke(
-			journalContentDisplayContext, "getArticle", new Class<?>[0]);
+			renderRequest.getAttribute("JOURNAL_CONTENT_DISPLAY_CONTEXT#"),
+			"getArticle", new Class<?>[0]);
 	}
 
 	private MockLiferayPortletRenderRequest
@@ -115,7 +113,6 @@ public class JournalContentDisplayContextTest {
 
 		themeDisplay.setPermissionChecker(
 			PermissionCheckerFactoryUtil.create(user));
-
 		themeDisplay.setRealUser(user);
 
 		themeDisplay.setScopeGroupId(_group.getGroupId());
