@@ -244,11 +244,11 @@ public class AttachmentObjectFieldBusinessType
 			fileEntryId = MapUtil.getLong((Map<String, Object>)value, "id");
 		}
 		else {
-			String stringValue = String.valueOf(value);
+			String valueString = String.valueOf(value);
 
-			if (JSONUtil.isJSONObject(stringValue)) {
+			if (JSONUtil.isJSONObject(valueString)) {
 				JSONObject jsonObject = jsonFactory.createJSONObject(
-					stringValue);
+					valueString);
 
 				fileEntryId = GetterUtil.getLong(jsonObject.get("id"));
 			}
