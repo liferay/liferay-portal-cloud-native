@@ -662,7 +662,7 @@ public class GenerateReportsBuildRunner extends BaseBuildRunner<BuildData> {
 	}
 
 	private void _mergeHTMLFiles(
-		String reportDirPath, boolean deleteFrontendResourceFiles) {
+		String reportDirPath, boolean deleteFrontendFiles) {
 
 		File reportDir = new File(reportDirPath);
 
@@ -704,7 +704,7 @@ public class GenerateReportsBuildRunner extends BaseBuildRunner<BuildData> {
 					newReportFileContent = newReportFileContent.replace(
 						line, scriptElementContent);
 
-					if (deleteFrontendResourceFiles) {
+					if (deleteFrontendFiles) {
 						javaScriptFile.delete();
 					}
 
@@ -735,7 +735,7 @@ public class GenerateReportsBuildRunner extends BaseBuildRunner<BuildData> {
 					newReportFileContent = newReportFileContent.replace(
 						line, styleElementContent);
 
-					if (deleteFrontendResourceFiles) {
+					if (deleteFrontendFiles) {
 						cssFile.delete();
 					}
 				}
