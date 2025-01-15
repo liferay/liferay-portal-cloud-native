@@ -10,23 +10,23 @@ import com.liferay.portal.kernel.exception.PortalException;
 /**
  * @author Brian Wing Shun Chan
  */
-public class LayoutUtilityPageEntryDefaultTemplateException
+public class DefaultLayoutUtilityPageEntryException
 	extends PortalException {
 
-	public LayoutUtilityPageEntryDefaultTemplateException() {
+	public DefaultLayoutUtilityPageEntryException() {
 	}
 
-	public LayoutUtilityPageEntryDefaultTemplateException(String msg) {
+	public DefaultLayoutUtilityPageEntryException(String msg) {
 		super(msg);
 	}
 
-	public LayoutUtilityPageEntryDefaultTemplateException(
+	public DefaultLayoutUtilityPageEntryException(
 		String msg, Throwable throwable) {
 
 		super(msg, throwable);
 	}
 
-	public LayoutUtilityPageEntryDefaultTemplateException(Throwable throwable) {
+	public DefaultLayoutUtilityPageEntryException(Throwable throwable) {
 		super(throwable);
 	}
 

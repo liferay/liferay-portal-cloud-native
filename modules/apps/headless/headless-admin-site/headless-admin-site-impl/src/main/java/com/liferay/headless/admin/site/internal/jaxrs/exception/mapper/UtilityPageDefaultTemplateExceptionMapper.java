@@ -5,7 +5,7 @@
 
 package com.liferay.headless.admin.site.internal.jaxrs.exception.mapper;
 
-import com.liferay.layout.utility.page.exception.LayoutUtilityPageEntryDefaultTemplateException;
+import com.liferay.layout.utility.page.exception.DefaultLayoutUtilityPageEntryException;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
@@ -28,11 +28,11 @@ import org.osgi.service.component.annotations.Component;
 @Provider
 public class UtilityPageDefaultTemplateExceptionMapper
 	extends BaseExceptionMapper
-		<LayoutUtilityPageEntryDefaultTemplateException> {
+		<DefaultLayoutUtilityPageEntryException> {
 
 	@Override
 	protected Problem getProblem(
-		LayoutUtilityPageEntryDefaultTemplateException
+		DefaultLayoutUtilityPageEntryException
 			layoutUtilityPageEntryDefaultTemplateException) {
 
 		return new Problem(layoutUtilityPageEntryDefaultTemplateException);

@@ -8,7 +8,7 @@ package com.liferay.layout.utility.page.service.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.layout.test.util.ContentLayoutTestUtil;
 import com.liferay.layout.utility.page.exception.DuplicateLayoutUtilityPageEntryExternalReferenceCodeException;
-import com.liferay.layout.utility.page.exception.LayoutUtilityPageEntryDefaultTemplateException;
+import com.liferay.layout.utility.page.exception.DefaultLayoutUtilityPageEntryException;
 import com.liferay.layout.utility.page.kernel.constants.LayoutUtilityPageEntryConstants;
 import com.liferay.layout.utility.page.model.LayoutUtilityPageEntry;
 import com.liferay.layout.utility.page.service.LayoutUtilityPageEntryLocalService;
@@ -209,7 +209,7 @@ public class LayoutUtilityPageEntryLocalServiceTest {
 
 			Assert.fail();
 		}
-		catch (LayoutUtilityPageEntryDefaultTemplateException
+		catch (DefaultLayoutUtilityPageEntryException
 					layoutUtilityPageEntryDefaultTemplateException) {
 
 			if (_log.isDebugEnabled()) {
