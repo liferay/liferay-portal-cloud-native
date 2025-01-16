@@ -27,7 +27,7 @@ public class ResourceBundleLoaderAnalyzerPlugin implements AnalyzerPlugin {
 		return modified;
 	}
 
-	protected static String getHeader(Analyzer analyzer) {
+	protected static String getHeaderName(Analyzer analyzer) {
 		String portalVersion = _getPortalVersion(analyzer);
 
 		if ((portalVersion != null) &&

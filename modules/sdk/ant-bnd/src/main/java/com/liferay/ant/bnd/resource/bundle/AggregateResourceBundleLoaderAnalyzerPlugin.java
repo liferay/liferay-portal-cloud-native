@@ -34,17 +34,18 @@ public class AggregateResourceBundleLoaderAnalyzerPlugin
 			return false;
 		}
 
-		String header = ResourceBundleLoaderAnalyzerPlugin.getHeader(analyzer);
+		String headerName = ResourceBundleLoaderAnalyzerPlugin.getHeaderName(
+			analyzer);
 		Set<String> aggregateResourceBundles = parameters.keySet();
 
-		addProvideCapabilities(analyzer, header, aggregateResourceBundles);
-		addRequireCapabilities(analyzer, header, aggregateResourceBundles);
+		addProvideCapabilities(analyzer, headerName, aggregateResourceBundles);
+		addRequireCapabilities(analyzer, headerName, aggregateResourceBundles);
 
 		return true;
 	}
 
 	protected void addProvideCapabilities(
-		Analyzer analyzer, String header,
+		Analyzer analyzer, String headerName,
 		Set<String> aggregateResourceBundles) {
 
 		Parameters provideCapabilityHeaders = new SortedParameters(
@@ -55,7 +56,7 @@ public class AggregateResourceBundleLoaderAnalyzerPlugin
 		attrs.put("aggregate", "true");
 		attrs.put("bundle.symbolic.name", analyzer.getBsn());
 
-		if (header.equals(
+		if (headerName.equals(
 				ResourceBundleLoaderAnalyzerPlugin.
 					LIFERAY_LANGUAGE_RESOURCES)) {
 
@@ -103,7 +104,7 @@ public class AggregateResourceBundleLoaderAnalyzerPlugin
 
 		Parameters parameters = new Parameters();
 
-		parameters.add(header, attrs);
+		parameters.add(headerName, attrs);
 
 		provideCapabilityHeaders.mergeWith(parameters, false);
 
@@ -112,7 +113,7 @@ public class AggregateResourceBundleLoaderAnalyzerPlugin
 	}
 
 	protected void addRequireCapabilities(
-		Analyzer analyzer, String header,
+		Analyzer analyzer, String headerName,
 		Set<String> aggregateResourceBundles) {
 
 		Parameters requireCapabilityHeaders = new SortedParameters(
@@ -128,7 +129,7 @@ public class AggregateResourceBundleLoaderAnalyzerPlugin
 
 			attrs.put("filter:", filter.toString());
 
-			parameters.add(header, attrs);
+			parameters.add(headerName, attrs);
 		}
 
 		requireCapabilityHeaders.mergeWith(parameters, false);
