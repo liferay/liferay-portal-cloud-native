@@ -574,7 +574,7 @@ public class CompanyLocalServiceDBPartitionTest
 
 		String pid = configuration.getPid();
 
-		_createRepositoriesCache(_company1);
+		_createRepositories(_company1);
 
 		_assertCache(_company1.getCompanyId(), true);
 
@@ -750,7 +750,7 @@ public class CompanyLocalServiceDBPartitionTest
 		try (SafeCloseable safeCloseable =
 				CompanyThreadLocal.setCompanyIdWithSafeCloseable(companyId)) {
 
-			// reverse order to generate different classNameIds
+			// Reverse order to generate different class name IDs
 
 			_classNameLocalService.addClassName(_CLASS_NAME_2);
 
@@ -1036,7 +1036,7 @@ public class CompanyLocalServiceDBPartitionTest
 		return _configurationAdmin.getConfiguration(pid);
 	}
 
-	private void _createRepositoriesCache(Company company) throws Exception {
+	private void _createRepositories(Company company) throws Exception {
 		BundleContext bundleContext = SystemBundleUtil.getBundleContext();
 
 		_serviceRegistration = bundleContext.registerService(

@@ -249,8 +249,8 @@ public class ClassNameLocalServiceImpl
 		}
 
 		public static void invalidate(long companyId) {
-			_classNamesMap.remove(companyId);
 			_classNameIdsMap.remove(companyId);
+			_classNamesMap.remove(companyId);
 		}
 
 		public static void remove(ClassName className) {
