@@ -91,8 +91,7 @@ public class UtilityLayoutTypeControllerTest {
 	@Test
 	public void testIncludeLayoutContent() throws Exception {
 		try {
-			_includeLayoutContent(
-				ActionKeys.PREVIEW_DRAFT, Constants.PREVIEW);
+			_includeLayoutContent(ActionKeys.PREVIEW_DRAFT, Constants.PREVIEW);
 
 			Assert.fail();
 		}
@@ -187,8 +186,7 @@ public class UtilityLayoutTypeControllerTest {
 		return user;
 	}
 
-	private boolean _includeLayoutContent(
-			String actionId, String layoutMode)
+	private boolean _includeLayoutContent(String actionId, String layoutMode)
 		throws Exception {
 
 		return _layoutTypeController.includeLayoutContent(

@@ -148,8 +148,7 @@ public class ContentLayoutTypeControllerTest {
 				ActionKeys.UPDATE, _layout, Constants.PREVIEW));
 
 		try {
-			_includeLayoutContent(
-				ActionKeys.VIEW, _layout, Constants.PREVIEW);
+			_includeLayoutContent(ActionKeys.VIEW, _layout, Constants.PREVIEW);
 
 			Assert.fail();
 		}
@@ -315,8 +314,7 @@ public class ContentLayoutTypeControllerTest {
 				ActionKeys.UPDATE, layout, Constants.PREVIEW));
 
 		try {
-			_includeLayoutContent(
-				ActionKeys.VIEW, layout, Constants.PREVIEW);
+			_includeLayoutContent(ActionKeys.VIEW, layout, Constants.PREVIEW);
 
 			Assert.fail();
 		}
