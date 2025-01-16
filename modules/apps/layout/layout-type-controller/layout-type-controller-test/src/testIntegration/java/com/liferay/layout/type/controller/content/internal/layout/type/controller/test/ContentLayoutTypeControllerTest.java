@@ -192,12 +192,11 @@ public class ContentLayoutTypeControllerTest {
 
 		Assert.assertFalse(
 			_layoutTypeController.includeLayoutContent(
-				_getMockHttpServletRequest(null, guestUser),
+				_getMockHttpServletRequest(null, TestPropsValues.getUser()),
 				new MockHttpServletResponse(), _layout));
-
 		Assert.assertFalse(
 			_layoutTypeController.includeLayoutContent(
-				_getMockHttpServletRequest(null, TestPropsValues.getUser()),
+				_getMockHttpServletRequest(null, guestUser),
 				new MockHttpServletResponse(), _layout));
 	}
 
