@@ -842,7 +842,7 @@ public class ObjectEntryLocalServiceTest {
 
 		AssertUtils.assertFailure(
 			ObjectEntryValuesException.InvalidFileExtension.class,
-			"The file extension txt is invalid for object field \"upload\"",
+			"The file extension \"txt\" is invalid for object field \"upload\"",
 			() -> {
 				ObjectField objectField =
 					_objectFieldLocalService.fetchObjectField(
@@ -5026,7 +5026,7 @@ public class ObjectEntryLocalServiceTest {
 				).build()));
 		AssertUtils.assertFailure(
 			ObjectEntryValuesException.InvalidFileExtension.class,
-			"The file extension txt is invalid for object field " +
+			"The file extension \"txt\" is invalid for object field " +
 				"\"localizedAttachment\"",
 			() -> _addObjectEntry(
 				group.getGroupId(), objectDefinition.getObjectDefinitionId(),
