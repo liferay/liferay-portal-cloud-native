@@ -42,7 +42,7 @@ public class ProvidesResourceBundleLoaderAnalyzerPlugin
 
 		if (headerName.equals(
 				ResourceBundleLoaderAnalyzerPlugin.
-					LIFERAY_LANGUAGE_RESOURCES)) {
+					HEADER_NAME_LIFERAY_LANGUAGE_RESOURCES)) {
 
 			attrs.put("module.only", "true");
 		}

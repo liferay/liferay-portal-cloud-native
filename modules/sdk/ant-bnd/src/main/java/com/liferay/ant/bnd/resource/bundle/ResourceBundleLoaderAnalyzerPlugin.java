@@ -34,16 +34,16 @@ public class ResourceBundleLoaderAnalyzerPlugin implements AnalyzerPlugin {
 			(portalVersion.equals("7.3.x") || portalVersion.equals("7.2.x") ||
 			 portalVersion.equals("7.1.x") || portalVersion.equals("7.0.x"))) {
 
-			return LIFERAY_RESOURCE_BUNDLE;
+			return HEADER_NAME_LIFERAY_RESOURCE_BUNDLE;
 		}
 
-		return LIFERAY_LANGUAGE_RESOURCES;
+		return HEADER_NAME_LIFERAY_LANGUAGE_RESOURCES;
 	}
 
-	protected static final String LIFERAY_LANGUAGE_RESOURCES =
+	protected static final String HEADER_NAME_LIFERAY_LANGUAGE_RESOURCES =
 		"liferay.language.resources";
 
-	protected static final String LIFERAY_RESOURCE_BUNDLE =
+	protected static final String HEADER_NAME_LIFERAY_RESOURCE_BUNDLE =
 		"liferay.resource.bundle";
 
 	private static String _getPortalVersion(Analyzer analyzer) {
