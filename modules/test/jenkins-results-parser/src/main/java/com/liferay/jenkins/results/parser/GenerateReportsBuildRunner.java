@@ -139,6 +139,7 @@ public class GenerateReportsBuildRunner extends BaseBuildRunner<BuildData> {
 		}
 		catch (IOException ioException) {
 			System.out.println("Unable to archive report: " + filePath);
+
 			ioException.printStackTrace();
 		}
 	}
@@ -761,6 +762,7 @@ public class GenerateReportsBuildRunner extends BaseBuildRunner<BuildData> {
 		}
 		catch (IOException ioException) {
 			System.out.println("Unable to merge files in: " + reportDirPath);
+
 			ioException.printStackTrace();
 		}
 	}
