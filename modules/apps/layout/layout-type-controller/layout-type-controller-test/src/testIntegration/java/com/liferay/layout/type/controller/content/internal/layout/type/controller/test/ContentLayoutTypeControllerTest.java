@@ -362,18 +362,12 @@ public class ContentLayoutTypeControllerTest {
 		MockHttpServletRequest mockHttpServletRequest =
 			_getMockHttpServletRequest(null, TestPropsValues.getUser());
 
-		_testIncludeLayoutContent(null, mockHttpServletRequest, null);
-		_testIncludeLayoutContent(
-			null, mockHttpServletRequest,
-			String.valueOf(
-				_segmentsExperienceLocalService.
-					fetchDefaultSegmentsExperienceId(_layout.getPlid())));
-		_testIncludeLayoutContent(
-			"http://www.liferay.com", mockHttpServletRequest,
-			String.valueOf(RandomTestUtil.randomLong()));
 		_testIncludeLayoutContent(
 			"http://www.liferay.com", mockHttpServletRequest,
 			RandomTestUtil.randomString());
+		_testIncludeLayoutContent(
+			"http://www.liferay.com", mockHttpServletRequest,
+			String.valueOf(RandomTestUtil.randomLong()));
 
 		Layout layout = LayoutTestUtil.addTypeContentLayout(_group);
 
@@ -382,6 +376,13 @@ public class ContentLayoutTypeControllerTest {
 			String.valueOf(
 				_segmentsExperienceLocalService.
 					fetchDefaultSegmentsExperienceId(layout.getPlid())));
+
+		_testIncludeLayoutContent(
+			null, mockHttpServletRequest,
+			String.valueOf(
+				_segmentsExperienceLocalService.
+					fetchDefaultSegmentsExperienceId(_layout.getPlid())));
+		_testIncludeLayoutContent(null, mockHttpServletRequest, null);
 	}
 
 	private Layout _addTypePageTemplateEntryLayout() throws Exception {
