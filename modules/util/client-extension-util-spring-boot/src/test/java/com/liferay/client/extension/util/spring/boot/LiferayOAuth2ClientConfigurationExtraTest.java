@@ -29,8 +29,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @ContextConfiguration(
 	classes = {
-		LiferayWebMvcConfigurer.class, LiferayOAuth2ClientConfiguration.class,
-		LiferayOAuth2ClientConfigurationExtra.class
+		LiferayOAuth2ClientConfiguration.class,
+		LiferayOAuth2ClientConfigurationExtra.class,
+		LiferayWebMvcConfigurer.class
 	}
 )
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
