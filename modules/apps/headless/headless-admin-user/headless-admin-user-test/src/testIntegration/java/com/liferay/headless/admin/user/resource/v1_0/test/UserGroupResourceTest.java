@@ -305,7 +305,7 @@ public class UserGroupResourceTest extends BaseUserGroupResourceTestCase {
 		return userGroupResource.postUserGroup(userGroup);
 	}
 
-	private void _testGetUserGroupsPageWithFilters() throws Exception {
+	private void _testGetUserGroupsPageWithFilter() throws Exception {
 		Page<UserGroup> page = userGroupResource.getUserGroupsPage(
 			null, null, Pagination.of(1, 10), null);
 
