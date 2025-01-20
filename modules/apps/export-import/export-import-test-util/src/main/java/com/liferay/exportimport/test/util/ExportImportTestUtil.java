@@ -131,8 +131,8 @@ public class ExportImportTestUtil {
 	}
 
 	public static void retryAssert(
-			long timeout, TimeUnit timeoutTimeUnit, long pause,
-			TimeUnit pauseTimeUnit, UnsafeRunnable<Exception> unsafeRunnable)
+			long pause, TimeUnit pauseTimeUnit, long timeout,
+			TimeUnit timeoutTimeUnit, UnsafeRunnable<Exception> unsafeRunnable)
 		throws Exception {
 
 		long deadline =

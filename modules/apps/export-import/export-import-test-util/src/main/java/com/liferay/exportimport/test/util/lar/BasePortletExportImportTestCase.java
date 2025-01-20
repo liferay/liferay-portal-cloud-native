@@ -662,7 +662,7 @@ public abstract class BasePortletExportImportTestCase
 			TestPropsValues.getUserId(), exportImportConfiguration);
 
 		ExportImportTestUtil.retryAssert(
-			5, TimeUnit.SECONDS, 1, TimeUnit.SECONDS,
+			1, TimeUnit.SECONDS, 5, TimeUnit.SECONDS,
 			() -> {
 				BackgroundTask backgroundTask =
 					_backgroundTaskLocalService.getBackgroundTask(

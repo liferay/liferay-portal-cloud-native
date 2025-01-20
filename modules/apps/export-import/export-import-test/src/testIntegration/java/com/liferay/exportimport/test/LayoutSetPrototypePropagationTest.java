@@ -246,7 +246,7 @@ public class LayoutSetPrototypePropagationTest
 			false, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		ExportImportTestUtil.retryAssert(
-			5, TimeUnit.SECONDS, 1, TimeUnit.SECONDS,
+			1, TimeUnit.SECONDS, 5, TimeUnit.SECONDS,
 			() -> Assert.assertEquals(
 				_initialPrototypeLayoutsCount + 1, getGroupLayoutCount()));
 	}
