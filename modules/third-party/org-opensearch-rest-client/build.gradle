@@ -23,7 +23,7 @@ compileJava {
 }
 
 deleteSrcDirectory {
-	delete file('src/main/java/opensearch')
+	delete file("src/main/java/opensearch")
 }
 
 dependencies {
@@ -40,14 +40,12 @@ downloadSrc {
 	File srcTmpDir = new File(temporaryDir, "src")
 
 	if (OSDetector.windows) {
-		executable "cmd.exe"
-
 		args "/c"
+		executable "cmd.exe"
 	}
 	else {
-		executable "/bin/sh"
-
 		args "-c"
+		executable "/bin/sh"
 	}
 
 	args "wget '${srcUrl}' -P '${tempDir}'"
