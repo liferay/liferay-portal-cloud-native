@@ -11,10 +11,8 @@ task unzip(type: Copy)
 createJar {
 	dependsOn downloadSrc
 	dependsOn unzip
-
-	archiveFileName = 'com-liferay-daisydiff-1.2-sources.jar'
+	archiveFileName = "com-liferay-daisydiff-1.2-sources.jar"
 	destinationDirectory = file("$buildDir")
-
 	from "$buildDir/src/daisydiff/tags/v1.2/src/java"
 }
 
