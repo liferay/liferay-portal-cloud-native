@@ -463,6 +463,21 @@ public class FragmentEntryValidatorImplTest {
 	}
 
 	@Test
+	public void testValidateConfigurationInvalidFieldTextDependencyInvalidType()
+		throws Exception {
+
+		expectedException.expect(FragmentEntryConfigurationException.class);
+		expectedException.expectMessage(
+			new StringContains(
+				"Dependency field type should be checkbox, select, or text"));
+
+		_fragmentEntryValidatorImpl.validateConfiguration(
+			_read(
+				"configuration_field_text_typeoptions_dependency_invalid_" +
+					"type.json"));
+	}
+
+	@Test
 	public void testValidateConfigurationInvalidFieldTextDependencyItself()
 		throws Exception {
 
@@ -488,21 +503,6 @@ public class FragmentEntryValidatorImplTest {
 			_read(
 				"configuration_field_text_typeoptions_dependency_unknown_" +
 					"field.json"));
-	}
-
-	@Test
-	public void testValidateConfigurationInvalidFieldTextDependencyWrongType()
-		throws Exception {
-
-		expectedException.expect(FragmentEntryConfigurationException.class);
-		expectedException.expectMessage(
-			new StringContains(
-				"Dependency field type should be checkbox, select, or text"));
-
-		_fragmentEntryValidatorImpl.validateConfiguration(
-			_read(
-				"configuration_field_text_typeoptions_dependency_wrong_type." +
-					"json"));
 	}
 
 	@Test
