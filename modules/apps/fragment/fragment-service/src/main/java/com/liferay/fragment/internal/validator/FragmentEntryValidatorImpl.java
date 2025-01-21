@@ -122,41 +122,6 @@ public class FragmentEntryValidatorImpl implements FragmentEntryValidator {
 		}
 	}
 
-	private void _checkDependencyField(
-			String fieldName, Map<String, JSONObject> fieldJSONObjects,
-			JSONObject typeOptionsJSONObject)
-		throws Exception {
-
-		JSONObject dependencyJSONObject = typeOptionsJSONObject.getJSONObject(
-			"dependency");
-
-		if (dependencyJSONObject == null) {
-			return;
-		}
-
-		for (String key : dependencyJSONObject.keySet()) {
-			if (key.equals(fieldName)) {
-				throw new FragmentEntryConfigurationException(
-					"Dependency field cannot reference itself");
-			}
-
-			if (!fieldJSONObjects.containsKey(key)) {
-				throw new FragmentEntryConfigurationException(
-					"Dependency field cannot depend on field " + key +
-						" that does not exist");
-			}
-
-			JSONObject dependencyFieldJSONObject = fieldJSONObjects.get(key);
-
-			if (!_allowedDependencyTypes.contains(
-					dependencyFieldJSONObject.getString("type"))) {
-
-				throw new FragmentEntryConfigurationException(
-					"Dependency field should be checkbox, text or select");
-			}
-		}
-	}
-
 	private boolean _checkValidationRules(
 		String value, JSONObject validationJSONObject) {
 
@@ -289,8 +254,35 @@ public class FragmentEntryValidatorImpl implements FragmentEntryValidator {
 					}
 				}
 
-				_checkDependencyField(
-					fieldName, fieldJSONObjects, typeOptionsJSONObject);
+				JSONObject dependencyJSONObject =
+					typeOptionsJSONObject.getJSONObject("dependency");
+
+				if (dependencyJSONObject == null) {
+					continue;
+				}
+
+				for (String key : dependencyJSONObject.keySet()) {
+					if (key.equals(fieldName)) {
+						throw new FragmentEntryConfigurationException(
+							"Dependency field cannot reference itself");
+					}
+
+					if (!fieldJSONObjects.containsKey(key)) {
+						throw new FragmentEntryConfigurationException(
+							"Dependency field cannot depend on field " + key +
+								" that does not exist");
+					}
+
+					JSONObject dependencyFieldJSONObject = fieldJSONObjects.get(
+						key);
+
+					if (!_allowedDependencyTypes.contains(
+							dependencyFieldJSONObject.getString("type"))) {
+
+						throw new FragmentEntryConfigurationException(
+							"Dependency field should be checkbox, text or select");
+					}
+				}
 			}
 		}
 	}
