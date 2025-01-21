@@ -56,97 +56,11 @@ public class FragmentEntryValidatorImpl implements FragmentEntryValidator {
 		}
 
 		try {
-			_configurationJSONValidator.validate(configuration);
-
-			JSONObject configurationJSONObject = _jsonFactory.createJSONObject(
-				configuration);
-
-			JSONArray fieldSetsJSONArray = configurationJSONObject.getJSONArray(
-				"fieldSets");
-
-			Set<String> fieldNames = new HashSet<>();
-
-			for (int fieldSetIndex = 0;
-				 fieldSetIndex < fieldSetsJSONArray.length(); fieldSetIndex++) {
-
-				JSONObject fieldSetJSONObject =
-					fieldSetsJSONArray.getJSONObject(fieldSetIndex);
-
-				JSONArray fieldsJSONArray = fieldSetJSONObject.getJSONArray(
-					"fields");
-
-				Map<String, JSONObject> fieldJSONObjects = new HashMap<>(
-					fieldsJSONArray.length());
-
-				for (int fieldIndex = 0; fieldIndex < fieldsJSONArray.length();
-					 fieldIndex++) {
-
-					JSONObject fieldJSONObject = fieldsJSONArray.getJSONObject(
-						fieldIndex);
-
-					String fieldName = fieldJSONObject.getString("name");
-
-					if (fieldNames.contains(fieldName)) {
-						throw new FragmentEntryConfigurationException(
-							"Field names must be unique");
-					}
-
-					fieldNames.add(fieldName);
-
-					fieldJSONObjects.put(fieldName, fieldJSONObject);
-				}
-
-				for (Map.Entry<String, JSONObject> entry : fieldJSONObjects.entrySet()) {
-					JSONObject fieldJSONObject = entry.getValue();
-
-					JSONObject typeOptionsJSONObject =
-						fieldJSONObject.getJSONObject("typeOptions");
-
-					if (typeOptionsJSONObject != null) {
-						String fieldName = entry.getKey();
-
-						String defaultValue = fieldJSONObject.getString(
-							"defaultValue");
-
-						if (!_checkValidationRules(
-								defaultValue,
-								typeOptionsJSONObject.getJSONObject(
-									"validation"))) {
-
-							throw new FragmentEntryConfigurationException(
-								"Invalid default configuration value for " +
-									"field " + fieldName);
-						}
-
-						if (valuesJSONObject != null) {
-							String value = valuesJSONObject.getString(
-								fieldName);
-
-							if (!_checkValidationRules(
-									value,
-									typeOptionsJSONObject.getJSONObject(
-										"validation"))) {
-
-								throw new FragmentEntryConfigurationException(
-									"Invalid configuration value for field " +
-										fieldName);
-							}
-						}
-
-						_checkDependencyField(
-							fieldName, fieldJSONObjects, typeOptionsJSONObject);
-					}
-				}
-			}
+			_validateConfigurationValues(configuration, valuesJSONObject);
 		}
-		catch (JSONException jsonException) {
+		catch (Exception exception) {
 			throw new FragmentEntryConfigurationException(
-				_getMessage(jsonException.getMessage()), jsonException);
-		}
-		catch (JSONValidatorException jsonValidatorException) {
-			throw new FragmentEntryConfigurationException(
-				_getMessage(jsonValidatorException.getMessage()),
-				jsonValidatorException);
+				_getMessage(exception.getMessage()), exception);
 		}
 	}
 
@@ -211,7 +125,7 @@ public class FragmentEntryValidatorImpl implements FragmentEntryValidator {
 	private void _checkDependencyField(
 			String fieldName, Map<String, JSONObject> fieldJSONObjects,
 			JSONObject typeOptionsJSONObject)
-		throws FragmentEntryConfigurationException {
+		throws Exception {
 
 		JSONObject dependencyJSONObject = typeOptionsJSONObject.getJSONObject(
 			"dependency");
@@ -296,6 +210,95 @@ public class FragmentEntryValidatorImpl implements FragmentEntryValidator {
 			_language.get(
 				LocaleUtil.getDefault(), "fragment-configuration-is-invalid"),
 			System.lineSeparator(), message);
+	}
+
+	private void _validateConfigurationValues(
+			String configuration, JSONObject valuesJSONObject)
+		throws Exception {
+
+		_configurationJSONValidator.validate(configuration);
+
+		JSONObject configurationJSONObject = _jsonFactory.createJSONObject(
+			configuration);
+
+		JSONArray fieldSetsJSONArray = configurationJSONObject.getJSONArray(
+			"fieldSets");
+
+		Set<String> fieldNames = new HashSet<>();
+
+		for (int fieldSetIndex = 0; fieldSetIndex < fieldSetsJSONArray.length();
+			 fieldSetIndex++) {
+
+			JSONObject fieldSetJSONObject = fieldSetsJSONArray.getJSONObject(
+				fieldSetIndex);
+
+			JSONArray fieldsJSONArray = fieldSetJSONObject.getJSONArray(
+				"fields");
+
+			Map<String, JSONObject> fieldJSONObjects = new HashMap<>(
+				fieldsJSONArray.length());
+
+			for (int fieldIndex = 0; fieldIndex < fieldsJSONArray.length();
+				 fieldIndex++) {
+
+				JSONObject fieldJSONObject = fieldsJSONArray.getJSONObject(
+					fieldIndex);
+
+				String fieldName = fieldJSONObject.getString("name");
+
+				if (fieldNames.contains(fieldName)) {
+					throw new FragmentEntryConfigurationException(
+						"Field names must be unique");
+				}
+
+				fieldNames.add(fieldName);
+
+				fieldJSONObjects.put(fieldName, fieldJSONObject);
+			}
+
+			for (Map.Entry<String, JSONObject> entry :
+					fieldJSONObjects.entrySet()) {
+
+				JSONObject fieldJSONObject = entry.getValue();
+
+				JSONObject typeOptionsJSONObject =
+					fieldJSONObject.getJSONObject("typeOptions");
+
+				if (typeOptionsJSONObject != null) {
+					String fieldName = entry.getKey();
+
+					String defaultValue = fieldJSONObject.getString(
+						"defaultValue");
+
+					if (!_checkValidationRules(
+							defaultValue,
+							typeOptionsJSONObject.getJSONObject(
+								"validation"))) {
+
+						throw new FragmentEntryConfigurationException(
+							"Invalid default configuration value for field " +
+								fieldName);
+					}
+
+					if (valuesJSONObject != null) {
+						String value = valuesJSONObject.getString(fieldName);
+
+						if (!_checkValidationRules(
+								value,
+								typeOptionsJSONObject.getJSONObject(
+									"validation"))) {
+
+							throw new FragmentEntryConfigurationException(
+								"Invalid configuration value for field " +
+									fieldName);
+						}
+					}
+
+					_checkDependencyField(
+						fieldName, fieldJSONObjects, typeOptionsJSONObject);
+				}
+			}
+		}
 	}
 
 	private static final Set<String> _allowedDependencyTypes =
