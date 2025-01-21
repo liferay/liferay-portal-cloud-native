@@ -85,17 +85,15 @@ public class DefaultMessageBus implements MessageBus {
 					companyIds[i] = companyIdsObj[i];
 				}
 
-				if (companyIds != null) {
-					_companyLocalService.forEachCompanyId(
-						companyId -> {
-							message.put("companyId", companyId);
+				_companyLocalService.forEachCompanyId(
+					companyId -> {
+						message.put("companyId", companyId);
 
-							destination.send(message.clone());
-						},
-						companyIds);
+						destination.send(message.clone());
+					},
+					companyIds);
 
-					return;
-				}
+				return;
 			}
 		}
 
