@@ -50,11 +50,8 @@ public class NumericDDMFormFieldTemplateContextContributor
 		String dataType = GetterUtil.getString(
 			DDMFormFieldTypeUtil.getChangedPropertyValue(
 				ddmFormField, ddmFormFieldRenderingContext, "dataType"));
-
 		DDMForm ddmForm = ddmFormField.getDDMForm();
-
 		Locale locale = ddmFormFieldRenderingContext.getLocale();
-
 		boolean localizedObjectField = GetterUtil.getBoolean(
 			ddmFormField.getProperty("localizedObjectField"));
 

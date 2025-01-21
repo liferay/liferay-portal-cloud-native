@@ -303,7 +303,6 @@ public class NumericDDMFormFieldTemplateContextContributorTest
 			"field", DDMFormFieldTypeConstants.NUMERIC);
 
 		ddmFormField.setDDMForm(getDDMForm());
-
 		ddmFormField.setProperty("inputMask", true);
 		ddmFormField.setProperty(
 			"inputMaskFormat",
@@ -318,7 +317,6 @@ public class NumericDDMFormFieldTemplateContextContributorTest
 			"field", DDMFormFieldTypeConstants.NUMERIC);
 
 		ddmFormField.setDDMForm(getDDMForm());
-
 		ddmFormField.setProperty("dataType", "double");
 		ddmFormField.setProperty("inputMask", true);
 		ddmFormField.setProperty(
