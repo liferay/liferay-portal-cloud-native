@@ -419,7 +419,6 @@ public class UserGroupResourceTest extends BaseUserGroupResourceTestCase {
 				getUserGroup.getUserAccountBriefs(),
 				userAccountBrief ->
 					userAccountBrief.getId() == user3.getUserId()));
-		Assert.assertNotNull(getUserGroup.getPermissions());
 		Assert.assertTrue(
 			ArrayUtil.exists(
 				getUserGroup.getPermissions(),
