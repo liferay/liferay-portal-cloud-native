@@ -66,7 +66,8 @@ public class FilterableFieldsOpenAPIContributor implements OpenAPIContributor {
 
 		for (Schema schema : schemas.values()) {
 			schema.addExtension(
-				"x-filterable", _getFilterableFields(openAPIContext, schema));
+				"x-filterable",
+				_getFilterableFieldNames(openAPIContext, schema));
 		}
 	}
 
@@ -210,7 +211,7 @@ public class FilterableFieldsOpenAPIContributor implements OpenAPIContributor {
 		return null;
 	}
 
-	private List<String> _getFilterableFields(
+	private List<String> _getFilterableFieldNames(
 			OpenAPIContext openAPIContext, Schema schema)
 		throws Exception {
 
@@ -221,26 +222,26 @@ public class FilterableFieldsOpenAPIContributor implements OpenAPIContributor {
 			return new ArrayList<>();
 		}
 
-		Queue<Map.Entry<String, EntityField>> queue = new LinkedList<>(
-			entityFieldsMap.entrySet());
-
-		List<String> filterableFields = new ArrayList<>();
+		List<String> filterableFieldNames = new ArrayList<>();
 
 		Set<EntityField> visitedEntityFields = new HashSet<>();
 
-		while (!queue.isEmpty()) {
-			Map.Entry<String, EntityField> entry = queue.poll();
+		Queue<Map.Entry<String, EntityField>> queue = new LinkedList<>(
+			entityFieldsMap.entrySet());
 
-			String fieldName = entry.getKey();
+		while (!queue.isEmpty()) {
+			Map.Entry<String, EntityField> entry1 = queue.poll();
+
+			String fieldName = entry1.getKey();
 
 			if (StringUtil.count(fieldName, '/') >= 5) {
 				continue;
 			}
 
-			EntityField entityField = entry.getValue();
+			EntityField entityField = entry1.getValue();
 
 			if (!(entityField instanceof ComplexEntityField)) {
-				filterableFields.add(fieldName);
+				filterableFieldNames.add(fieldName);
 
 				continue;
 			}
@@ -252,20 +253,20 @@ public class FilterableFieldsOpenAPIContributor implements OpenAPIContributor {
 				continue;
 			}
 
-			Map<String, EntityField> currentEntityFieldsMap =
+			Map<String, EntityField> complexEntityFieldEntityFieldsMap =
 				complexEntityField.getEntityFieldsMap();
 
-			for (Map.Entry<String, EntityField> childEntry :
-					currentEntityFieldsMap.entrySet()) {
+			for (Map.Entry<String, EntityField> entry2 :
+					complexEntityFieldEntityFieldsMap.entrySet()) {
 
 				queue.add(
 					new AbstractMap.SimpleEntry<>(
-						entry.getKey() + "/" + childEntry.getKey(),
-						childEntry.getValue()));
+						entry1.getKey() + "/" + entry2.getKey(),
+						entry2.getValue()));
 			}
 		}
 
-		return ListUtil.sort(filterableFields);
+		return ListUtil.sort(filterableFieldNames);
 	}
 
 	private BundleContext _bundleContext;

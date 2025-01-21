@@ -144,7 +144,6 @@ public class OpenAPIResourceTest {
 						"multiselectPicklistField"
 					).build()),
 				ObjectDefinitionConstants.SCOPE_COMPANY);
-
 		ObjectDefinition relatedObjectDefinition2 =
 			ObjectDefinitionTestUtil.publishObjectDefinition(
 				"Object3",
@@ -163,38 +162,6 @@ public class OpenAPIResourceTest {
 					).build()),
 				ObjectDefinitionConstants.SCOPE_COMPANY);
 
-		ObjectRelationshipLocalServiceUtil.addObjectRelationship(
-			null, TestPropsValues.getUserId(),
-			_objectDefinition.getObjectDefinitionId(),
-			relatedObjectDefinition1.getObjectDefinitionId(), 0,
-			ObjectRelationshipConstants.DELETION_TYPE_PREVENT, false,
-			LocalizedMapUtil.getLocalizedMap("relationship1"), "relationship1",
-			false, ObjectRelationshipConstants.TYPE_MANY_TO_MANY, null);
-
-		ObjectRelationshipLocalServiceUtil.addObjectRelationship(
-			null, TestPropsValues.getUserId(),
-			_objectDefinition.getObjectDefinitionId(),
-			relatedObjectDefinition1.getObjectDefinitionId(), 0,
-			ObjectRelationshipConstants.DELETION_TYPE_PREVENT, false,
-			LocalizedMapUtil.getLocalizedMap("relationship2"), "relationship2",
-			false, ObjectRelationshipConstants.TYPE_ONE_TO_MANY, null);
-
-		ObjectRelationshipLocalServiceUtil.addObjectRelationship(
-			null, TestPropsValues.getUserId(),
-			relatedObjectDefinition1.getObjectDefinitionId(),
-			relatedObjectDefinition2.getObjectDefinitionId(), 0,
-			ObjectRelationshipConstants.DELETION_TYPE_PREVENT, false,
-			LocalizedMapUtil.getLocalizedMap("relationship3"), "relationship3",
-			false, ObjectRelationshipConstants.TYPE_MANY_TO_MANY, null);
-
-		ObjectRelationshipLocalServiceUtil.addObjectRelationship(
-			null, TestPropsValues.getUserId(),
-			relatedObjectDefinition1.getObjectDefinitionId(),
-			relatedObjectDefinition2.getObjectDefinitionId(), 0,
-			ObjectRelationshipConstants.DELETION_TYPE_PREVENT, false,
-			LocalizedMapUtil.getLocalizedMap("relationship4"), "relationship4",
-			false, ObjectRelationshipConstants.TYPE_ONE_TO_MANY, null);
-
 		ObjectDefinition relatedObjectDefinition3 =
 			ObjectDefinitionTestUtil.publishObjectDefinition(
 				"Object4",
@@ -204,7 +171,6 @@ public class OpenAPIResourceTest {
 						ObjectFieldConstants.DB_TYPE_STRING, true, true, null,
 						"field1", "field1", false)),
 				ObjectDefinitionConstants.SCOPE_COMPANY);
-
 		ObjectDefinition relatedObjectDefinition4 =
 			ObjectDefinitionTestUtil.publishObjectDefinition(
 				"Object5",
@@ -214,7 +180,6 @@ public class OpenAPIResourceTest {
 						ObjectFieldConstants.DB_TYPE_STRING, true, true, null,
 						"field1", "field1", false)),
 				ObjectDefinitionConstants.SCOPE_COMPANY);
-
 		ObjectDefinition relatedObjectDefinition5 =
 			ObjectDefinitionTestUtil.publishObjectDefinition(
 				"Object6",
@@ -224,7 +189,6 @@ public class OpenAPIResourceTest {
 						ObjectFieldConstants.DB_TYPE_STRING, true, true, null,
 						"field1", "field1", false)),
 				ObjectDefinitionConstants.SCOPE_COMPANY);
-
 		ObjectDefinition relatedObjectDefinition6 =
 			ObjectDefinitionTestUtil.publishObjectDefinition(
 				"Object7",
@@ -237,12 +201,39 @@ public class OpenAPIResourceTest {
 
 		ObjectRelationshipLocalServiceUtil.addObjectRelationship(
 			null, TestPropsValues.getUserId(),
+			_objectDefinition.getObjectDefinitionId(),
+			relatedObjectDefinition1.getObjectDefinitionId(), 0,
+			ObjectRelationshipConstants.DELETION_TYPE_PREVENT, false,
+			LocalizedMapUtil.getLocalizedMap("relationship1"), "relationship1",
+			false, ObjectRelationshipConstants.TYPE_MANY_TO_MANY, null);
+		ObjectRelationshipLocalServiceUtil.addObjectRelationship(
+			null, TestPropsValues.getUserId(),
+			_objectDefinition.getObjectDefinitionId(),
+			relatedObjectDefinition1.getObjectDefinitionId(), 0,
+			ObjectRelationshipConstants.DELETION_TYPE_PREVENT, false,
+			LocalizedMapUtil.getLocalizedMap("relationship2"), "relationship2",
+			false, ObjectRelationshipConstants.TYPE_ONE_TO_MANY, null);
+		ObjectRelationshipLocalServiceUtil.addObjectRelationship(
+			null, TestPropsValues.getUserId(),
+			relatedObjectDefinition1.getObjectDefinitionId(),
+			relatedObjectDefinition2.getObjectDefinitionId(), 0,
+			ObjectRelationshipConstants.DELETION_TYPE_PREVENT, false,
+			LocalizedMapUtil.getLocalizedMap("relationship3"), "relationship3",
+			false, ObjectRelationshipConstants.TYPE_MANY_TO_MANY, null);
+		ObjectRelationshipLocalServiceUtil.addObjectRelationship(
+			null, TestPropsValues.getUserId(),
+			relatedObjectDefinition1.getObjectDefinitionId(),
+			relatedObjectDefinition2.getObjectDefinitionId(), 0,
+			ObjectRelationshipConstants.DELETION_TYPE_PREVENT, false,
+			LocalizedMapUtil.getLocalizedMap("relationship4"), "relationship4",
+			false, ObjectRelationshipConstants.TYPE_ONE_TO_MANY, null);
+		ObjectRelationshipLocalServiceUtil.addObjectRelationship(
+			null, TestPropsValues.getUserId(),
 			relatedObjectDefinition2.getObjectDefinitionId(),
 			relatedObjectDefinition3.getObjectDefinitionId(), 0,
 			ObjectRelationshipConstants.DELETION_TYPE_PREVENT, false,
 			LocalizedMapUtil.getLocalizedMap("relationship5"), "relationship5",
 			false, ObjectRelationshipConstants.TYPE_MANY_TO_MANY, null);
-
 		ObjectRelationshipLocalServiceUtil.addObjectRelationship(
 			null, TestPropsValues.getUserId(),
 			relatedObjectDefinition3.getObjectDefinitionId(),
@@ -250,7 +241,6 @@ public class OpenAPIResourceTest {
 			ObjectRelationshipConstants.DELETION_TYPE_PREVENT, false,
 			LocalizedMapUtil.getLocalizedMap("relationship6"), "relationship6",
 			false, ObjectRelationshipConstants.TYPE_MANY_TO_MANY, null);
-
 		ObjectRelationshipLocalServiceUtil.addObjectRelationship(
 			null, TestPropsValues.getUserId(),
 			relatedObjectDefinition4.getObjectDefinitionId(),
@@ -258,7 +248,6 @@ public class OpenAPIResourceTest {
 			ObjectRelationshipConstants.DELETION_TYPE_PREVENT, false,
 			LocalizedMapUtil.getLocalizedMap("relationship7"), "relationship7",
 			false, ObjectRelationshipConstants.TYPE_MANY_TO_MANY, null);
-
 		ObjectRelationshipLocalServiceUtil.addObjectRelationship(
 			null, TestPropsValues.getUserId(),
 			relatedObjectDefinition5.getObjectDefinitionId(),
