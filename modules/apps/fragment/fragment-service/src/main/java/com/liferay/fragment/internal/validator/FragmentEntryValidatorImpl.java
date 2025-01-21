@@ -258,39 +258,39 @@ public class FragmentEntryValidatorImpl implements FragmentEntryValidator {
 				JSONObject typeOptionsJSONObject =
 					fieldJSONObject.getJSONObject("typeOptions");
 
-				if (typeOptionsJSONObject != null) {
-					String fieldName = entry.getKey();
+				if (typeOptionsJSONObject == null) {
+					continue;
+				}
 
-					String defaultValue = fieldJSONObject.getString(
-						"defaultValue");
+				String fieldName = entry.getKey();
+
+				String defaultValue = fieldJSONObject.getString("defaultValue");
+
+				if (!_checkValidationRules(
+						defaultValue,
+						typeOptionsJSONObject.getJSONObject("validation"))) {
+
+					throw new FragmentEntryConfigurationException(
+						"Invalid default configuration value for field " +
+							fieldName);
+				}
+
+				if (valuesJSONObject != null) {
+					String value = valuesJSONObject.getString(fieldName);
 
 					if (!_checkValidationRules(
-							defaultValue,
+							value,
 							typeOptionsJSONObject.getJSONObject(
 								"validation"))) {
 
 						throw new FragmentEntryConfigurationException(
-							"Invalid default configuration value for field " +
+							"Invalid configuration value for field " +
 								fieldName);
 					}
-
-					if (valuesJSONObject != null) {
-						String value = valuesJSONObject.getString(fieldName);
-
-						if (!_checkValidationRules(
-								value,
-								typeOptionsJSONObject.getJSONObject(
-									"validation"))) {
-
-							throw new FragmentEntryConfigurationException(
-								"Invalid configuration value for field " +
-									fieldName);
-						}
-					}
-
-					_checkDependencyField(
-						fieldName, fieldJSONObjects, typeOptionsJSONObject);
 				}
+
+				_checkDependencyField(
+					fieldName, fieldJSONObjects, typeOptionsJSONObject);
 			}
 		}
 	}
