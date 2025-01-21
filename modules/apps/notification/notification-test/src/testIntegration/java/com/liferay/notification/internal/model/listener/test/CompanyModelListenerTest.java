@@ -60,10 +60,10 @@ public class CompanyModelListenerTest {
 
 	@Test
 	public void testOnBeforeDelete() throws Exception {
-		NotificationRecipientSetting notificationRecipientSetting = null;
 		NotificationQueueEntry notificationQueueEntry = null;
-		NotificationTemplate notificationTemplate = null;
 		NotificationRecipient notificationRecipient = null;
+		NotificationRecipientSetting notificationRecipientSetting = null;
+		NotificationTemplate notificationTemplate = null;
 
 		try (SafeCloseable safeCloseable =
 				CompanyThreadLocal.setCompanyIdWithSafeCloseable(_companyId)) {
