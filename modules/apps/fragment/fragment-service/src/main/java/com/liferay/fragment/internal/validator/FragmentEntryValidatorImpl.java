@@ -218,13 +218,13 @@ public class FragmentEntryValidatorImpl implements FragmentEntryValidator {
 
 		_configurationJSONValidator.validate(configuration);
 
+		Set<String> fieldNames = new HashSet<>();
+
 		JSONObject configurationJSONObject = _jsonFactory.createJSONObject(
 			configuration);
 
 		JSONArray fieldSetsJSONArray = configurationJSONObject.getJSONArray(
 			"fieldSets");
-
-		Set<String> fieldNames = new HashSet<>();
 
 		for (int fieldSetIndex = 0; fieldSetIndex < fieldSetsJSONArray.length();
 			 fieldSetIndex++) {
