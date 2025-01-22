@@ -423,10 +423,10 @@ public class DLExportImportPortletPreferencesProcessorTest {
 
 			TestReaderWriter testReaderWriter = _getTestReaderWriter();
 
-			Map<String, String> preferencesValues =
+			Map<String, String> portletPreferencesValues =
 				_getPortletPreferencesValues(folder);
 
-			_setPortletPreferences(preferencesValues);
+			_setPortletPreferences(portletPreferencesValues);
 
 			PortletPreferences exportedPortletPreferences =
 				_exportImportPortletPreferencesProcessor.
@@ -436,7 +436,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 						_portletPreferences);
 
 			Assert.assertEquals(
-				preferencesValues,
+				portletPreferencesValues,
 				_getPortletPreferencesValues(exportedPortletPreferences));
 
 			PortletDataContext importPortletDataContext =
@@ -454,7 +454,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 						importPortletDataContext, exportedPortletPreferences);
 
 			Assert.assertEquals(
-				preferencesValues,
+				portletPreferencesValues,
 				_getPortletPreferencesValues(importedPortletPreferences));
 		}
 		finally {
@@ -697,10 +697,10 @@ public class DLExportImportPortletPreferencesProcessorTest {
 		_setPortletPreferences(_getPortletPreferencesValues(fileEntry));
 	}
 
-	private void _setPortletPreferences(Map<String, String> preferencesValues)
+	private void _setPortletPreferences(Map<String, String> portletPreferencesValues)
 		throws Exception {
 
-		for (Map.Entry<String, String> entry : preferencesValues.entrySet()) {
+		for (Map.Entry<String, String> entry : portletPreferencesValues.entrySet()) {
 			_portletPreferences.setValue(entry.getKey(), entry.getValue());
 		}
 
@@ -708,16 +708,16 @@ public class DLExportImportPortletPreferencesProcessorTest {
 	}
 
 	private void _testExportImport(FileEntry fileEntry) throws Exception {
-		Map<String, String> preferencesValues = _getPortletPreferencesValues(
+		Map<String, String> portletPreferencesValues = _getPortletPreferencesValues(
 			fileEntry);
 
-		_setPortletPreferences(preferencesValues);
+		_setPortletPreferences(portletPreferencesValues);
 
 		PortletPreferences importedPortletPreferences =
 			_exportImportPortletPreferences();
 
 		Assert.assertEquals(
-			preferencesValues,
+			portletPreferencesValues,
 			_getPortletPreferencesValues(importedPortletPreferences));
 	}
 
