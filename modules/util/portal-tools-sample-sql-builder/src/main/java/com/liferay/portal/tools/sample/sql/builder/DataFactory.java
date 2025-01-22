@@ -690,7 +690,7 @@ public class DataFactory {
 		ObjectDefinitionModel objectDefinitionModel,
 		List<ObjectFieldModel> objectFieldModels) {
 
-		if (!_dynamicObjectDefinitionTables.add(
+		if (!_objectDefinitionDBTableNames.add(
 				objectDefinitionModel.getDBTableName())) {
 
 			return StringPool.BLANK;
@@ -720,7 +720,7 @@ public class DataFactory {
 		ObjectDefinition objectDefinition =
 			(ObjectDefinition)objectDefinitionModel;
 
-		if (!_dynamicObjectDefinitionTables.add(
+		if (!_objectDefinitionDBTableNames.add(
 				objectDefinition.getExtensionDBTableName())) {
 
 			return StringPool.BLANK;
@@ -8918,7 +8918,6 @@ public class DataFactory {
 	private final String _dlDDMStructureContent;
 	private final String _dlDDMStructureLayoutContent;
 	private final SimpleCounter _dlFileEntryIdCounter;
-	private final Set<String> _dynamicObjectDefinitionTables = new HashSet<>();
 	private AddressModel _firstAddressModel;
 	private final List<String> _firstNames;
 	private final FriendlyURLNormalizer _friendlyURLNormalizer;
@@ -8940,6 +8939,7 @@ public class DataFactory {
 	private final String _layoutPageTemplateStructureRelData;
 	private final SimpleCounter _layoutPlidCounter;
 	private final SimpleCounter _layoutSetIdCounter;
+	private final Set<String> _objectDefinitionDBTableNames = new HashSet<>();
 	private long _objectDefinitionId;
 	private long _objectFieldId;
 	private RoleModel _ownerRoleModel;
