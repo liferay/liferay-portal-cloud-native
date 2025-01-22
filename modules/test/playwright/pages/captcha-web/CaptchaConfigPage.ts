@@ -142,6 +142,8 @@ export class CaptchaConfigPage {
 
 		await this.page.getByRole('link', {name: 'Security Tools'}).click();
 
+		await this.page.getByRole('menuitem', {name: 'CAPTCHA'}).click();
+
 		await this.sendPasswordCaptchaEnabled.waitFor();
 	}
 
