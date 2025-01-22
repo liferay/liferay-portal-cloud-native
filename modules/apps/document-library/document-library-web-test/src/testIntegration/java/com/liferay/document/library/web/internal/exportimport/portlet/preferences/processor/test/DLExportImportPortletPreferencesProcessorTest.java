@@ -322,8 +322,8 @@ public class DLExportImportPortletPreferencesProcessorTest {
 			liveFileEntry.getTitle());
 
 		_testExportImportFolderInAssetLibraryWithStagingInProcess(
-			_getPreferencesValues(liveFileEntry),
-			_getPreferencesValues(stagingFileEntry));
+			_getPortletPreferencesValues(liveFileEntry),
+			_getPortletPreferencesValues(stagingFileEntry));
 	}
 
 	@Test
@@ -347,8 +347,8 @@ public class DLExportImportPortletPreferencesProcessorTest {
 			liveFileEntry.getTitle());
 
 		_testExportImportFolderInAssetLibraryWithStagingInProcess(
-			_getPreferencesValues(stagingFileEntry),
-			_getPreferencesValues(liveFileEntry));
+			_getPortletPreferencesValues(stagingFileEntry),
+			_getPortletPreferencesValues(liveFileEntry));
 	}
 
 	@Test
@@ -380,8 +380,8 @@ public class DLExportImportPortletPreferencesProcessorTest {
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, liveFolder.getName());
 
 		_testExportImportFolderInAssetLibraryWithStagingInProcess(
-			_getPreferencesValues(liveFolder),
-			_getPreferencesValues(stagingFolder));
+			_getPortletPreferencesValues(liveFolder),
+			_getPortletPreferencesValues(stagingFolder));
 	}
 
 	@Test
@@ -404,8 +404,8 @@ public class DLExportImportPortletPreferencesProcessorTest {
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, liveFolder.getName());
 
 		_testExportImportFolderInAssetLibraryWithStagingInProcess(
-			_getPreferencesValues(stagingFolder),
-			_getPreferencesValues(liveFolder));
+			_getPortletPreferencesValues(stagingFolder),
+			_getPortletPreferencesValues(liveFolder));
 	}
 
 	@Test
@@ -423,7 +423,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 
 			TestReaderWriter testReaderWriter = _getReaderWriter();
 
-			Map<String, String> preferencesValues = _getPreferencesValues(
+			Map<String, String> preferencesValues = _getPortletPreferencesValues(
 				folder);
 
 			_setPortletPreferences(preferencesValues);
@@ -437,7 +437,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 
 			Assert.assertEquals(
 				preferencesValues,
-				_getPreferencesValues(exportedPortletPreferences));
+				_getPortletPreferencesValues(exportedPortletPreferences));
 
 			PortletDataContext importPortletDataContext =
 				_getImportPortletDataContext(_group, testReaderWriter);
@@ -455,7 +455,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 
 			Assert.assertEquals(
 				preferencesValues,
-				_getPreferencesValues(importedPortletPreferences));
+				_getPortletPreferencesValues(importedPortletPreferences));
 		}
 		finally {
 			ExportImportThreadLocal.setPortletStagingInProcess(false);
@@ -610,36 +610,36 @@ public class DLExportImportPortletPreferencesProcessorTest {
 		return importPortletDataContext;
 	}
 
-	private Map<String, String> _getPreferencesValues(FileEntry fileEntry)
+	private Map<String, String> _getPortletPreferencesValues(FileEntry fileEntry)
 		throws Exception {
 
 		Repository repository = _repositoryLocalService.fetchRepository(
 			fileEntry.getRepositoryId());
 
-		return _getPreferencesValues(
+		return _getPortletPreferencesValues(
 			_getFolderExternalReferenceCode(fileEntry.getFolderId()),
 			_getGroupExternalReferenceCode(
 				fileEntry.getRepositoryId(), repository),
 			_getRepositoryExternalReferenceCode(repository));
 	}
 
-	private Map<String, String> _getPreferencesValues(Folder folder)
+	private Map<String, String> _getPortletPreferencesValues(Folder folder)
 		throws Exception {
 
 		Repository repository = _repositoryLocalService.fetchRepository(
 			folder.getRepositoryId());
 
-		return _getPreferencesValues(
+		return _getPortletPreferencesValues(
 			folder.getExternalReferenceCode(),
 			_getGroupExternalReferenceCode(
 				folder.getRepositoryId(), repository),
 			_getRepositoryExternalReferenceCode(repository));
 	}
 
-	private Map<String, String> _getPreferencesValues(
+	private Map<String, String> _getPortletPreferencesValues(
 		PortletPreferences portletPreferences) {
 
-		return _getPreferencesValues(
+		return _getPortletPreferencesValues(
 			portletPreferences.getValue(
 				"rootFolderExternalReferenceCode", null),
 			portletPreferences.getValue(
@@ -648,7 +648,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 				"selectedRepositoryExternalReferenceCode", null));
 	}
 
-	private Map<String, String> _getPreferencesValues(
+	private Map<String, String> _getPortletPreferencesValues(
 		String rootFolderExternalReferenceCode,
 		String selectedGroupExternalReferenceCode,
 		String selectedRepositoryExternalReferenceCode) {
@@ -693,7 +693,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 	}
 
 	private void _setPortletPreferences(FileEntry fileEntry) throws Exception {
-		_setPortletPreferences(_getPreferencesValues(fileEntry));
+		_setPortletPreferences(_getPortletPreferencesValues(fileEntry));
 	}
 
 	private void _setPortletPreferences(Map<String, String> preferencesValues)
@@ -707,7 +707,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 	}
 
 	private void _testExportImport(FileEntry fileEntry) throws Exception {
-		Map<String, String> preferencesValues = _getPreferencesValues(
+		Map<String, String> preferencesValues = _getPortletPreferencesValues(
 			fileEntry);
 
 		_setPortletPreferences(preferencesValues);
@@ -717,7 +717,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 
 		Assert.assertEquals(
 			preferencesValues,
-			_getPreferencesValues(importedPortletPreferences));
+			_getPortletPreferencesValues(importedPortletPreferences));
 	}
 
 	private void _testExportImportFolderInAssetLibraryWithStagingInProcess(
@@ -740,7 +740,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 
 			Assert.assertEquals(
 				originalPreferencesValues,
-				_getPreferencesValues(exportedPortletPreferences));
+				_getPortletPreferencesValues(exportedPortletPreferences));
 
 			PortletDataContext importPortletDataContext =
 				_getImportPortletDataContext(_group, testReaderWriter);
@@ -758,7 +758,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 
 			Assert.assertEquals(
 				expectedPreferencesValues,
-				_getPreferencesValues(importedPortletPreferences));
+				_getPortletPreferencesValues(importedPortletPreferences));
 		}
 		finally {
 			ExportImportThreadLocal.setPortletStagingInProcess(false);

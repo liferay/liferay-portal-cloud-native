@@ -75,7 +75,7 @@ public class UpgradePortletPreferences
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						StringBundler.concat(
-							"Unable to get rootFolderId ", rootFolderId, ": ",
+							"Unable to get root folder ID ", rootFolderId, ": ",
 							portalException));
 				}
 
@@ -93,7 +93,7 @@ public class UpgradePortletPreferences
 		Repository selectedRepository = _repositoryLocalService.fetchRepository(
 			selectedRepositoryId);
 
-		Group selectedGroup;
+		Group selectedGroup = null;
 		String selectedRepositoryExternalReferenceCode = StringPool.BLANK;
 
 		if (selectedRepository != null) {
@@ -109,7 +109,7 @@ public class UpgradePortletPreferences
 			if (selectedGroup == null) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Unable to get selectedRepositoryId " +
+						"Unable to get selected repository ID " +
 							selectedRepositoryId);
 				}
 
