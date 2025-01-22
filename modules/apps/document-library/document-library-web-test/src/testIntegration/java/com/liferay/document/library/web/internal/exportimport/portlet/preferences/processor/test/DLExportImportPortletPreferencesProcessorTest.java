@@ -421,7 +421,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 
 			Folder folder = DLAppTestUtil.addFolder(stagingGroup.getGroupId());
 
-			TestReaderWriter testReaderWriter = _getReaderWriter();
+			TestReaderWriter testReaderWriter = _getTestReaderWriter();
 
 			Map<String, String> preferencesValues =
 				_getPortletPreferencesValues(folder);
@@ -671,7 +671,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 			StringPool.POUND, classPK);
 	}
 
-	private TestReaderWriter _getReaderWriter() {
+	private TestReaderWriter _getTestReaderWriter() {
 		TestReaderWriter testReaderWriter = new TestReaderWriter();
 
 		Document document = SAXReaderUtil.createDocument();
@@ -729,7 +729,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 		ExportImportThreadLocal.setPortletStagingInProcess(true);
 
 		try {
-			TestReaderWriter testReaderWriter = _getReaderWriter();
+			TestReaderWriter testReaderWriter = _getTestReaderWriter();
 
 			_setPortletPreferences(originalPreferencesValues);
 
