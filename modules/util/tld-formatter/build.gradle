@@ -9,7 +9,6 @@ buildPluginDescriptor {
 	}
 
 	finalizedBy formatSource
-
 	goalPrefix = "tld-formatter"
 }
 
