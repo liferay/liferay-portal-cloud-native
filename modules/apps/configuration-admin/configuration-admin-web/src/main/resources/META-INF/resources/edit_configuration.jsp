@@ -8,8 +8,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-EditConfigurationDisplayContext editConfigurationDisplayContext = new EditConfigurationDisplayContext(request, renderRequest, renderResponse);
-
 String redirect = ParamUtil.getString(request, "redirect");
 
 PortletURL portletURL = renderResponse.createRenderURL();
@@ -148,6 +146,11 @@ renderResponse.setTitle(categoryDisplayName);
 
 						<c:if test="<%= configurationModel.hasScopeConfiguration(configurationScopeDisplayContext.getScope()) %>">
 							<clay:content-col>
+
+								<%
+								EditConfigurationDisplayContext editConfigurationDisplayContext = new EditConfigurationDisplayContext(request, renderRequest, renderResponse);
+								%>
+
 								<clay:dropdown-actions
 									dropdownItems="<%= editConfigurationDisplayContext.getDropdownItems() %>"
 									propsTransformer="{EditConfigurationActionDropdownPropsTransformer} from configuration-admin-web"

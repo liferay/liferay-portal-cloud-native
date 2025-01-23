@@ -45,7 +45,6 @@ public class EditConfigurationDisplayContext {
 		_configurationModel =
 			(ConfigurationModel)httpServletRequest.getAttribute(
 				ConfigurationAdminWebKeys.CONFIGURATION_MODEL);
-
 		_themeDisplay = (ThemeDisplay)httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 	}
