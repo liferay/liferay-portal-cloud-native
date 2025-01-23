@@ -37,7 +37,6 @@ public class JSImportMapsCacheTest {
 		JSImportMapsRegistration jsImportMapsRegistration1 =
 			_jsImportMapsCache.register(
 				JSImportMapsCache.COMPANY_ID_ALL, jsonObject, null);
-
 		JSImportMapsRegistration jsImportMapsRegistration2 =
 			_jsImportMapsCache.register(
 				JSImportMapsCache.COMPANY_ID_ALL, jsonObject, "a-scope");
@@ -87,7 +86,6 @@ public class JSImportMapsCacheTest {
 
 		JSImportMapsRegistration jsImportMapsRegistration1 =
 			_jsImportMapsCache.register(1, jsonObject, null);
-
 		JSImportMapsRegistration jsImportMapsRegistration2 =
 			_jsImportMapsCache.register(1, jsonObject, "a-scope");
 
@@ -219,7 +217,7 @@ public class JSImportMapsCacheTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testWriteImportMapsThrowsForCompanyIdAll() throws Exception {
+	public void testWriteImportMapsWithCompanyIdAll() throws Exception {
 		_getImportMaps(JSImportMapsCache.COMPANY_ID_ALL);
 	}
 
