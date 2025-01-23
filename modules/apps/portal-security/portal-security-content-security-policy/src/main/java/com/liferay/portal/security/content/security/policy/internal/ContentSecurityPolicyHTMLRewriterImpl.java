@@ -152,9 +152,9 @@ public class ContentSecurityPolicyHTMLRewriterImpl
 	private void _extractInlineStyles(
 		Element element, boolean recursive, StringBundler sb) {
 
-		String elementStyles = element.attr("style");
+		String style = element.attr("style");
 
-		if (!Validator.isBlank(elementStyles)) {
+		if (!Validator.isBlank(style)) {
 			String id = element.attr("id");
 
 			if (Validator.isBlank(id)) {
@@ -166,7 +166,7 @@ public class ContentSecurityPolicyHTMLRewriterImpl
 			sb.append("#");
 			sb.append(id);
 			sb.append("{");
-			sb.append(elementStyles);
+			sb.append(style);
 			sb.append("}");
 
 			element.removeAttr("style");
