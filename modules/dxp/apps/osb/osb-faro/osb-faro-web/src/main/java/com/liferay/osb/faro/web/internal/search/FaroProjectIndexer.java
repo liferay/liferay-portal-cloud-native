@@ -170,6 +170,12 @@ public class FaroProjectIndexer extends BaseIndexer<FaroProject> {
 
 		document.addNumber(
 			"individualsLimit", faroSubscriptionDisplay.getIndividualsLimit());
+		document.addNumber(
+			"individualsUsage",
+			_getUsage(
+				faroSubscriptionDisplay.
+					getIndividualsCountSinceLastAnniversary(),
+				faroSubscriptionDisplay.getIndividualsLimit()));
 		document.addDate(
 			"lastAnniversaryDate",
 			faroSubscriptionDisplay.getLastAnniversaryDate());
@@ -200,18 +206,12 @@ public class FaroProjectIndexer extends BaseIndexer<FaroProject> {
 		}
 
 		document.addNumber(
+			"pageViewsLimit", faroSubscriptionDisplay.getPageViewsLimit());
+		document.addNumber(
 			"pageViewsUsage",
 			_getUsage(
 				faroSubscriptionDisplay.getPageViewsCountSinceLastAnniversary(),
 				faroSubscriptionDisplay.getPageViewsLimit()));
-		document.addNumber(
-			"individualsUsage",
-			_getUsage(
-				faroSubscriptionDisplay.
-					getIndividualsCountSinceLastAnniversary(),
-				faroSubscriptionDisplay.getIndividualsLimit()));
-		document.addNumber(
-			"pageViewsLimit", faroSubscriptionDisplay.getPageViewsLimit());
 		document.addKeyword(
 			"subscription",
 			JSONUtil.writeValueAsString(faroSubscriptionDisplay));
