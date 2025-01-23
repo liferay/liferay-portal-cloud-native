@@ -370,9 +370,9 @@ public class DDLExporterTest {
 				new ByteArrayInputStream(
 					ddlExporter.export(recordSet.getRecordSetId()));
 
-			HSSFWorkbook workbook = new HSSFWorkbook(byteArrayInputStream);
+			HSSFWorkbook hssfWorkbook = new HSSFWorkbook(byteArrayInputStream);
 
-			Sheet sheet = workbook.getSheetAt(0);
+			Sheet sheet = hssfWorkbook.getSheetAt(0);
 
 			Row row = sheet.getRow(0);
 
