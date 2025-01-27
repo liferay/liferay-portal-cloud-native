@@ -82,7 +82,6 @@ public class DLConfigurationAction
 
 		long rootFolderId = GetterUtil.getLong(
 			portletPreferences.getValue("rootFolderId", null));
-
 		long selectedRepositoryId = GetterUtil.getLong(
 			portletPreferences.getValue("selectedRepositoryId", null));
 
