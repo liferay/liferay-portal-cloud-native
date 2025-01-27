@@ -78,16 +78,18 @@ public class FrontendTokenDefinitionRegistryImpl
 		FrontendTokenDefinition frontendTokenDefinition =
 			_frontendTokenDefinitions.get(themeId);
 
-		if (frontendTokenDefinition == null) {
-			Map<String, FrontendTokenDefinition> frontendTokenDefinitions =
-				_frontendTokenDefinitionsMap.get(companyId);
-
-			if (frontendTokenDefinitions != null) {
-				frontendTokenDefinition = frontendTokenDefinitions.get(themeId);
-			}
+		if (frontendTokenDefinition != null) {
+			return frontendTokenDefinition;
 		}
 
-		return frontendTokenDefinition;
+		Map<String, FrontendTokenDefinition> frontendTokenDefinitions =
+			_frontendTokenDefinitionsMap.get(companyId);
+
+		if (frontendTokenDefinitions == null) {
+			return null;
+		}
+
+		return frontendTokenDefinitions.get(themeId);
 	}
 
 	@Override
