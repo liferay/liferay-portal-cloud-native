@@ -99,18 +99,20 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 			_layoutPageTemplateEntryLocalService.
 				fetchLayoutPageTemplateEntryByPlid(layout.getPlid());
 
-		if (layoutPageTemplateEntry != null) {
-			try {
-				_layoutPageTemplateEntryLocalService.
-					deleteLayoutPageTemplateEntry(layoutPageTemplateEntry);
-			}
-			catch (PortalException portalException) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(portalException);
-				}
+		if (layoutPageTemplateEntry == null) {
+			return;
+		}
 
-				throw new ModelListenerException(portalException);
+		try {
+			_layoutPageTemplateEntryLocalService.deleteLayoutPageTemplateEntry(
+				layoutPageTemplateEntry);
+		}
+		catch (PortalException portalException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(portalException);
 			}
+
+			throw new ModelListenerException(portalException);
 		}
 	}
 
