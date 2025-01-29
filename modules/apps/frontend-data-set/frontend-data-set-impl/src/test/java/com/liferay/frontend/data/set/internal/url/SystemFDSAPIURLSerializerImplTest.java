@@ -100,10 +100,13 @@ public class SystemFDSAPIURLSerializerImplTest {
 
 		// Different resolvers
 
-		ServiceRegistration<FDSAPIURLResolver> fdsAPIURLServiceRegistration = _registerFDSAPIURLResolver(
-			"/app1", "schema", new String[] {"{foo}"}, new String[] {"bar"});
-		ServiceRegistration<SystemFDSEntry> systemFDSEntryServiceRegistration1 = _registerSystemFDSEntry(
-			"fdsName1", "/app1", "/endpoint/{foo}", "schema");
+		ServiceRegistration<FDSAPIURLResolver> fdsAPIURLServiceRegistration =
+			_registerFDSAPIURLResolver(
+				"/app1", "schema", new String[] {"{foo}"},
+				new String[] {"bar"});
+		ServiceRegistration<SystemFDSEntry> systemFDSEntryServiceRegistration1 =
+			_registerSystemFDSEntry(
+				"fdsName1", "/app1", "/endpoint/{foo}", "schema");
 		ServiceRegistration<SystemFDSEntry> systemFDSEntryServiceRegistration2 =
 			_registerSystemFDSEntry(
 				"fdsName2", "/app2", "/endpoint/{foo}", "schema");
@@ -123,8 +126,8 @@ public class SystemFDSAPIURLSerializerImplTest {
 
 		// No resolver, URL
 
-		systemFDSEntryServiceRegistration1 =
-			_registerSystemFDSEntry("fdsName", "/app", "/endpoint", "schema");
+		systemFDSEntryServiceRegistration1 = _registerSystemFDSEntry(
+			"fdsName", "/app", "/endpoint", "schema");
 
 		Assert.assertEquals(
 			"/o/app/endpoint",
@@ -147,9 +150,8 @@ public class SystemFDSAPIURLSerializerImplTest {
 
 		// Resolver with interpolation
 
-		fdsAPIURLServiceRegistration =
-			_registerFDSAPIURLResolver(
-				"/app", "schema", new String[] {"{foo}"}, new String[] {"bar"});
+		fdsAPIURLServiceRegistration = _registerFDSAPIURLResolver(
+			"/app", "schema", new String[] {"{foo}"}, new String[] {"bar"});
 		systemFDSEntryServiceRegistration1 = _registerSystemFDSEntry(
 			"{foo}=3", "fdsName", "/app", "/endpoint/{foo}", "schema");
 
@@ -220,8 +222,8 @@ public class SystemFDSAPIURLSerializerImplTest {
 	}
 
 	private ServiceRegistration<SystemFDSEntry> _registerSystemFDSEntry(
-		String additionalURLParameters, String fdsName, String restApplication, String restEndpoint,
-		String restSchema) {
+		String additionalURLParameters, String fdsName, String restApplication,
+		String restEndpoint, String restSchema) {
 
 		return _bundleContext.registerService(
 			SystemFDSEntry.class,
