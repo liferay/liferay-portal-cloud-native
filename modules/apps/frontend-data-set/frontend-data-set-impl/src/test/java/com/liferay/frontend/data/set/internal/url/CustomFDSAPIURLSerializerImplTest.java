@@ -108,6 +108,7 @@ public class CustomFDSAPIURLSerializerImplTest {
 				"fdsName", _httpServletRequest));
 
 		serviceRegistration.unregister();
+
 		_resetSerializer();
 
 		// REST application: /app1 and /app2
@@ -128,6 +129,7 @@ public class CustomFDSAPIURLSerializerImplTest {
 				"fdsName2", _httpServletRequest));
 
 		serviceRegistration.unregister();
+
 		_resetSerializer();
 
 		// REST application: /app
@@ -148,6 +150,7 @@ public class CustomFDSAPIURLSerializerImplTest {
 				"fdsName2", _httpServletRequest));
 
 		serviceRegistration.unregister();
+
 		_resetSerializer();
 
 		// Nested fields: creator.name
