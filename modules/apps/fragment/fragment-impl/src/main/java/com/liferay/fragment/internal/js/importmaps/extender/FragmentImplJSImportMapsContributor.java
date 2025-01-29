@@ -6,8 +6,8 @@
 package com.liferay.fragment.internal.js.importmaps.extender;
 
 import com.liferay.frontend.js.importmaps.extender.JSImportMapsContributor;
-import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 
 import javax.servlet.ServletContext;
 
@@ -29,17 +29,12 @@ public class FragmentImplJSImportMapsContributor
 
 	@Activate
 	protected void activate() {
-		_importMapsJSONObject = _jsonFactory.createJSONObject();
-
-		_importMapsJSONObject.put(
+		_importMapsJSONObject = JSONUtil.put(
 			"@liferay/fragment-impl",
 			_servletContext.getContextPath() + "/__liferay__/index.js");
 	}
 
 	private JSONObject _importMapsJSONObject;
-
-	@Reference
-	private JSONFactory _jsonFactory;
 
 	@Reference(
 		target = "(osgi.web.symbolicname=com.liferay.fragment.impl)",
