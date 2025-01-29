@@ -133,7 +133,7 @@ public class AssetListEntryStagingTest {
 
 		AssetListTestUtil.addAssetListEntryAssetEntryRel(
 			_stagingGroup.getGroupId(),
-			_getAssetEntry(
+			_updateAssetEntry(
 				_createDLFileEntry(
 					dlFileEntryType.getFileEntryTypeId(),
 					_stagingGroup.getGroupId(), serviceContext),
@@ -143,7 +143,7 @@ public class AssetListEntryStagingTest {
 		AssetListEntryAssetEntryRel assetListEntryAssetEntryRel =
 			AssetListTestUtil.addAssetListEntryAssetEntryRel(
 				_stagingGroup.getGroupId(),
-				_getAssetEntry(
+				_updateAssetEntry(
 					_createDLFileEntry(
 						dlFileEntryType.getFileEntryTypeId(),
 						_stagingGroup.getGroupId(), serviceContext),
@@ -423,7 +423,7 @@ public class AssetListEntryStagingTest {
 			Collections.emptyMap());
 	}
 
-	private AssetEntry _getAssetEntry(DLFileEntry dlFileEntry, long groupId)
+	private AssetEntry _updateAssetEntry(DLFileEntry dlFileEntry, long groupId)
 		throws Exception {
 
 		return _assetEntryLocalService.updateEntry(
