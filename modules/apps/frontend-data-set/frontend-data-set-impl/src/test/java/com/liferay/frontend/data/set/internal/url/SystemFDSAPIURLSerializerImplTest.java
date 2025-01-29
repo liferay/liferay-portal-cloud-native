@@ -98,7 +98,7 @@ public class SystemFDSAPIURLSerializerImplTest {
 	@Test
 	public void testSerialization() throws Exception {
 
-		// no resolver, just url
+		// No resolver, URL
 
 		ServiceRegistration<SystemFDSEntry> systemFDSEntryServiceRegistration1 =
 			_registerSystemFDSEntry("fdsName", "/app", "/endpoint", "schema");
@@ -110,7 +110,7 @@ public class SystemFDSAPIURLSerializerImplTest {
 
 		systemFDSEntryServiceRegistration1.unregister();
 
-		// no resolver, url with parameters
+		// no resolver, URL with parameters
 
 		systemFDSEntryServiceRegistration1 = _registerSystemFDSEntry(
 			"fdsName", "/app", "/endpoint", "schema", "param=3");
@@ -122,7 +122,7 @@ public class SystemFDSAPIURLSerializerImplTest {
 
 		systemFDSEntryServiceRegistration1.unregister();
 
-		// resolver with interpolation
+		// Resolver with interpolation
 
 		systemFDSEntryServiceRegistration1 = _registerSystemFDSEntry(
 			"fdsName", "/app", "/endpoint/{foo}", "schema", "{foo}=3");
@@ -140,7 +140,7 @@ public class SystemFDSAPIURLSerializerImplTest {
 
 		fdsAPIURLServiceRegistration.unregister();
 
-		// 2 data sets, different resolvers
+		// Different resolvers
 
 		systemFDSEntryServiceRegistration1 = _registerSystemFDSEntry(
 			"fdsName1", "/app1", "/endpoint/{foo}", "schema");
@@ -168,7 +168,7 @@ public class SystemFDSAPIURLSerializerImplTest {
 
 		fdsAPIURLServiceRegistration.unregister();
 
-		// 2 data sets, shared resolver
+		// Shared resolver
 
 		systemFDSEntryServiceRegistration1 = _registerSystemFDSEntry(
 			"fdsName1", "/app", "/endpoint/{foo}", "schema");
