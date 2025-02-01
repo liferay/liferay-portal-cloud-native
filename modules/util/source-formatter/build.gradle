@@ -83,6 +83,10 @@ deployDependencies {
 	rename(/checkstyle-(.+)\.jar/, "checkstyle" + renameSuffix)
 }
 
+formatSource {
+	enabled = true
+}
+
 installDistCache {
 	description = "Installs the distribution content to ${userHomeDistDir} for testing."
 	group = "Publishing"
