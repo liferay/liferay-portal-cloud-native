@@ -54,6 +54,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -523,7 +524,7 @@ public class DataGuardTestRuleUtil {
 		_getPersistedModelLocalServices() {
 
 		Map<String, PersistedModelLocalService>
-			scrubbedPersistedModelLocalServices = new HashMap<>();
+			scrubbedPersistedModelLocalServices = new LinkedHashMap<>();
 
 		ServiceTrackerMap<String, PersistedModelLocalService>
 			serviceTrackerMap = ReflectionTestUtil.getFieldValue(
