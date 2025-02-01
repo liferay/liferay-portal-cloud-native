@@ -165,19 +165,17 @@ public class ObjectEntryFolderLocalServiceTest {
 			objectEntryFolder1.getObjectEntryFolderId());
 
 		Assert.assertNull(
+			_objectEntryLocalService.fetchObjectEntry(
+				objectEntry.getObjectEntryId()));
+		Assert.assertNull(
 			_objectEntryFolderLocalService.fetchObjectEntryFolder(
 				objectEntryFolder1.getObjectEntryFolderId()));
-
 		Assert.assertNull(
 			_objectEntryFolderLocalService.fetchObjectEntryFolder(
 				objectEntryFolder2.getObjectEntryFolderId()));
 		Assert.assertNull(
 			_objectEntryFolderLocalService.fetchObjectEntryFolder(
 				objectEntryFolder3.getObjectEntryFolderId()));
-
-		Assert.assertNull(
-			_objectEntryLocalService.fetchObjectEntry(
-				objectEntry.getObjectEntryId()));
 	}
 
 	@Test
