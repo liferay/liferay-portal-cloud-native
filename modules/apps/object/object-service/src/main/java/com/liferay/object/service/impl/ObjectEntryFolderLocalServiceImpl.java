@@ -279,7 +279,7 @@ public class ObjectEntryFolderLocalServiceImpl
 
 		if (parentObjectEntryFolderId ==
 				ObjectEntryFolderConstants.
-					DEFAULT_PARENT_OBJECT_ENTRY_FOLDER_ID) {
+					PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT) {
 
 			return;
 		}
