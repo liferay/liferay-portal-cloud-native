@@ -56,10 +56,10 @@ public class ObjectEntryFolderLocalServiceImpl
 
 		_validateExternalReferenceCode(
 			externalReferenceCode, groupId, user.getCompanyId());
-		_validateName(
-			groupId, user.getCompanyId(), 0, parentObjectEntryFolderId, name);
 
 		_validateParentObjectEntryFolderId(groupId, parentObjectEntryFolderId);
+		_validateName(
+			groupId, user.getCompanyId(), 0, parentObjectEntryFolderId, name);
 
 		long objectEntryFolderId = counterLocalService.increment();
 
