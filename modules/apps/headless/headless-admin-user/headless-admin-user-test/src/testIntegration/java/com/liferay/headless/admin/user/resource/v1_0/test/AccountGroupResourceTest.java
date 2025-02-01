@@ -488,7 +488,7 @@ public class AccountGroupResourceTest extends BaseAccountGroupResourceTestCase {
 			).locale(
 				LocaleUtil.getDefault()
 			).parameters(
-				"nestedFields", "accountBriefs, creator, permissions"
+				"nestedFields", "accountBriefs,creator,permissions"
 			).build();
 
 		AccountGroup getAccountGroup = accountGroupResource.getAccountGroup(
