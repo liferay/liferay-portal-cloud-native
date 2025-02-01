@@ -61,10 +61,9 @@ public class ObjectEntryFolderLocalServiceImpl
 		_validateName(
 			groupId, user.getCompanyId(), 0, parentObjectEntryFolderId, name);
 
-		long objectEntryFolderId = counterLocalService.increment();
-
 		ObjectEntryFolder objectEntryFolder =
-			objectEntryFolderPersistence.create(objectEntryFolderId);
+			objectEntryFolderPersistence.create(
+				counterLocalService.increment());
 
 		objectEntryFolder.setUuid(serviceContext.getUuid());
 		objectEntryFolder.setExternalReferenceCode(externalReferenceCode);
