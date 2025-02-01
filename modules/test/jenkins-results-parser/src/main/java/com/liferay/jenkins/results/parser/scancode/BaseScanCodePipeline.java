@@ -344,7 +344,6 @@ public abstract class BaseScanCodePipeline implements ScanCodePipeline {
 
 		String complianceAlertErrorMessage = getComplianceAlertMessage(
 			ComplianceAlertType.ERROR);
-
 		String complianceAlertWarningMessage = getComplianceAlertMessage(
 			ComplianceAlertType.WARNING);
 

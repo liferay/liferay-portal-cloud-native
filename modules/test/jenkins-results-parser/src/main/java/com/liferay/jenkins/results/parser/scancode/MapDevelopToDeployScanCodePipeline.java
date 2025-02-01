@@ -58,7 +58,6 @@ public class MapDevelopToDeployScanCodePipeline extends BaseScanCodePipeline {
 		String portalReleaseVersion =
 			JenkinsResultsParserUtil.getBuildParameter(
 				_buildURL, "TEST_PORTAL_RELEASE_VERSION");
-
 		SimpleDateFormat simpleDateFormat = getSimpleDateFormat();
 
 		jsonObject.put(
@@ -80,19 +79,16 @@ public class MapDevelopToDeployScanCodePipeline extends BaseScanCodePipeline {
 	}
 
 	public String getReleaseTarballLink() {
-		String portalBranchUsername =
-			JenkinsResultsParserUtil.getBuildParameter(
-				_buildURL, "TEST_PORTAL_USER_NAME");
-
-		String portalSHA = JenkinsResultsParserUtil.getBuildParameter(
-			_buildURL, "TEST_PORTAL_RELEASE_GIT_ID");
-
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("https://github.com/");
-		sb.append(portalBranchUsername);
+		sb.append(
+			JenkinsResultsParserUtil.getBuildParameter(
+				_buildURL, "TEST_PORTAL_USER_NAME"));
 		sb.append("/liferay-portal-ee/archive/");
-		sb.append(portalSHA);
+		sb.append(
+			JenkinsResultsParserUtil.getBuildParameter(
+				_buildURL, "TEST_PORTAL_RELEASE_GIT_ID"));
 		sb.append(".tar.gz");
 		sb.append("#from");
 
