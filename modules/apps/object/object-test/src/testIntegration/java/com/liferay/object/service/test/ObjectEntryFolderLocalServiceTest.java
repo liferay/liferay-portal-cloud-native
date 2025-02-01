@@ -61,7 +61,7 @@ public class ObjectEntryFolderLocalServiceTest {
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
 
-		_objectDefinition = _addGroupCustomObjectDefinition();
+		_objectDefinition = _addObjectDefinition();
 	}
 
 	@Test
@@ -271,7 +271,7 @@ public class ObjectEntryFolderLocalServiceTest {
 			objectEntryFolder2.getLabelMap());
 	}
 
-	private ObjectDefinition _addGroupCustomObjectDefinition()
+	private ObjectDefinition _addObjectDefinition()
 		throws Exception {
 
 		ObjectDefinition objectDefinition =
