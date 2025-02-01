@@ -120,6 +120,7 @@ public class ObjectEntryFolderLocalServiceImpl
 		actionableDynamicQuery.setPerformActionMethod(
 			(ObjectEntry objectEntry) ->
 				_objectEntryLocalService.deleteObjectEntry(objectEntry));
+
 		actionableDynamicQuery.performActions();
 
 		// Object entry folders
@@ -146,6 +147,7 @@ public class ObjectEntryFolderLocalServiceImpl
 					ObjectEntryFolder.class.getName(),
 					ResourceConstants.SCOPE_INDIVIDUAL,
 					descendantObjectEntryFolder.getObjectEntryFolderId()));
+
 		actionableDynamicQuery.performActions();
 
 		objectEntryFolderPersistence.removeByG_C_LikeT(
