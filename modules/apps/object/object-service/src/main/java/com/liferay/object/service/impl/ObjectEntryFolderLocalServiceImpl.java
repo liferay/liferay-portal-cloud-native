@@ -121,14 +121,14 @@ public class ObjectEntryFolderLocalServiceImpl
 		ObjectEntryFolder objectEntryFolder =
 			objectEntryFolderPersistence.findByPrimaryKey(objectEntryFolderId);
 
+		_validateParentObjectEntryFolderId(
+			objectEntryFolder.getGroupId(), parentObjectEntryFolderId);
+
 		User user = _userLocalService.getUser(userId);
 
 		_validateName(
 			objectEntryFolder.getGroupId(), user.getCompanyId(),
 			objectEntryFolderId, parentObjectEntryFolderId, name);
-
-		_validateParentObjectEntryFolderId(
-			objectEntryFolder.getGroupId(), parentObjectEntryFolderId);
 
 		objectEntryFolder.setParentObjectEntryFolderId(
 			parentObjectEntryFolderId);
