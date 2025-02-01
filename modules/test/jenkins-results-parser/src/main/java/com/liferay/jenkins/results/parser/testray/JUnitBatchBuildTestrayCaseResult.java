@@ -96,8 +96,7 @@ public class JUnitBatchBuildTestrayCaseResult
 		}
 
 		Map<String, String> errorMessages = new HashMap<>();
-
-		List<String> skippedTests = new ArrayList<>();
+		List<String> skippedTestNames = new ArrayList<>();
 
 		for (TestResult testResult : getTestResults()) {
 			if ((testResult == null) ||
@@ -130,7 +129,7 @@ public class JUnitBatchBuildTestrayCaseResult
 			String testName = testResult.getTestName();
 
 			if (testResult.isSkipped()) {
-				skippedTests.add(testName);
+				skippedTestNames.add(testName);
 			}
 			else {
 				errorMessages.put(
@@ -142,14 +141,15 @@ public class JUnitBatchBuildTestrayCaseResult
 
 		StringBuilder sb = new StringBuilder();
 
-		if (!skippedTests.isEmpty()) {
-			sb.append(skippedTests.size());
+		if (!skippedTestNames.isEmpty()) {
+			sb.append(skippedTestNames.size());
 			sb.append(" Skipped ");
 			sb.append(
 				JenkinsResultsParserUtil.getNounForm(
-					skippedTests.size(), "tests", "test"));
+					skippedTestNames.size(), "tests", "test"));
 			sb.append("\n    ");
-			sb.append(JenkinsResultsParserUtil.join("\n    ", skippedTests));
+			sb.append(
+				JenkinsResultsParserUtil.join("\n    ", skippedTestNames));
 		}
 
 		if (!errorMessages.isEmpty()) {
