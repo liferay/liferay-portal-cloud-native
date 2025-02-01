@@ -36,13 +36,6 @@ public class ObjectEntryDocumentContributor
 		ObjectEntry objectEntry = _objectEntryLocalService.fetchObjectEntry(
 			(long)baseModel.getPrimaryKeyObj());
 
-		if (FeatureFlagManagerUtil.isEnabled(
-				objectEntry.getCompanyId(), "LPD-42474")) {
-
-			document.addKeyword(
-				Field.FOLDER_ID, objectEntry.getObjectEntryFolderId());
-		}
-
 		ObjectDefinition objectDefinition =
 			_objectDefinitionLocalService.fetchObjectDefinition(
 				objectEntry.getObjectDefinitionId());
@@ -52,6 +45,13 @@ public class ObjectEntryDocumentContributor
 		field.setValue(objectDefinition.getClassName());
 
 		document.add(field);
+
+		if (FeatureFlagManagerUtil.isEnabled(
+				objectEntry.getCompanyId(), "LPD-42474")) {
+
+			document.addKeyword(
+				Field.FOLDER_ID, objectEntry.getObjectEntryFolderId());
+		}
 	}
 
 	@Reference
