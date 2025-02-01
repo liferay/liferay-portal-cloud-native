@@ -79,7 +79,24 @@ public class ObjectEntryFolderLocalServiceImpl
 		objectEntryFolder = objectEntryFolderPersistence.update(
 			objectEntryFolder);
 
-		_addObjectEntryFolderResources(objectEntryFolder, serviceContext);
+		if (serviceContext.isAddGroupPermissions() ||
+			serviceContext.isAddGuestPermissions()) {
+
+			_resourceLocalService.addResources(
+				objectEntryFolder.getCompanyId(),
+				objectEntryFolder.getGroupId(), objectEntryFolder.getUserId(),
+				ObjectEntryFolder.class.getName(),
+				objectEntryFolder.getObjectEntryFolderId(), false,
+				serviceContext);
+		}
+		else {
+			_resourceLocalService.addModelResources(
+				objectEntryFolder.getCompanyId(),
+				objectEntryFolder.getGroupId(), objectEntryFolder.getUserId(),
+				ObjectEntryFolder.class.getName(),
+				objectEntryFolder.getObjectEntryFolderId(),
+				serviceContext.getModelPermissions());
+		}
 
 		return objectEntryFolder;
 	}
@@ -180,30 +197,6 @@ public class ObjectEntryFolderLocalServiceImpl
 		objectEntryFolder.setTreePath(objectEntryFolder.buildTreePath());
 
 		return objectEntryFolderPersistence.update(objectEntryFolder);
-	}
-
-	private void _addObjectEntryFolderResources(
-			ObjectEntryFolder objectEntryFolder, ServiceContext serviceContext)
-		throws PortalException {
-
-		if (serviceContext.isAddGroupPermissions() ||
-			serviceContext.isAddGuestPermissions()) {
-
-			_resourceLocalService.addResources(
-				objectEntryFolder.getCompanyId(),
-				objectEntryFolder.getGroupId(), objectEntryFolder.getUserId(),
-				ObjectEntryFolder.class.getName(),
-				objectEntryFolder.getObjectEntryFolderId(), false,
-				serviceContext);
-		}
-		else {
-			_resourceLocalService.addModelResources(
-				objectEntryFolder.getCompanyId(),
-				objectEntryFolder.getGroupId(), objectEntryFolder.getUserId(),
-				ObjectEntryFolder.class.getName(),
-				objectEntryFolder.getObjectEntryFolderId(),
-				serviceContext.getModelPermissions());
-		}
 	}
 
 	private Map<Locale, String> _getLabelMap(
