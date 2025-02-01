@@ -115,10 +115,12 @@ public class ObjectEntryFolderLocalServiceWrapper
 	 *
 	 * @param objectEntryFolder the object entry folder
 	 * @return the object entry folder that was removed
+	 * @throws PortalException
 	 */
 	@Override
 	public com.liferay.object.model.ObjectEntryFolder deleteObjectEntryFolder(
-		com.liferay.object.model.ObjectEntryFolder objectEntryFolder) {
+			com.liferay.object.model.ObjectEntryFolder objectEntryFolder)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _objectEntryFolderLocalService.deleteObjectEntryFolder(
 			objectEntryFolder);

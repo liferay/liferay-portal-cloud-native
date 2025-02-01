@@ -117,10 +117,12 @@ public interface ObjectEntryFolderLocalService
 	 *
 	 * @param objectEntryFolder the object entry folder
 	 * @return the object entry folder that was removed
+	 * @throws PortalException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	public ObjectEntryFolder deleteObjectEntryFolder(
-		ObjectEntryFolder objectEntryFolder);
+			ObjectEntryFolder objectEntryFolder)
+		throws PortalException;
 
 	/**
 	 * @throws PortalException

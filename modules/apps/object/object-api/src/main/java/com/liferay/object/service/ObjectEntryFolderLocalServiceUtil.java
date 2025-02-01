@@ -115,9 +115,11 @@ public class ObjectEntryFolderLocalServiceUtil {
 	 *
 	 * @param objectEntryFolder the object entry folder
 	 * @return the object entry folder that was removed
+	 * @throws PortalException
 	 */
 	public static ObjectEntryFolder deleteObjectEntryFolder(
-		ObjectEntryFolder objectEntryFolder) {
+			ObjectEntryFolder objectEntryFolder)
+		throws PortalException {
 
 		return getService().deleteObjectEntryFolder(objectEntryFolder);
 	}

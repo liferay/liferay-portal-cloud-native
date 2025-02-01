@@ -133,11 +133,13 @@ public abstract class ObjectEntryFolderLocalServiceBaseImpl
 	 *
 	 * @param objectEntryFolder the object entry folder
 	 * @return the object entry folder that was removed
+	 * @throws PortalException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public ObjectEntryFolder deleteObjectEntryFolder(
-		ObjectEntryFolder objectEntryFolder) {
+			ObjectEntryFolder objectEntryFolder)
+		throws PortalException {
 
 		return objectEntryFolderPersistence.remove(objectEntryFolder);
 	}
