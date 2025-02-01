@@ -28,15 +28,7 @@ buildCreoleParser {
 	}
 
 	filter {
-		line -> line.replaceAll(/\bruleMemo\b/, "state.ruleMemo")
-	}
-
-	filter {
 		line -> line.replaceAll(/\b_fsp\b/, "state._fsp")
-	}
-
-	filter {
-		line -> line.replaceAll(/\bfailed\b/, "state.failed")
 	}
 
 	filter {
@@ -45,6 +37,14 @@ buildCreoleParser {
 
 	filter {
 		line -> line.replaceAll(/\berrorRecovery\b/, "state.errorRecovery")
+	}
+
+	filter {
+		line -> line.replaceAll(/\bfailed\b/, "state.failed")
+	}
+
+	filter {
+		line -> line.replaceAll(/\bruleMemo\b/, "state.ruleMemo")
 	}
 
 	from "src/main/antlr/com/liferay/wiki/engine/creole/internal/parser/parser/Creole10Parser.java"
