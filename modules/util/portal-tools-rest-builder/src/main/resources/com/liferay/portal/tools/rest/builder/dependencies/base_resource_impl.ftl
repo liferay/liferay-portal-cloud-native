@@ -250,8 +250,6 @@ public abstract class Base${schemaName}ResourceImpl
 								}));
 
 							return ${httpMethod}${schemaName};
-						<#else>
-							/* NO: ${properties?keys?join(", ")} */
 						</#if>
 					</#if>
 				<#else>
