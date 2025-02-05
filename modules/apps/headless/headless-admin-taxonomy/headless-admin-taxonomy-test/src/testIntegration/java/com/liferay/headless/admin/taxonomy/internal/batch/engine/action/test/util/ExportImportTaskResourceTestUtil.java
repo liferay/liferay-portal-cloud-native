@@ -104,14 +104,12 @@ public class ExportImportTaskResourceTestUtil {
 
 		httpInvoker.body(jsonString, "application/json");
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
-
 		httpInvoker.path(
 			StringBundler.concat(
 				"http://localhost:8080/o/headless-batch-engine/v1.0",
 				"/import-task/", className, "?createStrategy=", createStrategy,
 				"&importCreatorStrategy=", importCreatorStrategy, "&siteId=",
 				groupId));
-
 		httpInvoker.userNameAndPassword(
 			"test@liferay.com:" + PropsValues.DEFAULT_ADMIN_PASSWORD);
 
