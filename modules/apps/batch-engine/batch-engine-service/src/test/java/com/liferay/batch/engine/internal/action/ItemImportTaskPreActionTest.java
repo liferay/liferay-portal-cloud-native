@@ -52,7 +52,7 @@ public class ItemImportTaskPreActionTest {
 	}
 
 	@Test
-	public void testImportWithKeepCreatorStrategy() throws Exception {
+	public void testRunWithImportCreatorStrategy1() throws Exception {
 		_run(
 			BatchEngineImportTaskConstants.IMPORT_CREATOR_STRATEGY_KEEP_CREATOR,
 			_importTaskContext);
@@ -65,9 +65,7 @@ public class ItemImportTaskPreActionTest {
 	}
 
 	@Test
-	public void testImportWithKeepCreatorStrategyAndUserDoesNotExist()
-		throws Exception {
-
+	public void testRunWithImportCreatorStrategy2() throws Exception {
 		Mockito.doReturn(
 			null
 		).when(
@@ -86,7 +84,7 @@ public class ItemImportTaskPreActionTest {
 	}
 
 	@Test
-	public void testImportWithNotKeepCreatorStrategy() throws Exception {
+	public void testRunWithNoImportCreatorStrategy() throws Exception {
 		_run(RandomTestUtil.randomString(), _importTaskContext);
 
 		Assert.assertEquals(
@@ -105,20 +103,6 @@ public class ItemImportTaskPreActionTest {
 		testEntity.setCreator(creator);
 
 		return testEntity;
-	}
-
-	private void _run(
-			String importCreatorStrategy, ImportTaskContext importTaskContext)
-		throws Exception {
-
-		Mockito.when(
-			_batchEngineImportTask.getParameterValue("importCreatorStrategy")
-		).thenReturn(
-			importCreatorStrategy
-		);
-
-		_itemImportTaskPreAction.run(
-			_batchEngineImportTask, importTaskContext, _testEntity);
 	}
 
 	private void _mockUser() throws Exception {
@@ -151,6 +135,20 @@ public class ItemImportTaskPreActionTest {
 		).fetchUserById(
 			Mockito.anyLong()
 		);
+	}
+
+	private void _run(
+			String importCreatorStrategy, ImportTaskContext importTaskContext)
+		throws Exception {
+
+		Mockito.when(
+			_batchEngineImportTask.getParameterValue("importCreatorStrategy")
+		).thenReturn(
+			importCreatorStrategy
+		);
+
+		_itemImportTaskPreAction.run(
+			_batchEngineImportTask, importTaskContext, _testEntity);
 	}
 
 	private static final long _CURRENT_USER_ID = RandomTestUtil.randomLong();
