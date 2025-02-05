@@ -53,7 +53,7 @@ public class ItemImportTaskPreActionTest {
 
 	@Test
 	public void testImportWithKeepCreatorStrategy() throws Exception {
-		_executeImportTask(
+		_run(
 			BatchEngineImportTaskConstants.IMPORT_CREATOR_STRATEGY_KEEP_CREATOR,
 			_importTaskContext);
 
@@ -76,7 +76,7 @@ public class ItemImportTaskPreActionTest {
 			Mockito.anyString(), Mockito.anyLong()
 		);
 
-		_executeImportTask(
+		_run(
 			BatchEngineImportTaskConstants.IMPORT_CREATOR_STRATEGY_KEEP_CREATOR,
 			_importTaskContext);
 
@@ -87,7 +87,7 @@ public class ItemImportTaskPreActionTest {
 
 	@Test
 	public void testImportWithNotKeepCreatorStrategy() throws Exception {
-		_executeImportTask(RandomTestUtil.randomString(), _importTaskContext);
+		_run(RandomTestUtil.randomString(), _importTaskContext);
 
 		Assert.assertEquals(
 			String.valueOf(_CURRENT_USER_ID), PrincipalThreadLocal.getName());
@@ -99,15 +99,15 @@ public class ItemImportTaskPreActionTest {
 
 		Creator creator = new Creator();
 
-		creator.setId(_user.getUserId());
 		creator.setExternalReferenceCode(_user.getExternalReferenceCode());
+		creator.setId(_user.getUserId());
 
 		testEntity.setCreator(creator);
 
 		return testEntity;
 	}
 
-	private void _executeImportTask(
+	private void _run(
 			String importCreatorStrategy, ImportTaskContext importTaskContext)
 		throws Exception {
 
@@ -123,15 +123,15 @@ public class ItemImportTaskPreActionTest {
 
 	private void _mockUser() throws Exception {
 		Mockito.when(
-			_user.getUserId()
-		).thenReturn(
-			RandomTestUtil.randomLong()
-		);
-
-		Mockito.when(
 			_user.getExternalReferenceCode()
 		).thenReturn(
 			RandomTestUtil.randomString()
+		);
+
+		Mockito.when(
+			_user.getUserId()
+		).thenReturn(
+			RandomTestUtil.randomLong()
 		);
 	}
 

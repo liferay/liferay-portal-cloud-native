@@ -87,15 +87,18 @@ public class ItemImportTaskPreAction implements ImportTaskPreAction {
 
 		String externalReferenceCode = creatorJSONObject.getString(
 			"externalReferenceCode");
-		long userId = creatorJSONObject.getLong("id");
 
 		if (!Validator.isBlank(externalReferenceCode)) {
 			user = _userLocalService.fetchUserByExternalReferenceCode(
 				externalReferenceCode, CompanyThreadLocal.getCompanyId());
 		}
 
-		if ((user == null) && (userId > 0)) {
-			user = _userLocalService.fetchUser(userId);
+		if (user == null) {
+			long userId = creatorJSONObject.getLong("id");
+
+			if (userId > 0) {
+				user = _userLocalService.fetchUser(userId);
+			}
 		}
 
 		return user;
