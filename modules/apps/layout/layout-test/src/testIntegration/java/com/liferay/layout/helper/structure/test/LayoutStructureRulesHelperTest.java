@@ -87,7 +87,6 @@ public class LayoutStructureRulesHelperTest {
 				).put(
 					"USER_ID_2", String.valueOf(RandomTestUtil.randomLong())
 				).build()));
-
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(_user);
 
@@ -127,7 +126,6 @@ public class LayoutStructureRulesHelperTest {
 					"SEGMENTS_ENTRY_ID",
 					String.valueOf(SegmentsEntryConstants.ID_DEFAULT)
 				).build()));
-
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(_user);
 
@@ -159,7 +157,6 @@ public class LayoutStructureRulesHelperTest {
 
 		LayoutStructure layoutStructure = LayoutStructure.of(
 			_read("layout_data_rules_all.json"));
-
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(_user);
 
