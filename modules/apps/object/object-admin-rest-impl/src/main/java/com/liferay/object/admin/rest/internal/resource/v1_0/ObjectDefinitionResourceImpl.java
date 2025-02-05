@@ -365,8 +365,7 @@ public class ObjectDefinitionResourceImpl
 							objectDefinition.getDefaultLanguageId(),
 							objectField, serviceBuilderObjectDefinition);
 
-					if ((objectDefinition.getAccountEntryRestricted() ==
-							true) &&
+					if (objectDefinition.getAccountEntryRestricted() &&
 						StringUtil.equals(
 							objectDefinition.
 								getAccountEntryRestrictedObjectFieldName(),
