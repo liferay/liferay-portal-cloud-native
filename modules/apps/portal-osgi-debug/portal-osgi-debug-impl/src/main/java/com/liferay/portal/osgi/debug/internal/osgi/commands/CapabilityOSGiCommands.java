@@ -37,7 +37,7 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 		Bundle bundle = _bundleContext.getBundle(bundleId);
 
 		if (bundle == null) {
-			System.out.println("No such bundle with id : " + bundleId);
+			System.out.println("Invalid bundle ID: " + bundleId);
 
 			return;
 		}
@@ -127,7 +127,7 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 					entry1 : map.entrySet()) {
 
 			System.out.println(
-				"\n==== namespace : " + entry1.getKey() + " ====\n");
+				"\n==== Namespace: " + entry1.getKey() + " ====\n");
 
 			Map.Entry<Set<BundleCapability>, Set<BundleRequirement>> entry2 =
 				entry1.getValue();
@@ -145,7 +145,7 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 				currentBundleCapabilities.add(bundleCapability);
 			}
 
-			System.out.println("Providers : ");
+			System.out.println("Providers: ");
 
 			for (Map.Entry<Bundle, List<BundleCapability>> entry3 :
 					bundleCapabilities.entrySet()) {
@@ -170,7 +170,7 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 				currentBundleRequirements.add(bundleRequirement);
 			}
 
-			System.out.println("Consumers : ");
+			System.out.println("Consumers: ");
 
 			for (Map.Entry<Bundle, List<BundleRequirement>> entry4 :
 					bundleRequirements.entrySet()) {
