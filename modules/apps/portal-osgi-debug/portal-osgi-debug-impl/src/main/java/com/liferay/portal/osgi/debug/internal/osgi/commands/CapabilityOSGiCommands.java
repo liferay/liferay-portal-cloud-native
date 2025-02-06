@@ -47,13 +47,13 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 		}
 
 		Map<String, Map.Entry<Set<BundleCapability>, Set<BundleRequirement>>>
-			capabilities = new TreeMap<>();
+			map = new TreeMap<>();
 
 		for (String namespace : namespaces) {
-			_collectCapabilities(capabilities, bundle, namespace);
+			_collect(map, bundle, namespace);
 		}
 
-		_print(capabilities);
+		_print(map);
 	}
 
 	public void listCap(String... namespaces) {
@@ -62,17 +62,17 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 		}
 
 		Map<String, Map.Entry<Set<BundleCapability>, Set<BundleRequirement>>>
-			capabilities = new TreeMap<>();
+			map = new TreeMap<>();
 
 		Bundle[] bundles = _bundleContext.getBundles();
 
 		for (String namespace : namespaces) {
 			for (Bundle bundle : bundles) {
-				_collectCapabilities(capabilities, bundle, namespace);
+				_collect(map, bundle, namespace);
 			}
 		}
 
-		_print(capabilities);
+		_print(map);
 	}
 
 	@Activate
@@ -80,9 +80,9 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 		_bundleContext = bundleContext;
 	}
 
-	private void _collectCapabilities(
+	private void _collect(
 		Map<String, Map.Entry<Set<BundleCapability>, Set<BundleRequirement>>>
-			capabilities,
+			map,
 		Bundle bundle, String namespace) {
 
 		BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
@@ -91,7 +91,7 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 				bundleWiring.getCapabilities(namespace)) {
 
 			Map.Entry<Set<BundleCapability>, Set<BundleRequirement>> entry =
-				capabilities.computeIfAbsent(
+				map.computeIfAbsent(
 					bundleCapability.getNamespace(),
 					key -> new AbstractMap.SimpleImmutableEntry<>(
 						new HashSet<>(), new HashSet<>()));
@@ -105,7 +105,7 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 				bundleWiring.getRequirements(namespace)) {
 
 			Map.Entry<Set<BundleCapability>, Set<BundleRequirement>> entry =
-				capabilities.computeIfAbsent(
+				map.computeIfAbsent(
 					bundleRequirement.getNamespace(),
 					key -> new AbstractMap.SimpleImmutableEntry<>(
 						new HashSet<>(), new HashSet<>()));
@@ -118,12 +118,12 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 
 	private void _print(
 		Map<String, Map.Entry<Set<BundleCapability>, Set<BundleRequirement>>>
-			capabilities) {
+			map) {
 
 		for (Map.Entry
 				<String,
 				 Map.Entry<Set<BundleCapability>, Set<BundleRequirement>>>
-					entry1 : capabilities.entrySet()) {
+					entry1 : map.entrySet()) {
 
 			System.out.println(
 				"\n==== namespace : " + entry1.getKey() + " ====\n");
