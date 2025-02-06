@@ -50,7 +50,7 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 			map = new TreeMap<>();
 
 		for (String namespace : namespaces) {
-			_collect(map, bundle, namespace);
+			_collect(bundle, map, namespace);
 		}
 
 		_print(map);
@@ -68,7 +68,7 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 
 		for (String namespace : namespaces) {
 			for (Bundle bundle : bundles) {
-				_collect(map, bundle, namespace);
+				_collect(bundle, map, namespace);
 			}
 		}
 
@@ -81,9 +81,10 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 	}
 
 	private void _collect(
+		Bundle bundle,
 		Map<String, Map.Entry<Set<BundleCapability>, Set<BundleRequirement>>>
 			map,
-		Bundle bundle, String namespace) {
+		String namespace) {
 
 		BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
 
