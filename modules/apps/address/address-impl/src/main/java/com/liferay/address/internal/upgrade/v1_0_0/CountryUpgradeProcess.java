@@ -363,8 +363,7 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 				_preparedStatement2.addBatch();
 			}
 
-			_processCountryRegions(
-				countryJSONObject.getString("a2"), countryId);
+			_processRegions(countryJSONObject.getString("a2"), countryId);
 		}
 
 		private void _addRegion(long countryId, JSONObject regionJSONObject)
@@ -467,7 +466,7 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 			}
 		}
 
-		private void _processCountryRegions(String a2, long countryId)
+		private void _processRegions(String a2, long countryId)
 			throws Exception {
 
 			String path =
@@ -480,7 +479,7 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 			JSONArray regionsJSONArray = _getJSONArray(path);
 
 			if (_log.isDebugEnabled()) {
-				_log.debug("Regions found for country " + a2);
+				_log.debug("Found regions for country " + a2);
 			}
 
 			for (int i = 0; i < regionsJSONArray.length(); i++) {
