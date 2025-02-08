@@ -61,52 +61,6 @@ import org.osgi.service.component.annotations.Reference;
 public class CustomFDSSerializer
 	extends BaseFDSSerializer implements FDSSerializer {
 
-	protected Map<String, Object> getDataSetObjectEntryProperties(
-		String externalReferenceCode, HttpServletRequest httpServletRequest) {
-
-		ObjectEntry objectEntry = _getObjectEntry(
-			_getDataSetObjectDefinition(httpServletRequest),
-			externalReferenceCode);
-
-		if (objectEntry != null) {
-			return objectEntry.getProperties();
-		}
-
-		return Collections.emptyMap();
-	}
-
-	protected Set<ObjectEntry> getSortedRelatedObjectEntries(
-		String externalReferenceCode,
-		String dataSetObjectEntryComparatorIdsPropertyKey,
-		HttpServletRequest httpServletRequest, Predicate<ObjectEntry> predicate,
-		String... relationshipNames) {
-
-		ObjectDefinition dataSetObjectDefinition = _getDataSetObjectDefinition(
-			httpServletRequest);
-
-		ObjectEntry dataSetObjectEntry = _getObjectEntry(
-			dataSetObjectDefinition, externalReferenceCode);
-
-		Set<ObjectEntry> objectEntries = new TreeSet<>(
-			new ObjectEntryComparator(
-				ListUtil.toList(
-					ListUtil.fromString(
-						MapUtil.getString(
-							dataSetObjectEntry.getProperties(),
-							dataSetObjectEntryComparatorIdsPropertyKey),
-						StringPool.COMMA),
-					GetterUtil::getLong)));
-
-		for (String relationshipName : relationshipNames) {
-			objectEntries.addAll(
-				_getRelatedObjectEntries(
-					dataSetObjectDefinition, dataSetObjectEntry, predicate,
-					relationshipName));
-		}
-
-		return objectEntries;
-	}
-
 	@Override
 	public String serializeAPIURL(
 		String fdsName, HttpServletRequest httpServletRequest) {
@@ -261,6 +215,52 @@ public class CustomFDSSerializer
 
 				return fdsActionDropdownItem;
 			});
+	}
+
+	protected Map<String, Object> getDataSetObjectEntryProperties(
+		String externalReferenceCode, HttpServletRequest httpServletRequest) {
+
+		ObjectEntry objectEntry = _getObjectEntry(
+			_getDataSetObjectDefinition(httpServletRequest),
+			externalReferenceCode);
+
+		if (objectEntry != null) {
+			return objectEntry.getProperties();
+		}
+
+		return Collections.emptyMap();
+	}
+
+	protected Set<ObjectEntry> getSortedRelatedObjectEntries(
+		String externalReferenceCode,
+		String dataSetObjectEntryComparatorIdsPropertyKey,
+		HttpServletRequest httpServletRequest, Predicate<ObjectEntry> predicate,
+		String... relationshipNames) {
+
+		ObjectDefinition dataSetObjectDefinition = _getDataSetObjectDefinition(
+			httpServletRequest);
+
+		ObjectEntry dataSetObjectEntry = _getObjectEntry(
+			dataSetObjectDefinition, externalReferenceCode);
+
+		Set<ObjectEntry> objectEntries = new TreeSet<>(
+			new ObjectEntryComparator(
+				ListUtil.toList(
+					ListUtil.fromString(
+						MapUtil.getString(
+							dataSetObjectEntry.getProperties(),
+							dataSetObjectEntryComparatorIdsPropertyKey),
+						StringPool.COMMA),
+					GetterUtil::getLong)));
+
+		for (String relationshipName : relationshipNames) {
+			objectEntries.addAll(
+				_getRelatedObjectEntries(
+					dataSetObjectDefinition, dataSetObjectEntry, predicate,
+					relationshipName));
+		}
+
+		return objectEntries;
 	}
 
 	private ObjectDefinition _getDataSetObjectDefinition(
