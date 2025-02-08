@@ -45,16 +45,60 @@ public class CustomFDSSerializer
 		Map<String, Object> properties = getDataSetObjectEntryProperties(
 			fdsName, httpServletRequest);
 
-		return _addNestedFields(
+		Set<ObjectEntry> dataSetTableSectionObjectEntries =
 			getSortedRelatedObjectEntries(
 				fdsName, "tableSectionsOrder", httpServletRequest,
-				(Predicate)null, "dataSetToDataSetTableSections"),
-			createFDSAPIURLBuilder(
-				httpServletRequest,
-				String.valueOf(properties.get("restApplication")),
-				String.valueOf(properties.get("restEndpoint")),
-				String.valueOf(properties.get("restSchema")))
-		).build();
+				(Predicate)null, "dataSetToDataSetTableSections");
+
+		FDSAPIURLBuilder fdsAPIURLBuilder = createFDSAPIURLBuilder(
+			httpServletRequest,
+			String.valueOf(properties.get("restApplication")),
+			String.valueOf(properties.get("restEndpoint")),
+			String.valueOf(properties.get("restSchema")));
+
+		if (dataSetTableSectionObjectEntries == null) {
+			return fdsAPIURLBuilder.build();
+		}
+
+		String nestedFields = StringPool.BLANK;
+		int nestedFieldsDepth = 1;
+
+		for (ObjectEntry objectEntry : dataSetTableSectionObjectEntries) {
+			Map<String, Object> objectEntryProperties =
+				objectEntry.getProperties();
+
+			String[] fieldNames = StringUtil.split(
+				StringUtil.replace(
+					String.valueOf(objectEntryProperties.get("fieldName")),
+					"[]", StringPool.PERIOD),
+				CharPool.PERIOD);
+
+			if (fieldNames.length > 1) {
+				for (int i = 0; i < (fieldNames.length - 1); i++) {
+					nestedFields = StringUtil.add(nestedFields, fieldNames[i]);
+				}
+
+				if (fieldNames.length > nestedFieldsDepth) {
+					nestedFieldsDepth = fieldNames.length - 1;
+				}
+			}
+		}
+
+		if (nestedFields.equals(StringPool.BLANK)) {
+			return fdsAPIURLBuilder.build();
+		}
+
+		fdsAPIURLBuilder.addParameter(
+			"nestedFields",
+			StringUtil.replaceLast(
+				nestedFields, CharPool.COMMA, StringPool.BLANK));
+
+		if (nestedFieldsDepth > 1) {
+			fdsAPIURLBuilder.addParameter(
+				"nestedFieldsDepth", String.valueOf(nestedFieldsDepth));
+		}
+
+		return fdsAPIURLBuilder.build();
 	}
 
 	@Override
@@ -149,57 +193,6 @@ public class CustomFDSSerializer
 
 				return fdsActionDropdownItem;
 			});
-	}
-
-	private FDSAPIURLBuilder _addNestedFields(
-		Set<ObjectEntry> dataSetTableSectionObjectEntries,
-		FDSAPIURLBuilder fdsAPIURLBuilder) {
-
-		if (dataSetTableSectionObjectEntries == null) {
-			return fdsAPIURLBuilder;
-		}
-
-		String nestedFields = StringPool.BLANK;
-		int nestedFieldsDepth = 1;
-
-		for (ObjectEntry fdsFieldObjectEntry :
-				dataSetTableSectionObjectEntries) {
-
-			Map<String, Object> properties =
-				fdsFieldObjectEntry.getProperties();
-
-			String[] fieldNames = StringUtil.split(
-				StringUtil.replace(
-					String.valueOf(properties.get("fieldName")), "[]",
-					StringPool.PERIOD),
-				CharPool.PERIOD);
-
-			if (fieldNames.length > 1) {
-				for (int i = 0; i < (fieldNames.length - 1); i++) {
-					nestedFields = StringUtil.add(nestedFields, fieldNames[i]);
-				}
-
-				if (fieldNames.length > nestedFieldsDepth) {
-					nestedFieldsDepth = fieldNames.length - 1;
-				}
-			}
-		}
-
-		if (nestedFields.equals(StringPool.BLANK)) {
-			return fdsAPIURLBuilder;
-		}
-
-		fdsAPIURLBuilder.addParameter(
-			"nestedFields",
-			StringUtil.replaceLast(
-				nestedFields, CharPool.COMMA, StringPool.BLANK));
-
-		if (nestedFieldsDepth > 1) {
-			fdsAPIURLBuilder.addParameter(
-				"nestedFieldsDepth", String.valueOf(nestedFieldsDepth));
-		}
-
-		return fdsAPIURLBuilder;
 	}
 
 }
