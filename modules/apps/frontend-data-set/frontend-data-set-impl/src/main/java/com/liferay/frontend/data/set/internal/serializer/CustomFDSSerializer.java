@@ -306,11 +306,6 @@ public class CustomFDSSerializer
 
 		Collection<ObjectEntry> objectEntries = null;
 
-		DTOConverterContext dtoConverterContext =
-			new DefaultDTOConverterContext(
-				false, null, null, null, null,
-				LocaleUtil.getMostRelevantLocale(), null, null);
-
 		DefaultObjectEntryManager defaultObjectEntryManager =
 			DefaultObjectEntryManagerProvider.provide(
 				_objectEntryManagerRegistry.getObjectEntryManager(
@@ -319,8 +314,10 @@ public class CustomFDSSerializer
 		try {
 			Page<ObjectEntry> relatedObjectEntriesPage =
 				defaultObjectEntryManager.getObjectEntryRelatedObjectEntries(
-					dtoConverterContext, objectDefinition, objectEntry.getId(),
-					relationshipName,
+					new DefaultDTOConverterContext(
+						false, null, null, null, null,
+						LocaleUtil.getMostRelevantLocale(), null, null),
+					objectDefinition, objectEntry.getId(), relationshipName,
 					Pagination.of(QueryUtil.ALL_POS, QueryUtil.ALL_POS));
 
 			objectEntries = relatedObjectEntriesPage.getItems();
