@@ -324,7 +324,8 @@ public class CustomFDSSerializer
 
 			if (predicate != null) {
 				objectEntries.removeIf(
-					currentObjectEntry -> !predicate.test(currentObjectEntry));
+					predicateObjectEntry ->
+						!predicate.test(predicateObjectEntry));
 			}
 		}
 		catch (Exception exception) {
