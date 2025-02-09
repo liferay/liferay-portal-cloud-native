@@ -35,6 +35,7 @@ import com.liferay.portal.vulcan.dto.converter.DefaultDTOConverterContext;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -42,8 +43,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.function.Predicate;
 
 import javax.servlet.http.HttpServletRequest;
@@ -74,7 +73,7 @@ public class CustomFDSSerializer
 			String.valueOf(properties.get("restEndpoint")),
 			String.valueOf(properties.get("restSchema")));
 
-		Set<ObjectEntry> objectEntries = getSortedRelatedObjectEntries(
+		List<ObjectEntry> objectEntries = getSortedRelatedObjectEntries(
 			fdsName, "tableSectionsOrder", httpServletRequest, (Predicate)null,
 			"dataSetToDataSetTableSections");
 
@@ -231,11 +230,13 @@ public class CustomFDSSerializer
 		return Collections.emptyMap();
 	}
 
-	protected Set<ObjectEntry> getSortedRelatedObjectEntries(
+	protected List<ObjectEntry> getSortedRelatedObjectEntries(
 		String externalReferenceCode,
 		String dataSetObjectEntryComparatorIdsPropertyKey,
 		HttpServletRequest httpServletRequest, Predicate<ObjectEntry> predicate,
 		String... relationshipNames) {
+
+		List<ObjectEntry> objectEntries = new ArrayList<>();
 
 		ObjectDefinition dataSetObjectDefinition = _getDataSetObjectDefinition(
 			httpServletRequest);
@@ -243,7 +244,14 @@ public class CustomFDSSerializer
 		ObjectEntry dataSetObjectEntry = _getObjectEntry(
 			dataSetObjectDefinition, externalReferenceCode);
 
-		Set<ObjectEntry> objectEntries = new TreeSet<>(
+		for (String relationshipName : relationshipNames) {
+			objectEntries.addAll(
+				_getRelatedObjectEntries(
+					dataSetObjectDefinition, dataSetObjectEntry, predicate,
+					relationshipName));
+		}
+
+		objectEntries.sort(
 			new ObjectEntryComparator(
 				ListUtil.toList(
 					ListUtil.fromString(
@@ -252,13 +260,6 @@ public class CustomFDSSerializer
 							dataSetObjectEntryComparatorIdsPropertyKey),
 						StringPool.COMMA),
 					GetterUtil::getLong)));
-
-		for (String relationshipName : relationshipNames) {
-			objectEntries.addAll(
-				_getRelatedObjectEntries(
-					dataSetObjectDefinition, dataSetObjectEntry, predicate,
-					relationshipName));
-		}
 
 		return objectEntries;
 	}

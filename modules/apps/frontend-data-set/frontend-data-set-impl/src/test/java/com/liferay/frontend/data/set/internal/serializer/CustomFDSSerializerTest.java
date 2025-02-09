@@ -30,12 +30,11 @@ import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
 import java.net.URLDecoder;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -411,13 +410,13 @@ public class CustomFDSSerializerTest {
 					fdsName, "tableSectionsOrder", _httpServletRequest, null,
 					"dataSetToDataSetTableSections")
 			).thenReturn(
-				Collections.emptySet()
+				Collections.emptyList()
 			);
 
 			return;
 		}
 
-		Set<ObjectEntry> objectEntries = new HashSet<>();
+		List<ObjectEntry> objectEntries = new ArrayList<>();
 
 		for (String fieldName : fieldNames) {
 			ObjectEntry objectEntry = new ObjectEntry();
@@ -452,13 +451,13 @@ public class CustomFDSSerializerTest {
 					Mockito.eq(_httpServletRequest), Mockito.any(),
 					Mockito.eq("dataSetToDataSetActions"))
 			).thenReturn(
-				Collections.emptySet()
+				Collections.emptyList()
 			);
 
 			return;
 		}
 
-		Set<ObjectEntry> objectEntries = new HashSet<>();
+		List<ObjectEntry> objectEntries = new ArrayList<>();
 
 		for (String title : titles) {
 			ObjectEntry objectEntry = new ObjectEntry();
@@ -494,13 +493,13 @@ public class CustomFDSSerializerTest {
 					Mockito.eq(_httpServletRequest), Mockito.any(),
 					Mockito.eq("dataSetToDataSetActions"))
 			).thenReturn(
-				Collections.emptySet()
+				Collections.emptyList()
 			);
 
 			return;
 		}
 
-		Set<ObjectEntry> objectEntries = new HashSet<>();
+		List<ObjectEntry> objectEntries = new ArrayList<>();
 
 		for (String label : labels) {
 			ObjectEntry objectEntry = new ObjectEntry();
