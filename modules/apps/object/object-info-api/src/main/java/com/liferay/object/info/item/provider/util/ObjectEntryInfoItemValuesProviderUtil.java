@@ -235,15 +235,16 @@ public class ObjectEntryInfoItemValuesProviderUtil {
 
 				infoFieldValue = InfoLocalizedValue.function(
 					currentLocale -> _parseValue(
-						listTypeEntryLocalService, currentLocale, objectField,
-						objectEntryLocalService, objectRelationshipLocalService,
+						listTypeEntryLocalService, currentLocale,
+						objectEntryLocalService, objectField,
+						objectRelationshipLocalService,
 						map.get(LanguageUtil.getLanguageId(currentLocale))));
 			}
 		}
 		else {
 			infoFieldValue = _parseValue(
-				listTypeEntryLocalService, locale, objectField,
-				objectEntryLocalService, objectRelationshipLocalService, value);
+				listTypeEntryLocalService, locale, objectEntryLocalService,
+				objectField, objectRelationshipLocalService, value);
 		}
 
 		if (infoFieldValue == null) {
@@ -360,7 +361,7 @@ public class ObjectEntryInfoItemValuesProviderUtil {
 		ListTypeEntryLocalService listTypeEntryLocalService, Object object,
 		ObjectField objectField) {
 
-		String key;
+		String key = null;
 
 		if (object instanceof ListEntry) {
 			ListEntry listEntry = (ListEntry)object;
@@ -391,8 +392,8 @@ public class ObjectEntryInfoItemValuesProviderUtil {
 
 	private static Object _parseValue(
 		ListTypeEntryLocalService listTypeEntryLocalService, Locale locale,
-		ObjectField objectField,
 		ObjectEntryLocalService objectEntryLocalService,
+		ObjectField objectField,
 		ObjectRelationshipLocalService objectRelationshipLocalService,
 		Object value) {
 
