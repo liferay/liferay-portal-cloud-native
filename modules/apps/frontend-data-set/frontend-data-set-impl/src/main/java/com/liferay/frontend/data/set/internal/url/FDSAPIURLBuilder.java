@@ -68,7 +68,7 @@ public class FDSAPIURLBuilder {
 
 		_appendParameters(sb);
 
-		return _interpolateURL(_resolveParameters(sb.toString()));
+		return _interpolate(_resolveParameters(sb.toString()));
 	}
 
 	private void _appendParameters(StringBundler sb) {
@@ -91,7 +91,7 @@ public class FDSAPIURLBuilder {
 		}
 	}
 
-	private String _interpolateURL(String apiURL) {
+	private String _interpolate(String apiURL) {
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
