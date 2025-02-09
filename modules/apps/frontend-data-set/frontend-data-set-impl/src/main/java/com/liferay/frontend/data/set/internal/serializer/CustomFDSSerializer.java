@@ -74,7 +74,7 @@ public class CustomFDSSerializer
 			String.valueOf(properties.get("restSchema")));
 
 		List<ObjectEntry> objectEntries = getSortedRelatedObjectEntries(
-			fdsName, "tableSectionsOrder", httpServletRequest, (Predicate)null,
+			fdsName, httpServletRequest, (Predicate)null, "tableSectionsOrder",
 			"dataSetToDataSetTableSections");
 
 		if (objectEntries == null) {
@@ -139,10 +139,10 @@ public class CustomFDSSerializer
 
 		List<DropdownItem> dropdownItems = TransformUtil.transform(
 			getSortedRelatedObjectEntries(
-				fdsName, "creationActionsOrder", httpServletRequest,
+				fdsName, httpServletRequest,
 				(ObjectEntry objectEntry) -> Objects.equals(
 					_getType(objectEntry), "creation"),
-				"dataSetToDataSetActions"),
+				"creationActionsOrder", "dataSetToDataSetActions"),
 			objectEntry -> {
 				Map<String, Object> properties = objectEntry.getProperties();
 
@@ -180,10 +180,10 @@ public class CustomFDSSerializer
 
 		return TransformUtil.transform(
 			getSortedRelatedObjectEntries(
-				fdsName, "itemActionsOrder", httpServletRequest,
+				fdsName, httpServletRequest,
 				(ObjectEntry objectEntry) -> Objects.equals(
 					_getType(objectEntry), "item"),
-				"dataSetToDataSetActions"),
+				"itemActionsOrder", "dataSetToDataSetActions"),
 			objectEntry -> {
 				Map<String, Object> properties = objectEntry.getProperties();
 
@@ -230,9 +230,8 @@ public class CustomFDSSerializer
 	}
 
 	protected List<ObjectEntry> getSortedRelatedObjectEntries(
-		String externalReferenceCode,
-		String dataSetObjectEntryComparatorIdsPropertyKey,
-		HttpServletRequest httpServletRequest, Predicate<ObjectEntry> predicate,
+		String externalReferenceCode, HttpServletRequest httpServletRequest,
+		Predicate<ObjectEntry> predicate, String propertyKey,
 		String... relationshipNames) {
 
 		List<ObjectEntry> objectEntries = new ArrayList<>();
@@ -255,8 +254,7 @@ public class CustomFDSSerializer
 				ListUtil.toList(
 					ListUtil.fromString(
 						MapUtil.getString(
-							objectEntry.getProperties(),
-							dataSetObjectEntryComparatorIdsPropertyKey),
+							objectEntry.getProperties(), propertyKey),
 						StringPool.COMMA),
 					GetterUtil::getLong)));
 

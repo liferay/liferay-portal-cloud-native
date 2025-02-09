@@ -407,7 +407,7 @@ public class CustomFDSSerializerTest {
 		if (ArrayUtil.isEmpty(fieldNames)) {
 			Mockito.when(
 				_customFDSSerializer.getSortedRelatedObjectEntries(
-					fdsName, "tableSectionsOrder", _httpServletRequest, null,
+					fdsName, _httpServletRequest, null, "tableSectionsOrder",
 					"dataSetToDataSetTableSections")
 			).thenReturn(
 				Collections.emptyList()
@@ -431,7 +431,7 @@ public class CustomFDSSerializerTest {
 
 		Mockito.when(
 			_customFDSSerializer.getSortedRelatedObjectEntries(
-				fdsName, "tableSectionsOrder", _httpServletRequest, null,
+				fdsName, _httpServletRequest, null, "tableSectionsOrder",
 				"dataSetToDataSetTableSections")
 		).thenReturn(
 			objectEntries
@@ -447,8 +447,8 @@ public class CustomFDSSerializerTest {
 		if (ArrayUtil.isEmpty(titles)) {
 			Mockito.when(
 				_customFDSSerializer.getSortedRelatedObjectEntries(
-					Mockito.eq(fdsName), Mockito.eq("creationActionsOrder"),
-					Mockito.eq(_httpServletRequest), Mockito.any(),
+					Mockito.eq(fdsName), Mockito.eq(_httpServletRequest),
+					Mockito.any(), Mockito.eq("creationActionsOrder"),
 					Mockito.eq("dataSetToDataSetActions"))
 			).thenReturn(
 				Collections.emptyList()
@@ -472,8 +472,8 @@ public class CustomFDSSerializerTest {
 
 		Mockito.when(
 			_customFDSSerializer.getSortedRelatedObjectEntries(
-				Mockito.eq(fdsName), Mockito.eq("creationActionsOrder"),
-				Mockito.eq(_httpServletRequest), Mockito.any(),
+				Mockito.eq(fdsName), Mockito.eq(_httpServletRequest),
+				Mockito.any(), Mockito.eq("creationActionsOrder"),
 				Mockito.eq("dataSetToDataSetActions"))
 		).thenReturn(
 			objectEntries
@@ -489,8 +489,8 @@ public class CustomFDSSerializerTest {
 		if (ArrayUtil.isEmpty(labels)) {
 			Mockito.when(
 				_customFDSSerializer.getSortedRelatedObjectEntries(
-					Mockito.eq(fdsName), Mockito.eq("itemActionsOrder"),
-					Mockito.eq(_httpServletRequest), Mockito.any(),
+					Mockito.eq(fdsName), Mockito.eq(_httpServletRequest),
+					Mockito.any(), Mockito.eq("itemActionsOrder"),
 					Mockito.eq("dataSetToDataSetActions"))
 			).thenReturn(
 				Collections.emptyList()
@@ -514,8 +514,8 @@ public class CustomFDSSerializerTest {
 
 		Mockito.when(
 			_customFDSSerializer.getSortedRelatedObjectEntries(
-				Mockito.eq(fdsName), Mockito.eq("itemActionsOrder"),
-				Mockito.eq(_httpServletRequest), Mockito.any(),
+				Mockito.eq(fdsName), Mockito.eq(_httpServletRequest),
+				Mockito.any(), Mockito.eq("itemActionsOrder"),
 				Mockito.eq("dataSetToDataSetActions"))
 		).thenReturn(
 			objectEntries
