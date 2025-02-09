@@ -84,7 +84,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testURLNotAffectedByRegisteredResolvers() throws Exception {
+	public void testBuildNotAffectedByRegisteredResolvers() throws Exception {
 		ServiceRegistration<FDSAPIURLResolver> serviceRegistration1 =
 			_registerFDSAPIURLResolver(
 				"/app2", "schema", new String[] {"{foo}"},
@@ -106,7 +106,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testURLSimple() throws Exception {
+	public void testBuildSimple() throws Exception {
 		Assert.assertEquals(
 			"/o/app/endpoint",
 			new FDSAPIURLBuilder(
@@ -116,7 +116,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testURLSimpleWithParametersAsKeyValue() throws Exception {
+	public void testBuildSimpleWithParametersAsKeyValue() throws Exception {
 		Assert.assertEquals(
 			"/o/app/endpoint?param1=value1&param2=value2",
 			new FDSAPIURLBuilder(
@@ -130,7 +130,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testURLSimpleWithParametersAsKeyValueAndAsString()
+	public void testBuildSimpleWithParametersAsKeyValueAndAsString()
 		throws Exception {
 
 		Assert.assertEquals(
@@ -151,7 +151,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testURLSimpleWithParametersAsString() throws Exception {
+	public void testBuildSimpleWithParametersAsString() throws Exception {
 		Assert.assertEquals(
 			"/o/app/endpoint?param1=value1&param2=value2",
 			new FDSAPIURLBuilder(
@@ -163,7 +163,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testURLSimpleWithVersionDuplication() throws Exception {
+	public void testBuildSimpleWithVersionDuplication() throws Exception {
 		Assert.assertEquals(
 			"/o/app/v1.0/endpoint",
 			new FDSAPIURLBuilder(
@@ -173,7 +173,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testURLSimpleWithVersionInRESTApplication() throws Exception {
+	public void testBuildSimpleWithVersionInRESTApplication() throws Exception {
 		Assert.assertEquals(
 			"/o/app/endpoint",
 			new FDSAPIURLBuilder(
@@ -183,7 +183,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testURLSimpleWithVersionInRESTEndpoint() throws Exception {
+	public void testBuildSimpleWithVersionInRESTEndpoint() throws Exception {
 		Assert.assertEquals(
 			"/o/app/v1.0/endpoint",
 			new FDSAPIURLBuilder(
@@ -193,7 +193,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testURLWithDefaultAndResolverInterpolations() throws Exception {
+	public void testBuildWithDefaultAndResolverInterpolations() throws Exception {
 		ServiceRegistration<FDSAPIURLResolver> serviceRegistration =
 			_registerFDSAPIURLResolver(
 				"/app", "schema", new String[] {"{foo}"}, new String[] {"bar"});
@@ -209,7 +209,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testURLWithDefaultAndResolverInterpolationsSameToken()
+	public void testBuildWithDefaultAndResolverInterpolationsSameToken()
 		throws Exception {
 
 		ServiceRegistration<FDSAPIURLResolver> serviceRegistration =
@@ -228,7 +228,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testURLWithDefaultInterpolationOnly() throws Exception {
+	public void testBuildWithDefaultInterpolationOnly() throws Exception {
 		Assert.assertEquals(
 			"/o/app/67890/endpoint",
 			new FDSAPIURLBuilder(
@@ -238,7 +238,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testURLWithParametersAndInterpolations() throws Exception {
+	public void testBuildWithParametersAndInterpolations() throws Exception {
 		ServiceRegistration<FDSAPIURLResolver> serviceRegistration =
 			_registerFDSAPIURLResolver(
 				"/app", "schema", new String[] {"{foo}"}, new String[] {"bar"});
@@ -260,7 +260,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testURLWithResolverForNoTokens() throws Exception {
+	public void testBuildWithResolverForNoTokens() throws Exception {
 		ServiceRegistration<FDSAPIURLResolver> serviceRegistration =
 			_registerFDSAPIURLResolver(
 				"/app", "schema", new String[] {"{foo}"}, new String[] {"bar"});
@@ -276,7 +276,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testURLWithResolverForSeveralTokens() throws Exception {
+	public void testBuildWithResolverForSeveralTokens() throws Exception {
 		ServiceRegistration<FDSAPIURLResolver> serviceRegistration =
 			_registerFDSAPIURLResolver(
 				"/app", "schema", new String[] {"{foo}", "{userId}"},
