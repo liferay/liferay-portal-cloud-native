@@ -158,7 +158,7 @@ public class FragmentDisplayContext {
 	public String getAvailableActions(Object object) {
 		List<String> availableActions = new ArrayList<>();
 
-		boolean marketplace = _isMarketplaceObject(object);
+		boolean marketplace = _isMarketplace(object);
 
 		if (!marketplace) {
 			availableActions.add(
@@ -939,7 +939,7 @@ public class FragmentDisplayContext {
 		return _tabs1;
 	}
 
-	private boolean _isMarketplaceObject(Object object) {
+	private boolean _isMarketplace(Object object) {
 		if (object instanceof FragmentComposition) {
 			FragmentComposition fragmentComposition =
 				(FragmentComposition)object;
