@@ -317,7 +317,7 @@ public class LayoutStructureRulesHelperTest {
 				itemId, layoutStructureRuleIds
 			).build();
 
-		Map<String, List<String>> ruleIdMap = new HashMap<>();
+		Map<String, List<String>> layoutStructureRuleIdsMap = new HashMap<>();
 
 		for (LayoutStructureRule layoutStructureRule :
 				layoutStructure.getLayoutStructureRules()) {
@@ -362,7 +362,7 @@ public class LayoutStructureRulesHelperTest {
 
 			itemIdsMap.put(
 				curItemId, ListUtil.fromArray(layoutStructureRule.getId()));
-			ruleIdMap.put(
+			layoutStructureRuleIdsMap.put(
 				layoutStructureRule.getId(),
 				ListUtil.fromArray(itemId, curItemId));
 		}
@@ -386,7 +386,7 @@ public class LayoutStructureRulesHelperTest {
 			layoutStructureRulesResult.getItemIdsMap(), itemIdsMap);
 		_assertMapEquals(
 			layoutStructureRulesResult.getLayoutStructureRuleIdsMap(),
-			ruleIdMap);
+			layoutStructureRuleIdsMap);
 
 		JSONArray jsonArray =
 			_layoutStructureRulesHelper.processLayoutStructureRules(
