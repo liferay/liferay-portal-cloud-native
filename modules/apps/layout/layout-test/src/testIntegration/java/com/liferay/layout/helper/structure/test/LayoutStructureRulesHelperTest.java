@@ -107,16 +107,17 @@ public class LayoutStructureRulesHelperTest {
 
 		Set<String> displayedItemIds =
 			layoutStructureRulesResult.getDisplayedItemIds();
-		Set<String> hiddenItemIds =
-			layoutStructureRulesResult.getHiddenItemIds();
 
 		Assert.assertEquals(
 			displayedItemIds.toString(), 1, displayedItemIds.size());
-		Assert.assertEquals(hiddenItemIds.toString(), 1, hiddenItemIds.size());
-
 		Assert.assertTrue(
 			displayedItemIds.toString(),
 			displayedItemIds.contains("container2"));
+
+		Set<String> hiddenItemIds =
+			layoutStructureRulesResult.getHiddenItemIds();
+
+		Assert.assertEquals(hiddenItemIds.toString(), 1, hiddenItemIds.size());
 		Assert.assertTrue(
 			hiddenItemIds.toString(), hiddenItemIds.contains("fragment1"));
 
