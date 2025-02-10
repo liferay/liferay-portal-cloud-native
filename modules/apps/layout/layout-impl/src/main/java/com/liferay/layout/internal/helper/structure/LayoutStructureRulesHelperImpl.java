@@ -43,11 +43,11 @@ public class LayoutStructureRulesHelperImpl
 
 		Set<String> displayedItemIds = new HashSet<>();
 		Set<String> hiddenItemIds = new HashSet<>();
+		Map<String, List<String>> itemIdsMap = new HashMap<>();
+		Map<String, List<String>> layoutStructureRuleIdsMap = new HashMap<>();
 		LayoutStructureRulesContext layoutStructureRulesContext =
 			new LayoutStructureRulesContext(
 				groupId, permissionChecker, segmentsEntryIds);
-		Map<String, List<String>> itemIdsMap = new HashMap<>();
-		Map<String, List<String>> layoutStructureRuleIdsMap = new HashMap<>();
 
 		for (LayoutStructureRule layoutStructureRule :
 				layoutStructure.getLayoutStructureRules()) {
