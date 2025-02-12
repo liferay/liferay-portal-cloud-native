@@ -101,7 +101,6 @@ public class OrderItemResourceTest extends BaseOrderItemResourceTestCase {
 			RandomTestUtil.randomString(),
 			CommerceChannelConstants.CHANNEL_TYPE_SITE, null,
 			_commerceCurrency.getCode(), _serviceContext);
-
 		_commerceOrder = CommerceTestUtil.addB2BCommerceOrder(
 			testGroup.getGroupId(), _user.getUserId(),
 			_accountEntry.getAccountEntryId(),
