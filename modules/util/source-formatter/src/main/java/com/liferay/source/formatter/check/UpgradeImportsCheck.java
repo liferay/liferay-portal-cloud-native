@@ -43,7 +43,7 @@ public class UpgradeImportsCheck extends BaseFileCheck {
 		return _fixImports(fileName, content);
 	}
 
-	private static String _fixUtilityClassesReference(
+	private static String _fixUtilClassReference(
 		String className, String newClassName, String content,
 		String variableRegex) {
 
@@ -109,7 +109,7 @@ public class UpgradeImportsCheck extends BaseFileCheck {
 			String newClassName = entry.getValue();
 
 			if (newContent.contains("@Reference")) {
-				newContent = _fixUtilityClassesReference(
+				newContent = _fixUtilClassReference(
 					className, newClassName, newContent, regex);
 			}
 
