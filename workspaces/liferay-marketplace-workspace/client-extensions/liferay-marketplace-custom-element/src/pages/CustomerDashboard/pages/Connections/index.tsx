@@ -22,7 +22,7 @@ const ConnectionsTable = () => {
 		isValidating,
 		mutate,
 	} = useSWR<APIResponse<{connectionSource: string; creator: Creator}>>(
-		`/o/c/oauth2dxpauthorizations?filter=${SearchBuilder.eq('r_accountToOAuth2DxpAuthorization_accountEntryId', selectedAccount.id)}`
+		`/o/c/oauth2dxpauthorizations?filter=${SearchBuilder.eq('r_accountToOAuth2DxpAuthorization_accountEntryId', selectedAccount.id)}&sort=dateCreated:desc`
 	);
 
 	const items = response?.items || [];
