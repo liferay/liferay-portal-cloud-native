@@ -30,7 +30,7 @@ import org.junit.runner.RunWith;
  * @author Alberto Sousa
  */
 @RunWith(Arquillian.class)
-public class ObjectDefinitionStaleClassNameUpgradeProcessTest {
+public class ClassNameUpgradeProcessTest {
 
 	@ClassRule
 	@Rule
@@ -83,7 +83,7 @@ public class ObjectDefinitionStaleClassNameUpgradeProcessTest {
 
 	private static final String _CLASS_NAME =
 		"com.liferay.object.internal.upgrade.v10_9_1." +
-			"ObjectDefinitionStaleClassNameUpgradeProcess";
+			"ClassNameUpgradeProcess";
 
 	@Inject(
 		filter = "component.name=com.liferay.object.internal.upgrade.registry.ObjectServiceUpgradeStepRegistrator"

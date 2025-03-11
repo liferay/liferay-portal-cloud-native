@@ -17,7 +17,7 @@ import java.sql.ResultSet;
 /**
  * @author Alberto Sousa
  */
-public class ObjectDefinitionStaleClassNameUpgradeProcess
+public class ClassNameUpgradeProcess
 	extends UpgradeProcess {
 
 	@Override
