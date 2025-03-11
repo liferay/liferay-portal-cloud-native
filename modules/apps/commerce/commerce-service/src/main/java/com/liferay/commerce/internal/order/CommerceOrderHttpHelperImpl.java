@@ -571,10 +571,10 @@ public class CommerceOrderHttpHelperImpl implements CommerceOrderHttpHelper {
 			HttpServletRequest httpServletRequest, String portletKey)
 		throws PortalException {
 
-		if (portletKey.equals(
+		if (portletKey.equals(CommercePortletKeys.COMMERCE_CART_CONTENT) ||
+			portletKey.equals(
 				CommercePortletKeys.COMMERCE_OPEN_ORDER_CONTENT) ||
-			portletKey.equals(CommercePortletKeys.COMMERCE_ORDER_CONTENT) ||
-			portletKey.equals(CommercePortletKeys.COMMERCE_CART_CONTENT)) {
+			portletKey.equals(CommercePortletKeys.COMMERCE_ORDER_CONTENT)) {
 
 			long groupId = _portal.getScopeGroupId(httpServletRequest);
 
