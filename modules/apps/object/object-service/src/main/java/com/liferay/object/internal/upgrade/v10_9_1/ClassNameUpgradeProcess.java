@@ -17,8 +17,7 @@ import java.sql.ResultSet;
 /**
  * @author Alberto Sousa
  */
-public class ClassNameUpgradeProcess
-	extends UpgradeProcess {
+public class ClassNameUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

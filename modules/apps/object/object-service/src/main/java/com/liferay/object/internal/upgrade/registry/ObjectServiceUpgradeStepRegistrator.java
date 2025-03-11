@@ -564,9 +564,7 @@ public class ObjectServiceUpgradeStepRegistrator
 			"10.8.1", "10.9.0", ObjectEntryVersionTable.create(),
 			UpgradeProcessFactory.addColumns("ObjectEntry", "version INTEGER"));
 
-		registry.register(
-			"10.9.0", "10.9.1",
-			new ClassNameUpgradeProcess());
+		registry.register("10.9.0", "10.9.1", new ClassNameUpgradeProcess());
 	}
 
 	@Reference
