@@ -62,7 +62,7 @@
 	{
 		"active": true,
 		"description": {
-			"en_US": "Designates that the order contains a free or paid low-code configuration."
+			"en_US": "Designates that the order contains a free or paid low code configuration."
 		},
 		"displayOrder": 5,
 		"externalReferenceCode": "LOW_CODE_CONFIGURATION",
