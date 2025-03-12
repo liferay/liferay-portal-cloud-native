@@ -39,7 +39,6 @@ public class IndexUpdaterUtilTest {
 
 		Assert.assertEquals(
 			tableIndexesSQLMap.toString(), 2, tableIndexesSQLMap.size());
-
 		Assert.assertEquals(tableIndexesSQLMap.get("TestTable1"), indexesSQL);
 		Assert.assertEquals(
 			tableIndexesSQLMap.get("TestTable2"), StringPool.BLANK);
