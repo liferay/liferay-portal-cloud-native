@@ -259,8 +259,7 @@ public class ImportTaskResourceTest {
 					};
 
 			_taskItemDelegateName =
-				"test-delegate-erc-" +
-					StringUtil.lowerCase(RandomTestUtil.randomString(8));
+				StringUtil.lowerCase(RandomTestUtil.randomString(8));
 
 			_serviceRegistration = bundleContext.registerService(
 				BatchEngineTaskItemDelegate.class, batchEngineTaskItemDelegate,
