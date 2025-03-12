@@ -258,13 +258,11 @@ public class ImportTaskResourceTest {
 
 					};
 
-			_taskItemDelegateName = RandomTestUtil.randomString();
-
 			_serviceRegistration = bundleContext.registerService(
 				BatchEngineTaskItemDelegate.class, batchEngineTaskItemDelegate,
 				HashMapDictionaryBuilder.<String, Object>put(
 					"batch.engine.task.item.delegate.name",
-					_taskItemDelegateName
+					_TASK_ITEM_DELEGATE_NAME
 				).build());
 		}
 
@@ -274,11 +272,13 @@ public class ImportTaskResourceTest {
 		}
 
 		public String getTaskItemDelegateName() {
-			return _taskItemDelegateName;
+			return _TASK_ITEM_DELEGATE_NAME;
 		}
 
+		private static final String _TASK_ITEM_DELEGATE_NAME =
+			RandomTestUtil.randomString();
+
 		private final ServiceRegistration<?> _serviceRegistration;
-		private final String _taskItemDelegateName;
 
 	}
 
