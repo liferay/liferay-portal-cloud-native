@@ -89,8 +89,8 @@ public class SchemaResourceImpl extends BaseSchemaResourceImpl {
 	}
 
 	private String _getSchemaJSON(String id) throws AbstractCharonException {
-		if (_schemasMap.containsKey(id)) {
-			JSONObject schemaJSONObject = _read(_schemasMap.get(id));
+		if (_schemaFileNames.containsKey(id)) {
+			JSONObject schemaJSONObject = _read(_schemaFileNames.get(id));
 
 			return schemaJSONObject.toString();
 		}
@@ -106,7 +106,7 @@ public class SchemaResourceImpl extends BaseSchemaResourceImpl {
 			() -> {
 				JSONArray resourcesJSONArray = _jsonFactory.createJSONArray();
 
-				for (Map.Entry<String, String> entry : _schemasMap.entrySet()) {
+				for (Map.Entry<String, String> entry : _schemaFileNames.entrySet()) {
 					resourcesJSONArray.put(_read(entry.getValue()));
 				}
 
@@ -118,7 +118,7 @@ public class SchemaResourceImpl extends BaseSchemaResourceImpl {
 		).put(
 			"startIndex", 1
 		).put(
-			"totalResults", _schemasMap.size()
+			"totalResults", _schemaFileNames.size()
 		).toString();
 	}
 
@@ -203,10 +203,10 @@ public class SchemaResourceImpl extends BaseSchemaResourceImpl {
 	@Reference
 	private JSONFactory _jsonFactory;
 
-	private final Map<String, String> _schemasMap = Map.of(
-		"urn:ietf:params:scim:schemas:core:2.0:Group", "group-schema.json",
-		"urn:ietf:params:scim:schemas:core:2.0:User", "user-schema.json",
+	private final Map<String, String> _schemaFileNames = Map.of(
+		"urn:ietf:params:scim:schemas:core:2.0:Group", "group.json",
+		"urn:ietf:params:scim:schemas:core:2.0:User", "user.json",
 		"urn:ietf:params:scim:schemas:extension:liferay:2.0:User",
-		"user-extension-schema.json");
+		"user-extension.json");
 
 }
