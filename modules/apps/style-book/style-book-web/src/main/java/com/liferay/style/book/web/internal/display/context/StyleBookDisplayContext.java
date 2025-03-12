@@ -244,7 +244,6 @@ public class StyleBookDisplayContext {
 					StyleBookUtil.getThemeName(
 						themeDisplay.getCompanyId(), _httpServletRequest,
 						frontendTokenDefinition.getThemeId())));
-
 			styleFromThemeStyleBookEntry.setThemeId(
 				frontendTokenDefinition.getThemeId());
 
