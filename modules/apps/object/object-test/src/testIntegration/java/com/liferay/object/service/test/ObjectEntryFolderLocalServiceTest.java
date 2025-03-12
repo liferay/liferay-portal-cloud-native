@@ -149,7 +149,7 @@ public class ObjectEntryFolderLocalServiceTest {
 	@Test
 	public void testDeleteObjectEntryFolder() throws Exception {
 
-		// Nonsystem folder
+		// Object entry folder
 
 		ObjectEntryFolder objectEntryFolder1 = _addObjectEntryFolder(
 			StringUtil.randomString(), _group.getGroupId(),
@@ -184,7 +184,7 @@ public class ObjectEntryFolderLocalServiceTest {
 			_objectEntryFolderLocalService.fetchObjectEntryFolder(
 				objectEntryFolder3.getObjectEntryFolderId()));
 
-		// Protected system folder
+		// System object entry folder
 
 		String externalReferenceCode =
 			ObjectEntryFolderConstants.
@@ -206,8 +206,6 @@ public class ObjectEntryFolderLocalServiceTest {
 				_objectEntryFolderLocalService.deleteObjectEntryFolder(
 					systemObjectEntryFolder.getObjectEntryFolderId());
 			});
-
-		// Unprotected system folder
 
 		ObjectEntryFolder systemObjectEntryFolder = _addObjectEntryFolder(
 			ObjectEntryFolderConstants.
