@@ -14,6 +14,7 @@ import com.liferay.headless.batch.engine.client.dto.v1_0.FailedItem;
 import com.liferay.headless.batch.engine.client.dto.v1_0.ImportTask;
 import com.liferay.headless.batch.engine.entity.TestEntity;
 import com.liferay.headless.batch.engine.util.ExportImportTaskUtil;
+import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -138,64 +139,57 @@ public class ImportTaskResourceTest {
 	}
 
 	@Test
-	public void testPostImportTaskWithBatchExternalReferenceCode()
-		throws Exception {
-
-		String batchExternalReferenceCode = RandomTestUtil.randomString();
-
-		ImportTask importTask = _postImportTask(
-			batchExternalReferenceCode, null);
-
-		Assert.assertEquals(batchExternalReferenceCode, _externalReferenceCode);
-		Assert.assertNotEquals(
-			batchExternalReferenceCode, importTask.getExternalReferenceCode());
-	}
-
-	@Test
-	public void testPostImportTaskWithExternalReferenceCode() throws Exception {
-		String externalReferenceCode = RandomTestUtil.randomString();
-
-		ImportTask importTask = _postImportTask(null, externalReferenceCode);
-
-		Assert.assertEquals(externalReferenceCode, _externalReferenceCode);
-		Assert.assertEquals(
-			externalReferenceCode, importTask.getExternalReferenceCode());
-	}
-
-	@Test
 	public void testPostImportTaskWithExternalReferenceCodes()
 		throws Exception {
 
-		String batchExternalReferenceCode = RandomTestUtil.randomString();
-		String externalReferenceCode = RandomTestUtil.randomString();
-
-		ImportTask importTask = _postImportTask(
-			batchExternalReferenceCode, externalReferenceCode);
-
-		Assert.assertEquals(batchExternalReferenceCode, _externalReferenceCode);
-		Assert.assertEquals(
-			externalReferenceCode, importTask.getExternalReferenceCode());
+		_testPostImportTaskWithExternalReferenceCodes(
+			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
+			(batchExternalReferenceCode, externalReferenceCode, importTask) -> {
+				Assert.assertEquals(
+					batchExternalReferenceCode, _externalReferenceCode);
+				Assert.assertEquals(
+					externalReferenceCode,
+					importTask.getExternalReferenceCode());
+			});
+		_testPostImportTaskWithExternalReferenceCodes(
+			RandomTestUtil.randomString(), null,
+			(batchExternalReferenceCode, externalReferenceCode, importTask) -> {
+				Assert.assertEquals(
+					batchExternalReferenceCode, _externalReferenceCode);
+				Assert.assertNotEquals(
+					batchExternalReferenceCode,
+					importTask.getExternalReferenceCode());
+			});
+		_testPostImportTaskWithExternalReferenceCodes(
+			null, RandomTestUtil.randomString(),
+			(batchExternalReferenceCode, externalReferenceCode, importTask) -> {
+				Assert.assertEquals(
+					externalReferenceCode, _externalReferenceCode);
+				Assert.assertEquals(
+					externalReferenceCode,
+					importTask.getExternalReferenceCode());
+			});
+		_testPostImportTaskWithExternalReferenceCodes(
+			null, null,
+			(batchExternalReferenceCode, externalReferenceCode, importTask) -> {
+				Assert.assertNull(_externalReferenceCode);
+				Assert.assertNotNull(importTask.getExternalReferenceCode());
+			});
 	}
 
-	@Test
-	public void testPostImportTaskWithoutExternalReferenceCodes()
+	private void _testPostImportTaskWithExternalReferenceCodes(
+			String batchExternalReferenceCode, String externalReferenceCode,
+			UnsafeTriConsumer<String, String, ImportTask, Exception>
+				unsafeTriConsumer)
 		throws Exception {
 
-		ImportTask importTask = _postImportTask(null, null);
-
-		Assert.assertNull(_externalReferenceCode);
-		Assert.assertNotNull(importTask.getExternalReferenceCode());
-	}
-
-	private ImportTask _postImportTask(
-			String batchExternalReferenceCode, String externalReferenceCode)
-		throws Exception {
+		ImportTask importTask;
 
 		try (BatchEngineTaskItemDelegateAutoCloseable
 				batchEngineTaskItemDelegateAutoCloseable =
 					new BatchEngineTaskItemDelegateAutoCloseable()) {
 
-			return ExportImportTaskUtil.postImportTask(
+			importTask = ExportImportTaskUtil.postImportTask(
 				JSONFactoryUtil.createJSONArray(
 				).put(
 					JSONUtil.put(
@@ -222,6 +216,9 @@ public class ImportTaskResourceTest {
 						getTaskItemDelegateName()
 				).build());
 		}
+
+		unsafeTriConsumer.accept(
+			batchExternalReferenceCode, externalReferenceCode, importTask);
 	}
 
 	private String _externalReferenceCode;
