@@ -258,8 +258,7 @@ public class ImportTaskResourceTest {
 
 					};
 
-			_taskItemDelegateName =
-				StringUtil.lowerCase(RandomTestUtil.randomString(8));
+			_taskItemDelegateName = RandomTestUtil.randomString();
 
 			_serviceRegistration = bundleContext.registerService(
 				BatchEngineTaskItemDelegate.class, batchEngineTaskItemDelegate,
