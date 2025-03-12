@@ -13,22 +13,22 @@ import com.liferay.petra.lang.SafeCloseable;
  */
 public class ObjectEntryFolderThreadLocal {
 
-	public static boolean isSkipSystemObjectEntryFolderProtection() {
-		return _skipSystemObjectEntryFolderProtection.get();
+	public static boolean isForceDeleteSystemObjectEntryFolder() {
+		return _forceDeleteSystemObjectEntryFolder.get();
 	}
 
 	public static SafeCloseable
-		setSkipSystemObjectEntryFolderProtectionWithSafeCloseable(
-			boolean skipSystemObjectEntryFolderProtection) {
+		setForceDeleteSystemObjectEntryFolderWithSafeCloseable(
+			boolean forceDeleteSystemObjectEntryFolder) {
 
-		return _skipSystemObjectEntryFolderProtection.setWithSafeCloseable(
-			skipSystemObjectEntryFolderProtection);
+		return _forceDeleteSystemObjectEntryFolder.setWithSafeCloseable(
+			forceDeleteSystemObjectEntryFolder);
 	}
 
 	private static final CentralizedThreadLocal<Boolean>
-		_skipSystemObjectEntryFolderProtection = new CentralizedThreadLocal<>(
+		_forceDeleteSystemObjectEntryFolder = new CentralizedThreadLocal<>(
 			ObjectEntryFolderThreadLocal.class +
-				"._skipSystemObjectEntryFolderProtection",
+				"._forceDeleteSystemObjectEntryFolder",
 			() -> false);
 
 }

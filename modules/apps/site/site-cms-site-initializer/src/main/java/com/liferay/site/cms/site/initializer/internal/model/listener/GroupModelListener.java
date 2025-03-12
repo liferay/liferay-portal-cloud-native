@@ -81,7 +81,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 
 		try (SafeCloseable safeCloseable =
 				ObjectEntryFolderThreadLocal.
-					setSkipSystemObjectEntryFolderProtectionWithSafeCloseable(
+					setForceDeleteSystemObjectEntryFolderWithSafeCloseable(
 						true)) {
 
 			_objectEntryFolderLocalService.deleteObjectEntryFolder(

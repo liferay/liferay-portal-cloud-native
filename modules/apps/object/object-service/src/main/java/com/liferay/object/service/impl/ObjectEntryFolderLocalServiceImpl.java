@@ -125,7 +125,7 @@ public class ObjectEntryFolderLocalServiceImpl
 		throws PortalException {
 
 		if (!ObjectEntryFolderThreadLocal.
-				isSkipSystemObjectEntryFolderProtection() &&
+				isForceDeleteSystemObjectEntryFolder() &&
 			StringUtil.startsWith(
 				objectEntryFolder.getExternalReferenceCode(),
 				ObjectEntryFolderConstants.

@@ -218,7 +218,7 @@ public class ObjectEntryFolderLocalServiceTest {
 
 		try (SafeCloseable safeCloseable =
 				ObjectEntryFolderThreadLocal.
-					setSkipSystemObjectEntryFolderProtectionWithSafeCloseable(
+					setForceDeleteSystemObjectEntryFolderWithSafeCloseable(
 						true)) {
 
 			_objectEntryFolderLocalService.deleteObjectEntryFolder(
