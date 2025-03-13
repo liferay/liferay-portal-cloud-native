@@ -25,7 +25,6 @@ export class ExportUserDataPage {
 	readonly orderByButton: Locator;
 	readonly page: Page;
 	readonly paginationResults: Locator;
-	readonly selectPage: (pageNumber: string) => Locator;
 	readonly webContentCheckbox: Locator;
 	readonly webContentStatus: Locator;
 	readonly wikiCheckbox: Locator;
@@ -62,45 +61,10 @@ export class ExportUserDataPage {
 		this.orderByButton = page.getByLabel('Order');
 		this.page = page;
 		this.paginationResults = page.locator('.pagination-results');
-		this.selectPage = (pageNumber: string) => page.getByLabel(pageNumber);
 		this.webContentCheckbox = page.getByLabel('Web Content');
 		this.webContentStatus = page.getByText('Web Content Successful');
 		this.wikiCheckbox = page.getByLabel('Wiki');
 		this.wikiStatus = page.getByText('Wiki Successful');
-	}
-
-	async checkVisibility(visibilityFlags: boolean[]) {
-		const statuses = [
-			this.blogsStatus,
-			this.documentsAndMediaStatus,
-			this.messageBoardsStatus,
-			this.webContentStatus,
-			this.wikiStatus,
-		];
-
-		if (visibilityFlags.length !== statuses.length) {
-			throw new Error(
-				`Expected ${statuses.length} visibility flags but got ${visibilityFlags.length}`
-			);
-		}
-
-		for (let i = 0; i < statuses.length; i++) {
-			if (visibilityFlags[i]) {
-				await expect(statuses[i]).toBeVisible();
-			}
-			else {
-				await expect(statuses[i]).not.toBeVisible();
-			}
-		}
-	}
-
-	async selectPaginationItemsPerPage(itemsPerPage: string) {
-		await this.page.locator('.pagination-items-per-page').click();
-		await this.page
-			.getByRole('option', {name: `${itemsPerPage}  Entries per Page`})
-			.click();
-
-		await this.page.waitForLoadState('networkidle');
 	}
 
 	async verifyPaginationResult(from: number, to: number, total: number) {

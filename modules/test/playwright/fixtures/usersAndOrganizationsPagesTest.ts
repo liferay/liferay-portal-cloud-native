@@ -10,6 +10,7 @@ import {SiteConfigurationDetailsPage} from '../pages/site-admin-web/SiteConfigur
 import {SiteSettingsPage} from '../pages/site-admin-web/SiteSettingsPage';
 import {ExportUserDataPage} from '../pages/user-associated-data-web/ExportUserDataPage';
 import {PersonalDataErasurePage} from '../pages/user-associated-data-web/PersonalDataErasurePage';
+import {UserAssociatedDataBlogPage} from '../pages/user-associated-data-web/blog-web/UserAssociatedDataBlogPage';
 import {UserAssociatedDataDocumentLibraryPage} from '../pages/user-associated-data-web/document-library-web/UserAssociatedDataDocumentLibraryPage';
 import {UserAssociatedDataJournalPage} from '../pages/user-associated-data-web/journal-article-web/UserAssociatedDataJournalPage';
 import {UserAssociatedDataSiteStagingPage} from '../pages/user-associated-data-web/site-staging-web/UserAssociatedDataSiteStagingPage';
@@ -39,6 +40,7 @@ const usersAndOrganizationsPagesTest = test.extend<{
 	siteMembershipsPage: SiteMembershipsPage;
 	siteSettingsPage: SiteSettingsPage;
 	teamsPage: TeamsPage;
+	userAssociatedDataBlogPage: UserAssociatedDataBlogPage;
 	userAssociatedDataDocumentLibraryPage: UserAssociatedDataDocumentLibraryPage;
 	userAssociatedDataJournalPage: UserAssociatedDataJournalPage;
 	userAssociatedDataSiteStagingPage: UserAssociatedDataSiteStagingPage;
@@ -84,6 +86,9 @@ const usersAndOrganizationsPagesTest = test.extend<{
 	},
 	teamsPage: async ({page}, use) => {
 		await use(new TeamsPage(page));
+	},
+	userAssociatedDataBlogPage: async ({page}, use) => {
+		await use(new UserAssociatedDataBlogPage(page));
 	},
 	userAssociatedDataDocumentLibraryPage: async ({page}, use) => {
 		await use(new UserAssociatedDataDocumentLibraryPage(page));
