@@ -58,7 +58,7 @@ function FirstSectionComponent({field}: {field: Field}) {
 				<ClayIcon
 					className="lfr-portal-tooltip ml-1 text-secondary"
 					data-title={Liferay.Language.get(
-						'store-the-time-in-utc-for-timezone-conversion-or-keep-it-as-entered'
+						'store-the-time-in-utc-for-time-zone-conversion-or-keep-it-as-entered'
 					)}
 					focusable="false"
 					symbol="question-circle"
