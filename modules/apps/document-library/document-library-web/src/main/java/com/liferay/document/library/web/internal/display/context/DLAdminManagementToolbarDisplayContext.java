@@ -108,13 +108,14 @@ public class DLAdminManagementToolbarDisplayContext
 
 		_assetVocabularyService = assetVocabularyService;
 		_dlAdminDisplayContext = dlAdminDisplayContext;
-		_dlFileEntryTypeService = dLFileEntryTypeService;
 		_dlTrashHelper = dlTrashHelper;
 		_httpServletRequest = httpServletRequest;
 		_itemSelector = itemSelector;
 		_liferayPortletRequest = liferayPortletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
 		_siteConnectedGroupGroupProvider = siteConnectedGroupGroupProvider;
+
+		_dlFileEntryTypeService = dLFileEntryTypeService;
 
 		_currentURLObj = PortletURLUtil.getCurrent(
 			liferayPortletRequest, liferayPortletResponse);
