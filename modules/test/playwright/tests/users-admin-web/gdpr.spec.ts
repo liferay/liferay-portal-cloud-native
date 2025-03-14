@@ -2156,8 +2156,6 @@ testAdmin(
 
 		await userAssociatedDataEditMessageBoardThreadPage.basicDocumentMenuItem.click();
 
-		await page.waitForTimeout(1000);
-
 		await expect(
 			await userAssociatedDataEditMessageBoardThreadPage.tableRowCheckBox(
 				document.title
@@ -2218,5 +2216,160 @@ testAdmin(
 			.click();
 
 		await expect(page.getByText(userAccount.name)).toHaveCount(1);
+	}
+);
+
+testAdmin(
+	'Can delete a related asset',
+	{tag: '@LPD-51202'},
+	async ({
+		apiHelpers,
+		messageBoardsEditThreadPage,
+		messageBoardsPage,
+		page,
+		personalDataErasurePage,
+		userAssociatedDataEditMessageBoardThreadPage,
+		userAssociatedDataMessageBoardPage,
+		usersAndOrganizationsPage,
+	}) => {
+		test.setTimeout(120000);
+
+		page.on('dialog', (dialog) => {
+			dialog.accept().catch(() => {});
+		});
+
+		const userAccount =
+			await apiHelpers.headlessAdminUser.postUserAccount();
+
+		userData[userAccount.alternateName] = {
+			name: userAccount.givenName,
+			password: 'test',
+			surname: userAccount.familyName,
+		};
+
+		const role =
+			await apiHelpers.headlessAdminUser.getRoleByName('Administrator');
+
+		await apiHelpers.headlessAdminUser.postRoleByExternalReferenceCodeUserAccountAssociation(
+			role.externalReferenceCode,
+			userAccount.id
+		);
+
+		await performLogout(page);
+		await performLoginViaApi(page, userAccount.alternateName);
+
+		const site = await apiHelpers.headlessSite.createSite({
+			name: getRandomString(),
+		});
+
+		apiHelpers.data.push({id: site.id, type: 'site'});
+
+		const blog = await apiHelpers.headlessDelivery.postBlog(site.id, {
+			headline: 'Blog' + getRandomInt(),
+		});
+
+		const document = await apiHelpers.headlessDelivery.postDocument(
+			site.id,
+			createReadStream(
+				path.join(__dirname, '/dependencies/attachment.txt')
+			)
+		);
+
+		const threadSubject = 'Thread' + getRandomInt();
+
+		await messageBoardsEditThreadPage.gotoAndPublishNewBasicThread(
+			threadSubject,
+			getRandomString(),
+			site.friendlyUrlPath
+		);
+
+		await waitForAlert(page);
+
+		await userAssociatedDataMessageBoardPage.actionButton.click();
+		await userAssociatedDataMessageBoardPage.editMenuItem.click();
+
+		await expect(
+			userAssociatedDataEditMessageBoardThreadPage.relatedAssetsButton
+		).toBeVisible();
+
+		await userAssociatedDataEditMessageBoardThreadPage.relatedAssetsButton.click();
+
+		await expect(async () => {
+			await userAssociatedDataEditMessageBoardThreadPage.selectButton.click();
+			await expect(
+				userAssociatedDataEditMessageBoardThreadPage.blogEntryMenuItem
+			).toBeVisible();
+		}).toPass();
+
+		await userAssociatedDataEditMessageBoardThreadPage.blogEntryMenuItem.click();
+
+		await expect(
+			await userAssociatedDataEditMessageBoardThreadPage.tableRowCheckBox(
+				blog.headline
+			)
+		).toBeVisible();
+
+		await (
+			await userAssociatedDataEditMessageBoardThreadPage.tableRowCheckBox(
+				blog.headline
+			)
+		).check();
+		await userAssociatedDataEditMessageBoardThreadPage.doneButton.click();
+
+		await expect(async () => {
+			await userAssociatedDataEditMessageBoardThreadPage.selectButton.click();
+			await expect(
+				userAssociatedDataEditMessageBoardThreadPage.basicDocumentMenuItem
+			).toBeVisible();
+		}).toPass();
+
+		await userAssociatedDataEditMessageBoardThreadPage.basicDocumentMenuItem.click();
+
+		await expect(
+			await userAssociatedDataEditMessageBoardThreadPage.tableRowCheckBox(
+				document.title
+			)
+		).toBeVisible();
+
+		await (
+			await userAssociatedDataEditMessageBoardThreadPage.tableRowCheckBox(
+				document.title
+			)
+		).check();
+		await userAssociatedDataEditMessageBoardThreadPage.doneButton.click();
+		await userAssociatedDataEditMessageBoardThreadPage.publishButton.click();
+
+		await performLogout(page);
+		await performLoginViaApi(page, 'test');
+
+		await usersAndOrganizationsPage.goToUsers(false);
+		await (
+			await usersAndOrganizationsPage.usersTableRowActions(
+				userAccount.alternateName
+			)
+		).click();
+		await usersAndOrganizationsPage.deletePersonalDataMenuItem.click();
+
+		await waitForAlert(page);
+
+		await personalDataErasurePage.documentsAndMediaRadioButton.check();
+		await (
+			await personalDataErasurePage.userAssociatedDataTableRowCheckBox(
+				document.fileName
+			)
+		).check();
+		await personalDataErasurePage.actionsButton.click();
+		await personalDataErasurePage.deleteMenuItem.click();
+
+		await waitForAlert(page);
+
+		await messageBoardsPage.goto(site.friendlyUrlPath);
+
+		await userAssociatedDataMessageBoardPage
+			.threadSubjectLink(threadSubject)
+			.click();
+
+		await expect(page.getByText(blog.headline)).toBeVisible();
+		await expect(page.getByText(document.title)).toHaveCount(0);
 	}
 );
