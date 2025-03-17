@@ -920,7 +920,7 @@ public class DBPartitionUtil {
 			}
 			catch (SQLException sqlException) {
 				throw new PortalException(
-					"Unable to roll back schema extraction", sqlException);
+					"Unable to roll back company extraction", sqlException);
 			}
 
 			throw new PortalException(
