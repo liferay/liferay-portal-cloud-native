@@ -137,7 +137,7 @@ public class DBPartitionUtil {
 	}
 
 	public static void extractConfiguration(
-			long companyId, String configurationId, String dictionary)
+			long companyId, String configurationId, String dictionaryString)
 		throws SQLException {
 
 		DataSource dataSource = InfrastructureUtil.getDataSource();
@@ -155,7 +155,7 @@ public class DBPartitionUtil {
 					") values (?, ?)"))) {
 
 			preparedStatement.setString(1, configurationId);
-			preparedStatement.setString(2, dictionary);
+			preparedStatement.setString(2, dictionaryString);
 
 			preparedStatement.executeUpdate();
 		}

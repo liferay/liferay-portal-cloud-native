@@ -120,43 +120,43 @@ public class ExtractPortalInstanceOperation
 		for (ScopedConfiguration scopedConfiguration : scopedConfigurations) {
 			DBPartitionUtil.extractConfiguration(
 				companyId, scopedConfiguration.getConfigurationId(),
-				scopedConfiguration.getDictionary());
+				scopedConfiguration.getDictionaryString());
 		}
 	}
 
 	private ScopedConfiguration _getScopedConfiguration(
-			String configurationId, String dictionary)
+			String configurationId, String dictionaryString)
 		throws Exception {
 
-		Dictionary<String, String> dictionaryMap = ConfigurationHandler.read(
+		Dictionary<String, String> dictionary = ConfigurationHandler.read(
 			new UnsyncByteArrayInputStream(
-				dictionary.getBytes(StringPool.UTF8)));
+				dictionaryString.getBytes(StringPool.UTF8)));
 
-		Object value = dictionaryMap.get(
+		Object value = dictionary.get(
 			ExtendedObjectClassDefinition.Scope.COMPANY.getPropertyKey());
 
 		if (value != null) {
 			return new ScopedConfiguration(
-				configurationId, dictionary, GetterUtil.getLong(value),
+				configurationId, dictionaryString, GetterUtil.getLong(value),
 				ExtendedObjectClassDefinition.Scope.COMPANY);
 		}
 
-		value = dictionaryMap.get(
+		value = dictionary.get(
 			ExtendedObjectClassDefinition.Scope.GROUP.getPropertyKey());
 
 		if (value != null) {
 			return new ScopedConfiguration(
-				configurationId, dictionary, GetterUtil.getLong(value),
+				configurationId, dictionaryString, GetterUtil.getLong(value),
 				ExtendedObjectClassDefinition.Scope.GROUP);
 		}
 
-		value = dictionaryMap.get(
+		value = dictionary.get(
 			ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE.
 				getPropertyKey());
 
 		if (value != null) {
 			return new ScopedConfiguration(
-				configurationId, dictionary, GetterUtil.getString(value),
+				configurationId, dictionaryString, GetterUtil.getString(value),
 				ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE);
 		}
 
@@ -207,11 +207,11 @@ public class ExtractPortalInstanceOperation
 	private class ScopedConfiguration {
 
 		public ScopedConfiguration(
-			String configurationId, String dictionary, Serializable scopePK,
-			ExtendedObjectClassDefinition.Scope scope) {
+			String configurationId, String dictionaryString,
+			Serializable scopePK, ExtendedObjectClassDefinition.Scope scope) {
 
 			_configurationId = configurationId;
-			_dictionary = dictionary;
+			_dictionaryString = dictionaryString;
 			_scopePK = scopePK;
 			_scope = scope;
 		}
@@ -220,8 +220,8 @@ public class ExtractPortalInstanceOperation
 			return _configurationId;
 		}
 
-		public String getDictionary() {
-			return _dictionary;
+		public String getDictionaryString() {
+			return _dictionaryString;
 		}
 
 		public ExtendedObjectClassDefinition.Scope getScope() {
@@ -233,7 +233,7 @@ public class ExtractPortalInstanceOperation
 		}
 
 		private final String _configurationId;
-		private final String _dictionary;
+		private final String _dictionaryString;
 		private final ExtendedObjectClassDefinition.Scope _scope;
 		private final Object _scopePK;
 
