@@ -36,7 +36,7 @@ public class CommerceTaxCategoryMappingLocalServiceImpl
 			long cpTaxCategoryId, String externalReferenceCode)
 		throws PortalException {
 
-		_validate(cpTaxCategoryId, commerceTaxMethodId);
+		_validate(commerceTaxMethodId, cpTaxCategoryId);
 
 		CommerceTaxCategoryMapping commerceTaxCategoryMapping =
 			commerceTaxCategoryMappingPersistence.create(
@@ -100,7 +100,7 @@ public class CommerceTaxCategoryMappingLocalServiceImpl
 			commerceTaxCategoryMapping);
 	}
 
-	private void _validate(long cpTaxCategoryId, long commerceTaxMethodId)
+	private void _validate(long commerceTaxMethodId, long cpTaxCategoryId)
 		throws PortalException {
 
 		int count = commerceTaxCategoryMappingPersistence.countByC_C(
