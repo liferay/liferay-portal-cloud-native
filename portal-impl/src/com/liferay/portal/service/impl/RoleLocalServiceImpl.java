@@ -795,7 +795,7 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 			String className, long classPK, String name, int type)
 		throws Exception {
 
-		Role role = roleLocalService.fetchRoleByExternalReferenceCode(
+		Role role = fetchRoleByExternalReferenceCode(
 			externalReferenceCode, companyId);
 
 		if (role != null) {
@@ -809,7 +809,7 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 					externalReferenceCode, " and company ", companyId));
 		}
 
-		if (roleLocalService.fetchRole(companyId, name) != null) {
+		if (fetchRole(companyId, name) != null) {
 			name = externalReferenceCode;
 		}
 
