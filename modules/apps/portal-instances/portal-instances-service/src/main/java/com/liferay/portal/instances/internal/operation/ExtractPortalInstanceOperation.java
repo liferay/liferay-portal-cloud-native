@@ -112,7 +112,7 @@ public class ExtractPortalInstanceOperation
 				continue;
 			}
 
-			if (_isApplicable(scopedConfiguration, companyId)) {
+			if (_isApplicable(companyId, scopedConfiguration)) {
 				scopedConfigurations.add(scopedConfiguration);
 			}
 		}
@@ -164,7 +164,7 @@ public class ExtractPortalInstanceOperation
 	}
 
 	private boolean _isApplicable(
-			ScopedConfiguration scopedConfiguration, long companyId)
+			long companyId, ScopedConfiguration scopedConfiguration)
 		throws Exception {
 
 		if (Objects.equals(
