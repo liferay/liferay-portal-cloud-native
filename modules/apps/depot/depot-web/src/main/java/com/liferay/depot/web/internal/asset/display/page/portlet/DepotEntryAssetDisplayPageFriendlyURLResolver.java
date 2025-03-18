@@ -26,7 +26,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Marco Leo
  */
 @Component(service = FriendlyURLResolver.class)
-public class DepotEntryDisplayPageFriendlyURLResolver
+public class DepotEntryAssetDisplayPageFriendlyURLResolver
 	extends BaseAssetDisplayPageFriendlyURLResolver {
 
 	@Override
