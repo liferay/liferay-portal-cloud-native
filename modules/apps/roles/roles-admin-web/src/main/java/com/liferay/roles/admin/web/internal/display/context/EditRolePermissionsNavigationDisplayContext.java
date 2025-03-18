@@ -176,7 +176,7 @@ public class EditRolePermissionsNavigationDisplayContext {
 		).buildString();
 	}
 
-	private List<NavigationItem> _getMarketplacePanelCategoryNavigationItems() {
+	private List<NavigationItem> _getMarketplaceNavigationItems() {
 		return TransformUtil.transform(
 			_panelAppRegistry.getPanelApps(PanelCategoryKeys.MARKETPLACE),
 			panelApp -> {
@@ -406,7 +406,7 @@ public class EditRolePermissionsNavigationDisplayContext {
 					LanguageUtil.get(_locale, "marketplace"),
 					navigationItem -> {
 						navigationItem.addNavigationItems(
-							_getMarketplacePanelCategoryNavigationItems());
+							_getMarketplaceNavigationItems());
 						navigationItem.setInitialExpanded(true);
 					}));
 
