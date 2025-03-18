@@ -8,7 +8,6 @@ package com.liferay.blogs.web.internal.portlet.route.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.blogs.constants.BlogsPortletKeys;
 import com.liferay.portal.kernel.portlet.FriendlyURLMapper;
-import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.test.portlet.MockLiferayPortletURL;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -37,50 +36,40 @@ public class BlogsFriendlyURLMapperTest {
 
 	@Test
 	public void testBuildPath() {
-		_testBuildPathUrlTitle();
-		_testBuildPathUrlTitleWithCategoryIdAndTag();
-	}
-
-	private void _testBuildPathUrlTitle() {
 		String urlTitle = RandomTestUtil.randomString();
-
-		LiferayPortletURL liferayPortletURL = new TestMockLiferayPortletURL(
-			HashMapBuilder.put(
-				"mvcRenderCommandName", new String[] {"/blogs/view_entry"}
-			).put(
-				"p_p_lifecycle", new String[] {"0"}
-			).put(
-				"p_p_state", new String[] {"normal"}
-			).put(
-				"urlTitle", new String[] {urlTitle}
-			).build());
 
 		Assert.assertEquals(
 			"/blogs/" + urlTitle,
-			_friendlyURLMapper.buildPath(liferayPortletURL));
-	}
-
-	private void _testBuildPathUrlTitleWithCategoryIdAndTag() {
-		String urlTitle = RandomTestUtil.randomString();
-
-		LiferayPortletURL liferayPortletURL = new TestMockLiferayPortletURL(
-			HashMapBuilder.put(
-				"categoryId", new String[] {"1"}
-			).put(
-				"mvcRenderCommandName", new String[] {"/blogs/view_entry"}
-			).put(
-				"p_p_lifecycle", new String[] {"0"}
-			).put(
-				"p_p_state", new String[] {"normal"}
-			).put(
-				"tag", new String[] {"1"}
-			).put(
-				"urlTitle", new String[] {urlTitle}
-			).build());
-
+			_friendlyURLMapper.buildPath(
+				new BlogsMockLiferayPortletURL(
+					HashMapBuilder.put(
+						"categoryId", new String[] {"1"}
+					).put(
+						"mvcRenderCommandName",
+						new String[] {"/blogs/view_entry"}
+					).put(
+						"p_p_lifecycle", new String[] {"0"}
+					).put(
+						"p_p_state", new String[] {"normal"}
+					).put(
+						"tag", new String[] {"1"}
+					).put(
+						"urlTitle", new String[] {urlTitle}
+					).build())));
 		Assert.assertEquals(
 			"/blogs/" + urlTitle,
-			_friendlyURLMapper.buildPath(liferayPortletURL));
+			_friendlyURLMapper.buildPath(
+				new BlogsMockLiferayPortletURL(
+					HashMapBuilder.put(
+						"mvcRenderCommandName",
+						new String[] {"/blogs/view_entry"}
+					).put(
+						"p_p_lifecycle", new String[] {"0"}
+					).put(
+						"p_p_state", new String[] {"normal"}
+					).put(
+						"urlTitle", new String[] {urlTitle}
+					).build())));
 	}
 
 	@Inject(
@@ -88,10 +77,10 @@ public class BlogsFriendlyURLMapperTest {
 	)
 	private FriendlyURLMapper _friendlyURLMapper;
 
-	private static class TestMockLiferayPortletURL
+	private static class BlogsMockLiferayPortletURL
 		extends MockLiferayPortletURL {
 
-		public TestMockLiferayPortletURL(Map<String, String[]> parameterMap) {
+		public BlogsMockLiferayPortletURL(Map<String, String[]> parameterMap) {
 			_parameterMap = parameterMap;
 		}
 
