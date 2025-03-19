@@ -355,7 +355,7 @@ public class BatchEnginePortletDataHandlerTest {
 
 				String classExternalReferenceCode =
 					deletionSystemEventElement.attributeValue(
-						"classExternalReferenceCode");
+						"class-external-reference-code");
 
 				jsonArray.put(classExternalReferenceCode);
 			}

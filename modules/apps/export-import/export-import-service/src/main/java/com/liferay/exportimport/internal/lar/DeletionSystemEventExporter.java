@@ -218,7 +218,7 @@ public class DeletionSystemEventExporter {
 		deletionSystemEventElement.addAttribute("class-name", className);
 
 		deletionSystemEventElement.addAttribute(
-			"classExternalReferenceCode",
+			"class-external-reference-code",
 			systemEvent.getClassExternalReferenceCode());
 
 		if (className.equals(FragmentEntry.class.getName())) {
