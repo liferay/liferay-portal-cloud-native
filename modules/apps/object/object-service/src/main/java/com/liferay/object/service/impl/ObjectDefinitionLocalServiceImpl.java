@@ -805,8 +805,8 @@ public class ObjectDefinitionLocalServiceImpl
 	@Override
 	public Class<?>[] getAopInterfaces() {
 		return new Class<?>[] {
-			IdentifiableOSGiService.class, PersistedModelLocalService.class,
-			ObjectDefinitionLocalService.class
+			IdentifiableOSGiService.class, ObjectDefinitionLocalService.class,
+			PersistedModelLocalService.class
 		};
 	}
 
