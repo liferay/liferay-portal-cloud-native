@@ -25,6 +25,7 @@ export default function buildObjectDefinition({
 	name?: State['name'];
 }): ObjectDefinition {
 	const objectDefinition: ObjectDefinition = {
+		enableLocalization: true,
 		enableObjectEntryDraft: true,
 		externalReferenceCode: erc,
 		label,
