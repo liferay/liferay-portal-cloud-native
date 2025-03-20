@@ -104,7 +104,7 @@ public class DefaultStyleBookEntryUtilTest {
 
 		Layout masterLayoutLayout = _getMasterLayoutLayout();
 
-		Layout masterPageTemplateLayout = _layoutLocalService.getLayout(
+		Layout masterLayout = _layoutLocalService.getLayout(
 			masterLayoutLayout.getMasterLayoutPlid());
 
 		StyleBookEntry styleBookEntry =
@@ -113,10 +113,9 @@ public class DefaultStyleBookEntryUtilTest {
 				_group.getGroupId(), false, null, RandomTestUtil.randomString(),
 				null, _THEME_ID, null);
 
-		masterPageTemplateLayout.setStyleBookEntryId(
-			styleBookEntry.getStyleBookEntryId());
+		masterLayout.setStyleBookEntryId(styleBookEntry.getStyleBookEntryId());
 
-		_layoutLocalService.updateLayout(masterPageTemplateLayout);
+		_layoutLocalService.updateLayout(masterLayout);
 
 		Assert.assertEquals(
 			"styles-from-master",
