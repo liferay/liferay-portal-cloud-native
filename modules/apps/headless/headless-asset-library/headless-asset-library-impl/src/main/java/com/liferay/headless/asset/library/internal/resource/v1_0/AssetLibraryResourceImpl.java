@@ -146,23 +146,23 @@ public class AssetLibraryResourceImpl extends BaseAssetLibraryResourceImpl {
 		Group group = depotEntry.getGroup();
 
 		String name = _getValue(
-			assetLibrary::getName,
-			() -> group.getName(contextAcceptLanguage.getPreferredLocale()));
+			() -> group.getName(contextAcceptLanguage.getPreferredLocale()),
+			assetLibrary::getName);
 		Map<String, String> nameMap = _getValue(
-			assetLibrary::getName_i18n,
-			() -> LocalizedMapUtil.getI18nMap(group.getNameMap()));
+			() -> LocalizedMapUtil.getI18nMap(group.getNameMap()),
+			assetLibrary::getName_i18n);
 		String description = _getValue(
-			assetLibrary::getDescription,
 			() -> group.getDescription(
-				contextAcceptLanguage.getPreferredLocale()));
+				contextAcceptLanguage.getPreferredLocale()),
+			assetLibrary::getDescription);
 		Map<String, String> descriptionMap = _getValue(
-			assetLibrary::getDescription_i18n,
-			() -> LocalizedMapUtil.getI18nMap(group.getDescriptionMap()));
+			() -> LocalizedMapUtil.getI18nMap(group.getDescriptionMap()),
+			assetLibrary::getDescription_i18n);
 		UnicodeProperties unicodeProperties = _getValue(
-			() -> _toUnicodeProperties(assetLibrary.getSettings()),
 			() -> _getUnicodeProperties(
-				group.getExternalReferenceCode(),
-				contextCompany.getCompanyId()));
+				contextCompany.getCompanyId(),
+				group.getExternalReferenceCode()),
+			() -> _toUnicodeProperties(assetLibrary.getSettings()));
 
 		return _toAssetLibrary(
 			_depotEntryService.updateDepotEntry(
@@ -255,7 +255,7 @@ public class AssetLibraryResourceImpl extends BaseAssetLibraryResourceImpl {
 	}
 
 	private UnicodeProperties _getUnicodeProperties(
-		String externalReferenceCode, long companyId) {
+		long companyId, String externalReferenceCode) {
 
 		Group group = _groupLocalService.fetchGroupByExternalReferenceCode(
 			externalReferenceCode, companyId);
@@ -268,8 +268,8 @@ public class AssetLibraryResourceImpl extends BaseAssetLibraryResourceImpl {
 	}
 
 	private <T, E extends Exception> T _getValue(
-			UnsafeSupplier<T, E> valueUnsafeSupplier,
-			UnsafeSupplier<T, E> defaultValueUnsafeSupplier)
+			UnsafeSupplier<T, E> defaultValueUnsafeSupplier,
+			UnsafeSupplier<T, E> valueUnsafeSupplier)
 		throws Exception {
 
 		T value = valueUnsafeSupplier.get();
