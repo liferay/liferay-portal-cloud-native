@@ -95,6 +95,7 @@ public class ContentsSectionDisplayContext extends BaseSectionDisplayContext {
 		).build();
 	}
 
+	@Override
 	public List<FDSActionDropdownItem> getFDSActionDropdownItems() {
 		return ListUtil.fromArray(
 			new FDSActionDropdownItem(
