@@ -51,7 +51,7 @@ public class ObjectEntryFolderInfoItemFieldValuesProvider
 			).build();
 		}
 		catch (Exception exception) {
-			throw new RuntimeException("Unexpected exception", exception);
+			throw new RuntimeException(exception);
 		}
 	}
 

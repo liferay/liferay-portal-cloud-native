@@ -101,7 +101,7 @@ public class CPDefinitionInfoItemFieldValuesProvider
 			return ReflectionUtil.throwException(noSuchInfoItemException);
 		}
 		catch (Exception exception) {
-			throw new RuntimeException("Unexpected exception", exception);
+			throw new RuntimeException(exception);
 		}
 	}
 
