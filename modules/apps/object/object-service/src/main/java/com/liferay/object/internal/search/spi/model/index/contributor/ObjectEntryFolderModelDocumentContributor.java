@@ -64,15 +64,13 @@ public class ObjectEntryFolderModelDocumentContributor
 			objectEntryFolder.getExternalReferenceCode();
 
 		if (externalReferenceCode.equals(
-				ObjectEntryFolderConstants.
-					CONTENTS_OBJECT_ENTRY_FOLDER_EXTERNAL_REFERENCE_CODE)) {
+				ObjectEntryFolderConstants.EXTERNAL_REFERENCE_CODE_CONTENTS)) {
 
 			return "content";
 		}
 
 		if (externalReferenceCode.equals(
-				ObjectEntryFolderConstants.
-					FILES_OBJECT_ENTRY_FOLDER_EXTERNAL_REFERENCE_CODE)) {
+				ObjectEntryFolderConstants.EXTERNAL_REFERENCE_CODE_FILES)) {
 
 			return "files";
 		}

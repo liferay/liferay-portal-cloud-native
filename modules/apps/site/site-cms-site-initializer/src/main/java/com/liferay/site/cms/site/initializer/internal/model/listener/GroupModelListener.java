@@ -56,8 +56,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 		}
 
 		_objectEntryFolderLocalService.addObjectEntryFolder(
-			ObjectEntryFolderConstants.
-				CONTENTS_OBJECT_ENTRY_FOLDER_EXTERNAL_REFERENCE_CODE,
+			ObjectEntryFolderConstants.EXTERNAL_REFERENCE_CODE_CONTENTS,
 			group.getCreatorUserId(), group.getGroupId(),
 			ObjectEntryFolderConstants.PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT,
 			HashMapBuilder.put(
@@ -65,8 +64,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			).build(),
 			"Contents", ServiceContextThreadLocal.getServiceContext());
 		_objectEntryFolderLocalService.addObjectEntryFolder(
-			ObjectEntryFolderConstants.
-				FILES_OBJECT_ENTRY_FOLDER_EXTERNAL_REFERENCE_CODE,
+			ObjectEntryFolderConstants.EXTERNAL_REFERENCE_CODE_FILES,
 			group.getCreatorUserId(), group.getGroupId(),
 			ObjectEntryFolderConstants.PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT,
 			HashMapBuilder.put(
@@ -89,12 +87,10 @@ public class GroupModelListener extends BaseModelListener<Group> {
 						true)) {
 
 			_objectEntryFolderLocalService.deleteObjectEntryFolder(
-				ObjectEntryFolderConstants.
-					CONTENTS_OBJECT_ENTRY_FOLDER_EXTERNAL_REFERENCE_CODE,
+				ObjectEntryFolderConstants.EXTERNAL_REFERENCE_CODE_CONTENTS,
 				group.getGroupId(), group.getCompanyId());
 			_objectEntryFolderLocalService.deleteObjectEntryFolder(
-				ObjectEntryFolderConstants.
-					FILES_OBJECT_ENTRY_FOLDER_EXTERNAL_REFERENCE_CODE,
+				ObjectEntryFolderConstants.EXTERNAL_REFERENCE_CODE_FILES,
 				group.getGroupId(), group.getCompanyId());
 		}
 	}
