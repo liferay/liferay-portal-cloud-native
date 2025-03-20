@@ -1,5 +1,5 @@
 {
-	"@generated": "dcf1f5e0d7915fcc3fd04491183f8a6a9ae4b126",
+	"@generated": "f94d122275c6b606b70e71ed04fd422fc79a6f24",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -8,7 +8,7 @@
 		"declarationDir": "../../../../../../../../.tsc/types",
 		"emitDeclarationOnly": true,
 		"jsx": "react",
-		"module": "es6",
+		"module": "es2022",
 		"moduleResolution": "node",
 		"paths": {
 			"@liferay/cookies-banner-web": [

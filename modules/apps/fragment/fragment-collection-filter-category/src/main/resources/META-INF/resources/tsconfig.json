@@ -1,5 +1,5 @@
 {
-	"@generated": "efc67465a5f0991baa7e807f5e6200473487486c",
+	"@generated": "c99f057ffedf6aaddf9c633bf0e9aca50044ddd5",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -8,7 +8,7 @@
 		"declarationDir": "../../../../../../../../.tsc/types",
 		"emitDeclarationOnly": true,
 		"jsx": "react",
-		"module": "es6",
+		"module": "es2022",
 		"moduleResolution": "node",
 		"paths": {
 			"@liferay/fragment-renderer-collection-filter-impl": [

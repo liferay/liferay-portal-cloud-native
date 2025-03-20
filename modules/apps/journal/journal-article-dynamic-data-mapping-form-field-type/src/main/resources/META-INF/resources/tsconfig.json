@@ -1,5 +1,5 @@
 {
-	"@generated": "c9baa93ddad689c8211b2fd76ea13c74327c66ba",
+	"@generated": "be3aabe09d2759d3b52fe2d683f44d1d7fa76335",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -8,7 +8,7 @@
 		"declarationDir": "../../../../../../../../.tsc/types",
 		"emitDeclarationOnly": true,
 		"jsx": "react",
-		"module": "es6",
+		"module": "es2022",
 		"moduleResolution": "node",
 		"paths": {
 			"dynamic-data-mapping-form-field-type": [

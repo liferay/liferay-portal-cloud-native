@@ -1,5 +1,5 @@
 {
-	"@generated": "dad7c2f4a7e8fa2eaad82bb323bbc8c3ce8d039d",
+	"@generated": "67a0b81fa59594edba70c1da7d960788eaa41c51",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -8,7 +8,7 @@
 		"declarationDir": "../../../../../../../../../.tsc/types",
 		"emitDeclarationOnly": true,
 		"jsx": "react",
-		"module": "es6",
+		"module": "es2022",
 		"moduleResolution": "node",
 		"paths": {
 			"@liferay/frontend-js-react-web": [

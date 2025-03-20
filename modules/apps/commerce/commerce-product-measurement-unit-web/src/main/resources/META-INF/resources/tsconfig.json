@@ -1,5 +1,5 @@
 {
-	"@generated": "af7c7173f422cb32e190e73604feebb7043d0362",
+	"@generated": "1867ca40e3365d5f852a09d147245a8bb05bec96",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -8,7 +8,7 @@
 		"declarationDir": "../../../../../../../../.tsc/types",
 		"emitDeclarationOnly": true,
 		"jsx": "react",
-		"module": "es6",
+		"module": "es2022",
 		"moduleResolution": "node",
 		"paths": {
 			"commerce-frontend-js": [

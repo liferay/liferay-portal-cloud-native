@@ -1,5 +1,5 @@
 {
-	"@generated": "a4fbfed9b0ce009c69cc4f458822499647240fe0",
+	"@generated": "2006fee9d5c423b3ef2400baecd7843312e6ed8e",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -8,7 +8,7 @@
 		"declarationDir": "../../../../../../../../.tsc/types",
 		"emitDeclarationOnly": true,
 		"jsx": "react",
-		"module": "es6",
+		"module": "es2022",
 		"moduleResolution": "node",
 		"paths": {
 			"@liferay/flags-taglib": [

@@ -1,5 +1,5 @@
 {
-	"@generated": "86d16afd799d8308f4e26dfd20bf689eca3705a6",
+	"@generated": "feee47838acabeaf354cc9c15bcfe77a8d418721",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -8,7 +8,7 @@
 		"declarationDir": "../../../../../../../../.tsc/types",
 		"emitDeclarationOnly": true,
 		"jsx": "react",
-		"module": "es6",
+		"module": "es2022",
 		"moduleResolution": "node",
 		"paths": {
 			"@liferay/analytics-reports-js-components-web": [
