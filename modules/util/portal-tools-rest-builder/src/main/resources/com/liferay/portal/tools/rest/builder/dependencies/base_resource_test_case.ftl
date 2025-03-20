@@ -1650,23 +1650,23 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 					@SuppressWarnings("PMD.UnusedLocalVariable")
 					${schemaName} patch${schemaName} = ${schemaVarName}Resource.${javaMethodSignature.methodName}(
-						<#assign parameterMethodList = [] />
+						<#assign parameterNames = [] />
 
 						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 							<#if freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
 								<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName + "Id")>
-									<#assign parameterMethodList = parameterMethodList + ["post${schemaName}.getId()"] />
+									<#assign parameterNames = parameterNames + ["post${schemaName}.getId()"] />
 								<#elseif properties?keys?seq_contains(javaMethodParameter.parameterName)>
-									<#assign parameterMethodList = parameterMethodList + ["post${schemaName}.get${javaMethodParameter.parameterName?cap_first}()"] />
+									<#assign parameterNames = parameterNames + ["post${schemaName}.get${javaMethodParameter.parameterName?cap_first}()"] />
 								<#else>
-									<#assign parameterMethodList = parameterMethodList + ["null"] />
+									<#assign parameterNames = parameterNames + ["null"] />
 								</#if>
 							<#elseif freeMarkerTool.isQueryParameter(javaMethodParameter, javaMethodSignature.operation)>
-								<#assign parameterMethodList = parameterMethodList + ["test${javaMethodSignature.methodName?cap_first}_get${javaMethodParameter.parameterName?cap_first}()"] />
+								<#assign parameterNames = parameterNames + ["test${javaMethodSignature.methodName?cap_first}_get${javaMethodParameter.parameterName?cap_first}()"] />
 							</#if>
 						</#list>
 
-						${parameterMethodList?join(", ")} , randomPatch${schemaName}
+						${parameterNames?join(", ")} , randomPatch${schemaName}
 
 						<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
 							, multipartFiles
@@ -1678,25 +1678,25 @@ public abstract class Base${schemaName}ResourceTestCase {
 					BeanTestUtil.copyProperties(randomPatch${schemaName}, expectedPatch${schemaName});
 
 					${schemaName} get${schemaName} = ${schemaVarName}Resource.get${javaMethodSignature.methodName?remove_beginning("patch")}(
-						<#assign parameterMethodList = [] />
+						<#assign parameterNames = [] />
 
 						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 							<#if freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
 								<#if stringUtil.equals(javaMethodParameter.parameterName, "externalReferenceCode")>
-									<#assign parameterMethodList = parameterMethodList + ["patch${schemaName}.getExternalReferenceCode()"] />
+									<#assign parameterNames = parameterNames + ["patch${schemaName}.getExternalReferenceCode()"] />
 								<#elseif (stringUtil.equals(javaMethodParameter.parameterName, "id") ||
 										 stringUtil.equals(javaMethodParameter.parameterName, schemaVarName + "Id"))>
 
-									<#assign parameterMethodList = parameterMethodList + ["patch${schemaName}.getId()"] />
+									<#assign parameterNames = parameterNames + ["patch${schemaName}.getId()"] />
 								<#elseif properties?keys?seq_contains(javaMethodParameter.parameterName)>
-									<#assign parameterMethodList = parameterMethodList + ["patch${schemaName}.get${javaMethodParameter.parameterName?cap_first}()"] />
+									<#assign parameterNames = parameterNames + ["patch${schemaName}.get${javaMethodParameter.parameterName?cap_first}()"] />
 								<#else>
-									<#assign parameterMethodList = parameterMethodList + ["null"] />
+									<#assign parameterNames = parameterNames + ["null"] />
 								</#if>
 							</#if>
 						</#list>
 
-						${parameterMethodList?join(", ")}
+						${parameterNames?join(", ")}
 					);
 
 					assertEquals(expectedPatch${schemaName}, get${schemaName});
