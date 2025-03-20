@@ -50,60 +50,12 @@ public class ObjectEntryFolderModelDocumentContributorTest {
 
 	@Test
 	public void testContribute() throws Exception {
-
-		// Parent object entry folder: L_CONTENTS
-
-		ObjectEntryFolder parentObjectEntryFolder = _addObjectEntryFolder(
-			ObjectEntryFolderConstants.EXTERNAL_REFERENCE_CODE_CONTENTS,
-			ObjectEntryFolderConstants.PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT);
-
-		ObjectEntryFolder objectEntryFolder = _addObjectEntryFolder(
-			null, parentObjectEntryFolder.getObjectEntryFolderId());
-
-		Document document = _contribute(objectEntryFolder);
-
-		Assert.assertEquals(
-			String.valueOf(objectEntryFolder.getObjectEntryFolderId()),
-			document.get(Field.FOLDER_ID));
-		Assert.assertEquals(
-			objectEntryFolder.getName(), document.get(Field.NAME));
-		Assert.assertEquals("contents", document.get("cms_section"));
-
-		// Parent object entry folder: L_FILES
-
-		parentObjectEntryFolder = _addObjectEntryFolder(
-			ObjectEntryFolderConstants.EXTERNAL_REFERENCE_CODE_FILES,
-			ObjectEntryFolderConstants.PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT);
-
-		objectEntryFolder = _addObjectEntryFolder(
-			null, parentObjectEntryFolder.getObjectEntryFolderId());
-
-		document = _contribute(objectEntryFolder);
-
-		Assert.assertEquals(
-			String.valueOf(objectEntryFolder.getObjectEntryFolderId()),
-			document.get(Field.FOLDER_ID));
-		Assert.assertEquals(
-			objectEntryFolder.getName(), document.get(Field.NAME));
-		Assert.assertEquals("files", document.get("cms_section"));
-
-		// Parent object entry folder: null
-
-		parentObjectEntryFolder = _addObjectEntryFolder(
-			null,
-			ObjectEntryFolderConstants.PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT);
-
-		objectEntryFolder = _addObjectEntryFolder(
-			null, parentObjectEntryFolder.getObjectEntryFolderId());
-
-		document = _contribute(objectEntryFolder);
-
-		Assert.assertEquals(
-			String.valueOf(objectEntryFolder.getObjectEntryFolderId()),
-			document.get(Field.FOLDER_ID));
-		Assert.assertEquals(
-			objectEntryFolder.getName(), document.get(Field.NAME));
-		Assert.assertEquals("none", document.get("cms_section"));
+		_testContribute(
+			"contents",
+			ObjectEntryFolderConstants.EXTERNAL_REFERENCE_CODE_CONTENTS);
+		_testContribute(
+			"files", ObjectEntryFolderConstants.EXTERNAL_REFERENCE_CODE_FILES);
+		_testContribute("none", null);
 	}
 
 	private ObjectEntryFolder _addObjectEntryFolder(
@@ -126,6 +78,28 @@ public class ObjectEntryFolderModelDocumentContributorTest {
 			document, objectEntryFolder);
 
 		return document;
+	}
+
+	private void _testContribute(
+			String cmsSection,
+			String parentObjectEntryFolderExternalReferenceCode)
+		throws Exception {
+
+		ObjectEntryFolder parentObjectEntryFolder = _addObjectEntryFolder(
+			parentObjectEntryFolderExternalReferenceCode,
+			ObjectEntryFolderConstants.PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT);
+
+		ObjectEntryFolder objectEntryFolder = _addObjectEntryFolder(
+			null, parentObjectEntryFolder.getObjectEntryFolderId());
+
+		Document document = _contribute(objectEntryFolder);
+
+		Assert.assertEquals(
+			String.valueOf(objectEntryFolder.getObjectEntryFolderId()),
+			document.get(Field.FOLDER_ID));
+		Assert.assertEquals(
+			objectEntryFolder.getName(), document.get(Field.NAME));
+		Assert.assertEquals(cmsSection, document.get("cms_section"));
 	}
 
 	@DeleteAfterTestRun
