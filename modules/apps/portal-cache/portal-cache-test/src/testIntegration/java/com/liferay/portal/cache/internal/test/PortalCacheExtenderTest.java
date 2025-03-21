@@ -380,16 +380,14 @@ public class PortalCacheExtenderTest {
 						sb.append("\">");
 
 						if (multiVM) {
-							sb.append(
-								"<key-type>java.io.Serializable</key-type>");
-							sb.append("<value-type>java.io.Serializable");
-							sb.append("</value-type>");
+							sb.append("<key-type>java.io.Serializable");
+							sb.append("</key-type><value-type>");
+							sb.append("java.io.Serializable</value-type>");
 						}
 						else {
-							sb.append(
-								"<key-type>java.io.Serializable</key-type>");
-							sb.append(
-								"<value-type>java.lang.Object</value-type>");
+							sb.append("<key-type>java.io.Serializable");
+							sb.append("</key-type><value-type>");
+							sb.append("java.lang.Object</value-type>");
 						}
 
 						sb.append("<expiry><tti>");
