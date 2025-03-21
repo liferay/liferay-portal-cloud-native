@@ -329,15 +329,16 @@ public class ObjectEntryDTOConverter
 			return objectEntry;
 		}
 
-		ObjectEntry contentObjectEntry = ObjectEntry.unsafeToDTO(
-			objectEntryVersion.getContent());
-
 		objectEntry.setCreator(
 			() -> CreatorUtil.toCreator(
 				_portal, dtoConverterContext.getUriInfo(),
 				_userLocalService.fetchUser(objectEntryVersion.getUserId())));
 		objectEntry.setDateCreated(objectEntryVersion::getCreateDate);
 		objectEntry.setDateModified(objectEntryVersion::getModifiedDate);
+
+		ObjectEntry contentObjectEntry = ObjectEntry.unsafeToDTO(
+			objectEntryVersion.getContent());
+
 		objectEntry.setExternalReferenceCode(
 			contentObjectEntry::getExternalReferenceCode);
 		objectEntry.setKeywords(contentObjectEntry::getKeywords);
@@ -360,6 +361,7 @@ public class ObjectEntryDTOConverter
 						serviceBuilderObjectEntryClone.getObjectDefinitionId()),
 					serviceBuilderObjectEntryClone);
 			});
+
 		objectEntry.setStatus(
 			() -> _toStatus(
 				dtoConverterContext.getLocale(),
