@@ -77,6 +77,46 @@ public class CompileJSPUtil {
 		}
 	}
 
+	private static TldResourcePath _newTldResourcePath(
+		TldResourcePath tldResourcePath) {
+
+		return new TldResourcePath(
+			tldResourcePath.getUrl(), tldResourcePath.getWebappPath(),
+			tldResourcePath.getEntryName()) {
+
+			@Override
+			public InputStream openStream() throws IOException {
+				URL url = getUrl();
+				String entryName = getEntryName();
+
+				String key = url.getPath() + "#" + String.valueOf(entryName);
+
+				byte[] bytes = _bytesMap.get(key);
+
+				if (bytes != null) {
+					return new ByteArrayInputStream(bytes);
+				}
+
+				if (entryName == null) {
+					try (InputStream inputStream = url.openStream()) {
+						return _toCachedInputStream(inputStream, key);
+					}
+				}
+
+				try (ZipFile zipFile = new ZipFile(url.getPath())) {
+					ZipEntry zipEntry = zipFile.getEntry(entryName);
+
+					try (InputStream inputStream = zipFile.getInputStream(
+							zipEntry)) {
+
+						return _toCachedInputStream(inputStream, key);
+					}
+				}
+			}
+
+		};
+	}
+
 	private static TldScanner _newTldScanner(
 		JspCServletContext jspCServletContext, boolean namespaceAware,
 		boolean validate, boolean blockExternal) {
@@ -117,48 +157,7 @@ public class CompileJSPUtil {
 			protected void parseTld(TldResourcePath tldResourcePath)
 				throws IOException, SAXException {
 
-				super.parseTld(
-					new TldResourcePath(
-						tldResourcePath.getUrl(),
-						tldResourcePath.getWebappPath(),
-						tldResourcePath.getEntryName()) {
-
-						@Override
-						public InputStream openStream() throws IOException {
-							URL url = getUrl();
-							String entryName = getEntryName();
-
-							String key =
-								url.getPath() + "#" + String.valueOf(entryName);
-
-							byte[] bytes = _bytesMap.get(key);
-
-							if (bytes != null) {
-								return new ByteArrayInputStream(bytes);
-							}
-
-							if (entryName == null) {
-								try (InputStream inputStream =
-										url.openStream()) {
-
-									return _toCachedInputStream(
-										inputStream, key);
-								}
-							}
-
-							try (ZipFile zipFile = new ZipFile(url.getPath())) {
-								ZipEntry zipEntry = zipFile.getEntry(entryName);
-
-								try (InputStream inputStream =
-										zipFile.getInputStream(zipEntry)) {
-
-									return _toCachedInputStream(
-										inputStream, key);
-								}
-							}
-						}
-
-					});
+				super.parseTld(_newTldResourcePath(tldResourcePath));
 			}
 
 		};
