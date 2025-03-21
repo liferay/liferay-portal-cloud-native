@@ -106,7 +106,7 @@ definition {
 		}
 
 		task ("Then the tool stops immediately with a console message as: CompanyId with company ID <companyId> does not exist") {
-			DBPartitionMigrationValidator.validateOutput(outputMessage = "Company with company ID ${randomCompanyId} does not exist");
+			DBPartitionMigrationValidator.validateOutput(outputMessage = "Company ${randomCompanyId} does not exist");
 		}
 	}
 

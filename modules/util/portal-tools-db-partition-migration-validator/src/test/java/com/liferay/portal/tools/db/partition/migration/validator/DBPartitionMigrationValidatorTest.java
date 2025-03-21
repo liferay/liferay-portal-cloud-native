@@ -69,7 +69,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 	@TestInfo("LPD-6742")
 	public void testExportDefaultDatabase() throws Exception {
 		_testExport(
-			Collections.singletonList(RandomTestUtil.randomLong()), true, true);
+			true, Collections.singletonList(RandomTestUtil.randomLong()), true);
 	}
 
 	@Test
@@ -78,17 +78,18 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		throws Exception {
 
 		_testExport(
+			true,
 			Arrays.asList(
 				RandomTestUtil.randomLong(), RandomTestUtil.randomLong()),
-			true, true);
+			true);
 	}
 
 	@Test
 	@TestInfo("LPD-6742")
 	public void testExportNondefaultDatabase() throws Exception {
 		_testExport(
-			Collections.singletonList(RandomTestUtil.randomLong()), false,
-			true);
+			true, Collections.singletonList(RandomTestUtil.randomLong()),
+			false);
 	}
 
 	@Test
@@ -97,16 +98,17 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		throws Exception {
 
 		_testExport(
+			true,
 			Arrays.asList(
 				RandomTestUtil.randomLong(), RandomTestUtil.randomLong()),
-			false, true);
+			false);
 	}
 
 	@Test
 	@TestInfo("LPD-39640")
 	public void testExportNonexistentDatabase() throws Exception {
 		_testExport(
-			Collections.singletonList(RandomTestUtil.randomLong()), false,
+			false, Collections.singletonList(RandomTestUtil.randomLong()),
 			false);
 	}
 
@@ -116,9 +118,10 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		throws Exception {
 
 		_testExport(
+			false,
 			Arrays.asList(
 				RandomTestUtil.randomLong(), RandomTestUtil.randomLong()),
-			false, false);
+			false);
 	}
 
 	@Test
@@ -314,8 +317,8 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 	}
 
 	private void _testExport(
-			List<Long> companyIds, boolean defaultPartition,
-			boolean companyExists)
+			boolean companyExists, List<Long> companyIds,
+			boolean defaultPartition)
 		throws Exception {
 
 		List<Company> companies = Arrays.asList(
@@ -360,8 +363,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 			if (!companyExists) {
 				Assert.assertTrue(
 					errorFileContent.contains(
-						"Company with company ID " + companyId +
-							" does not exist"));
+						"Company " + companyId + " does not exist"));
 				Assert.assertEquals("1", runtimeException.getMessage());
 
 				File[] files = outputDirectory.listFiles();
