@@ -154,7 +154,6 @@ public class ManagementService implements CacheManagerListener {
 			_mBeanServer.registerMBean(
 				new CacheMBeanImpl(cacheName, cache),
 				_getObjectName("Cache", _cacheManagerName, cacheName));
-
 			_mBeanServer.registerMBean(
 				new CacheStatisticsMBeanImpl(
 					cacheName,
