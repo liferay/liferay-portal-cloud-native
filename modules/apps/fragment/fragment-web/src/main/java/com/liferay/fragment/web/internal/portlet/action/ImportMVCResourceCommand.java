@@ -94,7 +94,7 @@ public class ImportMVCResourceCommand extends BaseMVCResourceCommand {
 			jsonObject = _importFragmentEntries(
 				file, fragmentCollectionId, themeDisplay.getScopeGroupId(),
 				fragmentsImportStrategy, themeDisplay.getLocale(),
-				themeDisplay.getUserId(), marketplace);
+				marketplace, themeDisplay.getUserId());
 		}
 		else {
 			jsonObject.put("valid", false);
@@ -123,7 +123,7 @@ public class ImportMVCResourceCommand extends BaseMVCResourceCommand {
 	private JSONObject _importFragmentEntries(
 		File file, long fragmentCollectionId, long groupId,
 		FragmentsImportStrategy fragmentsImportStrategy, Locale locale,
-		long userId, boolean marketplace) {
+		boolean marketplace, long userId) {
 
 		JSONObject jsonObject = _jsonFactory.createJSONObject();
 
