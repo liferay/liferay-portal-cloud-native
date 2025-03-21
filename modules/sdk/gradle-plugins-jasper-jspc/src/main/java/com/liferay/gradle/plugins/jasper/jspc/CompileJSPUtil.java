@@ -122,7 +122,7 @@ public class CompileJSPUtil {
 												url.openStream()) {
 
 											return _toCachedInputStream(
-												key, inputStream);
+												inputStream, key);
 										}
 									}
 
@@ -135,7 +135,7 @@ public class CompileJSPUtil {
 													zipEntry)) {
 
 											return _toCachedInputStream(
-												key, inputStream);
+												inputStream, key);
 										}
 									}
 								}
@@ -164,7 +164,7 @@ public class CompileJSPUtil {
 	}
 
 	private static InputStream _toCachedInputStream(
-			String key, InputStream inputStream)
+			InputStream inputStream, String key)
 		throws IOException {
 
 		ByteArrayOutputStream byteArrayOutputStream =
