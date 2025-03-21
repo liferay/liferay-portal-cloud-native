@@ -55,95 +55,9 @@ public class CompileJSPUtil {
 				JspCServletContext jspCServletContext, boolean namespaceAware,
 				boolean validate, boolean blockExternal) {
 
-				return new TldScanner(
+				return _newTldScanner(
 					jspCServletContext, namespaceAware, validate,
-					blockExternal) {
-
-					@Override
-					public void scanJars() {
-						jspCServletContext.setAttribute(
-							JarScanner.class.getName(),
-							new StandardJarScanner() {
-
-								@Override
-								protected void processURLs(
-									JarScanType scanType,
-									JarScannerCallback callback,
-									Set<URL> processedURLs, boolean webApp,
-									Deque<URL> classPathUrlsToProcess) {
-
-									if (!webApp) {
-										classPathUrlsToProcess.clear();
-
-										return;
-									}
-
-									super.processURLs(
-										scanType, callback, processedURLs,
-										webApp, classPathUrlsToProcess);
-								}
-
-							});
-
-						super.scanJars();
-					}
-
-					@Override
-					protected void parseTld(TldResourcePath tldResourcePath)
-						throws IOException, SAXException {
-
-						super.parseTld(
-							new TldResourcePath(
-								tldResourcePath.getUrl(),
-								tldResourcePath.getWebappPath(),
-								tldResourcePath.getEntryName()) {
-
-								@Override
-								public InputStream openStream()
-									throws IOException {
-
-									URL url = getUrl();
-
-									String entryName = getEntryName();
-
-									String path = url.getPath();
-
-									String key =
-										path + "#" + String.valueOf(entryName);
-
-									byte[] data = _dataMap.get(key);
-
-									if (data != null) {
-										return new ByteArrayInputStream(data);
-									}
-
-									if (entryName == null) {
-										try (InputStream inputStream =
-												url.openStream()) {
-
-											return _toCachedInputStream(
-												inputStream, key);
-										}
-									}
-
-									try (ZipFile zipFile = new ZipFile(path)) {
-										ZipEntry zipEntry = zipFile.getEntry(
-											entryName);
-
-										try (InputStream inputStream =
-												zipFile.getInputStream(
-													zipEntry)) {
-
-											return _toCachedInputStream(
-												inputStream, key);
-										}
-									}
-								}
-
-							});
-					}
-
-				};
+					blockExternal);
 			}
 
 		};
@@ -161,6 +75,94 @@ public class CompileJSPUtil {
 		catch (Exception exception) {
 			throw new GradleException(exception.getMessage(), exception);
 		}
+	}
+
+	private static TldScanner _newTldScanner(
+		JspCServletContext jspCServletContext, boolean namespaceAware,
+		boolean validate, boolean blockExternal) {
+
+		return new TldScanner(
+			jspCServletContext, namespaceAware, validate, blockExternal) {
+
+			@Override
+			public void scanJars() {
+				jspCServletContext.setAttribute(
+					JarScanner.class.getName(),
+					new StandardJarScanner() {
+
+						@Override
+						protected void processURLs(
+							JarScanType scanType, JarScannerCallback callback,
+							Set<URL> processedURLs, boolean webApp,
+							Deque<URL> classPathUrlsToProcess) {
+
+							if (!webApp) {
+								classPathUrlsToProcess.clear();
+
+								return;
+							}
+
+							super.processURLs(
+								scanType, callback, processedURLs, webApp,
+								classPathUrlsToProcess);
+						}
+
+					});
+
+				super.scanJars();
+			}
+
+			@Override
+			protected void parseTld(TldResourcePath tldResourcePath)
+				throws IOException, SAXException {
+
+				super.parseTld(
+					new TldResourcePath(
+						tldResourcePath.getUrl(),
+						tldResourcePath.getWebappPath(),
+						tldResourcePath.getEntryName()) {
+
+						@Override
+						public InputStream openStream() throws IOException {
+							URL url = getUrl();
+
+							String entryName = getEntryName();
+
+							String path = url.getPath();
+
+							String key = path + "#" + String.valueOf(entryName);
+
+							byte[] data = _dataMap.get(key);
+
+							if (data != null) {
+								return new ByteArrayInputStream(data);
+							}
+
+							if (entryName == null) {
+								try (InputStream inputStream =
+										url.openStream()) {
+
+									return _toCachedInputStream(
+										inputStream, key);
+								}
+							}
+
+							try (ZipFile zipFile = new ZipFile(path)) {
+								ZipEntry zipEntry = zipFile.getEntry(entryName);
+
+								try (InputStream inputStream =
+										zipFile.getInputStream(zipEntry)) {
+
+									return _toCachedInputStream(
+										inputStream, key);
+								}
+							}
+						}
+
+					});
+			}
+
+		};
 	}
 
 	private static InputStream _toCachedInputStream(
