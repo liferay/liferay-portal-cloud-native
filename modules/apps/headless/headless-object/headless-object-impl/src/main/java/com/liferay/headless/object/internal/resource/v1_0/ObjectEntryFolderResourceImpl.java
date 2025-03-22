@@ -195,11 +195,10 @@ public class ObjectEntryFolderResourceImpl
 			throw new UnsupportedOperationException();
 		}
 
-		com.liferay.object.model.ObjectEntryFolder persistedObjectEntryFolder =
-			_objectEntryFolderService.getObjectEntryFolder(objectEntryFolderId);
-
 		return _patchObjectEntryFolder(
-			objectEntryFolder, persistedObjectEntryFolder);
+			objectEntryFolder,
+			_objectEntryFolderService.getObjectEntryFolder(
+				objectEntryFolderId));
 	}
 
 	@Override
@@ -213,14 +212,12 @@ public class ObjectEntryFolderResourceImpl
 			throw new UnsupportedOperationException();
 		}
 
-		com.liferay.object.model.ObjectEntryFolder persistedObjectEntryFolder =
+		return _patchObjectEntryFolder(
+			objectEntryFolder,
 			_objectEntryFolderService.
 				getObjectEntryFolderByExternalReferenceCode(
 					externalReferenceCode, GetterUtil.getLong(scopeKey),
-					contextCompany.getCompanyId());
-
-		return _patchObjectEntryFolder(
-			objectEntryFolder, persistedObjectEntryFolder);
+					contextCompany.getCompanyId()));
 	}
 
 	@Override
