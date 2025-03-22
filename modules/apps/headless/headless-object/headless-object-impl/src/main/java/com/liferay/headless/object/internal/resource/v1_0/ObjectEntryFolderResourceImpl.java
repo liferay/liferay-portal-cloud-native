@@ -307,26 +307,6 @@ public class ObjectEntryFolderResourceImpl
 				persistedObjectEntryFolder)
 		throws Exception {
 
-		Long parentObjectEntryFolderId =
-			objectEntryFolder.getParentObjectEntryFolderId();
-
-		if (parentObjectEntryFolderId == null) {
-			parentObjectEntryFolderId =
-				persistedObjectEntryFolder.getParentObjectEntryFolderId();
-		}
-
-		String name = objectEntryFolder.getName();
-
-		if (name == null) {
-			name = persistedObjectEntryFolder.getName();
-		}
-
-		String label = objectEntryFolder.getLabel();
-
-		if (label == null) {
-			label = persistedObjectEntryFolder.getLabel();
-		}
-
 		Map<String, String> labelMap = objectEntryFolder.getLabel_i18n();
 
 		if (labelMap == null) {
@@ -337,11 +317,18 @@ public class ObjectEntryFolderResourceImpl
 		return _toObjectEntryFolder(
 			_objectEntryFolderService.updateObjectEntryFolder(
 				persistedObjectEntryFolder.getObjectEntryFolderId(),
-				parentObjectEntryFolderId,
+				GetterUtil.getLong(
+					objectEntryFolder.getParentObjectEntryFolderId(),
+					persistedObjectEntryFolder.getParentObjectEntryFolderId()),
 				LocalizedMapUtil.getLocalizedMap(
-					contextAcceptLanguage.getPreferredLocale(), label,
+					contextAcceptLanguage.getPreferredLocale(),
+					GetterUtil.getString(
+						objectEntryFolder.getLabel(),
+						persistedObjectEntryFolder.getLabel()),
 					labelMap),
-				name));
+				GetterUtil.getString(
+					objectEntryFolder.getName(),
+					persistedObjectEntryFolder.getName())));
 	}
 
 	private ObjectEntryFolder _toObjectEntryFolder(
