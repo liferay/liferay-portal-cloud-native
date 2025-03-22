@@ -196,7 +196,7 @@ public class ObjectEntryFolderLocalServiceImpl
 
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public ObjectEntryFolder deleteObjectEntryFolder(
+	public ObjectEntryFolder deleteObjectEntryFolderByExternalReferenceCode(
 			String externalReferenceCode, long groupId, long companyId)
 		throws PortalException {
 

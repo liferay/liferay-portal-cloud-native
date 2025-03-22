@@ -86,12 +86,14 @@ public class GroupModelListener extends BaseModelListener<Group> {
 					setForceDeleteSystemObjectEntryFolderWithSafeCloseable(
 						true)) {
 
-			_objectEntryFolderLocalService.deleteObjectEntryFolder(
-				ObjectEntryFolderConstants.EXTERNAL_REFERENCE_CODE_CONTENTS,
-				group.getGroupId(), group.getCompanyId());
-			_objectEntryFolderLocalService.deleteObjectEntryFolder(
-				ObjectEntryFolderConstants.EXTERNAL_REFERENCE_CODE_FILES,
-				group.getGroupId(), group.getCompanyId());
+			_objectEntryFolderLocalService.
+				deleteObjectEntryFolderByExternalReferenceCode(
+					ObjectEntryFolderConstants.EXTERNAL_REFERENCE_CODE_CONTENTS,
+					group.getGroupId(), group.getCompanyId());
+			_objectEntryFolderLocalService.
+				deleteObjectEntryFolderByExternalReferenceCode(
+					ObjectEntryFolderConstants.EXTERNAL_REFERENCE_CODE_FILES,
+					group.getGroupId(), group.getCompanyId());
 		}
 	}
 
