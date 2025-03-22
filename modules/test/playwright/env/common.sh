@@ -710,10 +710,10 @@ function wait_for_portal_log_inactivity {
 
 		total_duration=$((total_duration + sleep_interval))
 
-		echo "Waiting for portal log inactivity"
+		echo "Waiting for portal log inactivity..."
 	done
 
-	echo "No portal activity in ${sleep_interval}s"
+	echo "No portal activity detected in ${sleep_interval}s."
 }
 
 main "${@}"
