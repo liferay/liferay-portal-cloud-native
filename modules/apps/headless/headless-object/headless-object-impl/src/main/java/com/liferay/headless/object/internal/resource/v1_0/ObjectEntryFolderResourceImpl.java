@@ -151,12 +151,14 @@ public class ObjectEntryFolderResourceImpl
 				"create",
 				addAction(
 					ActionKeys.ADD_FOLDER, "postScopeScopeKeyObjectEntryFolder",
-					_CLASS_NAME, groupId)
+					com.liferay.object.model.ObjectEntryFolder.class.getName(),
+					groupId)
 			).put(
 				"get",
 				addAction(
 					ActionKeys.VIEW, "getScopeScopeKeyObjectEntryFoldersPage",
-					_CLASS_NAME, groupId)
+					com.liferay.object.model.ObjectEntryFolder.class.getName(),
+					groupId)
 			).build(),
 			booleanQuery -> {
 				if (!GetterUtil.getBoolean(flatten)) {
@@ -360,9 +362,6 @@ public class ObjectEntryFolderResourceImpl
 				contextAcceptLanguage.getPreferredLocale(), contextUriInfo,
 				contextUser));
 	}
-
-	private static final String _CLASS_NAME =
-		com.liferay.object.model.ObjectEntryFolder.class.getName();
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		ObjectEntryFolderResourceImpl.class);
