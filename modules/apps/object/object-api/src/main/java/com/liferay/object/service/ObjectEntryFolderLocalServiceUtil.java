@@ -124,11 +124,12 @@ public class ObjectEntryFolderLocalServiceUtil {
 		return getService().deleteObjectEntryFolder(objectEntryFolder);
 	}
 
-	public static ObjectEntryFolder deleteObjectEntryFolder(
-			String externalReferenceCode, long groupId, long companyId)
+	public static ObjectEntryFolder
+			deleteObjectEntryFolderByExternalReferenceCode(
+				String externalReferenceCode, long groupId, long companyId)
 		throws PortalException {
 
-		return getService().deleteObjectEntryFolder(
+		return getService().deleteObjectEntryFolderByExternalReferenceCode(
 			externalReferenceCode, groupId, companyId);
 	}
 

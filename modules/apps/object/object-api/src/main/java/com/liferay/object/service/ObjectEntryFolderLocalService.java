@@ -126,7 +126,7 @@ public interface ObjectEntryFolderLocalService
 		throws PortalException;
 
 	@Indexable(type = IndexableType.REINDEX)
-	public ObjectEntryFolder deleteObjectEntryFolder(
+	public ObjectEntryFolder deleteObjectEntryFolderByExternalReferenceCode(
 			String externalReferenceCode, long groupId, long companyId)
 		throws PortalException;
 
