@@ -253,13 +253,13 @@ public class ObjectEntryFolderResourceImpl
 		com.liferay.object.model.ObjectEntryFolder persistedObjectEntryFolder =
 			null;
 
-		long siteId = GetterUtil.getLong(scopeKey);
+		long groupId = GetterUtil.getLong(scopeKey);
 
 		try {
 			persistedObjectEntryFolder =
 				_objectEntryFolderService.
 					getObjectEntryFolderByExternalReferenceCode(
-						externalReferenceCode, siteId,
+						externalReferenceCode, groupId,
 						contextUser.getCompanyId());
 		}
 		catch (PortalException portalException) {
@@ -268,7 +268,7 @@ public class ObjectEntryFolderResourceImpl
 			}
 
 			return _addObjectEntryFolder(
-				siteId, parentObjectEntryFolderId, objectEntryFolder);
+				groupId, parentObjectEntryFolderId, objectEntryFolder);
 		}
 
 		return _toObjectEntryFolder(
@@ -283,13 +283,13 @@ public class ObjectEntryFolderResourceImpl
 	}
 
 	private ObjectEntryFolder _addObjectEntryFolder(
-			long siteId, long parentObjectEntryFolderId,
+			long groupId, long parentObjectEntryFolderId,
 			ObjectEntryFolder objectEntryFolder)
 		throws Exception {
 
 		return _toObjectEntryFolder(
 			_objectEntryFolderService.addObjectEntryFolder(
-				objectEntryFolder.getExternalReferenceCode(), siteId,
+				objectEntryFolder.getExternalReferenceCode(), groupId,
 				parentObjectEntryFolderId,
 				LocalizedMapUtil.getLocalizedMap(
 					contextAcceptLanguage.getPreferredLocale(),
@@ -297,7 +297,7 @@ public class ObjectEntryFolderResourceImpl
 					objectEntryFolder.getLabel_i18n()),
 				objectEntryFolder.getName(),
 				ServiceContextBuilder.create(
-					siteId, contextHttpServletRequest,
+					groupId, contextHttpServletRequest,
 					objectEntryFolder.getViewableByAsString()
 				).build()));
 	}
