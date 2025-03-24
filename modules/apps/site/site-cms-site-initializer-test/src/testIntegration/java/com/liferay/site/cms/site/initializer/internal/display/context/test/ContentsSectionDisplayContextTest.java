@@ -69,8 +69,7 @@ public class ContentsSectionDisplayContextTest
 
 		sb.append("filter=objectFolderExternalReferenceCode in ('");
 		sb.append(
-			StringUtil.merge(
-				_getObjectFolderExternalReferenceCodes(), "','"));
+			StringUtil.merge(_getObjectFolderExternalReferenceCodes(), "','"));
 		sb.append("')");
 
 		Assert.assertTrue(apiURL.contains(sb.toString()));
@@ -198,9 +197,7 @@ public class ContentsSectionDisplayContextTest
 			"getFDSActionDropdownItems", new Class<?>[0]);
 	}
 
-	private String[] _getObjectFolderExternalReferenceCodes()
-		throws Exception {
-
+	private String[] _getObjectFolderExternalReferenceCodes() throws Exception {
 		return ReflectionTestUtil.invoke(
 			_getContentsSectionDisplayContext(getMockHttpServletRequest()),
 			"getObjectFolderExternalReferenceCodes", new Class<?>[0]);

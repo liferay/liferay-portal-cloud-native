@@ -64,9 +64,7 @@ public abstract class BaseSectionDisplayContext {
 
 		sb.append("/o/search/v1.0/search?emptySearch=true&");
 		sb.append("filter=objectFolderExternalReferenceCode in ('");
-		sb.append(
-			StringUtil.merge(
-				objectFolderExternalReferenceCodes, "','"));
+		sb.append(StringUtil.merge(objectFolderExternalReferenceCodes, "','"));
 		sb.append("')");
 
 		String cmsSectionFilterString = getCMSSectionFilterString();
@@ -162,8 +160,7 @@ public abstract class BaseSectionDisplayContext {
 
 	protected abstract String getCMSSectionFilterString();
 
-	protected abstract String[]
-		getObjectFolderExternalReferenceCodes();
+	protected abstract String[] getObjectFolderExternalReferenceCodes();
 
 	protected final HttpServletRequest httpServletRequest;
 	protected final Language language;

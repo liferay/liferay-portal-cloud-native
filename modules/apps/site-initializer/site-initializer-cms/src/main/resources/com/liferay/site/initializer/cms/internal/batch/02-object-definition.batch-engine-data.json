@@ -28,10 +28,10 @@
 			"name": "BasicDocument",
 			"objectActions": [
 			],
-			"objectDefinitionSettings":[
+			"objectDefinitionSettings": [
 				{
-					"name":"acceptAllGroups",
-					"value":"true"
+					"name": "acceptAllGroups",
+					"value": "true"
 				}
 			],
 			"objectFields": [
@@ -126,10 +126,10 @@
 			},
 			"modifiable": true,
 			"name": "BasicWebContent",
-			"objectDefinitionSettings":[
+			"objectDefinitionSettings": [
 				{
-					"name":"acceptAllGroups",
-					"value":"true"
+					"name": "acceptAllGroups",
+					"value": "true"
 				}
 			],
 			"objectFields": [
@@ -204,10 +204,10 @@
 			},
 			"modifiable": true,
 			"name": "Blog",
-			"objectDefinitionSettings":[
+			"objectDefinitionSettings": [
 				{
-					"name":"acceptAllGroups",
-					"value":"true"
+					"name": "acceptAllGroups",
+					"value": "true"
 				}
 			],
 			"objectFields": [
@@ -342,10 +342,10 @@
 			},
 			"modifiable": true,
 			"name": "ExternalVideo",
-			"objectDefinitionSettings":[
+			"objectDefinitionSettings": [
 				{
-					"name":"acceptAllGroups",
-					"value":"true"
+					"name": "acceptAllGroups",
+					"value": "true"
 				}
 			],
 			"objectFields": [
@@ -399,10 +399,10 @@
 			},
 			"modifiable": true,
 			"name": "KnowledgeBase",
-			"objectDefinitionSettings":[
+			"objectDefinitionSettings": [
 				{
-					"name":"acceptAllGroups",
-					"value":"true"
+					"name": "acceptAllGroups",
+					"value": "true"
 				}
 			],
 			"objectFields": [
