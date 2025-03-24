@@ -873,15 +873,14 @@ public class DefaultObjectEntryManagerImpl
 		com.liferay.object.model.ObjectEntry serviceBuilderObjectEntry =
 			objectEntryLocalService.createObjectEntry(0L);
 
-		ServiceContext serviceContext = _createServiceContext(
-			dtoConverterContext, objectDefinition, objectEntry);
-
 		serviceBuilderObjectEntry.setObjectDefinitionId(
 			objectDefinition.getObjectDefinitionId());
 		serviceBuilderObjectEntry.setValues(
 			_toObjectValues(
 				dtoConverterContext.getLocale(), objectDefinition, objectEntry,
-				scopeKey, serviceContext));
+				scopeKey,
+				_createServiceContext(
+					dtoConverterContext, objectDefinition, objectEntry)));
 
 		_objectEntryService.validate(
 			getGroupId(objectDefinition, scopeKey), serviceBuilderObjectEntry,
