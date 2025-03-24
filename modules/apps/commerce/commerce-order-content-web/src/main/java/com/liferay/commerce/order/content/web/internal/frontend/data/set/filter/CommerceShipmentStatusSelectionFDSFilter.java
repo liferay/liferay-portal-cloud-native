@@ -50,14 +50,12 @@ public class CommerceShipmentStatusSelectionFDSFilter
 		List<SelectionFDSFilterItem> selectionFDSFilterItems =
 			new ArrayList<>();
 
-		for (int commerceShipmentStatus :
-				CommerceShipmentConstants.SHIPMENT_STATUSES) {
-
+		for (int shipmentStatus : CommerceShipmentConstants.SHIPMENT_STATUSES) {
 			selectionFDSFilterItems.add(
 				new SelectionFDSFilterItem(
 					CommerceShipmentConstants.getShipmentStatusLabel(
-						commerceShipmentStatus),
-					commerceShipmentStatus));
+						shipmentStatus),
+					shipmentStatus));
 		}
 
 		return selectionFDSFilterItems;
