@@ -13646,11 +13646,8 @@ public class ObjectEntryResourceTest {
 
 		return new ValidationRequest() {
 			{
-				if (finalObjectValidationRuleExternalReferenceCodes != null) {
-					setObjectValidationRuleExternalReferenceCodes(
-						() -> finalObjectValidationRuleExternalReferenceCodes);
-				}
-
+				setObjectValidationRuleExternalReferenceCodes(
+					() -> finalObjectValidationRuleExternalReferenceCodes);
 				setValues(() -> objectEntry);
 			}
 		};
