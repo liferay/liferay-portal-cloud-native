@@ -707,8 +707,8 @@ public class CTCollectionLocalServiceImpl
 
 		Set<CTEntry> relatedCTEntries = new HashSet<>();
 
-		for (List<CTEntry> ctEntryList : relatedCTEntriesMap.values()) {
-			relatedCTEntries.addAll(ctEntryList);
+		for (List<CTEntry> ctEntries : relatedCTEntriesMap.values()) {
+			relatedCTEntries.addAll(ctEntries);
 		}
 
 		return new ArrayList<>(relatedCTEntries);
@@ -719,10 +719,10 @@ public class CTCollectionLocalServiceImpl
 			long ctCollectionId, List<CTEntry> ctEntries)
 		throws PortalException {
 
+		Map<Long, List<CTEntry>> relatedCTEntriesMap = new HashMap<>();
+
 		CTCollection ctCollection = ctCollectionPersistence.findByPrimaryKey(
 			ctCollectionId);
-
-		Map<Long, List<CTEntry>> relatedCTEntriesMap = new HashMap<>();
 
 		for (CTEntry ctEntry : ctEntries) {
 			Map<Long, List<CTEntry>> currentRelatedCTEntriesMap =
@@ -732,7 +732,8 @@ public class CTCollectionLocalServiceImpl
 
 			currentRelatedCTEntriesMap.forEach(
 				(key, value) -> relatedCTEntriesMap.merge(
-					key, value, (v1, v2) -> ListUtil.concat(v1, v2)));
+					key, value,
+					(value1, value2) -> ListUtil.concat(value1, value2)));
 		}
 
 		for (CTEntry ctEntry : ctEntries) {
