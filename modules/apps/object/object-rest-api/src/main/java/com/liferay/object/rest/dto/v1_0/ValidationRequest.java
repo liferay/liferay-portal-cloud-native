@@ -49,30 +49,35 @@ public class ValidationRequest implements Serializable {
 	}
 
 	@io.swagger.v3.oas.annotations.media.Schema
-	public String[] getObjectValidationRuleERCs() {
-		if (_objectValidationRuleERCsSupplier != null) {
-			objectValidationRuleERCs = _objectValidationRuleERCsSupplier.get();
+	public String[] getObjectValidationRuleExternalReferenceCodes() {
+		if (_objectValidationRuleExternalReferenceCodesSupplier != null) {
+			objectValidationRuleExternalReferenceCodes =
+				_objectValidationRuleExternalReferenceCodesSupplier.get();
 
-			_objectValidationRuleERCsSupplier = null;
+			_objectValidationRuleExternalReferenceCodesSupplier = null;
 		}
 
-		return objectValidationRuleERCs;
+		return objectValidationRuleExternalReferenceCodes;
 	}
 
-	public void setObjectValidationRuleERCs(String[] objectValidationRuleERCs) {
-		this.objectValidationRuleERCs = objectValidationRuleERCs;
+	public void setObjectValidationRuleExternalReferenceCodes(
+		String[] objectValidationRuleExternalReferenceCodes) {
 
-		_objectValidationRuleERCsSupplier = null;
+		this.objectValidationRuleExternalReferenceCodes =
+			objectValidationRuleExternalReferenceCodes;
+
+		_objectValidationRuleExternalReferenceCodesSupplier = null;
 	}
 
 	@JsonIgnore
-	public void setObjectValidationRuleERCs(
+	public void setObjectValidationRuleExternalReferenceCodes(
 		UnsafeSupplier<String[], Exception>
-			objectValidationRuleERCsUnsafeSupplier) {
+			objectValidationRuleExternalReferenceCodesUnsafeSupplier) {
 
-		_objectValidationRuleERCsSupplier = () -> {
+		_objectValidationRuleExternalReferenceCodesSupplier = () -> {
 			try {
-				return objectValidationRuleERCsUnsafeSupplier.get();
+				return objectValidationRuleExternalReferenceCodesUnsafeSupplier.
+					get();
 			}
 			catch (RuntimeException runtimeException) {
 				throw runtimeException;
@@ -85,10 +90,11 @@ public class ValidationRequest implements Serializable {
 
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected String[] objectValidationRuleERCs;
+	protected String[] objectValidationRuleExternalReferenceCodes;
 
 	@JsonIgnore
-	private Supplier<String[]> _objectValidationRuleERCsSupplier;
+	private Supplier<String[]>
+		_objectValidationRuleExternalReferenceCodesSupplier;
 
 	@io.swagger.v3.oas.annotations.media.Schema
 	@Valid
@@ -159,25 +165,31 @@ public class ValidationRequest implements Serializable {
 
 		sb.append("{");
 
-		String[] objectValidationRuleERCs = getObjectValidationRuleERCs();
+		String[] objectValidationRuleExternalReferenceCodes =
+			getObjectValidationRuleExternalReferenceCodes();
 
-		if (objectValidationRuleERCs != null) {
+		if (objectValidationRuleExternalReferenceCodes != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"objectValidationRuleERCs\": ");
+			sb.append("\"objectValidationRuleExternalReferenceCodes\": ");
 
 			sb.append("[");
 
-			for (int i = 0; i < objectValidationRuleERCs.length; i++) {
-				sb.append("\"");
-
-				sb.append(_escape(objectValidationRuleERCs[i]));
+			for (int i = 0;
+				 i < objectValidationRuleExternalReferenceCodes.length; i++) {
 
 				sb.append("\"");
 
-				if ((i + 1) < objectValidationRuleERCs.length) {
+				sb.append(
+					_escape(objectValidationRuleExternalReferenceCodes[i]));
+
+				sb.append("\"");
+
+				if ((i + 1) <
+						objectValidationRuleExternalReferenceCodes.length) {
+
 					sb.append(", ");
 				}
 			}

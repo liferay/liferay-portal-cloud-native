@@ -13634,14 +13634,14 @@ public class ObjectEntryResourceTest {
 	}
 
 	private ValidationRequest _getValidationRequest(
-		Map<String, Object> values, String... objectValidationRuleERCs) {
+		Map<String, Object> values, String... objectValidationRuleExternalReferenceCodes) {
 
 		com.liferay.object.rest.dto.v1_0.ObjectEntry objectEntry =
 			new com.liferay.object.rest.dto.v1_0.ObjectEntry();
 
 		objectEntry.setProperties((values != null) ? values : new HashMap<>());
 
-		String[] localObjectValidationRuleERCs = objectValidationRuleERCs;
+		String[] localObjectValidationRuleERCs = objectValidationRuleExternalReferenceCodes;
 
 		return new ValidationRequest() {
 			{

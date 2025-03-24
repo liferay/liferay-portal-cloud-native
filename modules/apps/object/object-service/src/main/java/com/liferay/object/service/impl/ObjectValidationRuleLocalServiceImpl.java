@@ -443,9 +443,9 @@ public class ObjectValidationRuleLocalServiceImpl
 		else {
 			objectValidationRules = TransformUtil.transform(
 				objectValidationRulesERC,
-				objectValidationRuleERC ->
+				objectValidationRuleExternalReferenceCode ->
 					objectValidationRuleLocalService.fetchObjectValidationRule(
-						objectValidationRuleERC,
+						objectValidationRuleExternalReferenceCode,
 						objectEntry.getObjectDefinitionId()));
 		}
 

@@ -129,30 +129,35 @@ public class ValidationError implements Serializable {
 	private Supplier<String> _objectFieldNameSupplier;
 
 	@io.swagger.v3.oas.annotations.media.Schema
-	public String getObjectValidationRuleERC() {
-		if (_objectValidationRuleERCSupplier != null) {
-			objectValidationRuleERC = _objectValidationRuleERCSupplier.get();
+	public String getObjectValidationRuleExternalReferenceCode() {
+		if (_objectValidationRuleExternalReferenceCodeSupplier != null) {
+			objectValidationRuleExternalReferenceCode =
+				_objectValidationRuleExternalReferenceCodeSupplier.get();
 
-			_objectValidationRuleERCSupplier = null;
+			_objectValidationRuleExternalReferenceCodeSupplier = null;
 		}
 
-		return objectValidationRuleERC;
+		return objectValidationRuleExternalReferenceCode;
 	}
 
-	public void setObjectValidationRuleERC(String objectValidationRuleERC) {
-		this.objectValidationRuleERC = objectValidationRuleERC;
+	public void setObjectValidationRuleExternalReferenceCode(
+		String objectValidationRuleExternalReferenceCode) {
 
-		_objectValidationRuleERCSupplier = null;
+		this.objectValidationRuleExternalReferenceCode =
+			objectValidationRuleExternalReferenceCode;
+
+		_objectValidationRuleExternalReferenceCodeSupplier = null;
 	}
 
 	@JsonIgnore
-	public void setObjectValidationRuleERC(
+	public void setObjectValidationRuleExternalReferenceCode(
 		UnsafeSupplier<String, Exception>
-			objectValidationRuleERCUnsafeSupplier) {
+			objectValidationRuleExternalReferenceCodeUnsafeSupplier) {
 
-		_objectValidationRuleERCSupplier = () -> {
+		_objectValidationRuleExternalReferenceCodeSupplier = () -> {
 			try {
-				return objectValidationRuleERCUnsafeSupplier.get();
+				return objectValidationRuleExternalReferenceCodeUnsafeSupplier.
+					get();
 			}
 			catch (RuntimeException runtimeException) {
 				throw runtimeException;
@@ -165,10 +170,10 @@ public class ValidationError implements Serializable {
 
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected String objectValidationRuleERC;
+	protected String objectValidationRuleExternalReferenceCode;
 
 	@JsonIgnore
-	private Supplier<String> _objectValidationRuleERCSupplier;
+	private Supplier<String> _objectValidationRuleExternalReferenceCodeSupplier;
 
 	@Override
 	public boolean equals(Object object) {
@@ -229,18 +234,19 @@ public class ValidationError implements Serializable {
 			sb.append("\"");
 		}
 
-		String objectValidationRuleERC = getObjectValidationRuleERC();
+		String objectValidationRuleExternalReferenceCode =
+			getObjectValidationRuleExternalReferenceCode();
 
-		if (objectValidationRuleERC != null) {
+		if (objectValidationRuleExternalReferenceCode != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"objectValidationRuleERC\": ");
+			sb.append("\"objectValidationRuleExternalReferenceCode\": ");
 
 			sb.append("\"");
 
-			sb.append(_escape(objectValidationRuleERC));
+			sb.append(_escape(objectValidationRuleExternalReferenceCode));
 
 			sb.append("\"");
 		}
