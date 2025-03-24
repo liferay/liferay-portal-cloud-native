@@ -400,7 +400,6 @@ public class ObjectValidationRuleLocalServiceImpl
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public void validate(
 			BaseModel<?> baseModel, long objectDefinitionId,
 			JSONObject payloadJSONObject, long userId)
@@ -426,7 +425,6 @@ public class ObjectValidationRuleLocalServiceImpl
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public void validate(
 			List<String> externalReferenceCodes, ObjectEntry objectEntry,
 			long userId)

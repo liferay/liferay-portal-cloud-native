@@ -354,13 +354,11 @@ public interface ObjectValidationRuleLocalService
 			List<ObjectValidationRuleSetting> objectValidationRuleSettings)
 		throws PortalException;
 
-	@Transactional(readOnly = true)
 	public void validate(
 			BaseModel<?> baseModel, long objectDefinitionId,
 			JSONObject payloadJSONObject, long userId)
 		throws PortalException;
 
-	@Transactional(readOnly = true)
 	public void validate(
 			ObjectEntry objectEntry, List<String> objectValidationRulesERC,
 			long userId)
