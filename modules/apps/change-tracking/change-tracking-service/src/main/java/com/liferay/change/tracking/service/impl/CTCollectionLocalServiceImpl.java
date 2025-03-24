@@ -726,7 +726,7 @@ public class CTCollectionLocalServiceImpl
 
 		for (CTEntry ctEntry : ctEntries) {
 			Map<Long, List<CTEntry>> currentRelatedCTEntriesMap =
-				_fetchRelatedCTEntriesMap(
+				_getRelatedCTEntriesMap(
 					ctCollection, ctEntry.getModelClassNameId(),
 					ctEntry.getModelClassPK());
 
@@ -751,7 +751,7 @@ public class CTCollectionLocalServiceImpl
 				}
 
 				Map<Long, List<CTEntry>> peerRelatedCTEntriesMap =
-					_fetchRelatedCTEntriesMap(
+					_getRelatedCTEntriesMap(
 						ctCollection, peerCTEntry.getModelClassNameId(),
 						peerCTEntry.getModelClassPK());
 
@@ -1304,7 +1304,7 @@ public class CTCollectionLocalServiceImpl
 		}
 	}
 
-	private Map<Long, List<CTEntry>> _fetchRelatedCTEntriesMap(
+	private Map<Long, List<CTEntry>> _getRelatedCTEntriesMap(
 			CTCollection ctCollection, long modelClassNameId, long modelClassPK)
 		throws PortalException {
 
