@@ -39,13 +39,12 @@ public class GroupModelListener extends BaseModelListener<Group> {
 	}
 
 	private void _onAfterRemove(Group group) throws Exception {
-		String filterString = StringBundler.concat(
-			StringPool.OPEN_PARENTHESIS,
-			ExtendedObjectClassDefinition.Scope.GROUP.getPropertyKey(),
-			StringPool.EQUAL, group.getGroupId(), StringPool.CLOSE_PARENTHESIS);
-
 		Configuration[] configurations = _configurationAdmin.listConfigurations(
-			filterString);
+			StringBundler.concat(
+				StringPool.OPEN_PARENTHESIS,
+				ExtendedObjectClassDefinition.Scope.GROUP.getPropertyKey(),
+				StringPool.EQUAL, group.getGroupId(),
+				StringPool.CLOSE_PARENTHESIS));
 
 		if (configurations == null) {
 			return;
