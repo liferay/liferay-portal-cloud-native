@@ -155,8 +155,7 @@ public class MockPortletURL implements PortletURL {
 		if (!CollectionUtils.contains(
 				_portalContext.getSupportedPortletModes(), portletMode)) {
 
-			throw new PortletModeException(
-				"PortletMode not supported", portletMode);
+			throw new PortletModeException(portletMode.toString(), portletMode);
 		}
 
 		_portletMode = portletMode;
@@ -179,8 +178,7 @@ public class MockPortletURL implements PortletURL {
 		if (!CollectionUtils.contains(
 				_portalContext.getSupportedWindowStates(), windowState)) {
 
-			throw new WindowStateException(
-				"WindowState not supported", windowState);
+			throw new WindowStateException(windowState.toString(), windowState);
 		}
 
 		_windowState = windowState;

@@ -62,7 +62,7 @@ public class MockActionResponse
 
 		if (_redirectedUrl != null) {
 			throw new IllegalStateException(
-				"Cannot set PortletMode after sendRedirect has been called");
+				"Cannot set portlet mode after sendRedirect has been called");
 		}
 
 		super.setPortletMode(portletMode);
@@ -74,7 +74,7 @@ public class MockActionResponse
 	public void setRenderParameter(String key, String value) {
 		if (_redirectedUrl != null) {
 			throw new IllegalStateException(
-				"Cannot set render parameters after sendRedirect has been " +
+				"Cannot set render parameter after sendRedirect has been " +
 					"called");
 		}
 
@@ -87,7 +87,7 @@ public class MockActionResponse
 	public void setRenderParameter(String key, String[] values) {
 		if (_redirectedUrl != null) {
 			throw new IllegalStateException(
-				"Cannot set render parameters after sendRedirect has been " +
+				"Cannot set render parameter after sendRedirect has been " +
 					"called");
 		}
 
@@ -115,7 +115,7 @@ public class MockActionResponse
 
 		if (_redirectedUrl != null) {
 			throw new IllegalStateException(
-				"Cannot set WindowState after sendRedirect has been called");
+				"Cannot set window state after sendRedirect has been called");
 		}
 
 		super.setWindowState(windowState);

@@ -57,21 +57,22 @@ public class MockPortletContext implements PortletContext {
 	public MockPortletContext(
 		String resourceBasePath, ResourceLoader resourceLoader) {
 
-		_resourceBasePath = Objects.requireNonNullElse(
-			resourceBasePath, StringPool.BLANK);
-		_resourceLoader = Objects.requireNonNullElse(
-			resourceLoader, new DefaultResourceLoader());
-
 		_attributes = new LinkedHashMap<>();
-		_initParameters = new LinkedHashMap<>();
-		_portletContextName = "MockPortletContext";
-		_containerRuntimeOptions = new LinkedHashSet<>();
 
 		String tempDir = System.getProperty("java.io.tmpdir");
 
 		if (tempDir != null) {
 			_attributes.put("javax.servlet.context.tempdir", new File(tempDir));
 		}
+
+		_resourceBasePath = Objects.requireNonNullElse(
+			resourceBasePath, StringPool.BLANK);
+		_resourceLoader = Objects.requireNonNullElse(
+			resourceLoader, new DefaultResourceLoader());
+
+		_containerRuntimeOptions = new LinkedHashSet<>();
+		_initParameters = new LinkedHashMap<>();
+		_portletContextName = "MockPortletContext";
 	}
 
 	public void addContainerRuntimeOption(String key) {
@@ -181,8 +182,8 @@ public class MockPortletContext implements PortletContext {
 	public PortletRequestDispatcher getRequestDispatcher(String path) {
 		if (!path.startsWith("/")) {
 			throw new IllegalArgumentException(
-				"PortletRequestDispatcher path at PortletContext level must " +
-					"start with '/'");
+				"Portlet request dispatcher path at the portlet context " +
+					"level must start with '/'");
 		}
 
 		return new PortletRequestDispatcher() {
@@ -248,7 +249,7 @@ public class MockPortletContext implements PortletContext {
 		}
 		catch (IOException ioException) {
 			_log.error(
-				"Unable to open InputStream for " + resource, ioException);
+				"Unable to open input stream for " + resource, ioException);
 
 			return null;
 		}

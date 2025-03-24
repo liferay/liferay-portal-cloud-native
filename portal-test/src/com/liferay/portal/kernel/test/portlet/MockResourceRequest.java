@@ -39,8 +39,8 @@ public class MockResourceRequest
 	}
 
 	public MockResourceRequest(ResourceURL resourceURL) {
-		_resourceID = resourceURL.getResourceID();
 		_cacheability = resourceURL.getCacheability();
+		_resourceID = resourceURL.getResourceID();
 	}
 
 	public MockResourceRequest(String resourceID) {

@@ -27,7 +27,7 @@ public class MockMutableRenderParameters
 	}
 
 	@Override
-	public boolean isPublic(String s) {
+	public boolean isPublic(String name) {
 		return false;
 	}
 

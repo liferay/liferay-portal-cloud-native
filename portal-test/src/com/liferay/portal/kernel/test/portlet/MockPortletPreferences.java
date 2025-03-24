@@ -77,7 +77,7 @@ public class MockPortletPreferences implements PortletPreferences {
 
 		if (isReadOnly(key)) {
 			throw new ReadOnlyException(
-				"Preference '" + key + "' is read-only");
+				"Preference '" + key + "' is read only");
 		}
 
 		_preferences.remove(key);
@@ -113,7 +113,7 @@ public class MockPortletPreferences implements PortletPreferences {
 
 		if (isReadOnly(key)) {
 			throw new ReadOnlyException(
-				"Preference '" + key + "' is read-only");
+				"Preference \"" + key + "\" is read only");
 		}
 
 		_preferences.put(key, values);

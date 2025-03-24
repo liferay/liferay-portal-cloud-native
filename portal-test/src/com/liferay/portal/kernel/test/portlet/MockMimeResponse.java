@@ -91,7 +91,7 @@ public class MockMimeResponse
 		}
 		catch (IOException ioException) {
 			throw new IllegalStateException(
-				"Could not flush OutputStream: " + ioException.getMessage());
+				"Unable to flush output stream: " + ioException.getMessage());
 		}
 
 		_committed = true;
@@ -186,7 +186,7 @@ public class MockMimeResponse
 	public void resetBuffer() {
 		if (_committed) {
 			throw new IllegalStateException(
-				"Cannot reset buffer, response is already committed");
+				"Unable to reset buffer because response is already committed");
 		}
 
 		_byteArrayOutputStream.reset();

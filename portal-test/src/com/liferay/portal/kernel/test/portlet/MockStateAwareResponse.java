@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.portlet.MutableRenderParameters;
+import javax.portlet.PortalContext;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletModeException;
 import javax.portlet.StateAwareResponse;
@@ -68,8 +69,9 @@ public class MockStateAwareResponse
 	}
 
 	public Iterator<String> getRenderParameterNames() {
-		return _renderParameters.keySet(
-		).iterator();
+		Set<String> keys = _renderParameters.keySet();
+
+		return keys.iterator();
 	}
 
 	@Override
@@ -109,11 +111,12 @@ public class MockStateAwareResponse
 	public void setPortletMode(PortletMode portletMode)
 		throws PortletModeException {
 
-		if (!CollectionUtils.contains(
-				getPortalContext().getSupportedPortletModes(), portletMode)) {
+		PortalContext portalContext = getPortalContext();
 
-			throw new PortletModeException(
-				"PortletMode not supported", portletMode);
+		if (!CollectionUtils.contains(
+				portalContext.getSupportedPortletModes(), portletMode)) {
+
+			throw new PortletModeException(portletMode.toString(), portletMode);
 		}
 
 		_portletMode = portletMode;
@@ -140,11 +143,12 @@ public class MockStateAwareResponse
 	public void setWindowState(WindowState windowState)
 		throws WindowStateException {
 
-		if (!CollectionUtils.contains(
-				getPortalContext().getSupportedWindowStates(), windowState)) {
+		PortalContext portalContext = getPortalContext();
 
-			throw new WindowStateException(
-				"WindowState not supported", windowState);
+		if (!CollectionUtils.contains(
+				portalContext.getSupportedWindowStates(), windowState)) {
+
+			throw new WindowStateException(windowState.toString(), windowState);
 		}
 
 		_windowState = windowState;

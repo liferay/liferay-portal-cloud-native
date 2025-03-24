@@ -432,7 +432,7 @@ public class MockPortletRequest implements PortletRequest {
 	}
 
 	public void setParameters(Map<String, String[]> parameters) {
-		Assert.notNull(parameters, "Parameters Map must not be null");
+		Assert.notNull(parameters, "Parameters must not be null");
 
 		_parameters.clear();
 
@@ -440,7 +440,7 @@ public class MockPortletRequest implements PortletRequest {
 	}
 
 	public void setPortletMode(PortletMode portletMode) {
-		Assert.notNull(portletMode, "PortletMode must not be null");
+		Assert.notNull(portletMode, "Portlet mode must not be null");
 
 		_portletMode = portletMode;
 	}
@@ -455,7 +455,7 @@ public class MockPortletRequest implements PortletRequest {
 
 	public void setPreferences(PortletPreferences portletPreferences) {
 		Assert.notNull(
-			portletPreferences, "PortletPreferences must not be null");
+			portletPreferences, "Portlet preferences must not be null");
 
 		_portletPreferences = portletPreferences;
 	}
@@ -503,14 +503,14 @@ public class MockPortletRequest implements PortletRequest {
 	}
 
 	public void setWindowState(WindowState windowState) {
-		Assert.notNull(windowState, "WindowState must not be null");
+		Assert.notNull(windowState, "Window state must not be null");
 
 		_windowState = windowState;
 	}
 
 	protected void checkActive() throws IllegalStateException {
 		if (!_active) {
-			throw new IllegalStateException("Request is not active anymore");
+			throw new IllegalStateException("Request is inactive");
 		}
 	}
 

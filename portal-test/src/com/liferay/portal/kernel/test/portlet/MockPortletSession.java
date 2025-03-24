@@ -34,13 +34,13 @@ public class MockPortletSession implements PortletSession {
 		_portletContext = Objects.requireNonNullElse(
 			portletContext, new MockPortletContext());
 
-		_id = String.valueOf(_nextPortletSessionId++);
-		_creationTime = System.currentTimeMillis();
-		_lastAccessedTime = System.currentTimeMillis();
-		_portletAttributes = new HashMap<>();
 		_applicationAttributes = new HashMap<>();
+		_creationTime = System.currentTimeMillis();
+		_id = String.valueOf(_nextPortletSessionId++);
 		_invalid = false;
 		_isNew = true;
+		_lastAccessedTime = System.currentTimeMillis();
+		_portletAttributes = new HashMap<>();
 	}
 
 	public void access() {
@@ -50,8 +50,8 @@ public class MockPortletSession implements PortletSession {
 	}
 
 	public void clearAttributes() {
-		doClearAttributes(_portletAttributes);
 		doClearAttributes(_applicationAttributes);
+		doClearAttributes(_portletAttributes);
 	}
 
 	@Override
@@ -61,12 +61,12 @@ public class MockPortletSession implements PortletSession {
 
 	@Override
 	public Object getAttribute(String name, int scope) {
-		if (scope == PORTLET_SCOPE) {
-			return _portletAttributes.get(name);
-		}
-
 		if (scope == APPLICATION_SCOPE) {
 			return _applicationAttributes.get(name);
+		}
+
+		if (scope == PORTLET_SCOPE) {
+			return _portletAttributes.get(name);
 		}
 
 		return null;
@@ -79,12 +79,12 @@ public class MockPortletSession implements PortletSession {
 
 	@Override
 	public Map<String, Object> getAttributeMap(int scope) {
-		if (scope == PORTLET_SCOPE) {
-			return Collections.unmodifiableMap(_portletAttributes);
-		}
-
 		if (scope == APPLICATION_SCOPE) {
 			return Collections.unmodifiableMap(_applicationAttributes);
+		}
+
+		if (scope == PORTLET_SCOPE) {
+			return Collections.unmodifiableMap(_portletAttributes);
 		}
 
 		return Collections.emptyMap();
@@ -97,12 +97,12 @@ public class MockPortletSession implements PortletSession {
 
 	@Override
 	public Enumeration<String> getAttributeNames(int scope) {
-		if (scope == PORTLET_SCOPE) {
-			return Collections.enumeration(_portletAttributes.keySet());
-		}
-
 		if (scope == APPLICATION_SCOPE) {
 			return Collections.enumeration(_applicationAttributes.keySet());
+		}
+
+		if (scope == PORTLET_SCOPE) {
+			return Collections.enumeration(_portletAttributes.keySet());
 		}
 
 		return null;
@@ -156,11 +156,11 @@ public class MockPortletSession implements PortletSession {
 
 	@Override
 	public void removeAttribute(String name, int scope) {
-		if (scope == PORTLET_SCOPE) {
-			_portletAttributes.remove(name);
-		}
-		else if (scope == APPLICATION_SCOPE) {
+		if (scope == APPLICATION_SCOPE) {
 			_applicationAttributes.remove(name);
+		}
+		else if (scope == PORTLET_SCOPE) {
+			_portletAttributes.remove(name);
 		}
 	}
 
@@ -176,20 +176,20 @@ public class MockPortletSession implements PortletSession {
 
 	@Override
 	public void setAttribute(String name, Object value, int scope) {
-		if (scope == PORTLET_SCOPE) {
-			if (value != null) {
-				_portletAttributes.put(name, value);
-			}
-			else {
-				_portletAttributes.remove(name);
-			}
-		}
-		else if (scope == APPLICATION_SCOPE) {
+		if (scope == APPLICATION_SCOPE) {
 			if (value != null) {
 				_applicationAttributes.put(name, value);
 			}
 			else {
 				_applicationAttributes.remove(name);
+			}
+		}
+		else if (scope == PORTLET_SCOPE) {
+			if (value != null) {
+				_portletAttributes.put(name, value);
+			}
+			else {
+				_portletAttributes.remove(name);
 			}
 		}
 	}
