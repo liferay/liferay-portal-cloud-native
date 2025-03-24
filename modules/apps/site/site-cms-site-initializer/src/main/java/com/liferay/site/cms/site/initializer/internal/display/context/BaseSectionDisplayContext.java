@@ -57,7 +57,7 @@ public abstract class BaseSectionDisplayContext {
 	}
 
 	public String getAPIURL() {
-		String[] objectDefinitionFolderExternalReferenceCodes =
+		String[] objectFolderExternalReferenceCodes =
 			getObjectFolderExternalReferenceCodes();
 
 		StringBundler sb = new StringBundler(9);
@@ -66,7 +66,7 @@ public abstract class BaseSectionDisplayContext {
 		sb.append("filter=objectDefinitionFolder in ('");
 		sb.append(
 			StringUtil.merge(
-				objectDefinitionFolderExternalReferenceCodes, "','"));
+				objectFolderExternalReferenceCodes, "','"));
 		sb.append("')");
 
 		String cmsSectionFilterString = getCMSSectionFilterString();
