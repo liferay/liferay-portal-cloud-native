@@ -120,10 +120,11 @@
 						friendlyURL = cpContentHelper.getFriendlyURL(entry, themeDisplay)
 						portalURL = portalUtil.getLayoutURL(themeDisplay)
 						productId = entry.getCProductId()
-						product = restClient.get("/headless-commerce-delivery-catalog/v1.0/channels/"+ channelId +"/products/"+ productId +"?accountId=-1&images.accountId=-1&nestedFields=productSpecifications,categories,images")
-						productImage = cpContentHelper.getDefaultImageFileURL(accountEntryId, entry.getCPDefinitionId())
 						productName = entry.getName()
 						remainingCategoriesText = []
+
+						product = restClient.get("/headless-commerce-delivery-catalog/v1.0/channels/"+ channelId +"/products/"+ productId +"?accountId=-1&images.accountId=-1&nestedFields=productSpecifications,categories,images")
+						productImage = cpContentHelper.getDefaultImageFileURL(accountEntryId, entry.getCPDefinitionId())
 					/>
 					<#if product.categories?has_content && product.productSpecifications?has_content>
 						<#assign
@@ -135,8 +136,8 @@
 
 					<#if product.description?has_content>
 						<#assign productDescription = stringUtil.shorten(htmlUtil.stripHtml(product.description!""), 150, "...") />
-						<#else>
-							<#assign productDescription = "" />
+					<#else>
+						<#assign productDescription = "" />
 					</#if>
 
 					<a class="app-search-results-card bg-white border-radius-medium d-flex flex-column mb-0 text-dark text-decoration-none" href=${friendlyURL}>
@@ -152,6 +153,7 @@
 
 								<#if productSpecifications?has_content>
 									<#assign productDeveloperName = productSpecifications?filter(item -> item.specificationKey == "developer-name") />
+
 									<#list productDeveloperName as developerNameItem>
 										<#if developerNameItem.value?has_content>
 											<#assign developerName = developerNameItem.value />
@@ -175,6 +177,7 @@
 							<div class="d-flex flex-column">
 								<#if productSpecifications?has_content>
 									<#assign productPriceModels = productSpecifications?filter(item -> item.specificationKey == "price-model") />
+
 									<#list productPriceModels as productPriceModel>
 										<#if productPriceModel.value?has_content>
 											<#assign priceModel = productPriceModel.value />
@@ -204,6 +207,7 @@
 										<span class="banner__product-tag rounded py-1 px-2 mr-2" title="${principalCategory.name}">
 											${principalCategory.name}
 										</span>
+
 										<#if categoriesListSize?has_content && remainingCategoriesText?has_content>
 											<span class="banner__product-tag rounded py-1 px-2" title="${remainingCategoriesText?join('\n')}">
 												+ ${categoriesListSize}
