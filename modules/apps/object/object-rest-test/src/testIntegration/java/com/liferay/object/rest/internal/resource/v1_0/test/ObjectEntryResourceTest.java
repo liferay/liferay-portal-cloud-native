@@ -8766,13 +8766,12 @@ public class ObjectEntryResourceTest {
 	@FeatureFlags("LPD-37056")
 	@Test
 	public void testPostScopeScopeKeyValidate() throws Exception {
-		ObjectField textObjectField = _objectFieldLocalService.getObjectField(
-			_siteScopedObjectDefinition1.getObjectDefinitionId(),
-			_OBJECT_FIELD_NAME_1);
-
-		_testValidate(
+		_testPostValidate(
 			String.valueOf(TestPropsValues.getGroupId()),
-			_siteScopedObjectDefinition1, textObjectField);
+			_siteScopedObjectDefinition1,
+			_objectFieldLocalService.getObjectField(
+				_siteScopedObjectDefinition1.getObjectDefinitionId(),
+				_OBJECT_FIELD_NAME_1));
 	}
 
 	@Test
@@ -8804,11 +8803,11 @@ public class ObjectEntryResourceTest {
 	@FeatureFlags("LPD-37056")
 	@Test
 	public void testPostValidate() throws Exception {
-		ObjectField textObjectField = _objectFieldLocalService.getObjectField(
-			_objectDefinition1.getObjectDefinitionId(),
-			_OBJECT_FIELD_NAME_TEXT);
-
-		_testValidate(null, _objectDefinition1, textObjectField);
+		_testPostValidate(
+			null, _objectDefinition1,
+			_objectFieldLocalService.getObjectField(
+				_objectDefinition1.getObjectDefinitionId(),
+				_OBJECT_FIELD_NAME_TEXT));
 	}
 
 	@Test
@@ -13634,20 +13633,22 @@ public class ObjectEntryResourceTest {
 	}
 
 	private ValidationRequest _getValidationRequest(
-		Map<String, Object> values, String... objectValidationRuleExternalReferenceCodes) {
+		Map<String, Object> values,
+		String... objectValidationRuleExternalReferenceCodes) {
 
 		com.liferay.object.rest.dto.v1_0.ObjectEntry objectEntry =
 			new com.liferay.object.rest.dto.v1_0.ObjectEntry();
 
 		objectEntry.setProperties((values != null) ? values : new HashMap<>());
 
-		String[] localObjectValidationRuleERCs = objectValidationRuleExternalReferenceCodes;
+		String[] finalObjectValidationRuleExternalReferenceCodes =
+			objectValidationRuleExternalReferenceCodes;
 
 		return new ValidationRequest() {
 			{
-				if (localObjectValidationRuleERCs != null) {
-					setObjectValidationRuleERCs(
-						() -> localObjectValidationRuleERCs);
+				if (finalObjectValidationRuleExternalReferenceCodes != null) {
+					setObjectValidationRuleExternalReferenceCodes(
+						() -> finalObjectValidationRuleExternalReferenceCodes);
 				}
 
 				setValues(() -> objectEntry);
@@ -15543,6 +15544,128 @@ public class ObjectEntryResourceTest {
 		}
 	}
 
+	private void _testPostValidate(
+			String scopeKey, ObjectDefinition objectDefinition,
+			ObjectField objectField)
+		throws Exception {
+
+		String error1 = RandomTestUtil.randomString();
+
+		ObjectValidationRule objectValidationRule =
+			_objectValidationRuleLocalService.addObjectValidationRule(
+				StringUtil.randomString(), TestPropsValues.getUserId(),
+				objectDefinition.getObjectDefinitionId(), true,
+				ObjectValidationRuleConstants.ENGINE_TYPE_DDM,
+				LocalizedMapUtil.getLocalizedMap(error1),
+				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
+				ObjectValidationRuleConstants.OUTPUT_TYPE_FULL_VALIDATION,
+				objectField.getName() + " == \"foo\"", false,
+				Collections.emptyList());
+
+		String error2 = RandomTestUtil.randomString();
+
+		_objectValidationRuleLocalService.addObjectValidationRule(
+			StringUtil.randomString(), TestPropsValues.getUserId(),
+			objectDefinition.getObjectDefinitionId(), true,
+			ObjectValidationRuleConstants.ENGINE_TYPE_DDM,
+			LocalizedMapUtil.getLocalizedMap(error2),
+			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
+			ObjectValidationRuleConstants.OUTPUT_TYPE_PARTIAL_VALIDATION,
+			"NOT(isInteger(" + objectField.getName() + "))", false,
+			Arrays.asList(
+				new ObjectValidationRuleSettingBuilder(
+				).name(
+					ObjectValidationRuleSettingConstants.
+						NAME_OUTPUT_OBJECT_FIELD_ID
+				).value(
+					String.valueOf(objectField.getObjectFieldId())
+				).build()));
+
+		PermissionChecker originalPermissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+		String originalName = PrincipalThreadLocal.getName();
+
+		try {
+			User user = _addUser("test1", "test1");
+
+			ObjectEntryResource objectEntryResource = _getObjectEntryResource(
+				objectDefinition, TestPropsValues.getUser());
+
+			_resourcePermissionLocalService.removeResourcePermission(
+				TestPropsValues.getCompanyId(), ObjectEntry.class.getName(),
+				ResourceConstants.SCOPE_INDIVIDUAL,
+				String.valueOf(_objectEntry5.getObjectEntryId()),
+				user.getRoleIds()[0], ActionKeys.ADD_ENTRY);
+
+			_setUpPermissionThreadLocal(user);
+
+			AssertUtils.assertFailure(
+				PrincipalException.MustHavePermission.class,
+				StringBundler.concat(
+					"User ", user.getUserId(),
+					" must have ADD_OBJECT_ENTRY permission for ",
+					objectDefinition.getResourceName(), " ",
+					(scopeKey != null) ? scopeKey : ""),
+				() -> _executeValidate(
+					scopeKey, objectEntryResource,
+					_getValidationRequest(
+						HashMapBuilder.<String, Object>put(
+							objectField.getName(), StringUtil.randomString()
+						).build(),
+						objectValidationRule.getExternalReferenceCode())));
+
+			_setUpPermissionThreadLocal(TestPropsValues.getUser());
+
+			ValidationResponse validationResponse = _executeValidate(
+				scopeKey, objectEntryResource,
+				_getValidationRequest(
+					HashMapBuilder.<String, Object>put(
+						objectField.getName(), StringUtil.randomString()
+					).build(),
+					objectValidationRule.getExternalReferenceCode()));
+
+			Assert.assertEquals(
+				error1,
+				validationResponse.getValidationErrors()[0].getErrorMessage());
+
+			validationResponse = _executeValidate(
+				scopeKey, objectEntryResource,
+				_getValidationRequest(
+					HashMapBuilder.<String, Object>put(
+						objectField.getName(), "foo"
+					).build(),
+					objectValidationRule.getExternalReferenceCode()));
+
+			Assert.assertTrue(
+				ArrayUtil.isEmpty(validationResponse.getValidationErrors()));
+
+			validationResponse = _executeValidate(
+				scopeKey, objectEntryResource,
+				_getValidationRequest(
+					HashMapBuilder.<String, Object>put(
+						objectField.getName(), RandomTestUtil.randomInt()
+					).build()));
+
+			Assert.assertEquals(
+				error1,
+				validationResponse.getValidationErrors()[0].getErrorMessage());
+
+			Assert.assertEquals(
+				error2,
+				validationResponse.getValidationErrors()[1].getErrorMessage());
+
+			Assert.assertEquals(
+				objectField.getName(),
+				validationResponse.getValidationErrors()[1].
+					getObjectFieldName());
+		}
+		finally {
+			PermissionThreadLocal.setPermissionChecker(
+				originalPermissionChecker);
+			PrincipalThreadLocal.setName(originalName);
+		}
+	}
+
 	private void _testPutCustomObjectEntryUnlinkNestedCustomObjectEntries(
 			boolean manyToOne)
 		throws Exception {
@@ -16144,128 +16267,6 @@ public class ObjectEntryResourceTest {
 					null, endpoint + "?sort=" + URLCodec.encodeURL(sortString),
 					Http.Method.GET),
 				JSONCompareMode.STRICT);
-		}
-	}
-
-	private void _testValidate(
-			String scopeKey, ObjectDefinition objectDefinition,
-			ObjectField objectField)
-		throws Exception {
-
-		String error1 = RandomTestUtil.randomString();
-
-		ObjectValidationRule objectValidationRule =
-			_objectValidationRuleLocalService.addObjectValidationRule(
-				StringUtil.randomString(), TestPropsValues.getUserId(),
-				objectDefinition.getObjectDefinitionId(), true,
-				ObjectValidationRuleConstants.ENGINE_TYPE_DDM,
-				LocalizedMapUtil.getLocalizedMap(error1),
-				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
-				ObjectValidationRuleConstants.OUTPUT_TYPE_FULL_VALIDATION,
-				objectField.getName() + " == \"foo\"", false,
-				Collections.emptyList());
-
-		String error2 = RandomTestUtil.randomString();
-
-		_objectValidationRuleLocalService.addObjectValidationRule(
-			StringUtil.randomString(), TestPropsValues.getUserId(),
-			objectDefinition.getObjectDefinitionId(), true,
-			ObjectValidationRuleConstants.ENGINE_TYPE_DDM,
-			LocalizedMapUtil.getLocalizedMap(error2),
-			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
-			ObjectValidationRuleConstants.OUTPUT_TYPE_PARTIAL_VALIDATION,
-			"NOT(isInteger(" + objectField.getName() + "))", false,
-			Arrays.asList(
-				new ObjectValidationRuleSettingBuilder(
-				).name(
-					ObjectValidationRuleSettingConstants.
-						NAME_OUTPUT_OBJECT_FIELD_ID
-				).value(
-					String.valueOf(objectField.getObjectFieldId())
-				).build()));
-
-		PermissionChecker originalPermissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-		String originalName = PrincipalThreadLocal.getName();
-
-		try {
-			User user = _addUser("test1", "test1");
-
-			ObjectEntryResource objectEntryResource = _getObjectEntryResource(
-				objectDefinition, TestPropsValues.getUser());
-
-			_resourcePermissionLocalService.removeResourcePermission(
-				TestPropsValues.getCompanyId(), ObjectEntry.class.getName(),
-				ResourceConstants.SCOPE_INDIVIDUAL,
-				String.valueOf(_objectEntry5.getObjectEntryId()),
-				user.getRoleIds()[0], ActionKeys.ADD_ENTRY);
-
-			_setUpPermissionThreadLocal(user);
-
-			AssertUtils.assertFailure(
-				PrincipalException.MustHavePermission.class,
-				StringBundler.concat(
-					"User ", user.getUserId(),
-					" must have ADD_OBJECT_ENTRY permission for ",
-					objectDefinition.getResourceName(), " ",
-					(scopeKey != null) ? scopeKey : ""),
-				() -> _executeValidate(
-					scopeKey, objectEntryResource,
-					_getValidationRequest(
-						HashMapBuilder.<String, Object>put(
-							objectField.getName(), StringUtil.randomString()
-						).build(),
-						objectValidationRule.getExternalReferenceCode())));
-
-			_setUpPermissionThreadLocal(TestPropsValues.getUser());
-
-			ValidationResponse validationResponse = _executeValidate(
-				scopeKey, objectEntryResource,
-				_getValidationRequest(
-					HashMapBuilder.<String, Object>put(
-						objectField.getName(), StringUtil.randomString()
-					).build(),
-					objectValidationRule.getExternalReferenceCode()));
-
-			Assert.assertEquals(
-				error1,
-				validationResponse.getValidationErrors()[0].getErrorMessage());
-
-			validationResponse = _executeValidate(
-				scopeKey, objectEntryResource,
-				_getValidationRequest(
-					HashMapBuilder.<String, Object>put(
-						objectField.getName(), "foo"
-					).build(),
-					objectValidationRule.getExternalReferenceCode()));
-
-			Assert.assertTrue(
-				ArrayUtil.isEmpty(validationResponse.getValidationErrors()));
-
-			validationResponse = _executeValidate(
-				scopeKey, objectEntryResource,
-				_getValidationRequest(
-					HashMapBuilder.<String, Object>put(
-						objectField.getName(), RandomTestUtil.randomInt()
-					).build()));
-
-			Assert.assertEquals(
-				error1,
-				validationResponse.getValidationErrors()[0].getErrorMessage());
-
-			Assert.assertEquals(
-				error2,
-				validationResponse.getValidationErrors()[1].getErrorMessage());
-
-			Assert.assertEquals(
-				objectField.getName(),
-				validationResponse.getValidationErrors()[1].
-					getObjectFieldName());
-		}
-		finally {
-			PermissionThreadLocal.setPermissionChecker(
-				originalPermissionChecker);
-			PrincipalThreadLocal.setName(originalName);
 		}
 	}
 
