@@ -65,7 +65,7 @@ public class GroupModelListenerTest {
 		return null;
 	}
 
-	private static final String _PID = "test.pid";
+	private static final String _PID = RandomTestUtil.randomString();
 
 	@Inject
 	private ConfigurationAdmin _configurationAdmin;
