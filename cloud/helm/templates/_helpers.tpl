@@ -40,8 +40,8 @@ helm.sh/chart: {{ include "liferay.chart" . }}
 {{- end -}}
 
 {{- define "liferay.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "liferay.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/name: {{ include "liferay.name" . }}
 {{- end }}
 
 {{- define "liferay.serviceAccountName" -}}
