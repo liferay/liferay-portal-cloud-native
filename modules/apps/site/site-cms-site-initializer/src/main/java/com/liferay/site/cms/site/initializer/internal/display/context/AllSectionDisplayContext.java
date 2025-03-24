@@ -52,7 +52,7 @@ public class AllSectionDisplayContext extends BaseSectionDisplayContext {
 	}
 
 	@Override
-	public String[] getObjectDefinitionFolderExternalReferenceCodes() {
+	public String[] getObjectFolderExternalReferenceCodes() {
 		return new String[] {
 			ObjectFolderConstants.EXTERNAL_REFERENCE_CODE_CONTENT_STRUCTURES,
 			ObjectFolderConstants.EXTERNAL_REFERENCE_CODE_FILE_TYPES

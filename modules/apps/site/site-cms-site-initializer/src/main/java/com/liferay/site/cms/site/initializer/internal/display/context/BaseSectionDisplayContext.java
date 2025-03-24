@@ -58,7 +58,7 @@ public abstract class BaseSectionDisplayContext {
 
 	public String getAPIURL() {
 		String[] objectDefinitionFolderExternalReferenceCodes =
-			getObjectDefinitionFolderExternalReferenceCodes();
+			getObjectFolderExternalReferenceCodes();
 
 		StringBundler sb = new StringBundler(9);
 
@@ -136,7 +136,7 @@ public abstract class BaseSectionDisplayContext {
 		for (ObjectDefinition objectDefinition :
 				_objectDefinitionService.getCMSObjectDefinitions(
 					themeDisplay.getCompanyId(),
-					getObjectDefinitionFolderExternalReferenceCodes())) {
+					getObjectFolderExternalReferenceCodes())) {
 
 			creationMenu.addPrimaryDropdownItem(
 				dropdownItem -> {
@@ -163,7 +163,7 @@ public abstract class BaseSectionDisplayContext {
 	protected abstract String getCMSSectionFilterString();
 
 	protected abstract String[]
-		getObjectDefinitionFolderExternalReferenceCodes();
+		getObjectFolderExternalReferenceCodes();
 
 	protected final HttpServletRequest httpServletRequest;
 	protected final Language language;

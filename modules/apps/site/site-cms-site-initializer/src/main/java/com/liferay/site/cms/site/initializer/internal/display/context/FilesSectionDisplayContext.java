@@ -59,7 +59,7 @@ public class FilesSectionDisplayContext extends BaseSectionDisplayContext {
 	}
 
 	@Override
-	public String[] getObjectDefinitionFolderExternalReferenceCodes() {
+	public String[] getObjectFolderExternalReferenceCodes() {
 		return new String[] {
 			ObjectFolderConstants.EXTERNAL_REFERENCE_CODE_FILE_TYPES
 		};
