@@ -13,18 +13,25 @@ spec:
             - /bin/sh
             - -c
             - |
-                trap 'echo "Received signal to Terminate"; exit 0' SIGINT SIGTERM
-                START=$(date +%s)
+                trap "echo 'Received signal to terminate.'; exit 0" SIGINT SIGTERM
 
-                # Only wait for 5 minutes and then fail
-                until nc -vz -w 2 {{ include "liferay.fullname" . }} {{ (index .Values.service.ports 0).port }}; do
-                    NOW=$(date +%s)
-                    SPAN=$(($NOW - $START))
-                    if [ $SPAN -gt 300 ]; then
-                        echo "DXP Service did not arrive within expected time (5 mins)."
+                START_TIME=$(date +%s)
+
+                until nc -vz -w 2 {{ include "liferay.fullname" . }} {{ (index .Values.service.ports 0).port }}
+                do
+                    CURRENT_TIME=$(date +%s)
+
+                    DELTA_TIME=$((${CURRENT_TIME} - ${START_TIME}))
+
+                    if [ ${DELTA_TIME} -gt 300 ]
+                    then
+                        echo "Liferay did not start."
+
                         exit 1
                     fi
-                    echo "Waiting for DXP service"
+
+                    echo "Waiting for Liferay..."
+
                     sleep 2
                 done
           image: busybox:latest
