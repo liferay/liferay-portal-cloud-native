@@ -6818,7 +6818,7 @@ public class ServiceBuilder {
 					StringBundler.concat(
 						"Finder \"", finderName, "\" defined by entity \"",
 						entityName, "\" must set unique=\"true\" as its ",
-						"return type is the name of the entity."));
+						"return type is the name of the entity"));
 			}
 
 			String finderWhere = finderElement.attributeValue("where");
