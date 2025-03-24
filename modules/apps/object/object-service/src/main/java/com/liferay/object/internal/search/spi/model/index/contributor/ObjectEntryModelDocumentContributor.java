@@ -295,13 +295,6 @@ public class ObjectEntryModelDocumentContributor
 		document.addKeyword(
 			"objectDefinitionName", objectDefinition.getShortName());
 
-		ObjectFolder objectFolder = _objectFolderLocalService.getObjectFolder(
-			objectDefinition.getObjectFolderId());
-
-		document.addKeyword(
-			"objectFolderExternalReferenceCode",
-			objectFolder.getExternalReferenceCode());
-
 		Map<String, Serializable> values = objectEntry.getValues();
 
 		List<ObjectField> objectFields =
@@ -348,6 +341,13 @@ public class ObjectEntryModelDocumentContributor
 
 		document.add(
 			new Field("objectEntryTitle", objectEntry.getTitleValue()));
+
+		ObjectFolder objectFolder = _objectFolderLocalService.getObjectFolder(
+			objectDefinition.getObjectFolderId());
+
+		document.addKeyword(
+			"objectFolderExternalReferenceCode",
+			objectFolder.getExternalReferenceCode());
 	}
 
 	private String _getDateString(Object value) {
