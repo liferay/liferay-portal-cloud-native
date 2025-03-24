@@ -7,7 +7,8 @@ package com.liferay.frontend.data.set.model;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Marco Leo
@@ -25,21 +26,6 @@ public class FDSActionDropdownItem extends DropdownItem {
 		setMethod(method);
 		setPermissionKey(permissionKey);
 		setTarget(target);
-	}
-
-	public FDSActionDropdownItem(
-		String href, String icon, String id, String label, String method,
-		String permissionKey, String target,
-		List<FDSActionDropdownItemFilter> visibilityFilters) {
-
-		setHref(href);
-		setIcon(icon);
-		setId(id);
-		setLabel(label);
-		setMethod(method);
-		setPermissionKey(permissionKey);
-		setTarget(target);
-		setVisibilityFilters(visibilityFilters);
 	}
 
 	public FDSActionDropdownItem(
@@ -76,7 +62,7 @@ public class FDSActionDropdownItem extends DropdownItem {
 		String errorMessage, String href, String icon, String id, String label,
 		String method, String modalSize, String permissionKey,
 		String requestBody, String successMessage, String target, String title,
-		String type, List<FDSActionDropdownItemFilter> visibilityFilters) {
+		String type, String[] visibilityFilters) {
 
 		this(
 			href, icon, id, label, method, permissionKey, target,
@@ -91,6 +77,20 @@ public class FDSActionDropdownItem extends DropdownItem {
 		setSuccessMessage(successMessage);
 		setTitle(title);
 		setType(type);
+	}
+
+	public FDSActionDropdownItem(
+		String href, String icon, String id, String label, String method,
+		String permissionKey, String target, String[] visibilityFilters) {
+
+		setHref(href);
+		setIcon(icon);
+		setId(id);
+		setLabel(label);
+		setMethod(method);
+		setPermissionKey(permissionKey);
+		setTarget(target);
+		setVisibilityFilters(visibilityFilters);
 	}
 
 	public void setConfirmationMessage(String confirmationMessage) {
@@ -137,10 +137,21 @@ public class FDSActionDropdownItem extends DropdownItem {
 		putData("type", type);
 	}
 
-	public void setVisibilityFilters(
-		List<FDSActionDropdownItemFilter> fdsActionDropdownItemFilters) {
+	public void setVisibilityFilters(String... visibilityFilters) {
+		if ((visibilityFilters.length % 2) != 0) {
+			throw new IllegalArgumentException(
+				"Visibility filters length is not an even number");
+		}
 
-		putData("visibilityFilters", fdsActionDropdownItemFilters);
+		Map<String, String> map = new HashMap<>();
+
+		for (int i = 0; i < visibilityFilters.length; i += 2) {
+			map.put(
+				String.valueOf(visibilityFilters[i]),
+				String.valueOf(visibilityFilters[i + 1]));
+		}
+
+		putData("visibilityFilters", map);
 	}
 
 }

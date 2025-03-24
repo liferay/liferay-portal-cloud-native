@@ -21,10 +21,6 @@ public class UserEntry {
 		_lastName = lastName;
 	}
 
-	public Boolean getActive() {
-		return _active;
-	}
-
 	public String getEmailAddress() {
 		return _emailAddress;
 	}
@@ -39,6 +35,10 @@ public class UserEntry {
 
 	public String getLastName() {
 		return _lastName;
+	}
+
+	public Boolean isActive() {
+		return _active;
 	}
 
 	private final Boolean _active;

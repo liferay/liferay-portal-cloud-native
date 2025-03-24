@@ -8,7 +8,6 @@ package com.liferay.frontend.data.set.sample.web.internal.frontend.data.set.acti
 import com.liferay.frontend.data.set.FDSEntryItemImportPolicy;
 import com.liferay.frontend.data.set.action.FDSItemsActions;
 import com.liferay.frontend.data.set.model.FDSActionDropdownItem;
-import com.liferay.frontend.data.set.model.FDSActionDropdownItemFilter;
 import com.liferay.frontend.data.set.sample.web.internal.constants.FDSSampleFDSNames;
 import com.liferay.portal.kernel.language.Language;
 
@@ -46,21 +45,20 @@ public class ClassicFDSItemsActions implements FDSItemsActions {
 				null, null, null, "#", "cog", "deactivate",
 				_language.get(httpServletRequest, "deactivate"), null, null,
 				null, null, null, "link", null, "item",
-				Arrays.asList(new FDSActionDropdownItemFilter("active", true))),
+				new String[] {"active", Boolean.TRUE.toString()}),
 			new FDSActionDropdownItem(
 				null, null, null, "#", "cog", "activate",
 				_language.get(httpServletRequest, "activate"), null, null, null,
 				null, null, "link", null, "item",
-				Arrays.asList(
-					new FDSActionDropdownItemFilter("active", false))),
+				new String[] {"active", Boolean.FALSE.toString()}),
 			new FDSActionDropdownItem(
 				null, null, null, "#", "cog", "activity",
 				_language.get(httpServletRequest, "activity"), null, null, null,
 				null, null, "link", null, "item",
-				Arrays.asList(
-					new FDSActionDropdownItemFilter("active", true),
-					new FDSActionDropdownItemFilter(
-						"emailAddress", "manager.user@liferay.com"))));
+				new String[] {
+					"active", Boolean.TRUE.toString(), "emailAddress",
+					"manager.user@liferay.com"
+				}));
 	}
 
 	@Override
