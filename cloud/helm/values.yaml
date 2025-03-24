@@ -91,14 +91,17 @@ initContainers:
                 - /bin/sh
                 - -c
                 - |
-                      trap 'echo "Received signal to Terminate"; exit 0' SIGINT SIGTERM
+                      trap "echo 'Received signal to terminate.'; exit 0" SIGINT SIGTERM
+
                       {{- range .dependencies }}
-                      {{- if eq .source "statefulset" }}
-                      until nc -vz -w 2 liferay-{{ .name }} {{ (index .statefulset.service.ports 0).port }}; do
-                          echo "Waiting for liferay-{{ .name }} service"
-                          sleep 2
-                      done
-                      {{- end }}
+                          {{- if eq .source "statefulset" }}
+                              until nc -vz -w 2 liferay-{{ .name }} {{ (index .statefulset.service.ports 0).port }}
+                              do
+                                  echo "Waiting for liferay-{{ .name }}..."
+
+                                  sleep 2
+                              done
+                          {{- end }}
                       {{- end }}
             image: busybox:latest
             imagePullPolicy: IfNotPresent
