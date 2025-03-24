@@ -702,10 +702,10 @@ public class CTCollectionLocalServiceImpl
 			long ctCollectionId, long[] ctEntryIds)
 		throws PortalException {
 
+		Set<CTEntry> relatedCTEntries = new HashSet<>();
+
 		Map<Long, List<CTEntry>> relatedCTEntriesMap = getRelatedCTEntriesMap(
 			ctCollectionId, _ctEntryLocalService.getCTEntries(ctEntryIds));
-
-		Set<CTEntry> relatedCTEntries = new HashSet<>();
 
 		for (List<CTEntry> ctEntries : relatedCTEntriesMap.values()) {
 			relatedCTEntries.addAll(ctEntries);
