@@ -82,7 +82,7 @@ public class StyleBookEntryLocalServiceTest {
 	}
 
 	@Test
-	public void testDeleteGroupStyleBookEntries() throws Exception {
+	public void testDeleteGroup() throws Exception {
 		StyleBookEntry styleBookEntry =
 			_styleBookEntryLocalService.addStyleBookEntry(
 				RandomTestUtil.randomString(), TestPropsValues.getUserId(),
