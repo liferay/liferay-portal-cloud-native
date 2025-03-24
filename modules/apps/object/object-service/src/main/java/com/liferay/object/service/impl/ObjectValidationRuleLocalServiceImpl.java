@@ -432,7 +432,7 @@ public class ObjectValidationRuleLocalServiceImpl
 			long userId)
 		throws PortalException {
 
-		List<ObjectValidationRule> objectValidationRules;
+		List<ObjectValidationRule> objectValidationRules = null;
 
 		if (ListUtil.isEmpty(externalReferenceCodes)) {
 			objectValidationRules = getObjectValidationRules(
