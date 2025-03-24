@@ -504,12 +504,12 @@ public class ObjectValidationRuleLocalServiceWrapper
 
 	@Override
 	public void validate(
-			com.liferay.object.model.ObjectEntry objectEntry,
-			java.util.List<String> objectValidationRulesERC, long userId)
+			java.util.List<String> externalReferenceCodes,
+			com.liferay.object.model.ObjectEntry objectEntry, long userId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		_objectValidationRuleLocalService.validate(
-			objectEntry, objectValidationRulesERC, userId);
+			externalReferenceCodes, objectEntry, userId);
 	}
 
 	@Override

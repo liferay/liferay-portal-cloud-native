@@ -210,13 +210,13 @@ public class ObjectEntryServiceUtil {
 			objectEntryId, values, serviceContext);
 	}
 
-	public static void validateObjectEntry(
+	public static void validate(
 			long groupId, ObjectEntry objectEntry,
-			List<String> objectValidationRulesERC)
+			List<String> objectValidationRuleExternalReferenceCodes)
 		throws PortalException {
 
-		getService().validateObjectEntry(
-			groupId, objectEntry, objectValidationRulesERC);
+		getService().validate(
+			groupId, objectEntry, objectValidationRuleExternalReferenceCodes);
 	}
 
 	public static ObjectEntryService getService() {

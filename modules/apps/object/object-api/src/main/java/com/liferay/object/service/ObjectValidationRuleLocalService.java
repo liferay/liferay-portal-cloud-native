@@ -360,7 +360,7 @@ public interface ObjectValidationRuleLocalService
 		throws PortalException;
 
 	public void validate(
-			ObjectEntry objectEntry, List<String> objectValidationRulesERC,
+			List<String> externalReferenceCodes, ObjectEntry objectEntry,
 			long userId)
 		throws PortalException;
 
