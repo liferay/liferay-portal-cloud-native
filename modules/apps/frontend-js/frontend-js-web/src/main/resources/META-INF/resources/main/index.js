@@ -79,7 +79,6 @@ export const {
 	zIndex,
 } = Liferay.__INTERNALS;
 
-export {registerIcon} from '../legacy/icon';
 export {
 	ALIGN_POSITIONS,
 	align,

@@ -36,6 +36,7 @@ module.exports = {
 	},
 	main: './src/main/resources/META-INF/resources/main/index.js',
 	typescript: {
+		legacy: './src/main/resources/META-INF/resources/legacy/index.ts',
 		main: './src/main/resources/META-INF/resources/main/index.d.ts',
 	},
 };

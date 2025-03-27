@@ -44,7 +44,6 @@ import {showTab} from './portal/tabs.es';
 import {showTooltip} from './portal/tooltip.es';
 
 import './portlet';
-import {checkAll} from '../legacy/checkAll';
 import portlet, {minimizePortlet} from './portlet/portlet.es';
 import SideNavigation from './side_navigation.es';
 import STATUS_CODE from './status_code';
@@ -201,6 +200,11 @@ Liferay.Util.AutoSize = AutoSize;
 Liferay.Util.debounce = debounce;
 Liferay.Util.delegate = delegate;
 Liferay.Util.DynamicInlineScroll = DynamicInlineScroll;
+Liferay.Util.checkAll = (...args) => {
+	import('frontend-js-web/legacy').then(({checkAll}) => {
+		checkAll(...args);
+	});
+};
 Liferay.Util.runScriptsInElement = runScriptsInElement;
 
 /**
@@ -355,7 +359,11 @@ Liferay.Util.unescape = (string) => {
 
 Liferay.Util.unescapeHTML = unescapeHTML;
 
-Liferay.Util.checkAll = checkAll;
+Liferay.Util.checkAll = (...args) => {
+	import('frontend-js-web/legacy').then(({checkAll}) => {
+		checkAll(...args);
+	});
+};
 Liferay.Util.Cookie = Cookie;
 
 Liferay.Util.LocalStorage = localStorage;
