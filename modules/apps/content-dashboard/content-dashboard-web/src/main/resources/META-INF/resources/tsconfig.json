@@ -30,15 +30,9 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../.tsc/buildinfo/@liferay/content-dashboard-web.tsbuildinfo",
-		"typeRoots": [
-			"../../../../../../../../node_modules/@types"
-		]
+		"typeRoots": ["../../../../../../../../node_modules/@types"]
 	},
-	"include": [
-		"**/*.ts",
-		"**/*.tsx",
-		"../../../../../../../../global.d.ts"
-	],
+	"include": ["**/*.ts", "**/*.tsx", "../../../../../../../../global.d.ts"],
 	"references": [
 		{
 			"path": "../../../../../../../../dxp/apps/analytics/analytics-reports-js-components-web/src/main/resources/META-INF/resources/tsconfig.json"

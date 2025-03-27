@@ -27,9 +27,7 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../../.tsc/buildinfo/segments-experiment-web.tsbuildinfo",
-		"typeRoots": [
-			"../../../../../../../../../node_modules/@types"
-		]
+		"typeRoots": ["../../../../../../../../../node_modules/@types"]
 	},
 	"include": [
 		"**/*.ts",

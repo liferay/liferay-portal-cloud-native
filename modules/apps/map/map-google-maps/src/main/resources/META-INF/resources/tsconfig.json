@@ -24,15 +24,9 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../.tsc/buildinfo/@liferay/map-google-maps.tsbuildinfo",
-		"typeRoots": [
-			"../../../../../../../../node_modules/@types"
-		]
+		"typeRoots": ["../../../../../../../../node_modules/@types"]
 	},
-	"include": [
-		"**/*.ts",
-		"**/*.tsx",
-		"../../../../../../../../global.d.ts"
-	],
+	"include": ["**/*.ts", "**/*.tsx", "../../../../../../../../global.d.ts"],
 	"references": [
 		{
 			"path": "../../../../../../map-common/src/main/resources/META-INF/resources/tsconfig.json"

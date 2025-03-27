@@ -27,15 +27,9 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../.tsc/buildinfo/journal-article-dynamic-data-mapping-form-field-type.tsbuildinfo",
-		"typeRoots": [
-			"../../../../../../../../node_modules/@types"
-		]
+		"typeRoots": ["../../../../../../../../node_modules/@types"]
 	},
-	"include": [
-		"**/*.ts",
-		"**/*.tsx",
-		"../../../../../../../../global.d.ts"
-	],
+	"include": ["**/*.ts", "**/*.tsx", "../../../../../../../../global.d.ts"],
 	"references": [
 		{
 			"path": "../../../../../../../dynamic-data-mapping/dynamic-data-mapping-form-field-type/src/main/resources/META-INF/resources/tsconfig.json"

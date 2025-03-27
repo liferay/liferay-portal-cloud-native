@@ -21,9 +21,7 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../../.tsc/buildinfo/@liferay/analytics-reports-js-components-web.tsbuildinfo",
-		"typeRoots": [
-			"../../../../../../../../../node_modules/@types"
-		]
+		"typeRoots": ["../../../../../../../../../node_modules/@types"]
 	},
 	"include": [
 		"**/*.ts",

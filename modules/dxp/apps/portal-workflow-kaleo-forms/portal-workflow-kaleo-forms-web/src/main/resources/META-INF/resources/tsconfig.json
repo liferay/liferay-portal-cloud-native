@@ -24,9 +24,7 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../../.tsc/buildinfo/portal-workflow-kaleo-forms-web.tsbuildinfo",
-		"typeRoots": [
-			"../../../../../../../../../node_modules/@types"
-		]
+		"typeRoots": ["../../../../../../../../../node_modules/@types"]
 	},
 	"include": [
 		"**/*.ts",

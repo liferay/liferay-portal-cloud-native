@@ -24,9 +24,7 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../../.tsc/buildinfo/commerce-dashboard-web.tsbuildinfo",
-		"typeRoots": [
-			"../../../../../../../../../node_modules/@types"
-		]
+		"typeRoots": ["../../../../../../../../../node_modules/@types"]
 	},
 	"include": [
 		"**/*.ts",
