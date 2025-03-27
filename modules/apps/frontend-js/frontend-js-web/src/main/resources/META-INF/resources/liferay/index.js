@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
+import Session from '../legacy/session';
 import DefaultEventHandler from './DefaultEventHandler.es';
 import DynamicInlineScroll from './DynamicInlineScroll.es';
 import DynamicSelect from './DynamicSelect';
@@ -20,7 +21,6 @@ import {
 } from './component.es';
 import debounce, {cancelDebounce} from './debounce/debounce.es';
 import delegate from './delegate/delegate.es';
-import Session from './session';
 
 import './dom_task_runner';
 
@@ -44,6 +44,7 @@ import {showTab} from './portal/tabs.es';
 import {showTooltip} from './portal/tooltip.es';
 
 import './portlet';
+import {checkAll} from '../legacy/checkAll';
 import portlet, {minimizePortlet} from './portlet/portlet.es';
 import SideNavigation from './side_navigation.es';
 import STATUS_CODE from './status_code';
@@ -51,7 +52,6 @@ import throttle from './throttle.es';
 import addParams from './util/add_params';
 import getCountries from './util/address/get_countries.es';
 import getRegions from './util/address/get_regions.es';
-import {checkAll} from './util/checkAll';
 import Cookie, {
 	CONSENT_TYPES,
 	checkConsent,
