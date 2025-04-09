@@ -457,6 +457,7 @@ public class TaxonomyVocabularyResourceTest
 				randomTaxonomyVocabulary);
 
 		assertEquals(randomTaxonomyVocabulary, postTaxonomyVocabulary);
+
 		Assert.assertTrue(
 			Objects.deepEquals(
 				assetLibraries, postTaxonomyVocabulary.getAssetLibraries()));
@@ -596,7 +597,6 @@ public class TaxonomyVocabularyResourceTest
 		TaxonomyVocabulary taxonomyVocabulary = randomTaxonomyVocabulary();
 
 		taxonomyVocabulary.setAssetLibraries(assetLibraries);
-
 		taxonomyVocabulary.setSiteId(GroupConstants.DEFAULT_LIVE_GROUP_ID);
 
 		return taxonomyVocabulary;

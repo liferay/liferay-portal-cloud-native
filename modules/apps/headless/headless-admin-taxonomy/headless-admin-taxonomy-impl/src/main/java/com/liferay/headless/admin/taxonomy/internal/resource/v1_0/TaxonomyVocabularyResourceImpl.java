@@ -10,7 +10,6 @@ import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.asset.kernel.model.AssetCategoryConstants;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
 import com.liferay.asset.kernel.model.AssetVocabulary;
-import com.liferay.asset.kernel.model.AssetVocabularyConstants;
 import com.liferay.asset.kernel.model.AssetVocabularyGroupRel;
 import com.liferay.asset.kernel.model.ClassType;
 import com.liferay.asset.kernel.model.ClassTypeReader;
@@ -514,6 +513,10 @@ public class TaxonomyVocabularyResourceImpl
 			true, LocaleUtil.getSiteDefault(), "Taxonomy vocabulary", titleMap,
 			new HashSet<>(descriptionMap.keySet()));
 
+		boolean internalVisibilityType =
+			TaxonomyVocabulary.VisibilityType.INTERNAL.equals(
+				taxonomyVocabulary.getVisibilityType());
+
 		return _assetVocabularyService.addVocabulary(
 			externalReferenceCode, siteId,
 			titleMap.get(LocaleUtil.getSiteDefault()), null, titleMap,
@@ -522,8 +525,7 @@ public class TaxonomyVocabularyResourceImpl
 				taxonomyVocabulary.getAssetTypes(), siteId,
 				GetterUtil.getBoolean(
 					taxonomyVocabulary.getMultiValued(), true)),
-			AssetVocabularyConstants.getLabelVisibilityType(
-				taxonomyVocabulary.getVisibilityTypeAsString()),
+			internalVisibilityType ? 1 : 0,
 			ServiceContextBuilder.create(
 				siteId, contextHttpServletRequest,
 				taxonomyVocabulary.getViewableByAsString()
@@ -912,9 +914,9 @@ public class TaxonomyVocabularyResourceImpl
 						return GroupUtil.getSiteId(group);
 					});
 				setVisibilityType(
-					() -> TaxonomyVocabulary.VisibilityType.create(
-						AssetVocabularyConstants.getVisibilityTypeLabel(
-							assetVocabulary.getVisibilityType())));
+					() -> (assetVocabulary.getVisibilityType() == 1) ?
+						TaxonomyVocabulary.VisibilityType.INTERNAL :
+							TaxonomyVocabulary.VisibilityType.PUBLIC);
 			}
 		};
 	}
