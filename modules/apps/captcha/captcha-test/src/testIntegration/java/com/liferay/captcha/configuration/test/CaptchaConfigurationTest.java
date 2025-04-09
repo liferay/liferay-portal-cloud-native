@@ -52,8 +52,8 @@ public class CaptchaConfigurationTest {
 
 	@Test
 	public void test() throws Exception {
-		_test(true, true, false);
 		_test(false, false, true);
+		_test(true, true, false);
 	}
 
 	private void _test(
