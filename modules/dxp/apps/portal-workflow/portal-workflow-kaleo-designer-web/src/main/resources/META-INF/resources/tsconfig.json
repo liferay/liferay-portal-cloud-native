@@ -1,5 +1,5 @@
 {
-	"@generated": "debb4ca51d66a9cd2dd2858862458a8c78fc13b2",
+	"@generated": "08fddc4c1f7cd24d75d716f1a29d865cbd738f26",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -22,6 +22,9 @@
 			],
 			"frontend-js-web": [
 				"../../../../../../../../../apps/frontend-js/frontend-js-web/src/main/resources/META-INF/resources/main/index.d.ts"
+			],
+			"frontend-js-web/legacy": [
+				"../../../../../../../../../apps/frontend-js/frontend-js-web/src/main/resources/META-INF/resources/legacy/index.ts"
 			]
 		},
 		"rootDir": "../../../../../../../../..",
@@ -30,7 +33,9 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../../.tsc/buildinfo/portal-workflow-kaleo-designer-web.tsbuildinfo",
-		"typeRoots": ["../../../../../../../../../node_modules/@types"]
+		"typeRoots": [
+			"../../../../../../../../../node_modules/@types"
+		]
 	},
 	"include": [
 		"**/*.ts",

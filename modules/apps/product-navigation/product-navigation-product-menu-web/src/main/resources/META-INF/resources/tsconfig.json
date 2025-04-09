@@ -1,5 +1,5 @@
 {
-	"@generated": "966c408fa1df76999ade3db4cd02849af8e743bc",
+	"@generated": "41ea7504e9f6caa75070d168ac4f1fe08ce81c48",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -16,6 +16,9 @@
 			],
 			"frontend-js-web": [
 				"../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/main/index.d.ts"
+			],
+			"frontend-js-web/legacy": [
+				"../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/legacy/index.ts"
 			]
 		},
 		"rootDir": "../../../../../../../..",
@@ -24,9 +27,15 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../.tsc/buildinfo/product-navigation-control-menu-web.tsbuildinfo",
-		"typeRoots": ["../../../../../../../../node_modules/@types"]
+		"typeRoots": [
+			"../../../../../../../../node_modules/@types"
+		]
 	},
-	"include": ["**/*.ts", "**/*.tsx", "../../../../../../../../global.d.ts"],
+	"include": [
+		"**/*.ts",
+		"**/*.tsx",
+		"../../../../../../../../global.d.ts"
+	],
 	"references": [
 		{
 			"path": "../../../../../../../frontend-js/frontend-js-components-web/src/main/resources/META-INF/resources/tsconfig.json"

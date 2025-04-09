@@ -1,5 +1,5 @@
 {
-	"@generated": "cbab80ea6b0f5cc514bd253a8440eb2dcf342a22",
+	"@generated": "ae341db0ea8026042f63ef31f64f2e5b1a6de1d0",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -28,6 +28,9 @@
 			],
 			"frontend-js-web": [
 				"../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/main/index.d.ts"
+			],
+			"frontend-js-web/legacy": [
+				"../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/legacy/index.ts"
 			]
 		},
 		"rootDir": "../../../../../../../..",
@@ -36,9 +39,15 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../.tsc/buildinfo/journal-web.tsbuildinfo",
-		"typeRoots": ["../../../../../../../../node_modules/@types"]
+		"typeRoots": [
+			"../../../../../../../../node_modules/@types"
+		]
 	},
-	"include": ["**/*.ts", "**/*.tsx", "../../../../../../../../global.d.ts"],
+	"include": [
+		"**/*.ts",
+		"**/*.tsx",
+		"../../../../../../../../global.d.ts"
+	],
 	"references": [
 		{
 			"path": "../../../../../../../frontend-js/frontend-js-react-web/src/main/resources/META-INF/resources/tsconfig.json"

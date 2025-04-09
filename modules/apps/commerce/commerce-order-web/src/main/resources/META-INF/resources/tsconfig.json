@@ -1,5 +1,5 @@
 {
-	"@generated": "effc3ef0dc6e51a506d8be7e90c646b6af8b3e91",
+	"@generated": "9977f0e31fc19ca50bdca6a5d9a5d65379050133",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -19,6 +19,9 @@
 			],
 			"frontend-js-web": [
 				"../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/main/index.d.ts"
+			],
+			"frontend-js-web/legacy": [
+				"../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/legacy/index.ts"
 			]
 		},
 		"rootDir": "../../../../../../../..",
@@ -27,9 +30,15 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../.tsc/buildinfo/@liferay/commerce-order-web.tsbuildinfo",
-		"typeRoots": ["../../../../../../../../node_modules/@types"]
+		"typeRoots": [
+			"../../../../../../../../node_modules/@types"
+		]
 	},
-	"include": ["**/*.ts", "**/*.tsx", "../../../../../../../../global.d.ts"],
+	"include": [
+		"**/*.ts",
+		"**/*.tsx",
+		"../../../../../../../../global.d.ts"
+	],
 	"references": [
 		{
 			"path": "../../../../../../commerce-frontend-js/src/main/resources/META-INF/resources/tsconfig.json"

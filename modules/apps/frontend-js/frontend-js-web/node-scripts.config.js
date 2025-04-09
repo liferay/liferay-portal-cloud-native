@@ -35,8 +35,10 @@ module.exports = {
 		},
 	},
 	main: './src/main/resources/META-INF/resources/main/index.js',
-	typescript: {
+	submodules: {
 		legacy: './src/main/resources/META-INF/resources/legacy/index.ts',
+	},
+	typescript: {
 		main: './src/main/resources/META-INF/resources/main/index.d.ts',
 	},
 };

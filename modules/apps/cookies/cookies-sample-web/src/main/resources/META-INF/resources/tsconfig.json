@@ -1,5 +1,5 @@
 {
-	"@generated": "d9421c1fc5af42d94557f2957329b1d282b19658",
+	"@generated": "a3c0db7aa59bedbc6627918e41b7042910fff977",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -19,6 +19,9 @@
 			],
 			"frontend-js-web": [
 				"../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/main/index.d.ts"
+			],
+			"frontend-js-web/legacy": [
+				"../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/legacy/index.ts"
 			]
 		},
 		"rootDir": "../../../../../../../..",
@@ -27,9 +30,15 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../.tsc/buildinfo/@liferay/cookies-sample-web.tsbuildinfo",
-		"typeRoots": ["../../../../../../../../node_modules/@types"]
+		"typeRoots": [
+			"../../../../../../../../node_modules/@types"
+		]
 	},
-	"include": ["**/*.ts", "**/*.tsx", "../../../../../../../../global.d.ts"],
+	"include": [
+		"**/*.ts",
+		"**/*.tsx",
+		"../../../../../../../../global.d.ts"
+	],
 	"references": [
 		{
 			"path": "../../../../../../cookies-banner-web/src/main/resources/META-INF/resources/tsconfig.json"

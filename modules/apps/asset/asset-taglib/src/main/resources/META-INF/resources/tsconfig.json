@@ -1,5 +1,5 @@
 {
-	"@generated": "01e79939c0307b687de392d2b1b378f3455e7b57",
+	"@generated": "e42a6f8076bd76a599a125ec9bf0cb018a07034f",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -19,6 +19,9 @@
 			],
 			"frontend-js-web": [
 				"../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/main/index.d.ts"
+			],
+			"frontend-js-web/legacy": [
+				"../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/legacy/index.ts"
 			],
 			"item-selector-web": [
 				"../../../../../../../item-selector/item-selector-web/src/main/resources/META-INF/resources/js/index.ts"

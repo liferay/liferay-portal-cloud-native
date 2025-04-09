@@ -1,5 +1,5 @@
 {
-	"@generated": "ed7d12de85e607e4eb7004d6005d3acf4f250269",
+	"@generated": "3aefe31e191eb8e6f72ed53859e2f9f91356a1da",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -13,6 +13,9 @@
 		"paths": {
 			"frontend-js-web": [
 				"../../../../../../../../../apps/frontend-js/frontend-js-web/src/main/resources/META-INF/resources/main/index.d.ts"
+			],
+			"frontend-js-web/legacy": [
+				"../../../../../../../../../apps/frontend-js/frontend-js-web/src/main/resources/META-INF/resources/legacy/index.ts"
 			]
 		},
 		"rootDir": "../../../../../../../../..",
@@ -21,7 +24,9 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../../.tsc/buildinfo/@liferay/analytics-reports-js-components-web.tsbuildinfo",
-		"typeRoots": ["../../../../../../../../../node_modules/@types"]
+		"typeRoots": [
+			"../../../../../../../../../node_modules/@types"
+		]
 	},
 	"include": [
 		"**/*.ts",

@@ -1,5 +1,5 @@
 {
-	"@generated": "6c5f2b40b9fdadecd2958eb0184b501c7fe8468c",
+	"@generated": "b13f2f813216bb11b6623fb7141258366bbba57d",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -13,6 +13,9 @@
 		"paths": {
 			"frontend-js-web": [
 				"../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/main/index.d.ts"
+			],
+			"frontend-js-web/legacy": [
+				"../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/legacy/index.ts"
 			]
 		},
 		"rootDir": "../../../../../../../..",
@@ -21,9 +24,15 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../.tsc/buildinfo/@liferay/portal-company-log-web.tsbuildinfo",
-		"typeRoots": ["../../../../../../../../node_modules/@types"]
+		"typeRoots": [
+			"../../../../../../../../node_modules/@types"
+		]
 	},
-	"include": ["**/*.ts", "**/*.tsx", "../../../../../../../../global.d.ts"],
+	"include": [
+		"**/*.ts",
+		"**/*.tsx",
+		"../../../../../../../../global.d.ts"
+	],
 	"references": [
 		{
 			"path": "../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/tsconfig.json"

@@ -1,5 +1,5 @@
 {
-	"@generated": "f29b875bcd813029445d978916299ac419cadf1a",
+	"@generated": "093877716918e2aedd0893c06cd7cf36062f6294",
 	"@readonly": "** AUTO-GENERATED: DO NOT EDIT **",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
@@ -19,6 +19,9 @@
 			],
 			"frontend-js-web": [
 				"../../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/main/index.d.ts"
+			],
+			"frontend-js-web/legacy": [
+				"../../../../../../../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources/legacy/index.ts"
 			]
 		},
 		"rootDir": "../../../../../../../../..",
@@ -27,7 +30,9 @@
 		"strict": true,
 		"target": "esnext",
 		"tsBuildInfoFile": "../../../../../../../../../.tsc/buildinfo/@liferay/headless-builder-web.tsbuildinfo",
-		"typeRoots": ["../../../../../../../../../node_modules/@types"]
+		"typeRoots": [
+			"../../../../../../../../../node_modules/@types"
+		]
 	},
 	"include": [
 		"**/*.ts",
