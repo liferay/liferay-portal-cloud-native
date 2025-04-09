@@ -52,11 +52,11 @@ public class CaptchaConfigurationTest {
 
 	@Test
 	public void test() throws Exception {
-		_assertIsCaptchaRendered(true, true, false);
-		_assertIsCaptchaRendered(false, false, true);
+		_test(true, true, false);
+		_test(false, false, true);
 	}
 
-	private void _assertIsCaptchaRendered(
+	private void _test(
 			boolean expectedCaptchaRendered,
 			boolean instanceSettingsCreateAccountCaptchaEnabled,
 			boolean systemSettingsCreateAccountCaptchaEnabled)
