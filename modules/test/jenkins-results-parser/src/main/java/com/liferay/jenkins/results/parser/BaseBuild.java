@@ -1452,7 +1452,7 @@ public abstract class BaseBuild implements Build {
 			return true;
 		}
 
-		Map<ReinvokeRule, Integer> reinvokeRuleCountMap = new HashMap<>();
+		Map<ReinvokeRule, Integer> invocationCounts = new HashMap<>();
 
 		for (Invocation invocation : _invocations) {
 			ReinvokeRule reinvokeRule = invocation.getReinvokeRule();
@@ -1461,20 +1461,20 @@ public abstract class BaseBuild implements Build {
 				continue;
 			}
 
-			Integer invocationCount = reinvokeRuleCountMap.getOrDefault(
+			Integer invocationCount = invocationCounts.getOrDefault(
 				reinvokeRule, 0);
 
 			invocationCount++;
 
-			reinvokeRuleCountMap.put(reinvokeRule, invocationCount);
+			invocationCounts.put(reinvokeRule, invocationCount);
 		}
 
-		for (Map.Entry<ReinvokeRule, Integer> reinvokeRuleIntegerEntry :
-				reinvokeRuleCountMap.entrySet()) {
+		for (Map.Entry<ReinvokeRule, Integer> entry :
+				invocationCounts.entrySet()) {
 
-			ReinvokeRule reinvokeRule = reinvokeRuleIntegerEntry.getKey();
+			ReinvokeRule reinvokeRule = entry.getKey();
 
-			Integer invocationCount = reinvokeRuleIntegerEntry.getValue();
+			Integer invocationCount = entry.getValue();
 
 			if (invocationCount > reinvokeRule.getMaximumInvocationCount()) {
 				return true;
@@ -3180,7 +3180,7 @@ public abstract class BaseBuild implements Build {
 			}
 		}
 		catch (IOException ioException) {
-			System.out.println("Unable to load build.max.invocation.count");
+			System.out.println("Unable to load \"build.max.invocation.count\"");
 		}
 
 		return _MAXIMUM_INVOCATION_COUNT;
