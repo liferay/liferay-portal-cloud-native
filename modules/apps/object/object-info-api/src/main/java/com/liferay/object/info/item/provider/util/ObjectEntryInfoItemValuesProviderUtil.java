@@ -174,6 +174,11 @@ public class ObjectEntryInfoItemValuesProviderUtil {
 						parentObjectDefinition.getObjectDefinitionId(),
 						false)) {
 
+				String namespace = StringBundler.concat(
+					ObjectRelationship.class.getSimpleName(), StringPool.POUND,
+					parentObjectDefinition.getName(), StringPool.POUND,
+					objectRelationship.getName());
+
 				value = properties.get(relatedObjectField.getName());
 
 				if (FeatureFlagManagerUtil.isEnabled("LPD-37927") &
@@ -182,11 +187,6 @@ public class ObjectEntryInfoItemValuesProviderUtil {
 					value = properties.get(
 						relatedObjectField.getI18nObjectFieldName());
 				}
-
-				String namespace = StringBundler.concat(
-					ObjectRelationship.class.getSimpleName(), StringPool.POUND,
-					parentObjectDefinition.getName(), StringPool.POUND,
-					objectRelationship.getName());
 
 				_addInfoFieldValue(
 					dlAppLocalService, dlURLHelper, infoFieldValues,
