@@ -87,11 +87,11 @@ public class KaleoLogUpgradeProcessTest {
 					_kaleoInstance.getWorkflowContext()),
 				serviceContext);
 
-		_updateKaleoLogType(
+		_updateKaleoLog(
 			_kaleoLogLocalService.addInstanceEndKaleoLog(
 				kaleoInstanceToken, serviceContext),
 			"WORKFLOW_INSTANCE_END");
-		_updateKaleoLogType(
+		_updateKaleoLog(
 			_kaleoLogLocalService.addInstanceStartKaleoLog(
 				kaleoInstanceToken, serviceContext),
 			"WORKFLOW_INSTANCE_START");
@@ -137,7 +137,7 @@ public class KaleoLogUpgradeProcessTest {
 		return actionableDynamicQuery.performCount();
 	}
 
-	private void _updateKaleoLogType(KaleoLog kaleoLog, String type) {
+	private void _updateKaleoLog(KaleoLog kaleoLog, String type) {
 		kaleoLog.setType(type);
 
 		_kaleoLogLocalService.updateKaleoLog(kaleoLog);
