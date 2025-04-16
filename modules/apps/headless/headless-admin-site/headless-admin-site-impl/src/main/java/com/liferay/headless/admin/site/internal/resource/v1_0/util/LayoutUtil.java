@@ -191,6 +191,8 @@ public class LayoutUtil {
 			typeSettingsUnicodeProperties.toString(), hidden, system,
 			friendlyURLMap, masterLayoutPlid, serviceContext);
 
+		Layout draftLayout = layout.fetchDraftLayout();
+
 		int draftLayoutStatus = WorkflowConstants.STATUS_APPROVED;
 
 		if (Objects.equals(
@@ -199,8 +201,6 @@ public class LayoutUtil {
 
 			draftLayoutStatus = WorkflowConstants.STATUS_DRAFT;
 		}
-
-		Layout draftLayout = layout.fetchDraftLayout();
 
 		updateLayout(
 			draftContentPageSpecification, draftLayout, nameMap, titleMap,
