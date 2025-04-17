@@ -494,7 +494,7 @@ public abstract class BaseParentBuild extends BaseBuild implements ParentBuild {
 			callables, getExecutorService(), "update");
 
 		try {
-			long buildUpdateTimeout = 60L * 90L;
+			long buildUpdateTimeout = 60 * 90;
 
 			String buildUpdateTimeoutString =
 				JenkinsResultsParserUtil.getBuildProperty(
@@ -505,7 +505,7 @@ public abstract class BaseParentBuild extends BaseBuild implements ParentBuild {
 				buildUpdateTimeout = Long.parseLong(buildUpdateTimeoutString);
 			}
 			else if (Objects.equals(getJobName(), "test-portal-release")) {
-				buildUpdateTimeout = 60L * 240L;
+				buildUpdateTimeout = 60 * 240;
 			}
 
 			parallelExecutor.execute(buildUpdateTimeout);
