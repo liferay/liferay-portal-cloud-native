@@ -452,9 +452,9 @@ public class FilePropagator {
 							filePropagatorTask._targetFileName);
 			}
 
-			Thread currentThread = Thread.currentThread();
-
 			String errorMessage = null;
+
+			Thread currentThread = Thread.currentThread();
 
 			if (currentThread.isInterrupted()) {
 				_successful = false;
