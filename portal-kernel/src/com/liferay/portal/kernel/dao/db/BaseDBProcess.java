@@ -287,10 +287,10 @@ public abstract class BaseDBProcess implements DBProcess {
 	}
 
 	protected void closeConnections() {
-		Map<Thread, Connection> connectionMap = _companyConnectionMap.get(
+		Map<Thread, Connection> connectionsMap = _companyConnectionsMap.get(
 			CompanyThreadLocal.getCompanyId());
 
-		_closeConnections(connectionMap);
+		_closeConnections(connectionsMap);
 	}
 
 	/**
@@ -504,12 +504,12 @@ public abstract class BaseDBProcess implements DBProcess {
 
 	protected Connection connection;
 
-	private void _closeConnections(Map<Thread, Connection> connectionMap) {
-		if (MapUtil.isEmpty(connectionMap)) {
+	private void _closeConnections(Map<Thread, Connection> connectionsMap) {
+		if (MapUtil.isEmpty(connectionsMap)) {
 			return;
 		}
 
-		Collection<Connection> connections = connectionMap.values();
+		Collection<Connection> connections = connectionsMap.values();
 
 		try {
 			Iterator<Connection> iterator = connections.iterator();
@@ -589,10 +589,10 @@ public abstract class BaseDBProcess implements DBProcess {
 	private int _getConnectionsCount() {
 		int connectionsCount = 0;
 
-		for (Map<Thread, Connection> connectionMap :
-				_companyConnectionMap.values()) {
+		for (Map<Thread, Connection> connectionsMap :
+				_companyConnectionsMap.values()) {
 
-			connectionsCount += connectionMap.size();
+			connectionsCount += connectionsMap.size();
 		}
 
 		return connectionsCount;
@@ -734,7 +734,7 @@ public abstract class BaseDBProcess implements DBProcess {
 
 	private static final Log _log = LogFactoryUtil.getLog(BaseDBProcess.class);
 
-	private final Map<Long, Map<Thread, Connection>> _companyConnectionMap =
+	private final Map<Long, Map<Thread, Connection>> _companyConnectionsMap =
 		new ConcurrentHashMap<>();
 
 	private class ConnectionThreadProxyInvocationHandler
@@ -748,23 +748,23 @@ public abstract class BaseDBProcess implements DBProcess {
 
 			if (methodName.equals("close")) {
 				if (_getConnectionsCount() > 0) {
-					for (Map<Thread, Connection> connectionMap :
-							_companyConnectionMap.values()) {
+					for (Map<Thread, Connection> connectionsMap :
+							_companyConnectionsMap.values()) {
 
-						_closeConnections(connectionMap);
+						_closeConnections(connectionsMap);
 					}
 				}
 
 				return null;
 			}
 
-			Map<Thread, Connection> connectionMap =
-				_companyConnectionMap.computeIfAbsent(
+			Map<Thread, Connection> connectionsMap =
+				_companyConnectionsMap.computeIfAbsent(
 					CompanyThreadLocal.getCompanyId(),
 					key -> new ConcurrentHashMap<>());
 
 			return method.invoke(
-				connectionMap.computeIfAbsent(
+				connectionsMap.computeIfAbsent(
 					Thread.currentThread(), thread -> _getConnection()),
 				args);
 		}
