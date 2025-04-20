@@ -90,12 +90,6 @@ public class CommerceCurrencyLocalServiceTest {
 
 	@Test
 	public void testUpdateCommerceCurrency() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(
-				_user.getCompanyId(), _user.getGroupId(), _user.getUserId());
-
-		serviceContext.setLanguageId("en_US");
-
 		AssertUtils.assertFailure(
 			CommerceCurrencyRateException.class, null,
 			() -> {
@@ -107,6 +101,13 @@ public class CommerceCurrencyLocalServiceTest {
 						LocalizationUtil.getLocalizationMap(
 							CommerceCurrencyConstants.DECIMAL_FORMAT_PATTERN),
 						2, 2, "HALF_EVEN", false, 0.0, false);
+
+				ServiceContext serviceContext =
+					ServiceContextTestUtil.getServiceContext(
+						_user.getCompanyId(), _user.getGroupId(),
+						_user.getUserId());
+
+				serviceContext.setLanguageId("en_US");
 
 				_commerceCurrencyLocalService.updateCommerceCurrency(
 					commerceCurrency.getExternalReferenceCode(),
