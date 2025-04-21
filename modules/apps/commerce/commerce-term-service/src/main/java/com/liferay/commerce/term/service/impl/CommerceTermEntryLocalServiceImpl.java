@@ -521,18 +521,18 @@ public class CommerceTermEntryLocalServiceImpl
 		long companyId, long commerceTermEntryId,
 		Map<Locale, String> descriptionMap, Map<Locale, String> labelMap) {
 
-		Set<Locale> localeSet = new HashSet<>();
+		Set<Locale> locales = new HashSet<>();
 
 		if (descriptionMap != null) {
-			localeSet.addAll(descriptionMap.keySet());
+			locales.addAll(descriptionMap.keySet());
 		}
 
 		if (labelMap != null) {
-			localeSet.addAll(labelMap.keySet());
+			locales.addAll(labelMap.keySet());
 		}
 
 		return TransformUtil.transform(
-			localeSet,
+			locales,
 			locale -> {
 				String description = null;
 				String label = null;

@@ -7462,16 +7462,16 @@ public class JournalArticleLocalServiceImpl
 		long companyId, long articlePK, Map<Locale, String> titleMap,
 		Map<Locale, String> descriptionMap) {
 
-		Set<Locale> localeSet = new HashSet<>();
+		Set<Locale> locales = new HashSet<>();
 
-		localeSet.addAll(titleMap.keySet());
+		locales.addAll(titleMap.keySet());
 
 		if (descriptionMap != null) {
-			localeSet.addAll(descriptionMap.keySet());
+			locales.addAll(descriptionMap.keySet());
 		}
 
 		return TransformUtil.transform(
-			localeSet,
+			locales,
 			locale -> {
 				String title = titleMap.get(locale);
 

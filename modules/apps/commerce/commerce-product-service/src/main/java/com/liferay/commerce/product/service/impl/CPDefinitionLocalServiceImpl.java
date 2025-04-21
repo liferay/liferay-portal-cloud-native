@@ -2679,32 +2679,32 @@ public class CPDefinitionLocalServiceImpl
 			Map<Locale, String> metaKeywordsMap)
 		throws PortalException {
 
-		Set<Locale> localeSet = new HashSet<>();
+		Set<Locale> locales = new HashSet<>();
 
-		localeSet.addAll(nameMap.keySet());
+		locales.addAll(nameMap.keySet());
 
 		if (shortDescriptionMap != null) {
-			localeSet.addAll(shortDescriptionMap.keySet());
+			locales.addAll(shortDescriptionMap.keySet());
 		}
 
 		if (descriptionMap != null) {
-			localeSet.addAll(descriptionMap.keySet());
+			locales.addAll(descriptionMap.keySet());
 		}
 
 		if (metaTitleMap != null) {
-			localeSet.addAll(metaTitleMap.keySet());
+			locales.addAll(metaTitleMap.keySet());
 		}
 
 		if (metaDescriptionMap != null) {
-			localeSet.addAll(metaDescriptionMap.keySet());
+			locales.addAll(metaDescriptionMap.keySet());
 		}
 
 		if (metaKeywordsMap != null) {
-			localeSet.addAll(metaKeywordsMap.keySet());
+			locales.addAll(metaKeywordsMap.keySet());
 		}
 
 		return TransformUtil.transform(
-			localeSet,
+			locales,
 			locale -> {
 				String name = nameMap.get(locale);
 				String shortDescription = null;
