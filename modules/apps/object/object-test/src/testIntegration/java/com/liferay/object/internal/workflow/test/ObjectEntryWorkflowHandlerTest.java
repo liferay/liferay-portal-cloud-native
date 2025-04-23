@@ -65,12 +65,11 @@ public class ObjectEntryWorkflowHandlerTest {
 	@Before
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
+		_objectDefinition = _addObjectDefinition();
+		_objectEntryFolder = _addObjectEntryFolder();
 
 		_serviceContext = ServiceContextTestUtil.getServiceContext(
 			_group.getGroupId(), TestPropsValues.getUserId());
-
-		_objectDefinition = _addObjectDefinition();
-		_objectEntryFolder = _addObjectEntryFolder();
 
 		_serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
 	}
