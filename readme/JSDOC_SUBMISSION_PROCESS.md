@@ -21,8 +21,8 @@ Developers can submit JSDoc **with** code if certain precautions are followed
 (outlined below). Follow the below process for submitting JSDoc this way:
 
 1.  Write JSDoc for code areas that you have deep knowledge for. Be sure to
-    follow the [JSDoc Guidelines](JSDOC_GUIDELINES.md) when writing JSDoc
-    to ensure comprehensive descriptions and consistent style.
+    follow the [JSDoc Guidelines](JSDOC_GUIDELINES.md) when writing JSDoc to
+    ensure comprehensive descriptions and consistent style.
 
 1.  Insert an `@review` tag below each new JSDoc entry. This will be searched
     for by the Knowledge Management (KM) team after it's merged to ensure that
@@ -54,8 +54,8 @@ Follow the process outlined below to provide JSDoc for code that is already
 published:
 
 1.  Write JSDoc for code areas that you have deep knowledge on. Be sure to
-    follow the [JSDoc Guidelines](JSDOC_GUIDELINES.md) when
-    writing JSDoc to ensure comprehensive descriptions and consistent style.
+    follow the [JSDoc Guidelines](JSDOC_GUIDELINES.md) when writing JSDoc to
+    ensure comprehensive descriptions and consistent style.
 
 1.  Send a pull request containing the new JSDoc to your team's tech writer
     (a KM team member). If you're unsure who should receive the pull request,
