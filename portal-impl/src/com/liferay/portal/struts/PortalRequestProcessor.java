@@ -141,7 +141,7 @@ public class PortalRequestProcessor {
 						httpServletRequest, user);
 
 				if (_log.isDebugEnabled()) {
-					_log.debug("Update password url " + updatePasswordURL);
+					_log.debug("Update password URL " + updatePasswordURL);
 				}
 
 				httpServletResponse.sendRedirect(updatePasswordURL);
