@@ -21,7 +21,7 @@ apply plugin: "org.springframework.boot"
 
 bootRun {
 	jvmArgs([
-		'--add-opens', 'java.base/java.net=ALL-UNNAMED'
+		"--add-opens", "java.base/java.net=ALL-UNNAMED"
 	])
 }
 
