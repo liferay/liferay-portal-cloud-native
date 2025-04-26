@@ -913,9 +913,9 @@ public class FragmentsImporterTest {
 
 		FragmentCollection fragmentCollection = fragmentCollections.get(0);
 
-		List<FileEntry> resources = fragmentCollection.getResources();
+		List<FileEntry> fileEntries = fragmentCollection.getResources();
 
-		Assert.assertEquals(resources.toString(), 1, resources.size());
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 
 		ServiceContextThreadLocal.pushServiceContext(
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
@@ -935,10 +935,11 @@ public class FragmentsImporterTest {
 
 		fragmentCollection = fragmentCollections.get(0);
 
-		resources = fragmentCollection.getResources();
+		fileEntries = fragmentCollection.getResources();
 
 		Assert.assertEquals(
-			resources.toString(), expectedNumberOfResources, resources.size());
+			fileEntries.toString(), expectedNumberOfResources,
+			fileEntries.size());
 
 		List<FragmentEntry> fragmentEntries =
 			_fragmentEntryLocalService.getFragmentEntries(
