@@ -7251,12 +7251,18 @@ public class ObjectEntryResourceTest {
 		JSONAssert.assertEquals(
 			JSONUtil.putAll(
 				JSONUtil.put(
+					"taxonomyCategoryExternalReferenceCode",
+					taxonomyCategory1.getExternalReferenceCode()
+				).put(
 					"taxonomyCategoryId",
 					Long.valueOf(taxonomyCategory1.getId())
 				).put(
 					"taxonomyCategoryName", taxonomyCategory1.getName()
 				),
 				JSONUtil.put(
+					"taxonomyCategoryExternalReferenceCode",
+					taxonomyCategory2.getExternalReferenceCode()
+				).put(
 					"taxonomyCategoryId",
 					Long.valueOf(taxonomyCategory2.getId())
 				).put(
@@ -7300,6 +7306,9 @@ public class ObjectEntryResourceTest {
 					"embeddedTaxonomyCategory",
 					_toEmbeddedTaxonomyCategoryJSONObject(taxonomyCategory1)
 				).put(
+					"taxonomyCategoryExternalReferenceCode",
+					taxonomyCategory1.getExternalReferenceCode()
+				).put(
 					"taxonomyCategoryId",
 					Long.valueOf(taxonomyCategory1.getId())
 				).put(
@@ -7308,6 +7317,9 @@ public class ObjectEntryResourceTest {
 				JSONUtil.put(
 					"embeddedTaxonomyCategory",
 					_toEmbeddedTaxonomyCategoryJSONObject(taxonomyCategory2)
+				).put(
+					"taxonomyCategoryExternalReferenceCode",
+					taxonomyCategory2.getExternalReferenceCode()
 				).put(
 					"taxonomyCategoryId",
 					Long.valueOf(taxonomyCategory2.getId())
@@ -7686,18 +7698,27 @@ public class ObjectEntryResourceTest {
 		JSONAssert.assertEquals(
 			JSONUtil.putAll(
 				JSONUtil.put(
+					"taxonomyCategoryExternalReferenceCode",
+					taxonomyCategory1.getExternalReferenceCode()
+				).put(
 					"taxonomyCategoryId",
 					Long.valueOf(taxonomyCategory1.getId())
 				).put(
 					"taxonomyCategoryName", taxonomyCategory1.getName()
 				),
 				JSONUtil.put(
+					"taxonomyCategoryExternalReferenceCode",
+					taxonomyCategory2.getExternalReferenceCode()
+				).put(
 					"taxonomyCategoryId",
 					Long.valueOf(taxonomyCategory2.getId())
 				).put(
 					"taxonomyCategoryName", taxonomyCategory2.getName()
 				),
 				JSONUtil.put(
+					"taxonomyCategoryExternalReferenceCode",
+					taxonomyCategory3.getExternalReferenceCode()
+				).put(
 					"taxonomyCategoryId",
 					Long.valueOf(taxonomyCategory3.getId())
 				).put(
