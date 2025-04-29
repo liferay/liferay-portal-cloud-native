@@ -38,10 +38,12 @@ import javax.ws.rs.core.UriInfo;
 public class CollaboratorUtil {
 
 	public static Page<Collaborator> addOrUpdateCollaborators(
-			long companyId, long groupId, AcceptLanguage acceptLanguage,
+			AcceptLanguage acceptLanguage,
 			long classNameId, long classPK, Collaborator[] collaborators,
+			long companyId,
 			DTOConverter<SharingEntry, Collaborator> dtoConverter,
 			DTOConverterRegistry dtoConverterRegistry,
+			long groupId,
 			SharingEntryService sharingEntryService, UriInfo uriInfo, User user,
 			UserGroupLocalService userGroupLocalService,
 			UserLocalService userLocalService)

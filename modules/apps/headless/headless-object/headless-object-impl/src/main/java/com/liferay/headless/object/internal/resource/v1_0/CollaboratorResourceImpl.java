@@ -137,12 +137,12 @@ public class CollaboratorResourceImpl extends BaseCollaboratorResourceImpl {
 		throws Exception {
 
 		return CollaboratorUtil.addOrUpdateCollaborators(
-			contextCompany.getCompanyId(), objectEntryFolder.getGroupId(),
 			contextAcceptLanguage,
 			_classNameLocalService.getClassNameId(
 				ObjectEntryFolder.class.getName()),
 			objectEntryFolder.getObjectEntryFolderId(), collaborators,
-			_collaboratorDTOConverter, _dtoConverterRegistry,
+			contextCompany.getCompanyId(), _collaboratorDTOConverter,
+			_dtoConverterRegistry, objectEntryFolder.getGroupId(),
 			_sharingEntryService, contextUriInfo, contextUser,
 			_userGroupLocalService, _userLocalService);
 	}
