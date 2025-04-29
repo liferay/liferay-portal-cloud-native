@@ -66,20 +66,22 @@ public class FunctionCaptchaImpl extends SimpleCaptchaImpl {
 				httpServletRequest));
 		printWriter.write(" src=\"");
 
-		CustomElementCET cet = (CustomElementCET)_cetManager.getCET(
-			PortalUtil.getCompanyId(httpServletRequest),
-			_functionCaptchaImplConfiguration.
-				customElementExternalReferenceCode());
+		CustomElementCET customElementCET =
+			(CustomElementCET)_cetManager.getCET(
+				PortalUtil.getCompanyId(httpServletRequest),
+				_functionCaptchaImplConfiguration.
+					customElementExternalReferenceCode());
 
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		printWriter.write(themeDisplay.getPortalURL() + cet.getURLs());
+		printWriter.write(
+			themeDisplay.getPortalURL() + customElementCET.getURLs());
 
 		printWriter.write("\" type=\"module\"></script>");
 		printWriter.write(StringPool.LESS_THAN);
-		printWriter.write(cet.getHTMLElementName());
+		printWriter.write(customElementCET.getHTMLElementName());
 		printWriter.write(" liferaywebdavurl=\"");
 
 		StringBundler webDavURLSB = new StringBundler(4);
@@ -104,7 +106,7 @@ public class FunctionCaptchaImpl extends SimpleCaptchaImpl {
 				webDavURLSB.toString(), CharPool.QUOTE, "&quote;"));
 		printWriter.write(StringPool.QUOTE);
 		printWriter.write("></");
-		printWriter.write(cet.getHTMLElementName());
+		printWriter.write(customElementCET.getHTMLElementName());
 		printWriter.write(StringPool.GREATER_THAN);
 	}
 
