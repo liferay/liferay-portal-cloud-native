@@ -88,12 +88,6 @@ public class CollaboratorResourceTest {
 		_group = GroupTestUtil.addGroup();
 	}
 
-	@After
-	public void tearDown() throws Exception {
-		_users.clear();
-		_userGroups.clear();
-	}
-
 	@Test
 	public void testGetObjectEntryCollaboratorsPage() throws Exception {
 		ObjectEntry objectEntry = _addObjectEntry();

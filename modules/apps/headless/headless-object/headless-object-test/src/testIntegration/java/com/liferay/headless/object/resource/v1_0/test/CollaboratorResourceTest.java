@@ -65,15 +65,6 @@ public class CollaboratorResourceTest extends BaseCollaboratorResourceTestCase {
 			new LiferayIntegrationTestRule(),
 			PermissionCheckerMethodTestRule.INSTANCE);
 
-	@After
-	@Override
-	public void tearDown() throws Exception {
-		super.tearDown();
-
-		_users.clear();
-		_userGroups.clear();
-	}
-
 	@Override
 	@Test
 	public void testPostObjectEntryFolderCollaboratorsPage() throws Exception {
