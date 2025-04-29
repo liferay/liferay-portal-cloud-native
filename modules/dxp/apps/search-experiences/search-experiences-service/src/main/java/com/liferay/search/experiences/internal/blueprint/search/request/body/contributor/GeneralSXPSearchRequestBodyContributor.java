@@ -96,7 +96,7 @@ public class GeneralSXPSearchRequestBodyContributor
 			HashMap<String, List<AssetSubtypeIdentifier>>
 				assetSubtypeIdentifiersMap = new HashMap<>();
 
-			Set<String> classNameSet = new HashSet<>();
+			Set<String> classNamesSet = new HashSet<>();
 
 			for (String searchableAssetType : searchableAssetTypes) {
 				AssetSubtypeIdentifier assetSubtypeIdentifier =
@@ -106,7 +106,7 @@ public class GeneralSXPSearchRequestBodyContributor
 
 				String className = assetSubtypeIdentifier.getClassName();
 
-				classNameSet.add(className);
+				classNamesSet.add(className);
 
 				if ((assetSubtypeIdentifier.getSubtypeExternalReferenceCode() ==
 						null) ||
@@ -128,7 +128,7 @@ public class GeneralSXPSearchRequestBodyContributor
 					className, assetSubtypeIdentifiers);
 			}
 
-			String[] classNames = classNameSet.toArray(new String[0]);
+			String[] classNames = classNamesSet.toArray(new String[0]);
 
 			searchRequestBuilder.entryClassNames(classNames);
 			searchRequestBuilder.modelIndexerClassNames(classNames);
