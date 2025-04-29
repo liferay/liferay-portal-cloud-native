@@ -38,12 +38,10 @@ import javax.ws.rs.core.UriInfo;
 public class CollaboratorUtil {
 
 	public static Page<Collaborator> addOrUpdateCollaborators(
-			AcceptLanguage acceptLanguage,
-			long classNameId, long classPK, Collaborator[] collaborators,
-			long companyId,
+			AcceptLanguage acceptLanguage, long classNameId, long classPK,
+			Collaborator[] collaborators, long companyId,
 			DTOConverter<SharingEntry, Collaborator> dtoConverter,
-			DTOConverterRegistry dtoConverterRegistry,
-			long groupId,
+			DTOConverterRegistry dtoConverterRegistry, long groupId,
 			SharingEntryService sharingEntryService, UriInfo uriInfo, User user,
 			UserGroupLocalService userGroupLocalService,
 			UserLocalService userLocalService)
@@ -60,7 +58,7 @@ public class CollaboratorUtil {
 
 		for (Collaborator collaborator : collaborators) {
 			SharingEntry sharingEntry = _addOrUpdateSharingEntry(
-				companyId, groupId, classNameId, classPK, collaborator,
+				classNameId, classPK, collaborator, companyId, groupId,
 				sharingEntryService, userGroupLocalService, userLocalService);
 
 			newSharingEntries.add(sharingEntry);
@@ -116,8 +114,9 @@ public class CollaboratorUtil {
 	}
 
 	private static SharingEntry _addOrUpdateSharingEntry(
-			long companyId, long groupId, long classNameId, long classPK,
-			Collaborator collaborator, SharingEntryService sharingEntryService,
+			long classNameId, long classPK, Collaborator collaborator,
+			long companyId, long groupId,
+			SharingEntryService sharingEntryService,
 			UserGroupLocalService userGroupLocalService,
 			UserLocalService userLocalService)
 		throws Exception {
