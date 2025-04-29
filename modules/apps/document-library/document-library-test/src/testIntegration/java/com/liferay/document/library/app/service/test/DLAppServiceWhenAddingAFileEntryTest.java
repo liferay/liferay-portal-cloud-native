@@ -220,7 +220,6 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 		throws Exception {
 
 		String fileName = "test.pdf";
-
 		int maxSize =
 			(int)UploadServletRequestConfigurationProviderUtil.getMaxSize();
 
