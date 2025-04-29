@@ -83,25 +83,27 @@ public class FunctionCaptchaImpl extends SimpleCaptchaImpl {
 		printWriter.write(customElementCET.getHTMLElementName());
 		printWriter.write(" liferaywebdavurl=\"");
 
-		StringBundler sb = new StringBundler(4);
-
 		try {
-			Group group = _groupLocalService.getGroup(
-				themeDisplay.getScopeGroupId());
+			StringBundler sb = new StringBundler(4);
 
 			sb.append(themeDisplay.getPortalURL());
 			sb.append("/webdav");
+
+			Group group = _groupLocalService.getGroup(
+				themeDisplay.getScopeGroupId());
+
 			sb.append(group.getFriendlyURL());
+
 			sb.append("/document_library");
+
+			printWriter.write(
+				StringUtil.replace(sb.toString(), CharPool.QUOTE, "&quote;"));
 		}
 		catch (PortalException portalException) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(portalException);
 			}
 		}
-
-		printWriter.write(
-			StringUtil.replace(sb.toString(), CharPool.QUOTE, "&quote;"));
 
 		printWriter.write(\"></");
 		printWriter.write(customElementCET.getHTMLElementName());
