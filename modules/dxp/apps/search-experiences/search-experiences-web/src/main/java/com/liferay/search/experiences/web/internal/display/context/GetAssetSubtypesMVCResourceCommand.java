@@ -204,19 +204,19 @@ public class GetAssetSubtypesMVCResourceCommand implements MVCResourceCommand {
 			ParamUtil.getString(resourceRequest, "languageId"));
 
 		for (String assetSubtypeIdentifier : assetSubtypeIdentifiers) {
-			String[] assetSubtypeIdentifierArray = StringUtil.split(
+			String[] assetSubtypeIdentifierParts = StringUtil.split(
 				assetSubtypeIdentifier, "&&");
 
-			String entryClassName = assetSubtypeIdentifierArray[0];
+			String entryClassName = assetSubtypeIdentifierParts[0];
 
 			if (entryClassName.equals(DLFileEntry.class.getName())) {
 				_addDLFileEntryTypesInfo(
-					assetSubtypeJSONArray, assetSubtypeIdentifierArray, locale,
+					assetSubtypeJSONArray, assetSubtypeIdentifierParts, locale,
 					resourceRequest);
 			}
 			else if (entryClassName.equals(JournalArticle.class.getName())) {
 				_addDDMStructureInfo(
-					assetSubtypeJSONArray, assetSubtypeIdentifierArray, locale,
+					assetSubtypeJSONArray, assetSubtypeIdentifierParts, locale,
 					resourceRequest);
 			}
 		}
