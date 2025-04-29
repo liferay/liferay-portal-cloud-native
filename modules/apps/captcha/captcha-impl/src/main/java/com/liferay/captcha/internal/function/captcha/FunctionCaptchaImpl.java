@@ -79,8 +79,7 @@ public class FunctionCaptchaImpl extends SimpleCaptchaImpl {
 		printWriter.write(
 			themeDisplay.getPortalURL() + customElementCET.getURLs());
 
-		printWriter.write("\" type=\"module\"></script>");
-		printWriter.write(StringPool.LESS_THAN);
+		printWriter.write("\" type=\"module\"></script><");
 		printWriter.write(customElementCET.getHTMLElementName());
 		printWriter.write(" liferaywebdavurl=\"");
 
@@ -104,8 +103,7 @@ public class FunctionCaptchaImpl extends SimpleCaptchaImpl {
 		printWriter.write(
 			StringUtil.replace(sb.toString(), CharPool.QUOTE, "&quote;"));
 
-		printWriter.write(StringPool.QUOTE);
-		printWriter.write("></");
+		printWriter.write(\"></");
 		printWriter.write(customElementCET.getHTMLElementName());
 		printWriter.write(StringPool.GREATER_THAN);
 	}
