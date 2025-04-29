@@ -220,9 +220,7 @@ public class DLFileEntryModelPreFilterContributor
 			}
 			catch (Exception exception) {
 				if (_log.isDebugEnabled()) {
-					_log.debug(
-						"Could not add document library file structure filter",
-						exception);
+					_log.debug("Unable to add subtype filter", exception);
 				}
 			}
 		}
