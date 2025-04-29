@@ -24,9 +24,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -43,23 +41,24 @@ public class FunctionCaptchaImplTest extends BaseCaptchaTestCase {
 	public static final AggregateTestRule aggregateTestRule =
 		new LiferayIntegrationTestRule();
 
-	@BeforeClass
-	public static void setUpClass() throws Exception {
-		_cet = (CustomElementCET)_cetManager.addCET(
-			ConfigurableUtil.createConfigurable(
-				CETConfiguration.class,
-				HashMapBuilder.<String, Object>put(
-					"baseURL", "${portalURL}/o/test_" + _VIRTUAL_HOSTNAME
-				).put(
-					"name", "Test " + _VIRTUAL_HOSTNAME
-				).put(
-					"type", "customElement"
-				).put(
-					"typeSettings", new String[] {"htmlElementName=test"}
-				).build()),
-			TestPropsValues.getCompanyId(), "LXC:test");
+	@Test
+	public void test() throws Exception {
+		CustomElementCET customElementCET =
+			(CustomElementCET)_cetManager.addCET(
+				ConfigurableUtil.createConfigurable(
+					CETConfiguration.class,
+					HashMapBuilder.<String, Object>put(
+						"baseURL", "${portalURL}/o/test_" + _VIRTUAL_HOSTNAME
+					).put(
+						"name", "Test " + _VIRTUAL_HOSTNAME
+					).put(
+						"type", "customElement"
+					).put(
+						"typeSettings", new String[] {"htmlElementName=test"}
+					).build()),
+				TestPropsValues.getCompanyId(), "LXC:test");
 
-		_pid = ConfigurationTestUtil.createFactoryConfiguration(
+		String pid = ConfigurationTestUtil.createFactoryConfiguration(
 			"com.liferay.captcha.internal.configuration." +
 				"FunctionCaptchaImplConfiguration",
 			HashMapDictionaryBuilder.<String, Object>put(
@@ -67,18 +66,8 @@ public class FunctionCaptchaImplTest extends BaseCaptchaTestCase {
 			).put(
 				"customElementExternalReferenceCode", "LXC:test"
 			).build());
-	}
 
-	@AfterClass
-	public static void tearDownClass() throws Exception {
-		_cetManager.deleteCET(_cet);
-
-		ConfigurationTestUtil.deleteConfiguration(_pid);
-	}
-
-	@Test
-	public void test() throws Exception {
-		String servicePid = StringUtil.extractLast(_pid, StringPool.TILDE);
+		String servicePid = StringUtil.extractLast(pid, StringPool.TILDE);
 
 		try (CompanyConfigurationTemporarySwapper
 				companyConfigurationTemporarySwapper =
@@ -94,18 +83,19 @@ public class FunctionCaptchaImplTest extends BaseCaptchaTestCase {
 
 			Assert.assertTrue(
 				isCaptchaRendered(
-					StringPool.LESS_THAN + _cet.getHTMLElementName()));
+					StringPool.LESS_THAN +
+						customElementCET.getHTMLElementName()));
 		}
+
+		_cetManager.deleteCET(customElementCET);
+
+		ConfigurationTestUtil.deleteConfiguration(pid);
 	}
 
 	private static final String _VIRTUAL_HOSTNAME =
 		RandomTestUtil.randomString() + ".localtest.me";
 
-	private static volatile CustomElementCET _cet;
-
 	@Inject
 	private static CETManager _cetManager;
-
-	private static String _pid;
 
 }
