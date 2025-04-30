@@ -806,14 +806,6 @@ public class FragmentDisplayContext {
 		return Validator.isNotNull(getFragmentCollectionKey());
 	}
 
-	public boolean isViewResources() {
-		if (Objects.equals(_getTabs1(), "resources") && _isScopeGroup()) {
-			return true;
-		}
-
-		return false;
-	}
-
 	public boolean isShowFragmentCollectionActions() {
 		return !isSelectedFragmentCollectionContributor();
 	}
@@ -826,6 +818,14 @@ public class FragmentDisplayContext {
 				MarketplacePortletKeys.FRAGMENTS,
 				MarketplaceActionKeys.VIEW_APPS)) {
 
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isViewResources() {
+		if (Objects.equals(_getTabs1(), "resources") && _isScopeGroup()) {
 			return true;
 		}
 
