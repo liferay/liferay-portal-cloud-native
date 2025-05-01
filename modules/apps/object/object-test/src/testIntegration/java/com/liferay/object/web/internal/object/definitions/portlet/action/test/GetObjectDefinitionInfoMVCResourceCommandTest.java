@@ -71,7 +71,7 @@ public class GetObjectDefinitionInfoMVCResourceCommandTest {
 			TestPropsValues.getGroupId(), objectDefinition.getClassName(), 0, 0,
 			kaleoDefinition.getName(), 1);
 
-		JSONObject jsonObject = _getObjectDefinitionInfoJSONObject(
+		JSONObject jsonObject = _getJSONObject(
 			objectDefinition.getObjectDefinitionId());
 
 		Assert.assertEquals(
@@ -83,8 +83,7 @@ public class GetObjectDefinitionInfoMVCResourceCommandTest {
 			jsonObject.toString());
 	}
 
-	private JSONObject _getObjectDefinitionInfoJSONObject(
-			long objectDefinitionId)
+	private JSONObject _getJSONObject(long objectDefinitionId)
 		throws Exception {
 
 		MockLiferayResourceRequest mockLiferayResourceRequest =
