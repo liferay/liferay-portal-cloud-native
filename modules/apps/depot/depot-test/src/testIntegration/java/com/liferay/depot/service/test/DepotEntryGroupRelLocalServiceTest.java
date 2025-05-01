@@ -117,13 +117,13 @@ public class DepotEntryGroupRelLocalServiceTest {
 				(Map<Locale, String>)null, true, true, false,
 				ServiceContextTestUtil.getServiceContext());
 
-		Group layoutSetPrototypeGroup = _setUpLayoutSetPrototypeGroup(
+		Group group = _setUpLayoutSetPrototypeGroup(
 			layoutSetPrototype);
 
 		DepotEntryGroupRel depotEntryGroupRel =
 			_depotEntryGroupRelLocalService.addDepotEntryGroupRel(
 				depotEntry.getDepotEntryId(),
-				layoutSetPrototypeGroup.getGroupId());
+				group.getGroupId());
 
 		Assert.assertNotNull(depotEntryGroupRel.getDepotEntryId());
 
@@ -152,13 +152,13 @@ public class DepotEntryGroupRelLocalServiceTest {
 				(Map<Locale, String>)null, true, true,
 				ServiceContextTestUtil.getServiceContext());
 
-		Group layoutSetPrototypeGroup = _setUpLayoutSetPrototypeGroup(
+		Group group = _setUpLayoutSetPrototypeGroup(
 			layoutSetPrototype);
 
 		DepotEntryGroupRel depotEntryGroupRel =
 			_depotEntryGroupRelLocalService.addDepotEntryGroupRel(
 				depotEntry.getDepotEntryId(),
-				layoutSetPrototypeGroup.getGroupId());
+				group.getGroupId());
 
 		Assert.assertNotNull(depotEntryGroupRel.getDepotEntryId());
 
@@ -208,13 +208,13 @@ public class DepotEntryGroupRelLocalServiceTest {
 				(Map<Locale, String>)null, true, true,
 				ServiceContextTestUtil.getServiceContext());
 
-		Group layoutSetPrototypeGroup = _setUpLayoutSetPrototypeGroup(
+		Group group = _setUpLayoutSetPrototypeGroup(
 			layoutSetPrototype);
 
 		DepotEntryGroupRel depotEntryGroupRel =
 			_depotEntryGroupRelLocalService.addDepotEntryGroupRel(
 				depotEntry.getDepotEntryId(),
-				layoutSetPrototypeGroup.getGroupId());
+				group.getGroupId());
 
 		Assert.assertEquals(
 			3,
@@ -273,13 +273,13 @@ public class DepotEntryGroupRelLocalServiceTest {
 				(Map<Locale, String>)null, true, true,
 				ServiceContextTestUtil.getServiceContext());
 
-		Group layoutSetPrototypeGroup = _setUpLayoutSetPrototypeGroup(
+		Group group = _setUpLayoutSetPrototypeGroup(
 			layoutSetPrototype);
 
 		DepotEntryGroupRel depotEntryGroupRel =
 			_depotEntryGroupRelLocalService.addDepotEntryGroupRel(
 				depotEntry.getDepotEntryId(),
-				layoutSetPrototypeGroup.getGroupId());
+				group.getGroupId());
 
 		Assert.assertEquals(
 			3,
@@ -501,7 +501,7 @@ public class DepotEntryGroupRelLocalServiceTest {
 			LayoutSetPrototype layoutSetPrototype)
 		throws Exception {
 
-		Group layoutSetPrototypeGroup =
+		Group group =
 			_groupLocalService.getLayoutSetPrototypeGroup(
 				TestPropsValues.getCompanyId(),
 				layoutSetPrototype.getLayoutSetPrototypeId());
@@ -514,7 +514,7 @@ public class DepotEntryGroupRelLocalServiceTest {
 			_group2, layoutSetPrototype.getLayoutSetPrototypeId(), 0, true,
 			false);
 
-		return layoutSetPrototypeGroup;
+		return group;
 	}
 
 	@DeleteAfterTestRun
