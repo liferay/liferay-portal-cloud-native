@@ -37,7 +37,7 @@ public class VersionListTypeService extends BaseService {
 	@Scheduled(cron = "${liferay.customer.version.list.type.cron}")
 	public void scheduled() throws Exception {
 		if (_log.isInfoEnabled()) {
-			_log.info("Updating version list types");
+			_log.info("Updating list type definitions");
 		}
 
 		JSONArray releasesJSONArray = new JSONArray(
