@@ -57,15 +57,14 @@ public class GetObjectDefinitionInfoMVCResourceCommandTest {
 
 	@Test
 	public void testDoServeResource() throws Exception {
-		ObjectDefinition objectDefinition =
-			ObjectDefinitionTestUtil.addCustomObjectDefinition();
-
 		KaleoDefinition kaleoDefinition =
 			_kaleoDefinitionLocalService.addKaleoDefinition(
 				RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 				RandomTestUtil.randomString(), null, null,
 				WorkflowDefinitionConstants.SCOPE_ALL, 1,
 				ServiceContextTestUtil.getServiceContext());
+		ObjectDefinition objectDefinition =
+			ObjectDefinitionTestUtil.addCustomObjectDefinition();
 
 		_workflowDefinitionLinkService.addWorkflowDefinitionLink(
 			TestPropsValues.getUserId(), TestPropsValues.getCompanyId(),
