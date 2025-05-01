@@ -123,7 +123,7 @@ public class DepotEntryGroupRelLocalServiceTest {
 			_depotEntryGroupRelLocalService.addDepotEntryGroupRel(
 				depotEntry.getDepotEntryId(), group.getGroupId());
 
-		Assert.assertNotNull(depotEntryGroupRel.getDepotEntryId());
+		Assert.assertTrue(depotEntryGroupRel.getDepotEntryId() > 0);
 
 		Assert.assertNull(
 			_depotEntryGroupRelLocalService.
@@ -156,7 +156,7 @@ public class DepotEntryGroupRelLocalServiceTest {
 			_depotEntryGroupRelLocalService.addDepotEntryGroupRel(
 				depotEntry.getDepotEntryId(), group.getGroupId());
 
-		Assert.assertNotNull(depotEntryGroupRel.getDepotEntryId());
+		Assert.assertTrue(depotEntryGroupRel.getDepotEntryId() > 0);
 
 		Assert.assertNotNull(
 			_depotEntryGroupRelLocalService.
