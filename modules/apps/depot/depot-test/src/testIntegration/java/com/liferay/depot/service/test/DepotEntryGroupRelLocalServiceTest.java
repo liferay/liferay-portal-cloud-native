@@ -485,19 +485,16 @@ public class DepotEntryGroupRelLocalServiceTest {
 			LayoutSetPrototype layoutSetPrototype)
 		throws Exception {
 
-		Group group = _groupLocalService.getLayoutSetPrototypeGroup(
-			TestPropsValues.getCompanyId(),
-			layoutSetPrototype.getLayoutSetPrototypeId());
-
 		_sites.updateLayoutSetPrototypesLinks(
 			_group1, layoutSetPrototype.getLayoutSetPrototypeId(), 0, true,
 			false);
-
 		_sites.updateLayoutSetPrototypesLinks(
 			_group2, layoutSetPrototype.getLayoutSetPrototypeId(), 0, true,
 			false);
 
-		return group;
+		return _groupLocalService.getLayoutSetPrototypeGroup(
+			TestPropsValues.getCompanyId(),
+			layoutSetPrototype.getLayoutSetPrototypeId());
 	}
 
 	@DeleteAfterTestRun
