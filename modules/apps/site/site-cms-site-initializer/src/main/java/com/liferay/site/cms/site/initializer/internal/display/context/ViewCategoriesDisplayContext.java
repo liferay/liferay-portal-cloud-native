@@ -15,7 +15,6 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.log.Log;
@@ -44,13 +43,12 @@ public class ViewCategoriesDisplayContext {
 
 	public ViewCategoriesDisplayContext(
 		AssetVocabularyLocalService assetVocabularyLocalService,
-		HttpServletRequest httpServletRequest, JSONFactory jsonFactory,
+		HttpServletRequest httpServletRequest,
 		LayoutLocalService layoutLocalService, Language language,
 		Portal portal) {
 
 		_assetVocabularyLocalService = assetVocabularyLocalService;
 		_httpServletRequest = httpServletRequest;
-		_jsonFactory = jsonFactory;
 		_layoutLocalService = layoutLocalService;
 		_language = language;
 		_portal = portal;
@@ -182,7 +180,6 @@ public class ViewCategoriesDisplayContext {
 
 	private final AssetVocabularyLocalService _assetVocabularyLocalService;
 	private final HttpServletRequest _httpServletRequest;
-	private final JSONFactory _jsonFactory;
 	private final Language _language;
 	private final LayoutLocalService _layoutLocalService;
 	private final Portal _portal;
