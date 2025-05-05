@@ -150,7 +150,7 @@ public class UpgradeReport {
 	}
 
 	private List<MessagesPrinter> _getMessagesPrinters(
-		Map<String, Map<String, Integer>> map1, boolean includeOccurrences) {
+		boolean includeOccurrences, Map<String, Map<String, Integer>> map1) {
 
 		List<MessagesPrinter> messagesPrinters = new ArrayList<>();
 
@@ -551,10 +551,10 @@ public class UpgradeReport {
 		).put(
 			"data.clean.up",
 			_getMessagesPrinters(
-				upgradeRecorder.getDataCleanUpMessages(), false)
+				false, upgradeRecorder.getDataCleanUpMessages())
 		).put(
 			"errors",
-			_getMessagesPrinters(upgradeRecorder.getErrorMessages(), true)
+			_getMessagesPrinters(true, upgradeRecorder.getErrorMessages())
 		).put(
 			"failed.sqls", UpgradeSQLRecorder.getFailedSQLs()
 		).put(
@@ -635,7 +635,7 @@ public class UpgradeReport {
 			}
 		).put(
 			"warnings",
-			_getMessagesPrinters(upgradeRecorder.getWarningMessages(), true)
+			_getMessagesPrinters(true, upgradeRecorder.getWarningMessages())
 		).build();
 	}
 
