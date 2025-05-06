@@ -11,19 +11,19 @@ export class EditCategoryPage {
 	readonly page: Page;
 	readonly saveButton: Locator;
 
-	private readonly editConfirmationModal: Locator;
 	private readonly descriptionInput: Locator;
+	private readonly editConfirmationModal: Locator;
 	private readonly nameInput: Locator;
-	private readonly saveAndAddAnotherButton: Locator;
 	private readonly permissionsFormGroup: Locator;
 	private readonly permissionsTable: Locator;
 	private readonly permissionsTableViewableByDropdown: Locator;
+	private readonly saveAndAddAnotherButton: Locator;
 
 	constructor(page: Page) {
 		this.page = page;
 
-		this.editConfirmationModal = page.locator('.modal-content');
 		this.descriptionInput = page.getByTestId('description-input');
+		this.editConfirmationModal = page.locator('.modal-content');
 		this.nameInput = page.getByTestId('name-input');
 		this.saveAndAddAnotherButton = page.getByTestId(
 			'save-and-add-another-button'
