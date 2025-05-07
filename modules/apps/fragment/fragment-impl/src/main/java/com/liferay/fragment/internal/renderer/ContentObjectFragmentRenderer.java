@@ -233,11 +233,10 @@ public class ContentObjectFragmentRenderer implements FragmentRenderer {
 			return;
 		}
 
+		long classPK = _getClassPK(infoItemReference, jsonObject);
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
-
-		long classPK = _getClassPK(infoItemReference, jsonObject);
 
 		if (!FeatureFlagManagerUtil.isEnabled(
 				themeDisplay.getCompanyId(), "LPD-39437") ||
