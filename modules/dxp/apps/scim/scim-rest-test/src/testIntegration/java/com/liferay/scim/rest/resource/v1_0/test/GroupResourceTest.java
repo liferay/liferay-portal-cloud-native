@@ -70,21 +70,6 @@ public class GroupResourceTest extends BaseGroupResourceTestCase {
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		BaseUserResourceTestCase.setUpClass();
-
-		UserResource.Builder builder = UserResource.builder();
-
-		Company company = _companyLocalService.getCompany(
-			TestPropsValues.getCompanyId());
-		com.liferay.portal.kernel.model.User user = _userLocalService.getUser(
-			TestPropsValues.getUserId());
-
-		_userResource = builder.authentication(
-			user.getEmailAddress(), PropsValues.DEFAULT_ADMIN_PASSWORD
-		).endpoint(
-			company.getVirtualHostname(), 8080, "http"
-		).locale(
-			LocaleUtil.getDefault()
-		).build();
 	}
 
 	@Before
@@ -104,6 +89,21 @@ public class GroupResourceTest extends BaseGroupResourceTestCase {
 			).put(
 				"userId", TestPropsValues.getUserId()
 			).build());
+
+		UserResource.Builder builder = UserResource.builder();
+
+		Company company = _companyLocalService.getCompany(
+			TestPropsValues.getCompanyId());
+		com.liferay.portal.kernel.model.User user = _userLocalService.getUser(
+			TestPropsValues.getUserId());
+
+		_userResource = builder.authentication(
+			user.getEmailAddress(), PropsValues.DEFAULT_ADMIN_PASSWORD
+		).endpoint(
+			company.getVirtualHostname(), 8080, "http"
+		).locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -724,19 +724,19 @@ public class GroupResourceTest extends BaseGroupResourceTestCase {
 	}
 
 	@Inject
-	private static CompanyLocalService _companyLocalService;
-
-	private static String _pid;
-
-	@Inject
-	private static UserLocalService _userLocalService;
-
-	private static UserResource _userResource;
+	private CompanyLocalService _companyLocalService;
 
 	@Inject
 	private JSONFactory _jsonFactory;
 
+	private String _pid;
+
 	@Inject
 	private UserGroupLocalService _userGroupLocalService;
+
+	@Inject
+	private UserLocalService _userLocalService;
+
+	private UserResource _userResource;
 
 }

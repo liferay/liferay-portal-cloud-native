@@ -88,14 +88,14 @@ public class ExpandoColumnUpgradeProcessTest {
 			).build());
 
 		try {
+			GroupResource.Builder groupResourceBuilder =
+				GroupResource.builder();
+
 			Company company = _companyLocalService.getCompany(
 				TestPropsValues.getCompanyId());
 			String languageId = UpgradeProcessUtil.getDefaultLanguageId(
 				TestPropsValues.getCompanyId());
 			User user = _userLocalService.getUser(TestPropsValues.getUserId());
-
-			GroupResource.Builder groupResourceBuilder =
-				GroupResource.builder();
 
 			GroupResource groupResource = groupResourceBuilder.authentication(
 				user.getEmailAddress(), PropsValues.DEFAULT_ADMIN_PASSWORD
@@ -264,23 +264,23 @@ public class ExpandoColumnUpgradeProcessTest {
 	}
 
 	@Inject
-	private static CompanyLocalService _companyLocalService;
-
-	@Inject(
-		filter = "(&(component.name=com.liferay.scim.rest.internal.upgrade.registry.ScimRestUpgradeStepRegistrator))"
-	)
-	private static UpgradeStepRegistrator _upgradeStepRegistrator;
-
-	@Inject
-	private static UserLocalService _userLocalService;
-
-	@Inject
 	private ClassNameLocalService _classNameLocalService;
+
+	@Inject
+	private CompanyLocalService _companyLocalService;
 
 	@Inject
 	private ExpandoColumnLocalService _expandoColumnLocalService;
 
 	@Inject
 	private ExpandoTableLocalService _expandoTableLocalService;
+
+	@Inject(
+		filter = "(&(component.name=com.liferay.scim.rest.internal.upgrade.registry.ScimRestUpgradeStepRegistrator))"
+	)
+	private UpgradeStepRegistrator _upgradeStepRegistrator;
+
+	@Inject
+	private UserLocalService _userLocalService;
 
 }
