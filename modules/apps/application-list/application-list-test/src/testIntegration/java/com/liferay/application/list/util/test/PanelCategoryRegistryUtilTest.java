@@ -10,13 +10,13 @@ import com.liferay.application.list.PanelCategory;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.test.log.LogCapture;
 import com.liferay.portal.test.log.LogEntry;
 import com.liferay.portal.test.log.LoggerTestUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
+import java.util.Dictionary;
 import java.util.List;
 import java.util.Locale;
 
@@ -56,7 +56,7 @@ public class PanelCategoryRegistryUtilTest {
 
 			BundleContext bundleContext = bundle.getBundleContext();
 
-			HashMapDictionary<String, String> serviceProperties =
+			Dictionary<String, String> properties =
 				HashMapDictionaryBuilder.put(
 					"panel.category.key", "panelCategoryKey"
 				).put(
@@ -64,12 +64,9 @@ public class PanelCategoryRegistryUtilTest {
 				).build();
 
 			serviceRegistration1 = bundleContext.registerService(
-				PanelCategory.class, new TestPanelCategory1(),
-				serviceProperties);
-
+				PanelCategory.class, new TestPanelCategory1(), properties);
 			serviceRegistration2 = bundleContext.registerService(
-				PanelCategory.class, new TestPanelCategory2(),
-				serviceProperties);
+				PanelCategory.class, new TestPanelCategory2(), properties);
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
