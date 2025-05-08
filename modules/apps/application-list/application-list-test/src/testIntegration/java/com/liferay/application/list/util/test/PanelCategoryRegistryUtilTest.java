@@ -78,8 +78,8 @@ public class PanelCategoryRegistryUtilTest {
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
-				"The panel categories 'testKey2' and 'testKey1' have the " +
-					"same order 100 and key 'panelCategoryKey'",
+				"The panel categories \"testKey2\" and \"testKey1\" have the " +
+					"same order 100 and key \"panelCategoryKey\"",
 				logEntry.getMessage());
 		}
 		finally {

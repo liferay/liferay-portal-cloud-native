@@ -179,12 +179,12 @@ public class PanelCategoryRegistryUtil {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"The panel categories '", key1, "' and '", key2,
-						"' have the same order ",
+						"The panel categories \"", key1, "\" and \"", key2,
+						"\" have the same order ",
 						serviceReference1.getProperty("panel.category.order"),
-						" and key '",
+						" and key \"",
 						serviceReference1.getProperty("panel.category.key"),
-						"'"));
+						"\""));
 			}
 
 			return key1.compareTo(key2);
