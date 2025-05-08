@@ -34,9 +34,8 @@ public class CTConflictConfigurationUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		_upgradeSystemConfigurations();
-
 		_upgradeCompanyScopedConfigurations();
+		_upgradeSystemConfigurations();
 	}
 
 	private Dictionary<String, Object> _mergeProperties(

@@ -50,11 +50,10 @@ public class CTConflictConfigurationUpgradeProcessTest {
 	public void tearDown() throws Exception {
 		ConfigurationTestUtil.deleteConfiguration(_pid);
 
-		_configurationProvider.deleteSystemConfiguration(
-			CTSettingsConfiguration.class);
-
 		_configurationProvider.deleteCompanyConfiguration(
 			CTSettingsConfiguration.class, TestPropsValues.getCompanyId());
+		_configurationProvider.deleteSystemConfiguration(
+			CTSettingsConfiguration.class);
 	}
 
 	@Test
