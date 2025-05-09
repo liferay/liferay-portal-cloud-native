@@ -980,18 +980,18 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 		"emailAddress=emailAddress\nfirstName=firstName\nlastName=lastName\n" +
 			"screenName=screenName";
 
-	private static final String _USER_GROUP_NAME_EXISTING =
-		RandomTestUtil.randomString();
-
-	private static final String _USER_GROUP_NAME_NEW =
-		RandomTestUtil.randomString();
-
 	private static final String _SAML_NAME_IDENTIFIER_VALUE = "testNameIdValue";
 
 	private static final String _SUBJECT_NAME_IDENTIFIER_EMAIL_ADDRESS =
 		"test@liferay.com";
 
 	private static final String _SUBJECT_NAME_IDENTIFIER_SCREEN_NAME = "test";
+
+	private static final String _USER_GROUP_NAME_EXISTING =
+		RandomTestUtil.randomString();
+
+	private static final String _USER_GROUP_NAME_NEW =
+		RandomTestUtil.randomString();
 
 	private List<Attribute> _attributes;
 	private Company _company;
