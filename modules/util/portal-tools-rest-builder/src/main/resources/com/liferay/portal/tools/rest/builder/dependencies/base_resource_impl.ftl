@@ -1011,6 +1011,7 @@ public abstract class Base${schemaName}ResourceImpl
 						</#if>
 
 						${deleteByIdJavaMethodSignature.methodName}(${schemaVarName}.${getterMethodName}()
+
 						<#list deleteByIdJavaMethodSignature.javaMethodParameters as javaMethodParameter>
 							<#if freeMarkerTool.isQueryParameter(javaMethodParameter, deleteByIdJavaMethodSignature.operation)>
 								,
@@ -1021,6 +1022,7 @@ public abstract class Base${schemaName}ResourceImpl
 								/>
 							</#if>
 						</#list>
+
 						);
 
 						return ${schemaVarName};

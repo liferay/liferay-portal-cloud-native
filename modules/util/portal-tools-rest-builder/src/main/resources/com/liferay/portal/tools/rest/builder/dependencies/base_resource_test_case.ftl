@@ -434,6 +434,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 							null,
 						</#if>
 					</#list>
+
 					null,
 					JSONUtil.putAll(
 						JSONUtil.put(
