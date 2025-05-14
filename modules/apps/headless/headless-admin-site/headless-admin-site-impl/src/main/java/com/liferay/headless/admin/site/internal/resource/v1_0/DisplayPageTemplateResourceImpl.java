@@ -422,7 +422,6 @@ public class DisplayPageTemplateResourceImpl
 		Map<Locale, String> nameMap = Collections.singletonMap(
 			_portal.getSiteDefaultLocale(groupId),
 			displayPageTemplate.getName());
-
 		Map<Locale, String> robotsMap = null;
 		UnicodeProperties unicodeProperties = new UnicodeProperties();
 
