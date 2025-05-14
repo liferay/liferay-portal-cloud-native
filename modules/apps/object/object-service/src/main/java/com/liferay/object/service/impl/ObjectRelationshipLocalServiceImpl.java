@@ -1837,8 +1837,6 @@ public class ObjectRelationshipLocalServiceImpl
 
 		_copyResourcePermissions(objectDefinition1, objectDefinition2);
 
-		_copyWorkflowDefinitionLinks(objectDefinition1, objectDefinition2);
-
 		_updateObjectEntries(
 			objectDefinition2, oldRootObjectDefinitionId2,
 			newRootObjectDefinitionId2);
@@ -1846,6 +1844,8 @@ public class ObjectRelationshipLocalServiceImpl
 		_updateObjectDefinitionTree(
 			objectDefinition2, oldRootObjectDefinitionId2,
 			newRootObjectDefinitionId2);
+
+		_copyWorkflowDefinitionLinks(objectDefinition1, objectDefinition2);
 
 		if (objectDefinition2.isRootNode()) {
 			_deployObjectDefinition(objectDefinition2);
