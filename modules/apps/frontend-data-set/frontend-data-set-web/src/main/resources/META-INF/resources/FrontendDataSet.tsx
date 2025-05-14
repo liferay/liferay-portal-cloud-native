@@ -6,7 +6,7 @@
 import ClayLoadingIndicator from '@clayui/loading-indicator';
 import {ClayPaginationBarWithBasicItems} from '@clayui/pagination-bar';
 import {useIsMounted, useThunk} from '@liferay/frontend-js-react-web';
-import {openToast} from 'frontend-js-components-web';
+import {IHTMLElementBuilder, openToast} from 'frontend-js-components-web';
 import {fetch, loadClientExtensions, loadModule} from 'frontend-js-web';
 import React, {
 	useCallback,
@@ -20,20 +20,53 @@ import './styles/main.scss';
 
 import ClayEmptyState from '@clayui/empty-state';
 
-import FrontendDataSetContext from './FrontendDataSetContext';
+import {
+	IField,
+	IFrontendDataSetProps,
+	IModalConfig,
+	IRequestOptions,
+	ISuccessNotification,
+	TSort,
+	TViews,
+} from './';
+import FrontendDataSetContext, {
+	IDataSetData,
+	TRenderer,
+} from './FrontendDataSetContext';
+
+// @ts-ignore
+
 import ManagementBar from './management_bar/ManagementBar';
 import CreationMenu from './management_bar/controls/CreationMenu';
 import {FILTER_IMPLEMENTATIONS} from './management_bar/controls/filters/Filter';
+
+// @ts-ignore
+
 import Modal from './modal/Modal';
+
+// @ts-ignore
+
 import SidePanel from './side_panel/SidePanel';
 import filterCreationActions from './utils/actionItems/filterCreationActions';
 import EVENTS from './utils/eventsDefinitions';
 import getRandomId from './utils/getRandomId';
+
+// @ts-ignore
+
 import {formatItemChanges, getCurrentItemUpdates} from './utils/index';
 import {loadData} from './utils/loadData';
+
+// @ts-ignore
+
 import {logError} from './utils/logError';
 import ViewsContext from './views/ViewsContext';
+
+// @ts-ignore
+
 import getViewComponent from './views/getViewComponent';
+
+// @ts-ignore
+
 import {VIEWS_ACTION_TYPES, viewsReducer} from './views/viewsReducer';
 
 const DEFAULT_PAGINATION_DELTA = 20;
@@ -45,12 +78,12 @@ const FrontendDataSet = ({
 	additionalAPIURLParameters,
 	apiURL,
 	appURL,
-	bulkActions,
+	bulkActions = [],
 	creationMenu: initialCreationMenu,
 	currentURL,
 	customDataRenderers,
 	customRenderers,
-	customViews,
+	customViews = '{}',
 	customViewsEnabled,
 	emptyState,
 	filters: initialFilters,
@@ -73,20 +106,20 @@ const FrontendDataSet = ({
 	pagination,
 	portletId,
 	selectedItems: initialSelectedItemsValues,
-	selectedItemsKey,
-	selectionType,
-	showBulkActionsManagementBar,
-	showBulkActionsManagementBarActions,
-	showManagementBar,
-	showPagination,
-	showSearch,
-	showSelectAll,
+	selectedItemsKey = 'id',
+	selectionType = 'multiple',
+	showBulkActionsManagementBar = true,
+	showBulkActionsManagementBarActions = true,
+	showManagementBar = true,
+	showPagination = true,
+	showSearch = true,
+	showSelectAll = false,
 	sidePanelId,
-	sorts: sortsProp,
-	style,
+	sorts: sortsProp = [],
+	style = 'default',
 	uniformActionsDisplay,
 	views,
-}) => {
+}: IFrontendDataSetProps) => {
 	const wrapperRef = useRef(null);
 	const [componentLoading, setComponentLoading] = useState(false);
 	const [creationMenu, setCreationMenu] = useState(initialCreationMenu);
@@ -98,10 +131,9 @@ const FrontendDataSet = ({
 
 	const [highlightedItemsValue, setHighlightedItemsValue] = useState([]);
 	const [items, setItems] = useState(itemsProp || []);
-	const [itemsChanges, setItemsChanges] = useState({});
+	const [itemsChanges, setItemsChanges] = useState<{[key: string]: any}>({});
 	const [pageNumber, setPageNumber] = useState(
-		showPagination &&
-			(pagination?.initialPageNumber || DEFAULT_PAGINATION_PAGE_NUMBER)
+		pagination?.initialPageNumber || DEFAULT_PAGINATION_PAGE_NUMBER
 	);
 	const [searchParam, setSearchParam] = useState('');
 
@@ -110,18 +142,22 @@ const FrontendDataSet = ({
 	const [selectedItemsValue, setSelectedItemsValue] = useState(
 		initialSelectedItemsValues || []
 	);
-	const [selectedItems, setSelectedItems] = useState([]);
+	const [selectedItems, setSelectedItems] = useState<Array<any>>([]);
 	const [total, setTotal] = useState(0);
 
 	const getInitialViewsState = () => {
 		const customInternalViews =
-			customRenderers?.views?.map((customRenderer) => ({
-				component: customRenderer.component,
-				default: customRenderer.default,
-				label: customRenderer.label,
+			customRenderers?.views?.map((customRenderer: TRenderer) => ({
+
+				// Need to check presence of property in TRenderer Union type
+
+				component:
+					'component' in customRenderer && customRenderer.component,
+				default: 'default' in customRenderer && customRenderer?.default,
+				label: 'label' in customRenderer && customRenderer?.label,
 				name: customRenderer.name,
-				schema: customRenderer.schema,
-				thumbnail: customRenderer.symbol,
+				schema: 'schema' in customRenderer && customRenderer?.schema,
+				thumbnail: 'symbol' in customRenderer && customRenderer?.symbol,
 			})) || [];
 
 		let initialActiveView =
@@ -166,8 +202,11 @@ const FrontendDataSet = ({
 						filter.active = true;
 						filter.selectedData = preloadedData;
 
+						const filterType: keyof typeof FILTER_IMPLEMENTATIONS =
+							filter.type;
+
 						const filterImplementation =
-							FILTER_IMPLEMENTATIONS[filter.type];
+							FILTER_IMPLEMENTATIONS[filterType];
 
 						filter.odataFilterString =
 							filterImplementation.getOdataString(filter);
@@ -185,7 +224,7 @@ const FrontendDataSet = ({
 
 		return {
 			activeView,
-			customViews: JSON.parse(customViews),
+			customViews: customViews && JSON.parse(customViews),
 			customViewsEnabled,
 			defaultView: {
 				activeView,
@@ -217,8 +256,15 @@ const FrontendDataSet = ({
 	} = activeView;
 
 	const requestData = useCallback(() => {
+		if (!apiURL) {
+			return;
+		}
+
 		const activeFiltersOdataStrings = filters.reduce(
-			(activeFilters, filter) =>
+
+			// Difficult to type filter as it is a mix of filters from FDS and FILTER_IMPLEMENTATIONS<T>
+
+			(activeFilters: Array<string>, filter: any) =>
 				filter.active && filter.odataFilterString
 					? [...activeFilters, filter.odataFilterString]
 					: activeFilters,
@@ -226,7 +272,9 @@ const FrontendDataSet = ({
 		);
 
 		const activeSorts =
-			sorts.length > 1 ? sorts.filter((sort) => sort.active) : sorts;
+			sorts.length > 1
+				? sorts.filter((sort: TSort) => sort.active)
+				: sorts;
 
 		return loadData({
 			additionalAPIURLParameters,
@@ -251,7 +299,7 @@ const FrontendDataSet = ({
 
 	const isMounted = useIsMounted();
 
-	function updateDataSetItems(dataSetData) {
+	function updateDataSetItems(dataSetData: IDataSetData) {
 		const remappedItems = dataSetData.items.map((item) => {
 			if (item.embedded && item.embedded.actions) {
 				const actions = item.embedded.actions;
@@ -288,10 +336,10 @@ const FrontendDataSet = ({
 								importDeclaration: `default from ${filter.clientExtensionFilterURL}`,
 							}))
 					: [],
-				onLoad: (bindingContexts) => {
-					const newFilters = initialFilters.map((filter) => {
+				onLoad: (bindingContexts: any) => {
+					const newFilters = initialFilters?.map((filter) => {
 						const bindingContext = bindingContexts.find(
-							(bindingContext) =>
+							(bindingContext: any) =>
 								bindingContext.context
 									.clientExtensionFilterURL ===
 								filter.clientExtensionFilterURL
@@ -316,30 +364,43 @@ const FrontendDataSet = ({
 			},
 			{
 				clientExtensionDefinitions: views.reduce(
-					(clientExtensionDefinitions, view) => {
-						if (!view.schema?.fields?.length) {
+					(clientExtensionDefinitions: Array<any>, view: TViews) => {
+						if (view.schema && 'fields' in view.schema) {
+							if (!view.schema.fields.length) {
+								return clientExtensionDefinitions;
+							}
+
+							const clientExtensionFields =
+								view.schema.fields.filter(
+									(field: IField) =>
+										!!field.contentRendererClientExtension
+								);
+
+							for (const field of clientExtensionFields) {
+								clientExtensionDefinitions.push({
+									context: field,
+									importDeclaration:
+										field.contentRendererModuleURL,
+								});
+							}
+
 							return clientExtensionDefinitions;
 						}
-
-						const clientExtensionFields = view.schema.fields.filter(
-							(field) => !!field.contentRendererClientExtension
-						);
-
-						for (const field of clientExtensionFields) {
-							clientExtensionDefinitions.push({
-								context: field,
-								importDeclaration:
-									field.contentRendererModuleURL,
-							});
+						else {
+							return [];
 						}
-
-						return clientExtensionDefinitions;
 					},
 					[]
 				),
-				onLoad: (bindingContexts) => {
+				onLoad: (bindingContexts: any) => {
 					bindingContexts.forEach(
-						({binding: htmlElementBuilder, context: field}) => {
+						({
+							binding: htmlElementBuilder,
+							context: field,
+						}: {
+							binding: IHTMLElementBuilder<unknown>;
+							context: IField;
+						}) => {
 							viewsDispatch({
 								type: VIEWS_ACTION_TYPES.UPDATE_FIELD,
 								value: {
@@ -356,11 +417,19 @@ const FrontendDataSet = ({
 
 	useEffect(() => {
 		if (itemsProp) {
-			updateDataSetItems({items: itemsProp});
+
+			// Assuming default pagination values if data comes from items instead of apiURL
+
+			updateDataSetItems({
+				items: itemsProp,
+				lastPage: 1,
+				page: 1,
+				totalCount: itemsProp.length,
+			});
 		}
 	}, [itemsProp]);
 
-	function deselectItems(value) {
+	function deselectItems(value: any) {
 		if (Array.isArray(value)) {
 			return setSelectedItemsValue(
 				selectedItemsValue.filter((item) => !value.includes(item))
@@ -372,7 +441,7 @@ const FrontendDataSet = ({
 		);
 	}
 
-	function selectItems(value) {
+	function selectItems(value: any) {
 		if (selectionType === 'single') {
 			return setSelectedItemsValue(
 				Array.isArray(value) ? value : [value]
@@ -411,19 +480,19 @@ const FrontendDataSet = ({
 
 	useEffect(() => {
 		if (wrapperRef.current) {
-			const form = wrapperRef.current.closest('form');
+			const form = (wrapperRef.current as HTMLElement).closest('form');
 
 			if (form?.dataset.sennaOff === null) {
-				form.setAttribute('data-senna-off', true);
+				form.setAttribute('data-senna-off', 'true');
 			}
 		}
 	}, [wrapperRef]);
 
 	const refreshData = useCallback(
-		(successNotification) => {
+		(successNotification?: ISuccessNotification) => {
 			setDataLoading(true);
 
-			return requestData()
+			return requestData()!
 				.then(({data}) => {
 					if (successNotification?.showSuccessNotification) {
 						openToast({
@@ -438,7 +507,9 @@ const FrontendDataSet = ({
 						updateDataSetItems(data);
 
 						const itemKeys = new Set(
-							data.items.map((item) => item[selectedItemsKey])
+							data.items.map(
+								(item: any) => item[selectedItemsKey]
+							)
 						);
 
 						setSelectedItemsValue(
@@ -464,8 +535,8 @@ const FrontendDataSet = ({
 	);
 
 	useEffect(() => {
-		setSelectedItems((selectedItems) => {
-			const newSelectedItems = [];
+		setSelectedItems((selectedItems: Array<any>) => {
+			const newSelectedItems: Array<any> = [];
 
 			selectedItemsValue.forEach((value) => {
 				let selectedItem = items.find(
@@ -483,7 +554,7 @@ const FrontendDataSet = ({
 				}
 			});
 
-			onSelectedItemsChange(newSelectedItems);
+			onSelectedItemsChange && onSelectedItemsChange(newSelectedItems);
 
 			return newSelectedItems;
 		});
@@ -497,11 +568,11 @@ const FrontendDataSet = ({
 		setComponentLoading(true);
 
 		loadModule(contentRendererModuleURL)
-			.then((component) => {
+			.then((view: TViews) => {
 				if (isMounted()) {
 					viewsDispatch({
 						type: VIEWS_ACTION_TYPES.UPDATE_VIEW_COMPONENT,
-						value: {component, name: activeViewName},
+						value: {component: view, name: activeViewName},
 					});
 
 					setComponentLoading(false);
@@ -522,7 +593,17 @@ const FrontendDataSet = ({
 		setComponentLoading,
 	]);
 
-	const handleApiError = ({data, statusCode}) => {
+	const handleApiError = ({
+		data,
+		statusCode,
+	}: {
+		data: {
+			status: string;
+			title: string;
+			type?: string;
+		};
+		statusCode: number;
+	}): void => {
 		const apiErrorMessage = `${data.status}, ${data.title}`;
 
 		logError(apiErrorMessage);
@@ -541,7 +622,7 @@ const FrontendDataSet = ({
 
 		setDataLoading(true);
 
-		requestData().then(({data, ok, status: statusCode}) => {
+		requestData()!.then(({data, ok, status: statusCode}) => {
 			if (isMounted()) {
 				if (!ok) {
 					handleApiError({data, statusCode});
@@ -552,14 +633,14 @@ const FrontendDataSet = ({
 							return;
 						}
 
-						const filteredCreationMenu = {};
-
-						filteredCreationMenu.primaryItems =
-							filterCreationActions({
-								customActions:
-									currentCreationMenu?.primaryItems,
-								globalCollectionActions: data?.actions,
-							});
+						const filteredCreationMenu: IFrontendDataSetProps['creationMenu'] =
+							{
+								primaryItems: filterCreationActions({
+									customActions:
+										currentCreationMenu?.primaryItems,
+									globalCollectionActions: data?.actions,
+								}),
+							};
 
 						return filteredCreationMenu;
 					});
@@ -572,7 +653,7 @@ const FrontendDataSet = ({
 	}, [apiURL, isMounted, requestData, setDataLoading]);
 
 	useEffect(() => {
-		function handleRefreshFromTheOutside(event) {
+		function handleRefreshFromTheOutside(event: any) {
 			if (event.id === id) {
 				refreshData();
 			}
@@ -587,7 +668,10 @@ const FrontendDataSet = ({
 
 		return () => {
 			Liferay.detach(EVENTS.SIDE_PANEL_CLOSED, handleCloseSidePanel);
-			Liferay.detach(EVENTS.UPDATE_DISPLAY, handleRefreshFromTheOutside);
+			Liferay.detach(
+				EVENTS.UPDATE_DISPLAY,
+				handleRefreshFromTheOutside as () => void
+			);
 		};
 	}, [id, refreshData]);
 
@@ -596,7 +680,7 @@ const FrontendDataSet = ({
 			<ManagementBar
 				bulkActions={bulkActions}
 				creationMenu={creationMenu}
-				deselectItems={(items) => {
+				deselectItems={(items: Array<any>) => {
 					deselectItems(items);
 
 					if (allItemsSelectedActive) {
@@ -610,8 +694,10 @@ const FrontendDataSet = ({
 
 					setAllItemsSelectedActive(false);
 				}}
-				onSelectAll={(value) => setAllItemsSelectedActive(value)}
-				selectItems={(items) => selectItems(items)}
+				onSelectAll={(value: boolean) =>
+					setAllItemsSelectedActive(value)
+				}
+				selectItems={(items: Array<any>) => selectItems(items)}
 				selectedItems={selectedItems}
 				selectedItemsKey={selectedItemsKey}
 				selectedItemsValue={selectedItemsValue}
@@ -644,7 +730,7 @@ const FrontendDataSet = ({
 						header={header}
 						items={items}
 						itemsActions={itemsActions}
-						onItemSelectionChange={(selectedItem) => {
+						onItemSelectionChange={(selectedItem: any) => {
 							if (allItemsSelectedActive) {
 								setSelectedItemsValue(
 									items
@@ -694,8 +780,8 @@ const FrontendDataSet = ({
 		showPagination && pagination && items?.length && total ? (
 			<div className="data-set-pagination-wrapper">
 				<ClayPaginationBarWithBasicItems
+					active={pageNumber}
 					activeDelta={paginationDelta}
-					activePage={pageNumber}
 					deltas={pagination?.deltas}
 					disableEllipsis={items.length / paginationDelta - 5 > 999}
 					ellipsisBuffer={3}
@@ -706,6 +792,7 @@ const FrontendDataSet = ({
 						perPageItems: Liferay.Language.get('x-items'),
 						selectPerPageItems: Liferay.Language.get('x-items'),
 					}}
+					onActiveChange={setPageNumber}
 					onDeltaChange={(delta) => {
 						setPageNumber(1);
 
@@ -714,7 +801,6 @@ const FrontendDataSet = ({
 							value: delta,
 						});
 					}}
-					onPageChange={setPageNumber}
 					totalItems={total}
 				/>
 			</div>
@@ -727,8 +813,15 @@ const FrontendDataSet = ({
 		setActionItemLoading,
 		successMessage,
 		url,
-	}) {
-		const requestOptions = {
+	}: {
+		errorMessage: string;
+		method: string;
+		requestBody?: string;
+		setActionItemLoading?: (loading: boolean) => void;
+		successMessage?: string;
+		url: string;
+	}): Promise<void> {
+		const requestOptions: IRequestOptions = {
 			headers: {
 				'Accept': 'application/json',
 				'Accept-Language': Liferay.ThemeDisplay.getBCP47LanguageId(),
@@ -784,7 +877,7 @@ const FrontendDataSet = ({
 			});
 	}
 
-	function openSidePanel(config) {
+	function openSidePanel(config: IModalConfig) {
 		return Liferay.fire(EVENTS.OPEN_SIDE_PANEL, {
 			id: dataSetSupportSidePanelId,
 			onSubmit: refreshData,
@@ -792,7 +885,7 @@ const FrontendDataSet = ({
 		});
 	}
 
-	function openModal(config) {
+	function openModal(config: IModalConfig) {
 		return Liferay.fire(EVENTS.OPEN_MODAL, {
 			id: dataSetSupportModalId,
 			onSubmit: refreshData,
@@ -800,7 +893,13 @@ const FrontendDataSet = ({
 		});
 	}
 
-	function onItemsChange({itemKey = 'id', items: itemsChanged}) {
+	function onItemsChange({
+		itemKey = 'id',
+		items: itemsChanged,
+	}: {
+		itemKey: string;
+		items: any;
+	}): void {
 		const updatedItems = new Map(
 			[...items, ...itemsChanged].map((item) => [item[itemKey], item])
 		);
@@ -808,7 +907,12 @@ const FrontendDataSet = ({
 		setItems(Array.from(updatedItems.values()));
 	}
 
-	function updateItem(itemKey, property, valuePath, value = null) {
+	function updateItem(
+		itemKey: string,
+		property: string,
+		valuePath: string,
+		value = null
+	): void {
 		const itemChanges = getCurrentItemUpdates(
 			items,
 			itemsChanges,
@@ -825,7 +929,7 @@ const FrontendDataSet = ({
 		});
 	}
 
-	function toggleItemInlineEdit(itemKey) {
+	function toggleItemInlineEdit(itemKey: any) {
 		setItemsChanges(({[itemKey]: foundItem, ...itemsChanges}) => {
 			return foundItem
 				? itemsChanges
@@ -837,6 +941,10 @@ const FrontendDataSet = ({
 	}
 
 	function createInlineItem() {
+		if (!inlineAddingSettings?.apiURL) {
+			return;
+		}
+
 		const defaultBodyContent =
 			inlineAddingSettings.defaultBodyContent || {};
 		const newItemBodyContent = formatItemChanges(itemsChanges[0]);
@@ -888,12 +996,12 @@ const FrontendDataSet = ({
 			});
 	}
 
-	function applyItemInlineUpdates(itemKey) {
+	function applyItemInlineUpdates(itemKey: any) {
 		const itemToBeUpdated = items.find(
 			(item) => item[selectedItemsKey] === itemKey
 		);
 
-		const defaultBody = inlineEditingSettings.defaultBodyContent || {};
+		const defaultBody = inlineEditingSettings?.defaultBodyContent || {};
 
 		return fetch(itemToBeUpdated.actions.update.href, {
 			body: JSON.stringify({
@@ -939,15 +1047,19 @@ const FrontendDataSet = ({
 			});
 	}
 
-	const onSearch = ({query}) => {
+	const onSearch = ({query}: {query: string}) => {
 		if (apiURL || appURL) {
 			setSearchParam(query);
 		}
 		else {
 			setItems(
-				itemsProp.filter((item) => {
-					return JSON.stringify(Object.values(item)).includes(query);
-				})
+				itemsProp?.length
+					? itemsProp.filter((item) => {
+							return JSON.stringify(Object.values(item)).includes(
+								query
+							);
+						})
+					: []
 			);
 		}
 	};
@@ -1058,26 +1170,6 @@ const FrontendDataSet = ({
 			</ViewsContext.Provider>
 		</FrontendDataSetContext.Provider>
 	);
-};
-
-FrontendDataSet.defaultProps = {
-	bulkActions: [],
-	customViews: '{}',
-	inlineEditingSettings: null,
-	items: null,
-	itemsActions: null,
-	onSelect: () => {},
-	onSelectedItemsChange: () => {},
-	selectedItemsKey: 'id',
-	selectionType: 'multiple',
-	showBulkActionsManagementBar: true,
-	showBulkActionsManagementBarActions: true,
-	showManagementBar: true,
-	showPagination: true,
-	showSearch: true,
-	showSelectAll: false,
-	sorts: [],
-	style: 'default',
 };
 
 export default FrontendDataSet;
