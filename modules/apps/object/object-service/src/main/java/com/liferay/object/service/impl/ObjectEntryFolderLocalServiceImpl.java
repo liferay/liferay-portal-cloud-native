@@ -410,8 +410,8 @@ public class ObjectEntryFolderLocalServiceImpl
 		if (objectEntryFolderId == parentObjectEntryFolderId) {
 			throw new ObjectEntryFolderParentObjectEntryFolderException(
 				StringBundler.concat(
-					"Can not set the parent entry folder ID of object entry ",
-					"folder ", objectEntryFolderId, " to itself"));
+					"Object entry folder ", objectEntryFolderId,
+					" cannot be its own parent"));
 		}
 
 		ObjectEntryFolder objectEntryFolder =
