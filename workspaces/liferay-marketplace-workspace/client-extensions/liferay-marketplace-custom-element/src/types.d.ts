@@ -574,6 +574,10 @@ type Product = {
 	productType: string;
 	productVirtualSettings: {
 		id: string;
+		productVirtualSettingsFileEntries: {
+			src: string;
+			version: string;
+		}[];
 	};
 	skus: SKU[];
 	thumbnail: string;
