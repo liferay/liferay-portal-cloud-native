@@ -163,8 +163,8 @@ public class ObjectEntryFolderResourceTest
 
 		AssertUtils.assertFailure(
 			Problem.ProblemException.class,
-			"Can not set the parent entry folder ID of object entry folder " +
-				postObjectEntryFolder3.getId() + " to itself",
+			"Object entry folder " + postObjectEntryFolder3.getId() +
+				" cannot be its own parent",
 			() -> {
 				postObjectEntryFolder3.setParentObjectEntryFolderId(
 					postObjectEntryFolder3.getId());

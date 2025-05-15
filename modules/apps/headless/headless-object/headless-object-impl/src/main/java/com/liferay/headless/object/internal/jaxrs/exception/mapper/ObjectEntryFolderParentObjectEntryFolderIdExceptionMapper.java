@@ -5,7 +5,7 @@
 
 package com.liferay.headless.object.internal.jaxrs.exception.mapper;
 
-import com.liferay.object.exception.ObjectEntryFolderParentObjectEntryFolderException;
+import com.liferay.object.exception.ObjectEntryFolderParentObjectEntryFolderIdException;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
@@ -20,20 +20,20 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"osgi.jaxrs.application.select=(osgi.jaxrs.name=Liferay.Headless.Object)",
 		"osgi.jaxrs.extension=true",
-		"osgi.jaxrs.name=Liferay.Headless.Object.ObjectEntryFolderParentObjectEntryFolderExceptionMapper"
+		"osgi.jaxrs.name=Liferay.Headless.Object.ObjectEntryFolderParentObjectEntryFolderIdExceptionMapper"
 	},
 	service = ExceptionMapper.class
 )
-public class ObjectEntryFolderParentObjectEntryFolderExceptionMapper
+public class ObjectEntryFolderParentObjectEntryFolderIdExceptionMapper
 	extends BaseExceptionMapper
-		<ObjectEntryFolderParentObjectEntryFolderException> {
+		<ObjectEntryFolderParentObjectEntryFolderIdException> {
 
 	@Override
 	protected Problem getProblem(
-		ObjectEntryFolderParentObjectEntryFolderException
-			objectEntryFolderParentObjectEntryFolderException) {
+		ObjectEntryFolderParentObjectEntryFolderIdException
+			objectEntryFolderParentObjectEntryFolderIdException) {
 
-		return new Problem(objectEntryFolderParentObjectEntryFolderException);
+		return new Problem(objectEntryFolderParentObjectEntryFolderIdException);
 	}
 
 }

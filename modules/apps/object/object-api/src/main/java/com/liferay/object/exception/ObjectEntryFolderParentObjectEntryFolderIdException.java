@@ -10,23 +10,23 @@ import com.liferay.portal.kernel.exception.PortalException;
 /**
  * @author Marco Leo
  */
-public class ObjectEntryFolderParentObjectEntryFolderException
+public class ObjectEntryFolderParentObjectEntryFolderIdException
 	extends PortalException {
 
-	public ObjectEntryFolderParentObjectEntryFolderException() {
+	public ObjectEntryFolderParentObjectEntryFolderIdException() {
 	}
 
-	public ObjectEntryFolderParentObjectEntryFolderException(String msg) {
+	public ObjectEntryFolderParentObjectEntryFolderIdException(String msg) {
 		super(msg);
 	}
 
-	public ObjectEntryFolderParentObjectEntryFolderException(
+	public ObjectEntryFolderParentObjectEntryFolderIdException(
 		String msg, Throwable throwable) {
 
 		super(msg, throwable);
 	}
 
-	public ObjectEntryFolderParentObjectEntryFolderException(
+	public ObjectEntryFolderParentObjectEntryFolderIdException(
 		Throwable throwable) {
 
 		super(throwable);

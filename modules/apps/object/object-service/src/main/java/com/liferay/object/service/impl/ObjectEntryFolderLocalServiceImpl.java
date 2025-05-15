@@ -11,7 +11,7 @@ import com.liferay.object.constants.ObjectEntryFolderConstants;
 import com.liferay.object.entry.folder.util.ObjectEntryFolderThreadLocal;
 import com.liferay.object.exception.DuplicateObjectEntryFolderExternalReferenceCodeException;
 import com.liferay.object.exception.ObjectEntryFolderNameException;
-import com.liferay.object.exception.ObjectEntryFolderParentObjectEntryFolderException;
+import com.liferay.object.exception.ObjectEntryFolderParentObjectEntryFolderIdException;
 import com.liferay.object.exception.ObjectEntryFolderScopeException;
 import com.liferay.object.exception.RequiredObjectEntryFolderException;
 import com.liferay.object.model.ObjectEntry;
@@ -408,7 +408,7 @@ public class ObjectEntryFolderLocalServiceImpl
 		}
 
 		if (objectEntryFolderId == parentObjectEntryFolderId) {
-			throw new ObjectEntryFolderParentObjectEntryFolderException(
+			throw new ObjectEntryFolderParentObjectEntryFolderIdException(
 				StringBundler.concat(
 					"Object entry folder ", objectEntryFolderId,
 					" cannot be its own parent"));
