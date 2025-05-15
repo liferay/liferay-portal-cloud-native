@@ -17,8 +17,8 @@ CalendarNotificationTemplate calendarNotificationTemplate = CalendarNotification
 
 long calendarNotificationTemplateId = BeanPropertiesUtil.getLong(calendarNotificationTemplate, "calendarNotificationTemplateId");
 
-String fromAddress = NotificationUtil.getTemplatePropertyValue(calendarNotificationTemplate, CalendarNotificationTemplateConstants.PROPERTY_FROM_ADDRESS, PrefsPropsUtil.getString(PropsKeys.ADMIN_EMAIL_FROM_ADDRESS));
 String fromName = NotificationUtil.getTemplatePropertyValue(calendarNotificationTemplate, CalendarNotificationTemplateConstants.PROPERTY_FROM_NAME, PrefsPropsUtil.getString(PropsKeys.ADMIN_EMAIL_FROM_NAME));
+String fromAddress = NotificationUtil.getTemplatePropertyValue(calendarNotificationTemplate, CalendarNotificationTemplateConstants.PROPERTY_FROM_ADDRESS, PrefsPropsUtil.getString(PropsKeys.ADMIN_EMAIL_FROM_ADDRESS));
 String body = BeanPropertiesUtil.getString(calendarNotificationTemplate, "body", NotificationUtil.getDefaultTemplate(notificationType, notificationTemplateType, NotificationField.BODY));
 %>
 
