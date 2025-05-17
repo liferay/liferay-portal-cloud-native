@@ -221,6 +221,15 @@ public class CompanyLocalServiceTest {
 
 	@After
 	public void tearDown() throws Exception {
+		List<ClassName> classNames = ListUtil.remove(
+			_classNameLocalService.getClassNames(
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS),
+			_classNames);
+
+		for (ClassName className : classNames) {
+			_classNameLocalService.deleteClassName(className);
+		}
+
 		resetBackgroundTaskThreadLocal();
 
 		for (ServiceRegistration<?> serviceRegistration :
@@ -230,8 +239,6 @@ public class CompanyLocalServiceTest {
 		}
 
 		_serviceRegistrations.clear();
-
-		deleteClassNames();
 	}
 
 	@Test
@@ -1411,17 +1418,6 @@ public class CompanyLocalServiceTest {
 			LocaleUtil.getDefault(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), new long[] {groupId},
 			serviceContext);
-	}
-
-	protected void deleteClassNames() {
-		List<ClassName> classNames = ListUtil.remove(
-			_classNameLocalService.getClassNames(
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS),
-			_classNames);
-
-		for (ClassName className : classNames) {
-			_classNameLocalService.deleteClassName(className);
-		}
 	}
 
 	protected ServiceContext getServiceContext(long companyId) {
