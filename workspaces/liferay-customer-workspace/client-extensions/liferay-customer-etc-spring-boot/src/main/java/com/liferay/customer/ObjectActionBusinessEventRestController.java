@@ -57,11 +57,13 @@ public class ObjectActionBusinessEventRestController
 				jwt, businessEvent.getAccountExternalReferenceCode(),
 				ActionKeys.UPDATE);
 
-			String objectActionTriggerKey = _getObjectActionTriggerKey(jsonObject);
+			String objectActionTriggerKey = _getObjectActionTriggerKey(
+				jsonObject);
 
-			_createBusinessEventVersion(jwt, objectActionTriggerKey, businessEvent);
+			_createBusinessEventVersion(
+				jwt, businessEvent, objectActionTriggerKey);
 
-			_sendNotification(objectActionTriggerKey, businessEvent);
+			_sendNotification(businessEvent, objectActionTriggerKey);
 		}
 		catch (Exception exception) {
 			_log.error(exception, exception);
@@ -74,14 +76,15 @@ public class ObjectActionBusinessEventRestController
 	}
 
 	private void _createBusinessEventVersion(
-			Jwt jwt, String objectActionTriggerKey, BusinessEvent businessEvent)
+			Jwt jwt, BusinessEvent businessEvent, String objectActionTriggerKey)
 		throws Exception {
 
 		JSONObject businessEventVersionJSONObject = new JSONObject(
 		).put(
-			"change", _getChangeJSONObject(objectActionTriggerKey, businessEvent)
+			"change",
+			_getChangeJSONObject(businessEvent, objectActionTriggerKey)
 		).put(
-			"comment", _getComment(objectActionTriggerKey, businessEvent)
+			"comment", _getComment(businessEvent, objectActionTriggerKey)
 		).put(
 			"r_accountEntryToBusinessEventVersions_accountEntryId",
 			businessEvent.getAccountEntryId()
@@ -106,25 +109,13 @@ public class ObjectActionBusinessEventRestController
 		}
 	}
 
-	private String _getObjectActionTriggerKey(JSONObject jsonObject) throws Exception {
-		String objectActionTriggerKey = jsonObject.getString("objectActionTriggerKey");
-
-		if (!StringUtil.equals(objectActionTriggerKey, "onAfterAdd") &&
-			!StringUtil.equals(objectActionTriggerKey, "onAfterUpdate")) {
-
-			throw new Exception("Invalid object objectActionTriggerKey trigger key: " + objectActionTriggerKey);
-		}
-
-		return objectActionTriggerKey;
-	}
-
 	private String _getAuthorization() {
 		return _liferayOAuth2AccessTokenManager.getAuthorization(
 			"liferay-customer-etc-spring-boot-oahs");
 	}
 
 	private JSONObject _getChangeJSONObject(
-		String objectActionTriggerKey, BusinessEvent businessEvent) {
+		BusinessEvent businessEvent, String objectActionTriggerKey) {
 
 		if (StringUtil.equals(objectActionTriggerKey, "onAfterAdd")) {
 			return new JSONObject(
@@ -161,7 +152,9 @@ public class ObjectActionBusinessEventRestController
 		);
 	}
 
-	private String _getComment(String objectActionTriggerKey, BusinessEvent businessEvent) {
+	private String _getComment(
+		BusinessEvent businessEvent, String objectActionTriggerKey) {
+
 		if (StringUtil.equals(objectActionTriggerKey, "onAfterAdd")) {
 			return "New business event has been created.";
 		}
@@ -189,7 +182,7 @@ public class ObjectActionBusinessEventRestController
 	}
 
 	private JSONObject _getNotificationTemplateJSONObject(
-			String objectActionTriggerKey, BusinessEvent businessEvent)
+			BusinessEvent businessEvent, String objectActionTriggerKey)
 		throws Exception {
 
 		String externalReferenceCode = null;
@@ -228,6 +221,23 @@ public class ObjectActionBusinessEventRestController
 		}
 
 		return notificationTemplateJSONObject;
+	}
+
+	private String _getObjectActionTriggerKey(JSONObject jsonObject)
+		throws Exception {
+
+		String objectActionTriggerKey = jsonObject.getString(
+			"objectActionTriggerKey");
+
+		if (!StringUtil.equals(objectActionTriggerKey, "onAfterAdd") &&
+			!StringUtil.equals(objectActionTriggerKey, "onAfterUpdate")) {
+
+			throw new Exception(
+				"Invalid object objectActionTriggerKey trigger key: " +
+					objectActionTriggerKey);
+		}
+
+		return objectActionTriggerKey;
 	}
 
 	private Map<String, String> _getPlaceholderValuesMap(
@@ -356,11 +366,13 @@ public class ObjectActionBusinessEventRestController
 		return replacedEmailField;
 	}
 
-	private void _sendNotification(String objectActionTriggerKey, BusinessEvent businessEvent)
+	private void _sendNotification(
+			BusinessEvent businessEvent, String objectActionTriggerKey)
 		throws Exception {
 
 		JSONObject notificationTemplateJSONObject =
-			_getNotificationTemplateJSONObject(objectActionTriggerKey, businessEvent);
+			_getNotificationTemplateJSONObject(
+				businessEvent, objectActionTriggerKey);
 
 		JSONObject notificationTemplateBodyJSONObject =
 			notificationTemplateJSONObject.getJSONObject("body");
