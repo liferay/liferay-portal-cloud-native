@@ -237,7 +237,7 @@ public class ObjectActionBusinessEventRestController
 		return objectActionTriggerKey;
 	}
 
-	private Map<String, String> _getPlaceholderValuesMap(
+	private Map<String, String> _getPlaceholderValues(
 		BusinessEvent businessEvent, JSONObject koroneikiAccountJSONObject) {
 
 		String formattedComment = "";
@@ -349,12 +349,12 @@ public class ObjectActionBusinessEventRestController
 	}
 
 	private String _replaceEmailPlaceholders(
-		String emailField, Map<String, String> placeholderValuesMap) {
+		String emailField, Map<String, String> placeholderValues) {
 
 		String replacedEmailField = emailField;
 
 		for (Map.Entry<String, String> entry :
-				placeholderValuesMap.entrySet()) {
+				placeholderValues.entrySet()) {
 
 			replacedEmailField = StringUtil.replace(
 				replacedEmailField, entry.getKey(), entry.getValue());
@@ -379,7 +379,7 @@ public class ObjectActionBusinessEventRestController
 		JSONObject koroneikiAccountJSONObject = _getKoroneikiAccountJSONObject(
 			businessEvent.getAccountExternalReferenceCode());
 
-		Map<String, String> placeholderValuesMap = _getPlaceholderValuesMap(
+		Map<String, String> placeholderValues = _getPlaceholderValues(
 			businessEvent, koroneikiAccountJSONObject);
 
 		post(
@@ -389,7 +389,7 @@ public class ObjectActionBusinessEventRestController
 				"body",
 				_replaceEmailPlaceholders(
 					notificationTemplateBodyJSONObject.getString("en_US"),
-					placeholderValuesMap)
+					placeholderValues)
 			).put(
 				"recipients",
 				_parseRecipientsJSONArray(
@@ -399,7 +399,7 @@ public class ObjectActionBusinessEventRestController
 				"subject",
 				_replaceEmailPlaceholders(
 					notificationTemplateSubjectJSONObject.getString("en_US"),
-					placeholderValuesMap)
+					placeholderValues)
 			).put(
 				"type", "email"
 			).toString(),
