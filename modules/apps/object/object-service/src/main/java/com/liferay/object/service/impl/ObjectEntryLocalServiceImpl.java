@@ -4590,7 +4590,7 @@ public class ObjectEntryLocalServiceImpl
 					objectField.getName() + "\"";
 
 			if (!partialUpdate) {
-				logMessage += ". The field is set as null";
+				logMessage += ". The field is set as null.";
 			}
 
 			_log.debug(logMessage);
