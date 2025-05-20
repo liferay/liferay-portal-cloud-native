@@ -50,15 +50,15 @@ public class SpacesSectionDisplayContext {
 		return Page.of(
 			assetLibrariesPage.getActions(),
 			_getAssetLibraries(
+				assetLibrariesPage,
 				assetLibraryResource.getAssetLibrariesPinnedByMePage(
-					Pagination.of(1, 5)),
-				assetLibrariesPage),
+					Pagination.of(1, 5))),
 			Pagination.of(1, 5), assetLibrariesPage.getTotalCount());
 	}
 
 	private Collection<AssetLibrary> _getAssetLibraries(
-		Page<AssetLibrary> pinnedByMeAssetLibrariesPage,
-		Page<AssetLibrary> assetLibrariesPage) {
+		Page<AssetLibrary> assetLibrariesPage,
+		Page<AssetLibrary> pinnedByMeAssetLibrariesPage) {
 
 		if (assetLibrariesPage.getTotalCount() == 0) {
 			Collections.emptyList();
