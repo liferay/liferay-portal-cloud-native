@@ -57,11 +57,11 @@ public class ObjectActionBusinessEventRestController
 				jwt, businessEvent.getAccountExternalReferenceCode(),
 				ActionKeys.UPDATE);
 
-			String action = _getAction(jsonObject);
+			String objectActionTriggerKey = _getObjectActionTriggerKey(jsonObject);
 
-			_createBusinessEventVersion(jwt, action, businessEvent);
+			_createBusinessEventVersion(jwt, objectActionTriggerKey, businessEvent);
 
-			_sendNotification(action, businessEvent);
+			_sendNotification(objectActionTriggerKey, businessEvent);
 		}
 		catch (Exception exception) {
 			_log.error(exception, exception);
@@ -74,14 +74,14 @@ public class ObjectActionBusinessEventRestController
 	}
 
 	private void _createBusinessEventVersion(
-			Jwt jwt, String action, BusinessEvent businessEvent)
+			Jwt jwt, String objectActionTriggerKey, BusinessEvent businessEvent)
 		throws Exception {
 
 		JSONObject businessEventVersionJSONObject = new JSONObject(
 		).put(
-			"change", _getChangeJSONObject(action, businessEvent)
+			"change", _getChangeJSONObject(objectActionTriggerKey, businessEvent)
 		).put(
-			"comment", _getComment(action, businessEvent)
+			"comment", _getComment(objectActionTriggerKey, businessEvent)
 		).put(
 			"r_accountEntryToBusinessEventVersions_accountEntryId",
 			businessEvent.getAccountEntryId()
@@ -106,16 +106,16 @@ public class ObjectActionBusinessEventRestController
 		}
 	}
 
-	private String _getAction(JSONObject jsonObject) throws Exception {
-		String action = jsonObject.getString("objectActionTriggerKey");
+	private String _getObjectActionTriggerKey(JSONObject jsonObject) throws Exception {
+		String objectActionTriggerKey = jsonObject.getString("objectActionTriggerKey");
 
-		if (!StringUtil.equals(action, "onAfterAdd") &&
-			!StringUtil.equals(action, "onAfterUpdate")) {
+		if (!StringUtil.equals(objectActionTriggerKey, "onAfterAdd") &&
+			!StringUtil.equals(objectActionTriggerKey, "onAfterUpdate")) {
 
-			throw new Exception("Invalid action: " + action);
+			throw new Exception("Invalid object objectActionTriggerKey trigger key: " + objectActionTriggerKey);
 		}
 
-		return action;
+		return objectActionTriggerKey;
 	}
 
 	private String _getAuthorization() {
@@ -124,9 +124,9 @@ public class ObjectActionBusinessEventRestController
 	}
 
 	private JSONObject _getChangeJSONObject(
-		String action, BusinessEvent businessEvent) {
+		String objectActionTriggerKey, BusinessEvent businessEvent) {
 
-		if (StringUtil.equals(action, "onAfterAdd")) {
+		if (StringUtil.equals(objectActionTriggerKey, "onAfterAdd")) {
 			return new JSONObject(
 			).put(
 				"key", "created"
@@ -161,8 +161,8 @@ public class ObjectActionBusinessEventRestController
 		);
 	}
 
-	private String _getComment(String action, BusinessEvent businessEvent) {
-		if (StringUtil.equals(action, "onAfterAdd")) {
+	private String _getComment(String objectActionTriggerKey, BusinessEvent businessEvent) {
+		if (StringUtil.equals(objectActionTriggerKey, "onAfterAdd")) {
 			return "New business event has been created.";
 		}
 
@@ -189,12 +189,12 @@ public class ObjectActionBusinessEventRestController
 	}
 
 	private JSONObject _getNotificationTemplateJSONObject(
-			String action, BusinessEvent businessEvent)
+			String objectActionTriggerKey, BusinessEvent businessEvent)
 		throws Exception {
 
 		String externalReferenceCode = null;
 
-		if (StringUtil.equals(action, "onAfterAdd")) {
+		if (StringUtil.equals(objectActionTriggerKey, "onAfterAdd")) {
 			externalReferenceCode =
 				NotificationTemplateConstants.
 					EXTERNAL_REFERENCE_CODE_CREATED_BUSINESS_EVENTS;
@@ -356,11 +356,11 @@ public class ObjectActionBusinessEventRestController
 		return replacedEmailField;
 	}
 
-	private void _sendNotification(String action, BusinessEvent businessEvent)
+	private void _sendNotification(String objectActionTriggerKey, BusinessEvent businessEvent)
 		throws Exception {
 
 		JSONObject notificationTemplateJSONObject =
-			_getNotificationTemplateJSONObject(action, businessEvent);
+			_getNotificationTemplateJSONObject(objectActionTriggerKey, businessEvent);
 
 		JSONObject notificationTemplateBodyJSONObject =
 			notificationTemplateJSONObject.getJSONObject("body");
