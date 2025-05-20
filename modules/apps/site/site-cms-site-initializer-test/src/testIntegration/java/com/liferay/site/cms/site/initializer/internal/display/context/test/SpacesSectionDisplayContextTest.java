@@ -90,11 +90,10 @@ public class SpacesSectionDisplayContextTest
 
 		Assert.assertEquals(
 			items.toString(), originalItems.size() + 2, items.size());
-
-		Assert.assertEquals(originalTotalCount + 2, page.getTotalCount());
-
 		Assert.assertTrue(items.contains(assetLibrary1));
 		Assert.assertTrue(items.contains(assetLibrary2));
+
+		Assert.assertEquals(originalTotalCount + 2, page.getTotalCount());
 
 		_addAssetLibrary();
 		_addAssetLibrary();
@@ -121,11 +120,10 @@ public class SpacesSectionDisplayContextTest
 		items = page.getItems();
 
 		Assert.assertEquals(items.toString(), 5, items.size());
-
-		Assert.assertEquals(originalTotalCount + 8, page.getTotalCount());
-
 		Assert.assertTrue(items.contains(pinnedByMeAssetLibrary1));
 		Assert.assertTrue(items.contains(pinnedByMeAssetLibrary2));
+
+		Assert.assertEquals(originalTotalCount + 8, page.getTotalCount());
 
 		AssetLibrary pinnedByMeAssetLibrary3 = _addPinnedByMeAssetLibrary();
 		AssetLibrary pinnedByMeAssetLibrary4 = _addPinnedByMeAssetLibrary();
@@ -248,12 +246,11 @@ public class SpacesSectionDisplayContextTest
 		AssetLibraryResource.Builder builder =
 			_assetLibraryResourceFactory.create();
 
-		AssetLibraryResource userAssetLibraryResource = builder.user(
+		AssetLibraryResource assetLibraryResource = builder.user(
 			user
 		).build();
 
-		return userAssetLibraryResource.putAssetLibraryPin(
-			depotEntry.getGroupId());
+		return assetLibraryResource.putAssetLibraryPin(depotEntry.getGroupId());
 	}
 
 	private Object _getSpacesSectionDisplayContext(
