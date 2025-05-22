@@ -80,7 +80,7 @@ public class RecaptchaValidationRestController extends BaseRestController {
 
 	private final RestTemplate _restTemplate;
 
-	@Value("${liferay.recaptcha.etc.spring.boot.secret}")
+	@Value("${liferay.recaptcha.secret}")
 	private String _secret;
 
 }

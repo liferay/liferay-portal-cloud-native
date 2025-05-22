@@ -125,10 +125,10 @@ public class TestrayCommandLineRunner
 	@Value("${liferay.oauth.application.external.reference.codes}")
 	private String _liferayOAuthApplicationExternalReferenceCodes;
 
-	@Value("${liferay.testray.etc.cron.max.days.archived}")
+	@Value("${liferay.testray.max.days.archived}")
 	private Long _maxDaysArchived;
 
-	@Value("${liferay.testray.etc.cron.max.days.opened}")
+	@Value("${liferay.testray.max.days.opened}")
 	private Long _maxDaysOpened;
 
 }
