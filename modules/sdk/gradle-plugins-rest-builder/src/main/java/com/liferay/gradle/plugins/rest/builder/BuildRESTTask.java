@@ -136,7 +136,7 @@ public class BuildRESTTask extends JavaExec {
 
 	private boolean _isJakartaEnabled() {
 
-		// TODO Dev Tools needs to decide here based on the workspace / branch
+		// TODO Return a value based on the branch or workspace
 
 		return false;
 	}
