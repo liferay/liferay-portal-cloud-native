@@ -175,14 +175,13 @@ public class JournalArticleSitemapURLProvider implements SitemapURLProvider {
 		if ((layoutPageTemplateEntry != null) &&
 			layoutPageTemplateEntry.isDefaultTemplate()) {
 
-			long[] groupIds =
-				_siteConnectedGroupGroupProvider.
-					getCurrentAndAncestorSiteAndDepotGroupIds(
-						layout.getGroupId());
-
 			resourcePrimKeys = new ArrayList<>(resourcePrimKeys);
 
-			for (long groupId : groupIds) {
+			for (long groupId :
+					_siteConnectedGroupGroupProvider.
+						getCurrentAndAncestorSiteAndDepotGroupIds(
+							layout.getGroupId())) {
+
 				if (groupId == layout.getGroupId()) {
 					resourcePrimKeys.addAll(
 						_journalArticleLocalService.
