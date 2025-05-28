@@ -73,8 +73,6 @@ public class RegionLocalServiceTest {
 			_regionLocalService.getRegionLocalization(
 				region.getRegionId(), languageId));
 
-		// With existing region code
-
 		try {
 			_addRegion(
 				true, region.getCountryId(), RandomTestUtil.randomString(),
