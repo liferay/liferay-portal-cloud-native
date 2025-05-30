@@ -775,7 +775,7 @@ public class CommerceSiteInitializerImpl implements CommerceSiteInitializer {
 
 		jsonObject.put("siteGroupId", serviceContext.getScopeGroupId());
 
-		Channel channel = Channel.toDTO(String.valueOf(jsonObject));
+		Channel channel = Channel.toDTO(jsonObject.toString());
 
 		if (channel == null) {
 			_log.error(
