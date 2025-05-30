@@ -1473,24 +1473,23 @@ public class ObjectDefinitionLocalServiceImpl
 			dbTableName, modifiable, name, system, user.getCompanyId(),
 			shortName);
 
+		storageType = Validator.isNotNull(storageType) ? storageType :
+			ObjectDefinitionConstants.STORAGE_TYPE_DEFAULT;
+
+		friendlyURLSeparator = _getFriendlyURLSeparator(
+			friendlyURLSeparator, modifiable, name, storageType, system);
+
 		pkObjectFieldName = _getPKObjectFieldName(
 			pkObjectFieldName, modifiable, system, shortName);
 
 		pkObjectFieldDBColumnName = _getPKObjectFieldDBColumnName(
 			pkObjectFieldDBColumnName, pkObjectFieldName, modifiable, system);
 
-		storageType = Validator.isNotNull(storageType) ? storageType :
-			ObjectDefinitionConstants.STORAGE_TYPE_DEFAULT;
-
 		_validateExternalReferenceCode(externalReferenceCode, system);
 		_validateClassName(
 			0, user.getCompanyId(), className, modifiable, system);
 		_validateEnableComments(
 			enableComments, modifiable, storageType, system);
-
-		friendlyURLSeparator = _getFriendlyURLSeparator(
-			friendlyURLSeparator, modifiable, name, storageType, system);
-
 		_validateEnableFriendlyURLCustomization(
 			enableFriendlyURLCustomization, friendlyURLSeparator, modifiable,
 			storageType, system);
