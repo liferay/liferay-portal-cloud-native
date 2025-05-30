@@ -137,16 +137,15 @@ public class FriendlyURLSeparatorSaveCompanyConfigurationMVCActionCommand
 						StringPool.SLASH + friendlyURLSeparator +
 							StringPool.SLASH;
 
-					String errorMessage = FriendlyURLSeparatorUtil.validate(
+					String message = FriendlyURLSeparatorUtil.validate(
 						themeDisplay.getCompanyId(),
 						friendlyURLResolver.getKey(), friendlyURLSeparator,
 						friendlyURLSeparators, _layoutLocalServiceHelper,
 						themeDisplay.getLocale());
 
-					if (errorMessage != null) {
+					if (message != null) {
 						fieldsValidationErrorsJSONObject.put(
-							namespace + friendlyURLResolver.getKey(),
-							errorMessage);
+							namespace + friendlyURLResolver.getKey(), message);
 
 						return null;
 					}
