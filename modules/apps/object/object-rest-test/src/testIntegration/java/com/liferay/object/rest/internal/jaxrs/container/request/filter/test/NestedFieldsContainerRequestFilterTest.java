@@ -70,9 +70,6 @@ public class NestedFieldsContainerRequestFilterTest {
 		Bundle objectRestImplBundle = BundleUtil.getBundle(
 			bundle.getBundleContext(), "com.liferay.object.rest.impl");
 
-		Assert.assertNotNull(
-			"Unable to find object-rest-impl bundle", objectRestImplBundle);
-
 		Class<?> clazz = objectRestImplBundle.loadClass(
 			"com.liferay.object.rest.internal.jaxrs.container.request.filter." +
 				"NestedFieldsContainerRequestFilter");
