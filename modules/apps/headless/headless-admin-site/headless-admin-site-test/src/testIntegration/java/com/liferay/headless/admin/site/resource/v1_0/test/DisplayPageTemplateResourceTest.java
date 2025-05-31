@@ -295,6 +295,7 @@ public class DisplayPageTemplateResourceTest
 
 		expectedDisplayPageTemplate.setContentTypeReference(
 			_getClassSubtypeReference(className));
+		expectedDisplayPageTemplate.setMarkedAsDefault(Boolean.FALSE);
 		expectedDisplayPageTemplate.setParentFolder(
 			new DisplayPageTemplateFolder() {
 				{
@@ -303,7 +304,6 @@ public class DisplayPageTemplateResourceTest
 							testGroup.getGroupId()));
 				}
 			});
-		expectedDisplayPageTemplate.setMarkedAsDefault(Boolean.FALSE);
 
 		_testPatchSiteSiteByExternalReferenceCodeDisplayPageTemplate(
 			expectedDisplayPageTemplate,
