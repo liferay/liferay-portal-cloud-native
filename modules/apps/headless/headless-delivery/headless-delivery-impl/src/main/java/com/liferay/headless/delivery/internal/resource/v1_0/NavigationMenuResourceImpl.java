@@ -778,8 +778,8 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 						_siteNavigationMenuItemService.
 							updateSiteNavigationMenuItem(
 								navigationMenuItemId,
-								navigationMenuItem.getTypeSettings(
-								).toString(),
+								String.valueOf(
+									navigationMenuItem.getTypeSettings()),
 								ServiceContextBuilder.create(
 									siteId, contextHttpServletRequest, null
 								).expandoBridgeAttributes(
