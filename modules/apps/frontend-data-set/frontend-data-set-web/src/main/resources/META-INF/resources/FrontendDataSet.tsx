@@ -766,8 +766,10 @@ const FrontendDataSet = ({
 							Liferay.Language.get('no-results-found')
 						}
 					>
-						{creationMenu && (
+						{creationMenu ? (
 							<CreationMenu {...creationMenu} inEmptyState />
+						) : (
+							<></>
 						)}
 					</ClayEmptyState>
 				)}
