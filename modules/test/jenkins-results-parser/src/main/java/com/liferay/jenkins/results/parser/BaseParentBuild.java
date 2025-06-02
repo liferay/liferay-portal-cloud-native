@@ -472,7 +472,7 @@ public abstract class BaseParentBuild extends BaseBuild implements ParentBuild {
 		}
 		catch (IOException ioException) {
 			throw new RuntimeException(
-				"Unable to parse property build.thread.spawn.frequency",
+				"Unable to parse property \"build.thread.spawn.frequency\"",
 				ioException);
 		}
 
