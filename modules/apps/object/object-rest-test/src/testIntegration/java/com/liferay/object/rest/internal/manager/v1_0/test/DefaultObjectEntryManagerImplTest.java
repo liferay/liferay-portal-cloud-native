@@ -2201,7 +2201,7 @@ public class DefaultObjectEntryManagerImplTest
 
 	@FeatureFlag("LPD-17564")
 	@Test
-	public void testAddObjectEntryWithScheduleObjectFields() throws Exception {
+	public void testAddObjectEntryWithScheduledObjectFields() throws Exception {
 		ObjectDefinition objectDefinition = _createObjectDefinition(
 			Collections.singletonList(
 				new TextObjectFieldBuilder(
@@ -6089,7 +6089,7 @@ public class DefaultObjectEntryManagerImplTest
 
 	@FeatureFlag("LPD-17564")
 	@Test
-	public void testUpdateObjectEntryWithScheduleObjectFields()
+	public void testUpdateObjectEntryWithScheduledObjectFields()
 		throws Exception {
 
 		ObjectDefinition objectDefinition = _createObjectDefinition(
