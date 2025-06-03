@@ -215,22 +215,22 @@ public class OverviewResourceTest extends BaseOverviewResourceTestCase {
 				"file", String.valueOf(_dlFileEntry.getFileEntryId())
 			).build());
 
-		Overview fileOverview = overviewResource.getFileOverview(null, 7, null);
+		Trend positiveTrend = new Trend();
 
-		Trend trend = new Trend();
+		positiveTrend.setClassification(Trend.Classification.POSITIVE);
+		positiveTrend.setPercentage(100.0);
 
-		trend.setClassification(Trend.Classification.POSITIVE);
-		trend.setPercentage(100.0);
-
-		Overview expectedFileOverview = new Overview();
-
-		expectedFileOverview.setCategoriesCount(0L);
-		expectedFileOverview.setTagsCount(0L);
-		expectedFileOverview.setTotalCount(1L);
-		expectedFileOverview.setTrend(trend);
-		expectedFileOverview.setVocabulariesCount(0L);
-
-		Assert.assertEquals(expectedFileOverview, fileOverview);
+		Assert.assertEquals(
+			new Overview() {
+				{
+					categoriesCount = 0L;
+					tagsCount = 0L;
+					totalCount = 1L;
+					trend = positiveTrend;
+					vocabulariesCount = 0L;
+				}
+			},
+			overviewResource.getFileOverview(null, 7, null));
 	}
 
 	private void _setUpProcessedFile(Bundle bundle, String processedFileName) {
