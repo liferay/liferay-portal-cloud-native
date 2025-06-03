@@ -233,13 +233,13 @@ public class OverviewResourceTest extends BaseOverviewResourceTestCase {
 			overviewResource.getFileOverview(null, 7, null));
 	}
 
-	private void _setUpProcessedFile(Bundle bundle, String processedFileName) {
-		File processedFile = bundle.getDataFile(
-			".com.liferay.headless.builder.internal.batch." +
-				processedFileName + ".batch.engine.data.json.0.processed");
+	private void _setUpProcessedFile(Bundle bundle, String fileName) {
+		File file = bundle.getDataFile(
+			".com.liferay.headless.builder.internal.batch." + fileName +
+				".batch.engine.data.json.0.processed");
 
-		if ((processedFile != null) && processedFile.exists()) {
-			processedFile.delete();
+		if ((file != null) && file.exists()) {
+			file.delete();
 		}
 	}
 
