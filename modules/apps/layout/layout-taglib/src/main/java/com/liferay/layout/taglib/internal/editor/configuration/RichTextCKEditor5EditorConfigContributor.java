@@ -32,16 +32,15 @@ public class RichTextCKEditor5EditorConfigContributor
 		ThemeDisplay themeDisplay,
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory) {
 
-		String label = GetterUtil.getString(
-			inputEditorTaglibAttributes.get(
-				"liferay-ui:input-editor:placeholder"));
-		String name = GetterUtil.getString(
-			inputEditorTaglibAttributes.get("liferay-ui:input-editor:name"));
-
 		jsonObject.put(
-			"label", label
+			"label",
+			GetterUtil.getString(
+				inputEditorTaglibAttributes.get(
+					"liferay-ui:input-editor:placeholder"))
 		).put(
-			"name", name
+			"name",
+			GetterUtil.getString(
+				inputEditorTaglibAttributes.get("liferay-ui:input-editor:name"))
 		);
 	}
 
