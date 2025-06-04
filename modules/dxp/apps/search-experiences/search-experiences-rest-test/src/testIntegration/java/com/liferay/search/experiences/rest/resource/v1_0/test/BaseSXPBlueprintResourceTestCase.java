@@ -209,7 +209,7 @@ public abstract class BaseSXPBlueprintResourceTestCase {
 
 		SXPBlueprint sxpBlueprint = randomSXPBlueprint();
 
-		sxpBlueprint.setCollectionProviderSubTypeName(regex);
+		sxpBlueprint.setCollectionProviderSubtypeName(regex);
 		sxpBlueprint.setCollectionProviderTypeName(regex);
 		sxpBlueprint.setDescription(regex);
 		sxpBlueprint.setExternalReferenceCode(regex);
@@ -225,7 +225,7 @@ public abstract class BaseSXPBlueprintResourceTestCase {
 		sxpBlueprint = SXPBlueprintSerDes.toDTO(json);
 
 		Assert.assertEquals(
-			regex, sxpBlueprint.getCollectionProviderSubTypeName());
+			regex, sxpBlueprint.getCollectionProviderSubtypeName());
 		Assert.assertEquals(
 			regex, sxpBlueprint.getCollectionProviderTypeName());
 		Assert.assertEquals(regex, sxpBlueprint.getDescription());
@@ -1443,10 +1443,10 @@ public abstract class BaseSXPBlueprintResourceTestCase {
 			}
 
 			if (Objects.equals(
-					"collectionProviderSubTypeName",
+					"collectionProviderSubtypeName",
 					additionalAssertFieldName)) {
 
-				if (sxpBlueprint.getCollectionProviderSubTypeName() == null) {
+				if (sxpBlueprint.getCollectionProviderSubtypeName() == null) {
 					valid = false;
 				}
 
@@ -1692,12 +1692,12 @@ public abstract class BaseSXPBlueprintResourceTestCase {
 			}
 
 			if (Objects.equals(
-					"collectionProviderSubTypeName",
+					"collectionProviderSubtypeName",
 					additionalAssertFieldName)) {
 
 				if (!Objects.deepEquals(
-						sxpBlueprint1.getCollectionProviderSubTypeName(),
-						sxpBlueprint2.getCollectionProviderSubTypeName())) {
+						sxpBlueprint1.getCollectionProviderSubtypeName(),
+						sxpBlueprint2.getCollectionProviderSubtypeName())) {
 
 					return false;
 				}
@@ -1973,8 +1973,8 @@ public abstract class BaseSXPBlueprintResourceTestCase {
 				"Invalid entity field " + entityFieldName);
 		}
 
-		if (entityFieldName.equals("collectionProviderSubTypeName")) {
-			Object object = sxpBlueprint.getCollectionProviderSubTypeName();
+		if (entityFieldName.equals("collectionProviderSubtypeName")) {
+			Object object = sxpBlueprint.getCollectionProviderSubtypeName();
 
 			String value = String.valueOf(object);
 
@@ -2469,7 +2469,7 @@ public abstract class BaseSXPBlueprintResourceTestCase {
 	protected SXPBlueprint randomSXPBlueprint() throws Exception {
 		return new SXPBlueprint() {
 			{
-				collectionProviderSubTypeName = StringUtil.toLowerCase(
+				collectionProviderSubtypeName = StringUtil.toLowerCase(
 					RandomTestUtil.randomString());
 				collectionProviderTypeName = StringUtil.toLowerCase(
 					RandomTestUtil.randomString());

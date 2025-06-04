@@ -49,30 +49,30 @@ public class SXPBlueprint implements Cloneable, Serializable {
 
 	protected Map<String, Map<String, String>> actions;
 
-	public String getCollectionProviderSubTypeName() {
-		return collectionProviderSubTypeName;
+	public String getCollectionProviderSubtypeName() {
+		return collectionProviderSubtypeName;
 	}
 
-	public void setCollectionProviderSubTypeName(
-		String collectionProviderSubTypeName) {
+	public void setCollectionProviderSubtypeName(
+		String collectionProviderSubtypeName) {
 
-		this.collectionProviderSubTypeName = collectionProviderSubTypeName;
+		this.collectionProviderSubtypeName = collectionProviderSubtypeName;
 	}
 
-	public void setCollectionProviderSubTypeName(
+	public void setCollectionProviderSubtypeName(
 		UnsafeSupplier<String, Exception>
-			collectionProviderSubTypeNameUnsafeSupplier) {
+			collectionProviderSubtypeNameUnsafeSupplier) {
 
 		try {
-			collectionProviderSubTypeName =
-				collectionProviderSubTypeNameUnsafeSupplier.get();
+			collectionProviderSubtypeName =
+				collectionProviderSubtypeNameUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	protected String collectionProviderSubTypeName;
+	protected String collectionProviderSubtypeName;
 
 	public String getCollectionProviderTypeName() {
 		return collectionProviderTypeName;

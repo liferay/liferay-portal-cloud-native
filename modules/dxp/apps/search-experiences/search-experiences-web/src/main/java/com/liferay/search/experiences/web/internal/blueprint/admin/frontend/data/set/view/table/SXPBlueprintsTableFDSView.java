@@ -52,7 +52,7 @@ public class SXPBlueprintsTableFDSView extends BaseTableFDSView {
 			).add(
 				"collectionProviderTypeName", "type"
 			).add(
-				"collectionProviderSubTypeName", "subtype"
+				"collectionProviderSubtypeName", "subtype"
 			);
 		}
 

@@ -405,7 +405,7 @@ components:
                         type: object
                     readOnly: true
                     type: object
-                collectionProviderSubTypeName:
+                collectionProviderSubtypeName:
                     type: string
                 collectionProviderTypeName:
                     type: string

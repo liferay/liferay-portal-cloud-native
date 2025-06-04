@@ -63,16 +63,16 @@ public class SXPBlueprintSerDes {
 			sb.append(_toJSON(sxpBlueprint.getActions()));
 		}
 
-		if (sxpBlueprint.getCollectionProviderSubTypeName() != null) {
+		if (sxpBlueprint.getCollectionProviderSubtypeName() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"collectionProviderSubTypeName\": ");
+			sb.append("\"collectionProviderSubtypeName\": ");
 
 			sb.append("\"");
 
-			sb.append(_escape(sxpBlueprint.getCollectionProviderSubTypeName()));
+			sb.append(_escape(sxpBlueprint.getCollectionProviderSubtypeName()));
 
 			sb.append("\"");
 		}
@@ -297,14 +297,14 @@ public class SXPBlueprintSerDes {
 			map.put("actions", String.valueOf(sxpBlueprint.getActions()));
 		}
 
-		if (sxpBlueprint.getCollectionProviderSubTypeName() == null) {
-			map.put("collectionProviderSubTypeName", null);
+		if (sxpBlueprint.getCollectionProviderSubtypeName() == null) {
+			map.put("collectionProviderSubtypeName", null);
 		}
 		else {
 			map.put(
-				"collectionProviderSubTypeName",
+				"collectionProviderSubtypeName",
 				String.valueOf(
-					sxpBlueprint.getCollectionProviderSubTypeName()));
+					sxpBlueprint.getCollectionProviderSubtypeName()));
 		}
 
 		if (sxpBlueprint.getCollectionProviderTypeName() == null) {
@@ -444,7 +444,7 @@ public class SXPBlueprintSerDes {
 				return true;
 			}
 			else if (Objects.equals(
-						jsonParserFieldName, "collectionProviderSubTypeName")) {
+						jsonParserFieldName, "collectionProviderSubtypeName")) {
 
 				return false;
 			}
@@ -510,10 +510,10 @@ public class SXPBlueprintSerDes {
 				}
 			}
 			else if (Objects.equals(
-						jsonParserFieldName, "collectionProviderSubTypeName")) {
+						jsonParserFieldName, "collectionProviderSubtypeName")) {
 
 				if (jsonParserFieldValue != null) {
-					sxpBlueprint.setCollectionProviderSubTypeName(
+					sxpBlueprint.setCollectionProviderSubtypeName(
 						(String)jsonParserFieldValue);
 				}
 			}

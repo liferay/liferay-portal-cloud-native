@@ -85,7 +85,7 @@ public class SXPBlueprintDTOConverter
 
 		return new SXPBlueprint() {
 			{
-				setCollectionProviderSubTypeName(
+				setCollectionProviderSubtypeName(
 					() -> _getSubtypeName(
 						sxpBlueprint.getCompanyId(),
 						sxpBlueprint.getConfigurationJSON(),
@@ -139,7 +139,7 @@ public class SXPBlueprintDTOConverter
 
 		return new SXPBlueprint() {
 			{
-				setCollectionProviderSubTypeName(
+				setCollectionProviderSubtypeName(
 					() -> _getSubtypeName(
 						sxpBlueprint.getCompanyId(),
 						sxpBlueprint.getConfigurationJSON(),

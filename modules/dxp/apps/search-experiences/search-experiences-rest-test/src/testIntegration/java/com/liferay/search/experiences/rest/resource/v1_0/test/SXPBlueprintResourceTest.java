@@ -134,7 +134,7 @@ public class SXPBlueprintResourceTest extends BaseSXPBlueprintResourceTestCase {
 			sxpBlueprint);
 
 		sxpBlueprint.setCollectionProviderTypeName(StringPool.BLANK);
-		sxpBlueprint.setCollectionProviderSubTypeName(StringPool.BLANK);
+		sxpBlueprint.setCollectionProviderSubtypeName(StringPool.BLANK);
 		sxpBlueprint.setCreateDate(postSXPBlueprint.getCreateDate());
 		sxpBlueprint.setExternalReferenceCode(
 			postSXPBlueprint.getExternalReferenceCode());

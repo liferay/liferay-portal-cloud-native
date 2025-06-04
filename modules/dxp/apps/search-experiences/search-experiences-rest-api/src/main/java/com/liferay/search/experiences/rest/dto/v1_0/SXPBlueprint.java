@@ -96,33 +96,33 @@ public class SXPBlueprint implements Serializable {
 	private Supplier<Map<String, Map<String, String>>> _actionsSupplier;
 
 	@io.swagger.v3.oas.annotations.media.Schema
-	public String getCollectionProviderSubTypeName() {
-		if (_collectionProviderSubTypeNameSupplier != null) {
-			collectionProviderSubTypeName =
-				_collectionProviderSubTypeNameSupplier.get();
+	public String getCollectionProviderSubtypeName() {
+		if (_collectionProviderSubtypeNameSupplier != null) {
+			collectionProviderSubtypeName =
+				_collectionProviderSubtypeNameSupplier.get();
 
-			_collectionProviderSubTypeNameSupplier = null;
+			_collectionProviderSubtypeNameSupplier = null;
 		}
 
-		return collectionProviderSubTypeName;
+		return collectionProviderSubtypeName;
 	}
 
-	public void setCollectionProviderSubTypeName(
-		String collectionProviderSubTypeName) {
+	public void setCollectionProviderSubtypeName(
+		String collectionProviderSubtypeName) {
 
-		this.collectionProviderSubTypeName = collectionProviderSubTypeName;
+		this.collectionProviderSubtypeName = collectionProviderSubtypeName;
 
-		_collectionProviderSubTypeNameSupplier = null;
+		_collectionProviderSubtypeNameSupplier = null;
 	}
 
 	@JsonIgnore
-	public void setCollectionProviderSubTypeName(
+	public void setCollectionProviderSubtypeName(
 		UnsafeSupplier<String, Exception>
-			collectionProviderSubTypeNameUnsafeSupplier) {
+			collectionProviderSubtypeNameUnsafeSupplier) {
 
-		_collectionProviderSubTypeNameSupplier = () -> {
+		_collectionProviderSubtypeNameSupplier = () -> {
 			try {
-				return collectionProviderSubTypeNameUnsafeSupplier.get();
+				return collectionProviderSubtypeNameUnsafeSupplier.get();
 			}
 			catch (RuntimeException runtimeException) {
 				throw runtimeException;
@@ -135,10 +135,10 @@ public class SXPBlueprint implements Serializable {
 
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected String collectionProviderSubTypeName;
+	protected String collectionProviderSubtypeName;
 
 	@JsonIgnore
-	private Supplier<String> _collectionProviderSubTypeNameSupplier;
+	private Supplier<String> _collectionProviderSubtypeNameSupplier;
 
 	@io.swagger.v3.oas.annotations.media.Schema
 	public String getCollectionProviderTypeName() {
@@ -765,19 +765,19 @@ public class SXPBlueprint implements Serializable {
 			sb.append(_toJSON(actions));
 		}
 
-		String collectionProviderSubTypeName =
-			getCollectionProviderSubTypeName();
+		String collectionProviderSubtypeName =
+			getCollectionProviderSubtypeName();
 
-		if (collectionProviderSubTypeName != null) {
+		if (collectionProviderSubtypeName != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"collectionProviderSubTypeName\": ");
+			sb.append("\"collectionProviderSubtypeName\": ");
 
 			sb.append("\"");
 
-			sb.append(_escape(collectionProviderSubTypeName));
+			sb.append(_escape(collectionProviderSubtypeName));
 
 			sb.append("\"");
 		}
