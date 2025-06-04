@@ -294,7 +294,7 @@ public class MarketplaceCommandLineRunner
 		if (_log.isInfoEnabled()) {
 			_log.info(
 				"There are " + accountExternalReferenceCodes.size() +
-					" accounts with Marketplace apps");
+					" projects with Marketplace apps");
 		}
 	}
 
