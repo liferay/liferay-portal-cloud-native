@@ -78,11 +78,14 @@ public class MarketplaceCommandLineRunner
 		).build();
 	}
 
-	private Page<Order> _getOrdersPage(String filter, int page, int pageSize)
+	private Page<Order> _getOrdersPage(
+			String filterString, int page, int pageSize)
 		throws Exception {
 
-		return _getOrderResource().getOrdersPage(
-			"", filter, Pagination.of(page, pageSize), "");
+		OrderResource orderResource = _getOrderResource();
+
+		return orderResource.getOrdersPage(
+			"", filterString, Pagination.of(page, pageSize), "");
 	}
 
 	private void _postTrialExpire(long orderId) throws Exception {
@@ -138,7 +141,7 @@ public class MarketplaceCommandLineRunner
 
 		if (page.getTotalCount() == 0) {
 			if (_log.isInfoEnabled()) {
-				_log.info("There are no trials in progress");
+				_log.info("There are no in progress trials");
 			}
 
 			return;
@@ -294,8 +297,8 @@ public class MarketplaceCommandLineRunner
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"Koroneiki Projects using Marketplace Apps (KPI) " +
-					koroneikiAccounts.size());
+				"There are " + koroneikiAccounts.size() +
+					" Koroneiki accounts with Marketplace apps");
 		}
 	}
 
@@ -308,7 +311,7 @@ public class MarketplaceCommandLineRunner
 
 		if (page.getTotalCount() == 0) {
 			if (_log.isInfoEnabled()) {
-				_log.info("There are no trials on hold");
+				_log.info("There are no on hold trials");
 			}
 
 			return;
@@ -391,11 +394,13 @@ public class MarketplaceCommandLineRunner
 	}
 
 	private void _updateOrder(long orderId, int orderStatus) throws Exception {
+		OrderResource orderResource = _getOrderResource();
+
 		Order order = new Order();
 
 		order.setOrderStatus(() -> orderStatus);
 
-		_getOrderResource().patchOrder(orderId, order);
+		orderResource.patchOrder(orderId, order);
 	}
 
 	private static final int _ORDER_STATUS_COMPLETED = 0;
