@@ -132,7 +132,7 @@ public class BatchEngineUnitReaderImpl implements BatchEngineUnitReader {
 				});
 		}
 
-		long overrideCompanyId = -1;
+		long bundleCompanyId = -1;
 
 		Dictionary<String, String> headers = bundle.getHeaders(
 			StringPool.BLANK);
@@ -145,7 +145,7 @@ public class BatchEngineUnitReaderImpl implements BatchEngineUnitReader {
 				Company company = _companyLocalService.getCompanyByWebId(
 					liferayVirtualInstanceId);
 
-				overrideCompanyId = company.getCompanyId();
+				bundleCompanyId = company.getCompanyId();
 			}
 			catch (PortalException portalException) {
 				_log.error(
@@ -172,7 +172,7 @@ public class BatchEngineUnitReaderImpl implements BatchEngineUnitReader {
 						setBatchEngineUnitMetaInfo(
 							_toBatchEngineUnitMetaInfo(
 								advancedBundleBatchEngineUnitImpl,
-								Arrays.asList(url), overrideCompanyId));
+								Arrays.asList(url), bundleCompanyId));
 
 					batchEngineUnits.add(advancedBundleBatchEngineUnitImpl);
 				}
@@ -186,7 +186,7 @@ public class BatchEngineUnitReaderImpl implements BatchEngineUnitReader {
 					classicBundleBatchEngineUnitImpl.setBatchEngineUnitMetaInfo(
 						_toBatchEngineUnitMetaInfo(
 							classicBundleBatchEngineUnitImpl, urls,
-							overrideCompanyId));
+							bundleCompanyId));
 
 					batchEngineUnits.add(classicBundleBatchEngineUnitImpl);
 				}
@@ -309,7 +309,7 @@ public class BatchEngineUnitReaderImpl implements BatchEngineUnitReader {
 
 	private BatchEngineUnitMetaInfo _toBatchEngineUnitMetaInfo(
 		BatchEngineUnit batchEngineUnit, List<URL> urls,
-		long overrideCompanyId) {
+		long bundleCompanyId) {
 
 		try {
 			BatchEngineUnitConfiguration batchEngineUnitConfiguration =
@@ -325,7 +325,7 @@ public class BatchEngineUnitReaderImpl implements BatchEngineUnitReader {
 
 			return new BatchEngineUnitMetaInfo(
 				batchEngineUnit instanceof AdvancedBundleBatchEngineUnitImpl,
-				(overrideCompanyId > 0) ? overrideCompanyId :
+				(bundleCompanyId > 0) ? bundleCompanyId :
 					batchEngineUnitConfiguration.getCompanyId(),
 				_getFeatureFlagKey(batchEngineUnitConfiguration),
 				batchEngineUnitConfiguration.isMultiCompany(), paths);
