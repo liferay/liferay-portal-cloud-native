@@ -191,14 +191,15 @@ public class MarketplaceCommandLineRunner
 	}
 
 	private void _processMarketplaceProjects() throws Exception {
+		JSONObject jsonObject = new JSONObject();
+
+		Set<String> accountExternalReferenceCodes = new HashSet<>();
+		JSONArray ordersJSONArray = new JSONArray();
 		ZonedDateTime zonedDateTime = LocalDate.of(
 			2025, 1, 1
 		).atStartOfDay(
 			ZoneOffset.UTC
 		);
-
-		Set<String> accountExternalReferenceCodes = new HashSet<>();
-		JSONArray ordersJSONArray = new JSONArray();
 
 		for (int i = 1;; i++) {
 			Page<Order> page = _getOrdersPage(
@@ -250,8 +251,6 @@ public class MarketplaceCommandLineRunner
 				break;
 			}
 		}
-
-		JSONObject jsonObject = new JSONObject();
 
 		for (String accountExternalReferenceCode :
 				accountExternalReferenceCodes) {
