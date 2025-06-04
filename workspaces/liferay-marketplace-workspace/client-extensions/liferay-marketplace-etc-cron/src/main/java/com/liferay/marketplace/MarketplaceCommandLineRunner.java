@@ -133,11 +133,10 @@ public class MarketplaceCommandLineRunner
 	}
 
 	private void _processInProgressTrials() throws Exception {
-		String filter =
+		Page<Order> page = _getOrdersPage(
 			"orderStatus/any(x:(x eq " + _ORDER_STATUS_IN_PROGRESS +
-				")) and orderTypeExternalReferenceCode eq 'SOLUTIONS7'";
-
-		Page<Order> page = _getOrdersPage(filter, -1, -1);
+				")) and orderTypeExternalReferenceCode eq 'SOLUTIONS7'",
+			-1, -1);
 
 		if (page.getTotalCount() == 0) {
 			if (_log.isInfoEnabled()) {
@@ -303,11 +302,10 @@ public class MarketplaceCommandLineRunner
 	}
 
 	private void _processOnHoldTrials() throws Exception {
-		String filter =
+		Page<Order> page = _getOrdersPage(
 			"orderStatus/any(x:(x eq " + _ORDER_STATUS_ON_HOLD +
-				")) and orderTypeExternalReferenceCode eq 'SOLUTIONS7'";
-
-		Page<Order> page = _getOrdersPage(filter, -1, -1);
+				")) and orderTypeExternalReferenceCode eq 'SOLUTIONS7'",
+			-1, -1);
 
 		if (page.getTotalCount() == 0) {
 			if (_log.isInfoEnabled()) {
@@ -358,11 +356,10 @@ public class MarketplaceCommandLineRunner
 	}
 
 	private void _processPendingOrders() throws Exception {
-		String filter =
+		Page<Order> page = _getOrdersPage(
 			"orderStatus/any(x:(x eq " + _ORDER_STATUS_PENDING +
-				")) and orderTypeExternalReferenceCode ne 'SOLUTIONS7'";
-
-		Page<Order> page = _getOrdersPage(filter, -1, -1);
+				")) and orderTypeExternalReferenceCode ne 'SOLUTIONS7'",
+			-1, -1);
 
 		if (page.getTotalCount() == 0) {
 			if (_log.isInfoEnabled()) {
