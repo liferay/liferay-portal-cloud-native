@@ -197,9 +197,8 @@ public class MarketplaceCommandLineRunner
 			ZoneOffset.UTC
 		);
 
-		JSONArray ordersJSONArray = new JSONArray();
-
 		Set<String> accountExternalReferenceCodes = new HashSet<>();
+		JSONArray ordersJSONArray = new JSONArray();
 
 		for (int i = 1;; i++) {
 			Page<Order> page = _getOrdersPage(
@@ -224,6 +223,8 @@ public class MarketplaceCommandLineRunner
 					break;
 				}
 
+				accountExternalReferenceCodes.add(accountExternalReferenceCode);
+
 				ordersJSONArray.put(
 					new JSONObject(
 					).put(
@@ -234,17 +235,15 @@ public class MarketplaceCommandLineRunner
 						"accountExternalReferenceCode",
 						accountExternalReferenceCode
 					).put(
-						"creatorEmailAddress", order.getCreatorEmailAddress()
-					).put(
 						"appName", appName
+					).put(
+						"creatorEmailAddress", order.getCreatorEmailAddress()
 					).put(
 						"id", order.getId()
 					).put(
 						"orderTypeExternalReferenceCode",
 						order.getOrderTypeExternalReferenceCode()
 					));
-
-				accountExternalReferenceCodes.add(accountExternalReferenceCode);
 			}
 
 			if (i > page.getLastPage()) {
