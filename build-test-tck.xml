@@ -72,10 +72,6 @@
 			users.reminder.queries.custom.question.enabled=false
 			web.server.https.port=8443]]></echo>
 
-		<exec dir="${tck.home}/.." executable="git" failonerror="true">
-			<arg value="stash" />
-		</exec>
-
 		<exec dir="${tck.home}/.." executable="mvn" failonerror="true">
 			<arg value="-Dmaven.javadoc.skip=true" />
 			<arg value="-P" />
