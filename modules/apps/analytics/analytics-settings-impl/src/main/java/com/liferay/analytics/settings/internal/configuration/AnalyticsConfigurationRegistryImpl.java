@@ -154,6 +154,8 @@ public class AnalyticsConfigurationRegistryImpl
 
 		modified(properties);
 
+		_executorService = _portalExecutorManager.getPortalExecutor(
+			AnalyticsConfigurationRegistryImpl.class.getName());
 		_serviceRegistration = bundleContext.registerService(
 			ManagedServiceFactory.class,
 			new AnalyticsConfigurationManagedServiceFactory(),
@@ -162,9 +164,6 @@ public class AnalyticsConfigurationRegistryImpl
 				"com.liferay.analytics.settings.configuration." +
 					"AnalyticsConfiguration.scoped"
 			).build());
-
-		_executorService = _portalExecutorManager.getPortalExecutor(
-			AnalyticsConfigurationRegistryImpl.class.getName());
 
 		if (GetterUtil.getBoolean(
 				PropsUtil.get(
@@ -230,11 +229,36 @@ public class AnalyticsConfigurationRegistryImpl
 	}
 
 	private void _clearConfiguration(long companyId) {
-		_removeChannelId(
-			PrefsPropsUtil.getStringArray(
-				companyId, "liferayAnalyticsGroupIds", StringPool.COMMA));
+		_companyLocalService.removePreferences(
+			companyId,
+			new String[] {
+				"liferayAnalyticsConnectionType",
+				"liferayAnalyticsDataSourceId", "liferayAnalyticsEndpointURL",
+				"liferayAnalyticsFaroBackendSecuritySignature",
+				"liferayAnalyticsFaroBackendURL", "liferayAnalyticsGroupIds",
+				"liferayAnalyticsProjectId", "liferayAnalyticsURL"
+			});
 
-		_removeCompanyPreferences(companyId);
+		for (String groupId :
+				PrefsPropsUtil.getStringArray(
+					companyId, "liferayAnalyticsGroupIds", StringPool.COMMA)) {
+
+			Group group = _groupLocalService.fetchGroup(
+				GetterUtil.getLong(groupId));
+
+			if (group == null) {
+				continue;
+			}
+
+			UnicodeProperties typeSettingsUnicodeProperties =
+				group.getTypeSettingsProperties();
+
+			typeSettingsUnicodeProperties.remove("analyticsChannelId");
+
+			group.setTypeSettingsProperties(typeSettingsUnicodeProperties);
+
+			_groupLocalService.updateGroup(group);
+		}
 
 		try {
 			_configurationProvider.deleteCompanyConfiguration(
@@ -719,38 +743,6 @@ public class AnalyticsConfigurationRegistryImpl
 		}
 
 		return false;
-	}
-
-	private void _removeChannelId(String[] groupIds) {
-		for (String groupId : groupIds) {
-			Group group = _groupLocalService.fetchGroup(
-				GetterUtil.getLong(groupId));
-
-			if (group == null) {
-				continue;
-			}
-
-			UnicodeProperties typeSettingsUnicodeProperties =
-				group.getTypeSettingsProperties();
-
-			typeSettingsUnicodeProperties.remove("analyticsChannelId");
-
-			group.setTypeSettingsProperties(typeSettingsUnicodeProperties);
-
-			_groupLocalService.updateGroup(group);
-		}
-	}
-
-	private void _removeCompanyPreferences(long companyId) {
-		_companyLocalService.removePreferences(
-			companyId,
-			new String[] {
-				"liferayAnalyticsConnectionType",
-				"liferayAnalyticsDataSourceId", "liferayAnalyticsEndpointURL",
-				"liferayAnalyticsFaroBackendSecuritySignature",
-				"liferayAnalyticsFaroBackendURL", "liferayAnalyticsGroupIds",
-				"liferayAnalyticsProjectId", "liferayAnalyticsURL"
-			});
 	}
 
 	private void _sync(long companyId, Dictionary<String, ?> dictionary) {
