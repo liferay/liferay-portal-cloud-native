@@ -51,7 +51,7 @@ public class ObjectDefinitionTreeFactory extends BaseTreeFactory {
 	public Tree create(
 			boolean excludeDifferentStatus, long objectDefinitionId,
 			UnsafeFunction<Long, List<ObjectRelationship>, PortalException>
-				objectRelationshipLookupUnsafeFunction)
+				unsafeFunction)
 		throws PortalException {
 
 		ObjectDefinition rootObjectDefinition = _getObjectDefinition(
@@ -60,8 +60,7 @@ public class ObjectDefinitionTreeFactory extends BaseTreeFactory {
 		return apply(
 			objectDefinitionId,
 			node -> TransformUtil.transform(
-				objectRelationshipLookupUnsafeFunction.apply(
-					node.getPrimaryKey()),
+				unsafeFunction.apply(node.getPrimaryKey()),
 				objectRelationship -> {
 					ObjectDefinition objectDefinition2 = _getObjectDefinition(
 						objectRelationship.getObjectDefinitionId2());

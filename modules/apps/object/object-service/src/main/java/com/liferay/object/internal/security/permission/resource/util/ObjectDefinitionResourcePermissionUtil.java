@@ -284,7 +284,7 @@ public class ObjectDefinitionResourcePermissionUtil {
 
 		int weight = _INITIAL_WEIGHT;
 
-		Tree tree;
+		Tree tree = null;
 
 		if (objectRelationshipsMap == null) {
 			tree = objectDefinitionTreeFactory.create(
