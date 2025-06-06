@@ -29,7 +29,7 @@ import com.liferay.portal.search.elasticsearch7.internal.sort.ElasticsearchSortF
 import com.liferay.portal.search.elasticsearch7.internal.sort.ElasticsearchSortFieldTranslatorFixture;
 import com.liferay.portal.search.elasticsearch7.internal.stats.DefaultStatsTranslator;
 import com.liferay.portal.search.elasticsearch7.internal.stats.StatsTranslator;
-import com.liferay.portal.search.elasticsearch7.internal.suggest.ElasticsearchSuggesterTranslatorFixture;
+import com.liferay.portal.search.elasticsearch7.internal.suggest.ElasticsearchSuggesterTranslator;
 import com.liferay.portal.search.engine.adapter.search.SearchRequestExecutor;
 import com.liferay.portal.search.filter.ComplexQueryBuilderFactory;
 import com.liferay.portal.search.internal.aggregation.AggregationResultsImpl;
@@ -507,17 +507,12 @@ public class SearchRequestExecutorFixture {
 		SuggestSearchRequestExecutor suggestSearchRequestExecutor =
 			new SuggestSearchRequestExecutorImpl();
 
-		ElasticsearchSuggesterTranslatorFixture
-			elasticsearchSuggesterTranslatorFixture =
-				new ElasticsearchSuggesterTranslatorFixture();
-
 		ReflectionTestUtil.setFieldValue(
 			suggestSearchRequestExecutor, "_elasticsearchClientResolver",
 			elasticsearchClientResolver);
 		ReflectionTestUtil.setFieldValue(
 			suggestSearchRequestExecutor, "_suggesterTranslator",
-			elasticsearchSuggesterTranslatorFixture.
-				getElasticsearchSuggesterTranslator());
+			_elasticsearchSuggesterTranslator);
 
 		return suggestSearchRequestExecutor;
 	}
@@ -530,6 +525,9 @@ public class SearchRequestExecutorFixture {
 			_serviceRegistrations = new ArrayList<>();
 
 	private ElasticsearchClientResolver _elasticsearchClientResolver;
+	private final ElasticsearchSuggesterTranslator
+		_elasticsearchSuggesterTranslator =
+			new ElasticsearchSuggesterTranslator();
 	private FacetProcessor<?> _facetProcessor;
 	private SearchRequestExecutor _searchRequestExecutor;
 
