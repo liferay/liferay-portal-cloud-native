@@ -100,36 +100,36 @@ public class JSImportMapsCache {
 
 		StringBuilder importsSB = new StringBuilder();
 
-		_writeStaticImports(
+		_appendStaticImports(
 			_getGlobalImportMapsValues(COMPANY_ID_ALL), importsSB);
 
-		_writeStaticImports(_getGlobalImportMapsValues(companyId), importsSB);
+		_appendStaticImports(_getGlobalImportMapsValues(companyId), importsSB);
 
 		Map<Long, DynamicJSImportMapsContributor>
 			dynamicJSImportMapsContributors1 =
 				_getDynamicJSImportMapsContributors(COMPANY_ID_ALL);
 
-		_writeDynamicImports(
+		_appendDynamicImports(
 			dynamicJSImportMapsContributors1, httpServletRequest, importsSB);
 
 		Map<Long, DynamicJSImportMapsContributor>
 			dynamicJSImportMapsContributors2 =
 				_getDynamicJSImportMapsContributors(companyId);
 
-		_writeDynamicImports(
+		_appendDynamicImports(
 			dynamicJSImportMapsContributors2, httpServletRequest, importsSB);
 
 		StringBuilder scopesSB = new StringBuilder();
 
-		_writeStaticScopes(
+		_appendStaticScopes(
 			_getScopedImportMapsValues(COMPANY_ID_ALL), scopesSB);
 
-		_writeStaticScopes(_getScopedImportMapsValues(companyId), scopesSB);
+		_appendStaticScopes(_getScopedImportMapsValues(companyId), scopesSB);
 
-		_writeDynamicScopes(
+		_appendDynamicScopes(
 			dynamicJSImportMapsContributors1, httpServletRequest, scopesSB);
 
-		_writeDynamicScopes(
+		_appendDynamicScopes(
 			dynamicJSImportMapsContributors2, httpServletRequest, scopesSB);
 
 		writer.write("{\"imports\": {");
@@ -188,7 +188,7 @@ public class JSImportMapsCache {
 		return _scopedImportMapsValuesMap.get(companyId);
 	}
 
-	private void _writeDynamicImports(
+	private void _appendDynamicImports(
 			Map<Long, DynamicJSImportMapsContributor>
 				dynamicJSImportMapsContributors,
 			HttpServletRequest httpServletRequest, StringBuilder sb)
@@ -223,7 +223,7 @@ public class JSImportMapsCache {
 		}
 	}
 
-	private void _writeDynamicScopes(
+	private void _appendDynamicScopes(
 			Map<Long, DynamicJSImportMapsContributor>
 				dynamicJSImportMapsContributors,
 			HttpServletRequest httpServletRequest, StringBuilder sb)
@@ -258,7 +258,7 @@ public class JSImportMapsCache {
 		}
 	}
 
-	private void _writeStaticImports(
+	private void _appendStaticImports(
 		Map<Long, String> globalImportMapsValues, StringBuilder sb) {
 
 		boolean first = true;
@@ -279,7 +279,7 @@ public class JSImportMapsCache {
 		}
 	}
 
-	private void _writeStaticScopes(
+	private void _appendStaticScopes(
 		Map<String, String> scopedImportMapsValues, StringBuilder sb) {
 
 		boolean first = true;
