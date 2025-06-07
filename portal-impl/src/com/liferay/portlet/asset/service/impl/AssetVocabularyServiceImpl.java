@@ -396,12 +396,12 @@ public class AssetVocabularyServiceImpl extends AssetVocabularyServiceBaseImpl {
 			String externalReferenceCode, long groupId)
 		throws PortalException {
 
-		AssetVocabulary assetVocabulary =
+		AssetVocabulary vocabulary =
 			assetVocabularyService.fetchVocabularyByExternalReferenceCode(
 				externalReferenceCode, groupId);
 
-		if (assetVocabulary != null) {
-			return assetVocabulary;
+		if (vocabulary != null) {
+			return vocabulary;
 		}
 
 		AssetCategoriesPermission.check(
