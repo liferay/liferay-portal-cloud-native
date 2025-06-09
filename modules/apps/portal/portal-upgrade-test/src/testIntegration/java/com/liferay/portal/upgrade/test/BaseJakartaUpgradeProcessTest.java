@@ -178,7 +178,9 @@ public class BaseJakartaUpgradeProcessTest extends BaseJakartaUpgradeProcess {
 			int logEntriesSize = 4;
 
 			if (DBPartition.isPartitionEnabled()) {
-				logEntriesSize *= PortalInstancePool.getCompanyIds().length;
+				long[] companyIds = PortalInstancePool.getCompanyIds();
+
+				logEntriesSize *= companyIds.length;
 			}
 
 			Assert.assertEquals(
