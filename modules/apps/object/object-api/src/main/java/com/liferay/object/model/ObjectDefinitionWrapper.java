@@ -901,6 +901,11 @@ public class ObjectDefinitionWrapper
 		return model.getRootObjectDefinitionId();
 	}
 
+	@Override
+	public long[] getRootObjectDefinitionIds() {
+		return model.getRootObjectDefinitionIds();
+	}
+
 	/**
 	 * Returns the scope of this object definition.
 	 *
@@ -1147,8 +1152,8 @@ public class ObjectDefinitionWrapper
 	}
 
 	@Override
-	public boolean isNodeCandidate() {
-		return model.isNodeCandidate();
+	public boolean isNode(long rootObjectDefinitionId) {
+		return model.isNode(rootObjectDefinitionId);
 	}
 
 	/**
@@ -1167,8 +1172,18 @@ public class ObjectDefinitionWrapper
 	}
 
 	@Override
+	public boolean isRootDescendantNode(long rootObjectDefinitionId) {
+		return model.isRootDescendantNode(rootObjectDefinitionId);
+	}
+
+	@Override
 	public boolean isRootNode() {
 		return model.isRootNode();
+	}
+
+	@Override
+	public boolean isRootNode(long rootObjectDefinitionId) {
+		return model.isRootNode(rootObjectDefinitionId);
 	}
 
 	/**
@@ -1669,8 +1684,12 @@ public class ObjectDefinitionWrapper
 	}
 
 	@Override
-	public void setRootObjectDefinitionId(long rootObjectDefinitionId) {
-		model.setRootObjectDefinitionId(rootObjectDefinitionId);
+	public void setRootObjectDefinitionIds(
+		long[] rootObjectDefinitionIdsToAdd,
+		long[] rootObjectDefinitionIdsToRemove) {
+
+		model.setRootObjectDefinitionIds(
+			rootObjectDefinitionIdsToAdd, rootObjectDefinitionIdsToRemove);
 	}
 
 	/**
