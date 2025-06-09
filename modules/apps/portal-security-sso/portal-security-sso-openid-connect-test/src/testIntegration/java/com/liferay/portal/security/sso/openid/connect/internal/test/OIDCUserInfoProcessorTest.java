@@ -104,7 +104,6 @@ public class OIDCUserInfoProcessorTest {
 			expandoColumn.getTableId(), expandoColumn.getColumnId(),
 			ctModel.getPrimaryKey());
 
-		Assert.assertNotNull(expandoValue);
 		Assert.assertEquals(_oAuthClientEntryId, expandoValue.getLong());
 	}
 
