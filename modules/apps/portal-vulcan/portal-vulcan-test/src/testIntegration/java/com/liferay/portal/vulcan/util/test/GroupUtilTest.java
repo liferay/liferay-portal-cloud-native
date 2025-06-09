@@ -154,7 +154,8 @@ public class GroupUtilTest {
 		Assert.assertEquals(
 			Long.valueOf(group.getGroupId()),
 			GroupUtil.getGroupId(
-				group.getCompanyId(), group.getGroupKey(), _groupLocalService));
+				group.getCompanyId(), group.getExternalReferenceCode(),
+				_groupLocalService));
 		Assert.assertEquals(
 			Long.valueOf(group.getGroupId()),
 			GroupUtil.getGroupId(
@@ -163,8 +164,7 @@ public class GroupUtilTest {
 		Assert.assertEquals(
 			Long.valueOf(group.getGroupId()),
 			GroupUtil.getGroupId(
-				group.getCompanyId(), group.getExternalReferenceCode(),
-				_groupLocalService));
+				group.getCompanyId(), group.getGroupKey(), _groupLocalService));
 	}
 
 	private DepotEntry _depotEntry;
