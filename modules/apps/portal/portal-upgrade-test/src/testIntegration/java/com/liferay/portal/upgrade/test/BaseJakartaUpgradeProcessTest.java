@@ -205,7 +205,7 @@ public class BaseJakartaUpgradeProcessTest extends BaseJakartaUpgradeProcess {
 			}
 
 			Assert.assertEquals(
-				logEntries.toString(), logEntriesSize, logEntries.size());
+				logEntries.toString(), logEntries.size(), logEntriesSize);
 
 			int i = 0;
 
