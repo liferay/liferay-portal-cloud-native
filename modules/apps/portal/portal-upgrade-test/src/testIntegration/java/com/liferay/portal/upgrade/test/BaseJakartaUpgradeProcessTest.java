@@ -113,6 +113,27 @@ public class BaseJakartaUpgradeProcessTest extends BaseJakartaUpgradeProcess {
 		}
 	}
 
+	private String _getLogEntryString(
+		String columnName, long companyId, boolean updated) {
+
+		String message = "";
+
+		if (DBPartition.isPartitionEnabled()) {
+			message = " for company " + companyId;
+		}
+
+		if (updated) {
+			return StringBundler.concat(
+				"Table ", _TABLE_NAME, " column ", columnName, message,
+				" was updated for records with primary keys (mvccVersion, ",
+				"uuid_): ");
+		}
+
+		return StringBundler.concat(
+			"Table ", _TABLE_NAME, " column ", columnName, message,
+			" was not updated");
+	}
+
 	private void _insertInitialData(String javaxValue) throws Exception {
 		_companyLocalService.forEachCompany(
 			company -> {
@@ -188,58 +209,27 @@ public class BaseJakartaUpgradeProcessTest extends BaseJakartaUpgradeProcess {
 
 			int i = 0;
 
-			long[] companyIds = ReflectionTestUtil.invoke(
-				PortalInstancePool.class, "_getCompanyIdsBySQL", null);
-
-			String companyIdMessage = "";
-
-			for (long companyId : companyIds) {
-				if (DBPartition.isPartitionEnabled()) {
-					companyIdMessage = " for company " + companyId;
-				}
+			for (long companyId :
+					(long[])ReflectionTestUtil.invoke(
+						PortalInstancePool.class, "_getCompanyIdsBySQL",
+						null)) {
 
 				_assertLogEntry(
 					new HashSet<>(Arrays.asList("(0, uuid1)", "(1, uuid2)")),
-					StringBundler.concat(
-						"Table ", _TABLE_NAME, " column ", _COLUMN_NAME_1,
-						companyIdMessage,
-						" was updated for records with primary keys ",
-						"(mvccVersion, uuid_): "),
-					logEntries.get(
-						i++
-					).toString());
-
+					_getLogEntryString(_COLUMN_NAME_1, companyId, true),
+					String.valueOf(logEntries.get(i++)));
 				_assertLogEntry(
 					new HashSet<>(Arrays.asList("(0, uuid1)", "(1, uuid2)")),
-					StringBundler.concat(
-						"Table ", _TABLE_NAME, " column ", _COLUMN_NAME_2,
-						companyIdMessage,
-						" was updated for records with primary keys ",
-						"(mvccVersion, uuid_): "),
-					logEntries.get(
-						i++
-					).toString());
-
+					_getLogEntryString(_COLUMN_NAME_2, companyId, true),
+					String.valueOf(logEntries.get(i++)));
 				_assertLogEntry(
 					new HashSet<>(Arrays.asList("(0, uuid1)")),
-					StringBundler.concat(
-						"Table ", _TABLE_NAME, " column ", _COLUMN_NAME_3,
-						companyIdMessage,
-						" was updated for records with primary keys ",
-						"(mvccVersion, uuid_): "),
-					logEntries.get(
-						i++
-					).toString());
-
+					_getLogEntryString(_COLUMN_NAME_3, companyId, true),
+					String.valueOf(logEntries.get(i++)));
 				_assertLogEntry(
 					new HashSet<>(),
-					StringBundler.concat(
-						"Table ", _TABLE_NAME, " column ", _COLUMN_NAME_4,
-						companyIdMessage,
-						" was not updated"),
-					logEntries.get(
-						i++
-					).toString());
+					_getLogEntryString(_COLUMN_NAME_4, companyId, false),
+					String.valueOf(logEntries.get(i++)));
 			}
 		}
 	}
