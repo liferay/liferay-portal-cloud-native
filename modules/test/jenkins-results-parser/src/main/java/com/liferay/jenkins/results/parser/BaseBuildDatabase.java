@@ -867,10 +867,6 @@ public abstract class BaseBuildDatabase implements BuildDatabase {
 				_jsonObject.put("jobs", new JSONObject());
 			}
 
-			if (!_jsonObject.has("properties")) {
-				_jsonObject.put("properties", new JSONObject());
-			}
-
 			if (!_jsonObject.has("portal_fixpack_releases")) {
 				_jsonObject.put("portal_fixpack_releases", new JSONObject());
 			}
@@ -881,6 +877,10 @@ public abstract class BaseBuildDatabase implements BuildDatabase {
 
 			if (!_jsonObject.has("portal_releases")) {
 				_jsonObject.put("portal_releases", new JSONObject());
+			}
+
+			if (!_jsonObject.has("properties")) {
+				_jsonObject.put("properties", new JSONObject());
 			}
 
 			if (!_jsonObject.has("pull_requests")) {
