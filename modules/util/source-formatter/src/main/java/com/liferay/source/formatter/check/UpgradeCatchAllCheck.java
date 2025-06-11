@@ -857,12 +857,12 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 
 			if (endIndex == -1) {
 				throw new UpgradeCatchAllException(
-					"Could not find matching closing brace for the class");
+					"Unable to find matching closing brace for the class");
 			}
 		}
 		else {
 			throw new UpgradeCatchAllException(
-				"Could not find class definition in the file content");
+				"Unable to find class definition in the file content");
 		}
 
 		String classBody = fileContent.substring(startIndex, endIndex);
@@ -904,7 +904,7 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 
 		if (!newMethodMatcher.find()) {
 			throw new UpgradeCatchAllException(
-				"Could not extract the name of the method to be inserted");
+				"Unable to extract the name of the method to be inserted");
 		}
 
 		String newMethodName = newMethodMatcher.group(1);
@@ -919,47 +919,47 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 
 		Collections.sort(methodNames);
 
-		StringBuilder newClassBody = new StringBuilder();
+		StringBuilder newClassBodySB = new StringBuilder();
 
 		if (existingMethods.isEmpty()) {
-			newClassBody.append(newMethod);
+			newClassBodySB.append(newMethod);
 		}
 		else {
 			int insertIndex = methodNames.indexOf(newMethodName);
 
 			if (insertIndex == 0) {
-				newClassBody.append(newMethod);
+				newClassBodySB.append(newMethod);
 
 				for (String existingMethod : existingMethods) {
-					newClassBody.append("\n");
-					newClassBody.append(existingMethod);
+					newClassBodySB.append("\n");
+					newClassBodySB.append(existingMethod);
 				}
 			}
 			else if (insertIndex == existingMethods.size()) {
 				for (String existingMethod : existingMethods) {
-					newClassBody.append(existingMethod);
-					newClassBody.append("\n");
+					newClassBodySB.append(existingMethod);
+					newClassBodySB.append("\n");
 				}
 
-				newClassBody.append(newMethod);
+				newClassBodySB.append(newMethod);
 			}
 			else {
 				for (int i = 0; i < insertIndex; i++) {
-					newClassBody.append(existingMethods.get(i));
-					newClassBody.append("\n");
+					newClassBodySB.append(existingMethods.get(i));
+					newClassBodySB.append("\n");
 				}
 
-				newClassBody.append(newMethod);
-				newClassBody.append("\n");
+				newClassBodySB.append(newMethod);
+				newClassBodySB.append("\n");
 
 				for (int i = insertIndex; i < existingMethods.size(); i++) {
-					newClassBody.append(existingMethods.get(i));
-					newClassBody.append("\n");
+					newClassBodySB.append(existingMethods.get(i));
+					newClassBodySB.append("\n");
 				}
 			}
 		}
 
-		StringBuilder newFileContent = new StringBuilder();
+		StringBuilder newFileContentSB = new StringBuilder();
 
 		String tempFileContent = fileContent.substring(0, endIndex);
 
@@ -968,13 +968,13 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 				tempFileContent, "\n" + existingMethod);
 		}
 
-		newFileContent.append(tempFileContent.trim());
-		newFileContent.append("\n");
-		newFileContent.append(newClassBody);
-		newFileContent.append("\n\n");
-		newFileContent.append(fileContent.substring(endIndex));
+		newFileContentSB.append(tempFileContent.trim());
+		newFileContentSB.append("\n");
+		newFileContentSB.append(newClassBodySB);
+		newFileContentSB.append("\n\n");
+		newFileContentSB.append(fileContent.substring(endIndex));
 
-		return newFileContent.toString();
+		return newFileContentSB.toString();
 	}
 
 	private static final String _CONSTRUCTOR_REGEX =
