@@ -194,7 +194,7 @@ public class ObjectEntryVersionLocalServiceTest {
 				"textObjectFieldName", RandomTestUtil.randomString()
 			).build());
 
-		_updateLatestObjectEntryVersion(objectEntry, _getPastDate(3));
+		_updateLatestObjectEntryVersion(_getPastDate(3), objectEntry);
 
 		objectEntry = _objectEntryLocalService.updateObjectEntry(
 			TestPropsValues.getUserId(), objectEntry.getObjectEntryId(),
@@ -203,7 +203,7 @@ public class ObjectEntryVersionLocalServiceTest {
 			).build(),
 			ServiceContextTestUtil.getServiceContext());
 
-		_updateLatestObjectEntryVersion(objectEntry, _getPastDate(2));
+		_updateLatestObjectEntryVersion(_getPastDate(2), objectEntry);
 
 		objectEntry = _objectEntryLocalService.updateObjectEntry(
 			TestPropsValues.getUserId(), objectEntry.getObjectEntryId(),
@@ -752,7 +752,7 @@ public class ObjectEntryVersionLocalServiceTest {
 	}
 
 	private void _updateLatestObjectEntryVersion(
-			ObjectEntry objectEntry, Date createDate)
+			Date createDate, ObjectEntry objectEntry)
 		throws Exception {
 
 		ObjectEntryVersion objectEntryVersion =
