@@ -423,8 +423,8 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 	}
 
 	private String _formatCalls(
-			String content, String fileName, JSONObject jsonObject,
-			JavaClass javaClass)
+			String content, String fileName, JavaClass javaClass,
+			JSONObject jsonObject)
 		throws Exception {
 
 		String newContent = content;
@@ -580,7 +580,7 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 		JavaClass javaClass = JavaClassParser.parseJavaClass(fileName, content);
 
 		if (!jsonObject.getBoolean("classStructurePattern")) {
-			return _formatCalls(content, fileName, jsonObject, javaClass);
+			return _formatCalls(content, fileName, javaClass, jsonObject);
 		}
 
 		String[] classNames = JSONUtil.toStringArray(
