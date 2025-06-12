@@ -39,12 +39,12 @@ public class PreupgradeVerifyDatabaseCharacterSet
 			return;
 		}
 
-		Set<String> portalTables =
+		Set<String> tableNames =
 			DBResourceUtil.getServiceComponentModuleTableNames(connection);
 
-		portalTables.addAll(DBResourceUtil.getPortalTableNames(connection));
+		tableNames.addAll(DBResourceUtil.getPortalTableNames(connection));
 
-		portalTables.addAll(DBResourceUtil.getModuleTableNames(connection));
+		tableNames.addAll(DBResourceUtil.getModuleTableNames(connection));
 
 		String sql = StringBundler.concat(
 			"select distinct character_set_name, collation_name, table_name, ",
@@ -69,7 +69,7 @@ public class PreupgradeVerifyDatabaseCharacterSet
 
 				String tableName = resultSet.getString("table_name");
 
-				if (portalTables.contains(
+				if (tableNames.contains(
 						dbInspector.normalizeName(tableName))) {
 
 					throw new VerifyException(
