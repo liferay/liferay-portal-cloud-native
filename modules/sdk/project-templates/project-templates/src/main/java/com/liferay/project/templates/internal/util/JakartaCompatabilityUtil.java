@@ -67,7 +67,7 @@ public class JakartaCompatabilityUtil {
 		String content = FileUtil.read(gradleFilePath);
 
 		for (Map.Entry<Object, Object> entry :
-				_jakartaDependenciesProps.entrySet()) {
+				_jakartaDependenciesProperties.entrySet()) {
 
 			String key = String.valueOf(entry.getKey());
 
@@ -114,10 +114,10 @@ public class JakartaCompatabilityUtil {
 	private static final String _TAGLIB_URL_OLD =
 		"http://java.sun.com/jsp/jstl/core";
 
-	private static final Properties _jakartaDependenciesProps;
+	private static final Properties _jakartaDependenciesProperties;
 
 	static {
-		_jakartaDependenciesProps = new Properties();
+		_jakartaDependenciesProperties = new Properties();
 
 		ClassLoader classLoader =
 			JakartaCompatabilityUtil.class.getClassLoader();
@@ -125,7 +125,7 @@ public class JakartaCompatabilityUtil {
 		try (InputStream inputStream = classLoader.getResourceAsStream(
 				_JAKARTA_DEPENDENCIES_PROPERTIES_FILE_PATH)) {
 
-			_jakartaDependenciesProps.load(inputStream);
+			_jakartaDependenciesProperties.load(inputStream);
 		}
 		catch (IOException ioException) {
 			throw new RuntimeException(ioException);
