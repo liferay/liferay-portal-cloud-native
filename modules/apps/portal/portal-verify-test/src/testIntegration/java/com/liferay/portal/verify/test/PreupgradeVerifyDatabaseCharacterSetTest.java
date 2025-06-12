@@ -60,8 +60,8 @@ public class PreupgradeVerifyDatabaseCharacterSetTest
 
 		_dataSource = InfrastructureUtil.getDataSource();
 
-		if ((_db.getDBType() == DBType.MYSQL) ||
-			(_db.getDBType() == DBType.MARIADB)) {
+		if ((_db.getDBType() == DBType.MARIADB) ||
+			(_db.getDBType() == DBType.MYSQL)) {
 
 			_db.runSQL(
 				"create database unsupported_character_set_db default " +
@@ -98,8 +98,8 @@ public class PreupgradeVerifyDatabaseCharacterSetTest
 	@Test
 	public void testVerifyMixedCharacterSet() throws Exception {
 		Assume.assumeTrue(
-			(_db.getDBType() == DBType.MYSQL) ||
-			(_db.getDBType() == DBType.MARIADB));
+			(_db.getDBType() == DBType.MARIADB) ||
+			(_db.getDBType() == DBType.MYSQL));
 
 		ServiceComponent serviceComponent =
 			_serviceComponentLocalService.createServiceComponent(
@@ -140,8 +140,8 @@ public class PreupgradeVerifyDatabaseCharacterSetTest
 	@Test
 	public void testVerifyUnsupportedCharacterSet() {
 		Assume.assumeTrue(
-			(_db.getDBType() == DBType.MYSQL) ||
 			(_db.getDBType() == DBType.MARIADB) ||
+			(_db.getDBType() == DBType.MYSQL) ||
 			(_db.getDBType() == DBType.POSTGRESQL));
 
 		try {

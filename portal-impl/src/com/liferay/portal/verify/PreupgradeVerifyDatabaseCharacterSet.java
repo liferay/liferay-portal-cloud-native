@@ -33,8 +33,8 @@ public class PreupgradeVerifyDatabaseCharacterSet
 					db.getCharacterSet(connection));
 		}
 
-		if ((db.getDBType() != DBType.MYSQL) &&
-			(db.getDBType() != DBType.MARIADB)) {
+		if ((db.getDBType() != DBType.MARIADB) &&
+			(db.getDBType() != DBType.MYSQL)) {
 
 			return;
 		}
