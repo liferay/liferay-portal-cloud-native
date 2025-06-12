@@ -897,32 +897,21 @@ public class UtilityPageResourceTest extends BaseUtilityPageResourceTestCase {
 	private void _testPatchSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications()
 		throws Exception {
 
-		// Never published, empty draft to never published, modified draft
-
 		_testPatchSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications(
-			PageSpecification.Status.DRAFT, PageSpecification.Status.DRAFT,
-			PageSpecification.Status.APPROVED, PageSpecification.Status.DRAFT);
-
-		// Never published, modified draft to published, draft unmodified
-
+			PageSpecification.Status.APPROVED,
+			PageSpecification.Status.APPROVED, PageSpecification.Status.DRAFT,
+			PageSpecification.Status.APPROVED);
 		_testPatchSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications(
 			PageSpecification.Status.APPROVED,
 			PageSpecification.Status.APPROVED, PageSpecification.Status.DRAFT,
 			PageSpecification.Status.DRAFT);
-
-		// Published, draft unmodified to published, modified draft
-
 		_testPatchSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications(
 			PageSpecification.Status.DRAFT, PageSpecification.Status.APPROVED,
 			PageSpecification.Status.APPROVED,
 			PageSpecification.Status.APPROVED);
-
-		// Published, modified draft to published, draft unmodified
-
 		_testPatchSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications(
-			PageSpecification.Status.APPROVED,
-			PageSpecification.Status.APPROVED, PageSpecification.Status.DRAFT,
-			PageSpecification.Status.APPROVED);
+			PageSpecification.Status.DRAFT, PageSpecification.Status.DRAFT,
+			PageSpecification.Status.APPROVED, PageSpecification.Status.DRAFT);
 	}
 
 	private void
@@ -982,26 +971,15 @@ public class UtilityPageResourceTest extends BaseUtilityPageResourceTestCase {
 	private void _testPostSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications()
 		throws Exception {
 
-		// Never published, empty new draft
-
-		_testPostSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications(
-			PageSpecification.Status.APPROVED, PageSpecification.Status.DRAFT);
-
-		// Never published, modified draft since created
-
-		_testPostSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications(
-			PageSpecification.Status.DRAFT, PageSpecification.Status.DRAFT);
-
-		// Published at least once, draft unmodified since last published
-
 		_testPostSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications(
 			PageSpecification.Status.APPROVED,
 			PageSpecification.Status.APPROVED);
-
-		// Published at least once, modified draft since last published
-
+		_testPostSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications(
+			PageSpecification.Status.APPROVED, PageSpecification.Status.DRAFT);
 		_testPostSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications(
 			PageSpecification.Status.DRAFT, PageSpecification.Status.APPROVED);
+		_testPostSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications(
+			PageSpecification.Status.DRAFT, PageSpecification.Status.DRAFT);
 	}
 
 	private void
@@ -1056,32 +1034,21 @@ public class UtilityPageResourceTest extends BaseUtilityPageResourceTestCase {
 	private void _testPutSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications()
 		throws Exception {
 
-		// Never published, empty draft to never published, modified draft
-
 		_testPutSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications(
-			PageSpecification.Status.DRAFT, PageSpecification.Status.DRAFT,
-			PageSpecification.Status.APPROVED, PageSpecification.Status.DRAFT);
-
-		// Never published, modified draft to published, draft unmodified
-
+			PageSpecification.Status.APPROVED,
+			PageSpecification.Status.APPROVED, PageSpecification.Status.DRAFT,
+			PageSpecification.Status.APPROVED);
 		_testPutSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications(
 			PageSpecification.Status.APPROVED,
 			PageSpecification.Status.APPROVED, PageSpecification.Status.DRAFT,
 			PageSpecification.Status.DRAFT);
-
-		// Published, draft unmodified to published, modified draft
-
 		_testPutSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications(
 			PageSpecification.Status.DRAFT, PageSpecification.Status.APPROVED,
 			PageSpecification.Status.APPROVED,
 			PageSpecification.Status.APPROVED);
-
-		// Published, modified draft to published, draft unmodified
-
 		_testPutSiteSiteByExternalReferenceCodeUtilityPageWithPageSpecifications(
-			PageSpecification.Status.APPROVED,
-			PageSpecification.Status.APPROVED, PageSpecification.Status.DRAFT,
-			PageSpecification.Status.APPROVED);
+			PageSpecification.Status.DRAFT, PageSpecification.Status.DRAFT,
+			PageSpecification.Status.APPROVED, PageSpecification.Status.DRAFT);
 	}
 
 	private void
