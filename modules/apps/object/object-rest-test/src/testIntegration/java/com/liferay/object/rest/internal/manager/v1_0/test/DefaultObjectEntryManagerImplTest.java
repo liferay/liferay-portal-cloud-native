@@ -4553,7 +4553,7 @@ public class DefaultObjectEntryManagerImplTest
 	@Test
 	public void testGetObjectEntryDocument() throws Exception {
 		_objectEntryLocalService.addObjectEntry(
-			adminUser.getUserId(), 0,
+			0, adminUser.getUserId(),
 			_objectDefinition1.getObjectDefinitionId(),
 			ObjectEntryFolderConstants.PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT,
 			null,
@@ -5470,7 +5470,7 @@ public class DefaultObjectEntryManagerImplTest
 		AccountEntry accountEntry1 = _addAccountEntry();
 
 		_objectEntryLocalService.addObjectEntry(
-			adminUser.getUserId(), 0,
+			0, adminUser.getUserId(),
 			_objectDefinition3.getObjectDefinitionId(),
 			ObjectEntryFolderConstants.PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT,
 			null,
@@ -5487,7 +5487,7 @@ public class DefaultObjectEntryManagerImplTest
 		AccountEntry accountEntry2 = _addAccountEntry();
 
 		_objectEntryLocalService.addObjectEntry(
-			adminUser.getUserId(), 0,
+			0, adminUser.getUserId(),
 			_objectDefinition3.getObjectDefinitionId(),
 			ObjectEntryFolderConstants.PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT,
 			null,
