@@ -1,6 +1,6 @@
 [
 	{
-		"externalReferenceCode": "CP_PRIMARY_NAV",
+		"externalReferenceCode": "CP-PRIMARY-NAV",
 		"menuItems": [
 			{
 				"friendlyURL": "/home",
