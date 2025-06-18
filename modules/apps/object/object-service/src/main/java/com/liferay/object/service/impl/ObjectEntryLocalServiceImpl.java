@@ -2376,7 +2376,6 @@ public class ObjectEntryLocalServiceImpl
 			counterLocalService.increment());
 
 		objectEntry.setExternalReferenceCode(externalReferenceCode);
-
 		objectEntry.setGroupId(groupId);
 
 		User user = _userLocalService.getUser(userId);
