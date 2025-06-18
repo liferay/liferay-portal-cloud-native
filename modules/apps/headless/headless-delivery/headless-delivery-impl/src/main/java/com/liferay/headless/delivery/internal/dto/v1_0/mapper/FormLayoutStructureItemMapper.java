@@ -87,11 +87,9 @@ public class FormLayoutStructureItemMapper
 										setFormType(
 											() -> _toFormType(
 												formStyledLayoutStructureItem));
-
 										setLocalizationConfig(
 											() -> _toLocalizationConfig(
 												formStyledLayoutStructureItem));
-
 										setNumberOfSteps(
 											formStyledLayoutStructureItem::
 												getNumberOfSteps);
