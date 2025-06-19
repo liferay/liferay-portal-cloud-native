@@ -11,10 +11,10 @@ import ClayTabs from '@clayui/tabs';
 import {useId} from 'frontend-js-components-web';
 import React, {useEffect, useMemo} from 'react';
 
+import focusInvalidElement from '../../../common/utils/focusInvalidElement';
 import {useSelector, useStateDispatch} from '../../contexts/StateContext';
 import selectPublishedChildren from '../../selectors/selectPublishedChildren';
 import {FIELD_TYPE_LABEL, Field} from '../../utils/field';
-import focusInvalidElement from '../../utils/focusInvalidElement';
 import getFieldComponents from '../../utils/getFieldComponents';
 import {isFieldTextSearchable} from '../../utils/isFieldTextSearchable';
 import Breadcrumb from '../Breadcrumb';

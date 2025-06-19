@@ -6,12 +6,12 @@
 import {isNullOrUndefined} from '@liferay/layout-js-components-web';
 import {useCallback} from 'react';
 
+import focusInvalidElement from '../../common/utils/focusInvalidElement';
 import {State, useSelector, useStateDispatch} from '../contexts/StateContext';
 import selectState from '../selectors/selectState';
 import selectStructureChildren from '../selectors/selectStructureChildren';
 import {RepeatableGroup, Structure, StructureChild} from '../types/Structure';
 import {Field, MultiselectField, SingleSelectField} from './field';
-import focusInvalidElement from './focusInvalidElement';
 
 export type ValidationError =
 	| 'no-erc'
