@@ -128,8 +128,8 @@ public class MethodPropertyAccessor implements PropertyAccessStrategy {
 					ReflectionUtil.throwException(
 						new NoSuchMethodException(
 							StringBundler.concat(
-								"Unable to locate getter method for class : ",
-								_clazz.getName(), ", property : ",
+								"Unable to locate getter method for class ",
+								_clazz.getName(), " and property ",
 								_propertyName)));
 				}
 
