@@ -317,13 +317,13 @@ public class InventoryAnalysisResourceImpl
 				ObjectEntryTable.INSTANCE.groupId.in(groupIds));
 		}
 
-		if (!Validator.isBlank(languageId)) {
+		if (Validator.isNotNull(languageId)) {
 			predicate = predicate.and(
 				AssetEntryTable.INSTANCE.title.like(
 					"%language-id=\"" + languageId + "\"%"));
 		}
 
-		if ((rangeKey != null) || Validator.isNotNull(rangeStart)) {
+		if (Validator.isNotNull(rangeStart)) {
 			predicate = predicate.and(
 				ObjectEntryTable.INSTANCE.createDate.gte(
 					_getStartDate(rangeKey, rangeStart)));
