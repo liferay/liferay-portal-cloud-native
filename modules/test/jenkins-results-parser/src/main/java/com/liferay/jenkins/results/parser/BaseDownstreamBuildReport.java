@@ -125,7 +125,7 @@ public abstract class BaseDownstreamBuildReport
 	protected BaseDownstreamBuildReport(DownstreamBuild downstreamBuild) {
 		super(downstreamBuild.getBuildURL());
 
-		buildReportJSONObject = getDownstreamBuildJSONObject(downstreamBuild);
+		buildReportJSONObject = downstreamBuild.getBuildReportJSONObject();
 
 		_batchName = downstreamBuild.getBatchName();
 		_topLevelBuildReport = null;
