@@ -27,10 +27,10 @@ import {NewSpaceFormSection} from './NewSpaceFormSection';
 import SpaceColorDropdown from './SpaceLogoColorDropdown';
 
 export interface NewSpaceProps {
-	baseAddSpaceMembersUrl: string;
+	baseAddSpaceMembersURL: string;
 }
 
-const NewSpace = ({baseAddSpaceMembersUrl}: NewSpaceProps) => {
+const NewSpace = ({baseAddSpaceMembersURL}: NewSpaceProps) => {
 	const {
 		errors,
 		handleChange,
@@ -57,7 +57,7 @@ const NewSpace = ({baseAddSpaceMembersUrl}: NewSpaceProps) => {
 			}).then((response) => {
 				if (response.data) {
 					navigate(
-						baseAddSpaceMembersUrl +
+						baseAddSpaceMembersURL +
 							'?assetLibraryId=' +
 							response.data.id
 					);
