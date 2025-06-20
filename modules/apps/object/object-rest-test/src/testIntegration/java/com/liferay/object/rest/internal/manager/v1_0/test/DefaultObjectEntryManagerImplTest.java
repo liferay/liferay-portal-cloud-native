@@ -2308,6 +2308,9 @@ public class DefaultObjectEntryManagerImplTest
 	@FeatureFlag("LPD-17564")
 	@Test
 	public void testAddObjectEntryWithScheduleDates() throws Exception {
+
+		// User non-UTC timezone
+
 		ObjectDefinition objectDefinition = _createObjectDefinition(
 			Collections.singletonList(
 				new TextObjectFieldBuilder(
@@ -2326,8 +2329,6 @@ public class DefaultObjectEntryManagerImplTest
 		);
 
 		Timestamp timestamp = Timestamp.valueOf(localDateTime);
-
-		// User non-UTC timezone
 
 		User user = UserTestUtil.addOmniadminUser();
 
