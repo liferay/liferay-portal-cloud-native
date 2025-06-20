@@ -290,14 +290,13 @@ public class ObjectRelationshipExtensionProvider
 			_objectScopeProviderRegistry.getObjectScopeProvider(
 				objectDefinition.getScope());
 
-		if (objectScopeProvider.isGroupAware()) {
-			return GetterUtil.getLong(
-				GroupUtil.getGroupId(
-					objectDefinition.getCompanyId(), scopeKey,
-					_groupLocalService));
+		if (!objectScopeProvider.isGroupAware()) {
+			return 0;
 		}
 
-		return 0;
+		return GetterUtil.getLong(
+			GroupUtil.getGroupId(
+				objectDefinition.getCompanyId(), scopeKey, _groupLocalService));
 	}
 
 	private PropertyDefinition.PropertyType _getPropertyType(

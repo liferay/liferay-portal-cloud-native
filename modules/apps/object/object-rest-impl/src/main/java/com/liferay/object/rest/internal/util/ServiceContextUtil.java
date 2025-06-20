@@ -91,7 +91,8 @@ public class ServiceContextUtil {
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 
-		_updateTaxonomyCategoryIds(companyId, groupId, userId, objectEntry);
+		_setObjectEntryTaxonomyCategoryIds(
+			companyId, groupId, userId, objectEntry);
 
 		if (Validator.isNotNull(objectEntry.getTaxonomyCategoryIds())) {
 			serviceContext.setAssetCategoryIds(
@@ -158,7 +159,7 @@ public class ServiceContextUtil {
 		return false;
 	}
 
-	private static void _updateTaxonomyCategoryIds(
+	private static void _setObjectEntryTaxonomyCategoryIds(
 		long companyId, long groupId, long userId, ObjectEntry objectEntry) {
 
 		TaxonomyCategoryBrief[] taxonomyCategoryBriefs =

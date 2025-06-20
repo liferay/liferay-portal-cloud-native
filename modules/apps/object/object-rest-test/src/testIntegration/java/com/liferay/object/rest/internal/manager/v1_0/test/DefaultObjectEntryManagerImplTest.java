@@ -2219,6 +2219,8 @@ public class DefaultObjectEntryManagerImplTest
 	public void testAddObjectEntryWithMissingTaxonomyCategoryBriefReference()
 		throws Exception {
 
+		// Lazy referencing disabled
+
 		String taxonomyCategoryExternalReferenceCode1 =
 			RandomTestUtil.randomString();
 		String taxonomyCategoryExternalReferenceCode2 =
@@ -2245,8 +2247,6 @@ public class DefaultObjectEntryManagerImplTest
 					});
 			}
 		};
-
-		// Lazy referencing disabled
 
 		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
 				"com.liferay.object.rest.internal.util.ServiceContextUtil",
@@ -2278,7 +2278,6 @@ public class DefaultObjectEntryManagerImplTest
 						taxonomyCategoryExternalReferenceCode1,
 						_group.getGroupId());
 
-			Assert.assertNotNull(assetCategory1);
 			Assert.assertEquals(
 				WorkflowConstants.STATUS_INCOMPLETE,
 				assetCategory1.getStatus());
@@ -2289,7 +2288,6 @@ public class DefaultObjectEntryManagerImplTest
 						taxonomyCategoryExternalReferenceCode2,
 						_group.getGroupId());
 
-			Assert.assertNotNull(assetCategory2);
 			Assert.assertEquals(
 				WorkflowConstants.STATUS_INCOMPLETE,
 				assetCategory2.getStatus());
@@ -7371,19 +7369,19 @@ public class DefaultObjectEntryManagerImplTest
 	}
 
 	private Scope _getScope(Group group) {
-		Scope scope = new Scope();
+		return new Scope() {
+			{
+				setExternalReferenceCode(group::getExternalReferenceCode);
+				setType(
+					() -> {
+						if (group.getType() == GroupConstants.TYPE_DEPOT) {
+							return Scope.Type.ASSET_LIBRARY;
+						}
 
-		scope.setExternalReferenceCode(group::getExternalReferenceCode);
-		scope.setType(
-			() -> {
-				if (group.getType() == GroupConstants.TYPE_DEPOT) {
-					return Scope.Type.ASSET_LIBRARY;
-				}
-
-				return Scope.Type.SITE;
-			});
-
-		return scope;
+						return Scope.Type.SITE;
+					});
+			}
+		};
 	}
 
 	private Timestamp _getTimestamp(String dateString) throws Exception {
