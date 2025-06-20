@@ -2318,10 +2318,12 @@ public class DefaultObjectEntryManagerImplTest
 					"textObjectFieldName"
 				).build()));
 
-		LocalDateTime localDateTime = LocalDateTime.now();
-
-		localDateTime = localDateTime.plusDays(1);
-		localDateTime = localDateTime.truncatedTo(ChronoUnit.MINUTES);
+		LocalDateTime localDateTime = LocalDateTime.now(
+		).plusDays(
+			1
+		).truncatedTo(
+			ChronoUnit.MINUTES
+		);
 
 		Timestamp timestamp = Timestamp.valueOf(localDateTime);
 
