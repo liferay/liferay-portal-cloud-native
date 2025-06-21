@@ -23,6 +23,8 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -48,7 +50,6 @@ public class ObjectDefinitionInfoItemObjectProviderTest {
 	public void setUp() throws Exception {
 		_objectDefinition1 =
 			ObjectDefinitionTestUtil.addCustomObjectDefinition();
-
 		_objectDefinition2 =
 			ObjectDefinitionTestUtil.addCustomObjectDefinition();
 
@@ -62,18 +63,16 @@ public class ObjectDefinitionInfoItemObjectProviderTest {
 
 	@Test
 	public void testGetInfoItem() throws Exception {
-		ObjectDefinition objectDefinition =
+		Assert.assertEquals(
+			_objectDefinition1,
 			_objectDefinitionInfoItemObjectProvider.getInfoItem(
 				new ClassPKInfoItemIdentifier(
-					_objectDefinition1.getObjectDefinitionId()));
-
-		Assert.assertEquals(_objectDefinition1, objectDefinition);
-
-		objectDefinition = _objectDefinitionInfoItemObjectProvider.getInfoItem(
-			new ERCInfoItemIdentifier(
-				_objectDefinition2.getExternalReferenceCode()));
-
-		Assert.assertEquals(_objectDefinition2, objectDefinition);
+					_objectDefinition1.getObjectDefinitionId())));
+		Assert.assertEquals(
+			_objectDefinition2,
+			_objectDefinitionInfoItemObjectProvider.getInfoItem(
+				new ERCInfoItemIdentifier(
+					_objectDefinition2.getExternalReferenceCode())));
 	}
 
 	private ServiceContext _getServiceContext() throws Exception {
@@ -81,18 +80,16 @@ public class ObjectDefinitionInfoItemObjectProviderTest {
 			ServiceContextTestUtil.getServiceContext(
 				TestPropsValues.getGroupId());
 
-		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
+		HttpServletRequest httpServletRequest = new MockHttpServletRequest();
 
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(
 			_companyLocalService.getCompany(TestPropsValues.getCompanyId()));
 
-		mockHttpServletRequest.setAttribute(
-			WebKeys.THEME_DISPLAY, themeDisplay);
+		httpServletRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
 
-		serviceContext.setRequest(mockHttpServletRequest);
+		serviceContext.setRequest(httpServletRequest);
 
 		return serviceContext;
 	}
