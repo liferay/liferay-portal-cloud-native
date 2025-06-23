@@ -773,18 +773,13 @@ public abstract class BaseObjectDefinitionResourceImpl
 					ObjectDefinition persistedObjectDefinition = null;
 
 					try {
-						if (parameters.containsKey("externalReferenceCode") ||
-							(objectDefinition.getExternalReferenceCode() !=
-								null)) {
+						if (objectDefinition.getExternalReferenceCode() !=
+								null) {
 
 							getObjectDefinition =
 								getObjectDefinitionByExternalReferenceCode(
-									(String)parameters.get(
-										"externalReferenceCode") != null ?
-											(String)parameters.get(
-												"externalReferenceCode") :
-													objectDefinition.
-														getExternalReferenceCode());
+									objectDefinition.
+										getExternalReferenceCode());
 						}
 						else {
 							throw new NotSupportedException(
@@ -812,17 +807,10 @@ public abstract class BaseObjectDefinitionResourceImpl
 				objectDefinitionUnsafeFunction = objectDefinition -> {
 					ObjectDefinition persistedObjectDefinition = null;
 
-					if (parameters.containsKey("externalReferenceCode") ||
-						(objectDefinition.getExternalReferenceCode() != null)) {
-
+					if (objectDefinition.getExternalReferenceCode() != null) {
 						persistedObjectDefinition =
 							putObjectDefinitionByExternalReferenceCode(
-								(String)parameters.get(
-									"externalReferenceCode") != null ?
-										(String)parameters.get(
-											"externalReferenceCode") :
-												objectDefinition.
-													getExternalReferenceCode(),
+								objectDefinition.getExternalReferenceCode(),
 								objectDefinition);
 					}
 					else {
