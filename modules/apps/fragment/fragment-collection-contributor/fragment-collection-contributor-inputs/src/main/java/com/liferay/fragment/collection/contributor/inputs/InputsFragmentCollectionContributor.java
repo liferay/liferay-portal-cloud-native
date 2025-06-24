@@ -66,7 +66,7 @@ public class InputsFragmentCollectionContributor
 				CompanyThreadLocal.getCompanyId(), "LPD-17564")) {
 
 			Set<String> excludedKeys = Set.of(
-				"INPUTS-video-previewer-input", "INPUTS-drag-and-drop-upload");
+				"INPUTS-drag-and-drop-upload", "INPUTS-video-previewer-input");
 
 			fragmentEntries = ListUtil.filter(
 				fragmentEntries,
