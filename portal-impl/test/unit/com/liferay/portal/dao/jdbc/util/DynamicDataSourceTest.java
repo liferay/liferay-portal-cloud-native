@@ -27,7 +27,6 @@ import com.liferay.portal.util.FileImpl;
 import java.io.File;
 
 import java.util.List;
-import java.util.logging.Level;
 
 import javax.sql.DataSource;
 
@@ -198,9 +197,9 @@ public class DynamicDataSourceTest {
 			_currentTransactionReadOnly.remove();
 		}
 
-		try (LogCapture logCapture = LoggerTestUtil.configureJDKLogger(
+		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
 				"com.liferay.portal.dao.jdbc.util.DynamicDataSource",
-				Level.FINEST)) {
+				LoggerTestUtil.TRACE)) {
 
 			Assert.assertSame(
 				expectedDataSource,

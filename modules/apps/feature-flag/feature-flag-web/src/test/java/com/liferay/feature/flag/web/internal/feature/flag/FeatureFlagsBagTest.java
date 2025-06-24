@@ -27,7 +27,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -116,8 +115,8 @@ public class FeatureFlagsBagTest {
 
 		Assert.assertTrue(_featureFlagsBag.isEnabled(randomKey));
 
-		try (LogCapture logCapture = LoggerTestUtil.configureJDKLogger(
-				FeatureFlagsBag.class.getName(), Level.INFO)) {
+		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
+				FeatureFlagsBag.class.getName(), LoggerTestUtil.INFO)) {
 
 			String key = "LPS-9099";
 

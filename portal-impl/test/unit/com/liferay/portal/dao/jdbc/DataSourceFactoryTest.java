@@ -22,7 +22,6 @@ import java.io.File;
 import java.sql.Connection;
 
 import java.util.Properties;
-import java.util.logging.Level;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -131,8 +130,8 @@ public class DataSourceFactoryTest {
 
 		properties.setProperty("jndi.name", jndiName);
 
-		try (LogCapture logCapture = LoggerTestUtil.configureJDKLogger(
-				DataSourceFactoryImpl.class.getName(), Level.SEVERE)) {
+		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
+				DataSourceFactoryImpl.class.getName(), LoggerTestUtil.ERROR)) {
 
 			_dataSourceFactory.initDataSource(properties);
 

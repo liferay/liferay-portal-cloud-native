@@ -20,7 +20,6 @@ import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -60,8 +59,9 @@ public class FeatureFlagsBagProviderTest {
 		PropsUtil.set(FeatureFlagConstants.getKey(key), "true");
 		PropsUtil.set(FeatureFlagConstants.getKey(key, "dependencies"), key);
 
-		try (LogCapture logCapture = LoggerTestUtil.configureJDKLogger(
-				FeatureFlagsBagProviderImpl.class.getName(), Level.SEVERE)) {
+		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
+				FeatureFlagsBagProviderImpl.class.getName(),
+				LoggerTestUtil.ERROR)) {
 
 			_featureFlagsBagProvider.getOrCreateFeatureFlagsBag(companyId);
 
@@ -130,8 +130,9 @@ public class FeatureFlagsBagProviderTest {
 
 		PropsUtil.set(FeatureFlagConstants.getKey(key2), "true");
 
-		try (LogCapture logCapture = LoggerTestUtil.configureJDKLogger(
-				FeatureFlagsBagProviderImpl.class.getName(), Level.SEVERE)) {
+		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
+				FeatureFlagsBagProviderImpl.class.getName(),
+				LoggerTestUtil.ERROR)) {
 
 			_featureFlagsBagProvider.getOrCreateFeatureFlagsBag(companyId);
 

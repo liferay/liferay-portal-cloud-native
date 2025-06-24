@@ -22,7 +22,6 @@ import java.io.StringWriter;
 import java.nio.CharBuffer;
 
 import java.util.List;
-import java.util.logging.Level;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -74,8 +73,8 @@ public class StripFilterTest {
 
 		StringWriter stringWriter = new StringWriter();
 
-		try (LogCapture logCapture = LoggerTestUtil.configureJDKLogger(
-				StripFilter.class.getName(), Level.WARNING)) {
+		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
+				StripFilter.class.getName(), LoggerTestUtil.WARN)) {
 
 			stripFilter.extractAndMinifyJavaScript(
 				"test.js", charBuffer, stringWriter, "script".toCharArray());
@@ -118,8 +117,8 @@ public class StripFilterTest {
 
 		StringWriter stringWriter = new StringWriter();
 
-		try (LogCapture logCapture = LoggerTestUtil.configureJDKLogger(
-				StripFilter.class.getName(), Level.WARNING)) {
+		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
+				StripFilter.class.getName(), LoggerTestUtil.WARN)) {
 
 			stripFilter.extractAndMinifyCSS(
 				null, null, charBuffer, stringWriter, styleOpenTag);
@@ -211,8 +210,8 @@ public class StripFilterTest {
 
 		StringWriter stringWriter = new StringWriter();
 
-		try (LogCapture logCapture = LoggerTestUtil.configureJDKLogger(
-				StripFilter.class.getName(), Level.WARNING)) {
+		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
+				StripFilter.class.getName(), LoggerTestUtil.WARN)) {
 
 			stripFilter.extractAndTrimInput(charBuffer, stringWriter);
 
@@ -276,8 +275,8 @@ public class StripFilterTest {
 
 		StringWriter stringWriter = new StringWriter();
 
-		try (LogCapture logCapture = LoggerTestUtil.configureJDKLogger(
-				StripFilter.class.getName(), Level.WARNING)) {
+		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
+				StripFilter.class.getName(), LoggerTestUtil.WARN)) {
 
 			stripFilter.extractAndTrimPre(charBuffer, stringWriter);
 
@@ -328,8 +327,8 @@ public class StripFilterTest {
 
 		StringWriter stringWriter = new StringWriter();
 
-		try (LogCapture logCapture = LoggerTestUtil.configureJDKLogger(
-				StripFilter.class.getName(), Level.WARNING)) {
+		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
+				StripFilter.class.getName(), LoggerTestUtil.WARN)) {
 
 			stripFilter.extractAndTrimTextArea(charBuffer, stringWriter);
 
