@@ -6884,13 +6884,10 @@ public class ServiceBuilder {
 
 			String dbIndex = finderElement.attributeValue("db-index");
 
-			boolean finderDBIndex;
+			boolean finderDBIndex = GetterUtil.getBoolean(dbIndex, true);
 
 			if (Objects.equals(dbIndex, "only")) {
 				finderDBIndex = true;
-			}
-			else {
-				finderDBIndex = GetterUtil.getBoolean(dbIndex, true);
 			}
 
 			List<EntityColumn> finderEntityColumns = new ArrayList<>();
