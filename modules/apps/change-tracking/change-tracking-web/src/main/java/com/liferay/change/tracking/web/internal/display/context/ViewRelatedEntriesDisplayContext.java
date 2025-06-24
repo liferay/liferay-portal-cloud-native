@@ -108,11 +108,8 @@ public class ViewRelatedEntriesDisplayContext {
 			ctEntries.addAll(value);
 		}
 
-		boolean showWarning = false;
-
 		JSONArray ctEntriesJSONArray = JSONFactoryUtil.createJSONArray();
-
-		int numOfNonsystemCTEntries = 0;
+		int nonsystemCTEntriesCount = 0;
 
 		for (CTEntry ctEntry : ctEntries) {
 			CTSQLModeThreadLocal.CTSQLMode ctSQLMode =
@@ -133,7 +130,7 @@ public class ViewRelatedEntriesDisplayContext {
 			if (!_ctDisplayRendererRegistry.isHideable(
 					ctModel, ctEntry.getModelClassNameId())) {
 
-				numOfNonsystemCTEntries++;
+				nonsystemCTEntriesCount++;
 			}
 
 			ResourceURL dataURL = _renderResponse.createResourceURL();
@@ -165,7 +162,9 @@ public class ViewRelatedEntriesDisplayContext {
 				));
 		}
 
-		if ((ctEntryIds.size() == 1) && (numOfNonsystemCTEntries > 1)) {
+		boolean showWarning = false;
+
+		if ((ctEntryIds.size() == 1) && (nonsystemCTEntriesCount > 1)) {
 			showWarning = true;
 		}
 
