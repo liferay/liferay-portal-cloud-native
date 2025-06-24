@@ -1,10 +1,10 @@
 [#assign
-localFileUploaded = false,
-showDocumentLibrarySelector = input.attributes.selectFromDocumentLibrary?? && input.attributes.selectFromDocumentLibrary
+	localFileUploaded = false,
+	showDocumentLibrarySelector = input.attributes.selectFromDocumentLibrary?? && input.attributes.selectFromDocumentLibrary
 ]
 
 [#if input.value?? && !showDocumentLibrarySelector]
-[#assign localFileUploaded = true]
+	[#assign localFileUploaded = true]
 [/#if]
 
 <div aria-label="${input.label}" class="drag-and-drop-upload d-flex flex-column" data-lfr-styles role="group" data-localizable="${input.localizable?string('true', 'false')}">
@@ -46,14 +46,14 @@ showDocumentLibrarySelector = input.attributes.selectFromDocumentLibrary?? && in
 		</div>
 
 		[#if !input.localizable && input.attributes.unlocalizedFieldsMessage??]
-		<div aria-label="${input.attributes.unlocalizedFieldsMessage}" class="d-none lfr-portal-tooltip" data-title="${input.attributes.unlocalizedFieldsMessage}" id="${fragmentEntryLinkNamespace}-unlocalized-info" role="dialog" tabindex="0">
-			[@clay["icon"] className="align-self-start ml-2 mt-0 text-secondary" symbol="question-circle-full" /]
-		</div>
+			<div aria-label="${input.attributes.unlocalizedFieldsMessage}" class="d-none lfr-portal-tooltip" data-title="${input.attributes.unlocalizedFieldsMessage}" id="${fragmentEntryLinkNamespace}-unlocalized-info" role="dialog" tabindex="0">
+				[@clay["icon"] className="align-self-start ml-2 mt-0 text-secondary" symbol="question-circle-full" /]
+			</div>
 		[/#if]
 	</div>
 
 	[#if !input.readOnly && ((input.showHelpText && input.helpText?has_content) || (configuration.showSupportedFileInfo && input.attributes.maxFileSize??))]
-	<p class="mb-0 mt-1 text-secondary flex-grow-0" id="${fragmentEntryLinkNamespace}-drag-and-drop-upload-help-text">${configuration.showSupportedFileInfo?then(languageUtil.format(locale, "maximum-size-x", input.attributes.maxFileSize!"") + '<strong>MB.</strong>', '')} ${input.showHelpText?then(htmlUtil.escape(input.helpText), '' )}</p>
+		<p class="mb-0 mt-1 text-secondary flex-grow-0" id="${fragmentEntryLinkNamespace}-drag-and-drop-upload-help-text">${configuration.showSupportedFileInfo?then(languageUtil.format(locale, "maximum-size-x", input.attributes.maxFileSize!"") + '<strong>MB.</strong>', '')} ${input.showHelpText?then(htmlUtil.escape(input.helpText), '' )}</p>
 	[/#if]
 
 	<div class="d-none flex-grow-0 py-2" data-change-label="${languageUtil.get(locale, 'change-the-file-the-current-file-is-x')}" data-remove-label="${languageUtil.get(locale, 'remove-the-file-the-current-file-is-x')}" id="${fragmentEntryLinkNamespace}-drag-and-drop-upload-preview-buttons">
@@ -67,6 +67,6 @@ showDocumentLibrarySelector = input.attributes.selectFromDocumentLibrary?? && in
 	</div>
 
 	[#if !input.localizable]
-	<label class="d-none text-3 text-secondary text-weight-semi-bold" id="${fragmentEntryLinkNamespace}-drag-and-drop-upload-file-name-label" />
+		<label class="d-none text-3 text-secondary text-weight-semi-bold" id="${fragmentEntryLinkNamespace}-drag-and-drop-upload-file-name-label" />
 	[/#if]
 </div>
