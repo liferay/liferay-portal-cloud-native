@@ -249,25 +249,27 @@ public class AccountChannelShippingOptionResourceTest
 				accountChannelShippingOption);
 	}
 
-	@Inject
-	private static AccountEntryLocalService _accountEntryLocalService;
+	private AccountEntry _accountEntry;
 
 	@Inject
-	private static CommerceChannelLocalService _commerceChannelLocalService;
+	private AccountEntryLocalService _accountEntryLocalService;
 
 	@Inject
-	private static CommerceCurrencyLocalService _commerceCurrencyLocalService;
+	private CommerceChannelLocalService _commerceChannelLocalService;
+
+	private CommerceCurrency _commerceCurrency;
 
 	@Inject
-	private static CommerceShippingFixedOptionLocalService
+	private CommerceCurrencyLocalService _commerceCurrencyLocalService;
+
+	@Inject
+	private CommerceShippingFixedOptionLocalService
 		_commerceShippingFixedOptionLocalService;
 
-	@Inject
-	private static CommerceShippingMethodLocalService
-		_commerceShippingMethodLocalService;
-
-	private AccountEntry _accountEntry;
-	private CommerceCurrency _commerceCurrency;
 	private CommerceShippingMethod _commerceShippingMethod;
+
+	@Inject
+	private CommerceShippingMethodLocalService
+		_commerceShippingMethodLocalService;
 
 }
