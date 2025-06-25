@@ -46,7 +46,7 @@ const displayErrorToast = () => {
 const displayNameInUseErrorToast = () => {
 	openToast({
 		message: Liferay.Language.get(
-			'please-enter-a-unique-name-this-one-is-already-in-use'
+			'please-enter-a-unique-name.-this-one-is-already-in-use'
 		),
 		title: Liferay.Language.get('error'),
 		type: 'danger',

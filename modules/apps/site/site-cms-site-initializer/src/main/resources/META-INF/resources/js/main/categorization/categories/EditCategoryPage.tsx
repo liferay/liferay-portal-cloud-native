@@ -152,7 +152,7 @@ const EditCategoryPage = ({
 				if (status === 'CONFLICT') {
 					setNameInputError(
 						Liferay.Language.get(
-							'please-enter-a-unique-name-this-one-is-already-in-use'
+							'please-enter-a-unique-name.-this-one-is-already-in-use'
 						)
 					);
 
@@ -260,7 +260,7 @@ const EditCategoryPage = ({
 			if (status === 'CONFLICT') {
 				setNameInputError(
 					Liferay.Language.get(
-						'please-enter-a-unique-name-this-one-is-already-in-use'
+						'please-enter-a-unique-name.-this-one-is-already-in-use'
 					)
 				);
 
