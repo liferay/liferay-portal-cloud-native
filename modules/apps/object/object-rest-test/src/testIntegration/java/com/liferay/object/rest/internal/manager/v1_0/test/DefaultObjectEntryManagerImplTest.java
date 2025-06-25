@@ -6937,7 +6937,8 @@ public class DefaultObjectEntryManagerImplTest
 	}
 
 	private ObjectEntry _addObjectEntry(
-			ObjectDefinition objectDefinition, String scope, int versionNumber)
+			ObjectDefinition objectDefinition, String scopeKey,
+			int versionNumber)
 		throws Exception {
 
 		return _defaultObjectEntryManager.addObjectEntry(
@@ -6960,7 +6961,7 @@ public class DefaultObjectEntryManagerImplTest
 					};
 				}
 			},
-			scope);
+			scopeKey);
 	}
 
 	private void _addObjectFieldSettingWithDefaultValue(
