@@ -814,6 +814,9 @@ public class PageTemplateResourceTest extends BasePageTemplateResourceTestCase {
 	private WidgetPageTemplate _getWidgetPageTemplate(Group group)
 		throws Exception {
 
+		String randomName = StringUtil.toLowerCase(
+			RandomTestUtil.randomString());
+
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(group.getGroupId());
 
@@ -834,13 +837,11 @@ public class PageTemplateResourceTest extends BasePageTemplateResourceTestCase {
 				hiddenFromNavigation = RandomTestUtil.randomBoolean();
 				key = StringUtil.toLowerCase(RandomTestUtil.randomString());
 				keywords = AssetTestUtil.randomKeywords(serviceContext);
-
-				name = StringUtil.toLowerCase(RandomTestUtil.randomString());
-
+				name = randomName;
 				name_i18n = HashMapBuilder.put(
-					LocaleUtil.toBCP47LanguageId(LocaleUtil.getDefault()), name
+					LocaleUtil.toBCP47LanguageId(LocaleUtil.getDefault()),
+					randomName
 				).build();
-
 				pageTemplateSet = _getPageTemplateSet(group);
 				taxonomyCategoryItemExternalReferences =
 					AssetTestUtil.randomTaxonomyCategoryItemExternalReferences(
