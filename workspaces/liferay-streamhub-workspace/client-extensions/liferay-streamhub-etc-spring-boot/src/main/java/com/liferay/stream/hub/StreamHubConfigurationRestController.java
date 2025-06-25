@@ -78,8 +78,8 @@ public class StreamHubConfigurationRestController extends BaseRestController {
 
 		Status status = new Status();
 
-		status.setLabel(() -> "Never Ran");
 		status.setCode(() -> 0);
+		status.setLabel(() -> "Never Ran");
 
 		Map<String, String[]> actionConfigs = Map.of(
 			"onAfterAdd",
