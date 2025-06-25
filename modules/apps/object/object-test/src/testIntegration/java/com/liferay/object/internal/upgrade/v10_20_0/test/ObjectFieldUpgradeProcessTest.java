@@ -74,7 +74,8 @@ public class ObjectFieldUpgradeProcessTest {
 				"delete from ObjectField where objectDefinitionId in (",
 				modifiableSystemObjectDefinition.getObjectDefinitionId(), ", ",
 				objectDefinition.getObjectDefinitionId(),
-				") and name in ('displayDate','expirationDate','reviewDate')"));
+				") and name in ('displayDate', 'expirationDate', ",
+				"'reviewDate')"));
 
 		EntityCacheUtil.clearCache();
 
@@ -87,7 +88,6 @@ public class ObjectFieldUpgradeProcessTest {
 		Assert.assertNull(
 			_objectFieldLocalService.fetchObjectField(
 				objectDefinition.getObjectDefinitionId(), "reviewDate"));
-
 		Assert.assertNull(
 			_objectFieldLocalService.fetchObjectField(
 				modifiableSystemObjectDefinition.getObjectDefinitionId(),
@@ -129,6 +129,15 @@ public class ObjectFieldUpgradeProcessTest {
 
 		Assert.assertNotNull(
 			_objectFieldLocalService.getObjectField(
+				objectDefinition.getObjectDefinitionId(), "displayDate"));
+		Assert.assertNotNull(
+			_objectFieldLocalService.getObjectField(
+				objectDefinition.getObjectDefinitionId(), "expirationDate"));
+		Assert.assertNotNull(
+			_objectFieldLocalService.getObjectField(
+				objectDefinition.getObjectDefinitionId(), "reviewDate"));
+		Assert.assertNotNull(
+			_objectFieldLocalService.getObjectField(
 				modifiableSystemObjectDefinition.getObjectDefinitionId(),
 				"displayDate"));
 		Assert.assertNotNull(
@@ -139,17 +148,6 @@ public class ObjectFieldUpgradeProcessTest {
 			_objectFieldLocalService.getObjectField(
 				modifiableSystemObjectDefinition.getObjectDefinitionId(),
 				"reviewDate"));
-
-		Assert.assertNotNull(
-			_objectFieldLocalService.getObjectField(
-				objectDefinition.getObjectDefinitionId(), "displayDate"));
-		Assert.assertNotNull(
-			_objectFieldLocalService.getObjectField(
-				objectDefinition.getObjectDefinitionId(), "expirationDate"));
-		Assert.assertNotNull(
-			_objectFieldLocalService.getObjectField(
-				objectDefinition.getObjectDefinitionId(), "reviewDate"));
-
 		Assert.assertNull(
 			_objectFieldLocalService.fetchObjectField(
 				userObjectDefinition.getObjectDefinitionId(), "displayDate"));
