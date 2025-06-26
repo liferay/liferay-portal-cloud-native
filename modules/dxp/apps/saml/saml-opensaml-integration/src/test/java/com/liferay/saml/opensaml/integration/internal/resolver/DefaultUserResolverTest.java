@@ -914,6 +914,9 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 	}
 
 	private void _mockSamlProvisioningUtil() {
+		_samlProvisioningUtilMockedStatic = Mockito.mockStatic(
+			SamlProvisioningUtil.class);
+
 		ExpandoColumn expandoColumn = Mockito.mock(ExpandoColumn.class);
 
 		Mockito.when(
@@ -927,9 +930,6 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 		).thenReturn(
 			_EXPANDO_TABLE_ID
 		);
-
-		_samlProvisioningUtilMockedStatic = Mockito.mockStatic(
-			SamlProvisioningUtil.class);
 
 		_samlProvisioningUtilMockedStatic.when(
 			() -> SamlProvisioningUtil.getOrAddExpandoColumn(
