@@ -2398,12 +2398,8 @@ public class ObjectDefinitionLocalServiceImpl
 				nodeObjectDefinition.setRootObjectDefinitionIds(
 					objectDefinition1.getRootObjectDefinitionIds(),
 					new long[] {objectDefinition2.getObjectDefinitionId()});
-
-				String previousRESTContextPath =
-					nodeObjectDefinition.getRESTContextPath();
-
 				nodeObjectDefinition.setPreviousRESTContextPath(
-					previousRESTContextPath);
+					nodeObjectDefinition.getRESTContextPath());
 
 				deployObjectDefinition(nodeObjectDefinition);
 			}
