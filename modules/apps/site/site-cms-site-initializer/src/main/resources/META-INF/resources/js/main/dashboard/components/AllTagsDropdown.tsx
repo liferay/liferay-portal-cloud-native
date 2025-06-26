@@ -9,7 +9,11 @@ import ApiHelper from '../../../services/ApiHelper';
 import {ViewDashboardContext} from '../ViewDashboardContext';
 import {buildQueryString} from '../utils/buildQueryString';
 import {FilterDropdown, Item} from './FilterDropdown';
-import {IAllFiltersDropdown, initialFilters} from './InventoryAnalysisCard';
+import {
+	IAllFiltersDropdown,
+	filterBySpaces,
+	initialFilters,
+} from './InventoryAnalysisCard';
 
 const AllTagsDropdown: React.FC<IAllFiltersDropdown> = ({
 	className,
@@ -43,11 +47,7 @@ const AllTagsDropdown: React.FC<IAllFiltersDropdown> = ({
 						return true;
 					}
 
-					// Decreasing 1 on id due a bug on Objects
-
-					return assetLibraries.some(
-						({id}) => String(id - 1) === space.value
-					);
+					return filterBySpaces(assetLibraries, space.value);
 				})
 				.map(({id, name}) => ({
 					label: name,

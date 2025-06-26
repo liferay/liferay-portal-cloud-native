@@ -66,7 +66,7 @@ async function fetchStructureData({
 	language: Item;
 	space: Item;
 }) {
-	const params = {
+	const queryParams = buildQueryString({
 		categoryId: filters.category?.value,
 		groupBy: filters.structureType?.value,
 		languageId: language?.value,
@@ -74,14 +74,8 @@ async function fetchStructureData({
 		structureId: filters.structure?.value,
 		tagId: filters.tag?.value,
 		vocabularyId: filters.vocabulary?.value,
-	};
+	});
 
-	const filteredParams = Object.fromEntries(
-		Object.entries(params).filter(
-			([, value]) => value !== null && value !== ''
-		)
-	);
-	const queryParams = buildQueryString(filteredParams);
 	const endpoint = `/o/analytics-cms-rest/v1.0/inventory-analysis${queryParams}`;
 
 	const {data, error} =
@@ -96,6 +90,25 @@ async function fetchStructureData({
 	}
 
 	return null;
+}
+
+export function filterBySpaces(
+	assetLibraries: {id: number}[],
+	spaceId: string
+) {
+	return assetLibraries.some(({id}) => {
+
+		// Returns true if id belongs to all spaces (-1).
+
+		if (id === -1) {
+			return true;
+		}
+
+		// Decreasing -1 due a bug where response is increasing +1 in the id.
+		// Returns true if match id with id from space.
+
+		return String(id - 1) === spaceId;
+	});
 }
 
 export function InventoryAnalysisCard() {

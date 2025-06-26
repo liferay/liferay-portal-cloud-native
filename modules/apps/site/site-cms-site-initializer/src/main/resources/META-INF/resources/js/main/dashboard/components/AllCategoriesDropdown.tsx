@@ -9,7 +9,11 @@ import ApiHelper from '../../../services/ApiHelper';
 import {ViewDashboardContext} from '../ViewDashboardContext';
 import {buildQueryString} from '../utils/buildQueryString';
 import {FilterDropdown} from './FilterDropdown';
-import {IAllFiltersDropdown, initialFilters} from './InventoryAnalysisCard';
+import {
+	IAllFiltersDropdown,
+	filterBySpaces,
+	initialFilters,
+} from './InventoryAnalysisCard';
 
 export type CategoryData = {
 	assetLibraries: {id: number}[];
@@ -87,12 +91,7 @@ const AllCategoriesDropdown: React.FC<IAllFiltersDropdown> = ({
 					return true;
 				}
 
-				// TODO - Fix it:
-				// Decreasing 1 on id due a bug on response
-
-				return assetLibraries.some(
-					({id}) => String(id - 1) === space.value
-				);
+				return filterBySpaces(assetLibraries, space.value);
 			})
 			.map(({id, name, numberOfTaxonomyCategories}) => {
 				const category: Category = {
