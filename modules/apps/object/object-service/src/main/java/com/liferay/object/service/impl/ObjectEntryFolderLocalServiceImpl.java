@@ -107,6 +107,7 @@ public class ObjectEntryFolderLocalServiceImpl
 			objectEntryFolder);
 
 		_addResourcePermission(objectEntryFolder, serviceContext);
+
 		_updateAsset(objectEntryFolder, serviceContext);
 
 		return objectEntryFolder;
