@@ -217,31 +217,31 @@ public class UpdatePasswordActionTest {
 	}
 
 	private void _test(
-			boolean expectedGuestFragmentRendered,
-			boolean expectedNonguestFragmentRendered,
-			boolean guestDefaultLayoutUtilityPageEntry,
-			boolean nonguestDefaultLayoutUtilityPageEntry, boolean usePlid)
+			boolean expectedFragmentRendered2,
+			boolean expectedFragmentRendered1,
+			boolean defaultLayoutUtilityPageEntry2,
+			boolean defaultLayoutUtilityPageEntry1, boolean usePlid)
 		throws Exception {
 
 		_layoutUtilityPageEntry2.setDefaultLayoutUtilityPageEntry(
-			guestDefaultLayoutUtilityPageEntry);
+			defaultLayoutUtilityPageEntry2);
 
 		_layoutUtilityPageEntry2 =
 			_layoutUtilityPageEntryLocalService.updateLayoutUtilityPageEntry(
 				_layoutUtilityPageEntry2);
 
 		_layoutUtilityPageEntry1.setDefaultLayoutUtilityPageEntry(
-			nonguestDefaultLayoutUtilityPageEntry);
+			defaultLayoutUtilityPageEntry1);
 
 		_layoutUtilityPageEntry1 =
 			_layoutUtilityPageEntryLocalService.updateLayoutUtilityPageEntry(
 				_layoutUtilityPageEntry1);
 
 		Assert.assertEquals(
-			expectedNonguestFragmentRendered,
+			expectedFragmentRendered1,
 			_isFragmentRendered(_FRAGMENT_ENTRY_HTML_1, usePlid));
 		Assert.assertEquals(
-			expectedGuestFragmentRendered,
+			expectedFragmentRendered2,
 			_isFragmentRendered(_FRAGMENT_ENTRY_HTML_2, usePlid));
 	}
 
