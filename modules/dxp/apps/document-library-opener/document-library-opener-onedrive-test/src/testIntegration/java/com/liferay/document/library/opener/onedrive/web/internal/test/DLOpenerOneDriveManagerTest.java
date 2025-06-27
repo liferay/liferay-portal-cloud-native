@@ -83,8 +83,6 @@ public class DLOpenerOneDriveManagerTest {
 			_dlOpenerFileEntryReferenceLocalService.
 				fetchDLOpenerFileEntryReference("OneDrive", fileEntry);
 
-		Assert.assertNotNull(dlOpenerFileEntryReference);
-
 		Assert.assertEquals(
 			fileEntry.getFileEntryId(),
 			dlOpenerFileEntryReference.getFileEntryId());
