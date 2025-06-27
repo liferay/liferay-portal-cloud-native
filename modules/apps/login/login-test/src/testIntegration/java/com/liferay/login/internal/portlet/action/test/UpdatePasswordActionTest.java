@@ -217,7 +217,10 @@ public class UpdatePasswordActionTest {
 	}
 
 	private void _test(
-			boolean defaultLayoutUtilityPageEntry1, boolean defaultLayoutUtilityPageEntry2, boolean expectedFragmentRendered1, boolean expectedFragmentRendered2, boolean usePlid)
+			boolean defaultLayoutUtilityPageEntry1,
+			boolean defaultLayoutUtilityPageEntry2,
+			boolean expectedFragmentRendered1,
+			boolean expectedFragmentRendered2, boolean usePlid)
 		throws Exception {
 
 		_layoutUtilityPageEntry2.setDefaultLayoutUtilityPageEntry(
