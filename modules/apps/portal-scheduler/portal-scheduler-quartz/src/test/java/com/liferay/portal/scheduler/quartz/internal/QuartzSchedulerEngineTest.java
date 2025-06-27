@@ -126,9 +126,6 @@ public class QuartzSchedulerEngineTest {
 
 		PropsUtil.set(PropsKeys.SCHEDULER_ENABLED, "false");
 
-		ReflectionTestUtil.setFieldValue(
-			_quartzSchedulerEngine, "_props", PropsUtil.getProps());
-
 		_quartzSchedulerEngine.activate();
 
 		ReflectionTestUtil.setFieldValue(
@@ -234,9 +231,6 @@ public class QuartzSchedulerEngineTest {
 	public void testDisableScheduler() {
 		PropsUtil.set(PropsKeys.SCHEDULER_ENABLED, "true");
 
-		ReflectionTestUtil.setFieldValue(
-			_quartzSchedulerEngine, "_props", PropsUtil.getProps());
-
 		_quartzSchedulerEngine.activate();
 
 		Boolean schedulerEngineEnabled = ReflectionTestUtil.getFieldValue(
@@ -281,9 +275,6 @@ public class QuartzSchedulerEngineTest {
 		PropsUtil.set(
 			PropsKeys.SCHEDULER_JOB_NAME_MAX_LENGTH,
 			String.valueOf(jobNameMaxLength));
-
-		ReflectionTestUtil.setFieldValue(
-			_quartzSchedulerEngine, "_props", PropsUtil.getProps());
 
 		_quartzSchedulerEngine.activate();
 

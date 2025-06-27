@@ -45,7 +45,7 @@ public class SchedulerEngineHelperConfigurationUpgradeProcessTest {
 		SchedulerEngineHelperConfigurationUpgradeProcess
 			schedulerEngineHelperConfigurationUpgradeProcess =
 				new SchedulerEngineHelperConfigurationUpgradeProcess(
-					configurationAdmin, PropsUtil.getProps());
+					configurationAdmin);
 
 		Mockito.when(
 			configurationAdmin.getConfiguration(
@@ -78,7 +78,7 @@ public class SchedulerEngineHelperConfigurationUpgradeProcessTest {
 		SchedulerEngineHelperConfigurationUpgradeProcess
 			schedulerEngineHelperConfigurationUpgradeProcess =
 				new SchedulerEngineHelperConfigurationUpgradeProcess(
-					configurationAdmin, PropsUtil.getProps());
+					configurationAdmin);
 
 		Configuration configuration = Mockito.mock(Configuration.class);
 

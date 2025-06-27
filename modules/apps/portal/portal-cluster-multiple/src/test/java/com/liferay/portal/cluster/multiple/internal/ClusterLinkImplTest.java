@@ -266,9 +266,6 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 				"test-channel-properties-transport-" + i);
 		}
 
-		ReflectionTestUtil.setFieldValue(
-			clusterLinkImpl, "_props", PropsUtil.getProps());
-
 		clusterLinkImpl.activate(Collections.emptyMap());
 
 		return clusterLinkImpl;

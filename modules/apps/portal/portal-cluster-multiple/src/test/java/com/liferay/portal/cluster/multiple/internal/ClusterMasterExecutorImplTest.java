@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.test.rule.NewEnv;
 import com.liferay.portal.kernel.util.MethodHandler;
 import com.liferay.portal.kernel.util.MethodKey;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.test.log.LogCapture;
 import com.liferay.portal.test.log.LogEntry;
@@ -665,8 +664,6 @@ public class ClusterMasterExecutorImplTest extends BaseClusterTestCase {
 		ReflectionTestUtil.setFieldValue(
 			mockClusterExecutor, "_portalExecutorManager",
 			new MockPortalExecutorManager());
-		ReflectionTestUtil.setFieldValue(
-			mockClusterExecutor, "_props", PropsUtil.getProps());
 		ReflectionTestUtil.setFieldValue(
 			mockClusterExecutor, "_serviceTrackerList",
 			ServiceTrackerListFactory.open(

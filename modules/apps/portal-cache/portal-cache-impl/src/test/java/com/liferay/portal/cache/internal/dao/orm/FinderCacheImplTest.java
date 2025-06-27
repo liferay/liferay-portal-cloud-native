@@ -183,8 +183,6 @@ public class FinderCacheImplTest {
 
 		ReflectionTestUtil.setFieldValue(
 			finderCacheImpl, "_multiVMPool", multiVMPool);
-		ReflectionTestUtil.setFieldValue(
-			finderCacheImpl, "_props", PropsUtil.getProps());
 
 		finderCacheImpl.activate(
 			(BundleContext)ProxyUtil.newProxyInstance(

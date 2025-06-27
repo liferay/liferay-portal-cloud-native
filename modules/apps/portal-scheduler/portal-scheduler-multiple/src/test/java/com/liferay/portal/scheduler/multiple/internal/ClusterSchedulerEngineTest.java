@@ -1201,7 +1201,6 @@ public class ClusterSchedulerEngineTest {
 
 		_clusterSchedulerEngine.setClusterMasterExecutor(
 			_mockClusterMasterExecutor);
-		_clusterSchedulerEngine.setProps(PropsUtil.getProps());
 
 		_memoryClusteredJobs = ReflectionTestUtil.getFieldValue(
 			_clusterSchedulerEngine, "_memoryClusteredJobs");

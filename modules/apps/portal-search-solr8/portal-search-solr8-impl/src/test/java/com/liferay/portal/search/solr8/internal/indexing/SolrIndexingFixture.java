@@ -13,8 +13,8 @@ import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Localization;
-import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.search.engine.adapter.SearchEngineAdapter;
 import com.liferay.portal.search.internal.legacy.searcher.SearchRequestBuilderFactoryImpl;
 import com.liferay.portal.search.internal.legacy.searcher.SearchResponseBuilderFactoryImpl;
@@ -38,8 +38,6 @@ import java.util.Collections;
 import java.util.Map;
 
 import org.apache.solr.client.solrj.SolrQuery;
-
-import org.mockito.Mockito;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
@@ -138,6 +136,12 @@ public class SolrIndexingFixture implements IndexingFixture {
 		};
 	}
 
+	protected static void setUpProps() {
+		PropsUtil.set(PropsKeys.INDEX_SEARCH_LIMIT, "20");
+
+		PropsUtil.set(PropsKeys.INDEX_DATE_FORMAT_PATTERN, "yyyyMMddHHmmss");
+	}
+
 	protected IndexSearcher createIndexSearcher(
 		SearchEngineAdapter searchEngineAdapter,
 		SolrClientManager solrClientManager) {
@@ -148,8 +152,8 @@ public class SolrIndexingFixture implements IndexingFixture {
 			}
 		};
 
-		ReflectionTestUtil.setFieldValue(
-			solrIndexSearcher, "_props", createProps());
+		setUpProps();
+
 		ReflectionTestUtil.setFieldValue(
 			solrIndexSearcher, "_querySuggester",
 			createSolrQuerySuggester(solrClientManager));
@@ -181,28 +185,6 @@ public class SolrIndexingFixture implements IndexingFixture {
 			createSolrSpellCheckIndexWriter(searchEngineAdapter));
 
 		return solrIndexWriter;
-	}
-
-	protected Props createProps() {
-		Props props = Mockito.mock(Props.class);
-
-		Mockito.doReturn(
-			"20"
-		).when(
-			props
-		).get(
-			PropsKeys.INDEX_SEARCH_LIMIT
-		);
-
-		Mockito.doReturn(
-			"yyyyMMddHHmmss"
-		).when(
-			props
-		).get(
-			PropsKeys.INDEX_DATE_FORMAT_PATTERN
-		);
-
-		return props;
 	}
 
 	protected Map<String, Object> createSolrConfigurationProperties(

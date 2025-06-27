@@ -295,9 +295,6 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 			PropsKeys.CLUSTER_LINK_CHANNEL_PROPERTIES_CONTROL,
 			"test-channel-properties-control");
 
-		ReflectionTestUtil.setFieldValue(
-			clusterExecutorImpl, "_props", PropsUtil.getProps());
-
 		clusterExecutorImpl.activate(
 			SystemBundleUtil.getBundleContext(), Collections.emptyMap());
 
