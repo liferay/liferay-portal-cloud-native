@@ -104,9 +104,9 @@ public class UpdatePasswordActionTest {
 	@Test
 	public void test() throws Exception {
 		_test(false, false, false, false, true);
-		_test(false, false, false, true, false);
-		_test(false, true, false, true, true);
-		_test(true, false, true, false, false);
+		_test(true, false, false, false, false);
+		_test(true, false, true, false, true);
+		_test(false, true, false, true, false);
 	}
 
 	private LayoutUtilityPageEntry _addLayoutUtilityPageEntry(
@@ -217,10 +217,7 @@ public class UpdatePasswordActionTest {
 	}
 
 	private void _test(
-			boolean expectedFragmentRendered2,
-			boolean expectedFragmentRendered1,
-			boolean defaultLayoutUtilityPageEntry2,
-			boolean defaultLayoutUtilityPageEntry1, boolean usePlid)
+			boolean defaultLayoutUtilityPageEntry1, boolean defaultLayoutUtilityPageEntry2, boolean expectedFragmentRendered1, boolean expectedFragmentRendered2, boolean usePlid)
 		throws Exception {
 
 		_layoutUtilityPageEntry2.setDefaultLayoutUtilityPageEntry(
