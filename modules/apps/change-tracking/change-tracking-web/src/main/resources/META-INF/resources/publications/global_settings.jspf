@@ -67,7 +67,7 @@
 			<clay:alert
 				dismissible="<%= true %>"
 				displayType="warning"
-				message='<%= LanguageUtil.format(request, "currently,-any-publication-owner-can-publish-the-publication-they've-created", new String[] {"<strong>", "</strong>", "<strong>", "</strong>"}, false) %>'
+				message='<%= LanguageUtil.format(request, "currently,-any-publication-owner-can-publish-the-publication-they-have-created", new String[] {"<strong>", "</strong>", "<strong>", "</strong>"}, false) %>'
 			/>
 		</c:if>
 
