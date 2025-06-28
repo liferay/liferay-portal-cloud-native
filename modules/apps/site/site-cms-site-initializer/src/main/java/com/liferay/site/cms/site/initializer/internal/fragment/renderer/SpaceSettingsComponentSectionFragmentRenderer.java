@@ -45,11 +45,11 @@ public class SpaceSettingsComponentSectionFragmentRenderer
 		FragmentRendererContext fragmentRendererContext,
 		HttpServletRequest httpServletRequest) {
 
-		Object object = httpServletRequest.getAttribute(
-			InfoDisplayWebKeys.INFO_ITEM);
-
 		Long depotEntryId = null;
 		Long groupId = null;
+
+		Object object = httpServletRequest.getAttribute(
+			InfoDisplayWebKeys.INFO_ITEM);
 
 		if (object instanceof DepotEntry) {
 			DepotEntry depotEntry = (DepotEntry)object;
