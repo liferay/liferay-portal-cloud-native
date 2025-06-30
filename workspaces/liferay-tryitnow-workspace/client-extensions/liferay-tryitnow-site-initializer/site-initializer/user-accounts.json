@@ -9,7 +9,7 @@
 		"emailAddress": "m2h8.admin.adam@liferay.com",
 		"familyName": "Adam",
 		"givenName": "M2H8 Admin",
-		"imageId": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/M2H8/Look and Feel/users/brian.png#]",		
+		"imageId": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/M2H8/Look and Feel/users/brian.png#]",
 		"jobTitle": "Administrator",
 		"name": "M2H8 Admin Adam",
 		"password": "test"
@@ -17,17 +17,17 @@
 	{
 		"accountBriefs": [
 			{
-				"externalReferenceCode": "M2H8_CUSTOMER_CARL"	
+				"externalReferenceCode": "M2H8_CUSTOMER_CARL"
 			}
 		],
 		"alternateName": "m2h8.customer.carl",
 		"emailAddress": "m2h8.customer.carl@liferay.com",
 		"familyName": "Carl",
 		"givenName": "M2H8 Customer",
-		"imageId": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/M2H8/Look and Feel/users/carl.png#]",		
+		"imageId": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/M2H8/Look and Feel/users/carl.png#]",
 		"jobTitle": "Customer",
 		"name": "M2H8 Customer Carl",
-		"password": "test"		
+		"password": "test"
 	},
 	{
 		"accountBriefs": [
@@ -39,9 +39,9 @@
 		"emailAddress": "m2h8.support.sam@liferay.com",
 		"familyName": "Sam",
 		"givenName": "M2H8 Support",
-		"imageId": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/M2H8/Look and Feel/users/sam.png#]",		
+		"imageId": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/M2H8/Look and Feel/users/sam.png#]",
 		"jobTitle": "Support",
 		"name": "M2H8 Support Sam",
-		"password": "test"		
+		"password": "test"
 	}
 ]
