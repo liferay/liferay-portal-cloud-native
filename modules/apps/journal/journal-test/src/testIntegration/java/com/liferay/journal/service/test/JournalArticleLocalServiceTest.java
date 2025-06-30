@@ -1732,6 +1732,22 @@ public class JournalArticleLocalServiceTest {
 	}
 
 	@Test
+	public void testGetArticleDisplayWithSimpleData() throws Exception {
+		JournalArticle journalArticle = JournalTestUtil.addArticle(
+			_group.getGroupId(),
+			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+
+		JournalArticleDisplay journalArticleDisplay =
+			_journalArticleLocalService.getArticleDisplay(
+				journalArticle.getGroupId(), journalArticle.getArticleId(),
+				null, null, _themeDisplay);
+
+		String content = journalArticleDisplay.getContent();
+
+		Assert.assertFalse(content.contains("Web Content Render"));
+	}
+
+	@Test
 	public void testGetArticleDisplayWithSmallImage() throws Exception {
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
 			_group.getGroupId(),
@@ -1763,22 +1779,6 @@ public class JournalArticleLocalServiceTest {
 		Assert.assertNotNull(articleDisplayImageURL);
 		Assert.assertTrue(
 			articleDisplayImageURL.contains(fileEntry.getFileName()));
-	}
-
-	@Test
-	public void testGetArticleDisplayWithSimpleData() throws Exception {
-		JournalArticle journalArticle = JournalTestUtil.addArticle(
-			_group.getGroupId(),
-			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-
-		JournalArticleDisplay journalArticleDisplay =
-			_journalArticleLocalService.getArticleDisplay(
-				journalArticle.getGroupId(), journalArticle.getArticleId(),
-				null, null, _themeDisplay);
-
-		String content = journalArticleDisplay.getContent();
-
-		Assert.assertFalse(content.contains("Web Content Render"));
 	}
 
 	@Test

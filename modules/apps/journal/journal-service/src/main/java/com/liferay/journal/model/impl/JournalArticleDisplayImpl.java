@@ -18,10 +18,10 @@ public class JournalArticleDisplayImpl implements JournalArticleDisplay {
 		long companyId, long id, long resourcePrimKey, long groupId,
 		long userId, String articleId, double version, String title,
 		String urlTitle, String description, String[] availableLocales,
-		String content, long ddmStructureId,
-		String ddmTemplateKey, boolean smallImage, long smallImageId,
-		String smallImageURL, String articleDisplayImageURL, int numberOfPages,
-		int currentPage, boolean paginate, boolean cacheable) {
+		String content, long ddmStructureId, String ddmTemplateKey,
+		boolean smallImage, long smallImageId, String smallImageURL,
+		String articleDisplayImageURL, int numberOfPages, int currentPage,
+		boolean paginate, boolean cacheable) {
 
 		_companyId = companyId;
 		_id = id;

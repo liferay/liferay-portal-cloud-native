@@ -6701,15 +6701,14 @@ public class JournalArticleLocalServiceImpl
 		return new JournalArticleDisplayImpl(
 			article.getCompanyId(), article.getId(),
 			article.getResourcePrimKey(), article.getGroupId(),
-			article.getUserId(),
-			article.getArticleId(), article.getVersion(),
+			article.getUserId(), article.getArticleId(), article.getVersion(),
 			article.getTitle(languageId), article.getUrlTitle(),
 			article.getDescription(languageId),
 			article.getAvailableLanguageIds(), content,
 			article.getDDMStructureId(), ddmTemplateKey, article.isSmallImage(),
 			article.getSmallImageId(), article.getSmallImageURL(),
-			article.getArticleImageURL(themeDisplay),
-			numberOfPages, page, paginate, cacheable);
+			article.getArticleImageURL(themeDisplay), numberOfPages, page,
+			paginate, cacheable);
 	}
 
 	protected List<ObjectValuePair<Long, Integer>> getArticleVersionStatuses(
