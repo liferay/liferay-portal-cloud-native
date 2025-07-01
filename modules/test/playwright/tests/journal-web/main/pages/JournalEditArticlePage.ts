@@ -45,11 +45,12 @@ export class JournalEditArticlePage {
 		this.changesSavedIndicator = page.locator(
 			'#_com_liferay_journal_web_portlet_JournalPortlet_changesSavedIndicator'
 		);
-		
+
 		this.clearButton = page.getByRole('button', {name: 'Clear'});
 		this.content = page.getByText('Content', {exact: true});
-		this.contentFrame = page
-			.frameLocator('internal:role=application[name="Content,"i] >> iframe[title="editor"]')
+		this.contentFrame = page.frameLocator(
+			'internal:role=application[name="Content,"i] >> iframe[title="editor"]'
+		);
 		this.defaultTemplateButton = page.getByRole('button', {
 			name: 'Default Template',
 		});
@@ -274,7 +275,7 @@ export class JournalEditArticlePage {
 	}
 
 	async editURL(title: string, url: string) {
-		await this.contentFrame.getByRole('link', { name: title }).dblclick();
+		await this.contentFrame.getByRole('link', {name: title}).dblclick();
 		await this.page.getByLabel('URL*').fill(url);
 		await this.page.getByLabel('OK').click();
 	}
