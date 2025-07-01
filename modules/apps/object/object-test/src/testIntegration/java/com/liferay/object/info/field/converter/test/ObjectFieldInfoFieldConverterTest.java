@@ -35,6 +35,8 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import java.util.Collections;
 
 import org.junit.Assert;
@@ -103,7 +105,7 @@ public class ObjectFieldInfoFieldConverterTest {
 			ServiceContext serviceContext =
 				ServiceContextTestUtil.getServiceContext();
 
-			MockHttpServletRequest mockHttpServletRequest =
+			HttpServletRequest httpServletRequest =
 				new MockHttpServletRequest();
 
 			LayoutDisplayPageProvider<?> layoutDisplayPageProvider =
@@ -116,14 +118,14 @@ public class ObjectFieldInfoFieldConverterTest {
 				Collections.singletonMap(
 					"integerObjectField", RandomTestUtil.randomInt()));
 
-			mockHttpServletRequest.setAttribute(
+			httpServletRequest.setAttribute(
 				LayoutDisplayPageWebKeys.LAYOUT_DISPLAY_PAGE_OBJECT_PROVIDER,
 				layoutDisplayPageProvider.getLayoutDisplayPageObjectProvider(
 					new InfoItemReference(
 						_objectDefinition.getClassName(),
 						objectEntry.getObjectEntryId())));
 
-			serviceContext.setRequest(mockHttpServletRequest);
+			serviceContext.setRequest(httpServletRequest);
 
 			ServiceContextThreadLocal.pushServiceContext(serviceContext);
 
