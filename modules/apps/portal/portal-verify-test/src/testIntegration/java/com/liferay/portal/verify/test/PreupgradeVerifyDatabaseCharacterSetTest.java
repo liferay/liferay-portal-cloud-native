@@ -63,9 +63,7 @@ public class PreupgradeVerifyDatabaseCharacterSetTest
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		_connection = DataAccess.getConnection();
-
 		_db = DBManagerUtil.getDB();
-
 		_dataSource = InfrastructureUtil.getDataSource();
 
 		if ((_db.getDBType() == DBType.MARIADB) ||
@@ -86,7 +84,6 @@ public class PreupgradeVerifyDatabaseCharacterSetTest
 
 		_safeCloseable = CompanyThreadLocal.setCompanyIdWithSafeCloseable(
 			PortalInstancePool.getDefaultCompanyId());
-
 		_unsupportedCharacterSetDataSource =
 			DataSourceFactoryUtil.initDataSource(
 				PropsValues.JDBC_DEFAULT_DRIVER_CLASS_NAME, _getSchemaURL(),
