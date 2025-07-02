@@ -230,10 +230,12 @@ public class ObjectEntryFolderResourceImpl
 
 		long groupId = _getGroupId(scopeKey);
 
-		com.liferay.object.model.ObjectEntryFolder serviceBuilderObjectEntryFolder =
-			_objectEntryFolderService.
-				fetchObjectEntryFolderByExternalReferenceCode(
-					externalReferenceCode, groupId, contextUser.getCompanyId());
+		com.liferay.object.model.ObjectEntryFolder
+			serviceBuilderObjectEntryFolder =
+				_objectEntryFolderService.
+					fetchObjectEntryFolderByExternalReferenceCode(
+						externalReferenceCode, groupId,
+						contextUser.getCompanyId());
 
 		if (serviceBuilderObjectEntryFolder == null) {
 			return _addObjectEntryFolder(
@@ -283,9 +285,10 @@ public class ObjectEntryFolderResourceImpl
 			throw new UnsupportedOperationException();
 		}
 
-		com.liferay.object.model.ObjectEntryFolder serviceBuilderObjectEntryFolder =
-			_objectEntryFolderService.fetchObjectEntryFolder(
-				objectEntryFolderId);
+		com.liferay.object.model.ObjectEntryFolder
+			serviceBuilderObjectEntryFolder =
+				_objectEntryFolderService.fetchObjectEntryFolder(
+					objectEntryFolderId);
 
 		if (serviceBuilderObjectEntryFolder == null) {
 			long groupId = _getGroupId(objectEntryFolder.getScopeKey());
@@ -385,11 +388,12 @@ public class ObjectEntryFolderResourceImpl
 			return parentObjectEntryFolderId;
 		}
 
-		com.liferay.object.model.ObjectEntryFolder serviceBuilderObjectEntryFolder =
-			_objectEntryFolderService.
-				fetchObjectEntryFolderByExternalReferenceCode(
-					parentObjectEntryFolderExternalReferenceCode, groupId,
-					contextUser.getCompanyId());
+		com.liferay.object.model.ObjectEntryFolder
+			serviceBuilderObjectEntryFolder =
+				_objectEntryFolderService.
+					fetchObjectEntryFolderByExternalReferenceCode(
+						parentObjectEntryFolderExternalReferenceCode, groupId,
+						contextUser.getCompanyId());
 
 		if ((parentObjectEntryFolderId != null) &&
 			(serviceBuilderObjectEntryFolder != null) &&
@@ -478,7 +482,8 @@ public class ObjectEntryFolderResourceImpl
 		}
 
 		Long parentObjectEntryFolderId = _getParentObjectEntryFolderId(
-			false, serviceBuilderObjectEntryFolder.getGroupId(), objectEntryFolder);
+			false, serviceBuilderObjectEntryFolder.getGroupId(),
+			objectEntryFolder);
 
 		if (parentObjectEntryFolderId == null) {
 			parentObjectEntryFolderId =
