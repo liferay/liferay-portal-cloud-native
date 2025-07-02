@@ -230,12 +230,12 @@ public class ObjectEntryFolderResourceImpl
 
 		long groupId = _getGroupId(scopeKey);
 
-		com.liferay.object.model.ObjectEntryFolder persistedObjectEntryFolder =
+		com.liferay.object.model.ObjectEntryFolder serviceBuilderObjectEntryFolder =
 			_objectEntryFolderService.
 				fetchObjectEntryFolderByExternalReferenceCode(
 					externalReferenceCode, groupId, contextUser.getCompanyId());
 
-		if (persistedObjectEntryFolder == null) {
+		if (serviceBuilderObjectEntryFolder == null) {
 			return _addObjectEntryFolder(
 				groupId,
 				GetterUtil.getLong(
@@ -246,7 +246,7 @@ public class ObjectEntryFolderResourceImpl
 
 		return _toObjectEntryFolder(
 			_objectEntryFolderService.updateObjectEntryFolder(
-				persistedObjectEntryFolder.getObjectEntryFolderId(),
+				serviceBuilderObjectEntryFolder.getObjectEntryFolderId(),
 				GetterUtil.getLong(
 					_getParentObjectEntryFolderId(
 						true, groupId, objectEntryFolder)),
@@ -283,11 +283,11 @@ public class ObjectEntryFolderResourceImpl
 			throw new UnsupportedOperationException();
 		}
 
-		com.liferay.object.model.ObjectEntryFolder persistedObjectEntryFolder =
+		com.liferay.object.model.ObjectEntryFolder serviceBuilderObjectEntryFolder =
 			_objectEntryFolderService.fetchObjectEntryFolder(
 				objectEntryFolderId);
 
-		if (persistedObjectEntryFolder == null) {
+		if (serviceBuilderObjectEntryFolder == null) {
 			long groupId = _getGroupId(objectEntryFolder.getScopeKey());
 
 			return _addObjectEntryFolder(
@@ -385,23 +385,23 @@ public class ObjectEntryFolderResourceImpl
 			return parentObjectEntryFolderId;
 		}
 
-		com.liferay.object.model.ObjectEntryFolder persistedObjectEntryFolder =
+		com.liferay.object.model.ObjectEntryFolder serviceBuilderObjectEntryFolder =
 			_objectEntryFolderService.
 				fetchObjectEntryFolderByExternalReferenceCode(
 					parentObjectEntryFolderExternalReferenceCode, groupId,
 					contextUser.getCompanyId());
 
 		if ((parentObjectEntryFolderId != null) &&
-			(persistedObjectEntryFolder != null) &&
-			(persistedObjectEntryFolder.getObjectEntryFolderId() !=
+			(serviceBuilderObjectEntryFolder != null) &&
+			(serviceBuilderObjectEntryFolder.getObjectEntryFolderId() !=
 				parentObjectEntryFolderId)) {
 
 			throw new NoSuchObjectEntryFolderException();
 		}
 
-		if (persistedObjectEntryFolder == null) {
+		if (serviceBuilderObjectEntryFolder == null) {
 			if (!addObjectEntryFolder) {
-				persistedObjectEntryFolder =
+				serviceBuilderObjectEntryFolder =
 					_objectEntryFolderLocalService.
 						getOrAddIncompleteObjectEntryFolder(
 							parentObjectEntryFolderExternalReferenceCode,
@@ -412,7 +412,7 @@ public class ObjectEntryFolderResourceImpl
 							).build());
 			}
 			else {
-				persistedObjectEntryFolder =
+				serviceBuilderObjectEntryFolder =
 					_objectEntryFolderService.addObjectEntryFolder(
 						parentObjectEntryFolderExternalReferenceCode, groupId,
 						ObjectEntryFolderConstants.
@@ -425,12 +425,12 @@ public class ObjectEntryFolderResourceImpl
 			}
 		}
 
-		return persistedObjectEntryFolder.getObjectEntryFolderId();
+		return serviceBuilderObjectEntryFolder.getObjectEntryFolderId();
 	}
 
 	private ObjectEntryFolder _toObjectEntryFolder(
 			com.liferay.object.model.ObjectEntryFolder
-				persistedObjectEntryFolder)
+				serviceBuilderObjectEntryFolder)
 		throws Exception {
 
 		return _objectEntryFolderDTOConverter.toDTO(
@@ -439,21 +439,21 @@ public class ObjectEntryFolderResourceImpl
 				HashMapBuilder.put(
 					"delete",
 					addAction(
-						ActionKeys.DELETE, persistedObjectEntryFolder,
+						ActionKeys.DELETE, serviceBuilderObjectEntryFolder,
 						"deleteObjectEntryFolder")
 				).put(
 					"get",
 					addAction(
-						ActionKeys.VIEW, persistedObjectEntryFolder,
+						ActionKeys.VIEW, serviceBuilderObjectEntryFolder,
 						"getObjectEntryFolder")
 				).put(
 					"update",
 					addAction(
-						ActionKeys.UPDATE, persistedObjectEntryFolder,
+						ActionKeys.UPDATE, serviceBuilderObjectEntryFolder,
 						"patchObjectEntryFolder")
 				).build(),
 				_dtoConverterRegistry,
-				persistedObjectEntryFolder.getObjectEntryFolderId(),
+				serviceBuilderObjectEntryFolder.getObjectEntryFolderId(),
 				contextAcceptLanguage.getPreferredLocale(), contextUriInfo,
 				contextUser));
 	}
@@ -461,45 +461,45 @@ public class ObjectEntryFolderResourceImpl
 	private ObjectEntryFolder _updateObjectEntryFolder(
 			ObjectEntryFolder objectEntryFolder,
 			com.liferay.object.model.ObjectEntryFolder
-				persistedObjectEntryFolder)
+				serviceBuilderObjectEntryFolder)
 		throws Exception {
 
 		String description = objectEntryFolder.getDescription();
 
 		if (description == null) {
-			description = persistedObjectEntryFolder.getDescription();
+			description = serviceBuilderObjectEntryFolder.getDescription();
 		}
 
 		Map<String, String> labelMap = objectEntryFolder.getLabel_i18n();
 
 		if (labelMap == null) {
 			labelMap = LocalizedMapUtil.getI18nMap(
-				persistedObjectEntryFolder.getLabelMap());
+				serviceBuilderObjectEntryFolder.getLabelMap());
 		}
 
 		Long parentObjectEntryFolderId = _getParentObjectEntryFolderId(
-			false, persistedObjectEntryFolder.getGroupId(), objectEntryFolder);
+			false, serviceBuilderObjectEntryFolder.getGroupId(), objectEntryFolder);
 
 		if (parentObjectEntryFolderId == null) {
 			parentObjectEntryFolderId =
-				persistedObjectEntryFolder.getParentObjectEntryFolderId();
+				serviceBuilderObjectEntryFolder.getParentObjectEntryFolderId();
 		}
 
 		return _toObjectEntryFolder(
 			_objectEntryFolderService.updateObjectEntryFolder(
-				persistedObjectEntryFolder.getObjectEntryFolderId(),
+				serviceBuilderObjectEntryFolder.getObjectEntryFolderId(),
 				parentObjectEntryFolderId, description,
 				LocalizedMapUtil.getLocalizedMap(
 					contextAcceptLanguage.getPreferredLocale(),
 					GetterUtil.getString(
 						objectEntryFolder.getLabel(),
-						persistedObjectEntryFolder.getLabel()),
+						serviceBuilderObjectEntryFolder.getLabel()),
 					labelMap),
 				GetterUtil.getString(
 					objectEntryFolder.getTitle(),
-					persistedObjectEntryFolder.getName()),
+					serviceBuilderObjectEntryFolder.getName()),
 				ServiceContextBuilder.create(
-					persistedObjectEntryFolder.getGroupId(),
+					serviceBuilderObjectEntryFolder.getGroupId(),
 					contextHttpServletRequest, null
 				).build()));
 	}
