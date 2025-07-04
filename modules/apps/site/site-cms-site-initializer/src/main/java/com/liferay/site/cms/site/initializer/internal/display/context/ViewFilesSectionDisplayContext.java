@@ -73,7 +73,6 @@ public class ViewFilesSectionDisplayContext
 				"{embedded.file.link.href}", "download", "download",
 				LanguageUtil.get(httpServletRequest, "download"), "get", null,
 				"link"));
-
 		fdsActionDropdownItems.add(
 			2,
 			new FDSActionDropdownItem(
@@ -87,7 +86,6 @@ public class ViewFilesSectionDisplayContext
 				HashMapBuilder.<String, Object>put(
 					"entryClassName", ObjectEntryFolder.class.getName()
 				).build()));
-
 		fdsActionDropdownItems.add(
 			3,
 			new FDSActionDropdownItem(

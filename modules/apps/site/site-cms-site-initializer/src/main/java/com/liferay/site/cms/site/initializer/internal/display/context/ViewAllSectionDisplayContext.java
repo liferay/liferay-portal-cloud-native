@@ -70,7 +70,6 @@ public class ViewAllSectionDisplayContext extends BaseSectionDisplayContext {
 				"{embedded.file.link.href}", "download", "download",
 				LanguageUtil.get(httpServletRequest, "download"), "get", null,
 				"link"));
-
 		fdsActionDropdownItems.add(
 			2,
 			new FDSActionDropdownItem(
