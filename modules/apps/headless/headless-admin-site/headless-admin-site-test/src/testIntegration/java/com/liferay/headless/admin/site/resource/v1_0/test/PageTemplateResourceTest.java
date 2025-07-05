@@ -847,7 +847,6 @@ public class PageTemplateResourceTest extends BasePageTemplateResourceTestCase {
 			).build());
 
 		widgetPageTemplate.setPageTemplateSet(_getPageTemplateSet(group));
-
 		widgetPageTemplate.setPageTemplateSettings(
 			_getWidgetPageTemplateSettings());
 
