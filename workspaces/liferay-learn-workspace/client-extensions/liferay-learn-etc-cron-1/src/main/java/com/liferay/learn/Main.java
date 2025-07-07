@@ -262,10 +262,11 @@ public class Main {
 
 			Site globalSite = _siteResource.getSiteByFriendlyUrlPath("global");
 
+			_globalSiteId = globalSite.getId();
+
 			Site liferaySite = _siteResource.getSiteByFriendlyUrlPath(
 				liferaySiteFriendlyUrlPath);
 
-			_globalSiteId = globalSite.getId();
 			_liferaySiteId = liferaySite.getId();
 
 			System.out.println("Liferay site ID: " + liferaySite.getId());
