@@ -4340,14 +4340,11 @@ public class DataFactory {
 			List<SegmentsExperienceModel> segmentsExperienceModels)
 		throws Exception {
 
+		LayoutModel nonhiddenLayoutModel = null;
 		List<FragmentEntryLinkModel> hiddenFragmentEntryLinkModels =
 			new ArrayList<>();
-
-		LayoutModel nonhiddenLayoutModel = null;
-
 		String imageRenderNamespace = StringUtil.randomId();
 		String paragraphRenderNamespace = StringUtil.randomId();
-
 		long segmentsExperienceId = 0;
 
 		for (LayoutModel layoutModel : layoutModels) {
@@ -5577,6 +5574,8 @@ public class DataFactory {
 			layoutPageTemplateStructureModel.
 				getLayoutPageTemplateStructureId());
 
+		FragmentEntryLinkModel correspondingFragmentEntryLinkModel = null;
+
 		String data = _readFile(
 			"object/object_definition_layout_page_template_structure_rel.json");
 
@@ -5584,19 +5583,17 @@ public class DataFactory {
 			data, "${objectDefinitionClassName}",
 			objectDefinition.getClassName());
 
-		FragmentEntryLinkModel correspondingFragmentEntryLinkModel = null;
-
 		for (FragmentEntryLinkModel fragmentEntryLinkModel :
 				fragmentEntryLinkModels) {
+
+			if (layoutModel.getPlid() == fragmentEntryLinkModel.getPlid()) {
+				correspondingFragmentEntryLinkModel = fragmentEntryLinkModel;
+			}
 
 			data = StringUtil.replaceFirst(
 				data, "${fragmentEntryLinkId}",
 				String.valueOf(
 					fragmentEntryLinkModel.getFragmentEntryLinkId()));
-
-			if (layoutModel.getPlid() == fragmentEntryLinkModel.getPlid()) {
-				correspondingFragmentEntryLinkModel = fragmentEntryLinkModel;
-			}
 		}
 
 		layoutPageTemplateStructureRelModel.setSegmentsExperienceId(
@@ -5942,23 +5939,24 @@ public class DataFactory {
 			List<SegmentsExperienceModel> segmentsExperienceModels)
 		throws Exception {
 
-		List<FragmentEntryLinkModel> nonhiddenFragmentEntryLinkModels =
-			new ArrayList<>();
-
 		String editValueJSON = _readFile(
 			"fragment_component/fragment_component_heading_editValue.json");
 		String headingCss = _readFile(
 			_getFragmentComponentInputStream("heading", "css"));
 		String headingHtml = _readFile(
 			_getFragmentComponentInputStream("heading", "html"));
+		List<FragmentEntryLinkModel> nonhiddenFragmentEntryLinkModels =
+			new ArrayList<>();
 		String paragraphRenderNamespace = StringUtil.randomId();
-
 		long segmentsExperienceId = 0;
 
 		for (ObjectFieldModel objectFieldModel : objectFieldModels) {
 			if (objectFieldModel.isSystem()) {
 				continue;
 			}
+
+			segmentsExperienceId = _getSegmentsExperienceId(
+				layoutModels.get(1), segmentsExperienceModels);
 
 			String editValue;
 
@@ -5979,9 +5977,6 @@ public class DataFactory {
 					editValueJSON, "${collectionFieldId}",
 					"ObjectField_" + objectFieldModel.getName());
 			}
-
-			segmentsExperienceId = _getSegmentsExperienceId(
-				layoutModels.get(1), segmentsExperienceModels);
 
 			nonhiddenFragmentEntryLinkModels.add(
 				newFragmentEntryLinkModel(
