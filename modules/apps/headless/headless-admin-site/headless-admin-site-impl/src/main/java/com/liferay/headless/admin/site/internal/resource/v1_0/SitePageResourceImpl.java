@@ -412,11 +412,18 @@ public class SitePageResourceImpl extends BaseSitePageResourceImpl {
 	private Layout _updateLayout(Layout layout, SitePage sitePage)
 		throws Exception {
 
+		long parentLayoutId = _getParentLayoutId(
+			layout.getParentLayoutId(), layout.getGroupId(),
+			sitePage.getParentSitePageExternalReferenceCode());
+
 		Map<Locale, String> nameMap = layout.getNameMap();
 
 		if (sitePage.getName_i18n() != null) {
 			nameMap = LocalizedMapUtil.getLocalizedMap(sitePage.getName_i18n());
 		}
+
+		boolean hiddenFromNavigation = _isHiddenFromNavigation(
+			layout.isHidden(), sitePage.getPageSettings());
 
 		Map<Locale, String> friendlyURLMap = layout.getFriendlyURLMap();
 
@@ -424,12 +431,6 @@ public class SitePageResourceImpl extends BaseSitePageResourceImpl {
 			friendlyURLMap = LocalizedMapUtil.getLocalizedMap(
 				sitePage.getFriendlyUrlPath_i18n());
 		}
-
-		boolean hiddenFromNavigation = _isHiddenFromNavigation(
-			layout.isHidden(), sitePage.getPageSettings());
-		long parentLayoutId = _getParentLayoutId(
-			layout.getParentLayoutId(), layout.getGroupId(),
-			sitePage.getParentSitePageExternalReferenceCode());
 
 		ServiceContext serviceContext = ServiceContextUtil.createServiceContext(
 			layout.getGroupId(), contextHttpServletRequest,
