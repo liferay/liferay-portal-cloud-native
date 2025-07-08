@@ -4022,145 +4022,134 @@ public class ObjectEntryLocalServiceTest {
 
 		boolean enableLocalization = objectDefinition.isEnableLocalization();
 
-		try {
-			objectDefinition.setEnableLocalization(true);
+		objectDefinition.setEnableLocalization(true);
 
-			objectDefinition =
-				_objectDefinitionLocalService.updateObjectDefinition(
-					objectDefinition);
+		objectDefinition = _objectDefinitionLocalService.updateObjectDefinition(
+			objectDefinition);
 
-			ObjectField objectField1 = _addCustomObjectField(
-				new TextObjectFieldBuilder(
-				).labelMap(
-					LocalizedMapUtil.getLocalizedMap(
-						RandomTestUtil.randomString())
-				).localized(
-					true
-				).name(
-					"localizedTextField"
-				).objectDefinitionId(
-					objectDefinition.getObjectDefinitionId()
-				).build());
-			ObjectField objectField2 = _addCustomObjectField(
-				new LongIntegerObjectFieldBuilder(
-				).labelMap(
-					LocalizedMapUtil.getLocalizedMap(
-						RandomTestUtil.randomString())
-				).name(
-					"longField"
-				).objectDefinitionId(
-					objectDefinition.getObjectDefinitionId()
-				).build());
-			ObjectField objectField3 = _addCustomObjectField(
-				new TextObjectFieldBuilder(
-				).labelMap(
-					LocalizedMapUtil.getLocalizedMap(
-						RandomTestUtil.randomString())
-				).name(
-					"textField"
-				).objectDefinitionId(
-					objectDefinition.getObjectDefinitionId()
-				).required(
-					true
-				).build());
+		ObjectField objectField1 = _addCustomObjectField(
+			new TextObjectFieldBuilder(
+			).labelMap(
+				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString())
+			).localized(
+				true
+			).name(
+				"localizedTextField"
+			).objectDefinitionId(
+				objectDefinition.getObjectDefinitionId()
+			).build());
+		ObjectField objectField2 = _addCustomObjectField(
+			new LongIntegerObjectFieldBuilder(
+			).labelMap(
+				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString())
+			).name(
+				"longField"
+			).objectDefinitionId(
+				objectDefinition.getObjectDefinitionId()
+			).build());
+		ObjectField objectField3 = _addCustomObjectField(
+			new TextObjectFieldBuilder(
+			).labelMap(
+				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString())
+			).name(
+				"textField"
+			).objectDefinitionId(
+				objectDefinition.getObjectDefinitionId()
+			).required(
+				true
+			).build());
 
-			ObjectDefinition finalObjectDefinition = objectDefinition;
+		ObjectDefinition finalObjectDefinition = objectDefinition;
 
-			User user = UserTestUtil.addUser();
+		User user = UserTestUtil.addUser();
 
-			AssertUtils.assertFailure(
-				ObjectEntryValuesException.Required.class,
-				"No value was provided for required object field \"textField\"",
-				() ->
-					_objectEntryLocalService.
-						addOrUpdateExtensionDynamicObjectDefinitionTableValues(
-							TestPropsValues.getUserId(), finalObjectDefinition,
-							user.getUserId(), Collections.emptyMap(),
-							ServiceContextTestUtil.getServiceContext()));
-
-			Map<String, Serializable> values =
-				HashMapBuilder.<String, Serializable>put(
-					"localizedTextField", "en_US localizedTextFieldValue1"
-				).put(
-					"localizedTextField_i18n",
-					HashMapBuilder.put(
-						"en_US", "en_US localizedTextFieldValue1"
-					).put(
-						"pt_BR", "pt_BR localizedTextFieldValue1"
-					).build()
-				).put(
-					"longField", 10L
-				).put(
-					"textField", "Value"
-				).build();
-
-			_objectEntryLocalService.
-				addOrUpdateExtensionDynamicObjectDefinitionTableValues(
-					TestPropsValues.getUserId(), objectDefinition,
-					user.getUserId(), values,
-					ServiceContextTestUtil.getServiceContext());
-
-			Assert.assertEquals(
-				values,
+		AssertUtils.assertFailure(
+			ObjectEntryValuesException.Required.class,
+			"No value was provided for required object field \"textField\"",
+			() ->
 				_objectEntryLocalService.
-					getExtensionDynamicObjectDefinitionTableValues(
-						objectDefinition, user.getUserId()));
+					addOrUpdateExtensionDynamicObjectDefinitionTableValues(
+						TestPropsValues.getUserId(), finalObjectDefinition,
+						user.getUserId(), Collections.emptyMap(),
+						ServiceContextTestUtil.getServiceContext()));
 
-			values = HashMapBuilder.<String, Serializable>put(
-				"localizedTextField", "en_US localizedTextFieldValue2"
+		Map<String, Serializable> values =
+			HashMapBuilder.<String, Serializable>put(
+				"localizedTextField", "en_US localizedTextFieldValue1"
 			).put(
 				"localizedTextField_i18n",
 				HashMapBuilder.put(
-					"en_US", "en_US localizedTextFieldValue2"
+					"en_US", "en_US localizedTextFieldValue1"
 				).put(
-					"pt_BR", "pt_BR localizedTextFieldValue2"
+					"pt_BR", "pt_BR localizedTextFieldValue1"
 				).build()
 			).put(
-				"longField", 1000L
+				"longField", 10L
 			).put(
-				"textField", "New Value"
+				"textField", "Value"
 			).build();
 
-			_objectEntryLocalService.
-				addOrUpdateExtensionDynamicObjectDefinitionTableValues(
-					TestPropsValues.getUserId(), objectDefinition,
-					user.getUserId(), values,
-					ServiceContextTestUtil.getServiceContext());
+		_objectEntryLocalService.
+			addOrUpdateExtensionDynamicObjectDefinitionTableValues(
+				TestPropsValues.getUserId(), objectDefinition, user.getUserId(),
+				values, ServiceContextTestUtil.getServiceContext());
 
-			Assert.assertEquals(
-				values,
-				_objectEntryLocalService.
-					getExtensionDynamicObjectDefinitionTableValues(
-						objectDefinition, user.getUserId()));
-
+		Assert.assertEquals(
+			values,
 			_objectEntryLocalService.
-				deleteExtensionDynamicObjectDefinitionTableValues(
+				getExtensionDynamicObjectDefinitionTableValues(
+					objectDefinition, user.getUserId()));
+
+		values = HashMapBuilder.<String, Serializable>put(
+			"localizedTextField", "en_US localizedTextFieldValue2"
+		).put(
+			"localizedTextField_i18n",
+			HashMapBuilder.put(
+				"en_US", "en_US localizedTextFieldValue2"
+			).put(
+				"pt_BR", "pt_BR localizedTextFieldValue2"
+			).build()
+		).put(
+			"longField", 1000L
+		).put(
+			"textField", "New Value"
+		).build();
+
+		_objectEntryLocalService.
+			addOrUpdateExtensionDynamicObjectDefinitionTableValues(
+				TestPropsValues.getUserId(), objectDefinition, user.getUserId(),
+				values, ServiceContextTestUtil.getServiceContext());
+
+		Assert.assertEquals(
+			values,
+			_objectEntryLocalService.
+				getExtensionDynamicObjectDefinitionTableValues(
+					objectDefinition, user.getUserId()));
+
+		_objectEntryLocalService.
+			deleteExtensionDynamicObjectDefinitionTableValues(
+				objectDefinition, user.getUserId());
+
+		Map<String, Serializable> extensionValues =
+			_objectEntryLocalService.
+				getExtensionDynamicObjectDefinitionTableValues(
 					objectDefinition, user.getUserId());
 
-			Map<String, Serializable> extensionValues =
-				_objectEntryLocalService.
-					getExtensionDynamicObjectDefinitionTableValues(
-						objectDefinition, user.getUserId());
+		Assert.assertEquals(
+			StringPool.BLANK, extensionValues.get("localizedTextField"));
+		Assert.assertEquals(0L, extensionValues.get("longField"));
+		Assert.assertEquals(StringPool.BLANK, extensionValues.get("textField"));
 
-			Assert.assertEquals(
-				StringPool.BLANK, extensionValues.get("localizedTextField"));
-			Assert.assertEquals(0L, extensionValues.get("longField"));
-			Assert.assertEquals(
-				StringPool.BLANK, extensionValues.get("textField"));
+		_objectFieldLocalService.deleteObjectField(
+			objectField1.getObjectFieldId());
+		_objectFieldLocalService.deleteObjectField(
+			objectField2.getObjectFieldId());
+		_objectFieldLocalService.deleteObjectField(
+			objectField3.getObjectFieldId());
 
-			_objectFieldLocalService.deleteObjectField(
-				objectField1.getObjectFieldId());
-			_objectFieldLocalService.deleteObjectField(
-				objectField2.getObjectFieldId());
-			_objectFieldLocalService.deleteObjectField(
-				objectField3.getObjectFieldId());
-		}
-		finally {
-			objectDefinition.setEnableLocalization(enableLocalization);
+		objectDefinition.setEnableLocalization(enableLocalization);
 
-			_objectDefinitionLocalService.updateObjectDefinition(
-				objectDefinition);
-		}
+		_objectDefinitionLocalService.updateObjectDefinition(objectDefinition);
 	}
 
 	@Test
