@@ -144,13 +144,13 @@ public abstract class BaseSectionDisplayContextTestCase
 
 			Assert.assertEquals(name, depotGroup.getGroupKey());
 
-			_testGetDepotEntriesJSONArray(depotEntries, null, null);
-			_testGetDepotEntriesJSONArray(
-				List.of(depotEntry), null,
-				String.valueOf(depotGroup.getGroupId()));
 			_testGetDepotEntriesJSONArray(
 				List.of(defaultDepotEntry), null,
 				String.valueOf(defaultDepotGroup.getGroupId()));
+			_testGetDepotEntriesJSONArray(
+				List.of(depotEntry), null,
+				String.valueOf(depotGroup.getGroupId()));
+			_testGetDepotEntriesJSONArray(depotEntries, null, null);
 
 			if (getRootObjectEntryFolderExternalReferenceCode() != null) {
 				ObjectEntryFolder objectEntryFolder = _addObjectFolderEntry(
@@ -188,19 +188,19 @@ public abstract class BaseSectionDisplayContextTestCase
 
 		Assert.assertEquals("Default", depotGroup.getGroupKey());
 
-		_testGetDepotEntriesJSONArray(depotEntries, null, null);
 		_testGetDepotEntriesJSONArray(
 			depotEntries, null, String.valueOf(depotGroup.getGroupId()));
+		_testGetDepotEntriesJSONArray(depotEntries, null, null);
 
 		if (getRootObjectEntryFolderExternalReferenceCode() != null) {
 			ObjectEntryFolder objectEntryFolder = _addObjectFolderEntry(
 				depotGroup);
 
 			_testGetDepotEntriesJSONArray(
-				List.of(depotEntry), objectEntryFolder, null);
-			_testGetDepotEntriesJSONArray(
 				List.of(depotEntry), objectEntryFolder,
 				String.valueOf(depotGroup.getGroupId()));
+			_testGetDepotEntriesJSONArray(
+				List.of(depotEntry), objectEntryFolder, null);
 		}
 	}
 
