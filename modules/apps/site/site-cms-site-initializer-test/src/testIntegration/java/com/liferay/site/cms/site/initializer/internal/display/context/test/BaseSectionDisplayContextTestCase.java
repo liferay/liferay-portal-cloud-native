@@ -373,11 +373,7 @@ public abstract class BaseSectionDisplayContextTestCase
 			}
 		}
 
-		Assert.assertNull(
-			String.format(
-				"Creation menu contains label '%s': %s", unexpectedLabel,
-				dropdownItems),
-			dropdownItemData);
+		Assert.assertNull(dropdownItemData);
 	}
 
 	private DropdownItem _get(List<DropdownItem> dropdownItems, String label) {
