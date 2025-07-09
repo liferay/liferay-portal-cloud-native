@@ -332,7 +332,7 @@ public abstract class BaseSectionDisplayContextTestCase
 
 		Assert.assertFalse(dropdownItems.toString(), dropdownItems.isEmpty());
 
-		HashMap<String, Object> dropdownItemData = null;
+		Map<String, Object> dropdownItemData = null;
 
 		for (DropdownItem dropdownItem : dropdownItems) {
 			if (Objects.equals(dropdownItem.get("label"), expectedLabel)) {
@@ -373,7 +373,7 @@ public abstract class BaseSectionDisplayContextTestCase
 
 		Assert.assertFalse(dropdownItems.toString(), dropdownItems.isEmpty());
 
-		HashMap<String, Object> dropdownItemData = null;
+		Map<String, Object> dropdownItemData = null;
 
 		for (DropdownItem dropdownItem : dropdownItems) {
 			if (Objects.equals(dropdownItem.get("label"), notExpectedLabel)) {
