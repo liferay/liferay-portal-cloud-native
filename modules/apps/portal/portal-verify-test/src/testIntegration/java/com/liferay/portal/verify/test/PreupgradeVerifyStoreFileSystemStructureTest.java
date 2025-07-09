@@ -79,9 +79,7 @@ public class PreupgradeVerifyStoreFileSystemStructureTest
 
 		_cacheEnabled = ReflectionTestUtil.getAndSetFieldValue(
 			PortalInstancePool.class, "_cacheEnabled", false);
-
 		_companyId = TestPropsValues.getCompanyId();
-
 		_repositoryId = RandomTestUtil.nextLong();
 
 		_fileSystemStoreConfiguration = _configurationAdmin.getConfiguration(
