@@ -118,6 +118,8 @@ public class ObjectDefinitionGraphQLDTOContributor
 				objectDefinition.getObjectDefinitionId());
 		}
 
+		List<ObjectField> finalObjectFields = objectFields;
+
 		for (ObjectField objectField : objectFields) {
 			if (ObjectFieldUtil.isMetadata(objectField.getName())) {
 				continue;
@@ -198,8 +200,6 @@ public class ObjectDefinitionGraphQLDTOContributor
 			relationshipGraphQLDTOProperties.add(
 				GraphQLDTOProperty.of(objectRelationship.getName(), Map.class));
 		}
-
-		List<ObjectField> finalObjectFields = objectFields;
 
 		return new ObjectDefinitionGraphQLDTOContributor(
 			objectDefinition.getCompanyId(),
