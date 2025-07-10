@@ -157,10 +157,8 @@ public class AttachmentManagerImpl implements AttachmentManager {
 			String title = DLUtil.getUniqueTitle(
 				groupId, dlFolder.getFolderId(),
 				FileUtil.stripExtension(fileName));
-
 			String sourceFileName = DLUtil.getUniqueFileName(
 				groupId, dlFolder.getFolderId(), fileName, true);
-
 			String mimeType = _mimeTypes.getContentType(inputStream, fileName);
 
 			_validateDLSettings(
@@ -218,10 +216,8 @@ public class AttachmentManagerImpl implements AttachmentManager {
 		try (InputStream inputStream = new ByteArrayInputStream(fileContent)) {
 			String title = DLUtil.getUniqueTitle(
 				groupId, folderId, FileUtil.stripExtension(fileName));
-
 			String sourceFileName = DLUtil.getUniqueFileName(
 				groupId, folderId, fileName, true);
-
 			String mimeType = _mimeTypes.getContentType(inputStream, fileName);
 
 			_validateDLSettings(
