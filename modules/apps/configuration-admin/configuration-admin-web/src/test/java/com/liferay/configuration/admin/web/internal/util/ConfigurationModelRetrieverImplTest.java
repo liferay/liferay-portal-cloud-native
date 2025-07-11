@@ -98,6 +98,12 @@ public class ConfigurationModelRetrieverImplTest {
 
 		String pid = RandomTestUtil.randomString();
 
+		Mockito.verify(
+			configurationModelRetrieverImpl, Mockito.never()
+		).getConfiguration(
+			pid, ExtendedObjectClassDefinition.Scope.COMPANY, companyId, true
+		);
+
 		configurationModelRetrieverImpl.getConfiguration(
 			pid, ExtendedObjectClassDefinition.Scope.GROUP, groupId);
 
@@ -110,16 +116,16 @@ public class ConfigurationModelRetrieverImplTest {
 		Mockito.verify(
 			configurationModelRetrieverImpl, Mockito.never()
 		).getConfiguration(
-			pid, ExtendedObjectClassDefinition.Scope.COMPANY, companyId, true
-		);
-
-		Mockito.verify(
-			configurationModelRetrieverImpl, Mockito.never()
-		).getConfiguration(
 			pid, ExtendedObjectClassDefinition.Scope.SYSTEM, null, true
 		);
 
 		Mockito.clearInvocations(configurationModelRetrieverImpl);
+
+		Mockito.verify(
+			configurationModelRetrieverImpl, Mockito.times(1)
+		).getConfiguration(
+			pid, ExtendedObjectClassDefinition.Scope.COMPANY, companyId, false
+		);
 
 		configurationModelRetrieverImpl.getConfiguration(
 			pid, ExtendedObjectClassDefinition.Scope.GROUP, groupId, false);
@@ -128,12 +134,6 @@ public class ConfigurationModelRetrieverImplTest {
 			configurationModelRetrieverImpl, Mockito.times(1)
 		).getConfiguration(
 			pid, ExtendedObjectClassDefinition.Scope.GROUP, groupId, false
-		);
-
-		Mockito.verify(
-			configurationModelRetrieverImpl, Mockito.times(1)
-		).getConfiguration(
-			pid, ExtendedObjectClassDefinition.Scope.COMPANY, companyId, false
 		);
 
 		Mockito.verify(
