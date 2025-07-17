@@ -99,11 +99,11 @@ public class EditDiscussionStrutsActionTest {
 		_editDiscussionStrutsAction.execute(
 			mockHttpServletRequest, mockHttpServletResponse);
 
+		String content = mockHttpServletResponse.getContentAsString();
+
 		Assert.assertTrue(
-			mockHttpServletResponse.getContentAsString(
-			).contains(
-				"\"externalReferenceCode\":\"" + externalReferenceCode + "\""
-			));
+			content.contains(
+				"\"externalReferenceCode\":\"" + externalReferenceCode + "\""));
 
 		Mockito.verify(
 			_commentManager, Mockito.times(1)
