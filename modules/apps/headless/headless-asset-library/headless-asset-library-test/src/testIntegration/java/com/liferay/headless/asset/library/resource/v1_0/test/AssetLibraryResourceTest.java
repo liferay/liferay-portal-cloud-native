@@ -81,8 +81,8 @@ public class AssetLibraryResourceTest extends BaseAssetLibraryResourceTestCase {
 		MimeTypeLimit[] mimeTypeLimits = {
 			new MimeTypeLimit() {
 				{
-					setMaximumSize(1234);
-					setMimeType("application/pdf");
+					maximumSize = 1234;
+					mimeType = "application/pdf";
 				}
 			}
 		};
@@ -120,8 +120,8 @@ public class AssetLibraryResourceTest extends BaseAssetLibraryResourceTestCase {
 			new MimeTypeLimit[] {
 				new MimeTypeLimit() {
 					{
-						setMaximumSize(1234);
-						setMimeType("application/pdf");
+						maximumSize = 1234;
+						mimeType = "application/pdf";
 					}
 				}
 			});
@@ -137,8 +137,8 @@ public class AssetLibraryResourceTest extends BaseAssetLibraryResourceTestCase {
 			new MimeTypeLimit[] {
 				new MimeTypeLimit() {
 					{
-						setMaximumSize(1234);
-						setMimeType("application/pdf");
+						maximumSize = 1234;
+						mimeType = "application/pdf";
 					}
 				}
 			});
@@ -386,26 +386,25 @@ public class AssetLibraryResourceTest extends BaseAssetLibraryResourceTestCase {
 	}
 
 	private AssetLibrary _postAssetLibraryWithSettings(
-			boolean autoTaggingEnabledValue, String[] availableLanguageIdsValue,
-			String defaultLanguageIdValue, String logoColorValue,
-			MimeTypeLimit[] mimeTypeLimitsValue, boolean sharingEnabledValue,
-			boolean useCustomLanguagesValue)
+			boolean autoTaggingEnabled, String[] availableLanguageIds,
+			String defaultLanguageId, String logoColor,
+			MimeTypeLimit[] mimeTypeLimits, boolean sharingEnabled,
+			boolean useCustomLanguages)
 		throws Exception {
 
 		AssetLibrary assetLibrary = randomAssetLibrary();
 
-		assetLibrary.setSettings(
-			new Settings() {
-				{
-					setAutoTaggingEnabled(() -> autoTaggingEnabledValue);
-					setAvailableLanguageIds(() -> availableLanguageIdsValue);
-					setDefaultLanguageId(() -> defaultLanguageIdValue);
-					setLogoColor(() -> logoColorValue);
-					setMimeTypeLimits(() -> mimeTypeLimitsValue);
-					setSharingEnabled(() -> sharingEnabledValue);
-					setUseCustomLanguages(() -> useCustomLanguagesValue);
-				}
-			});
+		Settings settings = new Settings();
+
+		settings.setAutoTaggingEnabled(autoTaggingEnabled);
+		settings.setAvailableLanguageIds(availableLanguageIds);
+		settings.setDefaultLanguageId(defaultLanguageId);
+		settings.setLogoColor(logoColor);
+		settings.setMimeTypeLimits(mimeTypeLimits);
+		settings.setSharingEnabled(sharingEnabled);
+		settings.setUseCustomLanguages(useCustomLanguages);
+
+		assetLibrary.setSettings(settings);
 
 		return assetLibraryResource.postAssetLibrary(assetLibrary);
 	}
