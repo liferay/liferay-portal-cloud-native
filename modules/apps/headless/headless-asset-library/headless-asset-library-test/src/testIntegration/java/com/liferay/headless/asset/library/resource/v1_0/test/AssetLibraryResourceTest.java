@@ -116,17 +116,15 @@ public class AssetLibraryResourceTest extends BaseAssetLibraryResourceTestCase {
 	public void testPostAssetLibrary() throws Exception {
 		super.testPostAssetLibrary();
 
-		MimeTypeLimit[] mimeTypeLimits = {
-			new MimeTypeLimit() {
-				{
-					setMaximumSize(1234);
-					setMimeType("application/pdf");
+		_testPostAssetLibrary(
+			new MimeTypeLimit[] {
+				new MimeTypeLimit() {
+					{
+						setMaximumSize(1234);
+						setMimeType("application/pdf");
+					}
 				}
-			}
-		};
-
-		_testPostAssetLibrary(mimeTypeLimits);
-
+			});
 		_testPostAssetLibrary(null);
 	}
 
@@ -135,17 +133,15 @@ public class AssetLibraryResourceTest extends BaseAssetLibraryResourceTestCase {
 	public void testPutAssetLibraryByExternalReferenceCode() throws Exception {
 		super.testPutAssetLibraryByExternalReferenceCode();
 
-		MimeTypeLimit[] mimeTypeLimits = {
-			new MimeTypeLimit() {
-				{
-					setMaximumSize(1234);
-					setMimeType("application/pdf");
+		_testPutAssetLibraryByExternalReferenceCode(
+			new MimeTypeLimit[] {
+				new MimeTypeLimit() {
+					{
+						setMaximumSize(1234);
+						setMimeType("application/pdf");
+					}
 				}
-			}
-		};
-
-		_testPutAssetLibraryByExternalReferenceCode(mimeTypeLimits);
-
+			});
 		_testPutAssetLibraryByExternalReferenceCode(null);
 	}
 
