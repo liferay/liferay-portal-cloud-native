@@ -56,11 +56,19 @@ public abstract class BaseOrphanReferencesDataCleanupPreupgradeProcessTestCase {
 				OrphanReferencesDataCleanupUtil.class.getName(),
 				LoggerTestUtil.INFO)) {
 
-			getInsertDataUnsafeRunnable().run();
+			UnsafeRunnable<Exception> insertDataUnsafeRunnable =
+				getInsertDataUnsafeRunnable();
 
-			getUpgradeProcess().upgrade();
+			insertDataUnsafeRunnable.run();
 
-			getLogAssertionUnsafeConsumer().accept(logCapture);
+			UpgradeProcess upgradeProcess = getUpgradeProcess();
+
+			upgradeProcess.upgrade();
+
+			UnsafeConsumer<LogCapture, Exception> logAssertionUnsafeConsumer =
+				getLogAssertionUnsafeConsumer();
+
+			logAssertionUnsafeConsumer.accept(logCapture);
 		}
 	}
 
