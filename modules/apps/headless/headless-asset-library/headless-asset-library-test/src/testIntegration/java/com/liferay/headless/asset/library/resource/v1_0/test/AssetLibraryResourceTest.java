@@ -439,21 +439,27 @@ public class AssetLibraryResourceTest extends BaseAssetLibraryResourceTestCase {
 			_language.getLanguageId(LocaleUtil.US),
 			RandomTestUtil.randomString(), mimeTypeLimits, true, true);
 
-		boolean autoTaggingEnabled = true;
-		String[] availableLanguageIds = _getAvailableLanguageIds(
-			LocaleUtil.SPAIN);
-		String defaultLanguageId = _language.getLanguageId(LocaleUtil.SPAIN);
-		boolean useCustomLanguages = true;
-
 		assetLibrary.setName_i18n(
 			Collections.singletonMap(
 				defaultLanguageId, RandomTestUtil.randomString()));
 
 		Settings settings = new Settings();
 
+		boolean autoTaggingEnabled = true;
+
 		settings.setAutoTaggingEnabled(autoTaggingEnabled);
+
+		String[] availableLanguageIds = _getAvailableLanguageIds(
+			LocaleUtil.SPAIN);
+
 		settings.setAvailableLanguageIds(availableLanguageIds);
+
+		String defaultLanguageId = _language.getLanguageId(LocaleUtil.SPAIN);
+
 		settings.setDefaultLanguageId(defaultLanguageId);
+
+		boolean useCustomLanguages = true;
+
 		settings.setUseCustomLanguages(useCustomLanguages);
 
 		assetLibrary.setSettings(settings);
