@@ -613,7 +613,7 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 				specTitles = new HashSet<>();
 			}
 
-			String title;
+			String title = null;
 
 			if (specJSONObject.has("subSuite")) {
 				title =

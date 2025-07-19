@@ -40,9 +40,8 @@ public class TestClassMethod {
 		_issues = issues;
 		_testClass = testClass;
 
-		_jsonObject = new JSONObject();
-
-		_jsonObject.put(
+		_jsonObject = new JSONObject(
+		).put(
 			"ignored", ignored
 		).put(
 			"issues", issues
@@ -60,9 +59,8 @@ public class TestClassMethod {
 
 		_issues = null;
 
-		_jsonObject = new JSONObject();
-
-		_jsonObject.put(
+		_jsonObject = new JSONObject(
+		).put(
 			"annotations", ""
 		).put(
 			"ignored", ignored
