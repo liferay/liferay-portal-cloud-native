@@ -67,6 +67,16 @@ public class BatchBuildTestrayCaseResult extends BuildTestrayCaseResult {
 
 	@Override
 	public String getComponentName() {
+		JobProperty testrayComponentNameJobProperty = _getJobProperty(
+			"testray.component.name");
+
+		String testrayComponentName =
+			testrayComponentNameJobProperty.getValue();
+
+		if (!JenkinsResultsParserUtil.isNullOrEmpty(testrayComponentName)) {
+			return testrayComponentName;
+		}
+
 		try {
 			return JenkinsResultsParserUtil.getProperty(
 				JenkinsResultsParserUtil.getBuildProperties(),
@@ -670,11 +680,13 @@ public class BatchBuildTestrayCaseResult extends BuildTestrayCaseResult {
 
 		if (job instanceof QAWebsitesGitRepositoryJob) {
 			return JobPropertyFactory.newJobProperty(
-				basePropertyName, job, axisTestClassGroup.getTestBaseDir(),
+				basePropertyName, getBatchName(), job,
+				axisTestClassGroup.getTestBaseDir(),
 				JobProperty.Type.QA_WEBSITES_TEST_DIR);
 		}
 
-		return JobPropertyFactory.newJobProperty(basePropertyName, job);
+		return JobPropertyFactory.newJobProperty(
+			basePropertyName, getBatchName(), job);
 	}
 
 	private List<TestrayAttachment> _getJStacksTestrayAttachments() {
