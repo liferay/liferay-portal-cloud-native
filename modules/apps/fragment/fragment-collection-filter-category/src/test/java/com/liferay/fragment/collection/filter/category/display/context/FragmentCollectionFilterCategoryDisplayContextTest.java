@@ -77,7 +77,6 @@ public class FragmentCollectionFilterCategoryDisplayContextTest {
 		ReflectionTestUtil.setFieldValue(
 			fragmentCollectionFilterCategoryDisplayContext,
 			"_assetCategoryTreeNodeId", Long.valueOf(1));
-
 		ReflectionTestUtil.setFieldValue(
 			fragmentCollectionFilterCategoryDisplayContext,
 			"_assetCategoryTreeNodeType", assetCategoryTreeNodeType);
