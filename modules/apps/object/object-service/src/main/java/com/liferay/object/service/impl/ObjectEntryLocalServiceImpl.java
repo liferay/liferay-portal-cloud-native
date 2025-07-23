@@ -144,6 +144,7 @@ import com.liferay.portal.aop.AopService;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.configuration.module.configuration.ConfigurationProvider;
 import com.liferay.portal.dao.jdbc.postgresql.PostgreSQLJDBCUtil;
+import com.liferay.portal.kernel.comment.CommentManager;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.db.DBType;
 import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
@@ -1768,6 +1769,12 @@ public class ObjectEntryLocalServiceImpl
 
 			_objectEntryVersionLocalService.updateObjectEntryVersion(
 				objectEntryVersion);
+		}
+
+		if (objectDefinition.isEnableComments()) {
+			_commentManager.moveDiscussionToTrash(
+				objectDefinition.getClassName(),
+				objectEntry.getObjectEntryId());
 		}
 
 		if (oldStatus == WorkflowConstants.STATUS_PENDING) {
@@ -7038,6 +7045,9 @@ public class ObjectEntryLocalServiceImpl
 
 	@Reference
 	private ClassNameLocalService _classNameLocalService;
+
+	@Reference
+	private CommentManager _commentManager;
 
 	private final Map<Long, Date> _companyIdPreviousCheckDate =
 		new ConcurrentHashMap<>();
