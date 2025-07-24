@@ -245,9 +245,8 @@ public class ObjectFieldResourceTest extends BaseObjectFieldResourceTestCase {
 		FeatureFlagTestHelper featureFlagTestHelper =
 			new FeatureFlagTestHelper();
 
-		boolean originalFeatureFlagValue =
-			featureFlagTestHelper.getFeatureFlagValue(
-				TestPropsValues.getCompanyId(), "LPD-17564");
+		boolean featureFlagValue = featureFlagTestHelper.getFeatureFlagValue(
+			TestPropsValues.getCompanyId(), "LPD-17564");
 
 		featureFlagTestHelper.setFeatureFlagValue(
 			TestPropsValues.getCompanyId(), "LPD-17564", false);
@@ -266,8 +265,7 @@ public class ObjectFieldResourceTest extends BaseObjectFieldResourceTestCase {
 		}
 		finally {
 			featureFlagTestHelper.setFeatureFlagValue(
-				TestPropsValues.getCompanyId(), "LPD-17564",
-				originalFeatureFlagValue);
+				TestPropsValues.getCompanyId(), "LPD-17564", featureFlagValue);
 
 			SystemProperties.set("liferay.mode", liferayMode);
 		}
