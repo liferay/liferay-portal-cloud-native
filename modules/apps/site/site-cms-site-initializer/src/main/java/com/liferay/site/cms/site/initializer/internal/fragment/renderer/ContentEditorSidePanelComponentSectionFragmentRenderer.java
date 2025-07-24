@@ -12,7 +12,6 @@ import com.liferay.layout.display.page.constants.LayoutDisplayPageWebKeys;
 import com.liferay.object.model.ObjectDefinition;
 import com.liferay.object.model.ObjectEntry;
 import com.liferay.object.service.ObjectDefinitionLocalService;
-import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.comment.Comment;
@@ -38,6 +37,8 @@ import com.liferay.subscription.service.SubscriptionLocalService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.IOException;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -60,25 +61,20 @@ public class ContentEditorSidePanelComponentSectionFragmentRenderer
 
 	@Override
 	public void render(
-		FragmentRendererContext fragmentRendererContext,
-		HttpServletRequest httpServletRequest,
-		HttpServletResponse httpServletResponse) {
+			FragmentRendererContext fragmentRendererContext,
+			HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse)
+		throws IOException {
 
-		try {
-			String layoutMode = ParamUtil.getString(
-				httpServletRequest, "p_l_mode", Constants.VIEW);
+		String layoutMode = ParamUtil.getString(
+			httpServletRequest, "p_l_mode", Constants.VIEW);
 
-			if (Objects.equals(layoutMode, Constants.READ)) {
-				return;
-			}
-
-			super.render(
-				fragmentRendererContext, httpServletRequest,
-				httpServletResponse);
+		if (Objects.equals(layoutMode, Constants.READ)) {
+			return;
 		}
-		catch (Exception exception) {
-			ReflectionUtil.throwException(exception);
-		}
+
+		super.render(
+			fragmentRendererContext, httpServletRequest, httpServletResponse);
 	}
 
 	@Override
