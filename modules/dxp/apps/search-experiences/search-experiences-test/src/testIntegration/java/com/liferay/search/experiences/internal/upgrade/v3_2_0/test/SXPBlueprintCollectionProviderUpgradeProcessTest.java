@@ -69,6 +69,49 @@ public class SXPBlueprintCollectionProviderUpgradeProcessTest {
 		_group = GroupTestUtil.addGroup();
 	}
 
+	@Test
+	@TestInfo("LPS-129412")
+	public void testUpgrade() throws Exception {
+		Assume.assumeFalse(FeatureFlagManagerUtil.isEnabled("LPS-129412"));
+
+		_setFeatureFlag(false);
+
+		try {
+			String configuration = _readJSON("configuration");
+
+			_sxpBlueprint = _sxpBlueprintLocalService.addSXPBlueprint(
+				null, TestPropsValues.getUserId(), configuration,
+				Collections.singletonMap(
+					LocaleUtil.US, RandomTestUtil.randomString()),
+				StringPool.BLANK, _OLD_SCHEMA_VERSION,
+				Collections.singletonMap(
+					LocaleUtil.US, RandomTestUtil.randomString()),
+				ServiceContextTestUtil.getServiceContext(
+					_group, TestPropsValues.getUserId()));
+
+			UpgradeProcess upgradeProcess = UpgradeTestUtil.getUpgradeStep(
+				_upgradeStepRegistrator,
+				"com.liferay.search.experiences.internal.upgrade.v3_2_0." +
+					"SXPBlueprintCollectionProviderUpgradeProcess");
+
+			upgradeProcess.upgrade();
+
+			_multiVMPool.clear();
+
+			_sxpBlueprint = _sxpBlueprintLocalService.fetchSXPBlueprint(
+				_sxpBlueprint.getSXPBlueprintId());
+
+			JSONAssert.assertEquals(
+				configuration, _sxpBlueprint.getConfigurationJSON(),
+				JSONCompareMode.STRICT);
+			Assert.assertEquals(
+				_NEW_SCHEMA_VERSION, _sxpBlueprint.getSchemaVersion());
+		}
+		finally {
+			_unsetFeatureFlag(false);
+		}
+	}
+
 	@FeatureFlag("LPS-129412")
 	@Test
 	@TestInfo("LPS-129412")
@@ -125,49 +168,6 @@ public class SXPBlueprintCollectionProviderUpgradeProcessTest {
 		}
 		finally {
 			_unsetFeatureFlag(true);
-		}
-	}
-
-	@Test
-	@TestInfo("LPS-129412")
-	public void testUpgrade() throws Exception {
-		Assume.assumeFalse(FeatureFlagManagerUtil.isEnabled("LPS-129412"));
-
-		_setFeatureFlag(false);
-
-		try {
-			String configuration = _readJSON("configuration");
-
-			_sxpBlueprint = _sxpBlueprintLocalService.addSXPBlueprint(
-				null, TestPropsValues.getUserId(), configuration,
-				Collections.singletonMap(
-					LocaleUtil.US, RandomTestUtil.randomString()),
-				StringPool.BLANK, _OLD_SCHEMA_VERSION,
-				Collections.singletonMap(
-					LocaleUtil.US, RandomTestUtil.randomString()),
-				ServiceContextTestUtil.getServiceContext(
-					_group, TestPropsValues.getUserId()));
-
-			UpgradeProcess upgradeProcess = UpgradeTestUtil.getUpgradeStep(
-				_upgradeStepRegistrator,
-				"com.liferay.search.experiences.internal.upgrade.v3_2_0." +
-					"SXPBlueprintCollectionProviderUpgradeProcess");
-
-			upgradeProcess.upgrade();
-
-			_multiVMPool.clear();
-
-			_sxpBlueprint = _sxpBlueprintLocalService.fetchSXPBlueprint(
-				_sxpBlueprint.getSXPBlueprintId());
-
-			JSONAssert.assertEquals(
-				configuration, _sxpBlueprint.getConfigurationJSON(),
-				JSONCompareMode.STRICT);
-			Assert.assertEquals(
-				_NEW_SCHEMA_VERSION, _sxpBlueprint.getSchemaVersion());
-		}
-		finally {
-			_unsetFeatureFlag(false);
 		}
 	}
 
