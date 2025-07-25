@@ -64,6 +64,7 @@
 						type="radio"
 						value="${entry.getField()}"
 					/>
+
 					<span class="form-check-label-text">
 						${entry.getLanguageLabel()}
 					</span>
@@ -81,9 +82,9 @@
 		window.location.search = urlParams;
 	}
 
-	function toggleCollapse(dataTargetId) {
+	function toggleCollapse(dataTarget) {
 		const dataTargetElements = document.querySelectorAll(
-			'[data-target="#' + dataTargetId + '"]'
+			'[data-target="#' + dataTarget + '"]'
 		);
 
 		dataTargetElements.forEach((element) => {
@@ -91,10 +92,10 @@
 			element.setAttribute('aria-expanded', !(element.getAttribute('aria-expanded') === 'true'));
 		});
 
-		const targetElement = document.getElementById(dataTargetId);
+		const dataTargetElement = document.getElementById(dataTarget);
 
-		if (targetElement) {
-			targetElement.classList.toggle('show');
+		if (dataTargetElement) {
+			dataTargetElement.classList.toggle('show');
 		}
 	}
 </script>
