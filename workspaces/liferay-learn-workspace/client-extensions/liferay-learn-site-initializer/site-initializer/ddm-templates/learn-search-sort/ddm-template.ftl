@@ -101,23 +101,6 @@
 </script>
 
 <style>
-	#sort-filter-items {
-		align-items: start;
-		display: flex;
-		flex-direction: column;
-		gap: 16px;
-		margin-left: 8px;
-		margin-top: 12px;
-	}
-
-	#sort-filter-items label {
-		align-items: center;
-		color: var(--color-neutral-10, #282934);
-		display: flex;
-		font-weight: 400;
-		margin-bottom: 0;
-	}
-
 	.arrow-sort-filter {
 		height: 12px;
 		width: 12px;
@@ -159,5 +142,22 @@
 		font-weight: 600;
 		margin-left: 8px;
 		margin-top: 8px;
+	}
+
+	#sort-filter-items {
+		align-items: start;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		margin-left: 8px;
+		margin-top: 12px;
+	}
+
+	#sort-filter-items label {
+		align-items: center;
+		color: var(--color-neutral-10, #282934);
+		display: flex;
+		font-weight: 400;
+		margin-bottom: 0;
 	}
 </style>
