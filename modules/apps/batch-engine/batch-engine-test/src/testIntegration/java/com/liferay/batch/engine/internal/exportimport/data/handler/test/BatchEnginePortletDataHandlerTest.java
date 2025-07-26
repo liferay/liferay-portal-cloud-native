@@ -206,7 +206,7 @@ public class BatchEnginePortletDataHandlerTest {
 				LoggerTestUtil.OFF)) {
 
 			_importLayouts(
-				false, larFile, group.getGroupId(), false, objectDefinition);
+				false, false, larFile, group.getGroupId(), objectDefinition);
 		}
 
 		List<ObjectEntry> objectEntriesList =
@@ -240,15 +240,15 @@ public class BatchEnginePortletDataHandlerTest {
 	public void testExportImportPriorityWithSiteScopeObjectEntries()
 		throws Exception {
 
-		ObjectDefinition objectDefinition = _addObjectDefinition(
-			ObjectDefinitionConstants.SCOPE_SITE);
-
 		Group group1 = GroupTestUtil.addGroup();
 
 		Layout layout = LayoutTestUtil.addTypePortletLayout(group1);
 
 		LayoutTestUtil.addPortletToLayout(
 			layout, JournalContentPortletKeys.JOURNAL_CONTENT);
+
+		ObjectDefinition objectDefinition = _addObjectDefinition(
+			ObjectDefinitionConstants.SCOPE_SITE);
 
 		ObjectEntry[] objectEntries = _addObjectEntries(
 			3, group1.getGroupId(), objectDefinition);
@@ -275,7 +275,7 @@ public class BatchEnginePortletDataHandlerTest {
 
 		try {
 			_importLayouts(
-				false, larFile, group2.getGroupId(), true, objectDefinition);
+				false, true, larFile, group2.getGroupId(), objectDefinition);
 			Assert.fail();
 		}
 		catch (PortletDataException portletDataException) {
@@ -315,7 +315,7 @@ public class BatchEnginePortletDataHandlerTest {
 		Group group2 = GroupTestUtil.addGroup();
 
 		_importLayouts(
-			false, larFile, group2.getGroupId(), false, objectDefinition);
+			false, false, larFile, group2.getGroupId(), objectDefinition);
 
 		List<ObjectEntry> objectEntriesList =
 			_objectEntryLocalService.getObjectEntries(
@@ -450,19 +450,19 @@ public class BatchEnginePortletDataHandlerTest {
 		_deleteObjectEntries(objectEntries[2]);
 
 		_importLayouts(
-			false, larFile1, group.getGroupId(), false, objectDefinition);
+			false, false, larFile1, group.getGroupId(), objectDefinition);
 
 		_assertObjectEntries(
 			objectDefinition.getObjectDefinitionId(), objectEntries);
 
 		_importLayouts(
-			false, larFile2, group.getGroupId(), false, objectDefinition);
+			false, false, larFile2, group.getGroupId(), objectDefinition);
 
 		_assertObjectEntries(
 			objectDefinition.getObjectDefinitionId(), objectEntries);
 
 		_importLayouts(
-			true, larFile2, group.getGroupId(), false, objectDefinition);
+			true, false, larFile2, group.getGroupId(), objectDefinition);
 
 		_assertObjectEntries(
 			objectDefinition.getObjectDefinitionId(), objectEntries[2]);
@@ -892,7 +892,7 @@ public class BatchEnginePortletDataHandlerTest {
 	}
 
 	private void _importLayouts(
-			boolean deletions, File file, long groupId, boolean expectError,
+			boolean deletions, boolean expectError, File file, long groupId,
 			ObjectDefinition... objectDefinitions)
 		throws Exception {
 
@@ -935,7 +935,7 @@ public class BatchEnginePortletDataHandlerTest {
 		_deleteObjectEntries(objectEntries);
 
 		_importLayouts(
-			false, larFile, group.getGroupId(), false, objectDefinition);
+			false, false, larFile, group.getGroupId(), objectDefinition);
 
 		_assertObjectEntries(
 			objectDefinition.getObjectDefinitionId(), objectEntries);
