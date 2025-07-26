@@ -26,7 +26,7 @@ public class StartupHelperUtilTest {
 		LiferayUnitTestRule.INSTANCE;
 
 	@Test
-	public void testSetUpgradingWithThreadLocalCache() throws Exception {
+	public void testSetUpgrading() throws Exception {
 		try {
 			ThreadLocalCache<Object> threadLocalCache =
 				ThreadLocalCacheManager.getThreadLocalCache(
