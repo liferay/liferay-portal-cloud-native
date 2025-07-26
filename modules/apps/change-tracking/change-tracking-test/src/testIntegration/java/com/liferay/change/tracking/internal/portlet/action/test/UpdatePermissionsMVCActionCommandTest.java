@@ -71,7 +71,7 @@ public class UpdatePermissionsMVCActionCommandTest {
 	}
 
 	@Test
-	public void testPermissionChangesMadeInCTCollection() throws Exception {
+	public void testProcessAction1() throws Exception {
 		int initialCTEntriesCount =
 			_ctEntryLocalService.getCTCollectionCTEntriesCount(
 				_ctCollection.getCtCollectionId());
@@ -120,7 +120,7 @@ public class UpdatePermissionsMVCActionCommandTest {
 	}
 
 	@Test
-	public void testProcessAction() throws Exception {
+	public void testProcessAction2() throws Exception {
 		for (String modelResourceOwnerDefaultAction :
 				ResourceActionsUtil.getModelResourceOwnerDefaultActions(
 					CTCollection.class.getName())) {
