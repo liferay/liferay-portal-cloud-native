@@ -5414,11 +5414,11 @@ public class ObjectEntryLocalServiceImpl
 			return;
 		}
 
+		long objectEntryId = 0;
+
 		List<ObjectRelationship> objectRelationships =
 			_objectRelationshipPersistence.findByODI2_E(
 				objectDefinition.getObjectDefinitionId(), true);
-
-		long objectEntryId = 0;
 
 		for (ObjectRelationship objectRelationship : objectRelationships) {
 			ObjectField objectField = _objectFieldLocalService.getObjectField(

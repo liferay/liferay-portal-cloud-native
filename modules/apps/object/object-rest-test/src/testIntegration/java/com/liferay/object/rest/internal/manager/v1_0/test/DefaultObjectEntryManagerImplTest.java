@@ -5196,7 +5196,7 @@ public class DefaultObjectEntryManagerImplTest
 			(List<ObjectEntry>)objectEntryPage.getItems(),
 			List.of(objectEntryB_AA));
 
-		// User with permission to VIEW object definition A, AA and B
+		// User with permission to VIEW object definition A, AA, and B
 
 		_user = _addUser();
 
