@@ -5,10 +5,10 @@
 
 package com.liferay.portal.upgrade.data.cleanup;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.data.cleanup.DataCleanupPreupgradeProcess;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,8 +40,8 @@ public class DLFileEntryDataCleanupPreupgradeProcess
 
 				_log.info(
 					StringBundler.concat(
-						"DLFileEntry with ID ", String.valueOf(fileEntryId),
-						" has been deleted because name was ",
+						"Deleted document library file entry ", fileEntryId,
+						" because its name was ",
 						(name == null) ? "null" : "empty"));
 			}
 		}

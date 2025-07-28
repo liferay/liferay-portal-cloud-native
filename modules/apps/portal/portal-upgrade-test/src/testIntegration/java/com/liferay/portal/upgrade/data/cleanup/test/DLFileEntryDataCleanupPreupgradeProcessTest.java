@@ -70,15 +70,12 @@ public class DLFileEntryDataCleanupPreupgradeProcessTest
 
 			Assert.assertTrue(
 				logMessages.contains(
-					StringBundler.concat(
-						"DLFileEntry with ID ", fileEntryId1,
-						" has been deleted because name was null")));
-
+					"Deleted document library file entry " + fileEntryId1 +
+						" because its name was null"));
 			Assert.assertTrue(
 				logMessages.contains(
-					StringBundler.concat(
-						"DLFileEntry with ID ", fileEntryId2,
-						" has been deleted because name was empty")));
+					"Deleted document library file entry " + fileEntryId2 +
+						" because its name was empty"));
 		}
 		finally {
 			runSQL(
