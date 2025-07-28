@@ -77,9 +77,7 @@ public class EditUserMVCActionCommandTest {
 			PermissionCheckerMethodTestRule.INSTANCE);
 
 	@Test
-	public void testActivateUserWithWorkflowCompletesWorkflowTask()
-		throws Exception {
-
+	public void testProcessAction() throws Exception {
 		String originalName = PrincipalThreadLocal.getName();
 
 		PermissionChecker originalPermissionChecker =
@@ -114,7 +112,7 @@ public class EditUserMVCActionCommandTest {
 			Assert.assertEquals(
 				WorkflowConstants.STATUS_PENDING, user.getStatus());
 
-			_processActionRequest(
+			_processAction(
 				"/users_admin/edit_user",
 				HashMapBuilder.put(
 					Constants.CMD, Constants.RESTORE
@@ -160,9 +158,6 @@ public class EditUserMVCActionCommandTest {
 
 		themeDisplay.setCompany(
 			_companyLocalService.getCompany(TestPropsValues.getCompanyId()));
-		themeDisplay.setPermissionChecker(permissionChecker);
-		themeDisplay.setScopeGroupId(TestPropsValues.getGroupId());
-		themeDisplay.setSiteGroupId(TestPropsValues.getGroupId());
 
 		Layout layout = _layoutLocalService.getLayout(
 			TestPropsValues.getPlid());
@@ -172,12 +167,15 @@ public class EditUserMVCActionCommandTest {
 		themeDisplay.setLayoutTypePortlet(
 			(LayoutTypePortlet)layout.getLayoutType());
 
+		themeDisplay.setPermissionChecker(permissionChecker);
+		themeDisplay.setScopeGroupId(TestPropsValues.getGroupId());
+		themeDisplay.setSiteGroupId(TestPropsValues.getGroupId());
 		themeDisplay.setUser(TestPropsValues.getUser());
 
 		return themeDisplay;
 	}
 
-	private void _processActionRequest(
+	private void _processAction(
 			String actionName, Map<String, String> params,
 			PermissionChecker permissionChecker)
 		throws Exception {
