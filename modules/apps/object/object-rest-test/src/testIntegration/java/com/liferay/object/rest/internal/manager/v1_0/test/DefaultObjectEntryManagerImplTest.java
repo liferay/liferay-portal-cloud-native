@@ -6300,7 +6300,7 @@ public class DefaultObjectEntryManagerImplTest
 
 	@FeatureFlag("LPD-42577")
 	@Test
-	public void testSubscribeAndUnsubscribeObjectEntry() throws Exception {
+	public void testSubscribeObjectEntry() throws Exception {
 		ObjectDefinition objectDefinition = _createObjectDefinition(
 			true,
 			Collections.singletonList(
@@ -6418,7 +6418,7 @@ public class DefaultObjectEntryManagerImplTest
 
 	@FeatureFlag("LPD-42577")
 	@Test
-	public void testSubscribeAndUnsubscribeObjectEntryWithHierarchy()
+	public void testSubscribeObjectEntryWithHierarchy()
 		throws Exception {
 
 		ObjectDefinition objectDefinitionA =
