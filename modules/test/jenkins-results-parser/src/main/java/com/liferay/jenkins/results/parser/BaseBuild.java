@@ -300,6 +300,12 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public String getBuildDirPath() {
+		StringBuilder sb = new StringBuilder();
+
+		if (JenkinsResultsParserUtil.isWindows()) {
+			sb.append("C:");
+		}
+
 		Properties buildProperties = null;
 
 		try {
@@ -307,12 +313,6 @@ public abstract class BaseBuild implements Build {
 		}
 		catch (IOException ioException) {
 			throw new RuntimeException(ioException);
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		if (JenkinsResultsParserUtil.isWindows()) {
-			sb.append("C:");
 		}
 
 		sb.append(buildProperties.getProperty("jenkins.tmp.dir"));
