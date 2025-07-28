@@ -72,16 +72,16 @@ public class BuildArchiverUtil {
 			System.out.println("Unable to get property " + propertyKey);
 		}
 
-		Properties buildProperties = null;
-
-		try {
-			buildProperties = JenkinsResultsParserUtil.getBuildProperties();
-		}
-		catch (IOException ioException) {
-			throw new RuntimeException(ioException);
-		}
-
 		if (outputDirPath == null) {
+			Properties buildProperties = null;
+
+			try {
+				buildProperties = JenkinsResultsParserUtil.getBuildProperties();
+			}
+			catch (IOException ioException) {
+				throw new RuntimeException(ioException);
+			}
+
 			outputDirPath = buildProperties.getProperty("jenkins.tmp.dir");
 		}
 
