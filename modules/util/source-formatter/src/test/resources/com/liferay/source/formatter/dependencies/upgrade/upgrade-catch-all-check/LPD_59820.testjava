@@ -15,8 +15,8 @@ public class LPD_59820 {
 	public void method(
 		long groupId, boolean privateLayout, ThemeDisplay themeDisplay) {
 
-		_sitemapManager.getSiteMapManager(groupId, privateLayout, themeDisplay);
 		_sitemapManager.getSiteMapManager(123, privateLayout, themeDisplay);
+		_sitemapManager.getSiteMapManager(groupId, privateLayout, themeDisplay);
 	}
 
 	@Reference
