@@ -146,9 +146,9 @@ public class ViewSpacesDisplayContext {
 	}
 
 	private boolean _isAllSpacesActive(ThemeDisplay themeDisplay) {
-		String urlCurrent = themeDisplay.getURLCurrent();
+		String currentURL = themeDisplay.getURLCurrent();
 
-		return urlCurrent.contains("/all-spaces");
+		return currentURL.contains("/all-spaces");
 	}
 
 	private boolean _isAssetLibraryActive(AssetLibrary assetLibrary) {
