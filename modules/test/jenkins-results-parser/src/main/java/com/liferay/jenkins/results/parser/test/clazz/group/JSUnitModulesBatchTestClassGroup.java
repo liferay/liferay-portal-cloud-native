@@ -116,11 +116,10 @@ public class JSUnitModulesBatchTestClassGroup
 			List<File> moduleTestDirs = _getModulesProjectDirs(moduleDir);
 
 			for (File moduleTestDir : moduleTestDirs) {
-				TestClass testClass = TestClassFactory.newTestClass(
-					this, moduleTestDir);
-
 				String moduleTestDirPath =
 					JenkinsResultsParserUtil.getCanonicalPath(moduleTestDir);
+				TestClass testClass = TestClassFactory.newTestClass(
+					this, moduleTestDir);
 
 				for (File jsUnitFile :
 						portalGitWorkingDirectory.getJSUnitFiles()) {
