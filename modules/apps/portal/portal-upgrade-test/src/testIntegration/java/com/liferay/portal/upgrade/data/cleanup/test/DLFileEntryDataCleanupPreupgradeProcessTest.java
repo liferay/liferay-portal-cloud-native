@@ -74,7 +74,6 @@ public class DLFileEntryDataCleanupPreupgradeProcessTest
 				logMessages.contains(
 					"Deleted document library file entry " + fileEntryId1 +
 						" because its name was null"));
-
 			Assert.assertTrue(
 				logMessages.contains(
 					StringBundler.concat(
