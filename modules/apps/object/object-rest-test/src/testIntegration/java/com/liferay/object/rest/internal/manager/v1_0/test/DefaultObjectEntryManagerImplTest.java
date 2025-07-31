@@ -5114,10 +5114,30 @@ public class DefaultObjectEntryManagerImplTest
 	public void testGetObjectEntriesWithRelatedObjectEntries()
 		throws Exception {
 
+		Group group1 = GroupTestUtil.addGroup();
+
 		ObjectDefinition objectDefinition1 = _addObjectDefinition(
 			ObjectDefinitionConstants.SCOPE_COMPANY);
+
+		ObjectEntry objectEntry1 = _addObjectEntry(
+			objectDefinition1,
+			HashMapBuilder.<String, Object>put(
+				"textObjectFieldName", RandomTestUtil.randomString()
+			).build());
+
 		ObjectDefinition objectDefinition2 = _addObjectDefinition(
 			ObjectDefinitionConstants.SCOPE_SITE);
+
+		ObjectEntry objectEntry2 = _addObjectEntry(
+			objectDefinition2,
+			new ObjectEntry() {
+				{
+					properties = Collections.emptyMap();
+					scopeId = group1.getGroupId();
+				}
+			},
+			group1.getGroupKey());
+
 		ObjectDefinition objectDefinition3 = _addObjectDefinition(
 			ObjectDefinitionConstants.SCOPE_SITE);
 
@@ -5138,24 +5158,6 @@ public class DefaultObjectEntryManagerImplTest
 
 		ObjectField objectField2 = objectFieldLocalService.getObjectField(
 			objectRelationship2.getObjectFieldId2());
-
-		ObjectEntry objectEntry1 = _addObjectEntry(
-			objectDefinition1,
-			HashMapBuilder.<String, Object>put(
-				"textObjectFieldName", RandomTestUtil.randomString()
-			).build());
-
-		Group group1 = GroupTestUtil.addGroup();
-
-		ObjectEntry objectEntry2 = _addObjectEntry(
-			objectDefinition2,
-			new ObjectEntry() {
-				{
-					properties = Collections.emptyMap();
-					scopeId = group1.getGroupId();
-				}
-			},
-			group1.getGroupKey());
 
 		ObjectEntry objectEntry3 = _addObjectEntry(
 			objectDefinition3,
@@ -7962,6 +7964,70 @@ public class DefaultObjectEntryManagerImplTest
 			false);
 	}
 
+	private ObjectDefinition _addObjectDefinition() throws Exception {
+		return _addObjectDefinition(
+			List.of(
+				new TextObjectFieldBuilder(
+				).labelMap(
+					LocalizedMapUtil.getLocalizedMap(
+						RandomTestUtil.randomString())
+				).name(
+					"textObjectFieldName"
+				).build()),
+			ObjectDefinitionConstants.SCOPE_COMPANY);
+	}
+
+	private ObjectDefinition _addObjectDefinition(
+			boolean enableObjectEntrySubscription,
+			List<ObjectField> objectFields, String scope)
+		throws Exception {
+
+		ObjectDefinition objectDefinition =
+			objectDefinitionLocalService.addCustomObjectDefinition(
+				adminUser.getUserId(), 0, null, false, false, true, true, false,
+				false, enableObjectEntrySubscription, false, null,
+				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
+				ObjectDefinitionTestUtil.getRandomName(), null, null,
+				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
+				true, scope, ObjectDefinitionConstants.STORAGE_TYPE_DEFAULT,
+				Collections.emptyList(), objectFields);
+
+		return objectDefinitionLocalService.publishCustomObjectDefinition(
+			adminUser.getUserId(), objectDefinition.getObjectDefinitionId());
+	}
+
+	private ObjectDefinition _addObjectDefinition(
+			List<ObjectField> objectFields)
+		throws Exception {
+
+		return _addObjectDefinition(
+			objectFields, ObjectDefinitionConstants.SCOPE_COMPANY);
+	}
+
+	private ObjectDefinition _addObjectDefinition(
+			List<ObjectField> objectFields, String scope)
+		throws Exception {
+
+		return _addObjectDefinition(false, objectFields, scope);
+	}
+
+	private ObjectDefinition _addObjectDefinition(String scope)
+		throws Exception {
+
+		return _addObjectDefinition(
+			Collections.singletonList(
+				new TextObjectFieldBuilder(
+				).indexed(
+					true
+				).labelMap(
+					LocalizedMapUtil.getLocalizedMap(
+						RandomTestUtil.randomString())
+				).name(
+					"textObjectFieldName"
+				).build()),
+			scope);
+	}
+
 	private ObjectEntry _addObjectEntry(AccountEntry accountEntry)
 		throws Exception {
 
@@ -8495,70 +8561,6 @@ public class DefaultObjectEntryManagerImplTest
 		return new DefaultDTOConverterContext(
 			false, Collections.emptyMap(), dtoConverterRegistry, null,
 			LocaleUtil.getDefault(), null, _user);
-	}
-
-	private ObjectDefinition _addObjectDefinition() throws Exception {
-		return _addObjectDefinition(
-			List.of(
-				new TextObjectFieldBuilder(
-				).labelMap(
-					LocalizedMapUtil.getLocalizedMap(
-						RandomTestUtil.randomString())
-				).name(
-					"textObjectFieldName"
-				).build()),
-			ObjectDefinitionConstants.SCOPE_COMPANY);
-	}
-
-	private ObjectDefinition _addObjectDefinition(
-			boolean enableObjectEntrySubscription,
-			List<ObjectField> objectFields, String scope)
-		throws Exception {
-
-		ObjectDefinition objectDefinition =
-			objectDefinitionLocalService.addCustomObjectDefinition(
-				adminUser.getUserId(), 0, null, false, false, true, true, false,
-				false, enableObjectEntrySubscription, false, null,
-				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
-				ObjectDefinitionTestUtil.getRandomName(), null, null,
-				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
-				true, scope, ObjectDefinitionConstants.STORAGE_TYPE_DEFAULT,
-				Collections.emptyList(), objectFields);
-
-		return objectDefinitionLocalService.publishCustomObjectDefinition(
-			adminUser.getUserId(), objectDefinition.getObjectDefinitionId());
-	}
-
-	private ObjectDefinition _addObjectDefinition(
-			List<ObjectField> objectFields)
-		throws Exception {
-
-		return _addObjectDefinition(
-			objectFields, ObjectDefinitionConstants.SCOPE_COMPANY);
-	}
-
-	private ObjectDefinition _addObjectDefinition(
-			List<ObjectField> objectFields, String scope)
-		throws Exception {
-
-		return _addObjectDefinition(false, objectFields, scope);
-	}
-
-	private ObjectDefinition _addObjectDefinition(String scope)
-		throws Exception {
-
-		return _addObjectDefinition(
-			Collections.singletonList(
-				new TextObjectFieldBuilder(
-				).indexed(
-					true
-				).labelMap(
-					LocalizedMapUtil.getLocalizedMap(
-						RandomTestUtil.randomString())
-				).name(
-					"textObjectFieldName"
-				).build()),
-			scope);
 	}
 
 	private Tree _createObjectEntryTree(
