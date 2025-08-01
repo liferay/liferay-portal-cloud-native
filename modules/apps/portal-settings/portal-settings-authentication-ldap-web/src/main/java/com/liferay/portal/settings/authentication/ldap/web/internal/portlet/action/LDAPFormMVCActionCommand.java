@@ -95,9 +95,9 @@ public class LDAPFormMVCActionCommand extends BaseFormMVCActionCommand {
 	protected void doValidateForm(
 		ActionRequest actionRequest, ActionResponse actionResponse) {
 
-		String portletId = PortalUtil.getPortletId(actionRequest);
+		long companyId = 0;
 
-		long companyId = 0L;
+		String portletId = PortalUtil.getPortletId(actionRequest);
 
 		if (portletId.equals(ConfigurationAdminPortletKeys.INSTANCE_SETTINGS)) {
 			ThemeDisplay themeDisplay =
