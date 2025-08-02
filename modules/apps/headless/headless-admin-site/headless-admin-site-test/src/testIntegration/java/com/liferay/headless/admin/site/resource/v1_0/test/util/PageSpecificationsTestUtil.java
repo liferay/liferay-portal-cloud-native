@@ -569,7 +569,7 @@ public class PageSpecificationsTestUtil {
 				ExpandoColumnLocalServiceUtil.addColumn(
 					_expandoTable.getTableId(), _EXPANDO_ATTRIBUTE_NAMES[i],
 					ExpandoColumnConstants.STRING,
-					_EXPANDO_ATTRIBUTE_DEFAULT_VALUES[i]);
+					_EXPANDO_ATTRIBUTE_VALUES[i]);
 			}
 		}
 
@@ -709,7 +709,7 @@ public class PageSpecificationsTestUtil {
 			if (customField == null) {
 				expectedCustomFields[i] = _getCustomField(
 					attributeName,
-					GetterUtil.getString(_EXPANDO_ATTRIBUTE_DEFAULT_VALUES[i]));
+					GetterUtil.getString(_EXPANDO_ATTRIBUTE_VALUES[i]));
 
 				continue;
 			}
@@ -718,7 +718,7 @@ public class PageSpecificationsTestUtil {
 
 			if (Validator.isNull(customValue.getData())) {
 				customValue.setData(
-					GetterUtil.getString(_EXPANDO_ATTRIBUTE_DEFAULT_VALUES[i]));
+					GetterUtil.getString(_EXPANDO_ATTRIBUTE_VALUES[i]));
 			}
 
 			expectedCustomFields[i] = customField;
@@ -733,13 +733,13 @@ public class PageSpecificationsTestUtil {
 				LayoutTypeSettingsConstants.KEY_PUBLISHED));
 	}
 
-	private static final String[] _EXPANDO_ATTRIBUTE_DEFAULT_VALUES = {
-		RandomTestUtil.randomString(), RandomTestUtil.randomString(), null
-	};
-
 	private static final String[] _EXPANDO_ATTRIBUTE_NAMES = {
 		RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 		RandomTestUtil.randomString()
+	};
+
+	private static final String[] _EXPANDO_ATTRIBUTE_VALUES = {
+		RandomTestUtil.randomString(), RandomTestUtil.randomString(), null
 	};
 
 }
