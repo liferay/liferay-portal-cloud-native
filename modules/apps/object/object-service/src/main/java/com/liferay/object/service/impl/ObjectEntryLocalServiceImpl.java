@@ -6249,7 +6249,7 @@ public class ObjectEntryLocalServiceImpl
 				StringBundler.concat(
 					"Duplicate object entry with external reference code ",
 					externalReferenceCode, ", group ID ", groupId,
-					" and object definition ID ", objectDefinitionId));
+					", and object definition ID ", objectDefinitionId));
 		}
 	}
 

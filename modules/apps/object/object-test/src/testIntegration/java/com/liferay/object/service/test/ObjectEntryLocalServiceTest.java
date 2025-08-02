@@ -863,7 +863,7 @@ public class ObjectEntryLocalServiceTest {
 			StringBundler.concat(
 				"Duplicate object entry with external reference code ",
 				externalReferenceCode, ", group ID ", group1.getGroupId(),
-				" and object definition ID ",
+				", and object definition ID ",
 				_siteObjectDefinition.getObjectDefinitionId()),
 			() -> _addObjectEntry(
 				group1.getGroupId(),
@@ -7863,7 +7863,7 @@ public class ObjectEntryLocalServiceTest {
 			DuplicateObjectEntryExternalReferenceCodeException.class,
 			StringBundler.concat(
 				"Duplicate object entry with external reference code ",
-				"newExternalReferenceCode, group ID 0 and object definition ",
+				"newExternalReferenceCode, group ID 0, and object definition ",
 				"ID ", _objectDefinition.getObjectDefinitionId()),
 			() -> _objectEntryLocalService.partialUpdateObjectEntry(
 				TestPropsValues.getUserId(), objectEntryId2,
@@ -7893,7 +7893,7 @@ public class ObjectEntryLocalServiceTest {
 			DuplicateObjectEntryExternalReferenceCodeException.class,
 			StringBundler.concat(
 				"Duplicate object entry with external reference code ",
-				objectEntry1.getUuid(), ", group ID 0 and object definition ",
+				objectEntry1.getUuid(), ", group ID 0, and object definition ",
 				"ID ", _objectDefinition.getObjectDefinitionId()),
 			() -> _objectEntryLocalService.partialUpdateObjectEntry(
 				TestPropsValues.getUserId(), objectEntryId1,
@@ -8300,7 +8300,7 @@ public class ObjectEntryLocalServiceTest {
 			DuplicateObjectEntryExternalReferenceCodeException.class,
 			StringBundler.concat(
 				"Duplicate object entry with external reference code ",
-				"newExternalReferenceCode, group ID 0 and object definition ",
+				"newExternalReferenceCode, group ID 0, and object definition ",
 				"ID ", _objectDefinition.getObjectDefinitionId()),
 			() -> _objectEntryLocalService.updateObjectEntry(
 				TestPropsValues.getUserId(), objectEntryId2,
@@ -8336,7 +8336,7 @@ public class ObjectEntryLocalServiceTest {
 			DuplicateObjectEntryExternalReferenceCodeException.class,
 			StringBundler.concat(
 				"Duplicate object entry with external reference code ",
-				objectEntry1.getUuid(), ", group ID 0 and object definition ",
+				objectEntry1.getUuid(), ", group ID 0, and object definition ",
 				"ID ", _objectDefinition.getObjectDefinitionId()),
 			() -> _objectEntryLocalService.updateObjectEntry(
 				TestPropsValues.getUserId(), objectEntryId1,
