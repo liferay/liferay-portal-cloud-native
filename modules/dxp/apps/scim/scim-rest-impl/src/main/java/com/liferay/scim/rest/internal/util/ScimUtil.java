@@ -863,29 +863,29 @@ public class ScimUtil {
 	private static List<MultiValuedComplexType> _getScimPhoneNumbers(
 		Contact contact) {
 
-		List<MultiValuedComplexType> scimPhoneNumbers = new ArrayList<>();
+		List<MultiValuedComplexType> multiValuedComplexTypes = new ArrayList<>();
 
 		for (Phone phone :
 				PhoneLocalServiceUtil.getPhones(
 					contact.getCompanyId(), Contact.class.getName(),
 					contact.getContactId())) {
 
-			MultiValuedComplexType scimPhoneNumber =
+			MultiValuedComplexType multiValuedComplexType =
 				new MultiValuedComplexType();
 
-			scimPhoneNumber.setPrimary(phone.isPrimary());
+			multiValuedComplexType.setPrimary(phone.isPrimary());
 
 			ListType listType = ListTypeLocalServiceUtil.fetchListType(
 				phone.getListTypeId());
 
-			scimPhoneNumber.setType(listType.getName());
+			multiValuedComplexType.setType(listType.getName());
 
-			scimPhoneNumber.setValue(phone.getNumber());
+			multiValuedComplexType.setValue(phone.getNumber());
 
-			scimPhoneNumbers.add(scimPhoneNumber);
+			multiValuedComplexTypes.add(multiValuedComplexType);
 		}
 
-		return scimPhoneNumbers;
+		return multiValuedComplexTypes;
 	}
 
 	private static String _getScimProfileUrl(Contact contact) {
