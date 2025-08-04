@@ -64,7 +64,7 @@ public class ScimUser {
 		return _id;
 	}
 
-	public Map<String, String> getIms() {
+	public Map<String, String> getIMs() {
 		return _ims;
 	}
 
@@ -234,7 +234,7 @@ public class ScimUser {
 		_id = id;
 	}
 
-	public void setIms(Map<String, String> ims) {
+	public void setIMs(Map<String, String> ims) {
 		_ims = ims;
 	}
 

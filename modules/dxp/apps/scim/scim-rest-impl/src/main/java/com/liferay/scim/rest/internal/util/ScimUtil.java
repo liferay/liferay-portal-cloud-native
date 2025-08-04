@@ -238,7 +238,7 @@ public class ScimUtil {
 		scimUser.setFirstName(scimName.getGivenName());
 
 		scimUser.setId(user.getId());
-		scimUser.setIms(_getScimIms(user.getInstantMessagingAddresses()));
+		scimUser.setIMs(_getIMs(user.getInstantMessagingAddresses()));
 		scimUser.setJobTitle(user.getTitle());
 		scimUser.setLastName(scimName.getFamilyName());
 		scimUser.setLocale(locale);
@@ -324,7 +324,7 @@ public class ScimUtil {
 			ims.put("Skype", contact.getSkypeSn());
 		}
 
-		scimUser.setIms(ims);
+		scimUser.setIMs(ims);
 
 		scimUser.setJobTitle(portalUser.getJobTitle());
 		scimUser.setLastName(portalUser.getLastName());
@@ -787,6 +787,26 @@ public class ScimUtil {
 		return null;
 	}
 
+	private static Map<String, String> _getIMs(
+		List<MultiValuedComplexType> multiValuedComplexTypes) {
+
+		if (multiValuedComplexTypes == null) {
+			return null;
+		}
+
+		Map<String, String> ims = new HashMap<>();
+
+		for (MultiValuedComplexType multiValuedComplexType :
+				multiValuedComplexTypes) {
+
+			ims.put(
+				multiValuedComplexType.getType(),
+				multiValuedComplexType.getValue());
+		}
+
+		return ims;
+	}
+
 	private static long _getListTypeId(
 		long companyId, String name, String type) {
 
@@ -841,26 +861,6 @@ public class ScimUtil {
 		}
 
 		return scimAddresses;
-	}
-
-	private static Map<String, String> _getScimIms(
-		List<MultiValuedComplexType> multiValuedComplexTypes) {
-
-		if (multiValuedComplexTypes == null) {
-			return null;
-		}
-
-		Map<String, String> map = new HashMap<>();
-
-		for (MultiValuedComplexType multiValuedComplexType :
-				multiValuedComplexTypes) {
-
-			map.put(
-				multiValuedComplexType.getType(),
-				multiValuedComplexType.getValue());
-		}
-
-		return map;
 	}
 
 	private static String _getScimProfileUrl(Contact contact) {

@@ -656,7 +656,7 @@ public class UserManagerImpl implements UserManager {
 
 		Contact contact = portalUser.getContact();
 
-		Map<String, String> ims = scimUser.getIms();
+		Map<String, String> ims = scimUser.getIMs();
 
 		String jabberSn = ims.get("Jabber");
 
