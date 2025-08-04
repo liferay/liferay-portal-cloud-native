@@ -315,6 +315,7 @@ public class ScimUtil {
 			}
 
 			scimUser.setIms(ims);
+
 			scimUser.setJobTitle(portalUser.getJobTitle());
 			scimUser.setLastName(portalUser.getLastName());
 			scimUser.setLocale(portalUser.getLocale());
