@@ -792,13 +792,15 @@ public class ScimUtil {
 	}
 
 	private static long[] _getPortalRoleIds(
-		long companyId, List<MultiValuedComplexType> roles) {
+		long companyId, List<MultiValuedComplexType> rultiValuedComplexTypes) {
 
 		List<Long> portalRoleIds = new ArrayList<>();
 
-		for (MultiValuedComplexType role : roles) {
+		for (MultiValuedComplexType rultiValuedComplexType :
+				rultiValuedComplexTypes) {
+
 			Role portalRole = RoleLocalServiceUtil.fetchRole(
-				companyId, role.getValue());
+				companyId, rultiValuedComplexType.getValue());
 
 			if (portalRole != null) {
 				portalRoleIds.add(portalRole.getRoleId());
