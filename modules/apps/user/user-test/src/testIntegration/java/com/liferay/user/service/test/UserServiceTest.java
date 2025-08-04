@@ -177,7 +177,7 @@ public class UserServiceTest {
 			Assert.assertTrue(
 				message.contains(
 					StringBundler.concat(
-						"Screen Name ", StringUtil.toLowerCase(screenName),
+						"Screen name ", StringUtil.toLowerCase(screenName),
 						" must have fewer than ", screenNameMaxLength,
 						" characters")));
 		}

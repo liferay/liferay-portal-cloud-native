@@ -150,7 +150,7 @@ public class UserScreenNameException extends PortalException {
 
 			super(
 				StringBundler.concat(
-					"Screen Name ", screenName, " must have fewer than ",
+					"Screen name ", screenName, " must have fewer than ",
 					screenNameMaxLength, " characters"));
 		}
 
