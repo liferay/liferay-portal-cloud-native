@@ -889,15 +889,10 @@ public class ScimUtil {
 			return null;
 		}
 
-		List<String> values = new ArrayList<>();
-
-		for (MultiValuedComplexType multiValuedComplexType :
-				multiValuedComplexTypes) {
-
-			values.add(multiValuedComplexType.getValue());
-		}
-
-		return ArrayUtil.toStringArray(values);
+		return TransformUtil.transformToArray(
+			multiValuedComplexTypes,
+			multiValuedComplexType -> multiValuedComplexType.getValue(),
+			String.class);
 	}
 
 	private static String _getTimeZoneId(String timeZoneId) {
