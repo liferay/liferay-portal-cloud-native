@@ -256,7 +256,19 @@ public class ScimUtil {
 				scimUser.getCompanyId(), scimName.getHonorificPrefix(),
 				Contact.class.getName() + ".prefix"));
 		scimUser.setProfileUrl(user.getProfileUrl());
-		scimUser.setRoleIds(_getPortalRoleIds(companyId, user.getRoles()));
+		scimUser.setRoleIds(
+			TransformUtil.transformToLongArray(
+				user.getRoles(),
+				multiValuedComplexType -> {
+					Role portalRole = RoleLocalServiceUtil.fetchRole(
+						companyId, multiValuedComplexType.getValue());
+
+					if (portalRole == null) {
+						return null;
+					}
+
+					return portalRole.getRoleId();
+				}));
 		scimUser.setScreenName(user.getUserName());
 		scimUser.setSuffix(
 			_getListTypeId(
@@ -789,25 +801,6 @@ public class ScimUtil {
 		}
 
 		return listType.getListTypeId();
-	}
-
-	private static long[] _getPortalRoleIds(
-		long companyId, List<MultiValuedComplexType> rultiValuedComplexTypes) {
-
-		List<Long> portalRoleIds = new ArrayList<>();
-
-		for (MultiValuedComplexType rultiValuedComplexType :
-				rultiValuedComplexTypes) {
-
-			Role portalRole = RoleLocalServiceUtil.fetchRole(
-				companyId, rultiValuedComplexType.getValue());
-
-			if (portalRole != null) {
-				portalRoleIds.add(portalRole.getRoleId());
-			}
-		}
-
-		return ArrayUtil.toLongArray(portalRoleIds);
 	}
 
 	private static List<ScimAddress> _getScimAddresses(
