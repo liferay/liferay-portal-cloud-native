@@ -746,7 +746,7 @@ public class ScimUtil {
 	}
 
 	private static String _getExpandoValue(
-			long expandoTableId, String name, long userId)
+			long expandoTableId, String name, String userIdString)
 		throws Exception {
 
 		ExpandoColumn expandoColumn = ExpandoColumnLocalServiceUtil.fetchColumn(
@@ -757,7 +757,8 @@ public class ScimUtil {
 		}
 
 		ExpandoValue expandoValue = ExpandoValueLocalServiceUtil.getValue(
-			expandoTableId, expandoColumn.getColumnId(), userId);
+			expandoTableId, expandoColumn.getColumnId(),
+			GetterUtil.getLong(userIdString));
 
 		if (expandoValue != null) {
 			return expandoValue.getString();
@@ -993,42 +994,42 @@ public class ScimUtil {
 			scimUser.setDisplayName(
 				_getExpandoValue(
 					expandoTable.getTableId(), "scimDisplayName",
-					Long.getLong(scimUser.getId())));
+					scimUser.getId()));
 
 			scimUser.setEntitlements(
 				StringUtil.split(
 					_getExpandoValue(
 						expandoTable.getTableId(), "scimEntitlements",
-						Long.getLong(scimUser.getId())),
+						scimUser.getId()),
 					StringPool.NEW_LINE));
 
 			scimUser.setNickName(
 				_getExpandoValue(
 					expandoTable.getTableId(), "scimNickName",
-					Long.getLong(scimUser.getId())));
+					scimUser.getId()));
 
 			scimUser.setPhotos(
 				StringUtil.split(
 					_getExpandoValue(
 						expandoTable.getTableId(), "scimPhotos",
-						Long.getLong(scimUser.getId())),
+						scimUser.getId()),
 					StringPool.NEW_LINE));
 
 			scimUser.setPreferredLanguage(
 				_getExpandoValue(
 					expandoTable.getTableId(), "scimPreferredLanguage",
-					Long.getLong(scimUser.getId())));
+					scimUser.getId()));
 
 			scimUser.setUserType(
 				_getExpandoValue(
 					expandoTable.getTableId(), "scimUserType",
-					Long.getLong(scimUser.getId())));
+					scimUser.getId()));
 
 			scimUser.setX509Certificates(
 				StringUtil.split(
 					_getExpandoValue(
 						expandoTable.getTableId(), "scimX509Certificates",
-						Long.getLong(scimUser.getId())),
+						scimUser.getId()),
 					StringPool.NEW_LINE));
 		}
 		catch (Exception exception) {
