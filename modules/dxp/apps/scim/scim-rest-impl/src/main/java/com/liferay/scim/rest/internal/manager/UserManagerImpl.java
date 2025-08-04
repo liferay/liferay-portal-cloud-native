@@ -571,6 +571,30 @@ public class UserManagerImpl implements UserManager {
 			return ScimUtil.toScimUser(portalUser);
 		}
 
+		_addOrUpdateExpandoValue(
+			"scimDisplayName", portalUser, false, scimUser.getDisplayName());
+		_addOrUpdateExpandoValue(
+			"scimEntitlements", portalUser, true,
+			ArrayUtil.toString(
+				scimUser.getEntitlements(), StringPool.BLANK,
+				StringPool.NEW_LINE));
+		_addOrUpdateExpandoValue(
+			"scimNickName", portalUser, false, scimUser.getNickName());
+		_addOrUpdateExpandoValue(
+			"scimPhotos", portalUser, true,
+			ArrayUtil.toString(
+				scimUser.getPhotos(), StringPool.BLANK, StringPool.NEW_LINE));
+		_addOrUpdateExpandoValue(
+			"scimPreferredLanguage", portalUser, false,
+			scimUser.getPreferredLanguage());
+		_addOrUpdateExpandoValue(
+			"scimUserType", portalUser, false, scimUser.getUserType());
+		_addOrUpdateExpandoValue(
+			"scimX509Certificates", portalUser, true,
+			ArrayUtil.toString(
+				scimUser.getX509Certificates(), StringPool.BLANK,
+				StringPool.NEW_LINE));
+
 		_addressLocalService.deleteAddresses(
 			portalUser.getCompanyId(), Contact.class.getName(),
 			portalUser.getContactId());
@@ -629,30 +653,6 @@ public class UserManagerImpl implements UserManager {
 
 			_addressLocalService.addAddress(address);
 		}
-
-		_addOrUpdateExpandoValue(
-			"scimDisplayName", portalUser, false, scimUser.getDisplayName());
-		_addOrUpdateExpandoValue(
-			"scimEntitlements", portalUser, true,
-			ArrayUtil.toString(
-				scimUser.getEntitlements(), StringPool.BLANK,
-				StringPool.NEW_LINE));
-		_addOrUpdateExpandoValue(
-			"scimNickName", portalUser, false, scimUser.getNickName());
-		_addOrUpdateExpandoValue(
-			"scimPhotos", portalUser, true,
-			ArrayUtil.toString(
-				scimUser.getPhotos(), StringPool.BLANK, StringPool.NEW_LINE));
-		_addOrUpdateExpandoValue(
-			"scimPreferredLanguage", portalUser, false,
-			scimUser.getPreferredLanguage());
-		_addOrUpdateExpandoValue(
-			"scimUserType", portalUser, false, scimUser.getUserType());
-		_addOrUpdateExpandoValue(
-			"scimX509Certificates", portalUser, true,
-			ArrayUtil.toString(
-				scimUser.getX509Certificates(), StringPool.BLANK,
-				StringPool.NEW_LINE));
 
 		Contact contact = portalUser.getContact();
 
