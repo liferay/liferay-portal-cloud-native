@@ -2134,16 +2134,16 @@ public class ObjectEntryLocalServiceImpl
 		}
 
 		if (!ObjectActionThreadLocal.isSkipObjectActionExecution()) {
-			String objectActionTrigger =
+			String objectActionTriggerKey =
 				ObjectActionTriggerConstants.KEY_ON_AFTER_UPDATE;
 
 			if (status == WorkflowConstants.STATUS_IN_TRASH) {
-				objectActionTrigger =
+				objectActionTriggerKey =
 					ObjectActionTriggerConstants.KEY_ON_AFTER_DELETE;
 			}
 
 			_executeObjectActions(
-				objectEntry.getCompanyId(), objectActionTrigger,
+				objectEntry.getCompanyId(), objectActionTriggerKey,
 				objectDefinition, objectEntry, originalObjectEntry,
 				serviceContext.getLanguageId(), user);
 		}
@@ -2969,7 +2969,7 @@ public class ObjectEntryLocalServiceImpl
 	}
 
 	private void _executeObjectActions(
-			long companyId, String objectActionTrigger,
+			long companyId, String objectActionTriggerKey,
 			ObjectDefinition objectDefinition, ObjectEntry objectEntry,
 			ObjectEntry originalObjectEntry, String preferredLanguageId,
 			User user)
@@ -2979,12 +2979,12 @@ public class ObjectEntryLocalServiceImpl
 			_objectActionEngineSnapshot.get();
 
 		objectActionEngine.executeObjectActions(
-			objectDefinition.getClassName(), companyId, objectActionTrigger,
+			objectDefinition.getClassName(), companyId, objectActionTriggerKey,
 			() -> {
 				JSONObject payloadJSONObject =
 					ObjectEntryUtil.getPayloadJSONObject(
 						_dtoConverterRegistry, _jsonFactory,
-						objectActionTrigger, objectDefinition, objectEntry,
+						objectActionTriggerKey, objectDefinition, objectEntry,
 						originalObjectEntry, preferredLanguageId, user);
 
 				objectEntry.setValues(null);
@@ -2998,7 +2998,7 @@ public class ObjectEntryLocalServiceImpl
 			(!objectDefinition.isRootDescendantNode() &&
 			 (!objectDefinition.isRootNode() ||
 			  StringUtil.equals(
-				  objectActionTrigger,
+				  objectActionTriggerKey,
 				  ObjectActionTriggerConstants.KEY_ON_AFTER_ADD)))) {
 
 			return;
