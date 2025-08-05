@@ -118,17 +118,25 @@ public class SearchResultsMVCRenderCommandTest {
 			);
 
 			String keyword1 = RandomTestUtil.randomString();
-			String keyword2 = RandomTestUtil.randomString();
-			String keyword3 =
-				RandomTestUtil.randomString() + " " +
-					RandomTestUtil.randomString();
 
 			ConfigurationScreen configurationScreen1 = _getConfigurationScreen(
 				RandomTestUtil.randomString(), keyword1,
 				RandomTestUtil.randomString());
+
+			_assertConfigurationEntry(configurationScreen1.getKey(), keyword1);
+
+			String keyword2 = RandomTestUtil.randomString();
+
 			ConfigurationScreen configurationScreen2 = _getConfigurationScreen(
 				RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 				keyword2);
+
+			_assertConfigurationEntry(configurationScreen2.getKey(), keyword2);
+
+			String keyword3 =
+				RandomTestUtil.randomString() + " " +
+					RandomTestUtil.randomString();
+
 			ConfigurationScreen configurationScreen3 = _getConfigurationScreen(
 				keyword3, RandomTestUtil.randomString(),
 				RandomTestUtil.randomString());
@@ -141,8 +149,6 @@ public class SearchResultsMVCRenderCommandTest {
 					configurationScreen3)
 			);
 
-			_assertConfigurationEntry(configurationScreen1.getKey(), keyword1);
-			_assertConfigurationEntry(configurationScreen2.getKey(), keyword2);
 			_assertConfigurationEntry(configurationScreen3.getKey(), keyword3);
 		}
 	}
