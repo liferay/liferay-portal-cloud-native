@@ -61,8 +61,8 @@ public class ObjectEntryInfoItemFieldValuesUpdater
 
 	@Override
 	public ObjectEntry updateFromInfoItemFieldValues(
-			ObjectEntry objectEntry,
-			InfoItemFieldValues infoItemFieldValues, int statusInt)
+			ObjectEntry objectEntry, InfoItemFieldValues infoItemFieldValues,
+			int statusInt)
 		throws InfoFormException {
 
 		ObjectEntryManager objectEntryManager =
@@ -88,8 +88,7 @@ public class ObjectEntryInfoItemFieldValuesUpdater
 					new DefaultDTOConverterContext(
 						false, null, null, null, null, themeDisplay.getLocale(),
 						null, themeDisplay.getUser()),
-					objectEntry.getExternalReferenceCode(),
-					_objectDefinition,
+					objectEntry.getExternalReferenceCode(), _objectDefinition,
 					new com.liferay.object.rest.dto.v1_0.ObjectEntry() {
 						{
 							setFriendlyUrlPath(
@@ -144,8 +143,8 @@ public class ObjectEntryInfoItemFieldValuesUpdater
 					new DefaultDTOConverterContext(
 						false, null, null, null, null, themeDisplay.getLocale(),
 						null, themeDisplay.getUser()),
-					objectEntry.getExternalReferenceCode(),
-					_objectDefinition, dtoObjectEntry, scopeKey);
+					objectEntry.getExternalReferenceCode(), _objectDefinition,
+					dtoObjectEntry, scopeKey);
 			}
 
 			return ObjectEntryUtil.toObjectEntry(
@@ -153,8 +152,8 @@ public class ObjectEntryInfoItemFieldValuesUpdater
 		}
 		catch (Exception exception) {
 			ObjectEntryInfoItemExceptionRequestHandler.handleInfoFormException(
-				exception, objectEntry.getGroupId(),
-				_infoItemFormProvider, _objectDefinition);
+				exception, objectEntry.getGroupId(), _infoItemFormProvider,
+				_objectDefinition);
 		}
 
 		return null;

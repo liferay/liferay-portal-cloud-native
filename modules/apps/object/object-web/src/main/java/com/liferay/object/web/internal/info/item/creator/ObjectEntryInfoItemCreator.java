@@ -96,8 +96,8 @@ public class ObjectEntryInfoItemCreator
 							setProperties(() -> curProperties);
 							setReviewDate(
 								() -> GetterUtil.getDate(
-									curProperties.get("reviewDate"),
-									dateFormat, null));
+									curProperties.get("reviewDate"), dateFormat,
+									null));
 							setStatus(
 								() -> new Status() {
 									{
