@@ -67,11 +67,11 @@ public class TicketAttachmentsDownloadRestController
 			TicketAttachment ticketAttachment = unsafeFunction.apply(
 				authorization);
 
-			String downloadURL = _googleCloudStorageService.getDownloadURL(
-				ticketAttachment.getGCSBucketName(),
-				ticketAttachment.getGCSObjectName());
-
-			return new ResponseEntity<>(downloadURL, HttpStatus.OK);
+			return new ResponseEntity<>(
+				_googleCloudStorageService.getDownloadURL(
+					ticketAttachment.getGCSBucketName(),
+					ticketAttachment.getGCSObjectName()),
+				HttpStatus.OK);
 		}
 		catch (FileServerUnavailableException fileServerUnavailableException) {
 			_log.error(
