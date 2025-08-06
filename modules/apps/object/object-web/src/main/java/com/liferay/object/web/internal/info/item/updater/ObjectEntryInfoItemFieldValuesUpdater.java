@@ -61,7 +61,7 @@ public class ObjectEntryInfoItemFieldValuesUpdater
 
 	@Override
 	public ObjectEntry updateFromInfoItemFieldValues(
-			ObjectEntry originalObjectEntry,
+			ObjectEntry objectEntry,
 			InfoItemFieldValues infoItemFieldValues, int statusInt)
 		throws InfoFormException {
 
@@ -79,16 +79,16 @@ public class ObjectEntryInfoItemFieldValuesUpdater
 
 		try {
 			String scopeKey = ObjectEntryInfoItemUtil.getScopeKey(
-				originalObjectEntry.getGroupId(), _objectDefinition,
+				objectEntry.getGroupId(), _objectDefinition,
 				_objectScopeProviderRegistry);
 
-			com.liferay.object.rest.dto.v1_0.ObjectEntry objectEntry =
+			com.liferay.object.rest.dto.v1_0.ObjectEntry dtoObjectEntry =
 				objectEntryManager.partialUpdateObjectEntry(
-					originalObjectEntry.getCompanyId(),
+					objectEntry.getCompanyId(),
 					new DefaultDTOConverterContext(
 						false, null, null, null, null, themeDisplay.getLocale(),
 						null, themeDisplay.getUser()),
-					originalObjectEntry.getExternalReferenceCode(),
+					objectEntry.getExternalReferenceCode(),
 					_objectDefinition,
 					new com.liferay.object.rest.dto.v1_0.ObjectEntry() {
 						{
@@ -117,7 +117,7 @@ public class ObjectEntryInfoItemFieldValuesUpdater
 			if (curProperties.containsKey("reviewDate") ||
 				curProperties.containsKey("expirationDate")) {
 
-				objectEntry.setExpirationDate(
+				dtoObjectEntry.setExpirationDate(
 					() -> {
 						if (curProperties.containsKey("expirationDate")) {
 							return GetterUtil.getDate(
@@ -125,10 +125,10 @@ public class ObjectEntryInfoItemFieldValuesUpdater
 								_dateTimeFormatter, null);
 						}
 
-						return originalObjectEntry.getExpirationDate();
+						return objectEntry.getExpirationDate();
 					});
 
-				objectEntry.setReviewDate(
+				dtoObjectEntry.setReviewDate(
 					() -> {
 						if (curProperties.containsKey("reviewDate")) {
 							return GetterUtil.getDate(
@@ -136,24 +136,24 @@ public class ObjectEntryInfoItemFieldValuesUpdater
 								_dateTimeFormatter, null);
 						}
 
-						return originalObjectEntry.getReviewDate();
+						return objectEntry.getReviewDate();
 					});
 
-				objectEntry = objectEntryManager.updateObjectEntry(
-					originalObjectEntry.getCompanyId(),
+				dtoObjectEntry = objectEntryManager.updateObjectEntry(
+					objectEntry.getCompanyId(),
 					new DefaultDTOConverterContext(
 						false, null, null, null, null, themeDisplay.getLocale(),
 						null, themeDisplay.getUser()),
-					originalObjectEntry.getExternalReferenceCode(),
-					_objectDefinition, objectEntry, scopeKey);
+					objectEntry.getExternalReferenceCode(),
+					_objectDefinition, dtoObjectEntry, scopeKey);
 			}
 
 			return ObjectEntryUtil.toObjectEntry(
-				originalObjectEntry.getObjectDefinitionId(), objectEntry);
+				objectEntry.getObjectDefinitionId(), dtoObjectEntry);
 		}
 		catch (Exception exception) {
 			ObjectEntryInfoItemExceptionRequestHandler.handleInfoFormException(
-				exception, originalObjectEntry.getGroupId(),
+				exception, objectEntry.getGroupId(),
 				_infoItemFormProvider, _objectDefinition);
 		}
 
