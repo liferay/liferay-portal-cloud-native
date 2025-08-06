@@ -9544,7 +9544,7 @@ public class ObjectEntryResourceTest {
 	@Test
 	public void testPostObjectEntryExpire() throws Exception {
 
-		// company scope
+		// Company scope
 
 		ObjectEntry companyObjectEntry =
 			_objectEntryLocalService.addObjectEntry(
@@ -9576,7 +9576,7 @@ public class ObjectEntryResourceTest {
 				"code"
 			));
 
-		// site scope
+		// Site scope
 
 		Group group = _groupLocalService.fetchGroup(_testGroupId);
 
