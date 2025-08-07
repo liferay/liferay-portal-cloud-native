@@ -683,9 +683,9 @@ public class ObjectDefinitionTreeUtilTest {
 			"The object relationship cannot be an edge in the root context " +
 				"because it would exceed the tree's maximum height",
 			() -> TreeTestUtil.bind(
-				_objectRelationshipLocalService,
 				objectDefinitionDDD.getObjectDefinitionId(),
-				objectDefinitionBBB.getObjectDefinitionId()));
+				objectDefinitionBBB.getObjectDefinitionId(),
+				_objectRelationshipLocalService));
 
 		ObjectDefinition objectDefinitionDD =
 			_objectDefinitionLocalService.fetchObjectDefinition(
@@ -716,9 +716,9 @@ public class ObjectDefinitionTreeUtilTest {
 			"The object relationship cannot be an edge in the root context " +
 				"because it would exceed the tree's maximum height",
 			() -> TreeTestUtil.bind(
-				_objectRelationshipLocalService,
 				objectDefinitionBBB.getObjectDefinitionId(),
-				objectDefinitionF.getObjectDefinitionId()));
+				objectDefinitionF.getObjectDefinitionId(),
+				_objectRelationshipLocalService));
 
 		ObjectDefinition objectDefinitionFF =
 			_objectDefinitionLocalService.fetchObjectDefinition(
