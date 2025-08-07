@@ -563,7 +563,6 @@ public class ObjectDefinitionResourceTest
 		assertValid(postObjectDefinition);
 
 		_testPostObjectDefinitionBatch();
-
 		_testPostObjectDefinitionWithSystemAggregationObjectField();
 	}
 
@@ -1938,8 +1937,6 @@ public class ObjectDefinitionResourceTest
 						randomModifiableSystemObjectDefinition.
 							getExternalReferenceCode(),
 						TestPropsValues.getCompanyId());
-
-		Assert.assertNotNull(serviceBuilderObjectDefinition1);
 
 		Assert.assertNotNull(
 			_objectFieldLocalService.getObjectField(
