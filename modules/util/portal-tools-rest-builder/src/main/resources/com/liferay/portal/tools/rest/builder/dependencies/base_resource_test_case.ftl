@@ -3808,12 +3808,12 @@ public abstract class Base${schemaName}ResourceTestCase {
 					<#assign relatedSchemaProperties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, relatedSchemaName, allSchemas) />
 
 					<#list relatedSchemaProperties?keys as propertyName>
-						<#if stringUtil.equals(relatedSchemaProperties[propertyName], "Integer")>
+						<#if stringUtil.equals(relatedSchemaProperties[propertyName], "Date")>
+							${propertyName} = RandomTestUtil.nextDate();
+						<#elseif stringUtil.equals(relatedSchemaProperties[propertyName], "Integer")>
 							${propertyName} = RandomTestUtil.randomInt();
 						<#elseif randomDataTypes?seq_contains(relatedSchemaProperties[propertyName])>
 							${propertyName} = RandomTestUtil.random${relatedSchemaProperties[propertyName]}();
-						<#elseif stringUtil.equals(relatedSchemaProperties[propertyName], "Date")>
-							${propertyName} = RandomTestUtil.nextDate();
 						</#if>
 					</#list>
 				}
