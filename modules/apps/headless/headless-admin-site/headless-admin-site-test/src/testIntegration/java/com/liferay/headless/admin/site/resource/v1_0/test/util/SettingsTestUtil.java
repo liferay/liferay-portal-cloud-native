@@ -184,39 +184,31 @@ public class SettingsTestUtil {
 			expectedSettings.getColorSchemeName(),
 			actualSettings.getColorSchemeName());
 		Assert.assertEquals(expectedSettings.getCss(), actualSettings.getCss());
-
 		Assert.assertTrue(
 			Objects.deepEquals(
 				expectedSettings.getFavIcon(), actualSettings.getFavIcon()));
-
 		Assert.assertTrue(
 			Objects.deepEquals(
 				expectedSettings.getGlobalCSSClientExtensions(),
 				actualSettings.getGlobalCSSClientExtensions()));
-
 		Assert.assertTrue(
 			Objects.deepEquals(
 				expectedSettings.getGlobalJSClientExtensions(),
 				actualSettings.getGlobalJSClientExtensions()));
-
 		Assert.assertEquals(
 			expectedSettings.getJavascript(), actualSettings.getJavascript());
-
 		Assert.assertTrue(
 			Objects.deepEquals(
 				expectedSettings.getMasterPageItemExternalReference(),
 				actualSettings.getMasterPageItemExternalReference()));
-
 		Assert.assertTrue(
 			Objects.deepEquals(
 				expectedSettings.getStyleBookItemExternalReference(),
 				actualSettings.getStyleBookItemExternalReference()));
-
 		Assert.assertTrue(
 			Objects.deepEquals(
 				expectedSettings.getThemeCSSClientExtension(),
 				actualSettings.getThemeCSSClientExtension()));
-
 		Assert.assertEquals(
 			expectedSettings.getThemeName(), actualSettings.getThemeName());
 

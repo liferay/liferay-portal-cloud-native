@@ -773,9 +773,9 @@ public class LayoutUtil {
 
 		long classNameId = PortalUtil.getClassNameId(Layout.class);
 
-		FavIcon favIcon = settings.getFavIcon();
-
 		ClientExtension clientExtension = null;
+
+		FavIcon favIcon = settings.getFavIcon();
 
 		if ((favIcon != null) &&
 			Objects.equals(
@@ -789,29 +789,25 @@ public class LayoutUtil {
 			};
 		}
 
-		_updateClientExtensionEntryRel(
-			cetManager, classNameId, clientExtension, layout,
-			ClientExtensionEntryConstants.TYPE_THEME_FAVICON, serviceContext);
-
-		_updateClientExtensionEntryRel(
-			cetManager, classNameId, settings.getThemeCSSClientExtension(),
-			layout, ClientExtensionEntryConstants.TYPE_THEME_CSS,
-			serviceContext);
-
-		_updateClientExtensionEntryRel(
-			cetManager, classNameId,
-			settings.getThemeSpritemapClientExtension(), layout,
-			ClientExtensionEntryConstants.TYPE_THEME_SPRITEMAP, serviceContext);
-
 		_updateClientExtensionEntryRels(
 			cetManager, classNameId, settings.getGlobalCSSClientExtensions(),
 			layout, ClientExtensionEntryConstants.TYPE_GLOBAL_CSS,
 			serviceContext);
-
 		_updateClientExtensionEntryRels(
 			cetManager, classNameId, settings.getGlobalJSClientExtensions(),
 			layout, ClientExtensionEntryConstants.TYPE_GLOBAL_JS,
 			serviceContext);
+		_updateClientExtensionEntryRel(
+			cetManager, classNameId, settings.getThemeCSSClientExtension(),
+			layout, ClientExtensionEntryConstants.TYPE_THEME_CSS,
+			serviceContext);
+		_updateClientExtensionEntryRel(
+			cetManager, classNameId, clientExtension, layout,
+			ClientExtensionEntryConstants.TYPE_THEME_FAVICON, serviceContext);
+		_updateClientExtensionEntryRel(
+			cetManager, classNameId,
+			settings.getThemeSpritemapClientExtension(), layout,
+			ClientExtensionEntryConstants.TYPE_THEME_SPRITEMAP, serviceContext);
 	}
 
 	private static Layout _updateLayout(
