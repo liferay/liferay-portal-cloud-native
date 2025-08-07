@@ -99,10 +99,10 @@ public class OrphanReferencesDataCleanupUtil {
 			String targetColumnName, String targetTableName)
 		throws Exception {
 
+		String additionalNullCheck = "";
+
 		DB db = DBManagerUtil.getDB();
 		DBInspector dbInspector = new DBInspector(connection);
-
-		String additionalNullCheck = "";
 
 		if (dbInspector.isNumeric(sourceTableName, sourceColumnName)) {
 			additionalNullCheck = " and " + sourceColumnName + " != 0";
