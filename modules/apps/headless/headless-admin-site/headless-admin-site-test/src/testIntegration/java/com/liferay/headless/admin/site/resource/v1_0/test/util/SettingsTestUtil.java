@@ -66,9 +66,9 @@ public class SettingsTestUtil {
 			Assert.assertEquals(layout.getCss(), settings.getCss());
 		}
 
-		FavIcon favIcon = settings.getFavIcon();
-
 		ClientExtension clientExtension = null;
+
+		FavIcon favIcon = settings.getFavIcon();
 
 		if ((favIcon != null) &&
 			Objects.equals(
@@ -84,17 +84,15 @@ public class SettingsTestUtil {
 			};
 		}
 
-		_assertClientExtension(
-			clientExtension, layout,
-			ClientExtensionEntryConstants.TYPE_THEME_FAVICON);
-
 		_assertClientExtensions(
 			settings.getGlobalCSSClientExtensions(), layout,
 			ClientExtensionEntryConstants.TYPE_GLOBAL_CSS);
-
 		_assertClientExtensions(
 			settings.getGlobalJSClientExtensions(), layout,
 			ClientExtensionEntryConstants.TYPE_GLOBAL_JS);
+		_assertClientExtension(
+			clientExtension, layout,
+			ClientExtensionEntryConstants.TYPE_THEME_FAVICON);
 
 		UnicodeProperties unicodeProperties =
 			layout.getTypeSettingsProperties();
