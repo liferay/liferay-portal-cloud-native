@@ -97,8 +97,7 @@ public class SearchResultsMVCRenderCommand implements MVCRenderCommand {
 		ConfigurationScopeDisplayContext configurationScopeDisplayContext,
 		Document[] documents, Locale locale, SearchContext searchContext) {
 
-		List<ConfigurationEntry> configurationEntries = new ArrayList<>(
-			documents.length);
+		List<ConfigurationEntry> configurationEntries = new ArrayList<>();
 
 		Map<String, ConfigurationModel> configurationModels =
 			_configurationModelRetriever.getConfigurationModels(
