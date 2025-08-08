@@ -137,16 +137,13 @@ public class SearchResultsMVCRenderCommand implements MVCRenderCommand {
 				configurationScreen.getKey(), locale);
 			String configurationScreenName = StringUtil.toLowerCase(
 				configurationScreen.getName(locale), locale);
-
-			String keywords = searchContext.getKeywords();
-
-			String searchReadyKeywords = StringUtil.toLowerCase(
-				keywords, locale);
+			String keywords = StringUtil.toLowerCase(
+				searchContext.getKeywords(), locale);
 
 			if (Validator.isNull(keywords) ||
-				configurationScreenCategoryKey.contains(searchReadyKeywords) ||
-				configurationScreenKey.contains(searchReadyKeywords) ||
-				configurationScreenName.contains(searchReadyKeywords)) {
+				configurationScreenCategoryKey.contains(keywords) ||
+				configurationScreenKey.contains(keywords) ||
+				configurationScreenName.contains(keywords)) {
 
 				configurationEntries.add(
 					new ConfigurationScreenConfigurationEntry(
