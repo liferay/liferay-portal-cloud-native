@@ -10,7 +10,7 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +27,7 @@ public class ContentPageEditorConstants {
 				"layout-elements",
 				() -> {
 					List<Map<String, Object>> layoutElementMapsList =
-						new LinkedList<>();
+						new ArrayList<>();
 
 					layoutElementMapsList.add(
 						HashMapBuilder.<String, Object>put(
@@ -57,7 +57,7 @@ public class ContentPageEditorConstants {
 				"INPUTS",
 				() -> {
 					List<Map<String, Object>> inputsElementMapsList =
-						new LinkedList<>();
+						new ArrayList<>();
 
 					inputsElementMapsList.add(
 						HashMapBuilder.<String, Object>put(
