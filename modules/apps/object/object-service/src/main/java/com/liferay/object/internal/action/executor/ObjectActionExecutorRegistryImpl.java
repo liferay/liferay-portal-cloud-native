@@ -59,69 +59,70 @@ public class ObjectActionExecutorRegistryImpl
 	public List<ObjectActionExecutor> getObjectActionExecutors(
 		long companyId, String objectDefinitionName) {
 
-		Collection<ObjectActionExecutor> objectActionExecutorsCollection =
+		Collection<ObjectActionExecutor> objectActionExecutors =
 			_serviceTrackerMap.values();
 
-		if (objectActionExecutorsCollection == null) {
+		if (objectActionExecutors == null) {
 			return Collections.<ObjectActionExecutor>emptyList();
 		}
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Unfiltered list " + objectActionExecutorsCollection);
+			_log.debug("Object action executors " + objectActionExecutors);
 		}
 
-		List<ObjectActionExecutor> filteredObjectActionExecutorsCollection =
-			ListUtil.sort(
-				ListUtil.filter(
-					ListUtil.fromCollection(objectActionExecutorsCollection),
-					objectActionExecutor -> {
-						boolean companyAllowed = true;
+		List<ObjectActionExecutor> filteredObjectActionExecutors =
+			ListUtil.filter(
+				ListUtil.fromCollection(objectActionExecutors),
+				objectActionExecutor -> {
+					if (objectActionExecutor instanceof CompanyScoped) {
+						CompanyScoped objectActionExecutorCompanyScoped =
+							(CompanyScoped)objectActionExecutor;
 
-						if (objectActionExecutor instanceof CompanyScoped) {
-							CompanyScoped objectActionExecutorCompanyScoped =
-								(CompanyScoped)objectActionExecutor;
+						if (!objectActionExecutorCompanyScoped.isAllowedCompany(
+								companyId)) {
 
-							companyAllowed =
-								objectActionExecutorCompanyScoped.
-									isAllowedCompany(companyId);
+							return false;
 						}
+					}
 
-						boolean objectDefinitionAllowed = true;
+					if (objectActionExecutor instanceof
+							ObjectDefinitionScoped) {
 
-						if (objectActionExecutor instanceof
-								ObjectDefinitionScoped) {
+						ObjectDefinitionScoped
+							objectActionExecutorObjectDefinitionScoped =
+								(ObjectDefinitionScoped)objectActionExecutor;
 
-							ObjectDefinitionScoped
-								objectActionExecutorObjectDefinitionScoped =
-									(ObjectDefinitionScoped)
-										objectActionExecutor;
+						if (!objectActionExecutorObjectDefinitionScoped.
+								isAllowedObjectDefinition(
+									objectDefinitionName)) {
 
-							objectDefinitionAllowed =
-								objectActionExecutorObjectDefinitionScoped.
-									isAllowedObjectDefinition(
-										objectDefinitionName);
+							return false;
 						}
+					}
 
-						return companyAllowed && objectDefinitionAllowed;
-					}),
-				(ObjectActionExecutor objectActionExecutor1,
-				 ObjectActionExecutor objectActionExecutor2) -> {
-
-					String key1 = objectActionExecutor1.getKey();
-					String key2 = objectActionExecutor2.getKey();
-
-					return key1.compareTo(key2);
+					return true;
 				});
+
+		ListUtil.sort(
+			filteredObjectActionExecutors,
+			(ObjectActionExecutor objectActionExecutor1,
+			 ObjectActionExecutor objectActionExecutor2) -> {
+
+				String key1 = objectActionExecutor1.getKey();
+				String key2 = objectActionExecutor2.getKey();
+
+				return key1.compareTo(key2);
+			});
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Filtered list for companyId ", companyId,
-					" and objectDefinitionName ", objectDefinitionName, ": ",
-					filteredObjectActionExecutorsCollection));
+					"Filtered object action executors for company ID ",
+					companyId, " and object definition name ",
+					objectDefinitionName, ": ", filteredObjectActionExecutors));
 		}
 
-		return filteredObjectActionExecutorsCollection;
+		return filteredObjectActionExecutors;
 	}
 
 	@Override
