@@ -3,6 +3,7 @@
 [#assign learnAnnouncementId = assetEntry.classPK!/]
 
 [#assign learnAnnouncement = restClient.get("/c/p2s3learnannouncements/${learnAnnouncementId}") /]
+
 [#assign taxonomyCategoryIds = [] /]
 
 [#list learnAnnouncement.taxonomyCategoryBriefs![] as category]
