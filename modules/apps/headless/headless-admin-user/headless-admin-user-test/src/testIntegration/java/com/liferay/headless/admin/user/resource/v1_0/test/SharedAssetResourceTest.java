@@ -129,7 +129,7 @@ public class SharedAssetResourceTest extends BaseSharedAssetResourceTestCase {
 			ServiceContextTestUtil.getServiceContext(
 				TestPropsValues.getGroupId(), _user.getUserId()));
 
-		ObjectDefinition depotScopedObjectDefinition =
+		ObjectDefinition objectDefinition =
 			ObjectDefinitionTestUtil.publishObjectDefinition(
 				Collections.singletonList(
 					new TextObjectFieldBuilder(
@@ -152,19 +152,19 @@ public class SharedAssetResourceTest extends BaseSharedAssetResourceTestCase {
 				randomSharedAsset());
 
 			_objectDefinitionSettingLocalService.addObjectDefinitionSetting(
-				depotScopedObjectDefinition.getUserId(),
-				depotScopedObjectDefinition.getObjectDefinitionId(),
+				objectDefinition.getUserId(),
+				objectDefinition.getObjectDefinitionId(),
 				ObjectDefinitionSettingConstants.NAME_ACCEPT_ALL_GROUPS,
 				StringPool.TRUE);
 
 			_testGetMyUserAccountSharedAssetsSharedWithMePage_addSharedAsset(
 				assetLibraryDepotEntry.getGroupId(),
-				depotScopedObjectDefinition, randomSharedAsset());
+				objectDefinition, randomSharedAsset());
 			_testGetMyUserAccountSharedAssetsSharedWithMePage_addSharedAsset(
-				spaceDepotEntry.getGroupId(), depotScopedObjectDefinition,
+				spaceDepotEntry.getGroupId(), objectDefinition,
 				randomSharedAsset());
 			_testGetMyUserAccountSharedAssetsSharedWithMePage_addSharedAsset(
-				spaceDepotEntry.getGroupId(), depotScopedObjectDefinition,
+				spaceDepotEntry.getGroupId(), objectDefinition,
 				randomSharedAsset());
 
 			page =
@@ -192,7 +192,7 @@ public class SharedAssetResourceTest extends BaseSharedAssetResourceTestCase {
 		}
 		finally {
 			_objectDefinitionLocalService.deleteObjectDefinition(
-				depotScopedObjectDefinition);
+				objectDefinition);
 
 			_depotEntryLocalService.deleteDepotEntry(assetLibraryDepotEntry);
 			_depotEntryLocalService.deleteDepotEntry(spaceDepotEntry);
