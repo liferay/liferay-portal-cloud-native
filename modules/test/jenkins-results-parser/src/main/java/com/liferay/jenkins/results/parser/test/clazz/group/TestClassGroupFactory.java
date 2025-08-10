@@ -99,16 +99,6 @@ public class TestClassGroupFactory {
 				jsonObject, segmentTestClassGroup);
 		}
 
-		if (batchTestClassGroup instanceof PlaywrightBatchTestClassGroup) {
-			return new PlaywrightAxisTestClassGroup(
-				jsonObject, segmentTestClassGroup);
-		}
-
-		if (batchTestClassGroup instanceof PluginsGulpBatchTestClassGroup) {
-			return new PluginsGulpAxisTestClassGroup(
-				jsonObject, segmentTestClassGroup);
-		}
-
 		if (batchTestClassGroup instanceof ModulesBatchTestClassGroup) {
 			if (batchTestClassGroup instanceof
 					SemVerModulesBatchTestClassGroup) {
@@ -118,6 +108,16 @@ public class TestClassGroupFactory {
 			}
 
 			return new ModulesAxisTestClassGroup(
+				jsonObject, segmentTestClassGroup);
+		}
+
+		if (batchTestClassGroup instanceof PlaywrightBatchTestClassGroup) {
+			return new PlaywrightAxisTestClassGroup(
+				jsonObject, segmentTestClassGroup);
+		}
+
+		if (batchTestClassGroup instanceof PluginsGulpBatchTestClassGroup) {
+			return new PluginsGulpAxisTestClassGroup(
 				jsonObject, segmentTestClassGroup);
 		}
 
