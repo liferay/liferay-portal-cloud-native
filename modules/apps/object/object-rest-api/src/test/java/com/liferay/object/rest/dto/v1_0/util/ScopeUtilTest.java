@@ -40,6 +40,11 @@ public class ScopeUtilTest {
 	}
 
 	@Test
+	public void testToScopeNull() throws Exception {
+		Assert.assertNull(ScopeUtil.toScope(null));
+	}
+
+	@Test
 	public void testToScopeTypeAssetLibrary() throws Exception {
 		Mockito.when(
 			_group.isDepot()
@@ -62,8 +67,8 @@ public class ScopeUtilTest {
 	}
 
 	@Test
-	public void testToScopeNull() throws Exception {
-		Assert.assertNull(ScopeUtil.toScope(null));
+	public void testToScopeTypeNull() throws Exception {
+		_assertScope(ScopeUtil.toScope(_group), null);
 	}
 
 	@Test
@@ -75,11 +80,6 @@ public class ScopeUtilTest {
 		);
 
 		_assertScope(ScopeUtil.toScope(_group), Scope.Type.SITE);
-	}
-
-	@Test
-	public void testToScopeTypeNull() throws Exception {
-		_assertScope(ScopeUtil.toScope(_group), null);
 	}
 
 	private void _assertScope(Scope scope, Scope.Type scopeType) {
