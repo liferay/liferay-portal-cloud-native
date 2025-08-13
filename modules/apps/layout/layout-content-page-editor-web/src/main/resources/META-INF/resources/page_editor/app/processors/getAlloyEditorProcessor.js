@@ -169,10 +169,10 @@ export default function getAlloyEditorProcessor(
 							(event.data.keyCode === ENTER_KEYCODE ||
 								event.data.keyCode === SHIFT_ENTER_KEYCODE) &&
 							_element &&
-							(_element.getAttribute('type') === 'text' ||
-								_element.getAttribute('type') === 'link' ||
-								_element.dataset.lfrEditableType === 'text' ||
-								_element.dataset.lfrEditableType === 'link')
+							(_element.getAttribute('type') === 'link' ||
+								_element.getAttribute('type') === 'text' ||
+								_element.dataset.lfrEditableType === 'link' ||
+								_element.dataset.lfrEditableType === 'text')
 						) {
 							event.cancel();
 						}
