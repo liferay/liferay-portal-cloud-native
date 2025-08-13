@@ -1315,7 +1315,6 @@ public class DisplayPageTemplateResourceTest
 	private void _testPostSiteSiteByExternalReferenceCodeDisplayPageTemplateWithPageSpecifications()
 		throws Exception {
 
-		_testPostSiteSiteByExternalReferenceCodeDisplayPageTemplateWithPageSpecificationsNull();
 		_testPostSiteSiteByExternalReferenceCodeDisplayPageTemplateWithPageSpecifications(
 			PageSpecification.Status.APPROVED,
 			PageSpecification.Status.APPROVED);
@@ -1325,6 +1324,7 @@ public class DisplayPageTemplateResourceTest
 			PageSpecification.Status.DRAFT, PageSpecification.Status.APPROVED);
 		_testPostSiteSiteByExternalReferenceCodeDisplayPageTemplateWithPageSpecifications(
 			PageSpecification.Status.DRAFT, PageSpecification.Status.DRAFT);
+		_testPostSiteSiteByExternalReferenceCodeDisplayPageTemplateWithPageSpecificationsNull();
 	}
 
 	private void
