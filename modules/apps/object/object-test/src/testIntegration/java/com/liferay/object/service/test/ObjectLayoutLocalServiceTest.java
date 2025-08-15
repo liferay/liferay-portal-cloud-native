@@ -260,7 +260,6 @@ public class ObjectLayoutLocalServiceTest {
 					RandomTestUtil.randomLocaleStringMap(),
 					List.of(objectLayoutTab));
 			});
-
 		AssertUtils.assertFailure(
 			ObjectRelationshipEdgeException.class,
 			"Edge object relationship object fields cannot be associated " +
@@ -535,7 +534,6 @@ public class ObjectLayoutLocalServiceTest {
 					RandomTestUtil.randomLocaleStringMap(),
 					List.of(objectLayoutTab));
 			});
-
 		AssertUtils.assertFailure(
 			ObjectRelationshipEdgeException.class,
 			"Edge object relationship object fields cannot be associated " +
