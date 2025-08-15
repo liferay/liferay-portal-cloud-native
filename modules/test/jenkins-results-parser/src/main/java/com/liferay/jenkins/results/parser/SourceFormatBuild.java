@@ -129,7 +129,7 @@ public class SourceFormatBuild
 
 	@Override
 	public String getTestSuiteName() {
-		return _NAME_TEST_SUITE;
+		return "sf";
 	}
 
 	@Override
@@ -450,8 +450,6 @@ public class SourceFormatBuild
 	private static final String _GITHUB_REPOSITORY_NAME = "liferay-portal";
 
 	private static final String _GITHUB_USER_NAME = "liferay";
-
-	private static final String _NAME_TEST_SUITE = "sf";
 
 	private static final String _SOURCE_FORMATTER_PACKAGE_NAME =
 		"com.liferay.source.formatter";
