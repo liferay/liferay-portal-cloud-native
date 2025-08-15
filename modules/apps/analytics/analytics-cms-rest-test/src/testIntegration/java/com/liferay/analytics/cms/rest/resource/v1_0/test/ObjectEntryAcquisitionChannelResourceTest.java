@@ -71,7 +71,7 @@ public class ObjectEntryAcquisitionChannelResourceTest
 			Double value2 = 2.0;
 			Double value3 = 5.0;
 
-			Double totalCount = 8.0;
+			Double totalCount = value1 + value2 + value3;
 
 			Double percentage1 = value1 / totalCount;
 			Double percentage2 = value2 / totalCount;
