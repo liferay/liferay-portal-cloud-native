@@ -729,7 +729,7 @@ public class MirrorsGetTask extends Task {
 	}
 
 	private URL _getNexusTomcatURL() {
-		Matcher matcher = _tomcatURLPattern.matcher(
+		Matcher matcher = _nexusTomcatURLPattern.matcher(
 			String.valueOf(_getRemoteURL()));
 
 		if (!matcher.find()) {
@@ -1214,7 +1214,7 @@ public class MirrorsGetTask extends Task {
 		"(release-\\d+|release.liferay.com)/(?<id>\\d+)");
 	private static final Pattern _testHostNamePattern = Pattern.compile(
 		"test-\\d+-\\d+");
-	private static final Pattern _tomcatURLPattern = Pattern.compile(
+	private static final Pattern _nexusTomcatURLPattern = Pattern.compile(
 		"http://archive.apache.org/dist/tomcat/tomcat-\\d+/" +
 			"v(?<tomcatVersion>[^/]+)/bin/" +
 				"apache-(?<tomcatFileName>.+(\\.tar\\.gz|\\.zip))");
