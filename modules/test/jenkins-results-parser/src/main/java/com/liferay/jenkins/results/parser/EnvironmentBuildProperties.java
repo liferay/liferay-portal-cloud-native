@@ -60,7 +60,7 @@ public class EnvironmentBuildProperties extends Properties {
 
 		urlString = JenkinsResultsParserUtil.getLocalURL(urlString);
 
-		Matcher matcher = _propertiesUrlPattern.matcher(urlString);
+		Matcher matcher = _propertiesURLPattern.matcher(urlString);
 
 		if (!matcher.matches()) {
 			throw new RuntimeException(
@@ -191,7 +191,7 @@ public class EnvironmentBuildProperties extends Properties {
 
 	private static final Pattern _environmentBuildPropertiesFileNamePattern =
 		Pattern.compile("(.+)\\.(properties)");
-	private static final Pattern _propertiesUrlPattern = Pattern.compile(
+	private static final Pattern _propertiesURLPattern = Pattern.compile(
 		"(^.*)(\\.properties[/]*$)");
 	private static final SimpleDateFormat _simpleDateFormat =
 		new SimpleDateFormat("yyyy-MM-dd hh:mm:ss zzzz");
