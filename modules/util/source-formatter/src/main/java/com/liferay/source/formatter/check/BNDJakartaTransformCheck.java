@@ -76,7 +76,6 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 				!propertyName.equals("Require-Capability")) {
 
 				sb.append(";");
-
 				sb.append(attrsString);
 				sb.append(",\\\n");
 
