@@ -35,17 +35,16 @@ public class ChannelResourceTest extends BaseChannelResourceTestCase {
 	@Override
 	@Test
 	public void testGetChannelsPage() throws Exception {
-		User testUser = UserTestUtil.addGroupUser(
+		User user = UserTestUtil.addGroupUser(
 			testGroup, RoleConstants.SITE_MEMBER);
-
 		String password = RandomTestUtil.randomString();
 
 		_userLocalService.updatePassword(
-			testUser.getUserId(), password, password, false, true);
+			user.getUserId(), password, password, false, true);
 
-		ChannelResource siteMemberChannelResource = ChannelResource.builder(
+		ChannelResource channelResource = ChannelResource.builder(
 		).authentication(
-			testUser.getEmailAddress(), password
+			user.getEmailAddress(), password
 		).endpoint(
 			testCompany.getVirtualHostname(), 8080, "http"
 		).locale(
@@ -76,7 +75,7 @@ public class ChannelResourceTest extends BaseChannelResourceTestCase {
 						).build())) {
 
 			Page<Channel> channelsPage =
-				siteMemberChannelResource.getChannelsPage(null);
+				channelResource.getChannelsPage(null);
 
 			Assert.assertEquals(1, channelsPage.getTotalCount());
 

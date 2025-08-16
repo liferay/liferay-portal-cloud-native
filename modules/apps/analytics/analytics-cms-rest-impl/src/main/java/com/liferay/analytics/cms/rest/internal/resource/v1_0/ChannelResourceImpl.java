@@ -15,9 +15,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.vulcan.pagination.Page;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -32,42 +29,44 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class ChannelResourceImpl extends BaseChannelResourceImpl {
 
 	public Page<Channel> getChannelsPage(String keywords) throws Exception {
-		List<Channel> channels = new ArrayList<>();
-
 		AnalyticsConfiguration analyticsConfiguration =
 			_analyticsSettingsManager.getAnalyticsConfiguration(
 				contextUser.getCompanyId());
 
-		for (String syncedGroupId : analyticsConfiguration.syncedGroupIds()) {
-			long groupId = GetterUtil.getLong(syncedGroupId);
+		return Page.of(
+			transformToList(
+				analyticsConfiguration.syncedGroupIds(),
+				syncedGroupId -> {
+					long groupId = GetterUtil.getLong(syncedGroupId);
 
-			if (!ArrayUtil.contains(
-					contextUser.getGroupIds(), GetterUtil.getLong(groupId))) {
+					if (!ArrayUtil.contains(
+							contextUser.getGroupIds(),
+							GetterUtil.getLong(groupId))) {
 
-				continue;
-			}
+						return null;
+					}
 
-			Group group = groupLocalService.fetchGroup(groupId);
+					Group group = groupLocalService.fetchGroup(groupId);
 
-			if (group == null) {
-				continue;
-			}
+					if (group == null) {
+						return null;
+					}
 
-			String name = group.getName(contextUser.getLocale());
+					String name = group.getName(contextUser.getLocale());
 
-			if (Validator.isNotNull(keywords) && !name.contains(keywords)) {
-				continue;
-			}
+					if (Validator.isNotNull(keywords) &&
+						!name.contains(keywords)) {
 
-			Channel channel = new Channel();
+						return null;
+					}
 
-			channel.setGroupId(() -> groupId);
-			channel.setName(() -> name);
+					Channel channel = new Channel();
 
-			channels.add(channel);
-		}
+					channel.setGroupId(() -> groupId);
+					channel.setName(() -> name);
 
-		return Page.of(channels);
+					return channel;
+				}));
 	}
 
 	@Reference
