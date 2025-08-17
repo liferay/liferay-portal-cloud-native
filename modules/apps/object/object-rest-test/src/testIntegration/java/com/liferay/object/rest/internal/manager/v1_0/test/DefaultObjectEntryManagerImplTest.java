@@ -277,7 +277,6 @@ public class DefaultObjectEntryManagerImplTest
 		_defaultObjectEntryManager =
 			(DefaultObjectEntryManager)_objectEntryManager;
 		_group = GroupTestUtil.addGroup();
-
 		_originalName = PrincipalThreadLocal.getName();
 		_originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
@@ -289,6 +288,7 @@ public class DefaultObjectEntryManagerImplTest
 		_simpleDTOConverterContext = new DefaultDTOConverterContext(
 			false, Collections.emptyMap(), dtoConverterRegistry, null,
 			LocaleUtil.getDefault(), null, adminUser);
+
 		PermissionThreadLocal.setPermissionChecker(
 			PermissionCheckerFactoryUtil.create(adminUser));
 
@@ -7471,11 +7471,12 @@ public class DefaultObjectEntryManagerImplTest
 					serviceBuilderObjectEntry.getObjectDefinitionId());
 
 			Edge edge = node.getEdge();
-			Node parentNode = node.getParentNode();
 
 			ObjectRelationship objectRelationship =
 				_objectRelationshipLocalService.getObjectRelationship(
 					edge.getObjectRelationshipId());
+
+			Node parentNode = node.getParentNode();
 
 			_defaultObjectEntryManager.updateRelatedObjectEntry(
 				_simpleDTOConverterContext, objectDefinition,
@@ -9321,7 +9322,7 @@ public class DefaultObjectEntryManagerImplTest
 					unsafeBiFunction)
 		throws Exception {
 
-		// User with permission to VIEW object definition A
+		// User with permission to view object definition A
 
 		PermissionThreadLocal.setPermissionChecker(
 			PermissionCheckerFactoryUtil.create(adminUser));
@@ -9395,7 +9396,7 @@ public class DefaultObjectEntryManagerImplTest
 			() -> unsafeBiFunction.apply(
 				_objectEntryB, _objectRelationshipB_AA));
 
-		// User with permission to VIEW object definition AA
+		// User with permission to view object definition AA
 
 		_user = _addUser();
 
@@ -9428,7 +9429,7 @@ public class DefaultObjectEntryManagerImplTest
 			() -> unsafeBiFunction.apply(
 				_objectEntryB, _objectRelationshipB_AA));
 
-		// User with permission to VIEW object definition B
+		// User with permission to view object definition B
 
 		_user = _addUser();
 
@@ -9459,7 +9460,7 @@ public class DefaultObjectEntryManagerImplTest
 			(List<ObjectEntry>)objectEntryPage.getItems(),
 			List.of(objectEntryB_AA));
 
-		// User with permission to VIEW object definitions A, AA, and B
+		// User with permission to view object definitions A, AA, and B
 
 		_user = _addUser();
 
@@ -9605,11 +9606,12 @@ public class DefaultObjectEntryManagerImplTest
 					serviceBuilderObjectEntry.getObjectDefinitionId());
 
 			Edge edge = node.getEdge();
-			Node parentNode = node.getParentNode();
 
 			ObjectRelationship objectRelationship =
 				_objectRelationshipLocalService.getObjectRelationship(
 					edge.getObjectRelationshipId());
+
+			Node parentNode = node.getParentNode();
 
 			AssertUtils.assertFailure(
 				PrincipalException.MustHavePermission.class,

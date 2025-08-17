@@ -1987,11 +1987,6 @@ public class DefaultObjectEntryManagerImpl
 			ObjectDefinition parentObjectDefinition)
 		throws Exception {
 
-		ObjectRelatedModelsProvider objectRelatedModelsProvider =
-			_objectRelatedModelsProviderRegistry.getObjectRelatedModelsProvider(
-				objectDefinition.getClassName(),
-				objectDefinition.getCompanyId(), objectRelationship.getType());
-
 		long groupId = objectEntry.getGroupId();
 
 		if (Objects.equals(
@@ -2000,6 +1995,11 @@ public class DefaultObjectEntryManagerImpl
 
 			groupId = 0;
 		}
+
+		ObjectRelatedModelsProvider objectRelatedModelsProvider =
+			_objectRelatedModelsProviderRegistry.getObjectRelatedModelsProvider(
+				objectDefinition.getClassName(),
+				objectDefinition.getCompanyId(), objectRelationship.getType());
 
 		return Page.of(
 			HashMapBuilder.put(
