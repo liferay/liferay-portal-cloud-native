@@ -65,140 +65,130 @@ public class SiteNavigationMenuItemExternalReferenceCodeUpgradeProcess
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
-				PersistedModel persistedModel = null;
-
-				UnicodeProperties typeSettingsUnicodeProperties =
-					UnicodePropertiesBuilder.fastLoad(
-						resultSet.getString("typeSettings")
-					).build();
-
-				String className = typeSettingsUnicodeProperties.getProperty(
-					"className");
-
-				String type = resultSet.getString("type_");
-
-				if (Objects.equals(
-						type,
-						SiteNavigationMenuItemTypeConstants.ASSET_VOCABULARY)) {
-
-					persistedModel =
-						_assetVocabularyLocalService.
-							fetchAssetVocabularyByUuidAndGroupId(
-								typeSettingsUnicodeProperties.getProperty(
-									"uuid"),
-								GetterUtil.getLong(
-									typeSettingsUnicodeProperties.getProperty(
-										"groupId")));
-				}
-				else if (Objects.equals(type, JournalArticle.class.getName())) {
-					persistedModel =
-						_journalArticleLocalService.getLatestArticle(
-							GetterUtil.getLong(
-								typeSettingsUnicodeProperties.getProperty(
-									"classPK")));
-				}
-				else if (Objects.equals(type, KBArticle.class.getName())) {
-					persistedModel = _kbArticleLocalService.getLatestKBArticle(
-						GetterUtil.getLong(
-							typeSettingsUnicodeProperties.getProperty(
-								"classPK")));
-				}
-				else if (Objects.equals(
-							type, SiteNavigationMenuItemTypeConstants.LAYOUT)) {
-
-					persistedModel =
-						_layoutLocalService.fetchLayoutByUuidAndGroupId(
-							typeSettingsUnicodeProperties.getProperty(
-								"layoutUuid"),
-							GetterUtil.getLong(
-								typeSettingsUnicodeProperties.getProperty(
-									"groupId")),
-							GetterUtil.getBoolean(
-								typeSettingsUnicodeProperties.getProperty(
-									"privateLayout")));
-				}
-				else {
-					if (className == null) {
-						continue;
-					}
-
-					if (className.equals(FileEntry.class.getName())) {
-						className = DLFileEntry.class.getName();
-					}
-					else if (className.contains(
-								ObjectDefinition.class.getName())) {
-
-						className = ObjectEntry.class.getName();
-					}
-
-					PersistedModelLocalService persistedModelLocalService =
-						PersistedModelLocalServiceRegistryUtil.
-							getPersistedModelLocalService(className);
-
-					persistedModel =
-						persistedModelLocalService.getPersistedModel(
-							GetterUtil.getLong(
-								typeSettingsUnicodeProperties.getProperty(
-									"classPK")));
-				}
-
-				if (persistedModel == null) {
-					continue;
-				}
-
-				String externalReferenceCode = null;
-
-				if (Objects.equals(
-						className,
-						"com.liferay.commerce.product.model.CPDefinition")) {
-
-					String sql = StringBundler.concat(
-						"select CProduct.externalReferenceCode from CProduct ",
-						"inner join CPDefinition on CProduct.CProductId = ",
-						"CPDefinition.CProductId where CPDefinition.",
-						"cpDefinitionId = ",
-						GetterUtil.getLong(
-							typeSettingsUnicodeProperties.getProperty(
-								"classPK")));
-
-					try (PreparedStatement preparedStatement3 =
-							connection.prepareStatement(sql);
-						ResultSet resultSet3 =
-							preparedStatement3.executeQuery()) {
-
-						if (resultSet3.next()) {
-							externalReferenceCode = resultSet3.getString(
-								"externalReferenceCode");
-						}
-					}
-				}
-				else if (persistedModel instanceof ExternalReferenceCodeModel) {
-					ExternalReferenceCodeModel externalReferenceCodeModel =
-						(ExternalReferenceCodeModel)persistedModel;
-
-					externalReferenceCode =
-						externalReferenceCodeModel.getExternalReferenceCode();
-				}
-
-				if (Validator.isNull(externalReferenceCode)) {
-					continue;
-				}
-
-				typeSettingsUnicodeProperties.setProperty(
-					"externalReferenceCode", externalReferenceCode);
-
-				preparedStatement2.setString(
-					1, typeSettingsUnicodeProperties.toString());
-				preparedStatement2.setLong(
-					2, resultSet.getLong("ctCollectionId"));
-				preparedStatement2.setLong(
-					3, resultSet.getLong("siteNavigationMenuItemId"));
-
-				preparedStatement2.addBatch();
+				_upgradeSiteNavigationMenuItem(preparedStatement2, resultSet);
 			}
 
 			preparedStatement2.executeBatch();
 		}
+	}
+
+	private void _upgradeSiteNavigationMenuItem(
+			PreparedStatement preparedStatement2, ResultSet resultSet)
+		throws Exception {
+
+		PersistedModel persistedModel = null;
+
+		UnicodeProperties typeSettingsUnicodeProperties =
+			UnicodePropertiesBuilder.fastLoad(
+				resultSet.getString("typeSettings")
+			).build();
+
+		String className = typeSettingsUnicodeProperties.getProperty(
+			"className");
+
+		String type = resultSet.getString("type_");
+
+		if (Objects.equals(
+				type, SiteNavigationMenuItemTypeConstants.ASSET_VOCABULARY)) {
+
+			persistedModel =
+				_assetVocabularyLocalService.
+					fetchAssetVocabularyByUuidAndGroupId(
+						typeSettingsUnicodeProperties.getProperty("uuid"),
+						GetterUtil.getLong(
+							typeSettingsUnicodeProperties.getProperty(
+								"groupId")));
+		}
+		else if (Objects.equals(type, JournalArticle.class.getName())) {
+			persistedModel = _journalArticleLocalService.getLatestArticle(
+				GetterUtil.getLong(
+					typeSettingsUnicodeProperties.getProperty("classPK")));
+		}
+		else if (Objects.equals(type, KBArticle.class.getName())) {
+			persistedModel = _kbArticleLocalService.getLatestKBArticle(
+				GetterUtil.getLong(
+					typeSettingsUnicodeProperties.getProperty("classPK")));
+		}
+		else if (Objects.equals(
+					type, SiteNavigationMenuItemTypeConstants.LAYOUT)) {
+
+			persistedModel = _layoutLocalService.fetchLayoutByUuidAndGroupId(
+				typeSettingsUnicodeProperties.getProperty("layoutUuid"),
+				GetterUtil.getLong(
+					typeSettingsUnicodeProperties.getProperty("groupId")),
+				GetterUtil.getBoolean(
+					typeSettingsUnicodeProperties.getProperty(
+						"privateLayout")));
+		}
+		else {
+			if (className == null) {
+				return;
+			}
+
+			if (className.equals(FileEntry.class.getName())) {
+				className = DLFileEntry.class.getName();
+			}
+			else if (className.contains(ObjectDefinition.class.getName())) {
+				className = ObjectEntry.class.getName();
+			}
+
+			PersistedModelLocalService persistedModelLocalService =
+				PersistedModelLocalServiceRegistryUtil.
+					getPersistedModelLocalService(className);
+
+			persistedModel = persistedModelLocalService.getPersistedModel(
+				GetterUtil.getLong(
+					typeSettingsUnicodeProperties.getProperty("classPK")));
+		}
+
+		if (persistedModel == null) {
+			return;
+		}
+
+		String externalReferenceCode = null;
+
+		if (Objects.equals(
+				className, "com.liferay.commerce.product.model.CPDefinition")) {
+
+			String sql = StringBundler.concat(
+				"select CProduct.externalReferenceCode from CProduct inner ",
+				"join CPDefinition on CProduct.CProductId = CPDefinition.",
+				"CProductId where CPDefinition.cpDefinitionId = ",
+				GetterUtil.getLong(
+					typeSettingsUnicodeProperties.getProperty("classPK")));
+
+			try (PreparedStatement preparedStatement3 =
+					connection.prepareStatement(sql);
+				ResultSet resultSet3 = preparedStatement3.executeQuery()) {
+
+				if (resultSet3.next()) {
+					externalReferenceCode = resultSet3.getString(
+						"externalReferenceCode");
+				}
+			}
+		}
+		else if (persistedModel instanceof ExternalReferenceCodeModel) {
+			ExternalReferenceCodeModel externalReferenceCodeModel =
+				(ExternalReferenceCodeModel)persistedModel;
+
+			externalReferenceCode =
+				externalReferenceCodeModel.getExternalReferenceCode();
+		}
+
+		if (Validator.isNull(externalReferenceCode)) {
+			return;
+		}
+
+		typeSettingsUnicodeProperties.setProperty(
+			"externalReferenceCode", externalReferenceCode);
+
+		preparedStatement2.setString(
+			1, typeSettingsUnicodeProperties.toString());
+		preparedStatement2.setLong(2, resultSet.getLong("ctCollectionId"));
+		preparedStatement2.setLong(
+			3, resultSet.getLong("siteNavigationMenuItemId"));
+
+		preparedStatement2.addBatch();
 	}
 
 	private final AssetVocabularyLocalService _assetVocabularyLocalService;
