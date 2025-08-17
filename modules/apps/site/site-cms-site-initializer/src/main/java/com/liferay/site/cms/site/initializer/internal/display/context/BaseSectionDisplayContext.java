@@ -57,6 +57,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -168,7 +169,9 @@ public abstract class BaseSectionDisplayContext {
 		return sb.toString();
 	}
 
-	public abstract List<DropdownItem> getBulkActionDropdownItems();
+	public List<DropdownItem> getBulkActionDropdownItems() {
+		return Collections.emptyList();
+	}
 
 	public CreationMenu getCreationMenu() {
 		return new CreationMenu() {
