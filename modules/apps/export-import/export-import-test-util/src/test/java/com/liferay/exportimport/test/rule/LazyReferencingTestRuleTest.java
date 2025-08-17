@@ -32,31 +32,23 @@ public class LazyReferencingTestRuleTest {
 	@Test
 	public void testLazyReferencingDisabled() throws Exception {
 		Assert.assertFalse(LazyReferencingThreadLocal.isEnabled());
-
-		Assert.assertFalse(
-			_runInDifferentThread(LazyReferencingThreadLocal::isEnabled));
+		Assert.assertFalse(_run(LazyReferencingThreadLocal::isEnabled));
 	}
 
 	@LazyReferencing
 	@Test
 	public void testLazyReferencingEnabled() throws Exception {
 		Assert.assertTrue(LazyReferencingThreadLocal.isEnabled());
-
-		Assert.assertTrue(
-			_runInDifferentThread(LazyReferencingThreadLocal::isEnabled));
+		Assert.assertTrue(_run(LazyReferencingThreadLocal::isEnabled));
 	}
 
 	@Test
 	public void testLazyReferencingMissing() throws Exception {
 		Assert.assertFalse(LazyReferencingThreadLocal.isEnabled());
-
-		Assert.assertFalse(
-			_runInDifferentThread(LazyReferencingThreadLocal::isEnabled));
+		Assert.assertFalse(_run(LazyReferencingThreadLocal::isEnabled));
 	}
 
-	private Boolean _runInDifferentThread(Supplier<Boolean> supplier)
-		throws Exception {
-
+	private Boolean _run(Supplier<Boolean> supplier) throws Exception {
 		AtomicReference<Boolean> atomicReference = new AtomicReference<>();
 
 		Thread thread = new Thread(() -> atomicReference.set(supplier.get()));

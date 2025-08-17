@@ -37,7 +37,7 @@ public class ExportImportLocalServiceImplTest {
 
 	@Test
 	@TestInfo("LPD-61067")
-	public void testImportLayoutsLazyReferencingEnabled() throws Exception {
+	public void testImportLayouts() throws Exception {
 		IntegerWrapper count = new IntegerWrapper();
 
 		_mockedStatic.when(
@@ -69,7 +69,7 @@ public class ExportImportLocalServiceImplTest {
 
 	@Test
 	@TestInfo("LPD-61067")
-	public void testImportPortletInfoLazyReferencingEnabled() throws Exception {
+	public void testImportPortletInfo() throws Exception {
 		IntegerWrapper count = new IntegerWrapper();
 
 		_mockedStatic.when(
