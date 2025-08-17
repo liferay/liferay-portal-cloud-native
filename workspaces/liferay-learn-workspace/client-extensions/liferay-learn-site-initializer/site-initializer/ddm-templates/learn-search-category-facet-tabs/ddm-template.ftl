@@ -9,7 +9,7 @@
 	<#list entries as entry>
 		<#assign label = entry.bucketText?upper_case />
 
-		<#if stringUtil.equals(label, "HOW TO") || stringUtil.equals(label, "TROUBLESHOOTING") || stringUtil.equals(label, "REFERENCE")>
+		<#if stringUtil.equals(label, "HOW TO") || stringUtil.equals(label, "REFERENCE")> || stringUtil.equals(label, "TROUBLESHOOTING")
 			<#assign
 				knowledgeBaseFrequency += entry.getFrequency()
 				knowledgeBaseIds += [entry.getFilterValue()]
