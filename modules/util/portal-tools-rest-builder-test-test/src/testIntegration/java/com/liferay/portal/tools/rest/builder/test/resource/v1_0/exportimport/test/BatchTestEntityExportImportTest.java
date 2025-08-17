@@ -115,7 +115,6 @@ public class BatchTestEntityExportImportTest {
 		).parameters(
 			"nestedFields", "nestedField,relatedCompanyTestEntity"
 		).build();
-
 		_companyTestEntityResource = CompanyTestEntityResource.builder(
 		).authentication(
 			testCompanyAdminUser.getEmailAddress(),
@@ -616,7 +615,7 @@ public class BatchTestEntityExportImportTest {
 
 	private void _assertEquals(
 		Class<?> expectedClass, String expectedExternalReferenceCode,
-		String expectedError, int expectedType,
+		String expectedErrorMessage, int expectedType,
 		ExportImportReportEntry exportImportReportEntry) {
 
 		Assert.assertEquals(
@@ -624,16 +623,17 @@ public class BatchTestEntityExportImportTest {
 			exportImportReportEntry.getClassExternalReferenceCode());
 		Assert.assertEquals(
 			expectedClass.getName(), exportImportReportEntry.getClassName());
-		Assert.assertEquals(expectedError, exportImportReportEntry.getError());
+		Assert.assertEquals(
+			expectedErrorMessage, exportImportReportEntry.getError());
 
-		if (expectedError == null) {
+		if (expectedErrorMessage == null) {
 			Assert.assertNull(exportImportReportEntry.getErrorStacktrace());
 		}
 		else {
 			String errorStacktrace =
 				exportImportReportEntry.getErrorStacktrace();
 
-			Assert.assertTrue(errorStacktrace.contains(expectedError));
+			Assert.assertTrue(errorStacktrace.contains(expectedErrorMessage));
 		}
 
 		Assert.assertEquals(
