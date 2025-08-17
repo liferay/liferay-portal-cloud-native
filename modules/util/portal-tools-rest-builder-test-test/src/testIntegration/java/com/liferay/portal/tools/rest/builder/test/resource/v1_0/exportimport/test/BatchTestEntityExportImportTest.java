@@ -526,7 +526,7 @@ public class BatchTestEntityExportImportTest {
 		ServiceRegistration<ImportTaskPreAction> serviceRegistration =
 			bundleContext.registerService(
 				ImportTaskPreAction.class,
-				new FailImportTaskPreAction(
+				new TestImportTaskPreAction(
 					errorMessage, externalReferenceCode2),
 				null);
 
@@ -659,9 +659,9 @@ public class BatchTestEntityExportImportTest {
 	@Inject
 	private StagingGroupHelper _stagingGroupHelper;
 
-	private class FailImportTaskPreAction implements ImportTaskPreAction {
+	private class TestImportTaskPreAction implements ImportTaskPreAction {
 
-		public FailImportTaskPreAction(
+		public TestImportTaskPreAction(
 			String errorMessage, String externalReferenceCode) {
 
 			_errorMessage = errorMessage;
