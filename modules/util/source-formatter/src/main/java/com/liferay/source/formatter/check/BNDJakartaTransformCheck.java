@@ -266,7 +266,7 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 	private Map<String, String> _jakartaTransformOSGiContractsMap;
 
-	private class HeaderComparator implements Comparator<String> {
+	private static class HeaderComparator implements Comparator<String> {
 
 		@Override
 		public int compare(String header1, String header2) {
