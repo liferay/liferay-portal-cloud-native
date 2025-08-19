@@ -370,77 +370,72 @@ public class ObjectDefinitionUtil {
 			return null;
 		}
 
-		return new ObjectDefinitionSetting() {
-			{
-				setName(
-					() -> {
-						if (StringUtil.equals(
-								ObjectDefinitionSettingConstants.
-									NAME_ACCEPTED_GROUP_IDS,
-								serviceBuilderObjectDefinitionSetting.
-									getName())) {
+		ObjectDefinitionSetting objectDefinitionSetting =
+			new ObjectDefinitionSetting();
 
-							return ObjectDefinitionSettingConstants.
-								NAME_ACCEPTED_GROUP_EXTERNAL_REFERENCE_CODES;
-						}
+		objectDefinitionSetting.setName(
+			() -> {
+				if (StringUtil.equals(
+						ObjectDefinitionSettingConstants.
+							NAME_ACCEPTED_GROUP_IDS,
+						serviceBuilderObjectDefinitionSetting.getName())) {
 
-						if (StringUtil.equals(
-								ObjectDefinitionSettingConstants.
-									NAME_ROOT_OBJECT_DEFINITION_IDS,
-								serviceBuilderObjectDefinitionSetting.
-									getName())) {
+					return ObjectDefinitionSettingConstants.
+						NAME_ACCEPTED_GROUP_EXTERNAL_REFERENCE_CODES;
+				}
 
-							return ObjectDefinitionSettingConstants.
-								NAME_ROOT_OBJECT_DEFINITION_EXTERNAL_REFERENCE_CODES;
-						}
+				if (StringUtil.equals(
+						ObjectDefinitionSettingConstants.
+							NAME_ROOT_OBJECT_DEFINITION_IDS,
+						serviceBuilderObjectDefinitionSetting.getName())) {
 
-						return serviceBuilderObjectDefinitionSetting.getName();
-					});
-				setValue(
-					() -> {
-						if (StringUtil.equals(
-								ObjectDefinitionSettingConstants.
-									NAME_ACCEPTED_GROUP_IDS,
-								serviceBuilderObjectDefinitionSetting.
-									getName())) {
+					return ObjectDefinitionSettingConstants.
+						NAME_ROOT_OBJECT_DEFINITION_EXTERNAL_REFERENCE_CODES;
+				}
 
-							return _getValue(
-								groupId -> {
-									Group group = groupLocalService.getGroup(
-										GetterUtil.getLong(groupId));
+				return serviceBuilderObjectDefinitionSetting.getName();
+			});
+		objectDefinitionSetting.setValue(
+			() -> {
+				if (StringUtil.equals(
+						ObjectDefinitionSettingConstants.
+							NAME_ACCEPTED_GROUP_IDS,
+						serviceBuilderObjectDefinitionSetting.getName())) {
 
-									return group.getExternalReferenceCode();
-								},
-								serviceBuilderObjectDefinitionSetting.
-									getValue());
-						}
+					return _getValue(
+						groupId -> {
+							Group group = groupLocalService.getGroup(
+								GetterUtil.getLong(groupId));
 
-						if (StringUtil.equals(
-								ObjectDefinitionSettingConstants.
-									NAME_ROOT_OBJECT_DEFINITION_IDS,
-								serviceBuilderObjectDefinitionSetting.
-									getName())) {
+							return group.getExternalReferenceCode();
+						},
+						serviceBuilderObjectDefinitionSetting.getValue());
+				}
 
-							return _getValue(
-								rootObjectDefinitionId -> {
-									com.liferay.object.model.ObjectDefinition
-										serviceBuilderObjectDefinition =
-											objectDefinitionLocalService.
-												getObjectDefinition(
-													GetterUtil.getLong(
-														rootObjectDefinitionId));
+				if (StringUtil.equals(
+						ObjectDefinitionSettingConstants.
+							NAME_ROOT_OBJECT_DEFINITION_IDS,
+						serviceBuilderObjectDefinitionSetting.getName())) {
 
-									return serviceBuilderObjectDefinition.
-										getExternalReferenceCode();
-								},
-								serviceBuilderObjectDefinitionSetting.
-									getValue());
-						}
+					return _getValue(
+						rootObjectDefinitionId -> {
+							com.liferay.object.model.ObjectDefinition
+								serviceBuilderObjectDefinition =
+									objectDefinitionLocalService.
+										getObjectDefinition(
+											GetterUtil.getLong(
+												rootObjectDefinitionId));
 
-						return serviceBuilderObjectDefinitionSetting.getValue();
-					});
-			}
-		};
+							return serviceBuilderObjectDefinition.
+								getExternalReferenceCode();
+						},
+						serviceBuilderObjectDefinitionSetting.getValue());
+				}
+
+				return serviceBuilderObjectDefinitionSetting.getValue();
+			});
+
+		return objectDefinitionSetting;
 	}
 
 }
