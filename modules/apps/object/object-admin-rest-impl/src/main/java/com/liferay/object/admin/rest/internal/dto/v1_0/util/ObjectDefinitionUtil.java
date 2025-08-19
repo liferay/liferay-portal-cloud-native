@@ -424,13 +424,13 @@ public class ObjectDefinitionUtil {
 							return _getValue(
 								rootObjectDefinitionId -> {
 									com.liferay.object.model.ObjectDefinition
-										objectDefinition =
+										serviceBuilderObjectDefinition =
 											objectDefinitionLocalService.
 												getObjectDefinition(
 													GetterUtil.getLong(
 														rootObjectDefinitionId));
 
-									return objectDefinition.
+									return serviceBuilderObjectDefinition.
 										getExternalReferenceCode();
 								},
 								serviceBuilderObjectDefinitionSetting.
