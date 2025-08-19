@@ -799,8 +799,8 @@ public class PageSpecificationsTestUtil {
 
 			widgetPageWidgetInstance.setParentSectionId(column);
 			widgetPageWidgetInstance.setPosition(i);
-			widgetPageWidgetInstance.setWidgetName(widgetName);
 			widgetPageWidgetInstance.setWidgetInstanceId(widgetInstanceId);
+			widgetPageWidgetInstance.setWidgetName(widgetName);
 
 			widgetPageWidgetInstances.add(widgetPageWidgetInstance);
 		}
