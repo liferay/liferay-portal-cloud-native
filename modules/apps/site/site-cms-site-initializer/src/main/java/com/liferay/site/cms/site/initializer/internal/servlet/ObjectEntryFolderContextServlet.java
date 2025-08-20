@@ -52,7 +52,7 @@ public class ObjectEntryFolderContextServlet extends HttpServlet {
 			HttpServletResponse httpServletResponse)
 		throws IOException, ServletException {
 
-		_createContext(httpServletRequest, httpServletResponse);
+		_process(httpServletRequest, httpServletResponse);
 
 		super.service(httpServletRequest, httpServletResponse);
 	}
@@ -90,7 +90,7 @@ public class ObjectEntryFolderContextServlet extends HttpServlet {
 			).toString());
 	}
 
-	private void _createContext(
+	private void _process(
 		HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse) {
 
