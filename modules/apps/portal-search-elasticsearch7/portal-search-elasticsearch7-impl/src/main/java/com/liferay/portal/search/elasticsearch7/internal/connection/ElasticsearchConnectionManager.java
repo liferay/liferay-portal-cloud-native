@@ -266,7 +266,7 @@ public class ElasticsearchConnectionManager
 			for (HttpHost httpHost : map.keySet()) {
 				_log.error(
 					"The REST client network host address " +
-						httpHost.toString() + " has been blacklisted");
+						httpHost.toString() + " is blacklisted");
 			}
 		}
 		catch (Exception exception) {
