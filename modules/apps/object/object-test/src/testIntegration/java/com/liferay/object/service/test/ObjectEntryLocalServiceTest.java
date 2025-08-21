@@ -3992,7 +3992,7 @@ public class ObjectEntryLocalServiceTest {
 				"listTypeEntryKeyRequired", "listTypeEntryKey1"
 			).build());
 
-		long fileEntryId1 = MapUtil.getLong(
+		long dlFileEntryId1 = MapUtil.getLong(
 			objectEntry.getValues(), "attachment");
 
 		objectEntry = _objectEntryLocalService.updateObjectEntry(
@@ -4012,26 +4012,26 @@ public class ObjectEntryLocalServiceTest {
 			).build(),
 			ServiceContextTestUtil.getServiceContext());
 
-		long fileEntryId2 = MapUtil.getLong(
+		long dlFileEntryId2 = MapUtil.getLong(
 			objectEntry.getValues(), "attachment");
 
-		Assert.assertNotNull(_dlAppLocalService.getFileEntry(fileEntryId1));
-		Assert.assertNotNull(_dlAppLocalService.getFileEntry(fileEntryId2));
+		Assert.assertNotNull(_dlAppLocalService.getFileEntry(dlFileEntryId1));
+		Assert.assertNotNull(_dlAppLocalService.getFileEntry(dlFileEntryId2));
 
 		_objectEntryLocalService.deleteObjectEntry(objectEntry);
 
 		AssertUtils.assertFailure(
 			NoSuchFileEntryException.class,
 			StringBundler.concat(
-				"No FileEntry exists with the key {fileEntryId=", fileEntryId1,
-				"}"),
-			() -> _dlAppLocalService.getFileEntry(fileEntryId1));
+				"No FileEntry exists with the key {fileEntryId=",
+				dlFileEntryId1, "}"),
+			() -> _dlAppLocalService.getFileEntry(dlFileEntryId1));
 		AssertUtils.assertFailure(
 			NoSuchFileEntryException.class,
 			StringBundler.concat(
-				"No FileEntry exists with the key {fileEntryId=", fileEntryId2,
-				"}"),
-			() -> _dlAppLocalService.getFileEntry(fileEntryId2));
+				"No FileEntry exists with the key {fileEntryId=",
+				dlFileEntryId2, "}"),
+			() -> _dlAppLocalService.getFileEntry(dlFileEntryId2));
 	}
 
 	@Test
