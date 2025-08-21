@@ -51,8 +51,8 @@ public class LayoutBasicInfoFormNavigatorEntry
 			return false;
 		}
 
-		if (layout.isTypeAssetDisplay() || layout.isTypeUtility() ||
-			layout.isTypeEmpty() ||
+		if (layout.isTypeAssetDisplay() || layout.isTypeEmpty() ||
+			layout.isTypeUtility() ||
 			(layout.isTypeContent() && (layout.fetchDraftLayout() == null))) {
 
 			return false;
