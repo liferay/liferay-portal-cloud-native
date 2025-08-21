@@ -112,16 +112,16 @@ public class NullUnicodeContentDataCleanupPreupgradeProcessTest
 			Assert.assertTrue(
 				messages.contains(
 					StringBundler.concat(
-						"Table ", _dbInspector.normalizeName("DDMContent"),
-						", 1 entries updated because ",
+						"Updated 1 row in ",
+						_dbInspector.normalizeName("DDMContent"), " because ",
 						_dbInspector.normalizeName("data_"),
 						" had invalid characters")));
 			Assert.assertTrue(
 				messages.contains(
 					StringBundler.concat(
-						"Table ", _dbInspector.normalizeName("JournalArticle"),
-						", 1 entries updated because ",
-						_dbInspector.normalizeName("content"),
+						"Updated 1 row in ",
+						_dbInspector.normalizeName("JournalArticle"),
+						" because ", _dbInspector.normalizeName("content"),
 						" had invalid characters")));
 		}
 
