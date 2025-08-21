@@ -83,7 +83,7 @@ public class EmptyLayoutTypeControllerTest {
 	}
 
 	@Test
-	public void testEmptyLayoutTypeControllerLayout() throws Exception {
+	public void testIncludeLayoutContent() throws Exception {
 		Assert.assertEquals(
 			LayoutConstants.TYPE_EMPTY, _layoutTypeController.getType());
 
