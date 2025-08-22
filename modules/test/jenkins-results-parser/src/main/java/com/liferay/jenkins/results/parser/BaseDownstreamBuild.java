@@ -194,7 +194,7 @@ public class BaseDownstreamBuild extends BaseBuild implements DownstreamBuild {
 	public List<String> getBadBuildURLs() {
 		List<String> badBuildURLs = super.getBadBuildURLs();
 
-		saveBadBuildURLs(badBuildURLs);
+		_saveBadBuildURLs(badBuildURLs);
 
 		return badBuildURLs;
 	}
@@ -649,18 +649,6 @@ public class BaseDownstreamBuild extends BaseBuild implements DownstreamBuild {
 		}
 
 		return warningMessages;
-	}
-
-	public void saveBadBuildURLs(List<String> badBuildURLs) {
-		if (badBuildURLs.isEmpty()) {
-			return;
-		}
-
-		BuildDatabase buildDatabase = getBuildDatabase();
-
-		buildDatabase.putProperty(
-			BAD_BUILD_URLS_PROPERTIES_KEY, getAxisName(),
-			JenkinsResultsParserUtil.join(",", badBuildURLs), false);
 	}
 
 	@Override
@@ -1152,6 +1140,18 @@ public class BaseDownstreamBuild extends BaseBuild implements DownstreamBuild {
 		sb.append(getAxisName());
 
 		return sb.toString();
+	}
+
+	private void _saveBadBuildURLs(List<String> badBuildURLs) {
+		if (badBuildURLs.isEmpty()) {
+			return;
+		}
+
+		BuildDatabase buildDatabase = getBuildDatabase();
+
+		buildDatabase.putProperty(
+			BAD_BUILD_URLS_PROPERTIES_KEY, getAxisName(),
+			JenkinsResultsParserUtil.join(",", badBuildURLs), false);
 	}
 
 	private void _uploadJenkinsConsoleTestrayAttachment() {
