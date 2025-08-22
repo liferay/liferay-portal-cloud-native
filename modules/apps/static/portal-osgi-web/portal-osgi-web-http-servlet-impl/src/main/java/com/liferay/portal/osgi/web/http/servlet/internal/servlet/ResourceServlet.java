@@ -77,9 +77,7 @@ public class ResourceServlet extends HttpServlet {
 
 		if (resourceURL == null) {
 			httpServletResponse.sendError(
-				404,
-				"HttpServletEndpointServlet: " +
-					httpServletRequest.getRequestURI());
+				404, httpServletRequest.getRequestURI());
 		}
 		else {
 			_writeResource(
@@ -104,21 +102,55 @@ public class ResourceServlet extends HttpServlet {
 		}
 	}
 
+	private int _write(InputStream inputStream, OutputStream outputStream)
+		throws IOException {
+
+		int writtenContentLength = 0;
+
+		byte[] buffer = new byte[8192];
+
+		int bytesRead = inputStream.read(buffer);
+
+		for (writtenContentLength = 0; bytesRead != -1;
+			 bytesRead = inputStream.read(buffer)) {
+
+			outputStream.write(buffer, 0, bytesRead);
+
+			writtenContentLength += bytesRead;
+		}
+
+		return writtenContentLength;
+	}
+
+	private void _write(InputStream inputStream, Writer writer)
+		throws IOException {
+
+		try (Reader reader = new InputStreamReader(inputStream)) {
+			char[] buffer = new char[8192];
+
+			for (int charsRead = reader.read(buffer); charsRead != -1;
+				 charsRead = reader.read(buffer)) {
+
+				writer.write(buffer, 0, charsRead);
+			}
+		}
+	}
+
 	private void _writeResource(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse, String resourcePath,
 			URL resourceURL)
 		throws IOException {
 
-		URLConnection connection = resourceURL.openConnection();
+		URLConnection urlConnection = resourceURL.openConnection();
 
-		int contentLength = connection.getContentLength();
+		int contentLength = urlConnection.getContentLength();
 
 		if (contentLength == 0) {
 			return;
 		}
 
-		long lastModified = connection.getLastModified();
+		long lastModified = urlConnection.getLastModified();
 
 		String etag = null;
 
@@ -174,9 +206,9 @@ public class ResourceServlet extends HttpServlet {
 			httpServletResponse.setHeader(_ETAG, etag);
 		}
 
-		try (InputStream inputStream = connection.getInputStream()) {
+		try (InputStream inputStream = urlConnection.getInputStream()) {
 			try {
-				int writtenContentLength = _writeResourceToOutputStream(
+				int writtenContentLength = _write(
 					inputStream, httpServletResponse.getOutputStream());
 
 				if ((contentLength == -1) ||
@@ -190,8 +222,7 @@ public class ResourceServlet extends HttpServlet {
 					_log.debug(illegalStateException);
 				}
 
-				_writeResourceToWriter(
-					inputStream, httpServletResponse.getWriter());
+				_write(inputStream, httpServletResponse.getWriter());
 			}
 		}
 		catch (FileNotFoundException fileNotFoundException) {
@@ -207,41 +238,6 @@ public class ResourceServlet extends HttpServlet {
 			}
 
 			_sendError(httpServletResponse, 403);
-		}
-	}
-
-	private int _writeResourceToOutputStream(
-			InputStream inputStream, OutputStream outputStream)
-		throws IOException {
-
-		byte[] buffer = new byte[8192];
-
-		int bytesRead = inputStream.read(buffer);
-
-		int writtenContentLength = 0;
-
-		for (writtenContentLength = 0; bytesRead != -1;
-			 bytesRead = inputStream.read(buffer)) {
-
-			outputStream.write(buffer, 0, bytesRead);
-
-			writtenContentLength += bytesRead;
-		}
-
-		return writtenContentLength;
-	}
-
-	private void _writeResourceToWriter(InputStream inputStream, Writer writer)
-		throws IOException {
-
-		try (Reader reader = new InputStreamReader(inputStream)) {
-			char[] buffer = new char[8192];
-
-			for (int charsRead = reader.read(buffer); charsRead != -1;
-				 charsRead = reader.read(buffer)) {
-
-				writer.write(buffer, 0, charsRead);
-			}
 		}
 	}
 

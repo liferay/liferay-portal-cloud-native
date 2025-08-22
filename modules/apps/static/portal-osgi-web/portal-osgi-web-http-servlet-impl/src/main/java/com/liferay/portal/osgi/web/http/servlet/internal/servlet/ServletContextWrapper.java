@@ -59,11 +59,11 @@ public class ServletContextWrapper implements ServletContext {
 		_servletContextHelper = servletContextHelper;
 		_servletContextHelperDataContext = servletContextHelperDataContext;
 
-		_servletContext = servletContextHelperDataContext.getServletContext();
-
 		BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
 
 		_classLoader = bundleWiring.getClassLoader();
+
+		_servletContext = servletContextHelperDataContext.getServletContext();
 	}
 
 	@Override
@@ -414,7 +414,7 @@ public class ServletContextWrapper implements ServletContext {
 		Object value = contextAttributes.remove(name);
 
 		_fireServletContextAttributeEvent(
-			name, value, ServletContextAttributeListener::attributeRemoved);
+			ServletContextAttributeListener::attributeRemoved, name, value);
 	}
 
 	@Override
@@ -432,12 +432,12 @@ public class ServletContextWrapper implements ServletContext {
 
 		if (oldValue == null) {
 			_fireServletContextAttributeEvent(
-				name, value, ServletContextAttributeListener::attributeAdded);
+				ServletContextAttributeListener::attributeAdded, name, value);
 		}
 		else {
 			_fireServletContextAttributeEvent(
-				name, value,
-				ServletContextAttributeListener::attributeReplaced);
+				ServletContextAttributeListener::attributeReplaced, name,
+				value);
 		}
 	}
 
@@ -469,10 +469,10 @@ public class ServletContextWrapper implements ServletContext {
 	}
 
 	private void _fireServletContextAttributeEvent(
-		String name, Object value,
 		BiConsumer
 			<ServletContextAttributeListener, ServletContextAttributeEvent>
-				biConsumer) {
+				biConsumer,
+		String name, Object value) {
 
 		EventListeners eventListeners =
 			_liferayContextController.getEventListeners();
