@@ -103,7 +103,7 @@ public class LayoutThemeItemSelectorDisplayContext {
 			});
 
 		themesSearchContainer.setResultsAndTotal(
-			ListUtil.sort(164742, new ThemeNameComparator(orderByAsc)));
+			ListUtil.sort(themes, new ThemeNameComparator(orderByAsc)));
 
 		_themesSearchContainer = themesSearchContainer;
 
