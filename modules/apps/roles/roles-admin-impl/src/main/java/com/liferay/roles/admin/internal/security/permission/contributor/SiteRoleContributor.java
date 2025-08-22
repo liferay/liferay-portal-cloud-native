@@ -122,7 +122,7 @@ public class SiteRoleContributor implements RoleContributor {
 		List<UserGroupRole> userGroupRoles =
 			_userGroupRoleLocalService.getUserGroupRoles(user.getUserId());
 
-		for (String roleName : _ASSET_LIBRARY_ROLES) {
+		for (String roleName : _ROLE_NAMES) {
 			Role role = _roleLocalService.fetchRole(
 				group.getCompanyId(), roleName);
 
@@ -140,7 +140,7 @@ public class SiteRoleContributor implements RoleContributor {
 		return false;
 	}
 
-	private static final String[] _ASSET_LIBRARY_ROLES = {
+	private static final String[] _ROLE_NAMES = {
 		DepotRolesConstants.ASSET_LIBRARY_CONTENT_REVIEWER,
 		DepotRolesConstants.ASSET_LIBRARY_OWNER
 	};
