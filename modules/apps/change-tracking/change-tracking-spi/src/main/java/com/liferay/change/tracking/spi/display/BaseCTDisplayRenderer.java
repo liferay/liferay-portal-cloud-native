@@ -413,55 +413,55 @@ public abstract class BaseCTDisplayRenderer<T extends BaseModel<T>>
 
 		Value value = ddmFormFieldValue.getValue();
 
-		if (value != null) {
-			DDMFormField ddmFormField = ddmFormFieldValue.getDDMFormField();
+		if (value == null) {
+			return StringPool.BLANK;
+		}
 
-			DDMFormFieldOptions ddmFormFieldOptions =
-				ddmFormField.getDDMFormFieldOptions();
+		DDMFormField ddmFormField = ddmFormFieldValue.getDDMFormField();
 
-			String valueString = value.getString(locale);
+		DDMFormFieldOptions ddmFormFieldOptions =
+			ddmFormField.getDDMFormFieldOptions();
 
-			LocalizedValue optionLabel = ddmFormFieldOptions.getOptionLabels(
-				valueString);
+		String valueString = value.getString(locale);
 
-			if (optionLabel != null) {
-				return optionLabel.getString(locale);
-			}
+		LocalizedValue optionLabel = ddmFormFieldOptions.getOptionLabels(
+			valueString);
 
-			if (StringUtil.startsWith(valueString, StringPool.OPEN_BRACKET) &&
-				StringUtil.endsWith(valueString, StringPool.CLOSE_BRACKET)) {
+		if (optionLabel != null) {
+			return optionLabel.getString(locale);
+		}
 
-				try {
-					JSONArray jsonArray = JSONFactoryUtil.createJSONArray(
-						valueString);
-
-					if (jsonArray.length() > 0) {
-						StringBundler sb = new StringBundler(
-							jsonArray.length());
-
-						for (int i = 0; i < jsonArray.length(); i++) {
-							if (i > 0) {
-								sb.append(StringPool.COMMA_AND_SPACE);
-							}
-
-							LocalizedValue localizedValue =
-								ddmFormFieldOptions.getOptionLabels(
-									jsonArray.getString(i));
-
-							sb.append(localizedValue.getString(locale));
-						}
-
-						return sb.toString();
-					}
-				}
-				catch (JSONException jsonException) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(jsonException);
-					}
-				}
-			}
+		if (!StringUtil.startsWith(valueString, StringPool.OPEN_BRACKET) ||
+			!StringUtil.endsWith(valueString, StringPool.CLOSE_BRACKET)) {
 
 			return valueString;
+		}
+
+		try {
+			JSONArray jsonArray = JSONFactoryUtil.createJSONArray(valueString);
+
+			if (jsonArray.length() > 0) {
+				StringBundler sb = new StringBundler(jsonArray.length());
+
+				for (int i = 0; i < jsonArray.length(); i++) {
+					if (i > 0) {
+						sb.append(StringPool.COMMA_AND_SPACE);
+					}
+
+					LocalizedValue localizedValue =
+						ddmFormFieldOptions.getOptionLabels(
+							jsonArray.getString(i));
+
+					sb.append(localizedValue.getString(locale));
+				}
+
+				return sb.toString();
+			}
+		}
+		catch (JSONException jsonException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(jsonException);
+			}
 		}
 
 		return StringPool.BLANK;
