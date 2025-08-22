@@ -2445,7 +2445,7 @@ public abstract class BaseTopLevelBuild
 			" Total ");
 	}
 
-	private Integer _getTotalReinvocationCount() {
+	private int _getTotalReinvocationCount() {
 		List<Build> downstreamBuilds = getDownstreamBuilds();
 
 		for (Build downstreamBuild : downstreamBuilds) {
