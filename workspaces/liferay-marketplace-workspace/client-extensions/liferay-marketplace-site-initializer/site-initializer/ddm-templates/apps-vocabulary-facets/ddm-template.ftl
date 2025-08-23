@@ -108,6 +108,5 @@
 		});
 
 		window.location.href = url.href
-
 	}
 </@>
