@@ -859,7 +859,7 @@ this finder returns at most one entity.
 
 <!--
 The skip-db-index-optimization-and-finder-generation value specifies whether to
-skip optimizing db index and finder related methods during generation. The
+skip optimizing database index and finder related methods during generation. The
 default value is false.
 -->
 <!ATTLIST finder
