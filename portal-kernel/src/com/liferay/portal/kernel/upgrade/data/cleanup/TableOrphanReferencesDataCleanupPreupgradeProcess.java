@@ -33,13 +33,13 @@ public class TableOrphanReferencesDataCleanupPreupgradeProcess
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		DBInspector dbInspector = new DBInspector(connection);
-
-		String sourceTableName = dbInspector.normalizeName(_sourceTableName);
-
 		List<String> excludedTableNames =
 			OrphanReferencesDataCleanupUtil.getNormalizedExcludedTableNames(
 				connection);
+
+		DBInspector dbInspector = new DBInspector(connection);
+
+		String sourceTableName = dbInspector.normalizeName(_sourceTableName);
 
 		if (excludedTableNames.contains(sourceTableName)) {
 			return;

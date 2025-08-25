@@ -58,13 +58,13 @@ public abstract class BaseAllTablesOrphanReferencesDataCleanupPreupgradeProcess
 			return;
 		}
 
-		List<String> tableNames = dbInspector.getTableNames(null);
-
-		tableNames.remove(targetTableName);
-
 		List<String> excludedTableNames =
 			OrphanReferencesDataCleanupUtil.getNormalizedExcludedTableNames(
 				connection);
+
+		List<String> tableNames = dbInspector.getTableNames(null);
+
+		tableNames.remove(targetTableName);
 
 		for (String sourceTableName : tableNames) {
 			if (excludedTableNames.contains(sourceTableName) ||
