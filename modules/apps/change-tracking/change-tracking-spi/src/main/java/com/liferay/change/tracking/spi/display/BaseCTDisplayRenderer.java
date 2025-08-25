@@ -317,7 +317,6 @@ public abstract class BaseCTDisplayRenderer<T extends BaseModel<T>>
 
 			previewURL = HttpComponentsUtil.addParameter(
 				previewURL, "p_l_mode", Constants.PREVIEW);
-
 			previewURL = HttpComponentsUtil.addParameter(
 				previewURL, "previewCTCollectionId",
 				assetEntry.getCtCollectionId());

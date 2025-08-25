@@ -123,8 +123,6 @@ public class JournalArticleCTDisplayRenderer
 	public String renderPreview(DisplayContext<JournalArticle> displayContext)
 		throws Exception {
 
-		JournalArticle journalArticle = displayContext.getModel();
-
 		HttpServletRequest httpServletRequest =
 			displayContext.getHttpServletRequest();
 
@@ -135,6 +133,8 @@ public class JournalArticleCTDisplayRenderer
 		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClass(
 				JournalArticle.class);
+
+		JournalArticle journalArticle = displayContext.getModel();
 
 		AssetEntry assetEntry = assetRendererFactory.getAssetEntry(
 			JournalArticle.class.getName(),
@@ -157,11 +157,9 @@ public class JournalArticleCTDisplayRenderer
 
 			previewURL = HttpComponentsUtil.addParameter(
 				previewURL, "p_l_mode", Constants.PREVIEW);
-
 			previewURL = HttpComponentsUtil.addParameter(
 				previewURL, "previewCTCollectionId",
 				assetEntry.getCtCollectionId());
-
 			previewURL = HttpComponentsUtil.addParameter(
 				previewURL, "version", journalArticle.getVersion());
 
