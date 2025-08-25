@@ -58,7 +58,6 @@ public class ViewFilesSectionDisplayContext
 				"#", "download", "download",
 				LanguageUtil.get(httpServletRequest, "download"), null, null,
 				null));
-
 		fdsBulkActionDropdownItems.add(
 			new FDSActionDropdownItem(
 				"#", "password-policies", "permissions",
