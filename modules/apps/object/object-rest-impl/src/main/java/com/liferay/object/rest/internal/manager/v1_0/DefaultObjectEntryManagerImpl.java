@@ -1272,15 +1272,6 @@ public class DefaultObjectEntryManagerImpl
 			String parentExternalReferenceCode, String scopeKey)
 		throws Exception {
 
-		com.liferay.object.model.ObjectEntry parentServiceBuilderObjectEntry =
-			_objectEntryService.getObjectEntry(
-				parentExternalReferenceCode,
-				getGroupId(
-					_objectDefinitionLocalService.getObjectDefinition(
-						objectRelationship.getObjectDefinitionId1()),
-					scopeKey),
-				objectRelationship.getObjectDefinitionId1());
-
 		com.liferay.object.model.ObjectEntry serviceBuilderObjectEntry =
 			_objectEntryService.getObjectEntry(
 				externalReferenceCode,
@@ -1289,6 +1280,14 @@ public class DefaultObjectEntryManagerImpl
 						objectRelationship.getObjectDefinitionId2()),
 					scopeKey),
 				objectRelationship.getObjectDefinitionId2());
+		com.liferay.object.model.ObjectEntry parentServiceBuilderObjectEntry =
+			_objectEntryService.getObjectEntry(
+				parentExternalReferenceCode,
+				getGroupId(
+					_objectDefinitionLocalService.getObjectDefinition(
+						objectRelationship.getObjectDefinitionId1()),
+					scopeKey),
+				objectRelationship.getObjectDefinitionId1());
 
 		return _updateRelatedObjectEntry(
 			dtoConverterContext, objectEntry,
