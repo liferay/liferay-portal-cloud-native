@@ -313,13 +313,12 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 			}
 		}
 
+		JSONObject configurationJSONObject = _jsonFactory.safeCreateJSONObject(
+			configuration, true);
+		String errorMessage = null;
 		int type = FragmentConstants.getTypeFromLabel(
 			StringUtil.toLowerCase(StringUtil.trim(typeLabel)));
 		int status = WorkflowConstants.STATUS_APPROVED;
-		String errorMessage = null;
-
-		JSONObject configurationJSONObject = _jsonFactory.safeCreateJSONObject(
-			configuration, true);
 
 		try {
 			_fragmentEntryProcessorRegistry.validateFragmentEntryHTML(
@@ -344,8 +343,8 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 				return;
 			}
 
-			status = WorkflowConstants.STATUS_DRAFT;
 			errorMessage = portalException.getLocalizedMessage();
+			status = WorkflowConstants.STATUS_DRAFT;
 		}
 
 		try {
