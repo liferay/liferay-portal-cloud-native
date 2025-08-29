@@ -46,13 +46,15 @@ public class DLFileEntryDataCleanupPreupgradeProcessTest
 	@Test
 	public void testRemoveDLFileEntryOrphanData() throws Exception {
 		long fileEntryId1 = RandomTestUtil.nextLong();
-		long fileEntryId2 = RandomTestUtil.nextLong();
 
 		runSQL(
 			StringBundler.concat(
 				"insert into DLFileEntry (",
 				"mvccVersion, ctCollectionId, fileEntryId, groupId) values ",
 				"(0, 0, ", fileEntryId1, ", ", RandomTestUtil.nextLong(), ")"));
+
+		long fileEntryId2 = RandomTestUtil.nextLong();
+
 		runSQL(
 			StringBundler.concat(
 				"insert into DLFileEntry (",
@@ -71,8 +73,8 @@ public class DLFileEntryDataCleanupPreupgradeProcessTest
 						"removeDLFileEntryOrphanData", true
 					).build())) {
 
-			_assertDLFileEntryNotExists(fileEntryId1);
-			_assertDLFileEntryNotExists(fileEntryId2);
+			_assertNonexistentDLFileEntry(fileEntryId1);
+			_assertNonexistentDLFileEntry(fileEntryId2);
 
 			List<String> messages = logCapture.getMessages();
 
@@ -96,7 +98,7 @@ public class DLFileEntryDataCleanupPreupgradeProcessTest
 		}
 	}
 
-	private void _assertDLFileEntryNotExists(long fileEntryId)
+	private void _assertNonexistentDLFileEntry(long fileEntryId)
 		throws Exception {
 
 		try (Connection connection = DataAccess.getConnection();
