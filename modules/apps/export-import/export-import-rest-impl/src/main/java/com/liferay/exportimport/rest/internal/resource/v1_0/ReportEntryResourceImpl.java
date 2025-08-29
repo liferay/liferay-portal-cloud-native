@@ -240,11 +240,11 @@ public class ReportEntryResourceImpl extends BaseReportEntryResourceImpl {
 	private String _toModelName(String modelName) {
 		String modelResourceKey = "model.resource." + modelName;
 
-		String localization = _language.get(
+		String value = _language.get(
 			contextAcceptLanguage.getPreferredLocale(), modelResourceKey);
 
-		if (!StringUtil.equals(modelResourceKey, localization)) {
-			return localization;
+		if (!StringUtil.equals(modelResourceKey, value)) {
+			return value;
 		}
 
 		return _language.get(

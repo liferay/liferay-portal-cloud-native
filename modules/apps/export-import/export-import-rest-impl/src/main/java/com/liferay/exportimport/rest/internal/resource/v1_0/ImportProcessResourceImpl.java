@@ -172,7 +172,6 @@ public class ImportProcessResourceImpl extends BaseImportProcessResourceImpl {
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.eq(
 				"companyId", contextCompany.getCompanyId()));
-
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("groupId", groupId));
 
 		if (!Validator.isBlank(search)) {
@@ -199,35 +198,36 @@ public class ImportProcessResourceImpl extends BaseImportProcessResourceImpl {
 	private void _setSorts(DynamicQuery dynamicQuery, Sort[] sorts) {
 		if (sorts == null) {
 			dynamicQuery.addOrder(OrderFactoryUtil.desc("modifiedDate"));
+
+			return;
 		}
-		else {
-			for (Sort sort : sorts) {
-				String fieldName = sort.getFieldName();
 
-				fieldName = StringUtil.removeSubstring(fieldName, "_sortable");
+		for (Sort sort : sorts) {
+			String fieldName = sort.getFieldName();
 
-				if (fieldName.equals("creator")) {
-					fieldName = "userName";
-				}
-				else if (fieldName.equals("dateCreated")) {
-					fieldName = "createDate";
-				}
-				else if (fieldName.equals("id")) {
-					fieldName = "backgroundTaskId";
-				}
-				else if (fieldName.equals("dateModified")) {
-					fieldName = "modifiedDate";
-				}
-				else if (fieldName.equals("title")) {
-					fieldName = "name";
-				}
+			fieldName = StringUtil.removeSubstring(fieldName, "_sortable");
 
-				if (sort.isReverse()) {
-					dynamicQuery.addOrder(OrderFactoryUtil.desc(fieldName));
-				}
-				else {
-					dynamicQuery.addOrder(OrderFactoryUtil.asc(fieldName));
-				}
+			if (fieldName.equals("creator")) {
+				fieldName = "userName";
+			}
+			else if (fieldName.equals("dateCreated")) {
+				fieldName = "createDate";
+			}
+			else if (fieldName.equals("id")) {
+				fieldName = "backgroundTaskId";
+			}
+			else if (fieldName.equals("dateModified")) {
+				fieldName = "modifiedDate";
+			}
+			else if (fieldName.equals("title")) {
+				fieldName = "name";
+			}
+
+			if (sort.isReverse()) {
+				dynamicQuery.addOrder(OrderFactoryUtil.desc(fieldName));
+			}
+			else {
+				dynamicQuery.addOrder(OrderFactoryUtil.asc(fieldName));
 			}
 		}
 	}

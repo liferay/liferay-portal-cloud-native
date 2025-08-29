@@ -26,19 +26,18 @@ public class ExportImportReportEntryModelDocumentContributor
 	public void contribute(
 		Document document, ExportImportReportEntry exportImportReportEntry) {
 
+		document.addKeyword(
+			Field.COMPANY_ID, exportImportReportEntry.getCompanyId());
 		document.addDate(
 			Field.CREATE_DATE, exportImportReportEntry.getCreateDate());
 		document.addDate(
 			Field.MODIFIED_DATE, exportImportReportEntry.getModifiedDate());
-
-		document.addKeyword(
-			Field.COMPANY_ID, exportImportReportEntry.getCompanyId());
 		document.addText("error", exportImportReportEntry.getError());
-		document.addText(
-			"errorStacktrace", exportImportReportEntry.getErrorStacktrace());
 		document.addNumber(
 			"exportImportConfigurationId_long",
 			exportImportReportEntry.getExportImportConfigurationId());
+		document.addText(
+			"errorStacktrace", exportImportReportEntry.getErrorStacktrace());
 		document.addText("modelName", exportImportReportEntry.getModelName());
 		document.addNumber(
 			"origin_integer", exportImportReportEntry.getOrigin());
