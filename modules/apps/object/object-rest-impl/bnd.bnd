@@ -1,4 +1,4 @@
 Bundle-Name: Liferay Object REST Implementation
 Bundle-SymbolicName: com.liferay.object.rest.impl
-Bundle-Version: 1.0.170
+Bundle-Version: 1.0.171
 -dsannotations-options: inherit
