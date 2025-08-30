@@ -131,8 +131,8 @@ public class CMSDefaultPermissionUtilTest {
 
 		JSONArray jsonArray = jsonObject.getJSONArray("L_BASIC_WEB_CONTENT");
 
-		Assert.assertEquals(1, jsonArray.length());
 		Assert.assertEquals(ActionKeys.VIEW, jsonArray.getString(0));
+		Assert.assertEquals(1, jsonArray.length());
 
 		ObjectEntry objectEntry2 =
 			CMSDefaultPermissionUtil.addOrUpdateCMSDefaultPermission(
@@ -153,9 +153,9 @@ public class CMSDefaultPermissionUtilTest {
 
 		jsonArray = jsonObject.getJSONArray("L_BASIC_WEB_CONTENT");
 
-		Assert.assertEquals(2, jsonArray.length());
 		Assert.assertEquals(ActionKeys.UPDATE, jsonArray.getString(0));
 		Assert.assertEquals(ActionKeys.VIEW, jsonArray.getString(1));
+		Assert.assertEquals(2, jsonArray.length());
 	}
 
 	@Test
@@ -179,9 +179,9 @@ public class CMSDefaultPermissionUtilTest {
 
 		JSONArray jsonArray = jsonObject.getJSONArray("L_BASIC_WEB_CONTENT");
 
-		Assert.assertEquals(2, jsonArray.length());
 		Assert.assertEquals(ActionKeys.UPDATE, jsonArray.getString(0));
 		Assert.assertEquals(ActionKeys.VIEW, jsonArray.getString(1));
+		Assert.assertEquals(2, jsonArray.length());
 	}
 
 	private boolean _isCMSSiteInitialized() throws Exception {
