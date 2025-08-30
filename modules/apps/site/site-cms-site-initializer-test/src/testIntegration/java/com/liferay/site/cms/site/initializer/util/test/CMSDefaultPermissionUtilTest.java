@@ -113,7 +113,7 @@ public class CMSDefaultPermissionUtilTest {
 	}
 
 	@Test
-	public void testAddOrUpdateDefaultPermission() throws Exception {
+	public void testAddOrUpdateCMSDefaultPermission() throws Exception {
 		Group group = _depotEntry.getGroup();
 
 		ObjectEntry objectEntry1 =
