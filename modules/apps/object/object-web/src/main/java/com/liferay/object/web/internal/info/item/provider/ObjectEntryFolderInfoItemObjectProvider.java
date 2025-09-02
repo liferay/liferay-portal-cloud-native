@@ -99,7 +99,7 @@ public class ObjectEntryFolderInfoItemObjectProvider
 					StringBundler.concat(
 						"No group found with external reference code ",
 						ercInfoItemIdentifier.getScopeExternalReferenceCode(),
-						", and company ID ", serviceContext.getCompanyId()),
+						" and company ID ", serviceContext.getCompanyId()),
 					portalException);
 			}
 		}
@@ -115,7 +115,7 @@ public class ObjectEntryFolderInfoItemObjectProvider
 				StringBundler.concat(
 					"No object entry folder found with external reference ",
 					"code ", ercInfoItemIdentifier.getExternalReferenceCode(),
-					", and group ID ", scopeGroupId),
+					" and group ID ", scopeGroupId),
 				portalException);
 		}
 	}
