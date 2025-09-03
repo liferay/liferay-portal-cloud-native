@@ -36,28 +36,30 @@ public class ActionRestController extends BaseRestController {
 		JSONObject jsonObject = new JSONObject(json);
 
 		for (String key : jsonObject.keySet()) {
-			if (key.contains("item_")) {
-				try {
-					String apiURL =
-						"/o/headless-commerce-delivery-cart/v1.0/cart-items/";
+			if (!key.contains("item_")) {
+				continue;
+			}
 
-					patch(
-						"Bearer " + jwt.getTokenValue(),
-						new JSONObject(
-						).put(
-							"shippingAddressId", jsonObject.getString(key)
-						).toString(),
-						UriComponentsBuilder.fromPath(
-							apiURL + key.split("item_")[1]
-						).build(
-						).toUri());
-				}
-				catch (Exception exception) {
-					_log.error(exception);
+			try {
+				String apiURL =
+					"/o/headless-commerce-delivery-cart/v1.0/cart-items/";
 
-					return new ResponseEntity<>(
-						HttpStatus.INTERNAL_SERVER_ERROR);
-				}
+				patch(
+					"Bearer " + jwt.getTokenValue(),
+					new JSONObject(
+					).put(
+						"shippingAddressId", jsonObject.getString(key)
+					).toString(),
+					UriComponentsBuilder.fromPath(
+						apiURL + key.split("item_")[1]
+					).build(
+					).toUri());
+			}
+			catch (Exception exception) {
+				_log.error(exception);
+
+				return new ResponseEntity<>(
+					HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
 
