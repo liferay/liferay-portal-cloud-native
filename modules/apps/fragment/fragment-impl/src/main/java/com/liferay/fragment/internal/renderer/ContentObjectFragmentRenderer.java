@@ -372,9 +372,9 @@ public class ContentObjectFragmentRenderer implements FragmentRenderer {
 			return _getInfoItem(infoItemReference);
 		}
 
+		String className = jsonObject.getString("className");
 		InfoItemIdentifier infoItemIdentifier = null;
 		InfoItemObjectProvider<?> infoItemObjectProvider = null;
-		String className = jsonObject.getString("className");
 
 		if (classPK > 0) {
 			infoItemIdentifier = new ClassPKInfoItemIdentifier(classPK);
