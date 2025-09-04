@@ -49,13 +49,13 @@ public class UserGroupUsersProvider implements UsersProvider {
 	public List<User> provide(NotificationContext notificationContext)
 		throws PortalException {
 
+		Set<User> users = new HashSet<>();
+
 		NotificationTemplate notificationTemplate =
 			notificationContext.getNotificationTemplate();
 
 		NotificationRecipient notificationRecipient =
 			notificationTemplate.getNotificationRecipient();
-
-		Set<User> users = new HashSet<>();
 
 		for (NotificationRecipientSetting notificationRecipientSetting :
 				notificationRecipient.getNotificationRecipientSettings()) {
