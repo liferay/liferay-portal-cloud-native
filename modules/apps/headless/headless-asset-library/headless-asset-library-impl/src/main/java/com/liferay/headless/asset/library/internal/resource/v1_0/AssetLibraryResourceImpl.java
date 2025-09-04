@@ -422,14 +422,14 @@ public class AssetLibraryResourceImpl extends BaseAssetLibraryResourceImpl {
 			Company company = _companyLocalService.getCompanyById(
 				serviceContext.getCompanyId());
 
-			ExpandoBridge bridge = company.getExpandoBridge();
+			ExpandoBridge expandoBridge = company.getExpandoBridge();
 
-			if (!bridge.hasAttribute("cmsFirstTimeAccess")) {
-				bridge.addAttribute(
+			if (!expandoBridge.hasAttribute("cmsFirstTimeAccess")) {
+				expandoBridge.addAttribute(
 					"cmsFirstTimeAccess", ExpandoColumnConstants.BOOLEAN,
 					false);
 
-				bridge.setAttribute("cmsFirstTimeAccess", Boolean.FALSE);
+				expandoBridge.setAttribute("cmsFirstTimeAccess", Boolean.FALSE);
 			}
 		}
 
