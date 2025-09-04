@@ -124,7 +124,7 @@ public class ObjectEntryFolderModelListener
 			objectEntryFolder.getModelClassName(), jsonObject);
 	}
 
-	private Role _getOrAddCMSAdministratorRoleAndPermissions(
+	private Role _getOrAddCMSAdministratorRole(
 			long companyId, long userId)
 		throws Exception {
 
@@ -150,7 +150,7 @@ public class ObjectEntryFolderModelListener
 			return;
 		}
 
-		Role role = _getOrAddCMSAdministratorRoleAndPermissions(
+		Role role = _getOrAddCMSAdministratorRole(
 			objectEntryFolder.getCompanyId(), objectEntryFolder.getUserId());
 
 		_resourcePermissionLocalService.setResourcePermissions(
