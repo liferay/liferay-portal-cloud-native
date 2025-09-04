@@ -142,18 +142,17 @@ public class GroupModelListenerTest {
 
 		_depotEntryLocalService.deleteDepotEntry(depotEntry.getDepotEntryId());
 
+		Assert.assertNull(
+			CMSDefaultPermissionUtil.fetchObjectEntry(
+				depotEntry.getCompanyId(), depotEntry.getUserId(),
+				group.getExternalReferenceCode(),
+				depotEntry.getModelClassName(), _filterFactory));
 		Assert.assertEquals(
 			0,
 			_objectEntryFolderLocalService.getObjectEntryFoldersCount(
 				depotEntry.getGroupId(), depotEntry.getCompanyId(),
 				ObjectEntryFolderConstants.
 					PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT));
-
-		Assert.assertNull(
-			CMSDefaultPermissionUtil.fetchObjectEntry(
-				depotEntry.getCompanyId(), depotEntry.getUserId(),
-				group.getExternalReferenceCode(),
-				depotEntry.getModelClassName(), _filterFactory));
 	}
 
 	private void _deleteFile(Bundle bundle, String fileName) {

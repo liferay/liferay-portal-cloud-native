@@ -87,14 +87,14 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			return;
 		}
 
-		ObjectDefinition basicWebContentObjectDefinition =
-			_objectDefinitionLocalService.
-				getObjectDefinitionByExternalReferenceCode(
-					"L_BASIC_WEB_CONTENT", group.getCompanyId());
 		ObjectDefinition basicDocumentObjectDefinition =
 			_objectDefinitionLocalService.
 				getObjectDefinitionByExternalReferenceCode(
 					"L_BASIC_DOCUMENT", group.getCompanyId());
+		ObjectDefinition basicWebContentObjectDefinition =
+			_objectDefinitionLocalService.
+				getObjectDefinitionByExternalReferenceCode(
+					"L_BASIC_WEB_CONTENT", group.getCompanyId());
 
 		CMSDefaultPermissionUtil.addOrUpdateObjectEntry(
 			null, group.getCompanyId(), group.getCreatorUserId(),
