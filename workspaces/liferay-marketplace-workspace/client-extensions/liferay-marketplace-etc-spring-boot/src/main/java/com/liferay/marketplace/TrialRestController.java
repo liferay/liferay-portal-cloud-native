@@ -532,13 +532,14 @@ public class TrialRestController extends BaseRestController {
 				"username"
 			).toString());
 
+		portalInstance.setAdmin(() -> admin);
+		portalInstance.setDomain(() -> "lxc.app");
+		portalInstance.setSiteInitializerKey(() -> siteInitializerKey);
+
 		String domain =
 			projectId + "." +
 				trialProvisioningContextJSONObject.getString("domain");
 
-		portalInstance.setAdmin(() -> admin);
-		portalInstance.setDomain(() -> "lxc.app");
-		portalInstance.setSiteInitializerKey(() -> siteInitializerKey);
 		portalInstance.setPortalInstanceId(() -> domain);
 		portalInstance.setVirtualHost(() -> domain);
 
