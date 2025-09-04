@@ -124,17 +124,17 @@ public class NotificationTemplateResourceTest
 				JSONUtil.putAll(
 					JSONUtil.put(
 						NotificationRecipientSettingConstants.NAME_ROLE_NAME,
-						RoleConstants.ORGANIZATION_ADMINISTRATOR),
-					JSONUtil.put(
-						NotificationRecipientSettingConstants.NAME_ROLE_NAME,
-						RoleConstants.ORGANIZATION_OWNER),
-					JSONUtil.put(
-						NotificationRecipientSettingConstants.NAME_ROLE_NAME,
 						AccountRoleConstants.
 							REQUIRED_ROLE_NAME_ACCOUNT_ADMINISTRATOR),
 					JSONUtil.put(
 						NotificationRecipientSettingConstants.NAME_ROLE_NAME,
-						AccountRoleConstants.REQUIRED_ROLE_NAME_ACCOUNT_MEMBER))
+						AccountRoleConstants.REQUIRED_ROLE_NAME_ACCOUNT_MEMBER),
+					JSONUtil.put(
+						NotificationRecipientSettingConstants.NAME_ROLE_NAME,
+						RoleConstants.ORGANIZATION_ADMINISTRATOR),
+					JSONUtil.put(
+						NotificationRecipientSettingConstants.NAME_ROLE_NAME,
+						RoleConstants.ORGANIZATION_OWNER))
 			).put(
 				"toType", NotificationRecipientConstants.TYPE_ROLE
 			));
