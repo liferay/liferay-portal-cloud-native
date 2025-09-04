@@ -1416,7 +1416,6 @@ public class ObjectEntryDTOConverter
 
 		boolean enableObjectEntryVersioning =
 			objectDefinition.isEnableObjectEntryVersioning();
-
 		ObjectDefinitionBrief objectDefinitionBrief =
 			NestedFieldsSupplier.supply(
 				"systemProperties.objectDefinitionBrief",
