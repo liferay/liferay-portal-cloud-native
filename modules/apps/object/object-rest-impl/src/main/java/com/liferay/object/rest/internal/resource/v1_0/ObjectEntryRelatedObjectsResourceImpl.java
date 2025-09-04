@@ -19,9 +19,6 @@ import com.liferay.object.rest.odata.entity.v1_0.provider.EntityModelProvider;
 import com.liferay.object.service.ObjectDefinitionLocalService;
 import com.liferay.object.service.ObjectEntryLocalService;
 import com.liferay.object.service.ObjectRelationshipLocalService;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
@@ -219,22 +216,15 @@ public class ObjectEntryRelatedObjectsResourceImpl
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
 		throws Exception {
 
-		try {
-			ObjectRelationship objectRelationship =
-				_objectRelationshipLocalService.getObjectRelationship(
-					_objectDefinition.getObjectDefinitionId(),
-					GetterUtil.getString(
-						multivaluedMap.getFirst("objectRelationshipName")));
+		ObjectRelationship objectRelationship =
+			_objectRelationshipLocalService.getObjectRelationship(
+				_objectDefinition.getObjectDefinitionId(),
+				GetterUtil.getString(
+					multivaluedMap.getFirst("objectRelationshipName")));
 
-			return _entityModelProvider.getEntityModel(
-				_objectDefinitionLocalService.getObjectDefinition(
-					objectRelationship.getObjectDefinitionId2()));
-		}
-		catch (PortalException portalException) {
-			_log.error(portalException);
-		}
-
-		return null;
+		return _entityModelProvider.getEntityModel(
+			_objectDefinitionLocalService.getObjectDefinition(
+				objectRelationship.getObjectDefinitionId2()));
 	}
 
 	@Override
@@ -648,9 +638,6 @@ public class ObjectEntryRelatedObjectsResourceImpl
 
 		return objectEntry;
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		ObjectEntryRelatedObjectsResourceImpl.class);
 
 	private final EntityModelProvider _entityModelProvider;
 
