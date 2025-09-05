@@ -4095,7 +4095,7 @@ public class JenkinsResultsParserUtil {
 
 		Process process = null;
 
-		String processOutput;
+		String processOutput = null;
 
 		try {
 			process = executeBashCommands("7z t " + file);
