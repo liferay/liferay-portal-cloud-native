@@ -89,7 +89,7 @@ public class LayoutPageTemplateCollectionIndexerReindexTest {
 
 		_assertFieldValue(Field.NAME, name, name);
 
-		_reindexAllIndexerModels();
+		_reindex();
 
 		_assertFieldValue(Field.NAME, name, name);
 
@@ -137,7 +137,7 @@ public class LayoutPageTemplateCollectionIndexerReindexTest {
 		indexer.reindex(layoutPageTemplateCollection);
 	}
 
-	private void _reindexAllIndexerModels() throws Exception {
+	private void _reindex() throws Exception {
 		indexer.reindex(
 			new String[] {String.valueOf(TestPropsValues.getCompanyId())});
 	}
