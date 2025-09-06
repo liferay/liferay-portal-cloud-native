@@ -62,9 +62,9 @@ public class LayoutPageTemplateCollectionIndexerReindexTest {
 					LayoutPageTemplateCollectionTypeConstants.BASIC,
 					serviceContext);
 
-		String searchTerm = layoutPageTemplateCollection.getName();
+		String name = layoutPageTemplateCollection.getName();
 
-		_assertFieldValue(Field.NAME, searchTerm, searchTerm);
+		_assertFieldValue(Field.NAME, name, name);
 
 		layoutPageTemplateCollection.setName(RandomTestUtil.randomString());
 
@@ -75,28 +75,28 @@ public class LayoutPageTemplateCollectionIndexerReindexTest {
 						getLayoutPageTemplateCollectionId(),
 					layoutPageTemplateCollection.getName());
 
-		searchTerm = layoutPageTemplateCollection.getName();
+		name = layoutPageTemplateCollection.getName();
 
-		_assertFieldValue(Field.NAME, searchTerm, searchTerm);
+		_assertFieldValue(Field.NAME, name, name);
 
 		_deleteDocument(
 			layoutPageTemplateCollection.getCompanyId(),
 			uidFactory.getUID(layoutPageTemplateCollection));
 
-		_assertNoHits(searchTerm);
+		_assertNoHits(name);
 
 		_reindex(layoutPageTemplateCollection);
 
-		_assertFieldValue(Field.NAME, searchTerm, searchTerm);
+		_assertFieldValue(Field.NAME, name, name);
 
 		_reindexAllIndexerModels();
 
-		_assertFieldValue(Field.NAME, searchTerm, searchTerm);
+		_assertFieldValue(Field.NAME, name, name);
 
 		_layoutPageTemplateCollectionLocalService.
 			deleteLayoutPageTemplateCollection(layoutPageTemplateCollection);
 
-		_assertNoHits(searchTerm);
+		_assertNoHits(name);
 	}
 
 	@Rule
@@ -114,16 +114,16 @@ public class LayoutPageTemplateCollectionIndexerReindexTest {
 	protected UIDFactory uidFactory;
 
 	private void _assertFieldValue(
-			String fieldName, String fieldValue, String searchTerm)
+			String fieldName, String fieldValue, String queryString)
 		throws Exception {
 
 		FieldValuesAssert.assertFieldValue(
-			fieldName, fieldValue, _search(searchTerm));
+			fieldName, fieldValue, _search(queryString));
 	}
 
-	private void _assertNoHits(String searchTerm) throws Exception {
+	private void _assertNoHits(String queryString) throws Exception {
 		FieldValuesAssert.assertFieldValues(
-			Collections.emptyMap(), _search(searchTerm));
+			Collections.emptyMap(), _search(queryString));
 	}
 
 	private void _deleteDocument(long companyId, String uid) throws Exception {
@@ -142,7 +142,7 @@ public class LayoutPageTemplateCollectionIndexerReindexTest {
 			new String[] {String.valueOf(TestPropsValues.getCompanyId())});
 	}
 
-	private SearchResponse _search(String searchTerm) throws Exception {
+	private SearchResponse _search(String queryString) throws Exception {
 		return _searcher.search(
 			_searchRequestBuilderFactory.builder(
 			).companyId(
@@ -152,7 +152,7 @@ public class LayoutPageTemplateCollectionIndexerReindexTest {
 			).modelIndexerClasses(
 				LayoutPageTemplateCollection.class
 			).queryString(
-				searchTerm
+				queryString
 			).build());
 	}
 
