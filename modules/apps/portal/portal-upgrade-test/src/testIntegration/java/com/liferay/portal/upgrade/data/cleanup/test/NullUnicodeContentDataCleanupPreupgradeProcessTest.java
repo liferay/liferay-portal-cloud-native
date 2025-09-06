@@ -109,7 +109,6 @@ public class NullUnicodeContentDataCleanupPreupgradeProcessTest
 			List<String> messages = logCapture.getMessages();
 
 			Assert.assertEquals(messages.toString(), 2, messages.size());
-
 			Assert.assertTrue(
 				messages.contains(
 					StringBundler.concat(
