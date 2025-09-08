@@ -518,7 +518,10 @@ public int countBy${entityFinder.name}(
 
 				${entity.pluralVariableName} = InlineSQLHelperUtil.filter(
 					${entity.pluralVariableName}
-					<#if entityFinder.hasEntityColumn("groupId")>, groupId</#if>
+
+					<#if entityFinder.hasEntityColumn("groupId")>
+						, groupId
+					</#if>
 				);
 
 				return ${entity.pluralVariableName}.size();
@@ -674,6 +677,7 @@ public int countBy${entityFinder.name}(
 						</#list>
 
 						)
+
 						<#if entityFinder.hasEntityColumn("groupId")>,
 							<#if entityFinder.getEntityColumn("groupId").hasArrayableOperator()>
 								groupIds
@@ -681,7 +685,8 @@ public int countBy${entityFinder.name}(
 								groupId
 							</#if>
 						</#if>
-					);
+
+						);
 
 					return ${entity.pluralVariableName}.size();
 				}

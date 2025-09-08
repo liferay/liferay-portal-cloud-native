@@ -708,7 +708,11 @@ that may or may not be enforced with a unique index at the database level. Case
 						</#list>
 
 						QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator)
-						<#if entityFinder.hasEntityColumn("groupId")>, groupId</#if>
+
+						<#if entityFinder.hasEntityColumn("groupId")>
+							, groupId
+						</#if>
+
 						);
 				}
 			</#if>
@@ -1239,6 +1243,7 @@ that may or may not be enforced with a unique index at the database level. Case
 							</#list>
 
 							QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator)
+
 							<#if entityFinder.hasEntityColumn("groupId")>,
 								<#if entityFinder.getEntityColumn("groupId").hasArrayableOperator()>
 									groupIds
@@ -1246,7 +1251,8 @@ that may or may not be enforced with a unique index at the database level. Case
 									groupId
 								</#if>
 							</#if>
-						);
+
+							);
 					}
 				</#if>
 
