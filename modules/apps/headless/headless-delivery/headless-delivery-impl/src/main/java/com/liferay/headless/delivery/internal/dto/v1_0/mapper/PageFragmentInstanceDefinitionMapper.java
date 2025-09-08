@@ -354,9 +354,10 @@ public class PageFragmentInstanceDefinitionMapper {
 					continue;
 				}
 
-				JSONObject jsonObject = (JSONObject)value;
 				JSONObject duplicatedJSONObject =
 					_jsonFactory.createJSONObject();
+
+				JSONObject jsonObject = (JSONObject)value;
 
 				for (String curKey : jsonObject.keySet()) {
 					duplicatedJSONObject.put(
