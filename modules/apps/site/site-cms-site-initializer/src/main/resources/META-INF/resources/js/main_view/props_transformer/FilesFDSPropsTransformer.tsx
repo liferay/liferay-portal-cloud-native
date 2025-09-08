@@ -19,11 +19,11 @@ import multipleFilesUploadAction, {
 	MultipleFileUploaderData,
 } from './actions/multipleFilesUploadAction';
 import shareAction from './actions/shareAction';
+import AssetTypeRenderer from './cell_renderers/AssetTypeRenderer';
 import AuthorRenderer from './cell_renderers/AuthorRenderer';
 import NameRenderer from './cell_renderers/NameRenderer';
 import SimpleActionLinkRenderer from './cell_renderers/SimpleActionLinkRenderer';
 import SpaceRenderer from './cell_renderers/SpaceRenderer';
-import TypeRenderer from './cell_renderers/TypeRenderer';
 import addOnClickToCreationMenuItems from './utils/addOnClickToCreationMenuItems';
 import transformViewsItemsProps from './utils/transformViewsItemProps';
 
@@ -71,6 +71,11 @@ export default function FilesFDSPropsTransformer({
 		customRenderers: {
 			tableCell: [
 				{
+					component: AssetTypeRenderer,
+					name: 'assetTypeTableCellRenderer',
+					type: 'internal',
+				} as IInternalRenderer,
+				{
 					component: AuthorRenderer,
 					name: 'authorTableCellRenderer',
 					type: 'internal',
@@ -88,11 +93,6 @@ export default function FilesFDSPropsTransformer({
 				{
 					component: SpaceRenderer,
 					name: 'spaceTableCellRenderer',
-					type: 'internal',
-				} as IInternalRenderer,
-				{
-					component: TypeRenderer,
-					name: 'typeTableCellRenderer',
 					type: 'internal',
 				} as IInternalRenderer,
 			],
