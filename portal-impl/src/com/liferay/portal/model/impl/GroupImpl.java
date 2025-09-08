@@ -160,14 +160,18 @@ public class GroupImpl extends GroupBaseImpl {
 	@Override
 	public String getClassName() {
 		if (_className == null) {
+			String className = null;
+
 			if (getClassNameId() <= 0) {
-				_className = "";
+				className = "";
 			}
 			else {
-				_className = PortalUtil.getClassName(getClassNameId());
+				className = PortalUtil.getClassName(getClassNameId());
 			}
 
-			classNameUpdateEntityCacheBiConsumer.accept(this, _className);
+			classNameUpdateEntityCacheBiConsumer.accept(this, className);
+
+			_className = className;
 		}
 
 		return _className;
