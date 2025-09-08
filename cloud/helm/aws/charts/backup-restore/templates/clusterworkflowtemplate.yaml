@@ -25,8 +25,8 @@
 {{- $templateRollbackFailedRestore := "rollback-failed-restore" -}}
 {{- $templateTerraformApply := "terraform-apply" -}}
 {{- $templateUpdateKubernetesSecret := "update-kubernetes-secret" -}}
-{{- $tfvarDataActive := "data_active" -}}
 {{- $tfvarDBRestoreSnapshotIdentifier := "db_restore_snapshot_identifier" -}}
+{{- $tfvarDataActive := "data_active" -}}
 {{- $tfvarIsRestoring := "is_restoring" -}}
 
 {{- $outputArtifactTerraformRepo := include "liferayAWSBackupRestore.argo.ref.taskOutputArtifact" (dict "artifact" $artifactGitRepository "task" $templateCheckoutGitRepository) | quote -}}
