@@ -85,11 +85,11 @@ public class InlineSQLHelperImpl implements InlineSQLHelper {
 			return list;
 		}
 
+		T baseModel = list.get(0);
+
 		if (groupIds.length == 0) {
 			groupIds = new long[] {0};
 		}
-
-		T baseModel = list.get(0);
 
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
@@ -103,7 +103,6 @@ public class InlineSQLHelperImpl implements InlineSQLHelper {
 		Set<Long> permittedClassPKs = new HashSet<>();
 
 		Set<Long> roleIdsSet = _getRoleIdsSet(groupIds);
-
 		boolean signedIn = permissionChecker.isSignedIn();
 		long userId = permissionChecker.getUserId();
 
