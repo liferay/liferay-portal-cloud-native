@@ -104,18 +104,15 @@ public class CTPortletPermissionPortalInstanceLifecycleListenerTest {
 
 			Assert.assertNotNull(role);
 
-			Method getModelResourceActionsMethod = clazz.getMethod(
+			Method method = clazz.getMethod(
 				"getModelResourceActions", String.class);
 
 			Constructor<?> constructor = clazz.getConstructor();
 
-			Object publicationsRegularRoleNamesUtil = constructor.newInstance();
+			String[] actionIds = (String[])method.invoke(
+				constructor.newInstance(), publicationsRegularRoleName);
 
-			String[] modelResourceActions =
-				(String[])getModelResourceActionsMethod.invoke(
-					publicationsRegularRoleNamesUtil, publicationsRegularRoleName);
-
-			for (String actionId : modelResourceActions) {
+			for (String actionId : actionIds) {
 				Assert.assertTrue(
 					_resourcePermissionLocalService.hasResourcePermission(
 						company.getCompanyId(), CTCollection.class.getName(),
