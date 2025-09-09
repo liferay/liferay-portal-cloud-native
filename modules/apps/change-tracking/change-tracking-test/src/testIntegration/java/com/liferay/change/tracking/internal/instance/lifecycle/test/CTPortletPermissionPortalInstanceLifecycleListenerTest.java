@@ -58,6 +58,9 @@ public class CTPortletPermissionPortalInstanceLifecycleListenerTest {
 
 	@Test
 	public void testCheckPublicationsRegularRoles() throws Exception {
+		Company company = _companyLocalService.getCompany(
+			TestPropsValues.getCompanyId());
+
 		Bundle bundle = FrameworkUtil.getBundle(
 			CTPortletPermissionPortalInstanceLifecycleListenerTest.class);
 
@@ -73,13 +76,8 @@ public class CTPortletPermissionPortalInstanceLifecycleListenerTest {
 			"com.liferay.change.tracking.web.internal.util." +
 				"PublicationsRegularRolesUtil");
 
-		Constructor<?> constructor = clazz.getConstructor();
-
 		String[] publicationsRegularRoleNames = ReflectionTestUtil.getFieldValue(
 			clazz, "PUBLICATIONS_REGULAR_ROLE_NAMES");
-
-		Company company = _companyLocalService.getCompany(
-			TestPropsValues.getCompanyId());
 
 		for (String publicationsRegularRoleName : publicationsRegularRoleNames) {
 			Role role = _roleLocalService.fetchRole(
@@ -108,6 +106,8 @@ public class CTPortletPermissionPortalInstanceLifecycleListenerTest {
 
 			Method getModelResourceActionsMethod = clazz.getMethod(
 				"getModelResourceActions", String.class);
+
+			Constructor<?> constructor = clazz.getConstructor();
 
 			Object publicationsRegularRoleNamesUtil = constructor.newInstance();
 
