@@ -57,7 +57,7 @@ public class CTPortletPermissionPortalInstanceLifecycleListenerTest {
 			PermissionCheckerMethodTestRule.INSTANCE);
 
 	@Test
-	public void testPortalInstanceRegistered1() throws Exception {
+	public void testCheckPublicationsRegularRoles() throws Exception {
 		Bundle bundle = FrameworkUtil.getBundle(
 			CTPortletPermissionPortalInstanceLifecycleListenerTest.class);
 
@@ -127,7 +127,7 @@ public class CTPortletPermissionPortalInstanceLifecycleListenerTest {
 	}
 
 	@Test
-	public void testPortalInstanceRegistered2() throws Exception {
+	public void testCheckPublicationsReviewerRole() throws Exception {
 		Company company = _companyLocalService.getCompany(
 			TestPropsValues.getCompanyId());
 
