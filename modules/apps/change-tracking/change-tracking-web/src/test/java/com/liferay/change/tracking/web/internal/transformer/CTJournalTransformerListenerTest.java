@@ -27,12 +27,12 @@ public class CTJournalTransformerListenerTest {
 		LiferayUnitTestRule.INSTANCE;
 
 	@Test
-	public void testOnOutputTransformsTheOutput() throws Exception {
+	public void testOnOutput() throws Exception {
 		String src = StringBundler.concat(
 			"<img src=\"", RandomTestUtil.randomString(),
 			"previewCTCollectionId=", RandomTestUtil.randomLong(), "\"></img>");
 
-		String newOutput = _ctJournalTransformerListener.onOutput(
+		String output = _ctJournalTransformerListener.onOutput(
 			src, "en",
 			HashMapBuilder.put(
 				"ct_collection_id",
@@ -40,7 +40,7 @@ public class CTJournalTransformerListenerTest {
 			).build());
 
 		Assert.assertTrue(
-			newOutput.contains(
+			output.contains(
 				"previewCTCollectionId=" +
 					CTConstants.CT_COLLECTION_ID_PRODUCTION));
 	}
