@@ -247,13 +247,9 @@ public class BulkActionResourceTest extends BaseBulkActionResourceTestCase {
 					)),
 				bulkActionTaskObjectEntry.getObjectEntryId()));
 
-		Assert.assertNotNull(objectEntries);
-
 		ObjectEntry objectEntry = objectEntries.get(0);
 
 		Map<String, Serializable> values = objectEntry.getValues();
-
-		Assert.assertNotNull(values);
 
 		Assert.assertEquals(
 			basicWebContentObjectEntry.getExternalReferenceCode(),
