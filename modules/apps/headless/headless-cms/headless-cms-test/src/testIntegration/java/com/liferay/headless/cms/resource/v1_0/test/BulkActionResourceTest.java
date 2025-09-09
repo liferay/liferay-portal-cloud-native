@@ -117,6 +117,14 @@ public class BulkActionResourceTest extends BaseBulkActionResourceTestCase {
 			}
 		}
 
+		_basicWebContentObjectDefinition =
+			_objectDefinitionLocalService.
+				getObjectDefinitionByExternalReferenceCode(
+					"L_BASIC_WEB_CONTENT", testCompany.getCompanyId());
+		_bulkActionTaskObjectDefinition =
+			_objectDefinitionLocalService.
+				getObjectDefinitionByExternalReferenceCode(
+					"L_BULK_ACTION_TASK", testCompany.getCompanyId());
 		_depotEntry = _depotEntryLocalService.addDepotEntry(
 			HashMapBuilder.put(
 				LocaleUtil.getDefault(), RandomTestUtil.randomString()
@@ -127,17 +135,6 @@ public class BulkActionResourceTest extends BaseBulkActionResourceTestCase {
 			DepotConstants.TYPE_ASSET_LIBRARY,
 			ServiceContextTestUtil.getServiceContext(
 				testGroup.getGroupId(), TestPropsValues.getUserId()));
-
-		_basicWebContentObjectDefinition =
-			_objectDefinitionLocalService.
-				getObjectDefinitionByExternalReferenceCode(
-					"L_BASIC_WEB_CONTENT", testCompany.getCompanyId());
-
-		_bulkActionTaskObjectDefinition =
-			_objectDefinitionLocalService.
-				getObjectDefinitionByExternalReferenceCode(
-					"L_BULK_ACTION_TASK", testCompany.getCompanyId());
-
 		_importTaskResource = ImportTaskResource.builder(
 		).authentication(
 			"test@liferay.com", PropsValues.DEFAULT_ADMIN_PASSWORD
