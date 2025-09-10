@@ -528,22 +528,24 @@ public abstract class BaseCTDisplayRenderer<T extends BaseModel<T>>
 				return StringPool.BLANK;
 			}
 
-			DDMFormFieldOptions rows =
+			DDMFormFieldOptions rowsDDMFormFieldOptions =
 				(DDMFormFieldOptions)ddmFormField.getProperty("rows");
-			DDMFormFieldOptions columns =
+			DDMFormFieldOptions columnsDDMFormFieldOptions =
 				(DDMFormFieldOptions)ddmFormField.getProperty("columns");
 
 			StringBundler sb = new StringBundler(valuesJSONObject.length() * 6);
 
-			Set<String> rowOptions = rows.getOptionsValues();
+			Set<String> rowOptions = rowsDDMFormFieldOptions.getOptionsValues();
 
 			for (String rowOption : rowOptions) {
 				if (valuesJSONObject.has(rowOption)) {
 					String columnOption = valuesJSONObject.getString(rowOption);
 
-					LocalizedValue rowLabel = rows.getOptionLabels(rowOption);
-					LocalizedValue columnLabel = columns.getOptionLabels(
-						columnOption);
+					LocalizedValue rowLabel =
+						rowsDDMFormFieldOptions.getOptionLabels(rowOption);
+					LocalizedValue columnLabel =
+						columnsDDMFormFieldOptions.getOptionLabels(
+							columnOption);
 
 					sb.append(StringPool.OPEN_CURLY_BRACE);
 					sb.append(
