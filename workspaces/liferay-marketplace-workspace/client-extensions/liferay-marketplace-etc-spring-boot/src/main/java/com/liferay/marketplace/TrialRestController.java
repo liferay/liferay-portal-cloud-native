@@ -88,7 +88,7 @@ public class TrialRestController extends BaseRestController {
 
 		Page<PortalInstance> page = _getPortalInstancesPage(
 			_getTrialProvisioningContextJSONObject(
-				_getRawOrder(orderTypeExternalReferenceCode)));
+				_getOrder(orderTypeExternalReferenceCode)));
 
 		return new JSONObject(
 		).put(
@@ -108,7 +108,7 @@ public class TrialRestController extends BaseRestController {
 		throws Exception {
 
 		JSONObject jsonObject = _getTrialProvisioningContextJSONObject(
-			_getRawOrder(orderTypeExternalReferenceCode));
+			_getOrder(orderTypeExternalReferenceCode));
 
 		String virtualHost =
 			projectPrefix + "." + jsonObject.getString("domain");
@@ -150,7 +150,7 @@ public class TrialRestController extends BaseRestController {
 	@PostMapping("extend/{id}")
 	public void postExtend(@PathVariable long id) throws Exception {
 		if (_log.isInfoEnabled()) {
-			_log.info("Extend Trial " + id);
+			_log.info("Extend trial " + id);
 		}
 
 		JSONObject trialExtensionRequestJSONObject = new JSONObject(
@@ -213,7 +213,7 @@ public class TrialRestController extends BaseRestController {
 	@PostMapping("notify-end/{orderId}")
 	public void postNotifyEnd(@PathVariable long orderId) throws Exception {
 		if (_log.isInfoEnabled()) {
-			_log.info("Notify End " + orderId);
+			_log.info("Notify end " + orderId);
 		}
 
 		Order order = _marketplaceService.getOrder(orderId);
@@ -463,11 +463,10 @@ public class TrialRestController extends BaseRestController {
 		return portalInstanceResource.getPortalInstancesPage(true);
 	}
 
-	private Order _getRawOrder(String orderTypeExternalReferenceCode) {
+	private Order _getOrder(String orderTypeExternalReferenceCode) {
 		Order order = new Order();
 
 		order.setCustomFields(() -> new HashMap<>());
-
 		order.setOrderTypeExternalReferenceCode(
 			() -> orderTypeExternalReferenceCode);
 
