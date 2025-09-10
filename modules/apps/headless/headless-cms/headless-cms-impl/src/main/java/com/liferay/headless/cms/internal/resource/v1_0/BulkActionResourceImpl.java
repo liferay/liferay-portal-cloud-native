@@ -162,27 +162,21 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 		BulkActionTask bulkActionTask = _addBulkActionTask(
 			deleteBulkAction.getTypeAsString());
 
-		_importTaskResource.setContextAcceptLanguage(contextAcceptLanguage);
-		_importTaskResource.setContextCompany(contextCompany);
-		_importTaskResource.setContextHttpServletRequest(
-			contextHttpServletRequest);
-		_importTaskResource.setContextUriInfo(contextUriInfo);
-		_importTaskResource.setContextUser(contextUser);
-
 		for (Map.Entry<String, List<BulkActionItem>> entry :
 				bulkActionItemsMap.entrySet()) {
 
 			String taskItemDelegateName = _getTaskItemDelegateName(
 				entry.getKey());
 
-			ImportTask importTask = _importTaskResource.deleteImportTaskObject(
-				_getClassName(entry.getKey()), null, null, "ON_ERROR_CONTINUE",
-				taskItemDelegateName,
-				transform(
-					entry.getValue(),
-					bulkActionItem -> HashMapBuilder.<String, Object>put(
-						"id", bulkActionItem.getClassPK()
-					).build()));
+			ImportTask importTask =
+				_getImportTaskResource().deleteImportTaskObject(
+					_getClassName(entry.getKey()), null, null,
+					"ON_ERROR_CONTINUE", taskItemDelegateName,
+					transform(
+						entry.getValue(),
+						bulkActionItem -> HashMapBuilder.<String, Object>put(
+							"id", bulkActionItem.getClassPK()
+						).build()));
 
 			for (BulkActionItem bulkActionItem : entry.getValue()) {
 				_addBulkActionTaskItem(
@@ -211,19 +205,10 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 				throw new ValidationException("Filter is null");
 			}
 
-			_searchResultResource.setContextAcceptLanguage(
-				contextAcceptLanguage);
-			_searchResultResource.setContextCompany(contextCompany);
-			_searchResultResource.setContextHttpServletRequest(
-				contextHttpServletRequest);
-			_searchResultResource.setContextHttpServletResponse(
-				contextHttpServletResponse);
-			_searchResultResource.setContextUriInfo(contextUriInfo);
-			_searchResultResource.setContextUser(contextUser);
-
-			Page<SearchResult> searchPage = _searchResultResource.getSearchPage(
-				null, true, null, null, search, filter,
-				Pagination.of(QueryUtil.ALL_POS, QueryUtil.ALL_POS), null);
+			Page<SearchResult> searchPage =
+				_getSearchResultResource().getSearchPage(
+					null, true, null, null, search, filter,
+					Pagination.of(QueryUtil.ALL_POS, QueryUtil.ALL_POS), null);
 
 			for (SearchResult searchResult : searchPage.getItems()) {
 				JSONObject jsonObject = _jsonFactory.createJSONObject(
@@ -297,6 +282,46 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 		return "com.liferay.object.rest.dto.v1_0.ObjectEntry";
 	}
 
+	private ImportTaskResource _getImportTaskResource() {
+		if (_importTaskResource != null) {
+			return _importTaskResource;
+		}
+
+		_importTaskResource = _importTaskResourceFactory.create(
+		).httpServletRequest(
+			contextHttpServletRequest
+		).httpServletResponse(
+			contextHttpServletResponse
+		).uriInfo(
+			contextUriInfo
+		).user(
+			contextUser
+		).build();
+
+		return _importTaskResource;
+	}
+
+	private SearchResultResource _getSearchResultResource() {
+		if (_searchResultResource != null) {
+			return _searchResultResource;
+		}
+
+		_searchResultResource = _searchResultResourceFactory.create(
+		).httpServletRequest(
+			contextHttpServletRequest
+		).httpServletResponse(
+			contextHttpServletResponse
+		).preferredLocale(
+			contextAcceptLanguage.getPreferredLocale()
+		).uriInfo(
+			contextUriInfo
+		).user(
+			contextUser
+		).build();
+
+		return _searchResultResource;
+	}
+
 	private String _getTaskItemDelegateName(String key) throws Exception {
 		if (StringUtil.equals(
 				"com.liferay.object.model.ObjectEntryFolder", key)) {
@@ -315,9 +340,10 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 
 	private ObjectDefinition _bulkActionTaskItemObjectDefinition;
 	private ObjectDefinition _bulkActionTaskObjectDefinition;
+	private ImportTaskResource _importTaskResource;
 
 	@Reference
-	private ImportTaskResource _importTaskResource;
+	private ImportTaskResource.Factory _importTaskResourceFactory;
 
 	@Reference
 	private JSONFactory _jsonFactory;
@@ -328,7 +354,9 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 	@Reference
 	private ObjectEntryLocalService _objectEntryLocalService;
 
-	@Reference
 	private SearchResultResource _searchResultResource;
+
+	@Reference
+	private SearchResultResource.Factory _searchResultResourceFactory;
 
 }
