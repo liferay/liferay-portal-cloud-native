@@ -130,6 +130,7 @@ public class OrphanReferencesDataCleanupUtil {
 		}
 
 		sb.setIndex(sb.index() - 1);
+
 		sb.append(")");
 
 		return StringBundler.concat(
