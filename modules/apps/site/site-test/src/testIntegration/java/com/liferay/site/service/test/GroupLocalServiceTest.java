@@ -87,9 +87,7 @@ public class GroupLocalServiceTest {
 		_assertDescendantGroups(group1, group2, group3, group4);
 
 		_assertDescendantGroups(group2, group3);
-
 		_assertDescendantGroups(group3);
-
 		_assertDescendantGroups(group4);
 	}
 
