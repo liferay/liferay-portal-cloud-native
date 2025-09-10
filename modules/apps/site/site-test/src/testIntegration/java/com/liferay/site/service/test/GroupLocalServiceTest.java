@@ -68,13 +68,13 @@ public class GroupLocalServiceTest {
 			() -> _addGroup(groupName));
 
 		AssertUtils.assertFailure(
-			GroupKeyException.class, null, () -> _addGroup("null"));
-		AssertUtils.assertFailure(
 			GroupKeyException.class, null, () -> _addGroup("*"));
 		AssertUtils.assertFailure(
-			GroupKeyException.class, null, () -> _addGroup("test*"));
-		AssertUtils.assertFailure(
 			GroupKeyException.class, null, () -> _addGroup("22222"));
+		AssertUtils.assertFailure(
+			GroupKeyException.class, null, () -> _addGroup("null"));
+		AssertUtils.assertFailure(
+			GroupKeyException.class, null, () -> _addGroup("test*"));
 
 		group1 = GroupTestUtil.addGroup();
 
