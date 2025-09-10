@@ -25,7 +25,7 @@ function main {
 
     if [ $(terraform output -raw is_restoring) = "true" ];
     then
-        echo "Terraform output \"is_restoring\" is set to \"true.\" A restore may already be in progress." >&2
+        echo "Terraform output \"is_restoring\" is set to \"true\". A restore may already be in progress." >&2
 
         exit 1
     fi
