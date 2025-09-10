@@ -479,8 +479,6 @@ public class TrialRestController extends BaseRestController {
 		String projectId = trialSettingsJSONObject.optString(
 			"projectId", String.valueOf(order.getId()));
 
-		String extProjectId = "-ext" + projectId;
-
 		if (Objects.equals(
 				order.getOrderTypeExternalReferenceCode(), "SOLUTIONS7")) {
 
@@ -494,7 +492,7 @@ public class TrialRestController extends BaseRestController {
 			).put(
 				"dxpProjectUid", _consoleTrialProjectUid
 			).put(
-				"projectId", _consoleTrialProjectPrefix + extProjectId
+				"projectId", _consoleTrialProjectPrefix + "-ext" + projectId
 			).put(
 				"trialAuthorizationERC", "external-trial"
 			).put(
@@ -515,7 +513,7 @@ public class TrialRestController extends BaseRestController {
 			).put(
 				"dxpProjectUid", _consoleSSAProjectUid
 			).put(
-				"projectId", _consoleSSAProjectPrefix + extProjectId
+				"projectId", _consoleSSAProjectPrefix + "-ext" + projectId
 			).put(
 				"trialAuthorizationERC", "external-ssa"
 			).put(
