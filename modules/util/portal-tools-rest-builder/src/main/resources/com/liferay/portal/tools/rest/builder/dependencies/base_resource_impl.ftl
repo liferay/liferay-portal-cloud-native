@@ -2029,10 +2029,11 @@ public abstract class Base${schemaName}ResourceImpl
 	source
 >
 	<#return "HashMapBuilder.put(
-		\"get\", addAction(ActionKeys.PERMISSIONS, ${resourceId}, \"get${source}PermissionsPage\", null, ${resourceName}, ${groupId})
-	).put(
-		\"replace\", addAction(ActionKeys.PERMISSIONS, ${resourceId}, \"put${source}PermissionsPage\", null, ${resourceName}, ${groupId})
-	).build()">
+			\"get\", addAction(ActionKeys.PERMISSIONS, ${resourceId}, \"get${source}PermissionsPage\", null, ${resourceName}, ${groupId})
+		).put(
+			\"replace\", addAction(ActionKeys.PERMISSIONS, ${resourceId}, \"put${source}PermissionsPage\", null, ${resourceName}, ${groupId})
+		).build()"
+	>
 </#function>
 
 <#macro getCreateBatchJavaMethodParameters
