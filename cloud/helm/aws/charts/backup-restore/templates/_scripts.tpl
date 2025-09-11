@@ -7,7 +7,6 @@ function main {
 	cp /mnt/.git-credentials /tmp/.git-credentials
 
     git config --global credential.helper 'store --file /tmp/.git-credentials'
-
     git config --global user.email "{{ .Values.git.user.emailAddress }}"
 	git config --global user.name "{{ .Values.git.user.name }}"
 
