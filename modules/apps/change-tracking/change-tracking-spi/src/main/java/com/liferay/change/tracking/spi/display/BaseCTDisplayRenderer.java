@@ -565,7 +565,6 @@ public abstract class BaseCTDisplayRenderer<T extends BaseModel<T>>
 							columnLabel, columnOption, locale)));
 
 				sb.append(StringPool.CLOSE_CURLY_BRACE);
-
 				sb.append(StringPool.COMMA_AND_SPACE);
 			}
 
