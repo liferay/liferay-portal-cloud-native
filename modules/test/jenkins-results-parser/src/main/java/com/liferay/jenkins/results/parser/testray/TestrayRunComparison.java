@@ -151,7 +151,7 @@ public class TestrayRunComparison {
 					continue;
 				}
 
-				if (statusA.equals(_PASSED)) {
+				if (statusA.equals(_STATUS_PASSED)) {
 					if (_isFailureStatus(statusB)) {
 						_newFailureTestCount += testCount;
 
@@ -163,7 +163,7 @@ public class TestrayRunComparison {
 					continue;
 				}
 
-				if (statusB.equals(_PASSED)) {
+				if (statusB.equals(_STATUS_PASSED)) {
 					if (_isFailureStatus(statusA)) {
 						_newFailureTestCount -= testCount;
 
@@ -193,8 +193,8 @@ public class TestrayRunComparison {
 	}
 
 	private boolean _isFailureStatus(String status) {
-		if (status.equals(_BLOCKED) || status.equals(_FAILED) ||
-			status.equals(_TESTFIX)) {
+		if (status.equals(_STATUS_BLOCKED) || status.equals(_STATUS_FAILED) ||
+			status.equals(_STATUS_TEST_FIX)) {
 
 			return true;
 		}
@@ -203,30 +203,30 @@ public class TestrayRunComparison {
 	}
 
 	private boolean _isUntestedStatus(String status) {
-		if (status.equals(_DNR) || status.equals(_UNTESTED)) {
+		if (status.equals(_STATUS_DID_NOT_RUN) || status.equals(_STATUS_UNTESTED)) {
 			return true;
 		}
 
 		return false;
 	}
 
-	private static final String _BLOCKED = "BLOCKED";
+	private static final String _STATUS_BLOCKED = "BLOCKED";
 
-	private static final String _DNR = "DIDNOTRUN";
+	private static final String _STATUS_DID_NOT_RUN = "DIDNOTRUN";
 
-	private static final String _FAILED = "FAILED";
+	private static final String _STATUS_FAILED = "FAILED";
 
-	private static final String _PASSED = "PASSED";
+	private static final String _STATUS_PASSED = "PASSED";
 
 	private static final String[] _STATUSES;
 
-	private static final String _TESTFIX = "TESTFIX";
+	private static final String _STATUS_TEST_FIX = "TESTFIX";
 
-	private static final String _UNTESTED = "UNTESTED";
+	private static final String _STATUS_UNTESTED = "UNTESTED";
 
 	static {
 		_STATUSES = new String[] {
-			_BLOCKED, _DNR, _FAILED, _PASSED, _TESTFIX, _UNTESTED
+			_STATUS_BLOCKED, _STATUS_DID_NOT_RUN, _STATUS_FAILED, _STATUS_PASSED, _STATUS_TEST_FIX, _STATUS_UNTESTED
 		};
 	}
 
