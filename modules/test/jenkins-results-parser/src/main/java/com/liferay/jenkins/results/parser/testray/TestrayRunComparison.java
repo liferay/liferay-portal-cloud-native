@@ -65,9 +65,12 @@ public class TestrayRunComparison {
 	protected TestrayRunComparison(
 		TestrayRun testrayRunA, TestrayRun testrayRunB) {
 
-		if ((testrayRunA == null) || (testrayRunB == null)) {
-			throw new IllegalArgumentException(
-				"One or more Testray run objects is null");
+		if (testrayRunA == null) {
+			throw new IllegalArgumentException("Testray run A is null");
+		}
+
+		if (testrayRunB == null) {
+			throw new IllegalArgumentException("Testray run B is null");
 		}
 
 		_testrayRunA = testrayRunA;

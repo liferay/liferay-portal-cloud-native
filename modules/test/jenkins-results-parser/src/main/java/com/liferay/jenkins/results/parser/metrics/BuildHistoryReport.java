@@ -145,11 +145,13 @@ public class BuildHistoryReport {
 
 			TestrayBuild awsTestrayBuild = TestrayFactory.newTestrayBuild(
 				_getURL(awsTestrayBuildURL));
-			TestrayBuild testrayBuild = TestrayFactory.newTestrayBuild(
-				_getURL(testrayBuildURL));
 
 			TestrayRun awsTestrayRun = awsTestrayBuild.getTestrayRun(
 				TestrayRun.getDefaultRunIDString());
+
+			TestrayBuild testrayBuild = TestrayFactory.newTestrayBuild(
+				_getURL(testrayBuildURL));
+
 			TestrayRun testrayRun = testrayBuild.getTestrayRun(
 				TestrayRun.getDefaultRunIDString());
 

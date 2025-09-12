@@ -530,7 +530,6 @@ public class BuildHistory {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(_getJobName(buildJSONObject.getURL()));
-
 		sb.append("/");
 
 		Map<String, String> parametersMap = buildJSONObject.getParameters();
@@ -553,7 +552,6 @@ public class BuildHistory {
 		}
 
 		sb.append(portalUpstreamSHA);
-
 		sb.append("/");
 
 		if (portalSenderSHA.length() > 8) {
@@ -561,9 +559,7 @@ public class BuildHistory {
 		}
 
 		sb.append(portalSenderSHA);
-
 		sb.append("/");
-
 		sb.append(parametersMap.get("CI_TEST_SUITE"));
 
 		return sb.toString();
