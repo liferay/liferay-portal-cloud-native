@@ -6257,23 +6257,21 @@ public class DefaultObjectEntryManagerImplTest
 	@FeatureFlag("LPD-53981")
 	@Test
 	public void testMoveObjectEntryToTrash() throws Exception {
-		_enableObjectEntryVersioning();
-
 		ObjectEntry objectEntry = _addObjectEntry(
-			_objectDefinition1,
+			_objectDefinition6,
 			ObjectEntryFolderConstants.PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT,
-			null, 1);
+			String.valueOf(_depotEntry.getGroupId()), 1);
 
-		_updateObjectEntryVersion(_objectDefinition1, objectEntry, 2);
+		_updateObjectEntryVersion(_objectDefinition6, objectEntry, 2);
 
 		_assertObjectEntryVersions(
 			2, WorkflowConstants.STATUS_APPROVED, objectEntry);
 
 		_defaultObjectEntryManager.deleteObjectEntry(
-			_objectDefinition1, objectEntry.getId());
+			_objectDefinition6, objectEntry.getId());
 
 		objectEntry = _defaultObjectEntryManager.getObjectEntry(
-			dtoConverterContext, _objectDefinition1, objectEntry.getId());
+			dtoConverterContext, _objectDefinition6, objectEntry.getId());
 
 		_assertObjectEntryStatus(
 			WorkflowConstants.STATUS_IN_TRASH, objectEntry);
@@ -6284,10 +6282,11 @@ public class DefaultObjectEntryManagerImplTest
 		_assertObjectEntryVersions(
 			2, WorkflowConstants.STATUS_IN_TRASH, objectEntry);
 
-		_assertObjectEntriesSize1(_objectDefinition1, 0);
+		_assertObjectEntriesSize3(
+			_objectDefinition6, String.valueOf(_depotEntry.getGroupId()), 0);
 
 		_defaultObjectEntryManager.deleteObjectEntry(
-			_objectDefinition1, objectEntry.getId());
+			_objectDefinition6, objectEntry.getId());
 
 		Long objectEntryId = objectEntry.getId();
 
@@ -6295,7 +6294,7 @@ public class DefaultObjectEntryManagerImplTest
 			NoSuchObjectEntryException.class,
 			"No ObjectEntry exists with the primary key " + objectEntryId,
 			() -> _defaultObjectEntryManager.getObjectEntry(
-				dtoConverterContext, _objectDefinition1, objectEntryId));
+				dtoConverterContext, _objectDefinition6, objectEntryId));
 	}
 
 	@Test
@@ -6897,33 +6896,34 @@ public class DefaultObjectEntryManagerImplTest
 		_enableObjectEntryVersioning();
 
 		ObjectEntry objectEntry = _addObjectEntry(
-			_objectDefinition1,
+			_objectDefinition6,
 			ObjectEntryFolderConstants.PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT,
-			null, 1);
+			String.valueOf(_depotEntry.getGroupId()), 1);
 
-		_updateObjectEntryVersion(_objectDefinition1, objectEntry, 2);
+		_updateObjectEntryVersion(_objectDefinition6, objectEntry, 2);
 
 		_defaultObjectEntryManager.deleteObjectEntry(
-			_objectDefinition1, objectEntry.getId());
+			_objectDefinition6, objectEntry.getId());
 
 		_assertActions(
-			ListUtil.fromArray("delete", "restore"), null, _objectDefinition1,
+			ListUtil.fromArray("delete", "restore"), null, _objectDefinition6,
 			objectEntry.getId());
 
 		objectEntry = _defaultObjectEntryManager.restoreObjectEntry(
 			dtoConverterContext, objectEntry.getExternalReferenceCode(),
-			_objectDefinition1, null);
+			_objectDefinition6, String.valueOf(_depotEntry.getGroupId()));
 
 		_assertActions(
 			ListUtil.fromArray("delete"), ListUtil.fromArray("restore"),
-			_objectDefinition1, objectEntry.getId());
+			_objectDefinition6, objectEntry.getId());
 
 		_assertObjectEntryStatus(
 			WorkflowConstants.STATUS_APPROVED, objectEntry);
 		_assertObjectEntryVersions(
 			2, WorkflowConstants.STATUS_APPROVED, objectEntry);
 
-		_assertObjectEntriesSize1(_objectDefinition1, 1);
+		_assertObjectEntriesSize3(
+			_objectDefinition6, String.valueOf(_depotEntry.getGroupId()), 1);
 	}
 
 	@Test
@@ -9034,6 +9034,23 @@ public class DefaultObjectEntryManagerImplTest
 				false, Collections.emptyMap(), dtoConverterRegistry, null,
 				LocaleUtil.getDefault(), null, _user),
 			(Filter)null, null, StringPool.BLANK, null);
+
+		Collection<ObjectEntry> objectEntries = page.getItems();
+
+		Assert.assertEquals(
+			objectEntries.toString(), size, objectEntries.size());
+	}
+
+	private void _assertObjectEntriesSize3(
+			ObjectDefinition objectDefinition, String scopeKey, long size)
+		throws Exception {
+
+		Page<ObjectEntry> page = _defaultObjectEntryManager.getObjectEntries(
+			companyId, objectDefinition, scopeKey, null,
+			new DefaultDTOConverterContext(
+				false, Collections.emptyMap(), dtoConverterRegistry, null,
+				LocaleUtil.getDefault(), null, _user),
+			StringPool.BLANK, null, StringPool.BLANK, null);
 
 		Collection<ObjectEntry> objectEntries = page.getItems();
 
