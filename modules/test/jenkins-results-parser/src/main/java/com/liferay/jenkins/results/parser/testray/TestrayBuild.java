@@ -198,11 +198,10 @@ public class TestrayBuild implements Comparable<TestrayBuild> {
 
 		List<TestrayCaseResult> testrayCaseResults = new ArrayList<>();
 
+		String[] fieldNames = TestrayCaseResult.FIELD_NAMES;
 		int pageSize = 500;
 
 		StringBuilder sb = new StringBuilder();
-
-		String[] fieldNames = TestrayCaseResult.FIELD_NAMES;
 
 		if ((testrayRun != null) && (testrayRun.getID() > 0)) {
 			sb.append("r_runToCaseResult_c_runId eq '");
@@ -216,7 +215,6 @@ public class TestrayBuild implements Comparable<TestrayBuild> {
 
 		if (filterbyFailures) {
 			fieldNames = TestrayCaseResult.TESTRAY_REPORT_FIELD_NAMES;
-
 			pageSize = 50;
 
 			sb.append(" ");
