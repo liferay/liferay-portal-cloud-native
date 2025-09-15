@@ -191,7 +191,7 @@ public class AgentPortalK8sConfigMapModifierTest {
 			serviceId, StringPool.DASH, TestPropsValues.COMPANY_WEB_ID,
 			"-lxc-ext-init-metadata");
 
-		PortalK8sConfigMapModifier.Result firstResult =
+		PortalK8sConfigMapModifier.Result result =
 			_portalK8sConfigMapModifier.modifyConfigMap(
 				configMapModel -> {
 					Map<String, String> data = configMapModel.data();
@@ -217,9 +217,9 @@ public class AgentPortalK8sConfigMapModifierTest {
 				configMapName);
 
 		Assert.assertEquals(
-			PortalK8sConfigMapModifier.Result.BUFFERED, firstResult);
+			PortalK8sConfigMapModifier.Result.BUFFERED, result);
 
-		PortalK8sConfigMapModifier.Result secondResult =
+		result =
 			_portalK8sConfigMapModifier.modifyConfigMap(
 				configMapModel -> {
 					Map<String, String> data = configMapModel.data();
@@ -245,7 +245,7 @@ public class AgentPortalK8sConfigMapModifierTest {
 				configMapName);
 
 		Assert.assertEquals(
-			PortalK8sConfigMapModifier.Result.BUFFERED, secondResult);
+			PortalK8sConfigMapModifier.Result.BUFFERED, result);
 
 		ConfigMap configMap = _kubernetesMockClient.configMaps(
 		).withName(
