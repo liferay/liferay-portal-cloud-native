@@ -1792,7 +1792,7 @@ public class DefaultObjectEntryManagerImpl
 			FeatureFlagManagerUtil.isEnabled("LPD-53981")) {
 
 			_objectEntryService.moveObjectEntryToTrash(
-				dtoConverterContext.getUserId(), serviceBuilderObjectEntry,
+				serviceBuilderObjectEntry,
 				ServiceContextUtil.createServiceContext(
 					serviceBuilderObjectEntry.getObjectEntryId()));
 		}
