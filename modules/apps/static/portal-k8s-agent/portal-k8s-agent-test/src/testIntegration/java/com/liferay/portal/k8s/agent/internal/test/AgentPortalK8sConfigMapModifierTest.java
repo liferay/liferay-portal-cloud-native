@@ -184,7 +184,7 @@ public class AgentPortalK8sConfigMapModifierTest {
 	}
 
 	@Test
-	public void testBufferedUpdatesFast() throws Exception {
+	public void testFlushModifyConfigMapFast() throws Exception {
 		String serviceId = RandomTestUtil.randomString();
 
 		String configMapName = StringBundler.concat(
@@ -265,7 +265,7 @@ public class AgentPortalK8sConfigMapModifierTest {
 	}
 
 	@Test
-	public void testBufferedUpdatesSlow() throws Exception {
+	public void testFlushModifyConfigMapSlow() throws Exception {
 		String serviceId = RandomTestUtil.randomString();
 		String randomString = RandomTestUtil.randomString();
 
