@@ -179,10 +179,10 @@ public class AgentPortalK8sConfigMapModifier
 			return result;
 		}
 
-		_configMapBufferedUpdateMap.merge(
+		_configMapModelConsumers.merge(
 			configMapName, configMapModelConsumer, Consumer::andThen);
 
-		_scheduleConfigMapUpdate(configMapName);
+		_scheduleModifyConfigMap(configMapName);
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
@@ -198,13 +198,13 @@ public class AgentPortalK8sConfigMapModifier
 			_log.info("Deactivating K8s agent");
 		}
 
-		if (!_configMapBufferedUpdateMap.isEmpty()) {
+		if (!_configMapModelConsumers.isEmpty()) {
 			if (_log.isInfoEnabled()) {
 				_log.info("Flushing all pending config map updates");
 			}
 
-			for (String configMapName : _configMapBufferedUpdateMap.keySet()) {
-				_flushBufferedUpdates(configMapName);
+			for (String configMapName : _configMapModelConsumers.keySet()) {
+				_flushModifyConfigMap(configMapName);
 			}
 		}
 
@@ -290,12 +290,12 @@ public class AgentPortalK8sConfigMapModifier
 		}
 	}
 
-	private Result _flushBufferedUpdates(String configMapName) {
-		Consumer<ConfigMapModel> bufferedConsumer =
-			_configMapBufferedUpdateMap.remove(configMapName);
+	private Result _flushModifyConfigMap(String configMapName) {
+		Consumer<ConfigMapModel> configMapModelConsumer =
+			_configMapModelConsumers.remove(configMapName);
 
-		if (bufferedConsumer == null) {
-			_scheduledUpdatesMap.remove(configMapName);
+		if (configMapModelConsumer == null) {
+			_futures.remove(configMapName);
 
 			return Result.UNCHANGED;
 		}
@@ -305,9 +305,9 @@ public class AgentPortalK8sConfigMapModifier
 				"Quiet period ended. Flushing changes for " + configMapName);
 		}
 
-		Result result = _modifyConfigMap(bufferedConsumer, configMapName);
+		Result result = _modifyConfigMap(configMapModelConsumer, configMapName);
 
-		_scheduledUpdatesMap.remove(configMapName);
+		_futures.remove(configMapName);
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
@@ -776,21 +776,20 @@ public class AgentPortalK8sConfigMapModifier
 		}
 	}
 
-	private Future<Result> _scheduleConfigMapUpdate(String configMapName) {
+	private Future<Result> _scheduleModifyConfigMap(String configMapName) {
 		_lock.lock();
 
 		try {
-			Future<Result> scheduledUpdate = _scheduledUpdatesMap.remove(
-				configMapName);
+			Future<Result> future = _futures.remove(configMapName);
 
-			if (scheduledUpdate != null) {
-				scheduledUpdate.cancel(false);
+			if (future != null) {
+				future.cancel(false);
 			}
 
-			scheduledUpdate = _scheduledExecutorService.schedule(
+			future = _scheduledExecutorService.schedule(
 				() -> {
 					try {
-						return _flushBufferedUpdates(configMapName);
+						return _flushModifyConfigMap(configMapName);
 					}
 					catch (Exception exception) {
 						_log.error(
@@ -804,9 +803,9 @@ public class AgentPortalK8sConfigMapModifier
 				_portalK8sAgentConfiguration.debounceDelayMillis(),
 				TimeUnit.MILLISECONDS);
 
-			_scheduledUpdatesMap.put(configMapName, scheduledUpdate);
+			_futures.put(configMapName, future);
 
-			return scheduledUpdate;
+			return future;
 		}
 		finally {
 			_lock.unlock();
@@ -1055,14 +1054,14 @@ public class AgentPortalK8sConfigMapModifier
 	private final ClusterExecutor _clusterExecutor;
 	private final ClusterMasterExecutor _clusterMasterExecutor;
 	private final Map<String, Consumer<ConfigMapModel>>
-		_configMapBufferedUpdateMap = new ConcurrentHashMap<>();
+		_configMapModelConsumers = new ConcurrentHashMap<>();
 	private final ConfigurationAdmin _configurationAdmin;
 	private final KubernetesClient _kubernetesClient;
 	private final PortalK8sAgentConfiguration _portalK8sAgentConfiguration;
 	private final List<PortalK8sConfigurationPropertiesMutator>
 		_portalK8sConfigurationPropertiesMutators;
 	private final ScheduledExecutorService _scheduledExecutorService;
-	private final Map<String, Future<Result>> _scheduledUpdatesMap =
+	private final Map<String, Future<Result>> _futures =
 		new ConcurrentHashMap<>();
 	private final Lock _lock = new ReentrantLock();
 	private final SharedIndexInformer<ConfigMap> _sharedIndexInformer;
