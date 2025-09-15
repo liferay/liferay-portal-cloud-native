@@ -1116,9 +1116,11 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			return Collections.emptyMap();
 		}
 
+		Map<Layout, Layout> draftLayouts = new HashMap<>();
+
 		long[] plids = new long[layouts.size()];
 
-		Map<Long, Layout> plidMap = new HashMap<>();
+		Map<Long, Layout> layoutsMap = new HashMap<>();
 
 		for (int i = 0; i < layouts.size(); i++) {
 			Layout layout = layouts.get(i);
@@ -1127,21 +1129,19 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 			plids[i] = plid;
 
-			plidMap.put(plid, layout);
+			layoutsMap.put(plid, layout);
 		}
-
-		Map<Layout, Layout> draftLayoutMap = new HashMap<>();
 
 		for (Layout draftLayout :
 				layoutPersistence.findByC_C(
 					_classNameLocalService.getClassNameId(Layout.class),
 					plids)) {
 
-			draftLayoutMap.put(
-				plidMap.get(draftLayout.getClassPK()), draftLayout);
+			draftLayouts.put(
+				layoutsMap.get(draftLayout.getClassPK()), draftLayout);
 		}
 
-		return draftLayoutMap;
+		return draftLayouts;
 	}
 
 	@Override

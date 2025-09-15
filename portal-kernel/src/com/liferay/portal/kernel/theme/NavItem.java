@@ -59,7 +59,7 @@ public class NavItem implements Serializable {
 			LayoutLocalServiceUtil.getLayoutChildLayouts(parentLayouts);
 
 		for (List<Layout> childLayouts : layoutChildLayouts.values()) {
-			Map<Layout, Layout> draftChildLayouts =
+			Map<Layout, Layout> draftLayouts =
 				LayoutLocalServiceUtil.fetchDraftLayouts(childLayouts);
 
 			Iterator<Layout> iterator = childLayouts.iterator();
@@ -68,7 +68,7 @@ public class NavItem implements Serializable {
 				Layout childLayout = iterator.next();
 
 				if (_isContentLayoutDraft(
-						childLayout, draftChildLayouts.get(childLayout)) ||
+						childLayout, draftLayouts.get(childLayout)) ||
 					!_isLayoutRevisionDisplayable(childLayout) ||
 					childLayout.isHidden() ||
 					!LayoutPermissionUtil.contains(
@@ -82,7 +82,7 @@ public class NavItem implements Serializable {
 
 		List<NavItem> navItems = new ArrayList<>(parentLayouts.size());
 
-		Map<Layout, Layout> draftParentLayouts =
+		Map<Layout, Layout> draftLayouts =
 			LayoutLocalServiceUtil.fetchDraftLayouts(parentLayouts);
 
 		for (Layout parentLayout : parentLayouts) {
@@ -90,7 +90,7 @@ public class NavItem implements Serializable {
 				parentLayout.getPlid());
 
 			if (_isContentLayoutDraft(
-					parentLayout, draftParentLayouts.get(parentLayout)) ||
+					parentLayout, draftLayouts.get(parentLayout)) ||
 				!_isLayoutRevisionDisplayable(parentLayout)) {
 
 				continue;
