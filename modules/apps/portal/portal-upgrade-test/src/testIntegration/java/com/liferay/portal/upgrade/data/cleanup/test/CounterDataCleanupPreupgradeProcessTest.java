@@ -231,7 +231,7 @@ public class CounterDataCleanupPreupgradeProcessTest
 	}
 
 	@Test
-	public void testUpgradeSpecificCounterNotMatchingAnyTable()
+	public void testUpgradeSpecificCounterNotMatchingAnyTables()
 		throws Exception {
 
 		String counterName =
