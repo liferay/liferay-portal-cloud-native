@@ -353,11 +353,6 @@ public class FragmentEntryLocalServiceImpl
 	}
 
 	@Override
-	public FragmentEntry fetchFragmentEntry(long fragmentEntryId) {
-		return fragmentEntryPersistence.fetchByPrimaryKey(fragmentEntryId);
-	}
-
-	@Override
 	public FragmentEntry fetchFragmentEntry(
 		long groupId, String fragmentEntryKey) {
 
