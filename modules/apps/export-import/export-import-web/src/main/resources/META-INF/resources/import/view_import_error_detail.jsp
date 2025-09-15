@@ -9,7 +9,6 @@
 
 <%
 String backURL = String.valueOf(renderResponse.createRenderURL());
-String errorId = ParamUtil.getString(request, "errorId");
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(ParamUtil.getString(request, "backURL", backURL));
@@ -21,7 +20,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "error-details"));
 	module="{ViewImportErrorDetail} from exportimport-web"
 	props='<%=
 		HashMapBuilder.<String, Object>put(
-			"apiURL", importErrorsDisplayContext.getReportEntryAPIURL(errorId)
+			"apiURL", importErrorsDisplayContext.getReportEntryAPIURL(ParamUtil.getString(request, "errorId"))
 		).put(
 			"backURL", portletDisplay.getURLBack()
 		).build()
