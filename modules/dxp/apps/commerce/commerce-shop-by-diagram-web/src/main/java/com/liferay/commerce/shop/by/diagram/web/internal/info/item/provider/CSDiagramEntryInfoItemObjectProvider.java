@@ -118,7 +118,7 @@ public class CSDiagramEntryInfoItemObjectProvider
 		if (csDiagramEntry == null) {
 			throw new NoSuchInfoItemException(
 				StringBundler.concat(
-					"No commerce shop by diagram entry found with external, ",
+					"No commerce shop by diagram entry found with external ",
 					"reference code ",
 					ercInfoItemIdentifier.getExternalReferenceCode(),
 					" and company ID ", group.getCompanyId()));
