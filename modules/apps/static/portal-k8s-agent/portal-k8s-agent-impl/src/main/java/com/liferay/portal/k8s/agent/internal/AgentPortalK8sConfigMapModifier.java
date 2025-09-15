@@ -777,7 +777,7 @@ public class AgentPortalK8sConfigMapModifier
 	}
 
 	private Future<Result> _scheduleConfigMapUpdate(String configMapName) {
-		_schedulingConfigMapUpdateLock.lock();
+		_lock.lock();
 
 		try {
 			Future<Result> scheduledUpdate = _scheduledUpdatesMap.remove(
@@ -809,7 +809,7 @@ public class AgentPortalK8sConfigMapModifier
 			return scheduledUpdate;
 		}
 		finally {
-			_schedulingConfigMapUpdateLock.unlock();
+			_lock.unlock();
 		}
 	}
 
@@ -1064,7 +1064,7 @@ public class AgentPortalK8sConfigMapModifier
 	private final ScheduledExecutorService _scheduledExecutorService;
 	private final Map<String, Future<Result>> _scheduledUpdatesMap =
 		new ConcurrentHashMap<>();
-	private final Lock _schedulingConfigMapUpdateLock = new ReentrantLock();
+	private final Lock _lock = new ReentrantLock();
 	private final SharedIndexInformer<ConfigMap> _sharedIndexInformer;
 
 }
