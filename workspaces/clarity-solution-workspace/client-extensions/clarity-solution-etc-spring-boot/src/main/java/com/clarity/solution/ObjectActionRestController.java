@@ -43,12 +43,12 @@ public class ObjectActionRestController extends BaseRestController {
 			"properties"
 		);
 
-		String accountName = propertiesJSONObject.getString("businessName");
+		String businessName = propertiesJSONObject.getString("businessName");
 		String accountEmailAddress = propertiesJSONObject.getString(
 			"applicantEmailAddress");
 
 		String standardAccountName = StringUtils.replace(
-			StringUtil.toUpperCase(accountName), " ", "_");
+			StringUtil.toUpperCase(businessName), " ", "_");
 
 		String accountExternalReferenceCode = "ACCOUNT_" + standardAccountName;
 
@@ -60,7 +60,7 @@ public class ObjectActionRestController extends BaseRestController {
 			).put(
 				"externalReferenceCode", accountExternalReferenceCode
 			).put(
-				"name", accountName
+				"name", businessName
 			).put(
 				"type", "business"
 			).toString(),
