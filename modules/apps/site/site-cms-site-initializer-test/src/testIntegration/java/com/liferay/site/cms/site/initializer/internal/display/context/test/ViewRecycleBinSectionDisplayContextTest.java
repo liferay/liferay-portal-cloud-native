@@ -64,48 +64,48 @@ public class ViewRecycleBinSectionDisplayContextTest
 		Object displayContext = getSectionDisplayContext(
 			getMockHttpServletRequest());
 
-		Group defaultDepotGroup = groupLocalService.getGroup(
+		Group defaultGroup = groupLocalService.getGroup(
 			group.getCompanyId(), "Default");
 
 		Assert.assertNull(
-			defaultDepotGroup.getTypeSettingsProperty("trashEnabled"));
+			defaultGroup.getTypeSettingsProperty("trashEnabled"));
 
-		String filter = _getCMSSectionFilterString(displayContext);
+		String filterString = _getCMSSectionFilterString(displayContext);
 
 		Assert.assertTrue(
-			filter.contains(
+			filterString.contains(
 				StringBundler.concat(
 					"status eq ", WorkflowConstants.STATUS_IN_TRASH,
 					" and groupIds/any(g:g in (",
-					defaultDepotGroup.getGroupId(), "))")));
+					defaultGroup.getGroupId(), "))")));
 
 		_setTrashEnabledGroupProperty(
-			defaultDepotGroup, Boolean.FALSE.toString());
+			defaultGroup, Boolean.FALSE.toString());
 
 		Assert.assertFalse(
 			GetterUtil.getBoolean(
-				defaultDepotGroup.getTypeSettingsProperty("trashEnabled")));
+				defaultGroup.getTypeSettingsProperty("trashEnabled")));
 
-		filter = _getCMSSectionFilterString(displayContext);
+		filterString = _getCMSSectionFilterString(displayContext);
 
 		Assert.assertTrue(
-			filter.contains("status eq " + WorkflowConstants.STATUS_ANY));
+			filterString.contains("status eq " + WorkflowConstants.STATUS_ANY));
 
 		_setTrashEnabledGroupProperty(
-			defaultDepotGroup, Boolean.TRUE.toString());
+			defaultGroup, Boolean.TRUE.toString());
 
 		Assert.assertTrue(
 			GetterUtil.getBoolean(
-				defaultDepotGroup.getTypeSettingsProperty("trashEnabled")));
+				defaultGroup.getTypeSettingsProperty("trashEnabled")));
 
-		filter = _getCMSSectionFilterString(displayContext);
+		filterString = _getCMSSectionFilterString(displayContext);
 
 		Assert.assertTrue(
-			filter.contains(
+			filterString.contains(
 				StringBundler.concat(
 					"status eq ", WorkflowConstants.STATUS_IN_TRASH,
 					" and groupIds/any(g:g in (",
-					defaultDepotGroup.getGroupId(), "))")));
+					defaultGroup.getGroupId(), "))")));
 
 		DepotEntry depotEntry = addDepotEntry(
 			RandomTestUtil.randomString(), DepotConstants.TYPE_SPACE);
@@ -119,17 +119,17 @@ public class ViewRecycleBinSectionDisplayContextTest
 				GetterUtil.getBoolean(
 					depotGroup.getTypeSettingsProperty("trashEnabled")));
 
-			filter = _getCMSSectionFilterString(displayContext);
+			filterString = _getCMSSectionFilterString(displayContext);
 
 			Assert.assertTrue(
-				filter.contains(
+				filterString.contains(
 					StringBundler.concat(
 						"status eq ", WorkflowConstants.STATUS_IN_TRASH,
 						" and groupIds/any(g:g in (",
-						defaultDepotGroup.getGroupId(), ",",
+						defaultGroup.getGroupId(), ",",
 						depotGroup.getGroupId(), "))")));
 
-			_setTrashEnabledGroupProperty(defaultDepotGroup, null);
+			_setTrashEnabledGroupProperty(defaultGroup, null);
 		}
 		finally {
 			_depotEntryLocalService.deleteDepotEntry(depotEntry);
