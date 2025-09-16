@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * @author dnebing
+ * @author David Nebinger
  * @author Mumen Tayyem
  */
 @RequestMapping("/object/action/account")

@@ -23,7 +23,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 /**
  * @author Brian Wing Shun Chan
- * @author dnebing
+ * @author David Nebinger
  * @author Mumen Tayyem
  */
 @RequestMapping("/workflow/action/application")
