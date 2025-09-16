@@ -30,6 +30,8 @@ import com.liferay.portal.security.script.management.configuration.helper.Script
 import com.liferay.portal.test.rule.FeatureFlag;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import java.util.Arrays;
 
 import org.junit.Assert;
@@ -63,7 +65,6 @@ public class ObjectDefinitionsActionsDisplayContextTest {
 
 		ObjectActionTrigger objectActionTrigger1 = Mockito.mock(
 			ObjectActionTrigger.class);
-
 		ObjectActionTrigger objectActionTrigger2 = Mockito.mock(
 			ObjectActionTrigger.class);
 
@@ -95,7 +96,7 @@ public class ObjectDefinitionsActionsDisplayContextTest {
 		ObjectDefinitionsActionsDisplayContext
 			objectDefinitionsActionsDisplayContext =
 				new ObjectDefinitionsActionsDisplayContext(
-					_getMockHttpServletRequest(), new JSONFactoryImpl(),
+					_getHttpServletRequest(), new JSONFactoryImpl(),
 					Mockito.mock(NotificationTemplateLocalService.class),
 					Mockito.mock(ObjectActionExecutorRegistry.class),
 					objectActionTriggerRegistry,
@@ -136,26 +137,23 @@ public class ObjectDefinitionsActionsDisplayContextTest {
 		Assert.assertEquals(
 			ObjectActionTriggerConstants.KEY_ON_AFTER_ADD,
 			JSONUtil.getValue(jsonArray, "JSONObject/0", "Object/value"));
-
 		Assert.assertNull(
 			JSONUtil.getValue(jsonArray, "JSONObject/1", "Object/value"));
 	}
 
-	private MockHttpServletRequest _getMockHttpServletRequest() {
-		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
+	private HttpServletRequest _getHttpServletRequest() {
+		HttpServletRequest httpServletRequest = new MockHttpServletRequest();
+
+		httpServletRequest.setAttribute(
+			ObjectWebKeys.OBJECT_DEFINITION, _objectDefinition);
 
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setLocale(LocaleUtil.US);
 
-		mockHttpServletRequest.setAttribute(
-			WebKeys.THEME_DISPLAY, themeDisplay);
+		httpServletRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
 
-		mockHttpServletRequest.setAttribute(
-			ObjectWebKeys.OBJECT_DEFINITION, _objectDefinition);
-
-		return mockHttpServletRequest;
+		return httpServletRequest;
 	}
 
 	private void _setUpLanguageUtil() {
