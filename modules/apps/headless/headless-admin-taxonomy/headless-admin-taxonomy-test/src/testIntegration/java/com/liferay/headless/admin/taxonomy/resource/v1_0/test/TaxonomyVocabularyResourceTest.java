@@ -349,11 +349,10 @@ public class TaxonomyVocabularyResourceTest
 				RoleConstants.TYPE_REGULAR, null, null);
 		}
 
-		testGroup = GroupTestUtil.addGroup(
+		irrelevantGroup = GroupTestUtil.addGroup(
 			testDepotEntryGroup.getCompanyId(), TestPropsValues.getUserId(),
 			GroupConstants.DEFAULT_PARENT_GROUP_ID, GroupConstants.CMS);
-
-		irrelevantGroup = GroupTestUtil.addGroup(
+		testGroup = GroupTestUtil.addGroup(
 			testDepotEntryGroup.getCompanyId(), TestPropsValues.getUserId(),
 			GroupConstants.DEFAULT_PARENT_GROUP_ID, GroupConstants.CMS);
 	}
