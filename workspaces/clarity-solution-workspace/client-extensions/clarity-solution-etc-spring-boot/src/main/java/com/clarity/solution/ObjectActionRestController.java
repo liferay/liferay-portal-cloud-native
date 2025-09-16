@@ -7,7 +7,6 @@ package com.clarity.solution;
 
 import com.liferay.client.extension.util.spring.boot3.BaseRestController;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.util.StringUtil;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -43,22 +42,21 @@ public class ObjectActionRestController extends BaseRestController {
 			"properties"
 		);
 
-		String businessName = propertiesJSONObject.getString("businessName");
 		String accountEmailAddress = propertiesJSONObject.getString(
 			"applicantEmailAddress");
 
-		String standardAccountName = StringUtils.replace(
-			StringUtil.toUpperCase(businessName), " ", "_");
+		String businessName = propertiesJSONObject.getString("businessName");
 
-		String accountExternalReferenceCode = "ACCOUNT_" + standardAccountName;
+		String externalReferenceCode = "ACCOUNT_";
 
-		String authorizationHeader = "Bearer " + jwt.getTokenValue();
+		externalReferenceCode += StringUtils.replace(
+			StringUtils.upperCase(businessName), " ", "_");
 
 		post(
-			authorizationHeader,
+			"Bearer " + jwt.getTokenValue(),
 			new JSONObject(
 			).put(
-				"externalReferenceCode", accountExternalReferenceCode
+				"externalReferenceCode", externalReferenceCode
 			).put(
 				"name", businessName
 			).put(
@@ -70,24 +68,23 @@ public class ObjectActionRestController extends BaseRestController {
 			).toUri());
 
 		post(
-			authorizationHeader, "",
+			"Bearer " + jwt.getTokenValue(), "",
 			UriComponentsBuilder.fromUriString(
 				StringBundler.concat(
 					"/o/headless-admin-user/v1.0/accounts",
-					"/by-external-reference-code/",
-					accountExternalReferenceCode,
+					"/by-external-reference-code/", externalReferenceCode,
 					"/user-accounts/by-email-address/", accountEmailAddress)
 			).build(
 			).toUri());
 
-		long adminAccountRoleId = new JSONObject(
+		long id = new JSONObject(
 			get(
-				authorizationHeader,
+				"Bearer " + jwt.getTokenValue(),
 				UriComponentsBuilder.fromUriString(
 					StringBundler.concat(
 						"/o/headless-admin-user/v1.0/accounts",
-						"/by-external-reference-code/",
-						accountExternalReferenceCode, "/account-roles",
+						"/by-external-reference-code/", externalReferenceCode,
+						"/account-roles",
 						"?filter=name eq 'Account Administrator'")
 				).build(
 				).toUri())
@@ -100,13 +97,12 @@ public class ObjectActionRestController extends BaseRestController {
 		);
 
 		post(
-			authorizationHeader, "",
+			"Bearer " + jwt.getTokenValue(), "",
 			UriComponentsBuilder.fromUriString(
 				StringBundler.concat(
 					"/o/headless-admin-user/v1.0/accounts",
-					"/by-external-reference-code/",
-					accountExternalReferenceCode, "/account-roles/",
-					adminAccountRoleId, "/user-accounts/by-email-address/",
+					"/by-external-reference-code/", externalReferenceCode,
+					"/account-roles/", id, "/user-accounts/by-email-address/",
 					accountEmailAddress)
 			).build(
 			).toUri());
