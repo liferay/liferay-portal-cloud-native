@@ -368,8 +368,8 @@ public class KeywordResourceTest extends BaseKeywordResourceTestCase {
 	public void testGetSiteKeywordsPage() throws Exception {
 		super.testGetSiteKeywordsPage();
 
-		Group originalTestGroup = testGroup;
 		Group originalIrrelevantGroup = irrelevantGroup;
+		Group originalTestGroup = testGroup;
 
 		_addCMSGroup();
 
@@ -379,8 +379,8 @@ public class KeywordResourceTest extends BaseKeywordResourceTestCase {
 
 		super.testGetSiteKeywordsPage();
 
-		testGroup = originalTestGroup;
 		irrelevantGroup = originalIrrelevantGroup;
+		testGroup = originalTestGroup;
 	}
 
 	@Override

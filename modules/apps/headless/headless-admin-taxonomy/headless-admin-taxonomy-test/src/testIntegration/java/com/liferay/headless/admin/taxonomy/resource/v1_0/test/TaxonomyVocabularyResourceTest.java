@@ -218,8 +218,8 @@ public class TaxonomyVocabularyResourceTest
 
 		_testGetSiteTaxonomyVocabulariesPage();
 
-		Group originalTestGroup = testGroup;
 		Group originalIrrelevantGroup = irrelevantGroup;
+		Group originalTestGroup = testGroup;
 
 		_addCMSGroup();
 
@@ -227,8 +227,8 @@ public class TaxonomyVocabularyResourceTest
 
 		_testGetSiteTaxonomyVocabulariesPage();
 
-		testGroup = originalTestGroup;
 		irrelevantGroup = originalIrrelevantGroup;
+		testGroup = originalTestGroup;
 	}
 
 	@Override
