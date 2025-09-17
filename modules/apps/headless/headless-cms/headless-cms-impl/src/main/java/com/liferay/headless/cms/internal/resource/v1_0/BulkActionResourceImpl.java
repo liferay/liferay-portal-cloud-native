@@ -293,72 +293,6 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 		return bulkActionTask;
 	}
 
-	private Map<String, List<BulkActionItem>> _getDeleteBulkActionItemsMap(
-			BulkActionItem[] bulkActionItems, Filter filter, String search,
-			boolean selectAll)
-		throws Exception {
-
-		Map<String, List<BulkActionItem>> bulkActionItemsMap = new HashMap<>();
-
-		if (selectAll && ArrayUtil.isEmpty(bulkActionItems)) {
-			if (filter == null) {
-				throw new ValidationException("Filter is null");
-			}
-
-			SearchResultResource searchResultResource =
-				_searchResultResourceFactory.create(
-				).httpServletRequest(
-					contextHttpServletRequest
-				).httpServletResponse(
-					contextHttpServletResponse
-				).preferredLocale(
-					contextAcceptLanguage.getPreferredLocale()
-				).uriInfo(
-					contextUriInfo
-				).user(
-					contextUser
-				).build();
-
-			Page<SearchResult> searchPage = searchResultResource.getSearchPage(
-				null, true, null, null, search, filter,
-				Pagination.of(QueryUtil.ALL_POS, QueryUtil.ALL_POS), null);
-
-			for (SearchResult searchResult : searchPage.getItems()) {
-				JSONObject jsonObject = _jsonFactory.createJSONObject(
-					String.valueOf(searchResult.getEmbedded()));
-
-				bulkActionItemsMap.computeIfAbsent(
-					searchResult.getEntryClassName(), className -> new ArrayList<>()
-				).add(
-					new BulkActionItem() {
-						{
-							setClassExternalReferenceCode(
-								() -> jsonObject.getString(
-									"externalReferenceCode"));
-							setClassPK(() -> jsonObject.getLong("id"));
-						}
-					}
-				);
-			}
-
-			return bulkActionItemsMap;
-		}
-
-		if (ArrayUtil.isEmpty(bulkActionItems)) {
-			return bulkActionItemsMap;
-		}
-
-		for (BulkActionItem bulkActionItem : bulkActionItems) {
-			bulkActionItemsMap.computeIfAbsent(
-				bulkActionItem.getClassName(), className -> new ArrayList<>()
-			).add(
-				bulkActionItem
-			);
-		}
-
-		return bulkActionItemsMap;
-	}
-
 	private long _getBulkActionTaskItemObjectDefinitionId() throws Exception {
 		if (_bulkActionTaskItemObjectDefinition != null) {
 			return _bulkActionTaskItemObjectDefinition.getObjectDefinitionId();
@@ -442,11 +376,79 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 
 			for (long primaryKey : primaryKeys) {
 				bulkActionItemsMap.computeIfAbsent(
-					objectDefinition.getClassName(), className -> new ArrayList<>()
+					objectDefinition.getClassName(),
+					className -> new ArrayList<>()
 				).add(
 					new BulkActionItem() {
 						{
 							setClassPK(() -> primaryKey);
+						}
+					}
+				);
+			}
+
+			return bulkActionItemsMap;
+		}
+
+		if (ArrayUtil.isEmpty(bulkActionItems)) {
+			return bulkActionItemsMap;
+		}
+
+		for (BulkActionItem bulkActionItem : bulkActionItems) {
+			bulkActionItemsMap.computeIfAbsent(
+				bulkActionItem.getClassName(), className -> new ArrayList<>()
+			).add(
+				bulkActionItem
+			);
+		}
+
+		return bulkActionItemsMap;
+	}
+
+	private Map<String, List<BulkActionItem>> _getDeleteBulkActionItemsMap(
+			BulkActionItem[] bulkActionItems, Filter filter, String search,
+			boolean selectAll)
+		throws Exception {
+
+		Map<String, List<BulkActionItem>> bulkActionItemsMap = new HashMap<>();
+
+		if (selectAll && ArrayUtil.isEmpty(bulkActionItems)) {
+			if (filter == null) {
+				throw new ValidationException("Filter is null");
+			}
+
+			SearchResultResource searchResultResource =
+				_searchResultResourceFactory.create(
+				).httpServletRequest(
+					contextHttpServletRequest
+				).httpServletResponse(
+					contextHttpServletResponse
+				).preferredLocale(
+					contextAcceptLanguage.getPreferredLocale()
+				).uriInfo(
+					contextUriInfo
+				).user(
+					contextUser
+				).build();
+
+			Page<SearchResult> searchPage = searchResultResource.getSearchPage(
+				null, true, null, null, search, filter,
+				Pagination.of(QueryUtil.ALL_POS, QueryUtil.ALL_POS), null);
+
+			for (SearchResult searchResult : searchPage.getItems()) {
+				JSONObject jsonObject = _jsonFactory.createJSONObject(
+					String.valueOf(searchResult.getEmbedded()));
+
+				bulkActionItemsMap.computeIfAbsent(
+					searchResult.getEntryClassName(),
+					className -> new ArrayList<>()
+				).add(
+					new BulkActionItem() {
+						{
+							setClassExternalReferenceCode(
+								() -> jsonObject.getString(
+									"externalReferenceCode"));
+							setClassPK(() -> jsonObject.getLong("id"));
 						}
 					}
 				);
