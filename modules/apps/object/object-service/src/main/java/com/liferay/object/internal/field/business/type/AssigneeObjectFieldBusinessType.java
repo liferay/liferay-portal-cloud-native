@@ -63,7 +63,7 @@ public class AssigneeObjectFieldBusinessType
 		return LanguageUtil.get(
 			ResourceBundleUtil.getModuleAndPortalResourceBundle(
 				locale, getClass()),
-			"assigns-the-entry-to-a-user-or-role");
+			"assign-the-entry-to-a-user-or-role");
 	}
 
 	@Override
