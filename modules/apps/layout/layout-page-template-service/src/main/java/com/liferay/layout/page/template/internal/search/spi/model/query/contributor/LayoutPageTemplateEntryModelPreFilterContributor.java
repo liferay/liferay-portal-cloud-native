@@ -43,8 +43,8 @@ public class LayoutPageTemplateEntryModelPreFilterContributor
 		int[] statuses = GetterUtil.getIntegerValues(
 			searchContext.getAttribute(Field.STATUS));
 
-		if (ArrayUtil.contains(statuses, WorkflowConstants.STATUS_ANY) ||
-			ArrayUtil.isEmpty(statuses)) {
+		if (ArrayUtil.isEmpty(statuses) ||
+			ArrayUtil.contains(statuses, WorkflowConstants.STATUS_ANY)) {
 
 			return;
 		}
