@@ -165,7 +165,7 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 				(sorts.length > 1)) {
 
 				throw new BadRequestException(
-					"Only the 'name' field is sortable");
+					"Only the field \"name\" is sortable");
 			}
 		}
 
