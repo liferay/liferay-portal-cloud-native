@@ -2096,7 +2096,7 @@ public class ObjectDefinitionLocalServiceImpl
 			).build());
 	}
 
-	private int _countObjectDefinitionByClassName(String className) {
+	private int _getObjectDefinitionsCountByClassName(String className) {
 		AtomicInteger atomicInteger = new AtomicInteger(0);
 
 		_companyLocalService.forEachCompanyId(
@@ -2185,7 +2185,7 @@ public class ObjectDefinitionLocalServiceImpl
 		}
 
 		if (Validator.isNotNull(className)) {
-			int count = _countObjectDefinitionByClassName(className);
+			int count = _getObjectDefinitionsCountByClassName(className);
 
 			if (count == 0) {
 				return className;
@@ -2207,7 +2207,7 @@ public class ObjectDefinitionLocalServiceImpl
 			sb.append(StringUtil.toUpperCase(StringUtil.randomId(1)));
 			sb.append(threadLocalRandom.nextInt(10));
 
-			int count = _countObjectDefinitionByClassName(sb.toString());
+			int count = _getObjectDefinitionsCountByClassName(sb.toString());
 
 			if (count == 0) {
 				return sb.toString();
