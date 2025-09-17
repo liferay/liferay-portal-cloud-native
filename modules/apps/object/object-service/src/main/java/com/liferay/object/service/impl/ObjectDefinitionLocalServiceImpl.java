@@ -2391,7 +2391,6 @@ public class ObjectDefinitionLocalServiceImpl
 		_validateFriendlyURLSeparator(objectDefinition);
 
 		objectDefinition.setActive(true);
-
 		objectDefinition.setStatus(WorkflowConstants.STATUS_APPROVED);
 
 		objectDefinition = objectDefinitionPersistence.update(objectDefinition);
