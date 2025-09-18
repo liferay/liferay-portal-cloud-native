@@ -260,8 +260,8 @@ public abstract class BatchTestClassGroup extends BaseTestClassGroup {
 			}
 			catch (IOException | TimeoutException exception) {
 				System.out.println(
-					"Unable to sync cached build reports for " + path);
-				System.out.println(exception.getMessage());
+					"Unable to sync cached build reports for " + path + ":" +
+						exception.getMessage());
 			}
 		}
 
