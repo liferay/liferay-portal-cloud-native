@@ -112,7 +112,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 
 <#if freeMarkerTool.isVersionCompatible(configYAML, 12)>
 	import com.liferay.portal.kernel.util.PropsValues;
-
 <#else>
 	import com.liferay.portal.util.PropsValues;
 </#if>
