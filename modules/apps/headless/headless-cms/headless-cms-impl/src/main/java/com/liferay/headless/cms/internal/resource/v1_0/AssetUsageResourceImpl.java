@@ -150,7 +150,7 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 		}
 	}
 
-	private void _appendObjectEntryUsages(
+	private void _appendObjectEntryAssetUsages(
 			Long assetId, List<AssetUsage> assetUsages,
 			ObjectDefinition objectDefinition, String search)
 		throws Exception {
@@ -219,7 +219,7 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 
 		_appendLayoutUsages(
 			assetId, assetUsages, objectDefinition.getClassName(), search);
-		_appendObjectEntryUsages(
+		_appendObjectEntryAssetUsages(
 			assetId, assetUsages, objectDefinition, search);
 
 		return assetUsages;
