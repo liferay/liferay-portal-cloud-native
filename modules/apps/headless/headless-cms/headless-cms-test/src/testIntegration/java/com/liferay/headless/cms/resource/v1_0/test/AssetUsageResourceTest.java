@@ -155,7 +155,7 @@ public class AssetUsageResourceTest extends BaseAssetUsageResourceTestCase {
 					"L_FILES", _depotEntry.getGroupId(),
 					testCompany.getCompanyId());
 
-		_webContentObjectDefinition =
+		_basicWebContentObjectDefinition =
 			_objectDefinitionLocalService.
 				getObjectDefinitionByExternalReferenceCode(
 					"L_BASIC_WEB_CONTENT", testCompany.getCompanyId());
@@ -165,13 +165,13 @@ public class AssetUsageResourceTest extends BaseAssetUsageResourceTestCase {
 	@Test
 	public void testGetAssetUsagesAssetPage() throws Exception {
 		_addObjectRelationship(
-			_documentObjectDefinition, _webContentObjectDefinition);
+			_documentObjectDefinition, _basicWebContentObjectDefinition);
 
 		long assetId = testGetAssetUsagesAssetPage_getAssetId();
 
 		ObjectEntry objectEntry = _objectEntryLocalService.addObjectEntry(
 			_depotEntry.getGroupId(), TestPropsValues.getUserId(),
-			_webContentObjectDefinition.getObjectDefinitionId(),
+			_basicWebContentObjectDefinition.getObjectDefinitionId(),
 			_objectEntryFolder.getObjectEntryFolderId(), null,
 			HashMapBuilder.<String, Serializable>put(
 				"title", RandomTestUtil.randomString()
@@ -184,7 +184,7 @@ public class AssetUsageResourceTest extends BaseAssetUsageResourceTestCase {
 
 		assetUsage1.setName(() -> objectEntry.getTitleValue(_LANGUAGE_ID));
 		assetUsage1.setType(
-			() -> _webContentObjectDefinition.getLabel(_LANGUAGE_ID));
+			() -> _basicWebContentObjectDefinition.getLabel(_LANGUAGE_ID));
 
 		AssetUsage assetUsage2 = _addAssetLayoutUsage(
 			randomAssetUsage(), assetId,
@@ -393,6 +393,6 @@ public class AssetUsageResourceTest extends BaseAssetUsageResourceTestCase {
 
 	private ObjectField _relationshipObjectField;
 	private ServiceContext _serviceContext;
-	private ObjectDefinition _webContentObjectDefinition;
+	private ObjectDefinition _basicWebContentObjectDefinition;
 
 }
