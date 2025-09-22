@@ -117,7 +117,7 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 		return _entityModel;
 	}
 
-	private void _appendLayoutUsages(
+	private void _addLayoutUsages(
 			Long assetId, List<AssetUsage> assetUsages, String className,
 			String search)
 		throws Exception {
@@ -150,7 +150,7 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 		}
 	}
 
-	private void _appendObjectEntryAssetUsages(
+	private void _addObjectEntryAssetUsages(
 			Long assetId, List<AssetUsage> assetUsages,
 			ObjectDefinition objectDefinition, String search)
 		throws Exception {
@@ -217,9 +217,9 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 			_objectDefinitionLocalService.getObjectDefinition(
 				objectEntry.getObjectDefinitionId());
 
-		_appendLayoutUsages(
+		_addLayoutUsages(
 			assetId, assetUsages, objectDefinition.getClassName(), search);
-		_appendObjectEntryAssetUsages(
+		_addObjectEntryAssetUsages(
 			assetId, assetUsages, objectDefinition, search);
 
 		return assetUsages;
