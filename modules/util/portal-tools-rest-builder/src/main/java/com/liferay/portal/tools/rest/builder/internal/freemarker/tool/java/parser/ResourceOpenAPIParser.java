@@ -494,14 +494,15 @@ public class ResourceOpenAPIParser {
 	public static boolean isExternalReferenceCodeMethod(
 		String httpMethod, JavaMethodSignature javaMethodSignature) {
 
+		Set<String> validMethodNames = new HashSet<>();
+
+		validMethodNames.add(httpMethod + "ByExternalReferenceCode");
+
 		String parentSchemaName = GetterUtil.getString(
 			javaMethodSignature.getParentSchemaName());
 		String schemaName = GetterUtil.getString(
 			javaMethodSignature.getSchemaName());
 
-		Set<String> validMethodNames = new HashSet<>();
-
-		validMethodNames.add(httpMethod + "ByExternalReferenceCode");
 		validMethodNames.add(
 			StringBundler.concat(
 				httpMethod, parentSchemaName, "ByExternalReferenceCode",
