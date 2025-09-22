@@ -134,6 +134,10 @@ public class AssetUsageResourceTest extends BaseAssetUsageResourceTestCase {
 			_objectDefinitionLocalService.
 				getObjectDefinitionByExternalReferenceCode(
 					"L_BASIC_DOCUMENT", testCompany.getCompanyId());
+		_basicWebContentObjectDefinition =
+			_objectDefinitionLocalService.
+				getObjectDefinitionByExternalReferenceCode(
+					"L_BASIC_WEB_CONTENT", testCompany.getCompanyId());
 
 		_serviceContext = new ServiceContext() {
 			{
@@ -154,11 +158,6 @@ public class AssetUsageResourceTest extends BaseAssetUsageResourceTestCase {
 				getObjectEntryFolderByExternalReferenceCode(
 					"L_FILES", _depotEntry.getGroupId(),
 					testCompany.getCompanyId());
-
-		_basicWebContentObjectDefinition =
-			_objectDefinitionLocalService.
-				getObjectDefinitionByExternalReferenceCode(
-					"L_BASIC_WEB_CONTENT", testCompany.getCompanyId());
 	}
 
 	@Override
