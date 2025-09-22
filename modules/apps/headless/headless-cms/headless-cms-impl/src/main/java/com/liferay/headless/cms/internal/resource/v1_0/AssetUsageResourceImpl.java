@@ -135,18 +135,20 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 				continue;
 			}
 
-			AssetUsage assetUsage = new AssetUsage();
+			assetUsages.add(
+				new AssetUsage() {
+					{
+						setName(
+							() -> _getName(
+								layout.isDraftLayout(),
+								_localization.getLocalization(
+									(String)objects[2], contextUser.getLanguageId(),
+									true)));
+						setType(
+							() -> _getLayoutUsageTypeLabel((Integer)objects[1]));
 
-			assetUsage.setName(
-				() -> _getName(
-					layout.isDraftLayout(),
-					_localization.getLocalization(
-						(String)objects[2], contextUser.getLanguageId(),
-						true)));
-			assetUsage.setType(
-				() -> _getLayoutUsageTypeLabel((Integer)objects[1]));
-
-			assetUsages.add(assetUsage);
+					}
+				});
 		}
 	}
 
