@@ -40,7 +40,7 @@ public class BatchEngineExportTaskLocalServiceImpl
 		Map<String, Serializable> parameters, String taskItemDelegateName) {
 
 		BatchEngineExportTask batchEngineExportTask =
-			batchEngineExportTaskLocalService.createBatchEngineExportTask(
+			createBatchEngineExportTask(
 				counterLocalService.increment(
 					BatchEngineExportTask.class.getName()),
 				externalReferenceCode, companyId, userId, callbackURL,
@@ -50,6 +50,7 @@ public class BatchEngineExportTaskLocalServiceImpl
 		return batchEngineExportTaskPersistence.update(batchEngineExportTask);
 	}
 
+	@Override
 	public BatchEngineExportTask createBatchEngineExportTask(
 		long batchEngineExportTaskId, String externalReferenceCode,
 		long companyId, long userId, String callbackURL, String className,
