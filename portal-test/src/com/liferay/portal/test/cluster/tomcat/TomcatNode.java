@@ -71,7 +71,7 @@ import org.apache.catalina.startup.Bootstrap;
 public class TomcatNode {
 
 	public void destroy() throws IOException {
-		LogHolder.info("Destroying TomcatNode " + toString());
+		LogHolder.info("Destroying Tomcat node " + toString());
 
 		_destroyed = true;
 
@@ -122,7 +122,7 @@ public class TomcatNode {
 		ProcessChannel<String> processChannel = _processChannel;
 
 		if (processChannel == null) {
-			throw new IllegalStateException("TomcatNode is not running");
+			throw new IllegalStateException("Tomcat node is not running");
 		}
 
 		return processChannel.write(
@@ -132,10 +132,10 @@ public class TomcatNode {
 	public ProcessChannel<String> start(boolean loadHomePage) throws Exception {
 		if (_destroyed) {
 			throw new IllegalStateException(
-				"Unable to start destroyed TomcatNode " + toString());
+				"Unable to start destroyed Tomcat node " + toString());
 		}
 
-		LogHolder.info("Starting TomcatNode " + toString());
+		LogHolder.info("Starting Tomcat node " + toString());
 
 		ProcessConfig.Builder builder = new ProcessConfig.Builder();
 
@@ -211,8 +211,8 @@ public class TomcatNode {
 
 		if (loadHomePage) {
 
-			// Make sure the follow lambda is capturing local variable rather
-			// than this TomcatNode's instance field to ensure serializability.
+			// Make sure the follow lambda is capturing the local variable
+			// rather than the instance field to ensure serializability
 
 			int connectorPort = _connectorPort;
 
@@ -243,7 +243,7 @@ public class TomcatNode {
 			return;
 		}
 
-		LogHolder.info("Stopping TomcatNode " + toString());
+		LogHolder.info("Stopping Tomcat node " + toString());
 
 		syncExecute(
 			() -> {
