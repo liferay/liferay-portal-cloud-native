@@ -137,13 +137,12 @@ public class AssetUsageResourceTest extends BaseAssetUsageResourceTestCase {
 
 		_serviceContext = new ServiceContext() {
 			{
+				_setAttribute(
+					"friendlyUrlMap", new HashMap<String, String>());
 				setCompanyId(testGroup.getCompanyId());
 				setUserId(TestPropsValues.getUserId());
 			}
 		};
-
-		_serviceContext.setAttribute(
-			"friendlyUrlMap", new HashMap<String, String>());
 
 		_depotEntry = _depotEntryLocalService.addDepotEntry(
 			Collections.singletonMap(
