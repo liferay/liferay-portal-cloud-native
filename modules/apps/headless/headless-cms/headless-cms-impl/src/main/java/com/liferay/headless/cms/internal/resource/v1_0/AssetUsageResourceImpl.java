@@ -117,45 +117,46 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 		return _entityModel;
 	}
 
-	private void _addLayoutUsages(
-			Long assetId, List<AssetUsage> assetUsages, String className,
+	private List<AssetUsage> _getLayoutAssetUsages(
+			Long assetId, String className,
 			String search)
 		throws Exception {
 
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(contextUser);
 
-		for (Object[] objects :
-				_getLayoutClassedModelUsageObjectsList(
-					className, assetId, search)) {
+		return transform(
+			_getLayoutClassedModelUsageObjectsList(
+				className, assetId, search),
+			objects -> {
+				Layout layout = _layoutLocalService.getLayout((Long)objects[0]);
 
-			Layout layout = _layoutLocalService.getLayout((Long)objects[0]);
+				if (!_hasViewPermission(layout, permissionChecker)) {
+					return null;
+				}
 
-			if (!_hasViewPermission(layout, permissionChecker)) {
-				continue;
-			}
-
-			assetUsages.add(
-				new AssetUsage() {
-					{
-						setName(
-							() -> _getName(
-								layout.isDraftLayout(),
-								_localization.getLocalization(
-									(String)objects[2],
-									contextUser.getLanguageId(), true)));
-						setType(
-							() -> _getLayoutUsageTypeLabel(
-								(Integer)objects[1]));
-					}
-				});
-		}
+				return	new AssetUsage() {
+						{
+							setName(
+								() -> _getName(
+									layout.isDraftLayout(),
+									_localization.getLocalization(
+										(String)objects[2],
+										contextUser.getLanguageId(), true)));
+							setType(
+								() -> _getLayoutUsageTypeLabel(
+									(Integer)objects[1]));
+						}
+					};
+			});
 	}
 
-	private void _addObjectEntryAssetUsages(
-			Long assetId, List<AssetUsage> assetUsages,
+	private List<AssetUsage> _getObjectEntryAssetUsages(
+			Long assetId, 
 			ObjectDefinition objectDefinition, String search)
 		throws Exception {
+
+		List<AssetUsage> assetUsages = new ArrayList<>();
 
 		List<ObjectRelationship> objectRelationships =
 			_objectRelationshipLocalService.getObjectRelationships(
@@ -205,6 +206,8 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 					});
 			}
 		}
+
+		return assetUsages;
 	}
 
 	private List<AssetUsage> _getAssetUsages(Long assetId, String search)
@@ -219,10 +222,12 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 			_objectDefinitionLocalService.getObjectDefinition(
 				objectEntry.getObjectDefinitionId());
 
-		_addLayoutUsages(
-			assetId, assetUsages, objectDefinition.getClassName(), search);
-		_addObjectEntryAssetUsages(
-			assetId, assetUsages, objectDefinition, search);
+		assetUsages.addAll(
+			_getLayoutAssetUsages(
+				assetId, objectDefinition.getClassName(), search));
+		assetUsages.addAll(
+			_getObjectEntryAssetUsages(
+				assetId, objectDefinition, search));
 
 		return assetUsages;
 	}
