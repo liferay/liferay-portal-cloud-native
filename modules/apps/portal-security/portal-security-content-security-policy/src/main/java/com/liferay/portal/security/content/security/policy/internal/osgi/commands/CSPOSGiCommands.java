@@ -41,7 +41,7 @@ public class CSPOSGiCommands implements OSGiCommands {
 		if (contentSecurityPolicyConfiguration == null) {
 			System.out.println(
 				"There is no company level " +
-					"ContentSecurityPolicyConfiguration for companyId " +
+					"content security policy configuration for company " +
 						companyId);
 
 			return;
@@ -60,8 +60,8 @@ public class CSPOSGiCommands implements OSGiCommands {
 
 		if (contentSecurityPolicyConfiguration == null) {
 			System.out.println(
-				"There is no group level ContentSecurityPolicyConfiguration " +
-					"for groupId " + groupId);
+				"There is no group level content security policy " +
+					"configuration for group " + groupId);
 
 			return;
 		}
@@ -77,7 +77,8 @@ public class CSPOSGiCommands implements OSGiCommands {
 
 		if (contentSecurityPolicyConfiguration == null) {
 			System.out.println(
-				"There is no system level ContentSecurityPolicyConfiguration");
+				"There is no system level content security policy " +
+					"configuration");
 
 			return;
 		}
