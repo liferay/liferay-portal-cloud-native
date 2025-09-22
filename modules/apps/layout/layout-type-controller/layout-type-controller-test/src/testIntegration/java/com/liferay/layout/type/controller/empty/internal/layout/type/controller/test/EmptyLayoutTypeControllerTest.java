@@ -70,13 +70,17 @@ public class EmptyLayoutTypeControllerTest {
 	public void testIncludeLayoutContent() throws Exception {
 		Assert.assertEquals(
 			LayoutConstants.TYPE_EMPTY, _layoutTypeController.getType());
-
+		Assert.assertEquals(
+			StringPool.BLANK,
+			_layoutTypeController.includeEditContent(
+				_getMockHttpServletRequest(
+					_layout.getFriendlyURL(), TestPropsValues.getUser()),
+				new MockHttpServletResponse(), _layout));
 		Assert.assertFalse(
 			_layoutTypeController.includeLayoutContent(
 				_getMockHttpServletRequest(
 					_layout.getFriendlyURL(), TestPropsValues.getUser()),
 				new MockHttpServletResponse(), _layout));
-
 		Assert.assertThrows(
 			NoSuchLayoutException.class,
 			() -> _layoutTypeController.includeLayoutContent(
@@ -84,13 +88,6 @@ public class EmptyLayoutTypeControllerTest {
 					_layout.getFriendlyURL(),
 					_userLocalService.getGuestUser(
 						TestPropsValues.getCompanyId())),
-				new MockHttpServletResponse(), _layout));
-
-		Assert.assertEquals(
-			StringPool.BLANK,
-			_layoutTypeController.includeEditContent(
-				_getMockHttpServletRequest(
-					_layout.getFriendlyURL(), TestPropsValues.getUser()),
 				new MockHttpServletResponse(), _layout));
 	}
 
