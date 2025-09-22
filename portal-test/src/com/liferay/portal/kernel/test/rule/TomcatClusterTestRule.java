@@ -46,7 +46,7 @@ public class TomcatClusterTestRule extends ClassTestRule<Void> {
 			ServerDetector.isTomcat());
 
 		Assume.assumeTrue(
-			"System property catalina.home is undefined",
+			"System property \"catalina.home\" is undefined",
 			System.getProperty("catalina.home") != null);
 
 		DB db = DBManagerUtil.getDB();
