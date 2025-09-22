@@ -123,7 +123,6 @@ public class LocalizedItemSelectorRendering {
 						GetterUtil.getBoolean(navigationItem.get("active")));
 					verticalNavItem.setHref(
 						GetterUtil.getString(navigationItem.get("href")));
-					verticalNavItem.setLabel(name);
 
 					Map<String, String> data =
 						(Map<String, String>)navigationItem.get("data");
@@ -134,6 +133,8 @@ public class LocalizedItemSelectorRendering {
 					else {
 						verticalNavItem.setId(name);
 					}
+
+					verticalNavItem.setLabel(name);
 				});
 		}
 
