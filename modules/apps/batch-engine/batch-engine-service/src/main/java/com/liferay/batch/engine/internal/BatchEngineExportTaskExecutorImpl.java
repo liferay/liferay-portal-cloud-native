@@ -90,7 +90,7 @@ public class BatchEngineExportTaskExecutorImpl
 	public Result execute(
 		BatchEngineExportTask batchEngineExportTask, Settings settings) {
 
-		if (settings.isPersist() && !settings.isCompressContent()) {
+		if (!settings.isCompressContent() && settings.isPersist()) {
 			throw new IllegalArgumentException(
 				"Uncompressed content cannot be stored in the database");
 		}
