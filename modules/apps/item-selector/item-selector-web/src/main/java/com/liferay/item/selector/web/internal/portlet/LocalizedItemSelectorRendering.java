@@ -52,9 +52,8 @@ public class LocalizedItemSelectorRendering {
 		ItemSelectorView<?> itemSelectorView =
 			itemSelectorViewRenderer.getItemSelectorView();
 
-		String title = itemSelectorView.getTitle(_locale);
-
 		Class<?> clazz = itemSelectorView.getClass();
+		String title = itemSelectorView.getTitle(_locale);
 
 		String curSelectedTab = StringBundler.concat(
 			clazz.getName(), StringPool.UNDERLINE, title);

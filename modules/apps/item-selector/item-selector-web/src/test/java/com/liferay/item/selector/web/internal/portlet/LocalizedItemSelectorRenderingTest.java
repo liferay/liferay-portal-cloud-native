@@ -51,14 +51,14 @@ public class LocalizedItemSelectorRenderingTest {
 
 	@Test
 	public void testGetVerticalNavItemList() throws Exception {
-		Locale locale = LocaleUtil.getDefault();
-
 		String title = RandomTestUtil.randomString();
 
 		ItemSelectorViewRenderer itemSelectorViewRenderer1 =
 			_getItemSelectorViewRenderer(new TestItemSelectorView1(title));
 		ItemSelectorViewRenderer itemSelectorViewRenderer2 =
 			_getItemSelectorViewRenderer(new TestItemSelectorView2(title));
+
+		Locale locale = LocaleUtil.getDefault();
 
 		_testGetVerticalNavItemList(
 			Arrays.asList(itemSelectorViewRenderer1, itemSelectorViewRenderer2),
