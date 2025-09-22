@@ -226,22 +226,21 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 	}
 
 	private Long[] _getGroupIds(List<DepotEntry> depotEntries) {
-		Long[] groupIds = new Long[0];
+		List<Long> groupIds = new ArrayList<>();
 
 		for (DepotEntry depotEntry : depotEntries) {
-			groupIds = ArrayUtil.append(groupIds, depotEntry.getGroupId());
+			groupIds.add(depotEntry.getGroupId());
 
 			List<DepotEntryGroupRel> depotEntryGroupRels =
 				_depotEntryGroupRelLocalService.getDepotEntryGroupRels(
 					depotEntry);
 
 			for (DepotEntryGroupRel depotEntryGroupRel : depotEntryGroupRels) {
-				groupIds = ArrayUtil.append(
-					groupIds, depotEntryGroupRel.getGroupId());
+				groupIds.add(depotEntryGroupRel.getGroupId());
 			}
 		}
 
-		return groupIds;
+		return groupIds.toArray(new Long[0]);
 	}
 
 	private List<Object[]> _getLayoutClassedModelUsageObjectsList(
