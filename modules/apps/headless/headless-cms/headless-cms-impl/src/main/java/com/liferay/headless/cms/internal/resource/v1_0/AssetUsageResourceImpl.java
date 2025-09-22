@@ -188,18 +188,19 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 					continue;
 				}
 
-				AssetUsage assetUsage = new AssetUsage();
-
-				assetUsage.setName(() -> name);
-
 				ObjectDefinition relatedObjectDefinition =
 					_objectDefinitionLocalService.getObjectDefinition(
 						objectEntry.getObjectDefinitionId());
 
-				assetUsage.setType(
-					() -> relatedObjectDefinition.getLabel(languageId));
-
-				assetUsages.add(assetUsage);
+				assetUsages.add(
+					new AssetUsage() {
+						{
+							setName(() -> name);
+							setType(
+								() -> relatedObjectDefinition.getLabel(
+									languageId));
+						}
+					});
 			}
 		}
 	}
