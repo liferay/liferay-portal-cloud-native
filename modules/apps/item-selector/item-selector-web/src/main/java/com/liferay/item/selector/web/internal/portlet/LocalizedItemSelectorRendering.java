@@ -79,11 +79,6 @@ public class LocalizedItemSelectorRendering {
 
 		_navigationItems.add(
 			navigationItem -> {
-				navigationItem.putData("id", curSelectedTab);
-				navigationItem.setHref(
-					itemSelectorViewRenderer.getPortletURL());
-				navigationItem.setLabel(title);
-
 				String selectedTab = _itemSelectorRendering.getSelectedTab();
 
 				if (selectedTab.equals(curSelectedTab) ||
@@ -95,6 +90,11 @@ public class LocalizedItemSelectorRendering {
 					_activeNavigationItem = navigationItem;
 					_selectedNavigationItemLabel = curSelectedTab;
 				}
+
+				navigationItem.putData("id", curSelectedTab);
+				navigationItem.setHref(
+					itemSelectorViewRenderer.getPortletURL());
+				navigationItem.setLabel(title);
 			});
 	}
 
