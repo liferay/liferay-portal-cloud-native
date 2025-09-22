@@ -188,9 +188,9 @@ public class ItemSelectorImpl implements ItemSelector {
 				}
 
 				PortletURL portletURL = getPortletURL(
-					requestBackedPortletURLFactory, itemSelectorView,
-					selectedTab, itemSelectedEventName,
-					itemSelectorCriteriaArray, themeDisplay);
+					itemSelectorCriteriaArray, itemSelectedEventName,
+					itemSelectorView, requestBackedPortletURLFactory,
+					selectedTab, themeDisplay);
 
 				itemSelectorViewRenderers.add(
 					_applyCustomizations(
@@ -335,11 +335,10 @@ public class ItemSelectorImpl implements ItemSelector {
 	}
 
 	protected PortletURL getPortletURL(
-		RequestBackedPortletURLFactory requestBackedPortletURLFactory,
-		ItemSelectorView<?> itemSelectorView, String selectedTab,
-		String itemSelectedEventName,
 		ItemSelectorCriterion[] itemSelectorCriteriaArray,
-		ThemeDisplay themeDisplay) {
+		String itemSelectedEventName, ItemSelectorView<?> itemSelectorView,
+		RequestBackedPortletURLFactory requestBackedPortletURLFactory,
+		String selectedTab, ThemeDisplay themeDisplay) {
 
 		PortletURL portletURL = null;
 
