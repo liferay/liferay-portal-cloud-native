@@ -117,99 +117,6 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 		return _entityModel;
 	}
 
-	private List<AssetUsage> _getLayoutAssetUsages(
-			Long assetId, String className,
-			String search)
-		throws Exception {
-
-		PermissionChecker permissionChecker =
-			PermissionCheckerFactoryUtil.create(contextUser);
-
-		return transform(
-			_getLayoutClassedModelUsageObjectsList(
-				className, assetId, search),
-			objects -> {
-				Layout layout = _layoutLocalService.getLayout((Long)objects[0]);
-
-				if (!_hasViewPermission(layout, permissionChecker)) {
-					return null;
-				}
-
-				return	new AssetUsage() {
-						{
-							setName(
-								() -> _getName(
-									layout.isDraftLayout(),
-									_localization.getLocalization(
-										(String)objects[2],
-										contextUser.getLanguageId(), true)));
-							setType(
-								() -> _getLayoutUsageTypeLabel(
-									(Integer)objects[1]));
-						}
-					};
-			});
-	}
-
-	private List<AssetUsage> _getObjectEntryAssetUsages(
-			Long assetId, 
-			ObjectDefinition objectDefinition, String search)
-		throws Exception {
-
-		List<AssetUsage> assetUsages = new ArrayList<>();
-
-		List<ObjectRelationship> objectRelationships =
-			_objectRelationshipLocalService.getObjectRelationships(
-				objectDefinition.getObjectDefinitionId());
-
-		Long[] groupIds = _getGroupIds(_getViewableDepotEntries());
-
-		String languageId = contextUser.getLanguageId();
-
-		for (ObjectRelationship objectRelationship : objectRelationships) {
-			ObjectRelatedModelsProvider objectRelatedModelsProvider =
-				_objectRelatedModelsProviderRegistry.
-					getObjectRelatedModelsProvider(
-						objectDefinition.getClassName(),
-						contextCompany.getCompanyId(),
-						objectRelationship.getType());
-
-			List<ObjectEntry> objectEntries =
-				objectRelatedModelsProvider.getRelatedModels(
-					0, objectRelationship.getObjectRelationshipId(),
-					ObjectEntryTable.INSTANCE.groupId.in(groupIds), assetId,
-					search, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-
-			for (ObjectEntry objectEntry : objectEntries) {
-				String name = _getName(
-					objectEntry.isDraft(),
-					objectEntry.getTitleValue(languageId));
-
-				if (!Validator.isBlank(search) &&
-					!StringUtil.containsIgnoreCase(name, search)) {
-
-					continue;
-				}
-
-				ObjectDefinition relatedObjectDefinition =
-					_objectDefinitionLocalService.getObjectDefinition(
-						objectEntry.getObjectDefinitionId());
-
-				assetUsages.add(
-					new AssetUsage() {
-						{
-							setName(() -> name);
-							setType(
-								() -> relatedObjectDefinition.getLabel(
-									languageId));
-						}
-					});
-			}
-		}
-
-		return assetUsages;
-	}
-
 	private List<AssetUsage> _getAssetUsages(Long assetId, String search)
 		throws Exception {
 
@@ -226,8 +133,7 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 			_getLayoutAssetUsages(
 				assetId, objectDefinition.getClassName(), search));
 		assetUsages.addAll(
-			_getObjectEntryAssetUsages(
-				assetId, objectDefinition, search));
+			_getObjectEntryAssetUsages(assetId, objectDefinition, search));
 
 		return assetUsages;
 	}
@@ -248,6 +154,38 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 		}
 
 		return groupIds.toArray(new Long[0]);
+	}
+
+	private List<AssetUsage> _getLayoutAssetUsages(
+			Long assetId, String className, String search)
+		throws Exception {
+
+		PermissionChecker permissionChecker =
+			PermissionCheckerFactoryUtil.create(contextUser);
+
+		return transform(
+			_getLayoutClassedModelUsageObjectsList(className, assetId, search),
+			objects -> {
+				Layout layout = _layoutLocalService.getLayout((Long)objects[0]);
+
+				if (!_hasViewPermission(layout, permissionChecker)) {
+					return null;
+				}
+
+				return new AssetUsage() {
+					{
+						setName(
+							() -> _getName(
+								layout.isDraftLayout(),
+								_localization.getLocalization(
+									(String)objects[2],
+									contextUser.getLanguageId(), true)));
+						setType(
+							() -> _getLayoutUsageTypeLabel(
+								(Integer)objects[1]));
+					}
+				};
+			});
 	}
 
 	private List<Object[]> _getLayoutClassedModelUsageObjectsList(
@@ -312,6 +250,64 @@ public class AssetUsageResourceImpl extends BaseAssetUsageResourceImpl {
 		}
 
 		return name;
+	}
+
+	private List<AssetUsage> _getObjectEntryAssetUsages(
+			Long assetId, ObjectDefinition objectDefinition, String search)
+		throws Exception {
+
+		List<AssetUsage> assetUsages = new ArrayList<>();
+
+		List<ObjectRelationship> objectRelationships =
+			_objectRelationshipLocalService.getObjectRelationships(
+				objectDefinition.getObjectDefinitionId());
+
+		Long[] groupIds = _getGroupIds(_getViewableDepotEntries());
+
+		String languageId = contextUser.getLanguageId();
+
+		for (ObjectRelationship objectRelationship : objectRelationships) {
+			ObjectRelatedModelsProvider objectRelatedModelsProvider =
+				_objectRelatedModelsProviderRegistry.
+					getObjectRelatedModelsProvider(
+						objectDefinition.getClassName(),
+						contextCompany.getCompanyId(),
+						objectRelationship.getType());
+
+			List<ObjectEntry> objectEntries =
+				objectRelatedModelsProvider.getRelatedModels(
+					0, objectRelationship.getObjectRelationshipId(),
+					ObjectEntryTable.INSTANCE.groupId.in(groupIds), assetId,
+					search, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+			for (ObjectEntry objectEntry : objectEntries) {
+				String name = _getName(
+					objectEntry.isDraft(),
+					objectEntry.getTitleValue(languageId));
+
+				if (!Validator.isBlank(search) &&
+					!StringUtil.containsIgnoreCase(name, search)) {
+
+					continue;
+				}
+
+				ObjectDefinition relatedObjectDefinition =
+					_objectDefinitionLocalService.getObjectDefinition(
+						objectEntry.getObjectDefinitionId());
+
+				assetUsages.add(
+					new AssetUsage() {
+						{
+							setName(() -> name);
+							setType(
+								() -> relatedObjectDefinition.getLabel(
+									languageId));
+						}
+					});
+			}
+		}
+
+		return assetUsages;
 	}
 
 	private List<DepotEntry> _getViewableDepotEntries() throws Exception {
