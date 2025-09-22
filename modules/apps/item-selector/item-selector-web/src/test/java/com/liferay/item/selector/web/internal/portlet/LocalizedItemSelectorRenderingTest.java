@@ -141,10 +141,10 @@ public class LocalizedItemSelectorRenderingTest {
 			TestItemSelectorView2.class, navigationItems.get(1), title);
 	}
 
-	private class BaseTestItemSelectorView
+	private class BaseItemSelectorView
 		implements ItemSelectorView<ItemSelectorCriterion> {
 
-		public BaseTestItemSelectorView(String title) {
+		public BaseItemSelectorView(String title) {
 			_title = title;
 		}
 
@@ -180,7 +180,7 @@ public class LocalizedItemSelectorRenderingTest {
 
 	}
 
-	private class TestItemSelectorView1 extends BaseTestItemSelectorView {
+	private class TestItemSelectorView1 extends BaseItemSelectorView {
 
 		public TestItemSelectorView1(String title) {
 			super(title);
@@ -188,7 +188,7 @@ public class LocalizedItemSelectorRenderingTest {
 
 	}
 
-	private class TestItemSelectorView2 extends BaseTestItemSelectorView {
+	private class TestItemSelectorView2 extends BaseItemSelectorView {
 
 		public TestItemSelectorView2(String title) {
 			super(title);
