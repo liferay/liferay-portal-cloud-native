@@ -46,6 +46,8 @@ public class BatchEnginePortletDataHandlerUtil {
 			() -> {
 				List<String> batchNestedFields = new ArrayList<>();
 
+				batchNestedFields.add("customFields.attributeType");
+
 				if (MapUtil.getBoolean(
 						portletDataContext.getParameterMap(),
 						PortletDataHandlerKeys.PERMISSIONS)) {
