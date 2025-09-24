@@ -286,7 +286,7 @@ public class ReportEntryResourceImpl extends BaseReportEntryResourceImpl {
 							exportImportConfiguration.getUserId())));
 				setDateCreated(exportImportReportEntry::getCreateDate);
 				setDateModified(exportImportReportEntry::getModifiedDate);
-				setErrorMessage(exportImportReportEntry::getError);
+				setErrorMessage(exportImportReportEntry::getErrorMessage);
 				setErrorStacktrace(
 					() -> _getErrorStacktrace(exportImportReportEntry));
 				setId(exportImportReportEntry::getExportImportReportEntryId);
