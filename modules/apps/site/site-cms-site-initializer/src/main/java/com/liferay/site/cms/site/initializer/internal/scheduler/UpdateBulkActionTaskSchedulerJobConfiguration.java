@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.site.cms.site.initializer.configuration.BulkActionTaskConfiguration;
 import com.liferay.site.cms.site.initializer.constants.BulkActionExecutionStatusConstants;
@@ -110,76 +111,26 @@ public class UpdateBulkActionTaskSchedulerJobConfiguration
 		return null;
 	}
 
-	private void _partialUpdateObjectEntry(
-			ObjectRelationship objectRelationship, Long primaryKey)
-		throws Exception {
+	private Tuple _getTuple(ObjectRelationship objectRelationship, Long primaryKey) throws Exception {
+		Date completionDate = null;
+		int numberOfFailedItems = 0;
+		int numberOfSuccessfulItems = 0;
 
-		try {
-			Date completionDate = null;
-			int numberOfFailedItems = 0;
-			int numberOfSuccessfulItems = 0;
+		for (ObjectEntry objectEntry :
+				_objectEntryLocalService.getOneToManyObjectEntries(
+					0, objectRelationship.getObjectRelationshipId(), null,
+					primaryKey, true, null, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
 
-			for (ObjectEntry objectEntry :
-					_objectEntryLocalService.getOneToManyObjectEntries(
-						0, objectRelationship.getObjectRelationshipId(), null,
-						primaryKey, true, null, QueryUtil.ALL_POS,
-						QueryUtil.ALL_POS, null)) {
+			Map<String, Serializable> values = objectEntry.getValues();
 
-				Map<String, Serializable> values = objectEntry.getValues();
+			String executionStatus = GetterUtil.getString(
+				values.get("executionStatus"));
 
-				String executionStatus = GetterUtil.getString(
-					values.get("executionStatus"));
-
-				if (executionStatus.equals(
-						BulkActionExecutionStatusConstants.COMPLETED) ||
-					executionStatus.equals(
-						BulkActionExecutionStatusConstants.FAILED)) {
-
-					if (executionStatus.equals(
-							BulkActionExecutionStatusConstants.COMPLETED) &&
-						Validator.isBlank(
-							GetterUtil.getString(values.get("description")))) {
-
-						numberOfSuccessfulItems++;
-					}
-					else {
-						numberOfFailedItems++;
-					}
-
-					continue;
-				}
-
-				long classPK = GetterUtil.getLong(values.get("classPK"));
-
-				BatchEngineImportTask batchEngineImportTask =
-					_batchEngineImportTaskService.getBatchEngineImportTask(
-						GetterUtil.getLong(values.get("importTaskId")));
-
-				BatchEngineImportTaskError batchEngineImportTaskError =
-					_getBatchEngineImportTaskError(
-						batchEngineImportTask.getBatchEngineImportTaskErrors(),
-						classPK);
-
-				if (batchEngineImportTaskError != null) {
-					values.put(
-						"description", batchEngineImportTaskError.getMessage());
-				}
-
-				values.put(
-					"executionStatus",
-					StringUtil.toLowerCase(
-						batchEngineImportTask.getExecuteStatus()));
-
-				ObjectEntry updateObjectEntry =
-					_objectEntryLocalService.partialUpdateObjectEntry(
-						objectEntry.getUserId(), objectEntry.getObjectEntryId(),
-						objectEntry.getObjectEntryFolderId(), values,
-						new ServiceContext());
-
-				values = updateObjectEntry.getValues();
-
-				executionStatus = GetterUtil.getString(
-					values.get("executionStatus"));
+			if (executionStatus.equals(
+					BulkActionExecutionStatusConstants.COMPLETED) ||
+				executionStatus.equals(
+					BulkActionExecutionStatusConstants.FAILED)) {
 
 				if (executionStatus.equals(
 						BulkActionExecutionStatusConstants.COMPLETED) &&
@@ -188,28 +139,91 @@ public class UpdateBulkActionTaskSchedulerJobConfiguration
 
 					numberOfSuccessfulItems++;
 				}
-				else if (executionStatus.equals(
-							BulkActionExecutionStatusConstants.FAILED) ||
-						 !Validator.isBlank(
-							 GetterUtil.getString(values.get("description")))) {
-
+				else {
 					numberOfFailedItems++;
 				}
 
-				if ((completionDate == null) ||
-					completionDate.before(batchEngineImportTask.getEndTime())) {
-
-					completionDate = batchEngineImportTask.getEndTime();
-				}
+				continue;
 			}
 
+			long classPK = GetterUtil.getLong(values.get("classPK"));
+
+			BatchEngineImportTask batchEngineImportTask =
+				_batchEngineImportTaskService.getBatchEngineImportTask(
+					GetterUtil.getLong(values.get("importTaskId")));
+
+			BatchEngineImportTaskError batchEngineImportTaskError =
+				_getBatchEngineImportTaskError(
+					batchEngineImportTask.getBatchEngineImportTaskErrors(),
+					classPK);
+
+			if (batchEngineImportTaskError != null) {
+				values.put(
+					"description", batchEngineImportTaskError.getMessage());
+			}
+
+			values.put(
+				"executionStatus",
+				StringUtil.toLowerCase(
+					batchEngineImportTask.getExecuteStatus()));
+
+			ObjectEntry updateObjectEntry =
+				_objectEntryLocalService.partialUpdateObjectEntry(
+					objectEntry.getUserId(), objectEntry.getObjectEntryId(),
+					objectEntry.getObjectEntryFolderId(), values,
+					new ServiceContext());
+
+			values = updateObjectEntry.getValues();
+
+			executionStatus = GetterUtil.getString(
+				values.get("executionStatus"));
+
+			if (executionStatus.equals(
+					BulkActionExecutionStatusConstants.COMPLETED) &&
+				Validator.isBlank(
+					GetterUtil.getString(values.get("description")))) {
+
+				numberOfSuccessfulItems++;
+			}
+			else if (executionStatus.equals(
+						BulkActionExecutionStatusConstants.FAILED) ||
+					 !Validator.isBlank(
+						 GetterUtil.getString(values.get("description")))) {
+
+				numberOfFailedItems++;
+			}
+
+			if ((completionDate == null) ||
+				completionDate.before(batchEngineImportTask.getEndTime())) {
+
+				completionDate = batchEngineImportTask.getEndTime();
+			}
+		}
+
+		return new Tuple(
+			completionDate, numberOfFailedItems, numberOfSuccessfulItems);
+	}
+
+	private void _partialUpdateObjectEntry(
+			ObjectRelationship objectRelationship, Long primaryKey)
+		throws Exception {
+
+		try {
 			ObjectEntry objectEntry = _objectEntryLocalService.getObjectEntry(
 				primaryKey);
 
 			Map<String, Serializable> values = objectEntry.getValues();
 
-			values.put("completionDate", completionDate);
+			Tuple tuple = _getTuple(objectRelationship, primaryKey);
+
+			values.put("completionDate", (Date)tuple.getObject(0));
+
+			int numberOfFailedItems = (int)tuple.getObject(1);
+
 			values.put("numberOfFailedItems", numberOfFailedItems);
+
+			int numberOfSuccessfulItems = (int)tuple.getObject(2);
+
 			values.put("numberOfSuccessfulItems", numberOfSuccessfulItems);
 
 			long numberOfItems = GetterUtil.getInteger(
