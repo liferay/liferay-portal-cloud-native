@@ -78,7 +78,7 @@ public class CourseProgressDownloadRestController extends BaseRestController {
 
 	private String _getAuthorization() {
 		return _liferayOAuth2AccessTokenManager.getAuthorization(
-			"liferay-learn-etc-spring-boot-oauth-application-headless-server");
+			"liferay-learn-etc-spring-boot-oahs");
 	}
 
 	private boolean _isBetween(
