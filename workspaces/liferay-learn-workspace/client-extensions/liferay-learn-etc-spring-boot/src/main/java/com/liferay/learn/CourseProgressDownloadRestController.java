@@ -221,9 +221,10 @@ public class CourseProgressDownloadRestController extends BaseRestController {
 						continue;
 					}
 
+					List<String> userGroupNames = new ArrayList<>();
+
 					JSONArray userGroupBriefsJSONArray =
 						userJSONObject.optJSONArray("userGroupBriefs");
-					List<String> userGroupNames = new ArrayList<>();
 
 					if (userGroupBriefsJSONArray != null) {
 						for (int k = 0; k < userGroupBriefsJSONArray.length();
