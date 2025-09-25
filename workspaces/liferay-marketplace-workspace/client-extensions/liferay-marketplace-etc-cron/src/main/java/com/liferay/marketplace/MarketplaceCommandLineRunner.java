@@ -721,13 +721,13 @@ public class MarketplaceCommandLineRunner
 	}
 
 	private void _processPublisherSalesSummary() throws Exception {
+		CatalogResource catalogResource = _getCatalogResource();
+		String currentQuarter = _getCurrentQuarter();
+
 		JSONObject paidOrdersJSONObject = _getPaidOrdersJSONObject();
 
 		JSONArray itemsJSONArray = paidOrdersJSONObject.getJSONArray("items");
 
-		String currentQuarter = _getCurrentQuarter();
-
-		CatalogResource catalogResource = _getCatalogResource();
 		ProductResource productResource = _getProductResource();
 		SkuResource skuResource = _getSkuResource();
 
