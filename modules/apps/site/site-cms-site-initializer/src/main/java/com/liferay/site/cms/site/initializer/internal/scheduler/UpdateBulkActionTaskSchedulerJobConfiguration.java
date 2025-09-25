@@ -208,12 +208,12 @@ public class UpdateBulkActionTaskSchedulerJobConfiguration
 			ObjectRelationship objectRelationship, Long primaryKey)
 		throws Exception {
 
+		ObjectEntry objectEntry = _objectEntryLocalService.getObjectEntry(
+			primaryKey);
+
+		Map<String, Serializable> values = objectEntry.getValues();
+
 		try {
-			ObjectEntry objectEntry = _objectEntryLocalService.getObjectEntry(
-				primaryKey);
-
-			Map<String, Serializable> values = objectEntry.getValues();
-
 			Tuple tuple = _getTuple(objectRelationship, primaryKey);
 
 			values.put("completionDate", (Date)tuple.getObject(0));
@@ -241,29 +241,19 @@ public class UpdateBulkActionTaskSchedulerJobConfiguration
 					"executionStatus",
 					BulkActionExecutionStatusConstants.STARTED);
 			}
-
-			_objectEntryLocalService.partialUpdateObjectEntry(
-				objectEntry.getUserId(), objectEntry.getObjectEntryId(),
-				objectEntry.getObjectEntryFolderId(), values,
-				new ServiceContext());
 		}
 		catch (Exception exception) {
 			_log.error(exception);
 
-			ObjectEntry objectEntry = _objectEntryLocalService.getObjectEntry(
-				primaryKey);
-
-			Map<String, Serializable> values = objectEntry.getValues();
-
 			values.put("completionDate", new Date());
 			values.put(
 				"executionStatus", BulkActionExecutionStatusConstants.FAILED);
-
-			_objectEntryLocalService.partialUpdateObjectEntry(
-				objectEntry.getUserId(), objectEntry.getObjectEntryId(),
-				objectEntry.getObjectEntryFolderId(), values,
-				new ServiceContext());
 		}
+
+		_objectEntryLocalService.partialUpdateObjectEntry(
+			objectEntry.getUserId(), objectEntry.getObjectEntryId(),
+			objectEntry.getObjectEntryFolderId(), values,
+			new ServiceContext());
 	}
 
 	private void _updateObjectEntries(long companyId) throws Exception {
