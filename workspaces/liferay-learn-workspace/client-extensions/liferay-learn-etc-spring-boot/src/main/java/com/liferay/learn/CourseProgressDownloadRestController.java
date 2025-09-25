@@ -81,7 +81,7 @@ public class CourseProgressDownloadRestController extends BaseRestController {
 			"liferay-learn-etc-spring-boot-oauth-application-headless-server");
 	}
 
-	private boolean _isWithinDateRange(
+	private boolean _isBetween(
 		String dateString, String endDateString, String startDateString) {
 
 		if ((dateString == null) ||
@@ -211,7 +211,7 @@ public class CourseProgressDownloadRestController extends BaseRestController {
 					String modifiedDate = enrollmentJSONObject.optString(
 						"dateModified", null);
 
-					if (!_isWithinDateRange(modifiedDate, endDate, startDate)) {
+					if (!_isBetween(modifiedDate, endDate, startDate)) {
 						continue;
 					}
 
