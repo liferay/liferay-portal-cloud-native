@@ -6,7 +6,6 @@
 package com.liferay.mcp.server.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.HashMapBuilder;
@@ -46,7 +45,7 @@ public class MCPServerTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void test() throws JSONException {
+	public void test() throws Exception {
 		McpSyncClient mcpSyncClient = McpClient.sync(
 			HttpClientSseClientTransport.builder(
 				"http://localhost:8080/o/mcp/"
@@ -79,81 +78,78 @@ public class MCPServerTest {
 			).build()
 		).build();
 
-		try {
-			mcpSyncClient.initialize();
+		mcpSyncClient.initialize();
 
-			McpSchema.ListToolsResult listToolsResult =
-				mcpSyncClient.listTools();
+		McpSchema.ListToolsResult listToolsResult =
+			mcpSyncClient.listTools();
 
-			List<McpSchema.Tool> tools = listToolsResult.tools();
+		List<McpSchema.Tool> tools = listToolsResult.tools();
 
-			Assert.assertEquals(tools.toString(), 3, tools.size());
+		Assert.assertEquals(tools.toString(), 3, tools.size());
 
-			McpSchema.Tool tool1 = tools.get(0);
+		McpSchema.Tool tool1 = tools.get(0);
 
-			Assert.assertEquals("call-http-endpoint", tool1.name());
+		Assert.assertEquals("call-http-endpoint", tool1.name());
 
-			McpSchema.Tool tool2 = tools.get(1);
+		McpSchema.Tool tool2 = tools.get(1);
 
-			Assert.assertEquals("get-openapi", tool2.name());
+		Assert.assertEquals("get-openapi", tool2.name());
 
-			McpSchema.Tool tool3 = tools.get(2);
+		McpSchema.Tool tool3 = tools.get(2);
 
-			Assert.assertEquals("get-openapis", tool3.name());
+		Assert.assertEquals("get-openapis", tool3.name());
 
-			McpSchema.CallToolResult callToolResult = mcpSyncClient.callTool(
-				new McpSchema.CallToolRequest(
-					"get-openapis", Collections.emptyMap()));
+		McpSchema.CallToolResult callToolResult = mcpSyncClient.callTool(
+			new McpSchema.CallToolRequest(
+				"get-openapis", Collections.emptyMap()));
 
-			List<McpSchema.Content> contents = callToolResult.content();
+		List<McpSchema.Content> contents = callToolResult.content();
 
-			McpSchema.TextContent content = (McpSchema.TextContent)contents.get(
-				0);
+		McpSchema.TextContent content = (McpSchema.TextContent)contents.get(
+			0);
 
-			callToolResult = mcpSyncClient.callTool(
-				new McpSchema.CallToolRequest(
-					"get-openapi",
-					HashMapBuilder.<String, Object>put(
-						"url",
-						JSONFactoryUtil.createJSONObject(
-							content.text()
-						).getJSONArray(
-							"/test"
-						).getString(
-							0
-						)
-					).build()));
+		callToolResult = mcpSyncClient.callTool(
+			new McpSchema.CallToolRequest(
+				"get-openapi",
+				HashMapBuilder.<String, Object>put(
+					"url",
+					JSONFactoryUtil.createJSONObject(
+						content.text()
+					).getJSONArray(
+						"/test"
+					).getString(
+						0
+					)
+				).build()));
 
-			contents = callToolResult.content();
+		contents = callToolResult.content();
 
-			content = (McpSchema.TextContent)contents.get(0);
+		content = (McpSchema.TextContent)contents.get(0);
 
-			Assert.assertThat(
-				content.text(), CoreMatchers.containsString("/test"));
+		Assert.assertThat(
+			content.text(), CoreMatchers.containsString("/test"));
 
-			callToolResult = mcpSyncClient.callTool(
-				new McpSchema.CallToolRequest(
-					"call-http-endpoint",
-					HashMapBuilder.<String, Object>put(
-						"method", "GET"
-					).put(
-						"path", "/test/v1.0/test-entities"
-					).build()));
+		callToolResult = mcpSyncClient.callTool(
+			new McpSchema.CallToolRequest(
+				"call-http-endpoint",
+				HashMapBuilder.<String, Object>put(
+					"method", "GET"
+				).put(
+					"path", "/test/v1.0/test-entities"
+				).build()));
 
-			contents = callToolResult.content();
+		contents = callToolResult.content();
 
-			content = (McpSchema.TextContent)contents.get(0);
+		content = (McpSchema.TextContent)contents.get(0);
 
-			Assert.assertNotNull(
-				JSONFactoryUtil.createJSONObject(
-					content.text()
-				).getJSONArray(
-					"items"
-				));
-		}
-		finally {
-			mcpSyncClient.closeGracefully();
-		}
+		Assert.assertNotNull(
+			JSONFactoryUtil.createJSONObject(
+				content.text()
+			).getJSONArray(
+				"items"
+			));
+
+		mcpSyncClient.closeGracefully();
 	}
 
 }
