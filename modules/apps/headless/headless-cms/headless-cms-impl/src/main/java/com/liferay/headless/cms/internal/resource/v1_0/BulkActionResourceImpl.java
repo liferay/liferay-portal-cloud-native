@@ -929,7 +929,7 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 		}
 
 		JSONObject jsonObject = null;
-		List<String> resourceActions;
+		List<String> resourceActions = null;
 
 		if (Objects.equals(entry.getKey(), ObjectEntryFolder.class.getName())) {
 			jsonObject = configurationJSONObject.getJSONObject(
@@ -972,12 +972,12 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 			return null;
 		}
 
+		List<HashMap<String, Object>> permissionsList = new ArrayList<>();
+
 		JSONObject finalJSONObject = jsonObject;
 		List<String> finalResourceActions = resourceActions;
 
-		Iterator<String> iterator = finalJSONObject.keys();
-
-		List<HashMap<String, Object>> permissionsList = new ArrayList<>();
+		Iterator<String> iterator = jsonObject.keys();
 
 		iterator.forEachRemaining(
 			key -> {
