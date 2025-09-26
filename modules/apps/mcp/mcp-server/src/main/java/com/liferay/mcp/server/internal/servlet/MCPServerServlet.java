@@ -135,21 +135,21 @@ public class MCPServerServlet extends HttpServlet {
 				return _call(
 					authorizedHttpServletSseServerTransportProvider.
 						getAuthorizationHeader(mcpAsyncServerExchange),
-					String.valueOf(monos.get("method")), baseURL + path,
-					String.valueOf(monos.get("payload")));
+					String.valueOf(monos.get("payload")),
+					baseURL + path, String.valueOf(monos.get("method")));
 			}
 		).tool(
 			_getTool("get-openapi", toolsJSONObject),
 			(mcpAsyncServerExchange, monos) -> _call(
 				authorizedHttpServletSseServerTransportProvider.
 					getAuthorizationHeader(mcpAsyncServerExchange),
-				"GET", String.valueOf(monos.get("url")), null)
+				null, String.valueOf(monos.get("url")), "GET")
 		).tool(
 			_getTool("get-openapis", toolsJSONObject),
 			(mcpAsyncServerExchange, monos) -> _call(
 				authorizedHttpServletSseServerTransportProvider.
 					getAuthorizationHeader(mcpAsyncServerExchange),
-				"GET", baseURL + "/openapi", null)
+				null, baseURL + "/openapi", "GET")
 		).prompts(
 			_getSyncPromptSpecifications(companyId)
 		).build();
@@ -175,7 +175,7 @@ public class MCPServerServlet extends HttpServlet {
 	}
 
 	private McpSchema.CallToolResult _call(
-		String authorization, String method, String location, String body) {
+		String authorization, String body, String location, String method) {
 
 		Http.Options options = new Http.Options();
 
