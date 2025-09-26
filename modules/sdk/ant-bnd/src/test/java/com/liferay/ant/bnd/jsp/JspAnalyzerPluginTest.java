@@ -228,14 +228,10 @@ public class JspAnalyzerPluginTest {
 			Constants.REQUIRE_CAPABILITY);
 
 		for (String expectedURI : expectedURIs) {
-			Assert.assertTrue(
-				"Expected: " + expectedURI,
-				requireCapability.contains(expectedURI));
+			Assert.assertTrue(requireCapability.contains(expectedURI));
 		}
 
-		Assert.assertFalse(
-			"Not expected: " + unexpectedURI,
-			requireCapability.contains(unexpectedURI));
+		Assert.assertFalse(requireCapability.contains(unexpectedURI));
 	}
 
 	private void _testImplicitImports(
