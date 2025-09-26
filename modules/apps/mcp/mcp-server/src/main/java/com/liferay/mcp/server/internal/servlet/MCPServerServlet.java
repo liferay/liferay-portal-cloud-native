@@ -256,22 +256,21 @@ public class MCPServerServlet extends HttpServlet {
 				0, objectDefinition.getObjectDefinitionId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS),
 			objectEntry -> {
-				Map<String, Serializable> objectEntryValues =
+				Map<String, Serializable> values =
 					objectEntry.getValues();
 
 				return new McpServerFeatures.SyncPromptSpecification(
 					new McpSchema.Prompt(
-						(String)objectEntryValues.get("name"),
-						(String)objectEntryValues.get("description"),
+						(String)values.get("name"),
+						(String)values.get("description"),
 						Collections.emptyList()),
 					(mcpAsyncServerExchange, request) -> new McpSchema.GetPromptResult(
-						(String)objectEntryValues.get("description"),
+						(String)values.get("description"),
 						List.of(
 							new McpSchema.PromptMessage(
 								McpSchema.Role.USER,
 								new McpSchema.TextContent(
-									(String)objectEntryValues.get(
-										"prompt"))))));
+									(String)values.get("prompt"))))));
 			});
 	}
 
