@@ -91,13 +91,11 @@ public class StyleSheetFrontendResourceRequestHandlerTest {
 		Assert.assertEquals(
 			ContentTypes.TEXT_CSS, frontendResource.getContentType());
 		Assert.assertEquals(_HASH + "-44795a18", frontendResource.getETag());
-
 		Assert.assertEquals(
 			StringUtil.replace(
 				_TOKENIZED_CSS_CONTENT, "@theme_image_path@",
 				"/o/classic-theme/images"),
 			StreamUtil.toString(frontendResource.getInputStream()));
-
 		Assert.assertEquals(maxAge, frontendResource.getMaxAge());
 		Assert.assertFalse(frontendResource.isImmutable());
 		Assert.assertEquals(sendNoCache, frontendResource.isSendNoCache());
@@ -291,15 +289,15 @@ public class StyleSheetFrontendResourceRequestHandlerTest {
 		Theme theme = Mockito.mock(Theme.class);
 
 		Mockito.when(
-			theme.getStaticResourcePath()
-		).thenReturn(
-			"/o/classic-theme"
-		);
-
-		Mockito.when(
 			theme.getImagesPath()
 		).thenReturn(
 			"/images"
+		);
+
+		Mockito.when(
+			theme.getStaticResourcePath()
+		).thenReturn(
+			"/o/classic-theme"
 		);
 
 		Mockito.when(
@@ -311,13 +309,13 @@ public class StyleSheetFrontendResourceRequestHandlerTest {
 		return themeLocalService;
 	}
 
-	private static final String _CSS_CONTENT = "body{font-weight:bold;}";
+	private static final String _CSS_CONTENT = "body {font-weight: bold;}";
 
 	private static final String _HASH =
 		FrontendJSWebTestUtil.randomHashedFileHash();
 
 	private static final String _TOKENIZED_CSS_CONTENT =
-		"body{background-image:url(@theme_image_path@/an_image.png)}";
+		"body {background-image: url(@theme_image_path@/an_image.png)}";
 
 	private static final String _UNHASHED_FILE_PATH = "/css/main.css";
 
