@@ -175,22 +175,21 @@ public class MCPServerServlet extends HttpServlet {
 	}
 
 	private McpSchema.CallToolResult _call(
-		String authorizationHeader, String method, String path,
-		String payload) {
+		String authorization, String method, String location, String body) {
 
 		Http.Options options = new Http.Options();
 
-		if (Validator.isNotNull(payload)) {
+		if (Validator.isNotNull(body)) {
 			options.setBody(
-				payload, ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+				body, ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 		}
 
 		options.setHeaders(
 			HashMapBuilder.put(
-				"Authorization", () -> authorizationHeader
+				"Authorization", () -> authorization
 			).build());
 
-		options.setLocation(path);
+		options.setLocation(location);
 		options.setMethod(Http.Method.valueOf(StringUtil.toUpperCase(method)));
 
 		try {
