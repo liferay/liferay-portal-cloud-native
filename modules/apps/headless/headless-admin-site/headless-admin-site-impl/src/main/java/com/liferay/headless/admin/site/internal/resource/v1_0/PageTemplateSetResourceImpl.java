@@ -61,6 +61,11 @@ public class PageTemplateSetResourceImpl
 	}
 
 	@Override
+	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
+		return _entityModel;
+	}
+
+	@Override
 	protected PageTemplateSet doGetSitePageTemplateSet(
 			String siteExternalReferenceCode,
 			String pageTemplateSetExternalReferenceCode)
@@ -166,11 +171,6 @@ public class PageTemplateSetResourceImpl
 						getLayoutPageTemplateCollectionId(),
 					pageTemplateSet.getName(),
 					pageTemplateSet.getDescription()));
-	}
-
-	@Override
-	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
-		return _entityModel;
 	}
 
 	@Override

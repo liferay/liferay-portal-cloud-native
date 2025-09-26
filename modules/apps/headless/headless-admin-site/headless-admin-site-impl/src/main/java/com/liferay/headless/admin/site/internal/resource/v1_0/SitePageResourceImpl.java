@@ -95,6 +95,58 @@ public class SitePageResourceImpl extends BaseSitePageResourceImpl {
 	}
 
 	@Override
+	public ContentPageSpecification postSiteSitePagePageSpecification(
+			String siteExternalReferenceCode,
+			String sitePageExternalReferenceCode,
+			ContentPageSpecification contentPageSpecification)
+		throws Exception {
+
+		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443")) {
+			throw new UnsupportedOperationException();
+		}
+
+		Layout layout = _layoutService.getLayoutByExternalReferenceCode(
+			sitePageExternalReferenceCode,
+			GroupUtil.getGroupId(
+				false, contextCompany.getCompanyId(),
+				siteExternalReferenceCode));
+
+		if (!layout.isTypeContent()) {
+			throw new UnsupportedOperationException();
+		}
+
+		return (ContentPageSpecification)_pageSpecificationDTOConverter.toDTO(
+			LayoutUtil.addDraftToLayout(
+				_cetManager, contentPageSpecification, layout,
+				ServiceContextUtil.createServiceContext(
+					layout.getGroupId(), contextHttpServletRequest,
+					contextUser.getUserId())));
+	}
+
+	@Override
+	public Page<SitePage> read(
+			Filter filter, Pagination pagination, Sort[] sorts,
+			Map<String, Serializable> parameters, String search)
+		throws Exception {
+
+		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443")) {
+			throw new UnsupportedOperationException();
+		}
+
+		if (parameters.containsKey("siteId")) {
+			Group group = _groupLocalService.getGroup(
+				(Long)parameters.get("siteId"));
+
+			return getSiteSitePagesPage(
+				group.getExternalReferenceCode(), search, null, filter,
+				pagination, sorts);
+		}
+
+		throw new NotSupportedException(
+			"One of the following parameters must be specified: [siteId]");
+	}
+
+	@Override
 	protected SitePage doGetSiteSitePage(
 			String siteExternalReferenceCode,
 			String sitePageExternalReferenceCode)
@@ -202,58 +254,6 @@ public class SitePageResourceImpl extends BaseSitePageResourceImpl {
 		}
 
 		return _toSitePage(_updateLayout(layout, sitePage));
-	}
-
-	@Override
-	public ContentPageSpecification postSiteSitePagePageSpecification(
-			String siteExternalReferenceCode,
-			String sitePageExternalReferenceCode,
-			ContentPageSpecification contentPageSpecification)
-		throws Exception {
-
-		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443")) {
-			throw new UnsupportedOperationException();
-		}
-
-		Layout layout = _layoutService.getLayoutByExternalReferenceCode(
-			sitePageExternalReferenceCode,
-			GroupUtil.getGroupId(
-				false, contextCompany.getCompanyId(),
-				siteExternalReferenceCode));
-
-		if (!layout.isTypeContent()) {
-			throw new UnsupportedOperationException();
-		}
-
-		return (ContentPageSpecification)_pageSpecificationDTOConverter.toDTO(
-			LayoutUtil.addDraftToLayout(
-				_cetManager, contentPageSpecification, layout,
-				ServiceContextUtil.createServiceContext(
-					layout.getGroupId(), contextHttpServletRequest,
-					contextUser.getUserId())));
-	}
-
-	@Override
-	public Page<SitePage> read(
-			Filter filter, Pagination pagination, Sort[] sorts,
-			Map<String, Serializable> parameters, String search)
-		throws Exception {
-
-		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443")) {
-			throw new UnsupportedOperationException();
-		}
-
-		if (parameters.containsKey("siteId")) {
-			Group group = _groupLocalService.getGroup(
-				(Long)parameters.get("siteId"));
-
-			return getSiteSitePagesPage(
-				group.getExternalReferenceCode(), search, null, filter,
-				pagination, sorts);
-		}
-
-		throw new NotSupportedException(
-			"One of the following parameters must be specified: [siteId]");
 	}
 
 	@Override

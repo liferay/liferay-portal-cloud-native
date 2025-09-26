@@ -54,6 +54,49 @@ public class SiteTestEntityResourceImpl extends BaseSiteTestEntityResourceImpl {
 	}
 
 	@Override
+	public Page<Permission> getSiteTestEntityPermissionsPage(
+			Long siteTestEntityId, String roleNames)
+		throws Exception {
+
+		SiteTestEntity siteTestEntity = doGetSiteTestEntity(siteTestEntityId);
+
+		if (!_permissions.containsKey(siteTestEntity.getId())) {
+			_permissions.put(
+				siteTestEntity.getId(),
+				new Permission[] {
+					new Permission() {
+						{
+							setActionIds(
+								new String[] {
+									"DELETE", "PERMISSIONS", "UPDATE", "VIEW"
+								});
+							setRoleName("Owner");
+						}
+					}
+				});
+		}
+
+		return Page.of(Arrays.asList(_permissions.get(siteTestEntity.getId())));
+	}
+
+	@Override
+	public Page<Permission> putSiteTestEntityPermissionsPage(
+			Long siteTestEntityId, Permission[] permissions)
+		throws Exception {
+
+		for (Permission permission : permissions) {
+			_roleLocalService.getRole(
+				CompanyThreadLocal.getCompanyId(), permission.getRoleName());
+		}
+
+		SiteTestEntity siteTestEntity = doGetSiteTestEntity(siteTestEntityId);
+
+		_permissions.put(siteTestEntity.getId(), permissions);
+
+		return getSiteTestEntityPermissionsPage(siteTestEntityId, null);
+	}
+
+	@Override
 	protected Page<SiteTestEntity> doGetSiteSiteTestEntitiesPage(Long siteId)
 		throws Exception {
 
@@ -184,49 +227,6 @@ public class SiteTestEntityResourceImpl extends BaseSiteTestEntityResourceImpl {
 			Math.toIntExact(siteTestEntityId), siteTestEntity);
 
 		return siteTestEntity;
-	}
-
-	@Override
-	public Page<Permission> getSiteTestEntityPermissionsPage(
-			Long siteTestEntityId, String roleNames)
-		throws Exception {
-
-		SiteTestEntity siteTestEntity = doGetSiteTestEntity(siteTestEntityId);
-
-		if (!_permissions.containsKey(siteTestEntity.getId())) {
-			_permissions.put(
-				siteTestEntity.getId(),
-				new Permission[] {
-					new Permission() {
-						{
-							setActionIds(
-								new String[] {
-									"DELETE", "PERMISSIONS", "UPDATE", "VIEW"
-								});
-							setRoleName("Owner");
-						}
-					}
-				});
-		}
-
-		return Page.of(Arrays.asList(_permissions.get(siteTestEntity.getId())));
-	}
-
-	@Override
-	public Page<Permission> putSiteTestEntityPermissionsPage(
-			Long siteTestEntityId, Permission[] permissions)
-		throws Exception {
-
-		for (Permission permission : permissions) {
-			_roleLocalService.getRole(
-				CompanyThreadLocal.getCompanyId(), permission.getRoleName());
-		}
-
-		SiteTestEntity siteTestEntity = doGetSiteTestEntity(siteTestEntityId);
-
-		_permissions.put(siteTestEntity.getId(), permissions);
-
-		return getSiteTestEntityPermissionsPage(siteTestEntityId, null);
 	}
 
 	private SiteTestEntity _fetchSiteSiteTestEntityByExternalReferenceCode(

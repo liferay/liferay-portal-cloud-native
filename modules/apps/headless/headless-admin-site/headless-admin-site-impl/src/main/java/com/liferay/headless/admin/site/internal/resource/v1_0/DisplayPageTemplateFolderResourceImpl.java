@@ -64,25 +64,6 @@ public class DisplayPageTemplateFolderResourceImpl
 	}
 
 	@Override
-	protected DisplayPageTemplateFolder doGetSiteDisplayPageTemplateFolder(
-			String siteExternalReferenceCode,
-			String displayPageTemplateFolderExternalReferenceCode)
-		throws Exception {
-
-		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443")) {
-			throw new UnsupportedOperationException();
-		}
-
-		return _toDisplayPageTemplateFolder(
-			_layoutPageTemplateCollectionService.
-				getLayoutPageTemplateCollection(
-					displayPageTemplateFolderExternalReferenceCode,
-					GroupUtil.getGroupId(
-						true, contextCompany.getCompanyId(),
-						siteExternalReferenceCode)));
-	}
-
-	@Override
 	public Page<DisplayPageTemplateFolder>
 			doGetSiteDisplayPageTemplateFoldersPage(
 				String siteExternalReferenceCode, String search,
@@ -120,6 +101,30 @@ public class DisplayPageTemplateFolderResourceImpl
 					fetchLayoutPageTemplateCollection(
 						GetterUtil.getLong(
 							document.get(Field.ENTRY_CLASS_PK)))));
+	}
+
+	@Override
+	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
+		return _entityModel;
+	}
+
+	@Override
+	protected DisplayPageTemplateFolder doGetSiteDisplayPageTemplateFolder(
+			String siteExternalReferenceCode,
+			String displayPageTemplateFolderExternalReferenceCode)
+		throws Exception {
+
+		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443")) {
+			throw new UnsupportedOperationException();
+		}
+
+		return _toDisplayPageTemplateFolder(
+			_layoutPageTemplateCollectionService.
+				getLayoutPageTemplateCollection(
+					displayPageTemplateFolderExternalReferenceCode,
+					GroupUtil.getGroupId(
+						true, contextCompany.getCompanyId(),
+						siteExternalReferenceCode)));
 	}
 
 	@Override
@@ -189,11 +194,6 @@ public class DisplayPageTemplateFolderResourceImpl
 						getLayoutPageTemplateCollectionId(),
 					displayPageTemplateFolder.getName(),
 					displayPageTemplateFolder.getDescription()));
-	}
-
-	@Override
-	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
-		return _entityModel;
 	}
 
 	@Override

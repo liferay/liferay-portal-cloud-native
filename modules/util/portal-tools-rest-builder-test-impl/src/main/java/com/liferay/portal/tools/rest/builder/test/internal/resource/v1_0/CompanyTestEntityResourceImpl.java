@@ -50,6 +50,52 @@ public class CompanyTestEntityResourceImpl
 	}
 
 	@Override
+	public Page<Permission> getCompanyTestEntityPermissionsPage(
+			Long companyTestEntityId, String roleNames)
+		throws Exception {
+
+		CompanyTestEntity companyTestEntity = doGetCompanyTestEntity(
+			companyTestEntityId);
+
+		if (!_permissions.containsKey(companyTestEntity.getId())) {
+			_permissions.put(
+				companyTestEntity.getId(),
+				new Permission[] {
+					new Permission() {
+						{
+							setActionIds(
+								new String[] {
+									"DELETE", "PERMISSIONS", "UPDATE", "VIEW"
+								});
+							setRoleName("Owner");
+						}
+					}
+				});
+		}
+
+		return Page.of(
+			Arrays.asList(_permissions.get(companyTestEntity.getId())));
+	}
+
+	@Override
+	public Page<Permission> putCompanyTestEntityPermissionsPage(
+			Long companyTestEntityId, Permission[] permissions)
+		throws Exception {
+
+		for (Permission permission : permissions) {
+			roleLocalService.getRole(
+				CompanyThreadLocal.getCompanyId(), permission.getRoleName());
+		}
+
+		CompanyTestEntity companyTestEntity = getCompanyTestEntity(
+			companyTestEntityId);
+
+		_permissions.put(companyTestEntity.getId(), permissions);
+
+		return getCompanyTestEntityPermissionsPage(companyTestEntityId, null);
+	}
+
+	@Override
 	protected Page<CompanyTestEntity> doGetCompanyTestEntitiesPage()
 		throws Exception {
 
@@ -171,52 +217,6 @@ public class CompanyTestEntityResourceImpl
 
 		return putCompanyTestEntity(
 			existingCompanyTestEntity.getId(), companyTestEntity);
-	}
-
-	@Override
-	public Page<Permission> getCompanyTestEntityPermissionsPage(
-			Long companyTestEntityId, String roleNames)
-		throws Exception {
-
-		CompanyTestEntity companyTestEntity = doGetCompanyTestEntity(
-			companyTestEntityId);
-
-		if (!_permissions.containsKey(companyTestEntity.getId())) {
-			_permissions.put(
-				companyTestEntity.getId(),
-				new Permission[] {
-					new Permission() {
-						{
-							setActionIds(
-								new String[] {
-									"DELETE", "PERMISSIONS", "UPDATE", "VIEW"
-								});
-							setRoleName("Owner");
-						}
-					}
-				});
-		}
-
-		return Page.of(
-			Arrays.asList(_permissions.get(companyTestEntity.getId())));
-	}
-
-	@Override
-	public Page<Permission> putCompanyTestEntityPermissionsPage(
-			Long companyTestEntityId, Permission[] permissions)
-		throws Exception {
-
-		for (Permission permission : permissions) {
-			roleLocalService.getRole(
-				CompanyThreadLocal.getCompanyId(), permission.getRoleName());
-		}
-
-		CompanyTestEntity companyTestEntity = getCompanyTestEntity(
-			companyTestEntityId);
-
-		_permissions.put(companyTestEntity.getId(), permissions);
-
-		return getCompanyTestEntityPermissionsPage(companyTestEntityId, null);
 	}
 
 	private CompanyTestEntity _fetchCompanyTestEntity(long id)
