@@ -493,7 +493,7 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 		JSONObject configurationJSONObject = _jsonFactory.createJSONObject(
 			GetterUtil.get(configuration, "{}"));
 		ImportTaskResource importTaskResource = _createImportTaskResource();
-		Map<String, Role> rolesMap = new HashMap<>();
+		Map<String, Role> roles = new HashMap<>();
 
 		for (Map.Entry<String, List<BulkActionItem>> entry :
 				bulkActionItemsMap.entrySet()) {
@@ -502,7 +502,7 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 				entry.getKey());
 
 			List<HashMap<String, Object>> permissionsList = _getPermissionsList(
-				configurationJSONObject, entry, permissions, rolesMap);
+				configurationJSONObject, entry, permissions, roles);
 
 			if (ListUtil.isEmpty(permissionsList)) {
 				continue;
@@ -911,7 +911,7 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 	private List<HashMap<String, Object>> _getPermissionsList(
 		JSONObject configurationJSONObject,
 		Map.Entry<String, List<BulkActionItem>> entry, Permission[] permissions,
-		Map<String, Role> rolesMap) {
+		Map<String, Role> roles) {
 
 		if (ArrayUtil.isNotEmpty(permissions)) {
 			return transformToList(
@@ -981,7 +981,7 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 
 		iterator.forEachRemaining(
 			key -> {
-				if (!rolesMap.containsKey(key)) {
+				if (!roles.containsKey(key)) {
 					Role role = _roleLocalService.fetchRole(
 						contextCompany.getCompanyId(), key);
 
@@ -989,10 +989,10 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 						return;
 					}
 
-					rolesMap.put(key, role);
+					roles.put(key, role);
 				}
 
-				Role role = rolesMap.get(key);
+				Role role = roles.get(key);
 
 				permissionsList.add(
 					HashMapBuilder.<String, Object>put(
