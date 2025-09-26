@@ -38,7 +38,9 @@ public class AuthorizedHttpServletSseServerTransportProvider
 		super(new ObjectMapper(), baseURL, "/message", "/sse");
 	}
 
-	public String getAuthorizationHeader(McpSyncServerExchange exchange) {
+	public String getAuthorization(
+		McpSyncServerExchange mcpSyncServerExchange) {
+
 		try {
 			Field exchangeField = McpSyncServerExchange.class.getDeclaredField(
 				"exchange");
@@ -52,9 +54,9 @@ public class AuthorizedHttpServletSseServerTransportProvider
 
 			AuthorizedMcpServerSession authorizedMcpServerSession =
 				(AuthorizedMcpServerSession)sessionField.get(
-					exchangeField.get(exchange));
+					exchangeField.get(mcpSyncServerExchange));
 
-			return authorizedMcpServerSession.getAuthorizationHeader();
+			return authorizedMcpServerSession.getAuthorization();
 		}
 		catch (Exception exception) {
 			throw new RuntimeException(exception);
@@ -62,9 +64,9 @@ public class AuthorizedHttpServletSseServerTransportProvider
 	}
 
 	@Override
-	public void setSessionFactory(McpServerSession.Factory sessionFactory) {
+	public void setSessionFactory(McpServerSession.Factory factory) {
 		super.setSessionFactory(
-			new AuthorizedMcpServerSessionFactory(sessionFactory));
+			new AuthorizedMcpServerSessionFactory(factory));
 	}
 
 	@Override
@@ -74,30 +76,30 @@ public class AuthorizedHttpServletSseServerTransportProvider
 		throws IOException, ServletException {
 
 		try (SafeCloseable safeCloseable =
-				AuthorizationHeaderThreadLocal.
-					setAuthorizationHeaderWithSafeCloseable(
+				AuthorizationThreadLocal.
+					setAuthorizationWithSafeCloseable(
 						httpServletRequest.getHeader("Authorization"))) {
 
 			super.doGet(httpServletRequest, httpServletResponse);
 		}
 	}
 
-	private static class AuthorizationHeaderThreadLocal {
+	private static class AuthorizationThreadLocal {
 
 		public static String get() {
-			return _authorizationHeader.get();
+			return _authorization.get();
 		}
 
-		public static SafeCloseable setAuthorizationHeaderWithSafeCloseable(
-			String authorizationHeader) {
+		public static SafeCloseable setAuthorizationWithSafeCloseable(
+			String authorization) {
 
-			return _authorizationHeader.setWithSafeCloseable(
-				authorizationHeader);
+			return _authorization.setWithSafeCloseable(
+				authorization);
 		}
 
 		private static final CentralizedThreadLocal<String>
-			_authorizationHeader = new CentralizedThreadLocal<>(
-				AuthorizationHeaderThreadLocal.class + "._authorizationHeader");
+			_authorization = new CentralizedThreadLocal<>(
+				AuthorizationThreadLocal.class + "._authorization");
 
 	}
 
@@ -114,14 +116,14 @@ public class AuthorizedHttpServletSseServerTransportProvider
 				id, requestTimeout, transport, initHandler,
 				initNotificationHandler, requestHandlers, notificationHandlers);
 
-			_authorizationHeader = AuthorizationHeaderThreadLocal.get();
+			_authorization = AuthorizationThreadLocal.get();
 		}
 
-		public String getAuthorizationHeader() {
-			return _authorizationHeader;
+		public String getAuthorization() {
+			return _authorization;
 		}
 
-		private final String _authorizationHeader;
+		private final String _authorization;
 
 	}
 
