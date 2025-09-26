@@ -80,8 +80,7 @@ public class MCPServerTest {
 
 		mcpSyncClient.initialize();
 
-		McpSchema.ListToolsResult listToolsResult =
-			mcpSyncClient.listTools();
+		McpSchema.ListToolsResult listToolsResult = mcpSyncClient.listTools();
 
 		List<McpSchema.Tool> tools = listToolsResult.tools();
 
@@ -105,8 +104,7 @@ public class MCPServerTest {
 
 		List<McpSchema.Content> contents = callToolResult.content();
 
-		McpSchema.TextContent content = (McpSchema.TextContent)contents.get(
-			0);
+		McpSchema.TextContent content = (McpSchema.TextContent)contents.get(0);
 
 		callToolResult = mcpSyncClient.callTool(
 			new McpSchema.CallToolRequest(
@@ -126,8 +124,7 @@ public class MCPServerTest {
 
 		content = (McpSchema.TextContent)contents.get(0);
 
-		Assert.assertThat(
-			content.text(), CoreMatchers.containsString("/test"));
+		Assert.assertThat(content.text(), CoreMatchers.containsString("/test"));
 
 		callToolResult = mcpSyncClient.callTool(
 			new McpSchema.CallToolRequest(
