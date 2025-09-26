@@ -65,8 +65,7 @@ public class AuthorizedHttpServletSseServerTransportProvider
 
 	@Override
 	public void setSessionFactory(McpServerSession.Factory factory) {
-		super.setSessionFactory(
-			new AuthorizedMcpServerSessionFactory(factory));
+		super.setSessionFactory(new AuthorizedMcpServerSessionFactory(factory));
 	}
 
 	@Override
@@ -76,9 +75,8 @@ public class AuthorizedHttpServletSseServerTransportProvider
 		throws IOException, ServletException {
 
 		try (SafeCloseable safeCloseable =
-				AuthorizationThreadLocal.
-					setAuthorizationWithSafeCloseable(
-						httpServletRequest.getHeader("Authorization"))) {
+				AuthorizationThreadLocal.setAuthorizationWithSafeCloseable(
+					httpServletRequest.getHeader("Authorization"))) {
 
 			super.doGet(httpServletRequest, httpServletResponse);
 		}
@@ -93,12 +91,11 @@ public class AuthorizedHttpServletSseServerTransportProvider
 		public static SafeCloseable setAuthorizationWithSafeCloseable(
 			String authorization) {
 
-			return _authorization.setWithSafeCloseable(
-				authorization);
+			return _authorization.setWithSafeCloseable(authorization);
 		}
 
-		private static final CentralizedThreadLocal<String>
-			_authorization = new CentralizedThreadLocal<>(
+		private static final CentralizedThreadLocal<String> _authorization =
+			new CentralizedThreadLocal<>(
 				AuthorizationThreadLocal.class + "._authorization");
 
 	}
@@ -106,7 +103,8 @@ public class AuthorizedHttpServletSseServerTransportProvider
 	private static class AuthorizedMcpServerSession extends McpServerSession {
 
 		public AuthorizedMcpServerSession(
-			String id, Duration requestTimeout, McpServerTransport mcpServerTransport,
+			String id, Duration requestTimeout,
+			McpServerTransport mcpServerTransport,
 			InitRequestHandler initRequestHandler,
 			InitNotificationHandler initNotificationHandler,
 			Map<String, RequestHandler<?>> requestHandlers,
@@ -138,7 +136,8 @@ public class AuthorizedHttpServletSseServerTransportProvider
 
 		@Override
 		public McpServerSession create(McpServerTransport mcpServerTransport) {
-			McpServerSession mcpServerSession = _factory.create(mcpServerTransport);
+			McpServerSession mcpServerSession = _factory.create(
+				mcpServerTransport);
 
 			try {
 				Field initNotificationHandlerField =
