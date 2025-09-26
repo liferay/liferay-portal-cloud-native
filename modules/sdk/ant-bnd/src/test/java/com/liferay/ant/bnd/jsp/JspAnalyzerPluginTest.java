@@ -209,6 +209,10 @@ public class JspAnalyzerPluginTest {
 
 		JspAnalyzerPlugin jspAnalyzerPlugin = new JspAnalyzerPlugin();
 
+		Builder builder = new Builder();
+
+		builder.build();
+
 		URL url = getResource(jspPath);
 
 		String content = null;
@@ -217,13 +221,8 @@ public class JspAnalyzerPluginTest {
 			content = IO.collect(inputStream);
 		}
 
-		Builder builder = new Builder();
-
-		builder.build();
-
-		Set<String> taglibURIs = new HashSet<>();
-
-		jspAnalyzerPlugin.addTaglibRequirements(builder, content, taglibURIs);
+		jspAnalyzerPlugin.addTaglibRequirements(
+			builder, content, new HashSet<>());
 
 		String requireCapability = builder.getProperty(
 			Constants.REQUIRE_CAPABILITY);
