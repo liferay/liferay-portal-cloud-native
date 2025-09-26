@@ -654,8 +654,8 @@ public class CompilerWrapper extends Compiler {
 					absoluteResourcePath.substring(1));
 			}
 
-			tldResourcePaths.put(uri, tldResourcePath);
 			taglibXmls.put(tldResourcePath, taglibXml);
+			tldResourcePaths.put(uri, tldResourcePath);
 		}
 		catch (Exception exception) {
 			_log.error(exception);
