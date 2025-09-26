@@ -132,7 +132,7 @@ public class MCPServerServlet extends HttpServlet {
 					path = "/" + path;
 				}
 
-				return _callEndpoint(
+				return _call(
 					authorizedHttpServletSseServerTransportProvider.
 						getAuthorizationHeader(mcpAsyncServerExchange),
 					String.valueOf(monos.get("method")), baseURL + path,
@@ -140,13 +140,13 @@ public class MCPServerServlet extends HttpServlet {
 			}
 		).tool(
 			_getTool("get-openapi", toolsJSONObject),
-			(mcpAsyncServerExchange, monos) -> _callEndpoint(
+			(mcpAsyncServerExchange, monos) -> _call(
 				authorizedHttpServletSseServerTransportProvider.
 					getAuthorizationHeader(mcpAsyncServerExchange),
 				"GET", String.valueOf(monos.get("url")), null)
 		).tool(
 			_getTool("get-openapis", toolsJSONObject),
-			(mcpAsyncServerExchange, monos) -> _callEndpoint(
+			(mcpAsyncServerExchange, monos) -> _call(
 				authorizedHttpServletSseServerTransportProvider.
 					getAuthorizationHeader(mcpAsyncServerExchange),
 				"GET", baseURL + "/openapi", null)
@@ -174,7 +174,7 @@ public class MCPServerServlet extends HttpServlet {
 		};
 	}
 
-	private McpSchema.CallToolResult _callEndpoint(
+	private McpSchema.CallToolResult _call(
 		String authorizationHeader, String method, String path,
 		String payload) {
 
