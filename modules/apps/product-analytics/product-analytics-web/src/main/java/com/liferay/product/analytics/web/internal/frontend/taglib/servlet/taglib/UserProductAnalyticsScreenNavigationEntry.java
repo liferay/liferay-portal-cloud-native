@@ -89,7 +89,7 @@ public class UserProductAnalyticsScreenNavigationEntry
 		catch (PortalException portalException) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Failed to load product analytics configuration",
+					"Unable to load product analytics configuration",
 					portalException);
 			}
 
