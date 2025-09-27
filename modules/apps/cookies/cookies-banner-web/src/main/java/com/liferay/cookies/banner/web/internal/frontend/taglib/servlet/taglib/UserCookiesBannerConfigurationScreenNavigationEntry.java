@@ -88,8 +88,8 @@ public class UserCookiesBannerConfigurationScreenNavigationEntry
 		CookiesBannerConfigurationDisplayContext
 			cookiesBannerConfigurationDisplayContext =
 				new CookiesBannerConfigurationDisplayContext(
-					_cookiesConfigurationProvider,
-					_layoutUtilityPageEntryLayoutProvider, httpServletRequest);
+					_cookiesConfigurationProvider, httpServletRequest,
+					_layoutUtilityPageEntryLayoutProvider);
 
 		httpServletRequest.setAttribute(
 			CookiesBannerWebKeys.COOKIES_BANNER_CONFIGURATION_DISPLAY_CONTEXT,

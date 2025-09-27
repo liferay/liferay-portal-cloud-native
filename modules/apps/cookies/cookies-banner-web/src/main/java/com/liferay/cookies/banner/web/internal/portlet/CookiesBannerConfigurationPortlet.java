@@ -59,8 +59,8 @@ public class CookiesBannerConfigurationPortlet extends MVCPortlet {
 			cookiesBannerConfigurationDisplayContext =
 				new CookiesBannerConfigurationDisplayContext(
 					_cookiesConfigurationProvider,
-					_layoutUtilityPageEntryLayoutProvider,
-					_portal.getHttpServletRequest(renderRequest));
+					_portal.getHttpServletRequest(renderRequest),
+					_layoutUtilityPageEntryLayoutProvider);
 
 		renderRequest.setAttribute(
 			CookiesBannerWebKeys.COOKIES_BANNER_CONFIGURATION_DISPLAY_CONTEXT,

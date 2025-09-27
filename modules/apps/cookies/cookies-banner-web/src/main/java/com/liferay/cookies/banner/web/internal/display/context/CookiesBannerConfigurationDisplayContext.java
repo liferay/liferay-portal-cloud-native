@@ -32,9 +32,9 @@ public class CookiesBannerConfigurationDisplayContext
 
 	public CookiesBannerConfigurationDisplayContext(
 		CookiesConfigurationProvider cookiesConfigurationProvider,
+		HttpServletRequest httpServletRequest,
 		LayoutUtilityPageEntryLayoutProvider
-			layoutUtilityPageEntryLayoutProvider,
-		HttpServletRequest httpServletRequest) {
+			layoutUtilityPageEntryLayoutProvider) {
 
 		super(
 			cookiesConfigurationProvider, httpServletRequest,
