@@ -1809,17 +1809,17 @@ public class ObjectDefinitionLocalServiceImpl
 						serviceContext);
 			}
 
-			long groupId = workflowDefinitionLink.getGroupId();
-
 			WorkflowDefinitionLink existingWorkflowDefinitionLink =
 				_workflowDefinitionLinkLocalService.fetchWorkflowDefinitionLink(
-					objectDefinition.getCompanyId(), groupId,
+					objectDefinition.getCompanyId(),
+					workflowDefinitionLink.getGroupId(),
 					objectDefinition.getClassName(), 0, 0, true);
 
 			if (existingWorkflowDefinitionLink == null) {
 				_workflowDefinitionLinkLocalService.addWorkflowDefinitionLink(
 					null, workflowDefinitionLink.getUserId(),
-					objectDefinition.getCompanyId(), groupId,
+					objectDefinition.getCompanyId(),
+					workflowDefinitionLink.getGroupId(),
 					objectDefinition.getClassName(), 0, 0,
 					kaleoDefinition.getName(), kaleoDefinition.getVersion());
 
