@@ -88,13 +88,11 @@ public class GraphQLServletTest {
 		_serviceRegistration.unregister();
 	}
 
-	// TODO LPD-66849
-	// Tests a type can be registered even if its GraphQL name is already
-	// registered in the schema by GraphQLServletExtender_registerCustomTypes()
-
 	@Test
-	public void testGraphQLNameConflictingWithCustomTypeName()
-		throws Exception {
+	public void testRegisterCustomTypes() throws Exception {
+
+		// TestDTO2 overrides the existing registered schema "FileEntry". See
+		// GraphQLServletExtender#registerCustomTypes and LPD-66849.
 
 		JSONAssert.assertEquals(
 			JSONUtil.put(
