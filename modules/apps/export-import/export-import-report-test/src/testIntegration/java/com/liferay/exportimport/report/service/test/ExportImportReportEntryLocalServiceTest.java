@@ -148,61 +148,51 @@ public class ExportImportReportEntryLocalServiceTest {
 
 	@Test
 	public void testGetExportImportReportEntries() throws Exception {
+		long exportImportConfigurationId = RandomTestUtil.randomLong();
+
+		List<ExportImportReportEntry> exportImportReportEntries =
+			_exportImportReportEntryLocalService.getExportImportReportEntries(
+				TestPropsValues.getCompanyId(), exportImportConfigurationId);
+
+		Assert.assertTrue(exportImportReportEntries.isEmpty());
+
+		_exportImportReportEntryLocalService.addEmptyExportImportReportEntry(
+			RandomTestUtil.randomLong(), TestPropsValues.getCompanyId(),
+			RandomTestUtil.randomString(), RandomTestUtil.randomLong(),
+			exportImportConfigurationId, RandomTestUtil.randomString(),
+			RandomTestUtil.randomInt(), RandomTestUtil.randomString(),
+			RandomTestUtil.randomString());
+		_exportImportReportEntryLocalService.addEmptyExportImportReportEntry(
+			RandomTestUtil.randomLong(), TestPropsValues.getCompanyId(),
+			RandomTestUtil.randomString(), RandomTestUtil.randomLong(),
+			RandomTestUtil.randomLong(), RandomTestUtil.randomString(),
+			RandomTestUtil.randomInt(), RandomTestUtil.randomString(),
+			RandomTestUtil.randomString());
+
 		Company company = CompanyTestUtil.addCompany();
 
-		try {
-			long exportImportConfigurationId = RandomTestUtil.randomLong();
+		_exportImportReportEntryLocalService.addEmptyExportImportReportEntry(
+			RandomTestUtil.randomLong(), company.getCompanyId(),
+			RandomTestUtil.randomString(), RandomTestUtil.randomLong(),
+			exportImportConfigurationId, RandomTestUtil.randomString(),
+			RandomTestUtil.randomInt(), RandomTestUtil.randomString(),
+			RandomTestUtil.randomString());
+		_exportImportReportEntryLocalService.addEmptyExportImportReportEntry(
+			RandomTestUtil.randomLong(), company.getCompanyId(),
+			RandomTestUtil.randomString(), RandomTestUtil.randomLong(),
+			RandomTestUtil.randomLong(), RandomTestUtil.randomString(),
+			RandomTestUtil.randomInt(), RandomTestUtil.randomString(),
+			RandomTestUtil.randomString());
 
-			List<ExportImportReportEntry> exportImportReportEntries =
-				_exportImportReportEntryLocalService.
-					getExportImportReportEntries(
-						TestPropsValues.getCompanyId(),
-						exportImportConfigurationId);
+		exportImportReportEntries =
+			_exportImportReportEntryLocalService.getExportImportReportEntries(
+				TestPropsValues.getCompanyId(), exportImportConfigurationId);
 
-			Assert.assertTrue(exportImportReportEntries.isEmpty());
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 1,
+			exportImportReportEntries.size());
 
-			_exportImportReportEntryLocalService.
-				addEmptyExportImportReportEntry(
-					RandomTestUtil.randomLong(), TestPropsValues.getCompanyId(),
-					RandomTestUtil.randomString(), RandomTestUtil.randomLong(),
-					exportImportConfigurationId, RandomTestUtil.randomString(),
-					RandomTestUtil.randomInt(), RandomTestUtil.randomString(),
-					RandomTestUtil.randomString());
-			_exportImportReportEntryLocalService.
-				addEmptyExportImportReportEntry(
-					RandomTestUtil.randomLong(), TestPropsValues.getCompanyId(),
-					RandomTestUtil.randomString(), RandomTestUtil.randomLong(),
-					RandomTestUtil.randomLong(), RandomTestUtil.randomString(),
-					RandomTestUtil.randomInt(), RandomTestUtil.randomString(),
-					RandomTestUtil.randomString());
-			_exportImportReportEntryLocalService.
-				addEmptyExportImportReportEntry(
-					RandomTestUtil.randomLong(), company.getCompanyId(),
-					RandomTestUtil.randomString(), RandomTestUtil.randomLong(),
-					exportImportConfigurationId, RandomTestUtil.randomString(),
-					RandomTestUtil.randomInt(), RandomTestUtil.randomString(),
-					RandomTestUtil.randomString());
-			_exportImportReportEntryLocalService.
-				addEmptyExportImportReportEntry(
-					RandomTestUtil.randomLong(), company.getCompanyId(),
-					RandomTestUtil.randomString(), RandomTestUtil.randomLong(),
-					RandomTestUtil.randomLong(), RandomTestUtil.randomString(),
-					RandomTestUtil.randomInt(), RandomTestUtil.randomString(),
-					RandomTestUtil.randomString());
-
-			exportImportReportEntries =
-				_exportImportReportEntryLocalService.
-					getExportImportReportEntries(
-						TestPropsValues.getCompanyId(),
-						exportImportConfigurationId);
-
-			Assert.assertEquals(
-				exportImportReportEntries.toString(), 1,
-				exportImportReportEntries.size());
-		}
-		finally {
-			_companyLocalService.deleteCompany(company);
-		}
+		_companyLocalService.deleteCompany(company);
 	}
 
 	@Inject
