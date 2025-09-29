@@ -4725,11 +4725,11 @@ public class ObjectEntryLocalServiceTest {
 				group.getExternalReferenceCode());
 
 			Assert.assertEquals(
-				ExportImportReportEntryConstants.STATUS_UNRESOLVED,
-				exportImportReportEntry.getStatus());
-			Assert.assertEquals(
 				ExportImportReportEntryConstants.TYPE_EMPTY,
 				exportImportReportEntry.getType());
+			Assert.assertEquals(
+				ExportImportReportEntryConstants.STATUS_UNRESOLVED,
+				exportImportReportEntry.getStatus());
 
 			objectEntry = _objectEntryLocalService.updateObjectEntry(
 				objectEntry.getUserId(), objectEntry.getObjectEntryId(),
