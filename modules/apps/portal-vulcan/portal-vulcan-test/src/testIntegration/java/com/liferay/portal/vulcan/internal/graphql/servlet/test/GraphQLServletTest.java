@@ -89,28 +89,6 @@ public class GraphQLServletTest {
 	}
 
 	@Test
-	public void testRegisterCustomTypes() throws Exception {
-
-		// TestDTO2 overrides the existing registered schema "FileEntry". See
-		// GraphQLServletExtender#registerCustomTypes and LPD-66849.
-
-		JSONAssert.assertEquals(
-			JSONUtil.put(
-				JSONUtil.put("name", "testField")
-			).toString(),
-			JSONUtil.getValueAsString(
-				_invoke(
-					new GraphQLField(
-						"__type(name: \"com_liferay_portal_vulcan_" +
-							"internal_graphql_servlet_test_" +
-								"GraphQLServletTest_TestDTO2\")",
-						new GraphQLField("fields", new GraphQLField("name"))),
-					"query"),
-				"JSONObject/data", "JSONObject/__type", "JSONArray/fields"),
-			JSONCompareMode.LENIENT);
-	}
-
-	@Test
 	public void testMutation() throws Exception {
 		TestDTO1 testDTO1 = new TestDTO1();
 
@@ -448,6 +426,28 @@ public class GraphQLServletTest {
 					"query"),
 				"JSONArray/errors", "Object/0", "JSONObject/extensions",
 				"Object/code"));
+	}
+
+	@Test
+	public void testRegisterCustomTypes() throws Exception {
+
+		// TestDTO2 overrides the existing registered schema "FileEntry". See
+		// GraphQLServletExtender#registerCustomTypes and LPD-66849.
+
+		JSONAssert.assertEquals(
+			JSONUtil.put(
+				JSONUtil.put("name", "testField")
+			).toString(),
+			JSONUtil.getValueAsString(
+				_invoke(
+					new GraphQLField(
+						"__type(name: \"com_liferay_portal_vulcan_" +
+							"internal_graphql_servlet_test_" +
+								"GraphQLServletTest_TestDTO2\")",
+						new GraphQLField("fields", new GraphQLField("name"))),
+					"query"),
+				"JSONObject/data", "JSONObject/__type", "JSONArray/fields"),
+			JSONCompareMode.LENIENT);
 	}
 
 	@Test
