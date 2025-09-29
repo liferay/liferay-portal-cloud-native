@@ -736,7 +736,7 @@ public class ObjectEntryDTOConverter
 
 		UriInfo uriInfo = dtoConverterContext.getUriInfo();
 
-		DefaultDTOConverterContext defaultDTOConverterContext =
+		DTOConverterContext defaultDTOConverterContext =
 			new DefaultDTOConverterContext(
 				dtoConverterContext.isAcceptAllLanguages(), null,
 				dtoConverterContext.getDTOConverterRegistry(),
