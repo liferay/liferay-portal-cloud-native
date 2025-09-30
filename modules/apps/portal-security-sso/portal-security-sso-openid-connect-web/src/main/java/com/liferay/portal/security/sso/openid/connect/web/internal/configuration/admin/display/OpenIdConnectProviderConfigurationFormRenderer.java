@@ -104,16 +104,16 @@ public class OpenIdConnectProviderConfigurationFormRenderer
 		throws IOException {
 
 		try {
+			RequestDispatcher requestDispatcher =
+				_servletContext.getRequestDispatcher(
+					"/open_id_connect_configuration.jsp");
+
 			httpServletRequest.setAttribute(
 				OpenIdConnectWebKeys.
 					OPEN_ID_CONNECT_PROVIDER_CONFIGURATION_DISPLAY_CONTEXT,
 				new OpenIdConnectProviderConfigurationDisplayContext(
 					_configurationAdmin,
 					httpServletRequest.getParameter("pid")));
-
-			RequestDispatcher requestDispatcher =
-				_servletContext.getRequestDispatcher(
-					"/open_id_connect_configuration.jsp");
 
 			requestDispatcher.include(httpServletRequest, httpServletResponse);
 		}
