@@ -156,8 +156,7 @@ public class ServiceBag<V> {
 		catch (ClassNotFoundException classNotFoundException) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					classLoader + " can not load " + clazz,
-					classNotFoundException);
+					"Unable to load class " + clazz, classNotFoundException);
 			}
 		}
 
