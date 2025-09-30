@@ -236,14 +236,11 @@ public class ApplicationsMenuPanelAppsMVCResourceCommand
 			HttpServletRequest httpServletRequest, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		JSONObject cmsJSONObject = _jsonFactory.createJSONObject();
-
-		Company company = themeDisplay.getCompany();
-
 		Page<AssetLibrary> assetLibraryPage = _getAssetLibrariesPage(
 			themeDisplay);
+		Company company = themeDisplay.getCompany();
 
-		return cmsJSONObject.put(
+		return JSONUtil.put(
 			"allSpacesCount",
 			() -> {
 				if (assetLibraryPage == null) {
