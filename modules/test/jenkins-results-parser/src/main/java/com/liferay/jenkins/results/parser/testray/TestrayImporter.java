@@ -1387,6 +1387,8 @@ public class TestrayImporter {
 		_addPropertyElements(
 			rootElement.addElement("properties"), propertiesMap);
 
+		String[] warnings = null;
+
 		List<TestrayCaseResult> testrayCaseResults = new ArrayList<>();
 
 		if (axisTestClassGroup instanceof FunctionalAxisTestClassGroup ||
@@ -1429,8 +1431,6 @@ public class TestrayImporter {
 				TestrayFactory.newBuildTestrayCaseResult(
 					testrayBuild, _topLevelBuildReport, axisTestClassGroup));
 		}
-
-		String[] warnings = null;
 
 		for (TestrayCaseResult testrayCaseResult : testrayCaseResults) {
 			Element testcaseElement = rootElement.addElement("testcase");
