@@ -819,7 +819,7 @@ test('can import CSV file with new and existing site scoped object entries', asy
 		'UPDATE'
 	);
 
-	await page.getByRole('button', {exact: true, name: 'Close'}).click();
+	await page.getByText('Close', {exact: true}).click();
 
 	await dataMigrationCenterPage.importFile(
 		OBJECT_ENTRY_ENTITY_TYPE,
@@ -1363,7 +1363,7 @@ test('can show duplicate error message with CSV import existing entry and only a
 		'UPDATE'
 	);
 
-	await page.getByRole('button', {exact: true, name: 'Close'}).click();
+	await page.getByText('Close', {exact: true}).click();
 
 	await dataMigrationCenterPage.importFile(
 		OBJECT_ENTRY_ENTITY_TYPE,
@@ -1404,7 +1404,7 @@ test('can show unique contraint error message with CSV import existing entry and
 		'UPDATE'
 	);
 
-	await page.getByRole('button', {exact: true, name: 'Close'}).click();
+	await page.getByText('Close', {exact: true}).click();
 
 	await dataMigrationCenterPage.importFile(
 		OBJECT_ENTRY_ENTITY_TYPE,
