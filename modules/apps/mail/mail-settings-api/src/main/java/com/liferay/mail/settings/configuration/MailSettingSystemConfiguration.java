@@ -48,16 +48,16 @@ public interface MailSettingSystemConfiguration {
 	public String jndiName();
 
 	@Meta.AD(
+		deflt = "events", description = "pop-server-subdomain-description",
+		name = "pop-server-subdomain", required = false
+	)
+	public String popServerSubdomain();
+
+	@Meta.AD(
 		deflt = "false",
 		description = "throws-exception-on-failure-description",
 		name = "throws-exception-on-failure", required = false
 	)
 	public boolean throwsExceptionOnFailure();
-
-	@Meta.AD(
-		deflt = "events", description = "pop-server-subdomain-description",
-		name = "pop-server-subdomain", required = false
-	)
-	public String popServerSubdomain();
 
 }
