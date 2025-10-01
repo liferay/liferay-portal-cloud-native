@@ -305,14 +305,14 @@ public class SettingsTestUtil {
 						_getClientExtension(
 							ClientExtensionEntryConstants.TYPE_GLOBAL_CSS),
 						_getClientExtension(
-							ClientExtensionEntryConstants.TYPE_GLOBAL_CSS, true)
+							true, ClientExtensionEntryConstants.TYPE_GLOBAL_CSS)
 					});
 				setGlobalJSClientExtensions(
 					() -> new ClientExtension[] {
 						_getClientExtension(
 							ClientExtensionEntryConstants.TYPE_GLOBAL_JS),
 						_getClientExtension(
-							ClientExtensionEntryConstants.TYPE_GLOBAL_JS, true)
+							true, ClientExtensionEntryConstants.TYPE_GLOBAL_JS)
 					});
 				setJavascript(RandomTestUtil::randomString);
 				setMasterPageItemExternalReference(
@@ -572,14 +572,8 @@ public class SettingsTestUtil {
 		}
 	}
 
-	private static ClientExtension _getClientExtension(String type)
-		throws Exception {
-
-		return _getClientExtension(type, false);
-	}
-
 	private static ClientExtension _getClientExtension(
-			String type, boolean optionalReference)
+			boolean optionalReference, String type)
 		throws Exception {
 
 		ClientExtension clientExtension = new ClientExtension() {
@@ -605,6 +599,12 @@ public class SettingsTestUtil {
 		}
 
 		return clientExtension;
+	}
+
+	private static ClientExtension _getClientExtension(String type)
+		throws Exception {
+
+		return _getClientExtension(false, type);
 	}
 
 	private static FavIcon _getFavIcon(FavIcon.FavIconType favIconType)
