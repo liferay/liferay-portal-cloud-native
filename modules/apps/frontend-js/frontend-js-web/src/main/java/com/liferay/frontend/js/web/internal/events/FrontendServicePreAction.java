@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = "key=servlet.service.events.pre", service = LifecycleAction.class
 )
-public class FrontendJsWebPreAction extends Action {
+public class FrontendServicePreAction extends Action {
 
 	@Override
 	public void run(
