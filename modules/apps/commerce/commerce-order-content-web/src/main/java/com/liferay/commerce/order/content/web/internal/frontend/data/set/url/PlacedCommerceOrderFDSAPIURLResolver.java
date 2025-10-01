@@ -54,12 +54,6 @@ public class PlacedCommerceOrderFDSAPIURLResolver implements FDSAPIURLResolver {
 			return StringPool.BLANK;
 		}
 
-		String externalReferenceCode = StringPool.BLANK;
-
-		if (baseURL.startsWith("/v1.0/channels/by-externalReferenceCode")) {
-			externalReferenceCode = commerceChannel.getExternalReferenceCode();
-		}
-
 		String accountExternalReferenceCode = StringPool.BLANK;
 		long accountId = 0;
 
@@ -68,6 +62,12 @@ public class PlacedCommerceOrderFDSAPIURLResolver implements FDSAPIURLResolver {
 		if (accountEntry != null) {
 			accountExternalReferenceCode = accountEntry.getExternalReferenceCode();
 			accountId = accountEntry.getAccountEntryId();
+		}
+
+		String externalReferenceCode = StringPool.BLANK;
+
+		if (baseURL.startsWith("/v1.0/channels/by-externalReferenceCode")) {
+			externalReferenceCode = commerceChannel.getExternalReferenceCode();
 		}
 
 		return StringUtil.replace(
