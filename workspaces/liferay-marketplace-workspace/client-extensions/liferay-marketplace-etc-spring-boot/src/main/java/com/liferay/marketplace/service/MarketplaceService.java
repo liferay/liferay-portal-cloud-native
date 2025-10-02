@@ -273,7 +273,7 @@ public class MarketplaceService extends BaseService {
 		return version;
 	}
 
-	public Sku getSku(long id) throws Exception {
+	public Sku getSku(Long id) throws Exception {
 		SkuResource skuResource = getSkuResource();
 
 		return skuResource.getSku(id);

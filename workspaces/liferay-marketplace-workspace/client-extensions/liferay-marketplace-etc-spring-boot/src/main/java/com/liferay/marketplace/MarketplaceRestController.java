@@ -339,7 +339,9 @@ public class MarketplaceRestController extends BaseRestController {
 		}
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Sending Purchased Order Notification " + order.getId());
+			_log.info(
+				"Sending purchased order notification for order " +
+					order.getId());
 		}
 
 		com.liferay.headless.commerce.admin.order.client.dto.v1_0.Account
