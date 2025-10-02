@@ -8292,7 +8292,6 @@ public class JournalArticleLocalServiceImpl
 		throws PortalException {
 
 		return UniqueUtil.getCopyValue(
-			urlTitle,
 			copyValue -> {
 				JournalArticle article = fetchArticleByUrlTitle(
 					groupId, copyValue);
@@ -8304,7 +8303,8 @@ public class JournalArticleLocalServiceImpl
 				}
 
 				return false;
-			});
+			},
+			urlTitle);
 	}
 
 	private Map<String, String> _getURLTitleMap(

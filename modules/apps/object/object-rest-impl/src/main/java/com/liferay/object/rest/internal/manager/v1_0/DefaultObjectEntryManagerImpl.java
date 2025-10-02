@@ -2197,7 +2197,6 @@ public class DefaultObjectEntryManagerImpl
 			(Column<?, String>)table.getColumn(objectField.getDBColumnName());
 
 		return UniqueUtil.getCopyValue(
-			value,
 			copyValue -> {
 				long count = objectEntryLocalService.getValuesListCount(
 					new Long[] {groupId}, objectDefinition.getCompanyId(),
@@ -2210,7 +2209,8 @@ public class DefaultObjectEntryManagerImpl
 				}
 
 				return false;
-			});
+			},
+			value);
 	}
 
 	private ObjectEntry _getObjectEntry(
