@@ -283,6 +283,8 @@ public class MarketplaceRestController extends BaseRestController {
 			return;
 		}
 
+		OrderResource orderResource = _marketplaceService.getOrderResource();
+
 		com.liferay.headless.commerce.admin.order.client.dto.v1_0.Account
 			account = order.getAccount();
 
@@ -308,15 +310,14 @@ public class MarketplaceRestController extends BaseRestController {
 		BigDecimal finalTaxAmount = taxAmount;
 		BigDecimal finalTotal = total;
 
-		Order updatedOrder = new Order();
-
-		updatedOrder.setTaxAmount(() -> finalTaxAmount);
-		updatedOrder.setTotal(() -> finalTotal);
-
-		_marketplaceService.getOrderResource(
-		).patchOrder(
-			orderId, updatedOrder
-		);
+		orderResource.patchOrder(
+			orderId,
+			new Order() {
+				{
+					setTaxAmount(() -> finalTaxAmount);
+					setTotal(() -> finalTotal);
+				}
+			});
 	}
 
 	private void _setUpCloudProductPurchase(
