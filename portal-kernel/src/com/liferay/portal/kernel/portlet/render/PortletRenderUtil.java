@@ -426,18 +426,18 @@ public class PortletRenderUtil {
 					}
 
 					if (!HttpComponentsUtil.hasProtocol(portletResource)) {
-						if (urlType == URLType.JAVASCRIPT) {
+						if (urlType == URLType.CSS) {
+							portletResource = _getStaticCSSResourceURL(
+								httpServletRequest, themeDisplay,
+								contextPath + portletResource);
+						}
+						else if (urlType == URLType.JAVASCRIPT) {
 							Portlet rootPortlet = portlet.getRootPortlet();
 
 							portletResource = PortalUtil.getStaticResourceURL(
 								httpServletRequest,
 								contextPath + portletResource,
 								rootPortlet.getTimestamp());
-						}
-						else if (urlType == URLType.CSS) {
-							portletResource = _getStaticCSSResourceURL(
-								httpServletRequest, themeDisplay,
-								contextPath + portletResource);
 						}
 						else {
 							throw new UnsupportedOperationException(
@@ -540,10 +540,10 @@ public class PortletRenderUtil {
 	}
 
 	private static boolean _isTokenized(String resourceURI) {
-		if (!_isTokenizedCache.containsKey(resourceURI)) {
+		if (!_tokenized.containsKey(resourceURI)) {
 			URL resourceURL = HashedFilesRegistryUtil.getResource(resourceURI);
 
-			String content;
+			String content = null;
 
 			try {
 				content = StreamUtil.toString(resourceURL.openStream());
@@ -554,19 +554,19 @@ public class PortletRenderUtil {
 						" has no tokens because it could not be read",
 					exception);
 
-				_isTokenizedCache.putIfAbsent(resourceURI, false);
+				_tokenized.putIfAbsent(resourceURI, false);
 
 				return false;
 			}
 
-			_isTokenizedCache.putIfAbsent(
+			_tokenized.putIfAbsent(
 				resourceURI,
 				content.contains("@base_url@") ||
 				content.contains("@portal_ctx@") ||
 				content.contains("@theme_image_path@"));
 		}
 
-		return _isTokenizedCache.get(resourceURI);
+		return _tokenized.get(resourceURI);
 	}
 
 	private static void _writeCSSPath(
@@ -731,7 +731,7 @@ public class PortletRenderUtil {
 	private static final Log _log = LogFactoryUtil.getLog(
 		PortletRenderUtil.class);
 
-	private static final Map<String, Boolean> _isTokenizedCache =
+	private static final Map<String, Boolean> _tokenized =
 		new ConcurrentHashMap<>();
 	private static final Set<String> _specialPrefixes = SetUtil.fromArray(
 		"module:", "nocombo:");

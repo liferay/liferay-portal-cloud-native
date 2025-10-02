@@ -122,7 +122,7 @@ public abstract class BaseLinkTag extends com.liferay.taglib.util.PositionTagSup
 
 	private String _cssClass = null;
 	private String _crossOrigin = null;
-	private boolean _hashedFile = false;
+	private boolean _hashedFile;
 	private String _href = null;
 	private String _id = null;
 	private String _integrity = null;

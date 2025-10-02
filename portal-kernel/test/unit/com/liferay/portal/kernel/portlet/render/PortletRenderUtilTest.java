@@ -30,7 +30,6 @@ import java.util.Set;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import org.mockito.MockedStatic;
@@ -44,11 +43,6 @@ import org.springframework.mock.web.MockHttpServletRequest;
  * @author Iván Zaera Avellón
  */
 public class PortletRenderUtilTest {
-
-	@Before
-	public void setUp() {
-		_hash = RandomTestUtil.randomString(8);
-	}
 
 	@After
 	public void tearDown() {
@@ -446,7 +440,7 @@ public class PortletRenderUtilTest {
 		);
 	}
 
-	private String _hash;
+	private String _hash = RandomTestUtil.randomString(8);
 	private final MockedStatic<HashedFilesRegistryUtil>
 		_hashedFilesRegistryUtilMockedStatic = Mockito.mockStatic(
 			HashedFilesRegistryUtil.class);
