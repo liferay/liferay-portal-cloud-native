@@ -2198,12 +2198,12 @@ public class DefaultObjectEntryManagerImpl
 
 		return UniqueUtil.getCopyName(
 			value,
-			copyValue -> {
+			copyName -> {
 				long count = objectEntryLocalService.getValuesListCount(
 					new Long[] {groupId}, objectDefinition.getCompanyId(),
 					objectDefinition.getUserId(),
 					objectDefinition.getObjectDefinitionId(),
-					objectFieldColumn.eq(copyValue), false, null);
+					objectFieldColumn.eq(copyName), false, null);
 
 				if (count == 0) {
 					return true;
