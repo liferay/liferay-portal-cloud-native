@@ -82,7 +82,7 @@ public class HelpCenterUtil {
 				fileSize, patcherBuild.getSupportTicket());
 		}
 		catch (Exception exception) {
-			throw new Exception("Error processing GCS file", exception);
+			throw exception;
 		}
 
 		Http.Options options = new Http.Options();
