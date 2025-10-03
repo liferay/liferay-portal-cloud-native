@@ -112,103 +112,92 @@ public class EditUserMVCActionCommandTest {
 			PropsKeys.FIELD_EDITABLE_DOMAINS, new Filter("suffix"));
 		String[] fieldEditableUserTypes = PropsValues.FIELD_EDITABLE_USER_TYPES;
 
-		try {
-			PropsUtil.set(
-				PropsKeys.FIELD_EDITABLE_DOMAINS + "[firstName]",
-				StringPool.STAR);
-			PropsUtil.set(
-				PropsKeys.FIELD_EDITABLE_DOMAINS + "[prefix]",
-				StringPool.BLANK);
-			PropsUtil.set(
-				PropsKeys.FIELD_EDITABLE_DOMAINS + "[suffix]",
-				StringPool.BLANK);
-			PropsUtil.set(
-				PropsKeys.FIELD_EDITABLE_USER_TYPES, StringPool.BLANK);
+		PropsUtil.set(
+			PropsKeys.FIELD_EDITABLE_DOMAINS + "[firstName]", StringPool.STAR);
+		PropsUtil.set(
+			PropsKeys.FIELD_EDITABLE_DOMAINS + "[prefix]", StringPool.BLANK);
+		PropsUtil.set(
+			PropsKeys.FIELD_EDITABLE_DOMAINS + "[suffix]", StringPool.BLANK);
+		PropsUtil.set(PropsKeys.FIELD_EDITABLE_USER_TYPES, StringPool.BLANK);
 
-			PrincipalThreadLocal.setName(TestPropsValues.getUserId());
+		PrincipalThreadLocal.setName(TestPropsValues.getUserId());
 
-			PermissionChecker adminPermissionChecker =
-				PermissionCheckerFactoryUtil.create(TestPropsValues.getUser());
+		PermissionChecker adminPermissionChecker =
+			PermissionCheckerFactoryUtil.create(TestPropsValues.getUser());
 
-			PermissionThreadLocal.setPermissionChecker(adminPermissionChecker);
+		PermissionThreadLocal.setPermissionChecker(adminPermissionChecker);
 
-			Assert.assertTrue(
+		Assert.assertTrue(
+			UsersAdminUtil.hasUpdateFieldPermission(
+				adminPermissionChecker, TestPropsValues.getUser(),
+				TestPropsValues.getUser(), "suffix"));
+
+		ListType prefixListType = _listTypeLocalService.getListType(
+			TestPropsValues.getCompanyId(), "dr",
+			ListTypeConstants.CONTACT_PREFIX);
+		ListType suffixListType = _listTypeLocalService.getListType(
+			TestPropsValues.getCompanyId(), "ii",
+			ListTypeConstants.CONTACT_SUFFIX);
+
+		User user = _userLocalService.addUser(
+			0, TestPropsValues.getCompanyId(), false, "test", "test", false,
+			RandomTestUtil.randomString(),
+			RandomTestUtil.randomString() + "@example.com", LocaleUtil.US,
+			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
+			RandomTestUtil.randomString(), prefixListType.getListTypeId(),
+			suffixListType.getListTypeId(), true, 1, 1, 1970, StringPool.BLANK,
+			UserConstants.TYPE_REGULAR, null, null, null, null, true,
+			ServiceContextTestUtil.getServiceContext(
+				TestPropsValues.getCompanyId(), TestPropsValues.getGroupId(),
+				TestPropsValues.getUserId()));
+
+		PermissionChecker userPermissionChecker =
+			PermissionCheckerFactoryUtil.create(user);
+
+		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
+				user, userPermissionChecker)) {
+
+			Assert.assertFalse(
 				UsersAdminUtil.hasUpdateFieldPermission(
-					adminPermissionChecker, TestPropsValues.getUser(),
-					TestPropsValues.getUser(), "suffix"));
+					userPermissionChecker, user, user, "suffix"));
 
-			ListType prefixListType = _listTypeLocalService.getListType(
-				TestPropsValues.getCompanyId(), "dr",
-				ListTypeConstants.CONTACT_PREFIX);
-			ListType suffixListType = _listTypeLocalService.getListType(
-				TestPropsValues.getCompanyId(), "ii",
-				ListTypeConstants.CONTACT_SUFFIX);
+			String firstName = RandomTestUtil.randomString();
 
-			User user = _userLocalService.addUser(
-				0, TestPropsValues.getCompanyId(), false, "test", "test", false,
-				RandomTestUtil.randomString(),
-				RandomTestUtil.randomString() + "@example.com", LocaleUtil.US,
-				RandomTestUtil.randomString(), RandomTestUtil.randomString(),
-				RandomTestUtil.randomString(), prefixListType.getListTypeId(),
-				suffixListType.getListTypeId(), true, 1, 1, 1970,
-				StringPool.BLANK, UserConstants.TYPE_REGULAR, null, null, null,
-				null, true,
-				ServiceContextTestUtil.getServiceContext(
-					TestPropsValues.getCompanyId(),
-					TestPropsValues.getGroupId(), TestPropsValues.getUserId()));
+			_processAction(
+				"/users_admin/edit_user",
+				HashMapBuilder.put(
+					Constants.CMD, Constants.UPDATE
+				).put(
+					"firstName", firstName
+				).put(
+					"p_u_i_d", String.valueOf(user.getUserId())
+				).build(),
+				userPermissionChecker, user.getUserId());
 
-			PermissionChecker userPermissionChecker =
-				PermissionCheckerFactoryUtil.create(user);
+			user = _userLocalService.getUser(user.getUserId());
 
-			try (ContextUserReplace contextUserReplace = new ContextUserReplace(
-					user, userPermissionChecker)) {
+			Assert.assertEquals(user.getFirstName(), firstName);
 
-				Assert.assertFalse(
-					UsersAdminUtil.hasUpdateFieldPermission(
-						userPermissionChecker, user, user, "suffix"));
+			Contact contact = user.getContact();
 
-				String firstName = RandomTestUtil.randomString();
-
-				_processAction(
-					"/users_admin/edit_user",
-					HashMapBuilder.put(
-						Constants.CMD, Constants.UPDATE
-					).put(
-						"firstName", firstName
-					).put(
-						"p_u_i_d", String.valueOf(user.getUserId())
-					).build(),
-					userPermissionChecker, user.getUserId());
-
-				user = _userLocalService.getUser(user.getUserId());
-
-				Assert.assertEquals(user.getFirstName(), firstName);
-
-				Contact contact = user.getContact();
-
-				Assert.assertEquals(
-					prefixListType.getListTypeId(),
-					contact.getPrefixListTypeId());
-				Assert.assertEquals(
-					suffixListType.getListTypeId(),
-					contact.getSuffixListTypeId());
-			}
+			Assert.assertEquals(
+				prefixListType.getListTypeId(), contact.getPrefixListTypeId());
+			Assert.assertEquals(
+				suffixListType.getListTypeId(), contact.getSuffixListTypeId());
 		}
-		finally {
-			PropsUtil.set(
-				PropsKeys.FIELD_EDITABLE_DOMAINS + "[firstName]",
-				StringUtil.merge(
-					fieldEditableDomainFirstName, StringPool.COMMA));
-			PropsUtil.set(
-				PropsKeys.FIELD_EDITABLE_DOMAINS + "[prefix]",
-				StringUtil.merge(fieldEditableDomainPrefix, StringPool.COMMA));
-			PropsUtil.set(
-				PropsKeys.FIELD_EDITABLE_DOMAINS + "[suffix]",
-				StringUtil.merge(fieldEditableDomainSuffix, StringPool.COMMA));
-			PropsUtil.set(
-				PropsKeys.FIELD_EDITABLE_USER_TYPES,
-				StringUtil.merge(fieldEditableUserTypes, StringPool.COMMA));
-		}
+
+		PropsUtil.set(
+			PropsKeys.FIELD_EDITABLE_DOMAINS + "[firstName]",
+			StringUtil.merge(fieldEditableDomainFirstName, StringPool.COMMA));
+		PropsUtil.set(
+			PropsKeys.FIELD_EDITABLE_DOMAINS + "[prefix]",
+			StringUtil.merge(fieldEditableDomainPrefix, StringPool.COMMA));
+		PropsUtil.set(
+			PropsKeys.FIELD_EDITABLE_DOMAINS + "[suffix]",
+			StringUtil.merge(fieldEditableDomainSuffix, StringPool.COMMA));
+		PropsUtil.set(
+			PropsKeys.FIELD_EDITABLE_USER_TYPES,
+			StringUtil.merge(fieldEditableUserTypes, StringPool.COMMA));
 	}
 
 	@Test
