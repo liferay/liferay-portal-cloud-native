@@ -387,7 +387,6 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 					LocaleUtil.US.toString(), "https://www.liferay.com"
 				).build(),
 				false, externalReferenceCode));
-
 		_testPutSitePageSpecificationPageExperiencePageElement(
 			_getPageElement(
 				new ContainerPageElementDefinition() {

@@ -381,7 +381,6 @@ public class PageElementResourceImpl extends BasePageElementResourceImpl {
 
 		dtoConverterContext.setAttribute(
 			LayoutStructure.class.getName(), layoutStructure);
-
 		dtoConverterContext.setAttribute("scopeGroupId", scopeGroupId);
 
 		return dtoConverterContext;
