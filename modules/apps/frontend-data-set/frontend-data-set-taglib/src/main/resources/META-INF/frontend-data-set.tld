@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
-<taglib version="2.1"
+<taglib
+	version="2.1"
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:jspvs="urn:liferay.com:liferay-jsp-view-state_1.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd urn:liferay.com:liferay-jsp-view-state_1.0.0 http://www.liferay.com/dtd/liferay-jsp-view-state_1_0_0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd urn:liferay.com:liferay-jsp-view-state_1.0.0 http://www.liferay.com/dtd/liferay-jsp-view-state_1_0_0.xsd"
+>
 	<tlib-version>1.0</tlib-version>
 	<short-name>frontend-data-set</short-name>
 	<uri>http://liferay.com/tld/frontend-data-set</uri>
