@@ -1142,9 +1142,7 @@ public class LayoutStructureRenderer {
 		jspWriter.write("<div data-form-relationship-");
 		jspWriter.write("structure-item-content-id=\"");
 		jspWriter.write(formRelationshipStyledLayoutStructureItemContentId);
-		jspWriter.write("\">");
-
-		jspWriter.write("<div class=\"d-flex justify-content-end ");
+		jspWriter.write("\"><div class=\"d-flex justify-content-end ");
 		jspWriter.write("lfr-form-relationship-remove-button \">");
 
 		ButtonTag removeButtonTag = new ButtonTag();
