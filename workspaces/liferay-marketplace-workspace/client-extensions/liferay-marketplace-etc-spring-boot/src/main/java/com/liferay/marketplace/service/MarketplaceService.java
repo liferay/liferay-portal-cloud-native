@@ -395,16 +395,6 @@ public class MarketplaceService extends BaseService {
 
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
-		if (Validator.isNull(emailAddress)) {
-			emailAddress = jsonObject.getJSONObject(
-				"to"
-			).getString(
-				"en_US"
-			);
-		}
-
-		String finalEmailAddress = emailAddress;
-
 		notificationQueueEntry.setRecipients(
 			() -> new Object[] {
 				new HashMapBuilder<String, Object>().put(
@@ -421,7 +411,18 @@ public class MarketplaceService extends BaseService {
 						"en_US"
 					)
 				).put(
-					"to", finalEmailAddress
+					"to",
+					() -> {
+						if (Validator.isNotNull(emailAddress)) {
+							return emailAddress;
+						}
+
+						return jsonObject.getJSONObject(
+							"to"
+						).getString(
+							"en_US"
+						);
+					}
 				).build()
 			});
 

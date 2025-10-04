@@ -152,7 +152,6 @@ public class MarketplaceRestController extends BaseRestController {
 
 		String paymentMethod = commerceOrderJSONObject.getString(
 			"paymentMethod");
-
 		int paymentStatus = commerceOrderJSONObject.getInt("paymentStatus");
 
 		Order order = _marketplaceService.getOrder(
