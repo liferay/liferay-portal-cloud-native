@@ -445,18 +445,19 @@ public class DataSourceFactoryUtil {
 				HikariDataSource.class, "is" + keyName, new Class<?>[0]);
 		}
 
-		Class<?> returnType = getterMethod.getReturnType();
+		Class<?> clazz = getterMethod.getReturnType();
 
 		Method setterMethod = ReflectionUtil.fetchMethod(
 			HikariDataSource.class, "set" + keyName,
-			new Class<?>[] {returnType});
+			new Class<?>[] {clazz});
 
-		setterMethod.invoke(hikariDataSource, _toTypedValue(returnType, value));
+		setterMethod.invoke(hikariDataSource, _toTypedValue(clazz, value));
 	}
 
 	private static Object _toTypedValue(Class<?> clazz, String value) {
 
-		// HikariDataSource setters only take boolean/int/long/String parameter
+		// HikariDataSource setters only take boolean, int, long, and String
+		// parameters
 
 		if (clazz == boolean.class) {
 			return Boolean.valueOf(value);
