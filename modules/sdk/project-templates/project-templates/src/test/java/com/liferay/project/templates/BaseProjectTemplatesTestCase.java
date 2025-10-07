@@ -589,18 +589,16 @@ public interface BaseProjectTemplatesTestCase {
 		completeArgs.add("-DgroupId=" + groupId);
 		completeArgs.add("-Dversion=1.0.0");
 
+		String liferayVersion = "";
 		boolean liferayVersionSet = false;
 		boolean projectTypeSet = false;
-
-		String liferayVersion = "";
 
 		for (String arg : args) {
 			completeArgs.add(arg);
 
 			if (arg.startsWith("-DliferayVersion=")) {
-				liferayVersionSet = true;
-
 				liferayVersion = arg.substring("-DliferayVersion=".length());
+				liferayVersionSet = true;
 			}
 			else if (arg.startsWith("-DprojectType=")) {
 				projectTypeSet = true;
