@@ -172,6 +172,42 @@ public class JenkinsCohort {
 		return runningBuildCount;
 	}
 
+	public int getStartedDownstreamBuildCountAfter(Date date) {
+		int buildCount = 0;
+
+		if (_jenkinsCohortJobsMap.isEmpty()) {
+			update();
+		}
+
+		for (JenkinsMaster jenkinsMaster : _jenkinsMastersMap.values()) {
+			if (jenkinsMaster.isBlackListed() || !jenkinsMaster.isAvailable()) {
+				continue;
+			}
+
+			buildCount += jenkinsMaster.getStartedBuildCountAfter(date, false);
+		}
+
+		return buildCount;
+	}
+
+	public int getStartedTopLevelBuildCountAfter(Date date) {
+		int buildCount = 0;
+
+		if (_jenkinsCohortJobsMap.isEmpty()) {
+			update();
+		}
+
+		for (JenkinsMaster jenkinsMaster : _jenkinsMastersMap.values()) {
+			if (jenkinsMaster.isBlackListed() || !jenkinsMaster.isAvailable()) {
+				continue;
+			}
+
+			buildCount += jenkinsMaster.getStartedBuildCountAfter(date, true);
+		}
+
+		return buildCount;
+	}
+
 	public void update() {
 		synchronized (_jenkinsCohortJobsMap) {
 			if (!_jenkinsCohortJobsMap.isEmpty()) {
