@@ -1942,7 +1942,7 @@ public class RenderLayoutStructureTagTest {
 
 	@Test
 	@TestInfo("LPD-55927")
-	public void testRenderContainerWithBackgroundImageMappedByERC()
+	public void testRenderContainerWithBackgroundImageMappedByExternalReferenceCode()
 		throws Exception {
 
 		long classNameId = _portal.getClassNameId(FileEntry.class);
