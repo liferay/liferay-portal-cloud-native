@@ -140,7 +140,7 @@ public class ViewObjectEntriesDisplayContext {
 				LanguageUtil.get(_objectRequestHelper.getRequest(), "view"),
 				"get", null, null),
 			new FDSActionDropdownItem(
-				_getRestContextPathURL() + "/{id}/expire", "time", "expire",
+				_getRESTContextPathURL() + "/{id}/expire", "time", "expire",
 				LanguageUtil.get(_objectRequestHelper.getRequest(), "expire"),
 				"post", "expire", "async"),
 			new FDSActionDropdownItem(
@@ -278,7 +278,7 @@ public class ViewObjectEntriesDisplayContext {
 	}
 
 	private String _getAPIURL() {
-		String apiURL = _getRestContextPathURL();
+		String apiURL = _getRESTContextPathURL();
 
 		try {
 			long groupId = _objectScopeProvider.getGroupId(_httpServletRequest);
@@ -381,7 +381,7 @@ public class ViewObjectEntriesDisplayContext {
 			StringUtil.merge(queryStrings, StringPool.AMPERSAND);
 	}
 
-	private String _getRestContextPathURL() {
+	private String _getRESTContextPathURL() {
 		return "/o" + _restContextPath;
 	}
 
