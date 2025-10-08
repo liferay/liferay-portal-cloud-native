@@ -1106,13 +1106,13 @@ public class LayoutLocalServiceCopyLayoutContentTest {
 		FragmentEntryLink actualFragmentEntryLink = fragmentEntryLinks.get(0);
 
 		Assert.assertEquals(
+			fragmentEntryLink.getUuid(), actualFragmentEntryLink.getUuid());
+		Assert.assertEquals(
 			fragmentEntryLink.getExternalReferenceCode(),
 			actualFragmentEntryLink.getExternalReferenceCode());
 		Assert.assertEquals(
 			fragmentEntryLink.getFragmentEntryLinkId(),
 			actualFragmentEntryLink.getFragmentEntryLinkId());
-		Assert.assertEquals(
-			fragmentEntryLink.getUuid(), actualFragmentEntryLink.getUuid());
 
 		_assertFragmentEntryLink(fragmentEntryLink, actualFragmentEntryLink);
 	}
@@ -1318,17 +1318,17 @@ public class LayoutLocalServiceCopyLayoutContentTest {
 		FragmentEntryLink fragmentEntryLink) {
 
 		Assert.assertEquals(
-			expectedFragmentEntryLink.getConfiguration(),
-			fragmentEntryLink.getConfiguration());
-		Assert.assertEquals(
 			expectedFragmentEntryLink.getCss(), fragmentEntryLink.getCss());
-		Assert.assertEquals(
-			expectedFragmentEntryLink.getEditableValues(),
-			fragmentEntryLink.getEditableValues());
 		Assert.assertEquals(
 			expectedFragmentEntryLink.getHtml(), fragmentEntryLink.getHtml());
 		Assert.assertEquals(
 			expectedFragmentEntryLink.getJs(), fragmentEntryLink.getJs());
+		Assert.assertEquals(
+			expectedFragmentEntryLink.getConfiguration(),
+			fragmentEntryLink.getConfiguration());
+		Assert.assertEquals(
+			expectedFragmentEntryLink.getEditableValues(),
+			fragmentEntryLink.getEditableValues());
 		Assert.assertEquals(
 			expectedFragmentEntryLink.getLastPropagationDate(),
 			fragmentEntryLink.getLastPropagationDate());
