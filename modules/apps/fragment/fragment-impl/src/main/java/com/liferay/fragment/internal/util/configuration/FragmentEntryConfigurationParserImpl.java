@@ -213,9 +213,9 @@ public class FragmentEntryConfigurationParserImpl
 				}
 
 				Object contextListObject = _getInfoListObjectEntry(
-					configurationValuesJSONObject.getString(name),
-					segmentsEntryIds, themeDisplay.getScopeGroupId(),
-					fragmentConfigurationField.getTypeOptionsJSONObject());
+					themeDisplay.getScopeGroupId(), segmentsEntryIds,
+					fragmentConfigurationField.getTypeOptionsJSONObject(),
+					configurationValuesJSONObject.getString(name));
 
 				if (contextListObject != null) {
 					contextObjects.put(
@@ -675,8 +675,8 @@ public class FragmentEntryConfigurationParserImpl
 	}
 
 	private Object _getInfoListObjectEntry(
-		String value, long[] segmentsEntryIds, long scopeGroupId,
-		JSONObject typeOptionsJSONObject) {
+		long scopeGroupId, long[] segmentsEntryIds,
+		JSONObject typeOptionsJSONObject, String value) {
 
 		if (Validator.isNull(value)) {
 			return Collections.emptyList();
