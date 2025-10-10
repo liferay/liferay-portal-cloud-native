@@ -1329,7 +1329,8 @@ public class ObjectDefinitionLocalServiceTest {
 
 					@Override
 					public long addBaseModel(
-							User user, Map<String, Object> values)
+							boolean checkPermissions, User user,
+							Map<String, Object> values)
 						throws Exception {
 
 						return 0;
@@ -1510,7 +1511,8 @@ public class ObjectDefinitionLocalServiceTest {
 
 					@Override
 					public long addBaseModel(
-							User user, Map<String, Object> values)
+							boolean checkPermissions, User user,
+							Map<String, Object> values)
 						throws Exception {
 
 						return 0;
