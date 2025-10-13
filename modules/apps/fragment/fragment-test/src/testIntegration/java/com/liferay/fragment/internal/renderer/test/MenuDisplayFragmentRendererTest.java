@@ -112,7 +112,6 @@ public class MenuDisplayFragmentRendererTest {
 	@TestInfo("LPD-66793")
 	public void testRenderWithIdReference() throws Exception {
 		_testRenderWithIdReference(_group);
-
 		_testRenderWithIdReference(
 			_groupLocalService.getCompanyGroup(TestPropsValues.getCompanyId()));
 	}
@@ -161,25 +160,25 @@ public class MenuDisplayFragmentRendererTest {
 			ServiceContextTestUtil.getServiceContext(groupId));
 	}
 
-	private HttpServletRequest _getMockHttpServletRequest() throws Exception {
-		HttpServletRequest mockHttpServletRequest =
+	private HttpServletRequest _getHttpServletRequest() throws Exception {
+		HttpServletRequest httpServletRequest =
 			new MockHttpServletRequest();
 
-		mockHttpServletRequest.setAttribute(
+		httpServletRequest.setAttribute(
 			TilesUtil.DEFINITION,
 			new Definition(StringPool.BLANK, new HashMap<>()));
 
 		ThemeDisplay themeDisplay = ContentLayoutTestUtil.getThemeDisplay(
 			_company, _group, _layout);
 
-		themeDisplay.setRequest(mockHttpServletRequest);
+		themeDisplay.setRequest(httpServletRequest);
 
-		mockHttpServletRequest.setAttribute(
+		httpServletRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, themeDisplay);
 
-		_serviceContext.setRequest(mockHttpServletRequest);
+		_serviceContext.setRequest(httpServletRequest);
 
-		return mockHttpServletRequest;
+		return httpServletRequest;
 	}
 
 	private String _render(FragmentEntryLink fragmentEntryLink)
@@ -194,7 +193,7 @@ public class MenuDisplayFragmentRendererTest {
 			new MockHttpServletResponse();
 
 		_fragmentRenderer.render(
-			defaultFragmentRendererContext, _getMockHttpServletRequest(),
+			defaultFragmentRendererContext, _getHttpServletRequest(),
 			mockHttpServletResponse);
 
 		return mockHttpServletResponse.getContentAsString();
