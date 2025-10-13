@@ -151,20 +151,7 @@ public class GroupLocalServiceTest {
 	}
 
 	private Group _addGroup(String name) throws Exception {
-		return _groupLocalService.addGroup(
-			StringPool.BLANK, TestPropsValues.getUserId(),
-			GroupConstants.DEFAULT_PARENT_GROUP_ID, null, 0,
-			GroupConstants.DEFAULT_LIVE_GROUP_ID,
-			HashMapBuilder.put(
-				LocaleUtil.getDefault(), name
-			).build(),
-			HashMapBuilder.put(
-				LocaleUtil.getDefault(), RandomTestUtil.randomString()
-			).build(),
-			GroupConstants.TYPE_SITE_OPEN, null, true,
-			GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION,
-			StringPool.SLASH + FriendlyURLNormalizerUtil.normalize(name), true,
-			false, true, ServiceContextTestUtil.getServiceContext());
+		return _addGroup(StringPool.BLANK, name, null);
 	}
 
 	private Group _addGroup(
