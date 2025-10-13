@@ -89,9 +89,10 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 							return;
 						}
 
-						new CompanyUpgradeProcess(
-							company
-						).populateCompanyCountries();
+						CompanyUpgradeProcess companyUpgradeProcess =
+							new CompanyUpgradeProcess(company);
+
+						companyUpgradeProcess.populateCompanyCountries();
 					}
 					catch (Exception exception) {
 						_log.error(
