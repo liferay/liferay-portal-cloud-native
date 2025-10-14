@@ -150,23 +150,22 @@ public class MarketplaceRestController extends BaseRestController {
 
 	@PostMapping("/account")
 	public ResponseEntity<Account> postAccount(
-			@RequestPart("account") String accountString,
+			@RequestPart("account") String accountJSON,
 			@RequestPart("file") MultipartFile file,
 			@AuthenticationPrincipal Jwt jwt)
 		throws Exception {
 
 		if (_log.isInfoEnabled()) {
-			_log.info("POST account: " + accountString);
+			_log.info("POST account " + accountJSON);
 		}
 
-		Account account = Account.toDTO(accountString);
+		Account account = Account.toDTO(accountJSON);
 
 		if (file != null) {
+			Base64.Encoder encoder = Base64.getEncoder();
+
 			account.setLogoBase64(
-				() -> Base64.getEncoder(
-				).encodeToString(
-					file.getBytes()
-				));
+				() -> encoder.encodeToString(file.getBytes()));
 		}
 
 		AccountResource accountResource =
@@ -442,14 +441,15 @@ public class MarketplaceRestController extends BaseRestController {
 			return _accountAdministratorRoleId;
 		}
 
+		AccountRoleResource accountRoleResource =
+			_marketplaceService.getAccountRoleResource();
+
 		com.liferay.headless.admin.user.client.pagination.Page<AccountRole>
-			accountRolesPage = _marketplaceService.getAccountRoleResource(
-			).getAccountAccountRolesPage(
+			accountRolesPage = accountRoleResource.getAccountAccountRolesPage(
 				accountId, null, "name eq 'Account Administrator'",
 				com.liferay.headless.admin.user.client.pagination.Pagination.of(
 					1, 1),
-				null
-			);
+				null);
 
 		AccountRole accountRole = accountRolesPage.fetchFirstItem();
 
