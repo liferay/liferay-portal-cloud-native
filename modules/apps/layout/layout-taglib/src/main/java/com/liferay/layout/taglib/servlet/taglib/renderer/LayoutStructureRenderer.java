@@ -1124,7 +1124,11 @@ public class LayoutStructureRenderer {
 				}
 			}
 
-			if (formRelationshipStyledLayoutStructureItem.isRepeatable()) {
+			if (formRelationshipStyledLayoutStructureItem.isRepeatable() &&
+				!Objects.equals(
+					_renderLayoutStructureDisplayContext.getLayoutMode(),
+					Constants.READ)) {
+
 				_renderReactComponent(
 					"{FormRelationshipAddButton} from layout-taglib/render",
 					HashMapBuilder.<String, Object>put(
