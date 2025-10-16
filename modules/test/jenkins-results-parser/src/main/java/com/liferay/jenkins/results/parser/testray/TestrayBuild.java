@@ -508,7 +508,7 @@ public class TestrayBuild implements Comparable<TestrayBuild> {
 				continue;
 			}
 
-			JSONArray attachmentsJSONArray;
+			JSONArray attachmentsJSONArray = null;
 
 			try {
 				attachmentsJSONArray = new JSONArray(attachments);
