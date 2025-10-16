@@ -1,10 +1,10 @@
-[#assign isDocumentationCard = (configuration.cardType == "documentationCard")?then(true, false)]
+[#assign documentation_card = (configuration.cardType == "documentationCard")?then(true, false)]
 
 [#if configuration.url?has_content]
 	<a href="${configuration.url}" id="${fragmentEntryLinkNamespace}">
 [/#if]
-	<div class="${(isDocumentationCard)?then('learn-card--documentation', 'learn-card')}" data-lfr-styles id="${fragmentEntryLinkNamespace}-card" >
-		[#if isDocumentationCard]
+	<div class="${(documentation_card)?then('learn-card--documentation', 'learn-card')}" data-lfr-styles id="${fragmentEntryLinkNamespace}-card" >
+		[#if documentation_card]
 			<div class="learn-card__image">
 				<img data-lfr-editable-id="image" data-lfr-editable-type="image" />
 			</div>
