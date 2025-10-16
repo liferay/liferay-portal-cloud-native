@@ -86,6 +86,7 @@ public class InlineSQLHelperImpl implements InlineSQLHelper {
 		}
 
 		T baseModel = list.get(0);
+		Set<Long> disabledGroupIds = new HashSet<>();
 
 		if (groupIds.length == 0) {
 			groupIds = new long[] {0};
@@ -93,7 +94,6 @@ public class InlineSQLHelperImpl implements InlineSQLHelper {
 
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
-		Set<Long> disabledGroupIds = new HashSet<>();
 
 		if (_isSkipReplace(
 				baseModel.getModelClassName(), disabledGroupIds, groupIds,
@@ -164,14 +164,14 @@ public class InlineSQLHelperImpl implements InlineSQLHelper {
 		String modelClassName, Column<T, Long> classPKColumn,
 		long... groupIds) {
 
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
+		Set<Long> disabledGroupIds = new HashSet<>();
 
 		if (ArrayUtil.isEmpty(groupIds)) {
 			groupIds = new long[] {0};
 		}
 
-		Set<Long> disabledGroupIds = new HashSet<>();
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
 
 		if (_isSkipReplace(
 				modelClassName, disabledGroupIds, groupIds,
@@ -287,9 +287,9 @@ public class InlineSQLHelperImpl implements InlineSQLHelper {
 	public String replacePermissionCheck(
 		String sql, String className, String classPKField, long[] groupIds) {
 
+		Set<Long> disabledGroupIds = new HashSet<>();
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
-		Set<Long> disabledGroupIds = new HashSet<>();
 
 		if ((sql == null) ||
 			_isSkipReplace(
