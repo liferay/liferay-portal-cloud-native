@@ -107,6 +107,9 @@ export default function PublicationsPermissions({
 								aria-label={Liferay.Language.get('save')}
 								onClick={() => {
 									saveRolePermissions();
+									Liferay.Portlet.refresh(
+										`#p_p_id${namespace}`
+									);
 								}}
 								type="submit"
 							>
