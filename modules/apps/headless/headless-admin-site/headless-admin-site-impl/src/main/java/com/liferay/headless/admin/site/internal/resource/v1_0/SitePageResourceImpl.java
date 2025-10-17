@@ -600,6 +600,7 @@ public class SitePageResourceImpl
 		String queryString = StringPool.BLANK;
 		String target = StringPool.BLANK;
 		String targetTypeString = StringPool.BLANK;
+
 		SitePageNavigationSettings sitePageNavigationSettings =
 			pageSettings.getNavigationSettings();
 
