@@ -57,18 +57,13 @@ public class CTSchedulerTest {
 
 		Date date = new Date(System.currentTimeMillis() + 30000);
 
-		try {
-			_publishScheduler.schedulePublish(
-				ctCollection.getCtCollectionId(), TestPropsValues.getUserId(),
-				date);
+		_publishScheduler.schedulePublish(
+			ctCollection.getCtCollectionId(), TestPropsValues.getUserId(),
+			date);
 
-			_publishScheduler.schedulePublish(
-				ctCollection.getCtCollectionId(), TestPropsValues.getUserId(),
-				date);
-		}
-		catch (Exception exception) {
-			throw new RuntimeException(exception);
-		}
+		_publishScheduler.schedulePublish(
+			ctCollection.getCtCollectionId(), TestPropsValues.getUserId(),
+			date);
 	}
 
 	@Inject
