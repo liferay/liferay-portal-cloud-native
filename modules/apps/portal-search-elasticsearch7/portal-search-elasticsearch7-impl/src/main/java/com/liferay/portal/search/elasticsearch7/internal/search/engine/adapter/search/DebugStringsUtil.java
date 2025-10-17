@@ -26,13 +26,13 @@ public class DebugStringsUtil {
 
 	public static String getPrettyPrintedJSONString(ToXContent toXContent) {
 		try {
-			XContentBuilder builder = XContentFactory.jsonBuilder();
+			XContentBuilder xContentBuilder = XContentFactory.jsonBuilder();
 
-			builder.prettyPrint();
+			xContentBuilder.prettyPrint();
 
-			toXContent.toXContent(builder, ToXContent.EMPTY_PARAMS);
+			toXContent.toXContent(xContentBuilder, ToXContent.EMPTY_PARAMS);
 
-			return Strings.toString(builder);
+			return Strings.toString(xContentBuilder);
 		}
 		catch (IOException ioException) {
 			if (_log.isDebugEnabled()) {
