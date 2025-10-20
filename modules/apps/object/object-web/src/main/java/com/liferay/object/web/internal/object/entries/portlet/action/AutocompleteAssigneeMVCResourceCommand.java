@@ -78,6 +78,7 @@ public class AutocompleteAssigneeMVCResourceCommand
 
 		for (Document document : searchResponse.getDocuments()) {
 			String name = document.getString(Field.NAME);
+
 			String type = StringUtil.extractLast(
 				document.getString(Field.ENTRY_CLASS_NAME), StringPool.PERIOD);
 
