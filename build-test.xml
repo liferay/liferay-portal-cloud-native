@@ -9895,6 +9895,7 @@ go</echo>
 	<target name="build-sql-file-playwright">
 		<var name="databases.size" unset="true" />
 		<var name="databases.size" value="1" />
+
 		<if>
 			<not>
 				<equals arg1="${database.type}" arg2="hypersonic" />
