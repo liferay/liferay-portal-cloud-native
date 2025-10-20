@@ -3,7 +3,7 @@
 set -eux
 
 function main {
-	echo "Executing run_on_boot.sh at $(date) by $(id)"
+	echo "Executing run_on_boot.sh on $(date) by $(id)."
 
 	local token=$( \
 		curl \
@@ -16,9 +16,9 @@ function main {
 			--header "X-aws-ec2-metadata-token: ${token}" \
 			http://169.254.169.254/latest/meta-data/placement/region)
 
-	echo "The region is ${region}"
+	echo "Region: ${region}"
 
-	echo "The caller identity is $(aws sts get-caller-identity)"
+	echo "Caller identity: $(aws sts get-caller-identity)"
 
 	tree -a /opt/liferay
 
@@ -79,15 +79,15 @@ function main {
 
 	terraform apply -auto-approve
 
-	local values_file_arg=""
+	local values_file_argument=""
 
 	if [ -f /opt/liferay/values.yaml ]
 	then
-		values_file_arg="--values /opt/liferay/values.yaml"
+		values_file_argument="--values /opt/liferay/values.yaml"
 	fi
 
-	local liferay_sa_role=$(terraform output -raw liferay_sa_role)
 	local namespace=$(terraform output -raw deployment_namespace)
+	local role_arn=$(terraform output -raw liferay_sa_role)
 
 	helm \
 		upgrade \
@@ -97,8 +97,8 @@ function main {
 		--namespace "${namespace}" \
 		--set "liferay-default.image.repository=${ecr_dxp_repository_url}" \
 		--set "liferay-default.image.tag=${dxp_image_tag}" \
-		--set "liferay-default.serviceAccount.annotations.eks\.amazonaws\.com/role-arn=${liferay_sa_role}" \
-		${values_file_arg}
+		--set "liferay-default.serviceAccount.annotations.eks\.amazonaws\.com/role-arn=${role_arn}" \
+		${values_file_argument}
 
 	kubectl \
 		rollout \
