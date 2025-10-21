@@ -71,7 +71,7 @@ module "eks" {
 	}
 	endpoint_private_access=true
 	endpoint_public_access=true
-	kubernetes_version="1.32"
+	kubernetes_version=data.aws_eks_cluster_versions.available.cluster_versions[0].cluster_version
 	name="${var.deployment_name}-eks"
 	node_security_group_id=aws_security_group.nodes.id
 	security_group_id=aws_security_group.cluster.id
