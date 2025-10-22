@@ -187,7 +187,6 @@ public class SearchEngineInitializer implements Runnable {
 			}
 
 			Set<String> indexerClassNames = new HashSet<>();
-
 			Map<String, Object> sharedReindexCacheMap =
 				new ConcurrentHashMap<>();
 

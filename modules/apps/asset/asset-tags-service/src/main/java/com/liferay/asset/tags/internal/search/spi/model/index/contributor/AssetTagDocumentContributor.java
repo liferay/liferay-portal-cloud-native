@@ -60,29 +60,31 @@ public class AssetTagDocumentContributor
 
 		long classPK = GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK));
 
-		List<Object[]> assetTagRows = _lookupAssetTagRows(classNameId, classPK);
+		List<Object[]> assetTagObjectsList = _lookupAssetTagObjectsList(
+			classNameId, classPK);
 
-		if (ListUtil.isEmpty(assetTagRows)) {
+		if (ListUtil.isEmpty(assetTagObjectsList)) {
 			return;
 		}
 
 		document.addKeyword(
 			Field.ASSET_TAG_IDS,
-			ListUtil.toLongArray(assetTagRows, objects -> (Long)objects[0]));
+			ListUtil.toLongArray(
+				assetTagObjectsList,
+				assetTagObjects -> (Long)assetTagObjects[0]));
 
-		List<String> assetTagNameList = ListUtil.toList(
-			assetTagRows, objects -> (String)objects[1]);
+		List<String> assetTagNamesList = ListUtil.toList(
+			assetTagObjectsList, assetTagObjects -> (String)assetTagObjects[1]);
 
-		String[] assetTagNameArray = assetTagNameList.toArray(new String[0]);
+		String[] assetTagNames = assetTagNamesList.toArray(new String[0]);
 
-		_contributeAssetTagNamesLocalized(
-			document, assetTagNameArray, baseModel);
+		_contributeAssetTagNames(document, assetTagNames, baseModel);
 
-		document.addText(Field.ASSET_TAG_NAMES, assetTagNameArray);
+		document.addText(Field.ASSET_TAG_NAMES, assetTagNames);
 	}
 
-	private void _contributeAssetTagNamesLocalized(
-		Document document, String[] assetTagNameArray,
+	private void _contributeAssetTagNames(
+		Document document, String[] assetTagNames,
 		BaseModel<AssetTag> baseModel) {
 
 		Long groupId = _getGroupId(baseModel);
@@ -95,7 +97,7 @@ public class AssetTagDocumentContributor
 			_localization.getLocalizedName(
 				Field.ASSET_TAG_NAMES,
 				LocaleUtil.toLanguageId(_getSiteDefaultLocale(groupId))),
-			assetTagNameArray);
+			assetTagNames);
 	}
 
 	private Long _getGroupId(BaseModel<?> baseModel) {
@@ -129,8 +131,10 @@ public class AssetTagDocumentContributor
 		}
 	}
 
-	private List<Object[]> _lookupAssetTagRows(long classNameId, long classPK) {
-		Map<Long, Map<Long, List<Object[]>>> indexedAssetTagRows =
+	private List<Object[]> _lookupAssetTagObjectsList(
+		long classNameId, long classPK) {
+
+		Map<Long, Map<Long, List<Object[]>>> indexedAssetTagObjectsLists =
 			ReindexCacheThreadLocal.getReindexCache(
 				AssetTagDocumentContributor.class.getName(),
 				() -> {
@@ -146,10 +150,10 @@ public class AssetTagDocumentContributor
 					}
 
 					Map<Long, Map<Long, List<Object[]>>>
-						localIndexedAssetTagRows = new HashMap<>();
+						localIndexedAssetTagObjectsLists = new HashMap<>();
 
 					if (count == 0) {
-						return localIndexedAssetTagRows;
+						return localIndexedAssetTagObjectsLists;
 					}
 
 					DSLQuery dslQuery = DSLQueryFactoryUtil.select(
@@ -173,22 +177,25 @@ public class AssetTagDocumentContributor
 							(List<Object[]>)_assetTagLocalService.dslQuery(
 								dslQuery, false)) {
 
-						Map<Long, List<Object[]>> classNameIdAssetTagRows =
-							localIndexedAssetTagRows.computeIfAbsent(
-								(Long)values[0], key -> new HashMap<>());
+						Map<Long, List<Object[]>>
+							classNameIdAssetTagObjectsLists =
+								localIndexedAssetTagObjectsLists.
+									computeIfAbsent(
+										(Long)values[0],
+										key -> new HashMap<>());
 
-						List<Object[]> classPKAssetTagRows =
-							classNameIdAssetTagRows.computeIfAbsent(
+						List<Object[]> classPKAssetTagObjectsList =
+							classNameIdAssetTagObjectsLists.computeIfAbsent(
 								(Long)values[1], key -> new ArrayList<>());
 
-						classPKAssetTagRows.add(
+						classPKAssetTagObjectsList.add(
 							new Object[] {values[2], values[3]});
 					}
 
-					return localIndexedAssetTagRows;
+					return localIndexedAssetTagObjectsLists;
 				});
 
-		if (indexedAssetTagRows == null) {
+		if (indexedAssetTagObjectsLists == null) {
 			List<AssetTag> assetTags = _assetTagLocalService.getTags(
 				classNameId, classPK);
 
@@ -196,24 +203,25 @@ public class AssetTagDocumentContributor
 				return null;
 			}
 
-			List<Object[]> assetTagRows = new ArrayList<>(assetTags.size());
+			List<Object[]> assetTagObjectsList = new ArrayList<>(
+				assetTags.size());
 
 			for (AssetTag assetTag : assetTags) {
-				assetTagRows.add(
+				assetTagObjectsList.add(
 					new Object[] {assetTag.getTagId(), assetTag.getName()});
 			}
 
-			return assetTagRows;
+			return assetTagObjectsList;
 		}
 
-		Map<Long, List<Object[]>> classNameIdAssetTagRows =
-			indexedAssetTagRows.get(classNameId);
+		Map<Long, List<Object[]>> classNameIdAssetTagObjectsLists =
+			indexedAssetTagObjectsLists.get(classNameId);
 
-		if (classNameIdAssetTagRows == null) {
+		if (classNameIdAssetTagObjectsLists == null) {
 			return null;
 		}
 
-		return classNameIdAssetTagRows.get(classPK);
+		return classNameIdAssetTagObjectsLists.get(classPK);
 	}
 
 	@Reference
