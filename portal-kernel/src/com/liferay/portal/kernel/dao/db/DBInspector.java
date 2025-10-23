@@ -64,13 +64,13 @@ public class DBInspector {
 	public List<String> getTableNames(String tableNamePattern)
 		throws SQLException {
 
-		return _getElementNames(tableNamePattern, "TABLE");
+		return _getNames(tableNamePattern, "TABLE");
 	}
 
 	public List<String> getViewNames(String viewNamePattern)
 		throws SQLException {
 
-		return _getElementNames(viewNamePattern, "VIEW");
+		return _getNames(viewNamePattern, "VIEW");
 	}
 
 	public boolean hasColumn(String tableName, String columnName)
@@ -409,24 +409,24 @@ public class DBInspector {
 			normalizeName(tableName, databaseMetaData), columnName);
 	}
 
-	private List<String> _getElementNames(
-			String elementNamePattern, String elementType)
+	private List<String> _getNames(
+			String namePattern, String elementType)
 		throws SQLException {
 
-		List<String> elementNames = new ArrayList<>();
+		List<String> names = new ArrayList<>();
 
 		DatabaseMetaData databaseMetaData = _connection.getMetaData();
 
 		try (ResultSet resultSet = databaseMetaData.getTables(
 				_connection.getCatalog(), _connection.getSchema(),
-				elementNamePattern, new String[] {elementType})) {
+				namePattern, new String[] {elementType})) {
 
 			while (resultSet.next()) {
-				elementNames.add(resultSet.getString("TABLE_NAME"));
+				names.add(resultSet.getString("TABLE_NAME"));
 			}
 		}
 
-		return elementNames;
+		return names;
 	}
 
 	private boolean _hasElement(String elementName, String elementType)
