@@ -82,9 +82,6 @@ resource "aws_iam_role_policy_attachment" "s3" {
 	policy_arn=aws_iam_policy.s3.arn
 	role=var.liferay_sa_role_name
 }
-resource "aws_iam_service_linked_role" "opensearch" {
-	aws_service_name="opensearchservice.amazonaws.com"
-}
 resource "aws_opensearch_domain" "os" {
 	access_policies=<<POLICY
 {
@@ -195,4 +192,20 @@ resource "kubernetes_secret" "managed_service_details" {
 		namespace=kubernetes_namespace.liferay.metadata[0].name
 	}
 	type="Opaque"
+}
+resource "null_resource" "opensearch_service_role" {
+	provisioner "local-exec" {
+		command=<<-EOT
+			aws \
+				iam \
+				create-service-linked-role \
+				--aws-service-name opensearchservice.amazonaws.com \
+				--region "${var.region}" \
+				|| true
+		EOT
+	}
+
+	triggers={
+		service_name="opensearchservice.amazonaws.com"
+	}
 }
