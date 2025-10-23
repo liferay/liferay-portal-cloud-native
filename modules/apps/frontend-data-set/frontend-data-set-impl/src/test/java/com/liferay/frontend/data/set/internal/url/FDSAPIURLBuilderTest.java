@@ -130,10 +130,10 @@ public class FDSAPIURLBuilderTest {
 		// No resolver
 
 		_testBuild(
+			"/o/app/67890/endpoint", "/app", "/{userId}/endpoint", "schema");
+		_testBuild(
 			"/o/app/6ce17b38-0dcb-8486-d54d-72d4c49eed06/endpoint", "/app",
 			"/{userExternalReferenceCode}/endpoint", "schema");
-		_testBuild(
-			"/o/app/67890/endpoint", "/app", "/{userId}/endpoint", "schema");
 		_testBuild("/o/app/endpoint", "/app", "/endpoint", "schema");
 		_testBuild("/o/app/endpoint", "/app/v1.0", "/endpoint", "schema");
 		_testBuild("/o/app/v1.0/endpoint", "/app", "/v1.0/endpoint", "schema");
