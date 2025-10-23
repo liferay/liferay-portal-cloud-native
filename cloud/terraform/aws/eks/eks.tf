@@ -154,10 +154,6 @@ resource "aws_iam_role_policy_attachment" "role_policy_attachment_ebs_csi_driver
 	policy_arn="arn:${var.arn_partition}:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
 	role=aws_iam_role.ebs_csi_driver.name
 }
-resource "aws_iam_role_policy_attachment" "role_policy_attachment_this" {
-	policy_arn="arn:${var.arn_partition}:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-	role=aws_iam_role.irsa.name
-}
 resource "aws_kms_alias" "eks_kms_alias" {
 	name="alias/${var.deployment_name}-eks_kms"
 	target_key_id=aws_kms_key.eks_secrets.key_id
