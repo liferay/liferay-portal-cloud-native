@@ -221,14 +221,14 @@ public class PropertiesFeatureFlagsCheck extends BaseFileCheck {
 			sb1.append(key);
 			sb1.append(StringPool.EQUAL);
 
-			String[] jiraIds = StringUtil.split(entry.getValue());
+			String[] jiraIssueIds = StringUtil.split(entry.getValue());
 
-			Arrays.sort(jiraIds, new NaturalOrderStringComparator());
+			Arrays.sort(jiraIssueIds, new NaturalOrderStringComparator());
 
-			StringBundler sb2 = new StringBundler(jiraIds.length * 2);
+			StringBundler sb2 = new StringBundler(jiraIssueIds.length * 2);
 
-			for (String jiraId : jiraIds) {
-				sb2.append(jiraId);
+			for (String jiraIssueId : jiraIssueIds) {
+				sb2.append(jiraIssueId);
 				sb2.append(StringPool.COMMA);
 			}
 
