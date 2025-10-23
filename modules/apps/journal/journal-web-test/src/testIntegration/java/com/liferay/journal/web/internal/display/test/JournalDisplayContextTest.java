@@ -250,26 +250,6 @@ public class JournalDisplayContextTest {
 			null, LocaleUtil.getDefault(), null, false, false, _serviceContext);
 	}
 
-	private void _testGetSearchProps(
-			JournalFolder journalFolder, String searchIn,
-			UnsafeFunction<Map<String, Object>, Boolean, Exception>
-				unsafeFunction)
-		throws Exception {
-
-		MockLiferayPortletRenderRequest mockLiferayPortletRenderRequest =
-			_renderPortlet();
-
-		mockLiferayPortletRenderRequest.setAttribute(
-			WebKeys.JOURNAL_FOLDER, journalFolder);
-		mockLiferayPortletRenderRequest.setParameter(
-			"keywords", RandomTestUtil.randomString());
-		mockLiferayPortletRenderRequest.setParameter("searchIn", searchIn);
-
-		Assert.assertTrue(
-			unsafeFunction.apply(
-				_getSearchProps(mockLiferayPortletRenderRequest)));
-	}
-
 	private void _assertSearchContainer(
 			int expectedSize, String navigation, Boolean navigationRecent,
 			long highlightedDDMStructureId)
@@ -453,6 +433,26 @@ public class JournalDisplayContextTest {
 			new MockLiferayPortletRenderResponse());
 
 		return mockLiferayPortletRenderRequest;
+	}
+
+	private void _testGetSearchProps(
+			JournalFolder journalFolder, String searchIn,
+			UnsafeFunction<Map<String, Object>, Boolean, Exception>
+				unsafeFunction)
+		throws Exception {
+
+		MockLiferayPortletRenderRequest mockLiferayPortletRenderRequest =
+			_renderPortlet();
+
+		mockLiferayPortletRenderRequest.setAttribute(
+			WebKeys.JOURNAL_FOLDER, journalFolder);
+		mockLiferayPortletRenderRequest.setParameter(
+			"keywords", RandomTestUtil.randomString());
+		mockLiferayPortletRenderRequest.setParameter("searchIn", searchIn);
+
+		Assert.assertTrue(
+			unsafeFunction.apply(
+				_getSearchProps(mockLiferayPortletRenderRequest)));
 	}
 
 	@Inject
