@@ -82,6 +82,9 @@ resource "aws_iam_role_policy_attachment" "s3" {
 	policy_arn=aws_iam_policy.s3.arn
 	role=var.liferay_sa_role_name
 }
+resource "aws_iam_service_linked_role" "opensearch" {
+	aws_service_name="opensearchservice.amazonaws.com"
+}
 resource "aws_opensearch_domain" "os" {
 	access_policies=<<POLICY
 {
