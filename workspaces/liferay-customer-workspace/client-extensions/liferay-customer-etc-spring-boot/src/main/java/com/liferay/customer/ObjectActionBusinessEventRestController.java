@@ -304,6 +304,7 @@ public class ObjectActionBusinessEventRestController
 				}
 
 				values.add(formattedComment);
+
 				values.add(businessEvent.getName());
 				values.add(businessEvent.getTargetGoLiveDate());
 				values.add(koroneikiAccountJSONObject.getString("name"));
