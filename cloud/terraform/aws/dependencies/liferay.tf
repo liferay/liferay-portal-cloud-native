@@ -92,7 +92,7 @@ resource "aws_opensearch_domain" "os" {
 			"Principal": {
 				"AWS": "*"
 			},
-			"Resource": "arn:aws:es:${var.region}:${data.aws_caller_identity.current.account_id}:domain/${var.deployment_name}-os-d/*"
+			"Resource": "arn:${var.arn_partition}:es:${var.region}:${data.aws_caller_identity.current.account_id}:domain/${var.deployment_name}-os-d/*"
 		}
 	],
 	"Version": "2012-10-17"
