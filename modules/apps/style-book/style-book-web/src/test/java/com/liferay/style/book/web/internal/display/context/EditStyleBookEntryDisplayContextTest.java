@@ -23,6 +23,8 @@ import com.liferay.portal.test.rule.LiferayUnitTestRule;
 import com.liferay.style.book.model.StyleBookEntry;
 import com.liferay.style.book.service.StyleBookEntryLocalServiceUtil;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -159,15 +161,14 @@ public class EditStyleBookEntryDisplayContextTest {
 		FrontendTokenDefinitionRegistry frontendTokenDefinitionRegistry,
 		ThemeDisplay themeDisplay) {
 
-		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
+		HttpServletRequest httpServletRequest = new MockHttpServletRequest();
 
-		mockHttpServletRequest.setAttribute(
+		httpServletRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, themeDisplay);
 
 		EditStyleBookEntryDisplayContext editStyleBookEntryDisplayContext =
 			new EditStyleBookEntryDisplayContext(
-				null, frontendTokenDefinitionRegistry, mockHttpServletRequest,
+				null, frontendTokenDefinitionRegistry, httpServletRequest,
 				null, new MockRenderResponse());
 
 		ReflectionTestUtil.invoke(
