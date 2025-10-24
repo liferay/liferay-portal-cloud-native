@@ -130,7 +130,6 @@ public class InventoryAnalysisResourceImpl
 						"InventoryAnalysisItems"
 					)
 				)));
-
 		inventoryAnalysis.setTotalCount(
 			() -> (long)_objectEntryLocalService.dslQueryCount(
 				_getGroupByStep(
