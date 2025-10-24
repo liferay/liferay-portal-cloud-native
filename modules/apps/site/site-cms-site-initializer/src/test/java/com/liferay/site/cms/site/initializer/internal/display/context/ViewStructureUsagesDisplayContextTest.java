@@ -39,7 +39,6 @@ public class ViewStructureUsagesDisplayContextTest {
 
 		Assert.assertTrue(filterString.startsWith(StringPool.OPEN_PARENTHESIS));
 		Assert.assertTrue(filterString.endsWith(StringPool.CLOSE_PARENTHESIS));
-
 		Assert.assertTrue(
 			Pattern.matches(
 				".* and status in \\(\\d+(?:,\\d+)*\\)\\)$", filterString));
