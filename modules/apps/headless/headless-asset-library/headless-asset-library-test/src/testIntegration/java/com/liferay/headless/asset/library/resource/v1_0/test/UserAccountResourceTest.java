@@ -108,6 +108,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 			() ->
 				_testGetAssetLibraryByExternalReferenceCodeAssetLibraryExternalReferenceCodeUserAccountByExternalReferenceCodeUserAccountExternalReferenceCode(
 					testDepotEntry, cmsAdministratorUserAccountResource));
+
 		_testGetAssetLibraryByExternalReferenceCodeAssetLibraryExternalReferenceCodeUserAccountByExternalReferenceCodeUserAccountExternalReferenceCode(
 			_spaceDepotEntry, cmsAdministratorUserAccountResource);
 	}
@@ -130,6 +131,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		_assertFailure(
 			() -> _testGetAssetLibraryByExternalReferenceCodeUserAccountsPage(
 				testDepotEntry, cmsAdministratorUserAccountResource));
+
 		_testGetAssetLibraryByExternalReferenceCodeUserAccountsPage(
 			_spaceDepotEntry, cmsAdministratorUserAccountResource);
 
@@ -171,6 +173,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		_assertFailure(
 			() -> _testGetAssetLibraryUserAccountsPage(
 				testDepotEntry, cmsAdministratorUserAccountResource));
+
 		_testGetAssetLibraryUserAccountsPage(
 			_spaceDepotEntry, cmsAdministratorUserAccountResource);
 

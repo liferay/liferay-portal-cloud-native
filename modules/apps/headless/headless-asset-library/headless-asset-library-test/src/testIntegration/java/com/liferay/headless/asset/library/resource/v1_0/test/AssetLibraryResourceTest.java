@@ -312,7 +312,6 @@ public class AssetLibraryResourceTest extends BaseAssetLibraryResourceTestCase {
 					useCustomLanguages = false;
 				}
 			});
-
 		assetLibrary.setType(
 			RandomTestUtil.randomEnum(AssetLibrary.Type.class));
 
