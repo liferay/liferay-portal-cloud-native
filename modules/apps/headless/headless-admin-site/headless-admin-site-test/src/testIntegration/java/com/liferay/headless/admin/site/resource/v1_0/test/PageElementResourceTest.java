@@ -358,7 +358,6 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 
 		String draftWidgetInstanceExternalReferenceCode =
 			RandomTestUtil.randomString();
-
 		String namespace = RandomTestUtil.randomString();
 
 		_addFragmentEntryLink(
@@ -488,7 +487,6 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 
 		String draftWidgetInstanceExternalReferenceCode =
 			RandomTestUtil.randomString();
-
 		String namespace = RandomTestUtil.randomString();
 
 		_addFragmentEntryLink(
