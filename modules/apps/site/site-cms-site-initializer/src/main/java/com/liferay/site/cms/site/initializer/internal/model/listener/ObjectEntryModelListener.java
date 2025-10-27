@@ -180,6 +180,9 @@ public class ObjectEntryModelListener extends BaseModelListener<ObjectEntry> {
 			return;
 		}
 
+		List<String> resourceActions = ResourceActionsUtil.getResourceActions(
+			objectEntry.getModelClassName());
+
 		List<Role> roles = _roleLocalService.getGroupRolesAndTeamRoles(
 			objectEntry.getCompanyId(), null,
 			Arrays.asList(
@@ -188,8 +191,6 @@ public class ObjectEntryModelListener extends BaseModelListener<ObjectEntry> {
 			null, null,
 			new int[] {RoleConstants.TYPE_REGULAR, RoleConstants.TYPE_DEPOT}, 0,
 			0, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-		List<String> resourceActions = ResourceActionsUtil.getResourceActions(
-			objectEntry.getModelClassName());
 
 		for (Role role : roles) {
 			JSONArray jsonArray = objectEntryJSONObject.getJSONArray(

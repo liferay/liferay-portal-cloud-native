@@ -184,6 +184,9 @@ public class ObjectEntryFolderModelListener
 			return;
 		}
 
+		List<String> resourceActions = ResourceActionsUtil.getResourceActions(
+			ObjectEntryFolder.class.getName());
+
 		List<Role> roles = _roleLocalService.getGroupRolesAndTeamRoles(
 			objectEntryFolder.getCompanyId(), null,
 			Arrays.asList(
@@ -192,8 +195,6 @@ public class ObjectEntryFolderModelListener
 			null, null,
 			new int[] {RoleConstants.TYPE_REGULAR, RoleConstants.TYPE_DEPOT}, 0,
 			0, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-		List<String> resourceActions = ResourceActionsUtil.getResourceActions(
-			ObjectEntryFolder.class.getName());
 
 		for (Role role : roles) {
 			JSONArray jsonArray = objectEntryFoldersJSONObject.getJSONArray(
