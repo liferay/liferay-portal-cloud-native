@@ -54,6 +54,8 @@ public class ObjectEntryFolderDTOConverter
 			_objectEntryFolderLocalService.getObjectEntryFolder(
 				(Long)dtoConverterContext.getId());
 
+		Group group = _groupLocalService.fetchGroup(
+			objectEntryFolder.getGroupId());
 		com.liferay.object.model.ObjectEntryFolder parentObjectEntryFolder =
 			_getParentObjectEntryFolder(objectEntryFolder);
 
@@ -68,9 +70,6 @@ public class ObjectEntryFolderDTOConverter
 		}
 
 		TrashEntry finalTrashEntry = trashEntry;
-
-		Group group = _groupLocalService.fetchGroup(
-			objectEntryFolder.getGroupId());
 
 		return new ObjectEntryFolder() {
 			{
