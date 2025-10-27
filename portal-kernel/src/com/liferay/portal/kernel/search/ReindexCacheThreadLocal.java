@@ -64,12 +64,12 @@ public class ReindexCacheThreadLocal {
 
 		T t = (T)reindexCacheMap.get(cacheKey);
 
-		// Waste one get to avoid potential "Recursive update" error
+		// Waste one get to avoid potential "recursive update" error
 
 		if (t == null) {
 
 			// Check global count with cache to avoid per scope repeated
-			// checking.
+			// checking
 
 			int globalCount = (int)reindexCacheMap.computeIfAbsent(
 				ownerName + "#globalCount", key -> countSupplier.get());
@@ -81,9 +81,9 @@ public class ReindexCacheThreadLocal {
 
 					if (count > _SIZE_LIMIT) {
 
-						// If global count is oversize, give scope count a
-						// second chance. This is in hope of not every scope
-						// will be used.
+						// If global count is over size limit, give scope count
+						// a second chance. This is assuming that not every
+						// scope will be used.
 
 						count = scopeCountSupplier.get();
 
