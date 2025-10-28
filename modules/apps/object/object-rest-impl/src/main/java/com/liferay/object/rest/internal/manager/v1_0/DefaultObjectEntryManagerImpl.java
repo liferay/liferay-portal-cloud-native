@@ -3590,7 +3590,7 @@ public class DefaultObjectEntryManagerImpl
 			}
 		}
 		else {
-			long count = objectEntryLocalService.getValuesListCount(
+			long count1 = objectEntryLocalService.getValuesListCount(
 				new Long[] {objectEntryFolder.getGroupId()},
 				objectDefinition.getCompanyId(), objectDefinition.getUserId(),
 				objectDefinition.getObjectDefinitionId(),
@@ -3602,12 +3602,12 @@ public class DefaultObjectEntryManagerImpl
 				),
 				false, null);
 
-			if (count > 0) {
+			if (count1 > 0) {
 				values.put(
 					titleObjectField.getName(),
 					UniqueUtil.getCopyValue(
 						copyValue -> {
-							long count =
+							long count2 =
 								objectEntryLocalService.getValuesListCount(
 									new Long[] {objectEntryFolder.getGroupId()},
 									objectDefinition.getCompanyId(),
@@ -3623,7 +3623,7 @@ public class DefaultObjectEntryManagerImpl
 									),
 									false, null);
 
-							if (count == 0) {
+							if (count2 == 0) {
 								return true;
 							}
 
