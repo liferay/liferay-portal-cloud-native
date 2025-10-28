@@ -345,8 +345,8 @@ public class PortletRenderUtil {
 	}
 
 	private static String _getStaticCSSResourceURL(
-		HttpServletRequest httpServletRequest, ThemeDisplay themeDisplay,
-		String originalURL) {
+		HttpServletRequest httpServletRequest, String originalURL,
+		ThemeDisplay themeDisplay) {
 
 		String url = null;
 
@@ -431,8 +431,9 @@ public class PortletRenderUtil {
 					if (!HttpComponentsUtil.hasProtocol(portletResource)) {
 						if (urlType == URLType.CSS) {
 							portletResource = _getStaticCSSResourceURL(
-								httpServletRequest, themeDisplay,
-								contextPath + portletResource);
+								httpServletRequest,
+								contextPath + portletResource,
+								themeDisplay);
 						}
 						else if (urlType == URLType.JAVASCRIPT) {
 							Portlet rootPortlet = portlet.getRootPortlet();
