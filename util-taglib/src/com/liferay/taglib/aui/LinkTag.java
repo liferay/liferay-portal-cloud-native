@@ -52,9 +52,9 @@ public class LinkTag extends BaseLinkTag {
 
 			if (Validator.isNotNull(href)) {
 				if (getHashedFile()) {
-					String pathProxy = PortalUtil.getPathProxy();
-
 					String prefix = PortalUtil.getPathModule();
+
+					String pathProxy = PortalUtil.getPathProxy();
 
 					prefix = prefix.substring(pathProxy.length());
 
