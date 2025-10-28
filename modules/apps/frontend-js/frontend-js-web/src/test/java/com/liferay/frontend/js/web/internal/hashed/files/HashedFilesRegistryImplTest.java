@@ -48,7 +48,7 @@ public class HashedFilesRegistryImplTest {
 	@Test
 	public void testGetResource() throws Exception {
 
-		// Non root context plus proxy setup
+		// Nonroot context plus proxy setup
 
 		ReflectionTestUtil.setFieldValue(
 			_hashedFilesRegistryImpl, "_portal", _mockPortal("dxp", "liferay"));
@@ -60,7 +60,7 @@ public class HashedFilesRegistryImplTest {
 			_hashedFilesRegistryImpl.getResource(
 				"/dxp/o/frontend-js-web/main.css"));
 
-		// Non root context setup
+		// Nonroot context setup
 
 		ReflectionTestUtil.setFieldValue(
 			_hashedFilesRegistryImpl, "_portal",
