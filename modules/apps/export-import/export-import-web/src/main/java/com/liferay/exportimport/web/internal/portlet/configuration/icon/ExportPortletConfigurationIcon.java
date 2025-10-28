@@ -65,12 +65,13 @@ public class ExportPortletConfigurationIcon
 	public String getURL(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
 		try {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)portletRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
+
+			PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
 			return PortletURLBuilder.create(
 				PortletProviderUtil.getPortletURL(
 					portletRequest, ExportImportConfiguration.class.getName(),
@@ -107,9 +108,9 @@ public class ExportPortletConfigurationIcon
 			if (_log.isDebugEnabled()) {
 				_log.debug(portalException);
 			}
-		}
 
-		return null;
+			return null;
+		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
