@@ -30,21 +30,27 @@ public class CMSFeatureFlagListener implements FeatureFlagListener {
 	public void onValue(
 		long companyId, String featureFlagKey, boolean enabled) {
 
-		if (enabled && Objects.equals(featureFlagKey, "LPD-17564")) {
-			for (String name : DepotRoleUtil.DEPOT_ROLE_NAMES) {
-				Role role = _roleLocalService.fetchRole(companyId, name);
+		if (!enabled || !Objects.equals(featureFlagKey, "LPD-17564")) {
+			return;
+		}
 
-				if (role != null) {
-					Map<Locale, String> titleMap = DepotRoleUtil.getTitleMap(
-						companyId, _language, name);
+		for (String name : DepotRoleUtil.DEPOT_ROLE_NAMES) {
+			Role role = _roleLocalService.fetchRole(companyId, name);
 
-					if (!Objects.equals(titleMap, role.getTitleMap())) {
-						role.setTitleMap(titleMap);
-
-						_roleLocalService.updateRole(role);
-					}
-				}
+			if (role == null) {
+				continue;
 			}
+
+			Map<Locale, String> titleMap = DepotRoleUtil.getTitleMap(
+				companyId, _language, name);
+
+			if (Objects.equals(titleMap, role.getTitleMap())) {
+				continue;
+			}
+
+			role.setTitleMap(titleMap);
+
+			_roleLocalService.updateRole(role);
 		}
 	}
 
