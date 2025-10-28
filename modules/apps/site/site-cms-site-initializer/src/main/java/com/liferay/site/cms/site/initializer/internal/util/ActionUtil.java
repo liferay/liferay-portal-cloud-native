@@ -1333,16 +1333,7 @@ public class ActionUtil {
 				continue;
 			}
 
-			if (infoFieldSetEntry instanceof InfoFieldSet) {
-				layoutStructure = _addInputFragmentEntryLinks(
-					addedFragmentEntryLinks, fragmentEntryLinkListenerRegistry,
-					fragmentEntryLinkService, formManager,
-					fragmentRendererRegistry, (InfoFieldSet)infoFieldSetEntry,
-					layout, layoutStructure, layoutStructureItem,
-					objectDefinitionName, readOnly, repeatable,
-					segmentsExperienceId, serviceContext, stylesJSONObject);
-			}
-			else if (infoFieldSetEntry instanceof InfoField) {
+			if (infoFieldSetEntry instanceof InfoField) {
 				InfoField<?> infoField = (InfoField<?>)infoFieldSetEntry;
 
 				if (RelationshipInfoFieldType.INSTANCE ==
@@ -1356,6 +1347,15 @@ public class ActionUtil {
 					(InfoField<?>)infoFieldSetEntry, layout, layoutStructure,
 					layoutStructureItem, readOnly, segmentsExperienceId,
 					serviceContext, stylesJSONObject);
+			}
+			else if (infoFieldSetEntry instanceof InfoFieldSet) {
+				layoutStructure = _addInputFragmentEntryLinks(
+					addedFragmentEntryLinks, fragmentEntryLinkListenerRegistry,
+					fragmentEntryLinkService, formManager,
+					fragmentRendererRegistry, (InfoFieldSet)infoFieldSetEntry,
+					layout, layoutStructure, layoutStructureItem,
+					objectDefinitionName, readOnly, repeatable,
+					segmentsExperienceId, serviceContext, stylesJSONObject);
 			}
 		}
 
