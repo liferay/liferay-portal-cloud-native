@@ -913,6 +913,12 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 			return templateListStyle;
 		}
 
+		ListStyle listStyle = new ListStyle();
+
+		listStyle.setCollectionDisplayListStyleType(
+			CollectionDisplayListStyle.CollectionDisplayListStyleType.
+				LIST_STYLE);
+
 		ListStyleDefinition listStyleDefinition = new ListStyleDefinition();
 
 		listStyleDefinition.setAlign(ListStyleDefinition.Align.CENTER);
@@ -924,12 +930,8 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 		listStyleDefinition.setVerticalAlignment(
 			ListStyleDefinition.VerticalAlignment.TOP);
 
-		ListStyle listStyle = new ListStyle();
-
-		listStyle.setCollectionDisplayListStyleType(
-			CollectionDisplayListStyle.CollectionDisplayListStyleType.
-				LIST_STYLE);
 		listStyle.setListStyleDefinition(listStyleDefinition);
+
 		listStyle.setListStyleType(listStyleType);
 
 		return listStyle;
