@@ -91,10 +91,6 @@ public class AIHubSiteInitializer implements SiteInitializer {
 
 		Company company = _companyLocalService.getCompany(group.getCompanyId());
 
-		String content = StringUtil.read(
-			AIHubSiteInitializer.class.getResourceAsStream(
-				"dependencies/improve-writing-workflow-definition.json"));
-
 		Map<String, String> titleMap = new HashMap<>();
 
 		for (Locale locale :
@@ -106,6 +102,10 @@ public class AIHubSiteInitializer implements SiteInitializer {
 					locale, WorkflowDefinitionConstants.NAME_IMPROVE_WRITING));
 		}
 
+		String json = StringUtil.read(
+			AIHubSiteInitializer.class.getResourceAsStream(
+				"dependencies/improve-writing-workflow-definition.json"));
+
 		_workflowDefinitionManager.deployWorkflowDefinition(
 			WorkflowDefinitionConstants.EXTERNAL_REFERENCE_CODE_IMPROVE_WRITING,
 			company.getCompanyId(), PrincipalThreadLocal.getUserId(),
@@ -113,7 +113,7 @@ public class AIHubSiteInitializer implements SiteInitializer {
 				titleMap, _language.getLanguageId(company.getLocale()),
 				"title"),
 			WorkflowDefinitionConstants.NAME_IMPROVE_WRITING,
-			content.getBytes());
+			json.getBytes());
 	}
 
 	@Reference
