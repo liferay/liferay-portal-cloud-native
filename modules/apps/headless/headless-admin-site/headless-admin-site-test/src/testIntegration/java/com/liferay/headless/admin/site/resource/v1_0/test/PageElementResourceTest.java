@@ -2429,6 +2429,8 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 				)));
 
 		String textFieldName = RandomTestUtil.randomString();
+		String urlFieldName = RandomTestUtil.randomString();
+		String videoFieldName = RandomTestUtil.randomString();
 
 		_testPutSitePageSpecificationPageExperiencePageElementWithFragmentPageElementWithConfiguration(
 			FragmentConfigurationTestUtil.getConfiguration(
@@ -2492,6 +2494,16 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 					).put(
 						"type", "text"
 					).build()
+				).put(
+					urlFieldName,
+					HashMapBuilder.<String, Object>put(
+						"type", "url"
+					).build()
+				).put(
+					videoFieldName,
+					HashMapBuilder.<String, Object>put(
+						"type", "videoSelector"
+					).build()
 				).build()),
 			HashMapBuilder.<String, Object>put(
 				categoryFieldName, _getAssetCategory(testGroup.getGroupId())
@@ -2537,6 +2549,18 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 				selectFieldName, selectValue1
 			).put(
 				textFieldName, RandomTestUtil.randomString()
+			).put(
+				urlFieldName,
+				HashMapBuilder.put(
+					"href", RandomTestUtil.randomString()
+				).build()
+			).put(
+				videoFieldName,
+				HashMapBuilder.put(
+					"html", RandomTestUtil.randomString()
+				).put(
+					"title", RandomTestUtil.randomString()
+				).build()
 			).build(),
 			HashMapBuilder.<String, Object>put(
 				categoryFieldName,
@@ -2575,11 +2599,23 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 				selectFieldName, selectValue2
 			).put(
 				textFieldName, RandomTestUtil.randomString()
+			).put(
+				urlFieldName,
+				HashMapBuilder.put(
+					"layout", _layout
+				).build()
+			).put(
+				videoFieldName,
+				HashMapBuilder.put(
+					"html", RandomTestUtil.randomString()
+				).put(
+					"title", RandomTestUtil.randomString()
+				).build()
 			).build(),
 			Collections.emptyMap());
 
 		_testMissingOptionalReference(
-			4,
+			5,
 			() ->
 				_testPutSitePageSpecificationPageExperiencePageElementWithFragmentPageElementWithConfiguration(
 					FragmentConfigurationTestUtil.getConfiguration(
@@ -2664,6 +2700,20 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 							).put(
 								"type", "text"
 							).build()
+						).put(
+							urlFieldName,
+							HashMapBuilder.<String, Object>put(
+								"localized", true
+							).put(
+								"type", "url"
+							).build()
+						).put(
+							videoFieldName,
+							HashMapBuilder.<String, Object>put(
+								"localized", true
+							).put(
+								"type", "videoSelector"
+							).build()
 						).build()),
 					HashMapBuilder.<String, Object>put(
 						categoryFieldName,
@@ -2713,6 +2763,19 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 						selectFieldName, selectValue1
 					).put(
 						textFieldName, RandomTestUtil.randomString()
+					).put(
+						urlFieldName,
+						HashMapBuilder.put(
+							"layout",
+							LayoutTestUtil.addTypeContentLayout(irrelevantGroup)
+						).build()
+					).put(
+						videoFieldName,
+						HashMapBuilder.put(
+							"html", RandomTestUtil.randomString()
+						).put(
+							"title", RandomTestUtil.randomString()
+						).build()
 					).build(),
 					HashMapBuilder.<String, Object>put(
 						categoryFieldName,
@@ -2786,6 +2849,27 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 						selectFieldName, selectValue2
 					).put(
 						textFieldName, RandomTestUtil.randomString()
+					).put(
+						urlFieldName,
+						HashMapBuilder.put(
+							"layout",
+							HashMapBuilder.<String, Object>put(
+								"className", Layout.class.getName()
+							).put(
+								"externalReferenceCode",
+								RandomTestUtil.randomString()
+							).put(
+								"scopeExternalReferenceCode",
+								RandomTestUtil.randomString()
+							).build()
+						).build()
+					).put(
+						videoFieldName,
+						HashMapBuilder.put(
+							"html", RandomTestUtil.randomString()
+						).put(
+							"title", RandomTestUtil.randomString()
+						).build()
 					).build(),
 					Collections.emptyMap()));
 
