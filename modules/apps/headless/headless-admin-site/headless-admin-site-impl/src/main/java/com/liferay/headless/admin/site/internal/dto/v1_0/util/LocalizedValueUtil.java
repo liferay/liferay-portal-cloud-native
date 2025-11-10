@@ -34,8 +34,9 @@ public class LocalizedValueUtil {
 			UnsafeFunction<T, R, E> unsafeFunction)
 		throws E {
 
-		List<String> availableLanguageIds = getAvailableLanguageIds();
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		List<String> availableLanguageIds = getAvailableLanguageIds();
 
 		for (Map.Entry<String, T> entry : localizedValues.entrySet()) {
 			if (availableLanguageIds.contains(entry.getKey())) {
