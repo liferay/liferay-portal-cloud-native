@@ -89,11 +89,11 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 	@Test
 	public void testNonoverwrittenConfiguration() throws Exception {
 		_createFactoryConfiguration(
-			"http://www.liferay.com", 0, false,
-			"/o/cors-app/system/only/path/*");
-		_createFactoryConfiguration(
 			"http://www.google.com", _companyId, true,
 			"/o/cors-app/instance/only/path/*");
+		_createFactoryConfiguration(
+			"http://www.liferay.com", 0, false,
+			"/o/cors-app/system/only/path/*");
 
 		registerJaxRsApplication(
 			new CORSTestApplication(), "",
