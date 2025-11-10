@@ -8,16 +8,6 @@ import silver from '../resources/silver.png';
 
 const DistributorsTable = () => {
 	const [distributors, setDistributors] = useState([]);
-
-	const selectDistributor = (distributor) => {
-		Liferay.fire('selectDistributor', distributor);
-	};
-
-	useEffect(() => {
-		getDistributors()
-			.then((response) => setDistributors(response));
-	}, []);
-
 	const getTierImage = (tierKey) => {
 		switch (tierKey) {
 			case 'bronze':
@@ -30,6 +20,14 @@ const DistributorsTable = () => {
 				return null;
 		}
 	}
+	const selectDistributor = (distributor) => {
+		Liferay.fire('selectDistributor', distributor);
+	};
+
+	useEffect(() => {
+		getDistributors()
+			.then((distributors) => setDistributors(distributors));
+	}, []);
 
 	return (
 		<ClayTable>
