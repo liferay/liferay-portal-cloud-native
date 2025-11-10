@@ -39,11 +39,11 @@ if (Validator.isNotNull(backURL)) {
 				<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 				<aui:input name="commerceInventoryWarehouseId" type="hidden" />
 				<aui:input name="commerceInventoryWarehouseItemId" type="hidden" />
-				<aui:input name="mvccVersion" type="hidden" />
 				<aui:input name="quantity" type="hidden" />
 				<aui:input name="reservedQuantity" type="hidden" />
 				<aui:input name="sku" type="hidden" value="<%= cpInstance.getSku() %>" />
 				<aui:input name="unitOfMeasureKey" type="hidden" />
+				<aui:input name="mvccVersion" type="hidden" />
 
 				<liferay-ui:error exception="<%= CommerceInventoryWarehouseItemQuantityException.class %>" message="please-enter-a-valid-quantity" />
 
@@ -67,9 +67,9 @@ if (Validator.isNotNull(backURL)) {
 
 						for (CommerceInventoryWarehouse commerceInventoryWarehouse : commerceInventoryWarehouses) {
 							long commerceInventoryWarehouseItemId = 0;
-							long mvccVersion = 0;
 							BigDecimal quantity = BigDecimal.ZERO;
 							BigDecimal reservedQuantity = BigDecimal.ZERO;
+							long mvccVersion = 0;
 
 							CommerceInventoryWarehouseItem commerceInventoryWarehouseItem = null;
 
@@ -78,7 +78,6 @@ if (Validator.isNotNull(backURL)) {
 
 								if (commerceInventoryWarehouseItem != null) {
 									commerceInventoryWarehouseItemId = commerceInventoryWarehouseItem.getCommerceInventoryWarehouseItemId();
-									mvccVersion = commerceInventoryWarehouseItem.getMvccVersion();
 
 									BigDecimal commerceInventoryWarehouseItemQuantity = commerceInventoryWarehouseItem.getQuantity();
 
@@ -91,6 +90,8 @@ if (Validator.isNotNull(backURL)) {
 									if (commerceInventoryWarehouseItemReservedQuantity != null) {
 										reservedQuantity = commerceInventoryWarehouseItemReservedQuantity;
 									}
+
+									mvccVersion = commerceInventoryWarehouseItem.getMvccVersion();
 								}
 						%>
 
