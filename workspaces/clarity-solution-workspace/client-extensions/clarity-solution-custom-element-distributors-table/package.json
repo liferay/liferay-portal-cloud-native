@@ -2,9 +2,9 @@
 	"dependencies": {
 		"@clayui/button": "^3.143.0",
 		"@clayui/table": "^3.143.0",
+		"clarity-distributors-api": "*",
 		"react": "18.2.0",
-		"react-dom": "18.2.0",
-		"clarity-distributors-api": "*"
+		"react-dom": "18.2.0"
 	},
 	"devDependencies": {
 		"@types/react": "^18.2.0",
