@@ -51,12 +51,12 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 	@Test
 	public void testDuplicateConfiguration() throws Exception {
 		_createFactoryConfiguration(
-			"http://www.liferay.com", _companyId, false,
+			"http://www.google.com", _companyId, false,
 			"/o/cors-app/duplicate/path/*");
 
 		try {
 			_createFactoryConfiguration(
-				"http://www.google.com", _companyId, false,
+				"http://www.liferay.com", _companyId, false,
 				"/o/cors-app/duplicate/path/*");
 		}
 		catch (RuntimeException runtimeException) {
@@ -70,12 +70,12 @@ public class ConfigurationCORSClientTest extends BaseCORSClientTestCase {
 	@Test
 	public void testDuplicateInstanceConfiguration() throws Exception {
 		_createFactoryConfiguration(
-			"http://www.liferay.com", _companyId, true,
+			"http://www.google.com", _companyId, true,
 			"/o/cors-app/duplicate-instance/path/*");
 
 		try {
 			_createFactoryConfiguration(
-				"http://www.google.com", _companyId, true,
+				"http://www.liferay.com", _companyId, true,
 				"/o/cors-app/duplicate-instance/path/*");
 		}
 		catch (RuntimeException runtimeException) {
