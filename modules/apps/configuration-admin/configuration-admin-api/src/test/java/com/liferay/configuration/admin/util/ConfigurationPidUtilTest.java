@@ -25,8 +25,7 @@ public class ConfigurationPidUtilTest {
 	@Test
 	public void testGetRawPid() {
 		_testGetRawPid(
-			"com.sample.SampleConfiguration",
-			"com.sample.SampleConfiguration",
+			"com.sample.SampleConfiguration", "com.sample.SampleConfiguration",
 			"com.sample.SampleConfiguration.scoped",
 			"com.sample.SampleConfiguration.scoped~123",
 			"com.sample.SampleConfiguration~123");
@@ -34,9 +33,7 @@ public class ConfigurationPidUtilTest {
 
 	private void _testGetRawPid(String rawPid, String... pids) {
 		for (String pid : pids) {
-			Assert.assertEquals(
-				rawPid,
-				ConfigurationPidUtil.getRawPid(pid));
+			Assert.assertEquals(rawPid, ConfigurationPidUtil.getRawPid(pid));
 		}
 	}
 
