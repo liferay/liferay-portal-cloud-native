@@ -155,7 +155,7 @@ public class SafeReleaseInstanceResourceProviderTest {
 			HTTPTestUtil.invokeToHttpCode(
 				StringPool.BLANK, "test-vulcan/test/0", Http.Method.GET));
 
-		// Server Sent Events
+		// Server-Sent Events
 
 		Assert.assertEquals(
 			200,
