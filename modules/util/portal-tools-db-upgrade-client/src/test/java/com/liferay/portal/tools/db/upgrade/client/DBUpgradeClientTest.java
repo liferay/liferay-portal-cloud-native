@@ -381,10 +381,12 @@ public class DBUpgradeClientTest {
 
 		_createPortalUpgradeExtPropertiesFile(false);
 
+		Properties portalExtProperties = _createPortalExtPropertiesFile();
+
 		String[] answers = {
 			StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
 			StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
-			StringPool.BLANK, StringPool.BLANK
+			StringPool.BLANK, StringPool.BLANK, StringPool.BLANK
 		};
 
 		_dbUpgradeClient = _createDBUpgradeClient(answers);
@@ -397,6 +399,18 @@ public class DBUpgradeClientTest {
 			new Class<?>[0]);
 
 		String consoleString = _consoleByteArrayOutputStream.toString();
+
+		Assert.assertTrue(
+			consoleString.contains(
+				"An existing database configuration was found in: " +
+					_liferayHomeDir + "/portal-ext.properties"));
+
+		String jdbcDriverClassName = portalExtProperties.getProperty(
+			"jdbc.default.driverClassName");
+
+		Assert.assertTrue(
+			consoleString.contains(
+				"jdbc.default.driverClassName=" + jdbcDriverClassName));
 
 		Assert.assertTrue(consoleString.contains("mariadb mysql postgresql"));
 
@@ -482,6 +496,54 @@ public class DBUpgradeClientTest {
 		finally {
 			Files.deleteIfExists(path);
 		}
+	}
+
+	@Test
+	public void testVerifyPortalUpgradeExtPropertiesDatabaseWithPortalExtProperties()
+		throws Exception {
+
+		_createPortalUpgradeExtPropertiesFile(false);
+
+		Properties portalExtProperties = _createPortalExtPropertiesFile();
+
+		_dbUpgradeClient = _createDBUpgradeClient(new String[] {"Y"});
+
+		ReflectionTestUtil.setFieldValue(
+			_dbUpgradeClient, "_appServer", _appServer);
+
+		ReflectionTestUtil.invoke(
+			_dbUpgradeClient, "_verifyPortalUpgradeExtPropertiesDatabase",
+			new Class<?>[0]);
+
+		Properties properties = ReflectionTestUtil.getFieldValue(
+			_dbUpgradeClient, "_portalUpgradeExtProperties");
+
+		String consoleString = _consoleByteArrayOutputStream.toString();
+
+		Assert.assertTrue(
+			consoleString.contains(
+				"An existing database configuration was found in: " +
+					_liferayHomeDir + "/portal-ext.properties"));
+
+		String jdbcDriverClassName = portalExtProperties.getProperty(
+			"jdbc.default.driverClassName");
+
+		Assert.assertTrue(
+			consoleString.contains(
+				"jdbc.default.driverClassName=" + jdbcDriverClassName));
+
+		Assert.assertEquals(
+			portalExtProperties.getProperty("jdbc.default.driverClassName"),
+			properties.getProperty("jdbc.default.driverClassName"));
+		Assert.assertEquals(
+			portalExtProperties.getProperty("jdbc.default.url"),
+			properties.getProperty("jdbc.default.url"));
+		Assert.assertEquals(
+			portalExtProperties.getProperty("jdbc.default.userName"),
+			properties.getProperty("jdbc.default.userName"));
+		Assert.assertEquals(
+			portalExtProperties.getProperty("jdbc.default.password"),
+			properties.getProperty("jdbc.default.password"));
 	}
 
 	@Test
@@ -648,6 +710,26 @@ public class DBUpgradeClientTest {
 			dbUpgradeClient, "_consoleReader", consoleReader);
 
 		return dbUpgradeClient;
+	}
+
+	private Properties _createPortalExtPropertiesFile() throws Exception {
+		File portalExtPropertiesFile = new File(
+			_liferayHomeDir, "portal-ext.properties");
+
+		Properties portalExtProperties = new Properties();
+
+		portalExtProperties.setProperty(
+			"jdbc.default.driverClassName", RandomTestUtil.randomString());
+		portalExtProperties.setProperty(
+			"jdbc.default.url", RandomTestUtil.randomString());
+		portalExtProperties.setProperty(
+			"jdbc.default.username", RandomTestUtil.randomString());
+		portalExtProperties.setProperty(
+			"jdbc.default.password", RandomTestUtil.randomString());
+
+		portalExtProperties.store(portalExtPropertiesFile);
+
+		return portalExtProperties;
 	}
 
 	private void _createPortalUpgradeExtPropertiesFile(
