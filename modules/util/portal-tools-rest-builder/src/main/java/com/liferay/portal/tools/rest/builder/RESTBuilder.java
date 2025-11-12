@@ -330,6 +330,7 @@ public class RESTBuilder {
 						_containsVulcanScope(schema)) {
 
 						_createClientScopeFile(context);
+
 						createClientScopeFiles = false;
 					}
 				}
