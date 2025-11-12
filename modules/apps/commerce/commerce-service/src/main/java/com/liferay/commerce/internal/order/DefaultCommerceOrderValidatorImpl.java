@@ -110,7 +110,7 @@ public class DefaultCommerceOrderValidatorImpl
 		catch (PortalException portalException) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Unable to find a Commerce Product Configuration List " +
+					"Unable to find a commerce product configuration list " +
 						"for SKU " + cpInstance.getSku(),
 					portalException);
 			}

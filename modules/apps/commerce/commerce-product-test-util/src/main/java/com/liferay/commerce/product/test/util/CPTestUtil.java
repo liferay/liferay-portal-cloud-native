@@ -1317,7 +1317,7 @@ public class CPTestUtil {
 
 		CommerceCurrency commerceCurrency =
 			CommerceCurrencyLocalServiceUtil.addCommerceCurrency(
-				null, serviceContext.getUserId(), RandomTestUtil.randomString(),
+				null, user.getUserId(), RandomTestUtil.randomString(),
 				RandomTestUtil.randomLocaleStringMap(),
 				RandomTestUtil.randomString(), BigDecimal.ONE, new HashMap<>(),
 				2, 2, "HALF_EVEN", false, 0, true);
