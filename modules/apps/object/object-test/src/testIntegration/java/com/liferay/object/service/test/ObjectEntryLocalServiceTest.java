@@ -3239,7 +3239,7 @@ public class ObjectEntryLocalServiceTest {
 					"data-embed-id=",
 					"\"https://www.youtube.com/embed/6LjQ7Z99N74?rel=0\" ",
 					"data-styles=\"{&quot;width&quot;:&quot;81%&quot;}",
-					"\" style=\"width:81%\"><iframe allow=\"autoplay; ",
+					"\" style=\"width: 81%\"><iframe allow=\"autoplay; ",
 					"encrypted-media\" allowfullscreen=\"\" frameborder=\"0\" ",
 					"height=\"315\" src=",
 					"\"https://www.youtube.com/embed/6LjQ7Z99N74?rel=0\" ",
