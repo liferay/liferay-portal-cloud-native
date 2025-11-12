@@ -192,12 +192,8 @@ public class Scope implements Cloneable, Serializable {
 					sb.append(", ");
 				}
 
-				sb.append("\"externalReferenceCode\": ");
-
-				sb.append("\"");
-
+				sb.append("\"externalReferenceCode\": \"");
 				sb.append(_escape(scope.getExternalReferenceCode()));
-
 				sb.append("\"");
 			}
 
@@ -206,12 +202,8 @@ public class Scope implements Cloneable, Serializable {
 					sb.append(", ");
 				}
 
-				sb.append("\"key\": ");
-
-				sb.append("\"");
-
+				sb.append("\"key\": \"");
 				sb.append(_escape(scope.getKey()));
-
 				sb.append("\"");
 			}
 
@@ -220,12 +212,8 @@ public class Scope implements Cloneable, Serializable {
 					sb.append(", ");
 				}
 
-				sb.append("\"label\": ");
-
-				sb.append("\"");
-
+				sb.append("\"label\": \"");
 				sb.append(_escape(scope.getLabel()));
-
 				sb.append("\"");
 			}
 
@@ -234,12 +222,8 @@ public class Scope implements Cloneable, Serializable {
 					sb.append(", ");
 				}
 
-				sb.append("\"type\": ");
-
-				sb.append("\"");
-
+				sb.append("\"type\": \"");
 				sb.append(scope.getType());
-
 				sb.append("\"");
 			}
 
