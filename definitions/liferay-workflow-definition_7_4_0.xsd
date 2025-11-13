@@ -268,10 +268,10 @@
 				<xs:extension base="abstract-workflow-node-complex-type">
 					<xs:sequence>
 						<xs:element minOccurs="0" ref="labels" />
-						<xs:element minOccurs="0" ref="transitions" />
 						<xs:element minOccurs="0" name="input-variables" type="xs:string" />
 						<xs:element minOccurs="0" name="output-variables" type="xs:string" />
 						<xs:element name="prompt" type="xs:string" />
+						<xs:element minOccurs="0" ref="transitions" />
 						<xs:element name="user-message" type="xs:string" />
 					</xs:sequence>
 				</xs:extension>
