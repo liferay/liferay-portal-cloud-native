@@ -142,6 +142,12 @@
 					"#tag-name": "labels"
 				},
 				{
+					"#cdata-value": [
+						"Prompt"
+					],
+					"#tag-name": "prompt"
+				},
+				{
 					"#child-nodes": [
 						{
 							"#child-nodes": [
@@ -199,12 +205,6 @@
 						}
 					],
 					"#tag-name": "transitions"
-				},
-				{
-					"#cdata-value": [
-						"Prompt"
-					],
-					"#tag-name": "prompt"
 				},
 				{
 					"#cdata-value": [
