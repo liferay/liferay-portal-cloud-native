@@ -102,13 +102,13 @@ configuration below.
 
 - `liferay.home` - the Liferay home directory. **(Required)**
 
+- `hibernate.jdbc.batch_size` - the JDBC batch size used to improve
+   performance; set to *250* by default. **(Optional)**
+
 - `jdbc.default.driverClassName` **(Required)**
 
 - `jdbc.default.url` **(Required)**
 
 - `jdbc.default.username` **(Required)**
 
-- `jdbc.default.password` **(Required)**
-
-- `hibernate.jdbc.batch_size` - the JDBC batch size used to improve
-   performance; set to *250* by default. **(Optional)**
+- `jdbc.default.password` **(Required)**   
