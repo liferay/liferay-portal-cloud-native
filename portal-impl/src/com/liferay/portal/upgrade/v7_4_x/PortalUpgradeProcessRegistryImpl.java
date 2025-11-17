@@ -694,7 +694,7 @@ public class PortalUpgradeProcessRegistryImpl
 		upgradeVersionTreeMap.put(
 			new Version(36, 0, 0),
 			UpgradeProcessFactory.addColumns(
-				"Layout", "MLayoutPageTemplateEntryERC VARCHAR(75) null"));
+				"Layout", "masterLPTEERC VARCHAR(75) null"));
 	}
 
 }

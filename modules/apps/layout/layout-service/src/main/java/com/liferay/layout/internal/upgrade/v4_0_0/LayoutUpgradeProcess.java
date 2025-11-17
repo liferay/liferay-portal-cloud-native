@@ -38,8 +38,7 @@ public class LayoutUpgradeProcess extends UpgradeProcess {
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
-					"update Layout set MLayoutPageTemplateEntryERC = ? where " +
-						"plid = ?")) {
+					"update Layout set masterLPTEERC = ? where plid = ?")) {
 
 			while (resultSet.next()) {
 				preparedStatement2.setString(1, resultSet.getString(1));
