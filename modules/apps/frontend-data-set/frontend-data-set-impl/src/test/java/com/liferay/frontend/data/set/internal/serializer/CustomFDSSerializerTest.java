@@ -645,11 +645,7 @@ public class CustomFDSSerializerTest extends BaseFDSSerializerTestCase {
 
 	@Test
 	public void testSerializeHideManagementBarInEmptyState() throws Exception {
-
-		// Different value
-
 		_mockSerializeHideManagementBarInEmptyState(FDS_NAMES[0], false);
-
 		_mockSerializeHideManagementBarInEmptyState(FDS_NAMES[1], true);
 
 		Assert.assertNotEquals(
@@ -657,11 +653,9 @@ public class CustomFDSSerializerTest extends BaseFDSSerializerTestCase {
 				FDS_NAMES[0], httpServletRequest),
 			_customFDSSerializer.serializeHideManagementBarInEmptyState(
 				FDS_NAMES[1], httpServletRequest));
-
 		Assert.assertFalse(
 			_customFDSSerializer.serializeHideManagementBarInEmptyState(
 				FDS_NAMES[0], httpServletRequest));
-
 		Assert.assertTrue(
 			_customFDSSerializer.serializeHideManagementBarInEmptyState(
 				FDS_NAMES[1], httpServletRequest));
