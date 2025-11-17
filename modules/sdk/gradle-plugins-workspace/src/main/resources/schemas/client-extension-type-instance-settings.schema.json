@@ -1638,13 +1638,13 @@
 		{
 			"properties": {
 				"cacheControl": {
-					"default": "private, no-cache, no-store, must-revalidate",
+					"default": "must-revalidate",
 					"description": "Set the cache control policy for documents with view permissions for guests.",
 					"title": "Cache Control",
 					"type": "string"
 				},
 				"maxAge": {
-					"default": 0,
+					"default": 600,
 					"description": "Set the number of seconds after a response is generated in which a response will be considered fresh.",
 					"title": "Max Age",
 					"type": "number"
