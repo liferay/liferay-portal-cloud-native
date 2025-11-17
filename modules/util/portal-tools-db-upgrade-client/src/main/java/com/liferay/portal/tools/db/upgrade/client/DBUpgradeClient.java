@@ -1022,11 +1022,11 @@ public class DBUpgradeClient {
 				"An existing database configuration was found in: " +
 					portalExtPropertiesFile.getAbsolutePath());
 			System.out.println(
-				"  jdbc.default.driverClassName=" + driverClassName);
-			System.out.println("  jdbc.default.url=" + url);
-			System.out.println("  jdbc.default.username=" + userName);
+				"\tjdbc.default.driverClassName=" + driverClassName);
+			System.out.println("\tjdbc.default.url=" + url);
+			System.out.println("\tjdbc.default.username=" + userName);
 			System.out.println(
-				"  jdbc.default.password=" + password.replaceAll(".", "*"));
+				"\tjdbc.default.password=" + password.replaceAll(".", "*"));
 
 			System.out.println("\nUse existing JDBC properties (y/N):");
 
