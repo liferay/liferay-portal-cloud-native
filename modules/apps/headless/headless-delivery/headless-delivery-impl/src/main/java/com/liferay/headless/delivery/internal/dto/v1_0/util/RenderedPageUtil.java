@@ -37,7 +37,6 @@ public class RenderedPageUtil {
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			_getLayoutPageTemplateEntry(
 				layout, layoutPageTemplateEntryLocalService, portal);
-
 		LayoutPageTemplateEntry masterLayoutPageTemplateEntry =
 			layoutPageTemplateEntryLocalService.
 				fetchLayoutPageTemplateEntryByExternalReferenceCode(
