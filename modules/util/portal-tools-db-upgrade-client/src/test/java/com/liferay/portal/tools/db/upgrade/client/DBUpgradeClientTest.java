@@ -137,7 +137,7 @@ public class DBUpgradeClientTest {
 			DBUpgradeClient.class, "_addDefaultJVMOpts",
 			new Class<?>[] {List.class}, jvmOpts);
 
-		Assert.assertEquals("Expected 5 JVM options", 5, jvmOpts.size());
+		Assert.assertEquals(5, jvmOpts.size());
 		Assert.assertFalse(jvmOpts.contains("-Dfile.encoding=UTF8"));
 		Assert.assertFalse(jvmOpts.contains("-Xmx4096m"));
 		Assert.assertTrue(jvmOpts.contains("-Dfile.encoding=ISO-8859-1"));
