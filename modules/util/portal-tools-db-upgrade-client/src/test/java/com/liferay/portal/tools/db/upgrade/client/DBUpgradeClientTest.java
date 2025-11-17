@@ -152,7 +152,7 @@ public class DBUpgradeClientTest {
 			DBUpgradeClient.class, "_addDefaultJVMOpts",
 			new Class<?>[] {List.class}, jvmOpts);
 
-		Assert.assertEquals("Expected 5 JVM options", 5, jvmOpts.size());
+		Assert.assertEquals(5, jvmOpts.size());
 		Assert.assertTrue(jvmOpts.contains("-Dfile.encoding=UTF8"));
 		Assert.assertTrue(jvmOpts.contains("-Duser.country=US"));
 		Assert.assertTrue(jvmOpts.contains("-Duser.language=en"));
