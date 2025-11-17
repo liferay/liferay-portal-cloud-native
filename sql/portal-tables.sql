@@ -694,7 +694,7 @@ create table Layout (
 	css TEXT null,
 	priority INTEGER,
 	faviconFileEntryId LONG,
-	MLayoutPageTemplateEntryERC VARCHAR(75) null,
+	masterLPTEERC VARCHAR(75) null,
 	layoutPrototypeUuid VARCHAR(75) null,
 	layoutPrototypeLinkEnabled BOOLEAN,
 	layoutSetPrototypeLayoutERC VARCHAR(75) null,

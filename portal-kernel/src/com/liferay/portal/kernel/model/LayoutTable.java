@@ -96,8 +96,7 @@ public class LayoutTable extends BaseTable<LayoutTable> {
 		"faviconFileEntryId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<LayoutTable, String> masterLayoutPageTemplateEntryERC =
 		createColumn(
-			"MLayoutPageTemplateEntryERC", String.class, Types.VARCHAR,
-			Column.FLAG_DEFAULT);
+			"masterLPTEERC", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 	public final Column<LayoutTable, String> layoutPrototypeUuid = createColumn(
 		"layoutPrototypeUuid", String.class, Types.VARCHAR,
 		Column.FLAG_DEFAULT);

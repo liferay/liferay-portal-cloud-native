@@ -8089,11 +8089,11 @@ public class LayoutPersistenceImpl
 
 	private static final String
 		_FINDER_COLUMN_G_MLPTEERC_MASTERLAYOUTPAGETEMPLATEENTRYERC_2_SQL =
-			"layout.MLayoutPageTemplateEntryERC = ?";
+			"layout.masterLPTEERC = ?";
 
 	private static final String
 		_FINDER_COLUMN_G_MLPTEERC_MASTERLAYOUTPAGETEMPLATEENTRYERC_3_SQL =
-			"(layout.MLayoutPageTemplateEntryERC IS NULL OR layout.MLayoutPageTemplateEntryERC = '')";
+			"(layout.masterLPTEERC IS NULL OR layout.masterLPTEERC = '')";
 
 	private FinderPath _finderPathWithPaginationFindByC_L;
 	private FinderPath _finderPathWithoutPaginationFindByC_L;
@@ -21635,8 +21635,7 @@ public class LayoutPersistenceImpl
 		dbColumnNames.put("type", "type_");
 		dbColumnNames.put("hidden", "hidden_");
 		dbColumnNames.put("system", "system_");
-		dbColumnNames.put(
-			"masterLayoutPageTemplateEntryERC", "MLayoutPageTemplateEntryERC");
+		dbColumnNames.put("masterLayoutPageTemplateEntryERC", "masterLPTEERC");
 
 		setDBColumnNames(dbColumnNames);
 
@@ -22557,7 +22556,7 @@ public class LayoutPersistenceImpl
 		ctMergeColumnNames.add("css");
 		ctMergeColumnNames.add("priority");
 		ctMergeColumnNames.add("faviconFileEntryId");
-		ctMergeColumnNames.add("MLayoutPageTemplateEntryERC");
+		ctMergeColumnNames.add("masterLPTEERC");
 		ctMergeColumnNames.add("layoutPrototypeUuid");
 		ctMergeColumnNames.add("layoutPrototypeLinkEnabled");
 		ctMergeColumnNames.add("layoutSetPrototypeLayoutERC");
@@ -22813,17 +22812,17 @@ public class LayoutPersistenceImpl
 				Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			},
-			new String[] {"groupId", "MLayoutPageTemplateEntryERC"}, true);
+			new String[] {"groupId", "masterLPTEERC"}, true);
 
 		_finderPathWithoutPaginationFindByG_MLPTEERC = new FinderPath(
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_MLPTEERC",
 			new String[] {Long.class.getName(), String.class.getName()},
-			new String[] {"groupId", "MLayoutPageTemplateEntryERC"}, true);
+			new String[] {"groupId", "masterLPTEERC"}, true);
 
 		_finderPathCountByG_MLPTEERC = new FinderPath(
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_MLPTEERC",
 			new String[] {Long.class.getName(), String.class.getName()},
-			new String[] {"groupId", "MLayoutPageTemplateEntryERC"}, false);
+			new String[] {"groupId", "masterLPTEERC"}, false);
 
 		_finderPathWithPaginationFindByC_L = new FinderPath(
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_L",
