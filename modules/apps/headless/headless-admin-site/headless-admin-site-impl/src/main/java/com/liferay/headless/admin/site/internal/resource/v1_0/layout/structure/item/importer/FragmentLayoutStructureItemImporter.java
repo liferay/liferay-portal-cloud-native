@@ -131,7 +131,6 @@ public class FragmentLayoutStructureItemImporter
 				PortletUtil.importPortletPermissions(
 					layout, portletId, widgetInstance.getWidgetName(),
 					widgetInstance.getWidgetPermissions());
-
 				PortletUtil.importPortletPreferences(
 					layout, portletId, widgetInstance.getWidgetConfig());
 			}
@@ -149,7 +148,6 @@ public class FragmentLayoutStructureItemImporter
 					PortletKeys.PREFS_OWNER_ID_DEFAULT,
 					PortletKeys.PREFS_OWNER_TYPE_LAYOUT, layout.getPlid(),
 					fragmentEntryLinkPortletId);
-
 				ResourcePermissionLocalServiceUtil.deleteResourcePermissions(
 					layout.getCompanyId(), fragmentEntryLinkPortletId,
 					ResourceConstants.SCOPE_INDIVIDUAL,

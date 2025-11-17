@@ -82,7 +82,6 @@ public class WidgetInstanceLayoutStructureItemImporter
 		PortletUtil.importPortletPermissions(
 			layout, portletId, widgetInstance.getWidgetName(),
 			widgetInstance.getWidgetPermissions());
-
 		PortletUtil.importPortletPreferences(
 			layout, portletId, widgetInstance.getWidgetConfig());
 
