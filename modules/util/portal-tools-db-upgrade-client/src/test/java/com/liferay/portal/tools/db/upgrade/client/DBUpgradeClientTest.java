@@ -511,10 +511,8 @@ public class DBUpgradeClientTest {
 
 		ReflectionTestUtil.setFieldValue(
 			_dbUpgradeClient, "_appServer", _appServer);
-
 		Properties properties = ReflectionTestUtil.getFieldValue(
 			_dbUpgradeClient, "_portalUpgradeExtProperties");
-
 		ReflectionTestUtil.invoke(
 			_dbUpgradeClient, "_verifyPortalUpgradeExtPropertiesDatabase",
 			new Class<?>[0]);
@@ -714,9 +712,6 @@ public class DBUpgradeClientTest {
 	}
 
 	private Properties _createPortalExtPropertiesFile() throws Exception {
-		File portalExtPropertiesFile = new File(
-			_liferayHomeDir, "portal-ext.properties");
-
 		Properties portalExtProperties = new Properties();
 
 		portalExtProperties.setProperty(
@@ -728,7 +723,8 @@ public class DBUpgradeClientTest {
 		portalExtProperties.setProperty(
 			"jdbc.default.username", RandomTestUtil.randomString());
 
-		portalExtProperties.store(portalExtPropertiesFile);
+		portalExtProperties.store(
+			new File(_liferayHomeDir, "portal-ext.properties"));
 
 		return portalExtProperties;
 	}
