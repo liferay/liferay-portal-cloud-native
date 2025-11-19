@@ -63,45 +63,37 @@ public class IBMS3StoreTest extends BaseStoreTestCase {
 	public void testSmoke() throws Exception {
 		Group group = GroupTestUtil.addGroup();
 
-		try {
-			FileEntry fileEntry = DLAppTestUtil.addFileEntry(
-				group.getGroupId());
+		FileEntry fileEntry = DLAppTestUtil.addFileEntry(group.getGroupId());
 
-			DLFileEntry dlFileEntry = (DLFileEntry)fileEntry.getModel();
+		DLFileEntry dlFileEntry = (DLFileEntry)fileEntry.getModel();
 
-			DLFileVersion dlFileVersion = dlFileEntry.getFileVersion();
+		DLFileVersion dlFileVersion = dlFileEntry.getFileVersion();
 
-			Assert.assertTrue(
-				_store.hasFile(
-					dlFileEntry.getCompanyId(),
-					dlFileEntry.getDataRepositoryId(), dlFileEntry.getName(),
-					dlFileVersion.getStoreFileName()));
+		Assert.assertTrue(
+			_store.hasFile(
+				dlFileEntry.getCompanyId(), dlFileEntry.getDataRepositoryId(),
+				dlFileEntry.getName(), dlFileVersion.getStoreFileName()));
 
-			DLTrashLocalServiceUtil.moveFileEntryToTrash(
-				dlFileEntry.getUserId(), dlFileEntry.getRepositoryId(),
-				dlFileEntry.getFileEntryId());
+		DLTrashLocalServiceUtil.moveFileEntryToTrash(
+			dlFileEntry.getUserId(), dlFileEntry.getRepositoryId(),
+			dlFileEntry.getFileEntryId());
 
-			Assert.assertTrue(
-				_store.hasFile(
-					dlFileEntry.getCompanyId(),
-					dlFileEntry.getDataRepositoryId(), dlFileEntry.getName(),
-					dlFileVersion.getStoreFileName()));
+		Assert.assertTrue(
+			_store.hasFile(
+				dlFileEntry.getCompanyId(), dlFileEntry.getDataRepositoryId(),
+				dlFileEntry.getName(), dlFileVersion.getStoreFileName()));
 
-			TrashHandler trashHandler =
-				TrashHandlerRegistryUtil.getTrashHandler(
-					DLFileEntry.class.getName());
+		TrashHandler trashHandler = TrashHandlerRegistryUtil.getTrashHandler(
+			DLFileEntry.class.getName());
 
-			trashHandler.deleteTrashEntry(dlFileEntry.getPrimaryKey());
+		trashHandler.deleteTrashEntry(dlFileEntry.getPrimaryKey());
 
-			Assert.assertFalse(
-				_store.hasFile(
-					dlFileEntry.getCompanyId(),
-					dlFileEntry.getDataRepositoryId(), dlFileEntry.getName(),
-					dlFileVersion.getStoreFileName()));
-		}
-		finally {
-			GroupTestUtil.deleteGroup(group);
-		}
+		Assert.assertFalse(
+			_store.hasFile(
+				dlFileEntry.getCompanyId(), dlFileEntry.getDataRepositoryId(),
+				dlFileEntry.getName(), dlFileVersion.getStoreFileName()));
+
+		GroupTestUtil.deleteGroup(group);
 	}
 
 	@Override
