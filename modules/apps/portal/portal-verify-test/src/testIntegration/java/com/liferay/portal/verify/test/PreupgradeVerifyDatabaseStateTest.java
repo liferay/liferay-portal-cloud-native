@@ -148,7 +148,8 @@ public class PreupgradeVerifyDatabaseStateTest
 				exception.getMessage());
 		}
 		finally {
-			_alterColumnName("UserTracker", "companyId_backup", "companyId LONG");
+			_alterColumnName(
+				"UserTracker", "companyId_backup", "companyId LONG");
 		}
 	}
 
@@ -279,6 +280,18 @@ public class PreupgradeVerifyDatabaseStateTest
 		return new PreupgradeVerifyDatabaseState();
 	}
 
+	private void _alterColumnName(
+			String tableName, String oldColumnName, String newColumnDefinition)
+		throws Exception {
+
+		DB db = DBManagerUtil.getDB();
+
+		try (Connection connection = DataAccess.getConnection()) {
+			db.alterColumnName(
+				connection, tableName, oldColumnName, newColumnDefinition);
+		}
+	}
+
 	private void _alterColumnType(
 			String tableName, String columnName, String columnType)
 		throws Exception {
@@ -323,18 +336,6 @@ public class PreupgradeVerifyDatabaseStateTest
 		}
 
 		return null;
-	}
-
-	private void _alterColumnName(
-			String tableName, String oldColumnName, String newColumnDefinition)
-		throws Exception {
-
-		DB db = DBManagerUtil.getDB();
-
-		try (Connection connection = DataAccess.getConnection()) {
-			db.alterColumnName(
-				connection, tableName, oldColumnName, newColumnDefinition);
-		}
 	}
 
 	private void _renameView(String fromViewName, String toViewName)
