@@ -186,10 +186,10 @@ public class PreupgradeVerifyDatabaseState extends PreupgradeVerifyProcess {
 				for (String columnDefinition :
 						tableColumnDefinitionsEntry.getValue()) {
 
-					int indexOf = columnDefinition.indexOf(StringPool.SPACE);
+					int index = columnDefinition.indexOf(StringPool.SPACE);
 
-					String columnName = columnDefinition.substring(0, indexOf);
-					String columnType = columnDefinition.substring(indexOf + 1);
+					String columnName = columnDefinition.substring(0, index);
+					String columnType = columnDefinition.substring(index + 1);
 
 					if (!dbInspector.hasColumn(
 							tableColumnDefinitionsEntry.getKey(), columnName)) {
