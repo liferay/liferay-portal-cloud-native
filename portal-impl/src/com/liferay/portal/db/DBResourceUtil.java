@@ -183,7 +183,7 @@ public class DBResourceUtil {
 		Map<String, List<String>> columnDefinitionsMap = new HashMap<>();
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				_SERVICE_COMPONENT_SQL + sqlCondition);
+				_SQL_SERVICE_COMPONENT + sqlCondition);
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -202,7 +202,7 @@ public class DBResourceUtil {
 		Set<String> tableNames = new HashSet<>();
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				_SERVICE_COMPONENT_SQL + sqlCondition);
+				_SQL_SERVICE_COMPONENT + sqlCondition);
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			DBInspector dbInspector = new DBInspector(connection);
@@ -308,7 +308,7 @@ public class DBResourceUtil {
 		}
 	}
 
-	private static final String _SERVICE_COMPONENT_SQL =
+	private static final String _SQL_SERVICE_COMPONENT =
 		StringBundler.concat(
 			"select data_ from ServiceComponent where buildNumber = (select ",
 			"max(buildNumber) from ServiceComponent ServiceComponent2 where ",
