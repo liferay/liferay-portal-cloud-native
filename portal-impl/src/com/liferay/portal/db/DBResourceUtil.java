@@ -125,8 +125,7 @@ public class DBResourceUtil {
 	}
 
 	public static Map<String, List<String>>
-			getServiceComponentModuleColumnDefinitionsMap(
-				Connection connection)
+			getServiceComponentModuleColumnDefinitionsMap(Connection connection)
 		throws Exception {
 
 		return _getServiceComponentColumnDefinitionsMap(
@@ -142,8 +141,7 @@ public class DBResourceUtil {
 	}
 
 	public static Map<String, List<String>>
-			getServiceComponentPortalColumnDefinitionsMap(
-				Connection connection)
+			getServiceComponentPortalColumnDefinitionsMap(Connection connection)
 		throws Exception {
 
 		return _getServiceComponentColumnDefinitionsMap(
