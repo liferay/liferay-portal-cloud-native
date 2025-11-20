@@ -181,32 +181,25 @@ public class PreupgradeVerifyDatabaseState extends PreupgradeVerifyProcess {
 
 		processConcurrently(
 			tableColumnDefinitions,
-			tableColumnDefinitionsEntry -> {
-				for (String columnDefinition :
-						tableColumnDefinitionsEntry.getValue()) {
-
+			entry -> {
+				for (String columnDefinition : entry.getValue()) {
 					int index = columnDefinition.indexOf(StringPool.SPACE);
 
 					String columnName = columnDefinition.substring(0, index);
 					String columnType = columnDefinition.substring(index + 1);
 
-					if (!dbInspector.hasColumn(
-							tableColumnDefinitionsEntry.getKey(), columnName)) {
-
+					if (!dbInspector.hasColumn(entry.getKey(), columnName)) {
 						missingTableColumnNames.computeIfAbsent(
-							tableColumnDefinitionsEntry.getKey(),
-							tableName -> new ArrayList<>()
+							entry.getKey(), tableName -> new ArrayList<>()
 						).add(
 							columnName
 						);
 					}
 					else if (!dbInspector.hasColumnType(
-								tableColumnDefinitionsEntry.getKey(),
-								columnName, columnType)) {
+								entry.getKey(), columnName, columnType)) {
 
 						mismatchedTableColumnDefinitions.computeIfAbsent(
-							tableColumnDefinitionsEntry.getKey(),
-							tableName -> new ArrayList<>()
+							entry.getKey(), tableName -> new ArrayList<>()
 						).add(
 							columnDefinition
 						);
