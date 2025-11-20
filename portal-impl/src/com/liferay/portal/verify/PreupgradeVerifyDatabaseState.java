@@ -162,25 +162,25 @@ public class PreupgradeVerifyDatabaseState extends PreupgradeVerifyProcess {
 	}
 
 	private void _verifyTableColumns(DBInspector dbInspector) throws Exception {
-		Map<String, List<String>> tableColumnDefinitions =
-			DBResourceUtil.getServiceComponentPortalTableColumnDefinitions(
+		Map<String, List<String>> tableColumnDefinitionsMap =
+			DBResourceUtil.getServiceComponentPortalTableColumnDefinitionsMap(
 				connection);
 
-		if (tableColumnDefinitions.isEmpty()) {
+		if (tableColumnDefinitionsMap.isEmpty()) {
 			return;
 		}
 
-		tableColumnDefinitions.putAll(
-			DBResourceUtil.getServiceComponentModuleTableColumnDefinitions(
+		tableColumnDefinitionsMap.putAll(
+			DBResourceUtil.getServiceComponentModuleTableColumnDefinitionsMap(
 				connection));
 
-		Map<String, List<String>> mismatchedTableColumnDefinitions =
+		Map<String, List<String>> mismatchedTableColumnDefinitionsMap =
 			new ConcurrentSkipListMap<>();
 		Map<String, List<String>> missingTableColumnNames =
 			new ConcurrentSkipListMap<>();
 
 		processConcurrently(
-			tableColumnDefinitions,
+			tableColumnDefinitionsMap,
 			entry -> {
 				for (String columnDefinition : entry.getValue()) {
 					int index = columnDefinition.indexOf(StringPool.SPACE);
@@ -198,7 +198,7 @@ public class PreupgradeVerifyDatabaseState extends PreupgradeVerifyProcess {
 					else if (!dbInspector.hasColumnType(
 								entry.getKey(), columnName, columnType)) {
 
-						mismatchedTableColumnDefinitions.computeIfAbsent(
+						mismatchedTableColumnDefinitionsMap.computeIfAbsent(
 							entry.getKey(), tableName -> new ArrayList<>()
 						).add(
 							columnDefinition
@@ -219,7 +219,7 @@ public class PreupgradeVerifyDatabaseState extends PreupgradeVerifyProcess {
 
 		if (_log.isWarnEnabled()) {
 			for (Map.Entry<String, List<String>> entry :
-					mismatchedTableColumnDefinitions.entrySet()) {
+					mismatchedTableColumnDefinitionsMap.entrySet()) {
 
 				if (dbInspector.hasView(entry.getKey())) {
 					continue;
