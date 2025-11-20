@@ -208,13 +208,13 @@ public class PreupgradeVerifyDatabaseState extends PreupgradeVerifyProcess {
 			},
 			null);
 
-		String partitionSuffix = StringPool.BLANK;
+		String messageSuffix = StringPool.BLANK;
 
 		if (PropsValues.DATABASE_PARTITION_ENABLED) {
 			String partitionName = DBPartitionUtil.getPartitionName(
 				CompanyThreadLocal.getNonsystemCompanyId());
 
-			partitionSuffix = " in " + partitionName;
+			messageSuffix = " in " + partitionName;
 		}
 
 		if (_log.isWarnEnabled()) {
@@ -236,7 +236,7 @@ public class PreupgradeVerifyDatabaseState extends PreupgradeVerifyProcess {
 							"Column ", dbInspector.normalizeName(columnName),
 							" is not defined as ", columnType, " for ",
 							dbInspector.normalizeName(entry.getKey()),
-							partitionSuffix));
+							messageSuffix));
 				}
 			}
 		}
@@ -253,7 +253,7 @@ public class PreupgradeVerifyDatabaseState extends PreupgradeVerifyProcess {
 						" is missing for ",
 						dbInspector.normalizeName(
 							missingColumnNamesEntry.getKey()),
-						partitionSuffix));
+						messageSuffix));
 				sb.append(StringPool.NEW_LINE);
 			}
 		}
