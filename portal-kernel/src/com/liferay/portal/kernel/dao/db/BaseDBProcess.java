@@ -415,9 +415,9 @@ public abstract class BaseDBProcess implements DBProcess {
 			String exceptionMessage)
 		throws Exception {
 
-		Set<Map.Entry<K, V>> entrySet = map.entrySet();
+		Set<Map.Entry<K, V>> set = map.entrySet();
 
-		Iterator<Map.Entry<K, V>> iterator = entrySet.iterator();
+		Iterator<Map.Entry<K, V>> iterator = set.iterator();
 
 		_processConcurrently(
 			null,
