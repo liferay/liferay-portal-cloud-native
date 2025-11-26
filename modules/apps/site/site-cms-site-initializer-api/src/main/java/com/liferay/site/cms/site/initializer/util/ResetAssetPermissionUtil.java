@@ -93,7 +93,7 @@ public class ResetAssetPermissionUtil {
 
 			_setResourcePermissions(
 				objectEntry.getModelClassName(), objectEntry.getCompanyId(),
-				objectEntry.getObjectEntryId(), objectEntryJSONObject,
+				objectEntryJSONObject, objectEntry.getObjectEntryId(),
 				resourcePermissionLocalService, roleLocalService);
 		}
 		else if (className.equals(ObjectEntryFolder.class.getName())) {
@@ -113,8 +113,8 @@ public class ResetAssetPermissionUtil {
 			_setResourcePermissions(
 				objectEntryFolder.getModelClassName(),
 				objectEntryFolder.getCompanyId(),
-				objectEntryFolder.getObjectEntryFolderId(),
 				jsonObject.getJSONObject("OBJECT_ENTRY_FOLDERS"),
+				objectEntryFolder.getObjectEntryFolderId(),
 				resourcePermissionLocalService, roleLocalService);
 		}
 		else {
@@ -185,14 +185,15 @@ public class ResetAssetPermissionUtil {
 	}
 
 	private static void _setResourcePermissions(
-			String className, long companyId, long id, JSONObject jsonObject,
+			String className, long companyId, JSONObject jsonObject,
+			long primKey,
 			ResourcePermissionLocalService resourcePermissionLocalService,
 			RoleLocalService roleLocalService)
 		throws Exception {
 
 		resourcePermissionLocalService.deleteResourcePermissions(
 			companyId, className, ResourceConstants.SCOPE_INDIVIDUAL,
-			String.valueOf(id));
+			String.valueOf(primKey));
 
 		List<String> resourceActions = ResourceActionsUtil.getResourceActions(
 			className);
@@ -216,7 +217,7 @@ public class ResetAssetPermissionUtil {
 
 			resourcePermissionLocalService.setResourcePermissions(
 				companyId, className, ResourceConstants.SCOPE_INDIVIDUAL,
-				String.valueOf(id), role.getRoleId(),
+				String.valueOf(primKey), role.getRoleId(),
 				ArrayUtil.filter(
 					JSONUtil.toStringArray(jsonArray),
 					action -> resourceActions.contains(action)));
