@@ -791,13 +791,13 @@ public abstract class BaseWorkspaceGitRepository
 						if (pullRequest != null) {
 							String message =
 								"User's commit " + senderBranchSHA +
-									" is older than 1 month. Please rebase " +
-										"and retest your changes.";
+									" is more than 1 month old. Rebase and " +
+										"retest your changes.";
 
 							pullRequest.addComment(message);
 
 							throw new RuntimeException(
-								"Sender's commit is older than 1 month");
+								"Sender's commit is more than 1 month old");
 						}
 					}
 				}
@@ -805,8 +805,8 @@ public abstract class BaseWorkspaceGitRepository
 					exception.printStackTrace();
 
 					throw new RuntimeException(
-						"Sender's commit is older than 1 month or there was " +
-							"an error retrieving commit information");
+						"Sender's commit is more than 1 month old or there " +
+							"was an error retrieving commit information");
 				}
 			}
 
