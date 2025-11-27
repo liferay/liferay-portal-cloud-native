@@ -1123,10 +1123,6 @@ public class ObjectEntryResourceTest {
 	public void testCustomizeNestedFieldsContextWithRootModelHierarchy()
 		throws Exception {
 
-		String nestedField1 = RandomTestUtil.randomString();
-		String nestedField2 = RandomTestUtil.randomString();
-		String nestedField3 = RandomTestUtil.randomString();
-
 		Tree objectDefinitionTree = TreeTestUtil.createObjectDefinitionTree(
 			_objectDefinitionLocalService, _objectRelationshipLocalService,
 			true,
@@ -1142,9 +1138,6 @@ public class ObjectEntryResourceTest {
 				"AAB", new String[0]
 			).build());
 
-		List<String> nestedFields = Arrays.asList(
-			nestedField1, nestedField2, nestedField3, "rootModelHierarchy");
-
 		Node objectDefinitionRootNode = objectDefinitionTree.getRootNode();
 
 		NestedFieldsContextResource nestedFieldsContextResource =
@@ -1152,6 +1145,13 @@ public class ObjectEntryResourceTest {
 				_objectDefinitionLocalService.getObjectDefinition(
 					objectDefinitionRootNode.getPrimaryKey()),
 				TestPropsValues.getUser());
+
+		String nestedField1 = RandomTestUtil.randomString();
+		String nestedField2 = RandomTestUtil.randomString();
+		String nestedField3 = RandomTestUtil.randomString();
+
+		List<String> nestedFields = Arrays.asList(
+			nestedField1, nestedField2, nestedField3, "rootModelHierarchy");
 
 		NestedFieldsContext nestedFieldsContext =
 			nestedFieldsContextResource.customizeNestedFieldsContext(
