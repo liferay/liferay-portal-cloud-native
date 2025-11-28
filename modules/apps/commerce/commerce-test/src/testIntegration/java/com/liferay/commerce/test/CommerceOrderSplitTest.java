@@ -304,7 +304,7 @@ public class CommerceOrderSplitTest {
 			commerceOrder, CommerceOrderConstants.ORDER_STATUS_PROCESSING,
 			user.getUserId(), true);
 
-		_waitForObjectActionFinish();
+		_waitForObjectAction();
 
 		List<CommerceOrder> commerceOrders =
 			_commerceOrderLocalService.getCommerceOrders(
@@ -393,7 +393,7 @@ public class CommerceOrderSplitTest {
 				commerceOrderItem.getUnitPrice()));
 	}
 
-	private void _waitForObjectActionFinish() throws Exception {
+	private void _waitForObjectAction() throws Exception {
 		for (int i = 0; i < 3; i++) {
 			ObjectAction objectAction =
 				_objectActionLocalService.getObjectAction(
