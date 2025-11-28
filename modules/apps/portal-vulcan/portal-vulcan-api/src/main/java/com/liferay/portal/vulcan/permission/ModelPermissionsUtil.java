@@ -40,7 +40,7 @@ public class ModelPermissionsUtil {
 			new String[0], new String[0], resourceName);
 
 		for (Permission permission : permissions) {
-			Role role;
+			Role role = null;
 
 			if (permission.getRoleExternalReferenceCode() != null) {
 				role = roleLocalService.getOrAddEmptyRole(
