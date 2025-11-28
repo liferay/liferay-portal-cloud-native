@@ -2240,11 +2240,11 @@ public class ObjectEntryLocalServiceImpl
 		if ((status == WorkflowConstants.STATUS_EXPIRED) ||
 			originalObjectEntry.isDraft() || originalObjectEntry.isPending()) {
 
-			int objectEntryVersionsCount =
+			int count =
 				_objectEntryVersionLocalService.getObjectEntryVersionsCount(
 					objectEntry.getObjectEntryId());
 
-			if (objectEntryVersionsCount > 0) {
+			if (count > 0) {
 				_updateLatestObjectEntryVersion(objectDefinition, objectEntry);
 			}
 		}

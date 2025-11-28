@@ -181,10 +181,10 @@ public class ObjectEntryModelListenerTest {
 			_toLocalDate(objectEntryVersion.getModifiedDate()));
 	}
 
-	private Date _getDate(int minusDays) {
+	private Date _getDate(int dayOfYear) {
 		Calendar calendar = Calendar.getInstance();
 
-		calendar.add(Calendar.DAY_OF_YEAR, minusDays);
+		calendar.add(Calendar.DAY_OF_YEAR, dayOfYear);
 
 		return calendar.getTime();
 	}
