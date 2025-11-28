@@ -401,8 +401,8 @@ public class CommerceOrderSplitTest {
 
 			int status = objectAction.getStatus();
 
-			if ((status == ObjectActionConstants.STATUS_SUCCESS) ||
-				(status == ObjectActionConstants.STATUS_FAILED)) {
+			if ((status == ObjectActionConstants.STATUS_FAILED) ||
+				(status == ObjectActionConstants.STATUS_SUCCESS)) {
 
 				Assert.assertEquals(
 					ObjectActionConstants.STATUS_SUCCESS, status);
