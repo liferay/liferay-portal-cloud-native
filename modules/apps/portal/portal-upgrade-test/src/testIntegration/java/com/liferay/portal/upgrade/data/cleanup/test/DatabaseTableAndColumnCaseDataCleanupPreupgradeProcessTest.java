@@ -73,20 +73,21 @@ public class DatabaseTableAndColumnCaseDataCleanupPreupgradeProcessTest
 
 	@Test
 	public void testUpgrade() throws Exception {
+		DBInspector dbInspector = new DBInspector(_connection);
+
+		String invalidColumnName = "testCOLUMN";
+		String invalidTableName = "testTABLE";
+
 		ServiceComponent serviceComponent =
 			_serviceComponentLocalService.createServiceComponent(
 				RandomTestUtil.nextLong());
 
-		DBInspector dbInspector = new DBInspector(_connection);
-
-		String invalidTableName = "testTABLE";
-		String invalidColumnName = "testCOLUMN";
-
-		String testTableName = "TestTable";
-		String testColumnName = "testColumn";
-
 		serviceComponent.setMvccVersion(0);
 		serviceComponent.setBuildNamespace("com.liferay.test.service.impl");
+
+		String testColumnName = "testColumn";
+		String testTableName = "TestTable";
+
 		serviceComponent.setData(
 			StringBundler.concat(
 				"<![CDATA[create table ", testTableName, " (	 \n",
@@ -100,7 +101,22 @@ public class DatabaseTableAndColumnCaseDataCleanupPreupgradeProcessTest
 					getName(),
 				LoggerTestUtil.INFO)) {
 
-			_addTestTable(invalidTableName, invalidColumnName);
+			DBType dbType = DBManagerUtil.getDBType();
+
+			if (dbType == DBType.SQLSERVER) {
+				DBPartitionUtil.forEachCompanyId(
+					companyId -> _db.runSQL(
+						StringBundler.concat(
+							"create table [", invalidTableName, "] ([",
+							invalidColumnName, "] LONG)")));
+			}
+			else {
+				DBPartitionUtil.forEachCompanyId(
+					companyId -> _db.runSQL(
+						StringBundler.concat(
+							"create table `", invalidTableName, "` (`",
+							invalidColumnName, "` LONG)")));
+			}
 
 			upgrade();
 
@@ -145,36 +161,12 @@ public class DatabaseTableAndColumnCaseDataCleanupPreupgradeProcessTest
 			DBPartitionUtil.forEachCompanyId(
 				companyId -> _db.runSQL(
 					"DROP_TABLE_IF_EXISTS(" + invalidTableName + ")"));
-
-			DBPartitionUtil.forEachCompanyId(
-				companyId -> _db.runSQL(
-					"DROP_TABLE_IF_EXISTS(" + testTableName + "_temp)"));
-
 			DBPartitionUtil.forEachCompanyId(
 				companyId -> _db.runSQL(
 					"DROP_TABLE_IF_EXISTS(" + testTableName + ")"));
-		}
-	}
-
-	private void _addTestTable(
-			String invalidTableName, String invalidColumnName)
-		throws Exception {
-
-		DBType dbType = DBManagerUtil.getDBType();
-
-		if (dbType == DBType.SQLSERVER) {
 			DBPartitionUtil.forEachCompanyId(
 				companyId -> _db.runSQL(
-					StringBundler.concat(
-						"create table [", invalidTableName, "] ([",
-						invalidColumnName, "] LONG)")));
-		}
-		else {
-			DBPartitionUtil.forEachCompanyId(
-				companyId -> _db.runSQL(
-					StringBundler.concat(
-						"create table `", invalidTableName, "` (`",
-						invalidColumnName, "` LONG)")));
+					"DROP_TABLE_IF_EXISTS(" + testTableName + "_temp)"));
 		}
 	}
 

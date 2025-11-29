@@ -93,9 +93,8 @@ public class DatabaseTableAndColumnCaseDataCleanupPreupgradeProcess
 			DBResourceUtil.getServiceComponentModuleColumnDefinitionsMap(
 				connection));
 
-		DatabaseMetaData databaseMetaData = connection.getMetaData();
-
 		Map<String, Map<String, String>> columnsMap = new TreeMap<>();
+		DatabaseMetaData databaseMetaData = connection.getMetaData();
 
 		for (String tableName : expectedTableNames) {
 			try (ResultSet resultSet = databaseMetaData.getColumns(
@@ -124,14 +123,14 @@ public class DatabaseTableAndColumnCaseDataCleanupPreupgradeProcess
 			Map<String, String> columnNames = columnsMap.get(tableName);
 
 			_validateColumnNamesCasing(
-				dbInspector, dbInspector.normalizeName(tableName),
-				columnDefinitions, columnNames);
+				dbInspector, columnDefinitions, columnNames,
+				dbInspector.normalizeName(tableName));
 		}
 	}
 
 	private void _validateColumnNamesCasing(
-			DBInspector dbInspector, String tableName,
-			List<String> columnDefinitions, Map<String, String> columnNames)
+			DBInspector dbInspector, List<String> columnDefinitions,
+			Map<String, String> columnNames, String tableName)
 		throws Exception {
 
 		if ((columnNames == null) || columnNames.isEmpty()) {
