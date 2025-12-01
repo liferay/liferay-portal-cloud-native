@@ -578,6 +578,9 @@ public class FragmentConfigurationFieldValueDTOConverter
 			itemFragmentConfigurationFieldValue =
 				new ItemFragmentConfigurationFieldValue();
 
+		itemFragmentConfigurationFieldValue.setType(
+			() -> FragmentConfigurationFieldValue.Type.ITEM);
+
 		if (fragmentConfigurationField.isLocalizable()) {
 			itemFragmentConfigurationFieldValue.setValue_i18n(
 				() -> LocalizedValueUtil.toLocalizedValues(
@@ -590,9 +593,6 @@ public class FragmentConfigurationFieldValueDTOConverter
 			itemFragmentConfigurationFieldValue.setValue(
 				() -> _getItemValue(companyId, jsonObject, scopeGroupId));
 		}
-
-		itemFragmentConfigurationFieldValue.setType(
-			() -> FragmentConfigurationFieldValue.Type.ITEM);
 
 		return itemFragmentConfigurationFieldValue;
 	}
