@@ -1334,20 +1334,17 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 		Bundle bundle = BundleUtil.getBundle(
 			SystemBundleUtil.getBundleContext(), "com.liferay.data.cleanup");
 
-		Class<?> postUpgradeDataCleanupProcessClass = bundle.loadClass(
+		Class<?> clazz = bundle.loadClass(
 			"com.liferay.data.cleanup.internal.verify." +
 				"ClassNamePostUpgradeDataCleanupProcess");
 
-		Method method = postUpgradeDataCleanupProcessClass.getMethod("cleanUp");
+		Method method = clazz.getMethod("cleanUp");
 
-		Constructor<?> constructor =
-			postUpgradeDataCleanupProcessClass.getConstructor(
-				ClassNameLocalService.class, Connection.class);
+		Constructor<?> constructor = clazz.getConstructor(
+			ClassNameLocalService.class, Connection.class);
 
-		Object object = constructor.newInstance(
-			_classNameLocalService, connection);
-
-		method.invoke(object);
+		method.invoke(
+			constructor.newInstance(_classNameLocalService, connection));
 	}
 
 	private void _setEnv(String key, String value) throws Exception {
