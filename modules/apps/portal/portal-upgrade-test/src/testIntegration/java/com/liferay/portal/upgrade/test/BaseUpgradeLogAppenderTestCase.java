@@ -747,9 +747,6 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 	public void testPostUpgradeDataCleanupMessages() throws Exception {
 		Thread currentThread = Thread.currentThread();
 
-		String value =
-			"com.liferay.test." + RandomTestUtil.randomString();
-
 		ClassName className = null;
 
 		try (AutoCloseable autoCloseable =
@@ -757,6 +754,9 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 					PortalClassLoaderUtil.class, "_classLoader",
 					currentThread.getContextClassLoader());
 			Connection connection = DataAccess.getConnection()) {
+
+			String value =
+				"com.liferay.test." + RandomTestUtil.randomString();
 
 			className = _classNameLocalService.addClassName(value);
 
