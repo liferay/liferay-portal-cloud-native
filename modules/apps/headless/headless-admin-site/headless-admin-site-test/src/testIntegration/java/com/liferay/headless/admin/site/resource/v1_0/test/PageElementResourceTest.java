@@ -64,6 +64,7 @@ import com.liferay.headless.admin.site.client.dto.v1_0.FragmentViewport;
 import com.liferay.headless.admin.site.client.dto.v1_0.GridPageElementDefinition;
 import com.liferay.headless.admin.site.client.dto.v1_0.GridViewport;
 import com.liferay.headless.admin.site.client.dto.v1_0.GridViewportDefinition;
+import com.liferay.headless.admin.site.client.dto.v1_0.HTMLFragmentValue;
 import com.liferay.headless.admin.site.client.dto.v1_0.HtmlProperties;
 import com.liferay.headless.admin.site.client.dto.v1_0.ItemExternalReference;
 import com.liferay.headless.admin.site.client.dto.v1_0.ListStyle;
@@ -2988,6 +2989,8 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 		_testPutSitePageSpecificationPageExperiencePageElementWithFragmentPageElementWithFragmentEditableElements(
+			FragmentEditableElementTestUtil.getHTMLFragmentEditableElement(
+				null, null, HTMLFragmentValue.Type.INLINE),
 			FragmentEditableElementTestUtil.getTextFragmentEditableElement(
 				FragmentEditableElementValueFragmentLink.Prefix.EMAIL,
 				_getFragmentLink(
@@ -2997,6 +3000,11 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 				null, null, TextFragmentValue.Type.INLINE));
 
 		_testPutSitePageSpecificationPageExperiencePageElementWithFragmentPageElementWithFragmentEditableElements(
+			FragmentEditableElementTestUtil.getHTMLFragmentEditableElement(
+				FragmentMappedValueItemContextReference.ContextSource.
+					COLLECTION_ITEM,
+				FragmentMappedValueItemReference.Type.CONTEXT_REFERENCE,
+				HTMLFragmentValue.Type.MAPPED),
 			FragmentEditableElementTestUtil.getTextFragmentEditableElement(
 				null, null,
 				FragmentMappedValueItemContextReference.ContextSource.
@@ -3007,6 +3015,11 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 		Layout layout = LayoutTestUtil.addTypeContentLayout(testGroup);
 
 		_testPutSitePageSpecificationPageExperiencePageElementWithFragmentPageElementWithFragmentEditableElements(
+			FragmentEditableElementTestUtil.getHTMLFragmentEditableElement(
+				FragmentMappedValueItemContextReference.ContextSource.
+					DISPLAY_PAGE_ITEM,
+				FragmentMappedValueItemReference.Type.CONTEXT_REFERENCE,
+				HTMLFragmentValue.Type.MAPPED),
 			FragmentEditableElementTestUtil.getTextFragmentEditableElement(
 				FragmentEditableElementValueFragmentLink.Prefix.PHONE,
 				_getFragmentLink(
@@ -3018,6 +3031,10 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 				TextFragmentValue.Type.MAPPED));
 
 		_testPutSitePageSpecificationPageExperiencePageElementWithFragmentPageElementWithFragmentEditableElements(
+			FragmentEditableElementTestUtil.getHTMLFragmentEditableElement(
+				null,
+				FragmentMappedValueItemReference.Type.ITEM_EXTERNAL_REFERENCE,
+				HTMLFragmentValue.Type.MAPPED),
 			FragmentEditableElementTestUtil.getTextFragmentEditableElement(
 				null,
 				_getFragmentLink(
