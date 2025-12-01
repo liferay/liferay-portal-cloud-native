@@ -15691,7 +15691,7 @@ public class ObjectEntryResourceTest {
 		return jsonArray;
 	}
 
-	private ObjectDefinition _enableObjectEntryComments(
+	private ObjectDefinition _enableComments(
 			ObjectDefinition objectDefinition)
 		throws Exception {
 
@@ -16411,7 +16411,7 @@ public class ObjectEntryResourceTest {
 			long groupId, ObjectDefinition objectDefinition)
 		throws Exception {
 
-		_enableObjectEntryComments(objectDefinition);
+		_enableComments(objectDefinition);
 
 		ObjectEntry objectEntry = ObjectEntryTestUtil.addObjectEntry(
 			objectDefinition, _OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1);
@@ -18049,7 +18049,7 @@ public class ObjectEntryResourceTest {
 			HTTPTestUtil.invokeToHttpCode(
 				bodyJSONObject.toString(), endpoint, Http.Method.POST));
 
-		_enableObjectEntryComments(objectDefinition);
+		_enableComments(objectDefinition);
 
 		JSONObject jsonObject = HTTPTestUtil.invokeToJSONObject(
 			bodyJSONObject.toString(), endpoint, Http.Method.POST);
@@ -18063,7 +18063,7 @@ public class ObjectEntryResourceTest {
 			long groupId, ObjectDefinition objectDefinition)
 		throws Exception {
 
-		_enableObjectEntryComments(objectDefinition);
+		_enableComments(objectDefinition);
 
 		ObjectEntry objectEntry = ObjectEntryTestUtil.addObjectEntry(
 			objectDefinition, _OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1);
@@ -19316,7 +19316,7 @@ public class ObjectEntryResourceTest {
 			long groupId, ObjectDefinition objectDefinition)
 		throws Exception {
 
-		_enableObjectEntryComments(objectDefinition);
+		_enableComments(objectDefinition);
 
 		ObjectEntry objectEntry = ObjectEntryTestUtil.addObjectEntry(
 			objectDefinition, _OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1);
