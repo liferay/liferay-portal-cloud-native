@@ -18030,8 +18030,8 @@ public class ObjectEntryResourceTest {
 		ObjectEntry objectEntry = ObjectEntryTestUtil.addObjectEntry(
 			objectDefinition, _OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1);
 
-		String text = RandomTestUtil.randomString();
 		String externalReferenceCode = RandomTestUtil.randomString();
+		String text = RandomTestUtil.randomString();
 
 		JSONObject bodyJSONObject = JSONUtil.put(
 			"externalReferenceCode", externalReferenceCode
