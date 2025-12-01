@@ -1,5 +1,6 @@
-[#assign contentStructureArticle = restClient.get("/headless-delivery/v1.0/sites/${themeDisplay.getScopeGroupId()}/content-structures?search=article") /]
 [#assign contentStructureId = "" /]
+
+[#assign contentStructureArticle = restClient.get("/headless-delivery/v1.0/sites/${themeDisplay.getScopeGroupId()}/content-structures?search=article") /]
 
 [#if contentStructureArticle.items?has_content]
 	[#assign contentStructureId = contentStructureArticle.items[0].id /]
