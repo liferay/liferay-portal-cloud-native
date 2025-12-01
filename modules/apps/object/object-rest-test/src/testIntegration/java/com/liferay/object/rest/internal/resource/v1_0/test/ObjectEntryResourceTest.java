@@ -18082,14 +18082,14 @@ public class ObjectEntryResourceTest {
 
 		long parentCommentId = jsonObject.getLong("id");
 
-		String comment = RandomTestUtil.randomString();
 		String externalReferenceCode = RandomTestUtil.randomString();
+		String text = RandomTestUtil.randomString();
 
 		jsonObject = HTTPTestUtil.invokeToJSONObject(
 			JSONUtil.put(
 				"externalReferenceCode", externalReferenceCode
 			).put(
-				"text", comment
+				"text", text
 			).toString(),
 			StringBundler.concat(
 				_getEndpoint(objectDefinition, groupId),
@@ -18101,7 +18101,7 @@ public class ObjectEntryResourceTest {
 
 		Assert.assertEquals(
 			externalReferenceCode, jsonObject.get("externalReferenceCode"));
-		Assert.assertEquals("<p>" + comment + "</p>", jsonObject.get("text"));
+		Assert.assertEquals("<p>" + text + "</p>", jsonObject.get("text"));
 		Assert.assertEquals(
 			parentCommentId, jsonObject.getLong("parentCommentId"));
 	}
@@ -19333,11 +19333,11 @@ public class ObjectEntryResourceTest {
 				objectEntry.getExternalReferenceCode(), "/comments"),
 			Http.Method.POST);
 
-		String comment = RandomTestUtil.randomString();
+		String text = RandomTestUtil.randomString();
 
 		jsonObject = HTTPTestUtil.invokeToJSONObject(
 			JSONUtil.put(
-				"text", comment
+				"text", text
 			).toString(),
 			StringBundler.concat(
 				_getEndpoint(objectDefinition, groupId),
@@ -19346,7 +19346,7 @@ public class ObjectEntryResourceTest {
 				jsonObject.getString("externalReferenceCode")),
 			Http.Method.PUT);
 
-		Assert.assertEquals("<p>" + comment + "</p>", jsonObject.get("text"));
+		Assert.assertEquals("<p>" + text + "</p>", jsonObject.get("text"));
 	}
 
 	private void _testPutCustomObjectEntry(
