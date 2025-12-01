@@ -92,17 +92,16 @@ public class SessionFactoryUtils {
 				return new InvalidDataAccessResourceUsageException(
 					message, hibernateException);
 			}
-			else if (hibernateException instanceof JDBCException) {
-				return new UncategorizedDataAccessException(
-					StringBundler.concat(
-						"JDBC exception on Hibernate data access: ",
-						"SQLException for SQL [", jdbcException.getSQL(),
-						"]; SQL state [", jdbcException.getSQLState(),
-						"]; error code [", jdbcException.getErrorCode(), "]; ",
-						jdbcException.getMessage()),
-					jdbcException) {
-				};
-			}
+
+			return new UncategorizedDataAccessException(
+				StringBundler.concat(
+					"JDBC exception on Hibernate data access: ",
+					"SQLException for SQL [", jdbcException.getSQL(),
+					"]; SQL state [", jdbcException.getSQLState(),
+					"]; error code [", jdbcException.getErrorCode(), "]; ",
+					jdbcException.getMessage()),
+				jdbcException) {
+			};
 		}
 		else if (hibernateException instanceof NonUniqueObjectException) {
 			return new DuplicateKeyException(
