@@ -352,9 +352,10 @@ public class DBUpgrader {
 					SystemBundleUtil.getBundleContext(),
 					FrameworkUtil.createFilter(
 						StringBundler.concat(
-							"(&(objectClass=", VerifyProcess.class.getName(),
-							")(component.name=",
-							_POST_UPGRADE_DATA_CLEANUP_CLASS_NAME, "))")),
+							"(&(component.name=",
+							_POST_UPGRADE_DATA_CLEANUP_CLASS_NAME,
+							")(objectClass=",
+							VerifyProcess.class.getName(), "))")),
 					null);
 
 			serviceTracker.open();
