@@ -32,9 +32,9 @@ import com.liferay.portal.store.test.util.BaseStoreTestCase;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import jakarta.annotation.Generated;
-
 import java.util.Dictionary;
+
+import jakarta.annotation.Generated;
 
 import org.junit.Assert;
 import org.junit.Assume;
@@ -73,9 +73,7 @@ public class IBMS3StoreTest extends BaseStoreTestCase {
 
 	@Test
 	@TestInfo("LPS-127589")
-	public void testS3ConnectionDoesNotLeakWhenServingFileAsStream()
-		throws Exception {
-
+	public void testGetFileAsStream() throws Exception {
 		Configuration configuration = _configurationAdmin.getConfiguration(
 			"com.liferay.portal.store.s3.configuration.S3StoreConfiguration",
 			StringPool.QUESTION);
@@ -88,35 +86,29 @@ public class IBMS3StoreTest extends BaseStoreTestCase {
 		Assert.assertTrue(httpClientMaxConnections > 0);
 
 		long companyId = RandomTestUtil.randomLong();
-
 		String fileName = RandomTestUtil.randomString();
-
 		long repositoryId = RandomTestUtil.randomLong();
 
 		_store.addFile(
 			companyId, repositoryId, fileName, Store.VERSION_DEFAULT,
 			new UnsyncByteArrayInputStream(DATA_VERSION));
 
-		try {
-			for (int i = 0; i <= httpClientMaxConnections; i++) {
-				StreamUtil.transfer(
-					_store.getFileAsStream(
-						companyId, repositoryId, fileName,
-						Store.VERSION_DEFAULT),
-					new DummyOutputStream());
-			}
-
-			_store.addFile(
-				companyId, repositoryId, fileName, Store.VERSION_DEFAULT,
-				new UnsyncByteArrayInputStream(DATA_VERSION));
-
-			Assert.assertTrue(
-				_store.hasFile(
-					companyId, repositoryId, fileName, Store.VERSION_DEFAULT));
+		for (int i = 0; i <= httpClientMaxConnections; i++) {
+			StreamUtil.transfer(
+				_store.getFileAsStream(
+					companyId, repositoryId, fileName, Store.VERSION_DEFAULT),
+				new DummyOutputStream());
 		}
-		finally {
-			_store.deleteDirectory(companyId, repositoryId, StringPool.SLASH);
-		}
+
+		_store.addFile(
+			companyId, repositoryId, fileName, Store.VERSION_DEFAULT,
+			new UnsyncByteArrayInputStream(DATA_VERSION));
+
+		Assert.assertTrue(
+			_store.hasFile(
+				companyId, repositoryId, fileName, Store.VERSION_DEFAULT));
+
+		_store.deleteDirectory(companyId, repositoryId, StringPool.SLASH);
 	}
 
 	@Test
