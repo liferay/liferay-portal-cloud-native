@@ -52,12 +52,6 @@ public class BatchEnginePortletDataHandlerRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		_serviceRegistration = bundleContext.registerService(
-			FeatureFlagListener.class,
-			(companyId, featureFlagKey, enabled) -> _registerCompany(
-				bundleContext, companyId, enabled),
-			MapUtil.singletonDictionary("feature.flag.key", "LPD-35914"));
-
 		_portalInstanceLifecycleListenerServiceRegistration =
 			bundleContext.registerService(
 				PortalInstanceLifecycleListener.class,
@@ -81,15 +75,20 @@ public class BatchEnginePortletDataHandlerRegistrar {
 
 				},
 				null);
+		_serviceRegistration = bundleContext.registerService(
+			FeatureFlagListener.class,
+			(companyId, featureFlagKey, enabled) -> _registerCompany(
+				bundleContext, companyId, enabled),
+			MapUtil.singletonDictionary("feature.flag.key", "LPD-35914"));
 	}
 
 	@Deactivate
 	protected void deactivate() {
+		_portalInstanceLifecycleListenerServiceRegistration.unregister();
+
 		_serviceRegistration.unregister();
 
 		_serviceTrackerListDCLSingleton.destroy(ServiceTrackerList::close);
-
-		_portalInstanceLifecycleListenerServiceRegistration.unregister();
 	}
 
 	private void _registerCompany(
