@@ -352,9 +352,7 @@ public class DBUpgrader {
 					SystemBundleUtil.getBundleContext(),
 					FrameworkUtil.createFilter(
 						StringBundler.concat(
-							"(&(component.name=",
-							_CLASS_NAME,
-							")(objectClass=",
+							"(&(component.name=", _CLASS_NAME, ")(objectClass=",
 							VerifyProcess.class.getName(), "))")),
 					null);
 

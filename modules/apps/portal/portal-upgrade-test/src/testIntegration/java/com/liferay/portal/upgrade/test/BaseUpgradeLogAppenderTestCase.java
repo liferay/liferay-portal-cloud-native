@@ -755,8 +755,7 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 					currentThread.getContextClassLoader());
 			Connection connection = DataAccess.getConnection()) {
 
-			String value =
-				"com.liferay.test." + RandomTestUtil.randomString();
+			String value = "com.liferay.test." + RandomTestUtil.randomString();
 
 			className = _classNameLocalService.addClassName(value);
 
