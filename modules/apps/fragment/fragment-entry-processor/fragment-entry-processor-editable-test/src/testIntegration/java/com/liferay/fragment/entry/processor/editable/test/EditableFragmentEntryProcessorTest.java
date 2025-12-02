@@ -104,7 +104,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.test.rule.FeatureFlag;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
@@ -831,7 +830,6 @@ public class EditableFragmentEntryProcessorTest {
 		Assert.assertEquals(labelMap.get(LocaleUtil.SPAIN), textNode.text());
 	}
 
-	@FeatureFlag("LPD-39437")
 	@Test
 	public void testFragmentEntryProcessorEditableAssertAnalyticsAttributesWithMappedImageInViewMode()
 		throws Exception {
@@ -895,7 +893,6 @@ public class EditableFragmentEntryProcessorTest {
 			element.attr("data-analytics-asset-type"));
 	}
 
-	@FeatureFlag("LPD-39437")
 	@Test
 	public void testFragmentEntryProcessorEditableAssertAnalyticsAttributesWithMappedObjectEntry1()
 		throws Exception {
@@ -968,7 +965,6 @@ public class EditableFragmentEntryProcessorTest {
 			element.attr("data-analytics-object-definition-name"));
 	}
 
-	@FeatureFlag("LPD-39437")
 	@Test
 	public void testFragmentEntryProcessorEditableAssertAnalyticsAttributesWithMappedObjectEntry2()
 		throws Exception {
@@ -1039,7 +1035,6 @@ public class EditableFragmentEntryProcessorTest {
 			element.attr("data-analytics-object-definition-name"));
 	}
 
-	@FeatureFlag("LPD-39437")
 	@Test
 	public void testFragmentEntryProcessorEditableAssertAnalyticsAttributesWithMappedTextInEditMode()
 		throws Exception {
@@ -1089,7 +1084,6 @@ public class EditableFragmentEntryProcessorTest {
 		Assert.assertTrue(attribute.isEmpty());
 	}
 
-	@FeatureFlag("LPD-39437")
 	@Test
 	public void testFragmentEntryProcessorEditableAssertAnalyticsAttributesWithMappedTextInViewMode()
 		throws Exception {
