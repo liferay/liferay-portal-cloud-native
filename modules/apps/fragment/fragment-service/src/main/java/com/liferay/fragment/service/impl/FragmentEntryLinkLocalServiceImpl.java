@@ -921,6 +921,7 @@ public class FragmentEntryLinkLocalServiceImpl
 		}
 
 		HttpServletRequest httpServletRequest = serviceContext.getRequest();
+
 		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
 
 		if ((httpServletRequest == null) && (themeDisplay != null)) {
