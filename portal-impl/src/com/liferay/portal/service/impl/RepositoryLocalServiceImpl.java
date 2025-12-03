@@ -236,7 +236,7 @@ public class RepositoryLocalServiceImpl extends RepositoryLocalServiceBaseImpl {
 	}
 
 	@Override
-	public boolean isHiddenRepository(long repositoryId)
+	public boolean isHidden(long repositoryId)
 		throws PortalException {
 
 		Set<Long> hiddenRepositoryIds =

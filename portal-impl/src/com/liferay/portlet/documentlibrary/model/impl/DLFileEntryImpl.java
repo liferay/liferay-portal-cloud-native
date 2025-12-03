@@ -396,7 +396,7 @@ public class DLFileEntryImpl extends DLFileEntryBaseImpl {
 				return false;
 			}
 
-			return RepositoryLocalServiceUtil.isHiddenRepository(repositoryId);
+			return RepositoryLocalServiceUtil.isHidden(repositoryId);
 		}
 		catch (PortalException portalException) {
 			if (_log.isWarnEnabled()) {

@@ -363,7 +363,7 @@ public interface RepositoryLocalService
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean isHiddenRepository(long repositoryId) throws PortalException;
+	public boolean isHidden(long repositoryId) throws PortalException;
 
 	public void updateRepository(
 			long repositoryId, String name, String description)
