@@ -51,7 +51,7 @@ public class GetAssetVocabularyDetailsMVCResourceCommand
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Group group;
+		Group group = null;
 		String scopeExternalReferenceCode = ParamUtil.getString(
 			resourceRequest, "scopeExternalReferenceCode");
 

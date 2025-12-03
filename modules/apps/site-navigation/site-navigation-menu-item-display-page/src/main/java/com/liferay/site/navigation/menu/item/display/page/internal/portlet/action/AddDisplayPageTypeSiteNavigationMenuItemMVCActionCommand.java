@@ -156,10 +156,10 @@ public class AddDisplayPageTypeSiteNavigationMenuItemMVCActionCommand
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Unable to add SiteNavigationMenuItem for classNameId ",
-						classNameId, ", classPK ", classPK,
-						", externalReferenceCode ", externalReferenceCode,
-						" siteNavigationMenuId ", siteNavigationMenuId,
+						"Unable to add site navigation menu item for class ",
+						"name ID ", classNameId, ", class PK ", classPK,
+						", external reference code ", externalReferenceCode,
+						" site navigation menu ID ", siteNavigationMenuId,
 						" and type ", siteNavigationMenuItemType));
 			}
 

@@ -24,7 +24,6 @@ import com.liferay.layout.display.page.LayoutDisplayPageProviderRegistry;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.log.Log;
@@ -65,6 +64,10 @@ public class GetItemDetailsMVCResourceCommand extends BaseMVCResourceCommand {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		long classNameId = ParamUtil.getLong(resourceRequest, "classNameId");
+
+		String className = _portal.getClassName(classNameId);
+
 		String externalReferenceCode = ParamUtil.getString(
 			resourceRequest, "externalReferenceCode");
 		String scopeExternalReferenceCode = ParamUtil.getString(
@@ -73,38 +76,46 @@ public class GetItemDetailsMVCResourceCommand extends BaseMVCResourceCommand {
 		InfoItemIdentifier infoItemIdentifier = new ERCInfoItemIdentifier(
 			externalReferenceCode, scopeExternalReferenceCode);
 
-		long classNameId = ParamUtil.getLong(resourceRequest, "classNameId");
-		long classTypeId = ParamUtil.getLong(resourceRequest, "classTypeId");
-
-		String className = _portal.getClassName(classNameId);
-
 		try {
-			JSONObject jsonObject = JSONUtil.put(
-				"hasDisplayPage",
-				AssetDisplayPageUtil.hasAssetDisplayPage(
-					themeDisplay.getScopeGroupId(),
-					new InfoItemReference(className, infoItemIdentifier)));
-
-			String itemType = _getItemType(className, themeDisplay);
-
-			if (Validator.isNotNull(itemType)) {
-				jsonObject.put("itemType", itemType);
-			}
-
-			String itemSubtype = _getItemSubtype(
-				className, infoItemIdentifier, classTypeId, themeDisplay);
-
-			if (Validator.isNotNull(itemSubtype)) {
-				jsonObject.put("itemSubtype", itemSubtype);
-			}
-
-			jsonObject.put(
-				"data",
-				_getDetailsJSONArray(
-					className, infoItemIdentifier, themeDisplay));
-
 			JSONPortletResponseUtil.writeJSON(
-				resourceRequest, resourceResponse, jsonObject);
+				resourceRequest, resourceResponse,
+				JSONUtil.put(
+					"data",
+					_getDetailsJSONArray(
+						className, infoItemIdentifier, themeDisplay)
+				).put(
+					"hasDisplayPage",
+					AssetDisplayPageUtil.hasAssetDisplayPage(
+						themeDisplay.getScopeGroupId(),
+						new InfoItemReference(className, infoItemIdentifier))
+				).put(
+					"itemSubtype",
+					() -> {
+						long classTypeId = ParamUtil.getLong(
+							resourceRequest, "classTypeId");
+
+						String itemSubtype = _getItemSubtype(
+							className, infoItemIdentifier, classTypeId,
+							themeDisplay);
+
+						if (Validator.isNull(itemSubtype)) {
+							return null;
+						}
+
+						return itemSubtype;
+					}
+				).put(
+					"itemType",
+					() -> {
+						String itemType = _getItemType(className, themeDisplay);
+
+						if (Validator.isNull(itemType)) {
+							return null;
+						}
+
+						return itemType;
+					}
+				));
 		}
 		catch (Exception exception) {
 			_log.error("Unable to get mapping fields", exception);
