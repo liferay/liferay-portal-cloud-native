@@ -433,17 +433,17 @@ public class OrderItemResourceTest extends BaseOrderItemResourceTestCase {
 				fetchCommerceVirtualOrderItemByCommerceOrderItemId(
 					getOrderItem.getId());
 
-		String[] virtualItemURLs = {
-			StringBundler.concat(
-				_portal.getPathModule(), StringPool.SLASH,
-				CommerceMediaConstants.SERVLET_PATH,
-				CommerceMediaConstants.URL_SEPARATOR_VIRTUAL_ORDER_ITEM,
-				commerceVirtualOrderItem.getCommerceVirtualOrderItemId(),
-				CommerceMediaConstants.URL_SEPARATOR_FILE,
-				fileEntry.getFileEntryId())
-		};
-
-		Assert.assertEquals(virtualItemURLs, getOrderItem.getVirtualItemURLs());
+		Assert.assertEquals(
+			new String[] {
+				StringBundler.concat(
+					_portal.getPathModule(), StringPool.SLASH,
+					CommerceMediaConstants.SERVLET_PATH,
+					CommerceMediaConstants.URL_SEPARATOR_VIRTUAL_ORDER_ITEM,
+					commerceVirtualOrderItem.getCommerceVirtualOrderItemId(),
+					CommerceMediaConstants.URL_SEPARATOR_FILE,
+					fileEntry.getFileEntryId())
+			},
+			getOrderItem.getVirtualItemURLs());
 	}
 
 	private void _testGetOrderItemWithURL() throws Exception {
@@ -454,9 +454,8 @@ public class OrderItemResourceTest extends BaseOrderItemResourceTestCase {
 		OrderItem getOrderItem = orderItemResource.getOrderItem(
 			postOrderItem.getId());
 
-		String[] virtualItemURLs = {url};
-
-		Assert.assertEquals(virtualItemURLs, getOrderItem.getVirtualItemURLs());
+		Assert.assertEquals(
+			new String[] {url}, getOrderItem.getVirtualItemURLs());
 	}
 
 	private void _testPatchOrderItemById() throws Exception {
