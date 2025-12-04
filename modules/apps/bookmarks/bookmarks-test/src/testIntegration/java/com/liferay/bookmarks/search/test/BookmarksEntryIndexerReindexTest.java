@@ -187,7 +187,7 @@ public class BookmarksEntryIndexerReindexTest {
 		_bookmarksFixture.createBookmarksEntry(folderId);
 
 		List<String> searchTerms = TransformUtil.transform(
-			_bookmarksEntries, bookmark -> bookmark.getName());
+			_bookmarksEntries, curBookmarkEntry -> curBookmarkEntry.getName());
 
 		searchAndAssertLength(searchTerms.toString(), 2);
 
