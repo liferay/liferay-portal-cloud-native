@@ -366,31 +366,31 @@ public class SiteResourceImpl extends BaseSiteResourceImpl {
 			Collection<Site> sites, Map<String, Serializable> parameters)
 		throws Exception {
 
-		UnsafeFunction<Site, Site, Exception> siteUnsafeFunction = null;
+		UnsafeFunction<Site, Site, Exception> unsafeFunction = null;
 
 		String updateStrategy = (String)parameters.getOrDefault(
 			"updateStrategy", "UPDATE");
 
 		if (StringUtil.equalsIgnoreCase(updateStrategy, "UPDATE")) {
-			siteUnsafeFunction = site -> putSite(
+			unsafeFunction = site -> putSite(
 				site.getExternalReferenceCode(), site);
 		}
 
-		if (siteUnsafeFunction == null) {
+		if (unsafeFunction == null) {
 			throw new NotSupportedException(
 				"Update strategy \"" + updateStrategy +
 					"\" is not supported for Site");
 		}
 
 		if (contextBatchUnsafeBiConsumer != null) {
-			contextBatchUnsafeBiConsumer.accept(sites, siteUnsafeFunction);
+			contextBatchUnsafeBiConsumer.accept(sites, unsafeFunction);
 		}
 		else if (contextBatchUnsafeConsumer != null) {
-			contextBatchUnsafeConsumer.accept(sites, siteUnsafeFunction::apply);
+			contextBatchUnsafeConsumer.accept(sites, unsafeFunction::apply);
 		}
 		else {
 			for (Site site : sites) {
-				siteUnsafeFunction.apply(site);
+				unsafeFunction.apply(site);
 			}
 		}
 	}
