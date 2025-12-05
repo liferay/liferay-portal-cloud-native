@@ -1043,22 +1043,20 @@ public class ObjectEntryLocalServiceImpl
 
 		Map<Object, Long> aggregationCounts = new HashMap<>();
 
-		Table table = _objectFieldLocalService.getTable(
-			objectDefinitionId, aggregationTerm);
-
-		ObjectField objectField = _objectFieldLocalService.getObjectField(
-			objectDefinitionId, aggregationTerm);
-
 		ObjectDefinition objectDefinition =
 			_objectDefinitionPersistence.findByPrimaryKey(objectDefinitionId);
 
 		DynamicObjectDefinitionTable dynamicObjectDefinitionTable =
 			DynamicObjectDefinitionTableUtil.getDynamicObjectDefinitionTable(
 				false, objectDefinition, _objectFieldLocalService);
-
 		DynamicObjectDefinitionTable extensionDynamicObjectDefinitionTable =
 			DynamicObjectDefinitionTableUtil.getDynamicObjectDefinitionTable(
 				true, objectDefinition, _objectFieldLocalService);
+
+		ObjectField objectField = _objectFieldLocalService.getObjectField(
+			objectDefinitionId, aggregationTerm);
+		Table table = _objectFieldLocalService.getTable(
+			objectDefinitionId, aggregationTerm);
 
 		DSLQuery dslQuery = DSLQueryFactoryUtil.select(
 			table.getColumn(objectField.getDBColumnName()),
@@ -4200,7 +4198,6 @@ public class ObjectEntryLocalServiceImpl
 		DynamicObjectDefinitionTable dynamicObjectDefinitionTable =
 			DynamicObjectDefinitionTableUtil.getDynamicObjectDefinitionTable(
 				false, objectDefinition, _objectFieldLocalService);
-
 		DynamicObjectDefinitionTable extensionDynamicObjectDefinitionTable =
 			DynamicObjectDefinitionTableUtil.getDynamicObjectDefinitionTable(
 				true, objectDefinition, _objectFieldLocalService);
@@ -4291,21 +4288,18 @@ public class ObjectEntryLocalServiceImpl
 		DynamicObjectDefinitionTable dynamicObjectDefinitionTable =
 			DynamicObjectDefinitionTableUtil.getDynamicObjectDefinitionTable(
 				false, objectDefinition, _objectFieldLocalService);
-
 		DynamicObjectDefinitionTable extensionDynamicObjectDefinitionTable =
 			DynamicObjectDefinitionTableUtil.getDynamicObjectDefinitionTable(
 				true, objectDefinition, _objectFieldLocalService);
 
+		ObjectEntry objectEntry = fetchObjectEntry(primaryKey);
 		ObjectField objectField = _objectFieldPersistence.fetchByPrimaryKey(
 			objectRelationship.getObjectFieldId2());
-
-		ObjectEntry objectEntry = fetchObjectEntry(primaryKey);
+		Column<DynamicObjectDefinitionTable, Long> primaryKeyColumn =
+			dynamicObjectDefinitionTable.getPrimaryKeyColumn();
 
 		DynamicObjectDefinitionTable rootDynamicObjectDefinitionTable =
 			_getRootDynamicObjectDefinitionTable(objectEntry);
-
-		Column<DynamicObjectDefinitionTable, Long> primaryKeyColumn =
-			dynamicObjectDefinitionTable.getPrimaryKeyColumn();
 
 		return fromStep.from(
 			dynamicObjectDefinitionTable
