@@ -1976,7 +1976,6 @@ public class ObjectFieldLocalServiceTest {
 				ObjectFieldSettingConstants.NAME_DEFAULT_VALUE_TYPE,
 				ObjectFieldSettingConstants.VALUE_INPUT_AS_VALUE
 			).build());
-
 		_assertObjectFieldSettingsValues(
 			integerObjectField.getObjectFieldId(),
 			HashMapBuilder.put(
