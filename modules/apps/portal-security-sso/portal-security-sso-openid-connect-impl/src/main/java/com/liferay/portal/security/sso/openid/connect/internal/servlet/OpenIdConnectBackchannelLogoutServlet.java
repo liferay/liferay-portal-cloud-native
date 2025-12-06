@@ -74,7 +74,7 @@ public class OpenIdConnectBackchannelLogoutServlet extends HttpServlet {
 
 			JWTClaimsSet jwtClaimsSet = signedJWT.getJWTClaimsSet();
 
-			OpenIdConnectSession openIdConnectSession;
+			OpenIdConnectSession openIdConnectSession = null;
 
 			if (Validator.isNull(jwtClaimsSet.getClaimAsString("sid"))) {
 				OpenIdConnectUser openIdConnectUser =
@@ -123,8 +123,7 @@ public class OpenIdConnectBackchannelLogoutServlet extends HttpServlet {
 			httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"OpenId Connect backchannel logout failed", exception);
+				_log.debug(exception);
 			}
 		}
 	}
