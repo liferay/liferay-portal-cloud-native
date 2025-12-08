@@ -90,6 +90,11 @@ module.exports = {
 		'@liferay/frontend-editor-ckeditor-sample-web': [],
 		'@liferay/frontend-icons-web': [],
 		'@liferay/frontend-js-bootstrap-support-web': [],
+		'@liferay/frontend-js-clay-web': [
+			'@clayui/css/lib/css/atlas.css',
+			'@clayui/css/lib/css/base.css',
+			'@clayui/css/lib/css/cadmin.css',
+		],
 		'@liferay/frontend-js-codemirror-web': [
 			'codemirror/addon/fold/foldgutter.css',
 			'codemirror/addon/hint/show-hint.css',
@@ -355,9 +360,6 @@ module.exports = {
 			'@clayui/charts',
 			'@clayui/color-picker',
 			'@clayui/core',
-			'@clayui/css/lib/css/atlas.css',
-			'@clayui/css/lib/css/base.css',
-			'@clayui/css/lib/css/cadmin.css',
 			'@clayui/data-provider',
 			'@clayui/date-picker',
 			'@clayui/drop-down',

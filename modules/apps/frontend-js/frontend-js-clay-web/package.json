@@ -2,7 +2,7 @@
 	"name": "@liferay/frontend-js-clay-web",
 	"private": true,
 	"scripts": {
-		"build": "node-scripts build",
+		"build": "node ./clay/clay-css/scripts/build.js && node-scripts build",
 		"checkFormat": "node-scripts format --check",
 		"format": "node-scripts format"
 	},

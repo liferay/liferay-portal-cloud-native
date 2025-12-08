@@ -4,6 +4,10 @@
  */
 
 module.exports = {
-	exports: [],
-	symbols: {},
+	exports: [
+		'@clayui/css/lib/css/atlas.css',
+		'@clayui/css/lib/css/base.css',
+		'@clayui/css/lib/css/cadmin.css',
+	],
+	submodules: {},
 };
