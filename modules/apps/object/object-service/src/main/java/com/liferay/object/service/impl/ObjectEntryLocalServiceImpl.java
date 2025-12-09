@@ -1155,7 +1155,6 @@ public class ObjectEntryLocalServiceImpl
 			LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()),
 			dynamicObjectDefinitionLocalizationTable,
 			objectDefinition.getObjectDefinitionId(), primaryKey, values);
-
 		_addObjectRelationshipERCFieldValue(
 			_objectFieldLocalService.getObjectFields(
 				objectDefinition.getObjectDefinitionId()),
@@ -1845,7 +1844,6 @@ public class ObjectEntryLocalServiceImpl
 			dynamicObjectDefinitionLocalizationTable,
 			objectEntry.getObjectDefinitionId(), objectEntry.getObjectEntryId(),
 			values);
-
 		_addObjectRelationshipERCFieldValue(
 			_objectFieldLocalService.getObjectFields(
 				objectEntry.getObjectDefinitionId()),
