@@ -59,7 +59,7 @@ public class DDMFormValues implements Serializable {
 
 		_ddmFormFieldValues.add(ddmFormFieldValue);
 
-		_ddmFormFieldValueMap.putIfAbsent(
+		_ddmFormFieldValuesMap.putIfAbsent(
 			ddmFormFieldValue.getName(), ddmFormFieldValue);
 	}
 
@@ -98,7 +98,7 @@ public class DDMFormValues implements Serializable {
 	public DDMFormFieldValue getDDMFormFieldValue(
 		String name, boolean includeNestedDDMFormFieldValues) {
 
-		DDMFormFieldValue ddmFormFieldValue = _ddmFormFieldValueMap.get(name);
+		DDMFormFieldValue ddmFormFieldValue = _ddmFormFieldValuesMap.get(name);
 
 		if (!includeNestedDDMFormFieldValues || (ddmFormFieldValue != null)) {
 			return ddmFormFieldValue;
@@ -221,7 +221,7 @@ public class DDMFormValues implements Serializable {
 		_ddmFormFieldValues = ddmFormFieldValues;
 
 		for (DDMFormFieldValue ddmFormFieldValue : ddmFormFieldValues) {
-			_ddmFormFieldValueMap.putIfAbsent(
+			_ddmFormFieldValuesMap.putIfAbsent(
 				ddmFormFieldValue.getName(), ddmFormFieldValue);
 		}
 	}
@@ -232,7 +232,7 @@ public class DDMFormValues implements Serializable {
 
 	private Set<Locale> _availableLocales = new LinkedHashSet<>();
 	private final DDMForm _ddmForm;
-	private final Map<String, DDMFormFieldValue> _ddmFormFieldValueMap =
+	private final Map<String, DDMFormFieldValue> _ddmFormFieldValuesMap =
 		new HashMap<>();
 	private List<DDMFormFieldValue> _ddmFormFieldValues = new ArrayList<>();
 	private Locale _defaultLocale;
