@@ -32,6 +32,7 @@ import {
 	UPDATE_LANGUAGE_ID,
 	UPDATE_ROW_COLUMNS,
 	UPDATE_RULE,
+	UPDATE_RULES,
 } from '../../actions/types';
 import {UNDO_TYPES} from '../../config/constants/undoTypes';
 import {config} from '../../config/index';
@@ -146,6 +147,8 @@ export default function getActionLabel(
 					);
 		case UPDATE_RULE:
 			return sub(Liferay.Language.get('update-x'), action.itemName);
+		case UPDATE_RULES:
+			return Liferay.Language.get('reorder-rule');
 		default:
 			return;
 	}
