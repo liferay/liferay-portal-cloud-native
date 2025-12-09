@@ -1176,8 +1176,8 @@ public class ObjectEntryLocalServiceImpl
 			_objectFieldPersistence.findByODI_I(
 				objectEntry.getObjectDefinitionId(), true);
 
-		// Title ObjectField is always needed during reindexing regardless it is
-		// indexed or not.
+		// Title object field is always needed during reindexing whether it is
+		// indexed or not
 
 		long titleObjectFieldId = objectDefinition.getTitleObjectFieldId();
 
@@ -1212,45 +1212,44 @@ public class ObjectEntryLocalServiceImpl
 		DynamicObjectDefinitionTable dynamicObjectDefinitionTable =
 			DynamicObjectDefinitionTableUtil.getDynamicObjectDefinitionTable(
 				false, objectDefinition, indexedObjectFields);
-
 		DynamicObjectDefinitionTable extensionDynamicObjectDefinitionTable =
 			DynamicObjectDefinitionTableUtil.getDynamicObjectDefinitionTable(
 				true, objectDefinition, indexedObjectFields);
 
-		List<Expression<?>> selectExpressionList = new ArrayList<>();
+		List<Expression<?>> selectExpressions = new ArrayList<>();
 
 		if (dynamicObjectDefinitionLocalizationTable != null) {
-			selectExpressionList.addAll(
+			selectExpressions.addAll(
 				dynamicObjectDefinitionLocalizationTable.
 					getObjectFieldColumns());
 		}
 
-		selectExpressionList.addAll(dynamicObjectDefinitionTable.getColumns());
+		selectExpressions.addAll(dynamicObjectDefinitionTable.getColumns());
 
-		List<Expression<?>> extensionExpressions = new ArrayList<>(
+		List<Expression<?>> extensionSelectExpressions = new ArrayList<>(
 			extensionDynamicObjectDefinitionTable.getColumns());
 
-		extensionExpressions.remove(
+		extensionSelectExpressions.remove(
 			extensionDynamicObjectDefinitionTable.getPrimaryKeyColumn());
 
 		Predicate innerJoinPredicate = null;
 
-		if (!extensionExpressions.isEmpty()) {
+		if (!extensionSelectExpressions.isEmpty()) {
 			innerJoinPredicate =
 				dynamicObjectDefinitionTable.getPrimaryKeyColumn(
 				).eq(
 					extensionDynamicObjectDefinitionTable.getPrimaryKeyColumn()
 				);
 
-			selectExpressionList.addAll(extensionExpressions);
+			selectExpressions.addAll(extensionSelectExpressions);
 		}
 
-		Expression<?>[] selectExpressions = selectExpressionList.toArray(
+		Expression<?>[] selectExpressionsArray = selectExpressions.toArray(
 			new Expression<?>[0]);
 
 		List<Object[]> rows = _list(
 			DSLQueryFactoryUtil.select(
-				selectExpressions
+				selectExpressionsArray
 			).from(
 				dynamicObjectDefinitionTable
 			).innerJoinON(
@@ -1266,7 +1265,7 @@ public class ObjectEntryLocalServiceImpl
 					objectEntry.getObjectEntryId()
 				)
 			),
-			objectEntry.getObjectDefinitionId(), selectExpressions);
+			objectEntry.getObjectDefinitionId(), selectExpressionsArray);
 
 		if (ListUtil.isEmpty(rows)) {
 			return Collections.emptyMap();
@@ -1274,7 +1273,7 @@ public class ObjectEntryLocalServiceImpl
 
 		Map<String, Serializable> values = _getValues(
 			objectEntry.getObjectDefinitionId(), rows.get(0),
-			selectExpressions);
+			selectExpressionsArray);
 
 		_addLocalizedObjectFieldValues(
 			objectEntry.getDefaultLanguageId(),
@@ -1790,7 +1789,7 @@ public class ObjectEntryLocalServiceImpl
 			DynamicObjectDefinitionTableUtil.getDynamicObjectDefinitionTable(
 				true, objectDefinition, _objectFieldLocalService);
 
-		Expression<?>[] extensionExpressions = ArrayUtil.remove(
+		Expression<?>[] extensionSelectExpressions = ArrayUtil.remove(
 			_getSelectExpressions(
 				extensionDynamicObjectDefinitionTable,
 				objectEntry.getObjectEntryId(), null, null),
@@ -1798,7 +1797,7 @@ public class ObjectEntryLocalServiceImpl
 
 		Predicate innerJoinPredicate = null;
 
-		if (extensionExpressions.length != 0) {
+		if (extensionSelectExpressions.length != 0) {
 			innerJoinPredicate =
 				dynamicObjectDefinitionTable.getPrimaryKeyColumn(
 				).eq(
@@ -1811,7 +1810,7 @@ public class ObjectEntryLocalServiceImpl
 			_getSelectExpressions(
 				dynamicObjectDefinitionTable, objectEntry.getObjectEntryId(),
 				null, null),
-			extensionExpressions);
+			extensionSelectExpressions);
 
 		List<Object[]> rows = _list(
 			DSLQueryFactoryUtil.select(
