@@ -577,16 +577,16 @@ public class JspAnalyzerPlugin implements AnalyzerPlugin {
 	}
 
 	private boolean _isJavaeePackageJavax(String javaeePackage) {
-		if (Objects.equals(javaeePackage, "javax")) {
-			return true;
-		}
-
 		if (Objects.equals(javaeePackage, "jakarta")) {
 			return false;
 		}
 
+		if (Objects.equals(javaeePackage, "javax")) {
+			return true;
+		}
+
 		throw new IllegalArgumentException(
-			"Could not infer required javaee package. No fallback value was " +
+			"Unable to infer required javaee package. No fallback value was " +
 				"provided.");
 	}
 
@@ -598,25 +598,25 @@ public class JspAnalyzerPlugin implements AnalyzerPlugin {
 			return _isJavaeePackageJavax(javaeePackage);
 		}
 
-		for (String javaxURI : _JSTL_CORE_URIS_JAVAX) {
-			if (taglibURIs.contains(javaxURI)) {
-				return true;
-			}
-		}
-
 		for (String jakartaURI : _JSTL_CORE_URIS_JAKARTA) {
 			if (taglibURIs.contains(jakartaURI)) {
 				return false;
 			}
 		}
 
-		for (String uri : taglibURIs) {
-			if (uri.contains("javax")) {
+		for (String javaxURI : _JSTL_CORE_URIS_JAVAX) {
+			if (taglibURIs.contains(javaxURI)) {
 				return true;
 			}
+		}
 
+		for (String uri : taglibURIs) {
 			if (uri.contains("jakarta")) {
 				return false;
+			}
+
+			if (uri.contains("javax")) {
+				return true;
 			}
 		}
 
