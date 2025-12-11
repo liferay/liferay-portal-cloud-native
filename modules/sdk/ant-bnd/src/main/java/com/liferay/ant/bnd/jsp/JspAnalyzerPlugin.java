@@ -577,8 +577,7 @@ public class JspAnalyzerPlugin implements AnalyzerPlugin {
 	}
 
 	private boolean _isUseJavaxImports(
-			String javaeePackage, Set<String> taglibURIs)
-		throws Exception {
+		String javaeePackage, Set<String> taglibURIs) {
 
 		if (taglibURIs.isEmpty()) {
 			return Objects.equals(javaeePackage, "javax");
