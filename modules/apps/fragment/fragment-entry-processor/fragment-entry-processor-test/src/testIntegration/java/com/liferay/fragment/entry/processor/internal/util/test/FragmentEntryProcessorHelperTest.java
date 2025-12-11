@@ -568,7 +568,6 @@ public class FragmentEntryProcessorHelperTest {
 				).put(
 					"classPK", fileEntry.getFileEntryId()
 				)));
-
 		Assert.assertEquals(
 			fileEntry.getFileEntryId(),
 			_fragmentEntryProcessorHelper.getFileEntryId(
