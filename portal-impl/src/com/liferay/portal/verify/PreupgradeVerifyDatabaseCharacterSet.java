@@ -145,7 +145,6 @@ public class PreupgradeVerifyDatabaseCharacterSet
 
 					objectDefinitionDBTableNames.add(
 						dbInspector.normalizeName(dbTableName));
-
 					objectDefinitionDBTableNames.add(
 						dbInspector.normalizeName(dbTableName + "_l"));
 
