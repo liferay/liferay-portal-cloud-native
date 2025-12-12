@@ -245,8 +245,6 @@ public class PreupgradeVerifyDatabaseCharacterSetTest
 
 			for (String objectDBTableName : objectDBTableNames) {
 				Assert.assertTrue(
-					"Expected warning for table " +
-						dbInspector.normalizeName(objectDBTableName),
 					messages.contains(
 						"Mixed character set and collation: " +
 							dbInspector.normalizeName(objectDBTableName)));
