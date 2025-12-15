@@ -70,12 +70,10 @@ public class OpenIdConnectBackchannelLogoutServletTest {
 		ReflectionTestUtils.setField(
 			_openIdConnectBackchannelLogoutServlet, "_openIdConnect",
 			openIdConnect);
-
 		ReflectionTestUtils.setField(
 			_openIdConnectBackchannelLogoutServlet,
 			"_openIdConnectSessionLocalService",
 			_openIdConnectSessionLocalService);
-
 		ReflectionTestUtils.setField(
 			_openIdConnectBackchannelLogoutServlet,
 			"_openIdConnectUserLocalService", _openIdConnectUserLocalService);
@@ -91,9 +89,8 @@ public class OpenIdConnectBackchannelLogoutServletTest {
 
 	@Test
 	public void testDoPost() throws Exception {
-		_testDoPost(_SESSION_ID);
-
 		_testDoPost(StringPool.BLANK);
+		_testDoPost(_SESSION_ID);
 	}
 
 	@Test
