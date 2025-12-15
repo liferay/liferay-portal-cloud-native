@@ -1448,7 +1448,6 @@ public class BatchEnginePortletDataHandlerTest {
 			new GenericPortlet() {
 			},
 			MapUtil.singletonDictionary("jakarta.portlet.name", portletId));
-
 		SafeCloseable safeCloseable2 = _registerServiceWithSafeCloseable(
 			VulcanBatchEngineTaskItemDelegate.class,
 			new TestExportImportVulcanBatchEngineTaskItemDelegate(
