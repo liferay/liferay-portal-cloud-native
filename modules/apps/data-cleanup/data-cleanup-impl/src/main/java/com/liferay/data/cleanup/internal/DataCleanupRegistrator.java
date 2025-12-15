@@ -440,7 +440,7 @@ public class DataCleanupRegistrator {
 						PostUpgradeDataCleanupProcess
 							postUpgradeDataCleanupProcess =
 								new PortletPreferencesPostUpgradeDataCleanupProcess(
-									connection, _portletLocalService);
+									connection, true, _portletLocalService);
 
 						postUpgradeDataCleanupProcess.cleanUp();
 					}
