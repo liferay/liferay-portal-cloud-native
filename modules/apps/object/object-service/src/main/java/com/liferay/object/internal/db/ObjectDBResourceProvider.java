@@ -283,30 +283,27 @@ public class ObjectDBResourceProvider implements DBResourceProvider {
 		Map<String, String[]> tablesPrimaryKeyColumnNames = new HashMap<>();
 
 		try (Connection connection = DataAccess.getConnection()) {
+			DBInspector dbInspector = new DBInspector(connection);
+
 			Map<Long, ObjectDefinition> objectDefinitions =
 				_getObjectDefinitions(companyId);
 
-			DBInspector dbInspector = new DBInspector(connection);
-
 			for (ObjectDefinition objectDefinition :
 					objectDefinitions.values()) {
-
-				tablesPrimaryKeyColumnNames.putAll(
-					_getObjectLocalizationTablePrimaryKeyColumnNames(
-						dbInspector, objectDefinition));
 
 				tablesPrimaryKeyColumnNames.put(
 					objectDefinition.getDBTableName(),
 					new String[] {
 						objectDefinition.getPKObjectFieldDBColumnName()
 					});
-
 				tablesPrimaryKeyColumnNames.put(
 					objectDefinition.getExtensionDBTableName(),
 					new String[] {
 						objectDefinition.getPKObjectFieldDBColumnName()
 					});
-
+				tablesPrimaryKeyColumnNames.putAll(
+					_getObjectLocalizationTablePrimaryKeyColumnNames(
+						dbInspector, objectDefinition));
 				tablesPrimaryKeyColumnNames.putAll(
 					_getObjectRelationshipTablesPrimaryKeyColumnNames(
 						connection, objectDefinition, objectDefinitions));
