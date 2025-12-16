@@ -503,39 +503,37 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 			return;
 		}
 
-		Map<String, List<String>> expectedFriendlyURLHistoryMap =
-			new HashMap<>();
+		Map<String, List<String>> expectedFriendlyURLsMap = new HashMap<>();
 
 		for (Map.Entry<Locale, String> entry : friendlyURLsMap.entrySet()) {
-			List<String> friendlyURLsList = ListUtil.fromArray(
-				entry.getValue());
+			List<String> friendlyURLs = ListUtil.fromArray(entry.getValue());
 			String languageId = LocaleUtil.toBCP47LanguageId(entry.getKey());
 
 			if (newFriendlyURLsMap.containsKey(languageId)) {
-				friendlyURLsList.add(newFriendlyURLsMap.get(languageId));
+				friendlyURLs.add(newFriendlyURLsMap.get(languageId));
 			}
 
-			expectedFriendlyURLHistoryMap.put(languageId, friendlyURLsList);
+			expectedFriendlyURLsMap.put(languageId, friendlyURLs);
 		}
 
 		Assert.assertEquals(
 			friendlyUrlHistoryJSONObject.toString(),
-			expectedFriendlyURLHistoryMap.size(),
+			expectedFriendlyURLsMap.size(),
 			friendlyUrlHistoryJSONObject.length());
 
 		for (String key : friendlyUrlHistoryJSONObject.keySet()) {
 			JSONArray jsonArray = friendlyUrlHistoryJSONObject.getJSONArray(
 				key);
 
-			List<String> expectedFriendlyURLHistory =
-				expectedFriendlyURLHistoryMap.get(key);
+			List<String> expectedFriendlyURLs = expectedFriendlyURLsMap.get(
+				key);
 
 			Assert.assertEquals(
-				jsonArray.toString(), expectedFriendlyURLHistory.size(),
+				jsonArray.toString(), expectedFriendlyURLs.size(),
 				jsonArray.length());
 			Assert.assertTrue(
 				jsonArray.toString(),
-				expectedFriendlyURLHistory.containsAll(
+				expectedFriendlyURLs.containsAll(
 					JSONUtil.toStringList(jsonArray)));
 		}
 	}
