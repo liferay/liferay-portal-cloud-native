@@ -65,7 +65,7 @@ public class TranslationManagerTest {
 
 		Assert.assertEquals(_getXLIFFFileName(), xliff12File.getName());
 
-		_assertXLIFFEquals(
+		_assertXLIFFFile(
 			"test-journal-article-v12.xlf", new FileInputStream(xliff12File));
 
 		File xliff20File = _translationManager.getXLIFFFile(
@@ -76,14 +76,14 @@ public class TranslationManagerTest {
 
 		Assert.assertEquals(_getXLIFFFileName(), xliff20File.getName());
 
-		_assertXLIFFEquals(
+		_assertXLIFFFile(
 			"test-journal-article.xlf", new FileInputStream(xliff20File));
 
 		_testGetXLIFFFile("test-journal-article-v12.xlf", _MIMETYPE_XLIFF_1_2);
 		_testGetXLIFFFile("test-journal-article.xlf", _MIMETYPE_XLIFF_2_0);
 	}
 
-	private void _assertXLIFFEquals(String expected, InputStream inputStream)
+	private void _assertXLIFFFile(String expected, InputStream inputStream)
 		throws Exception {
 
 		Assert.assertEquals(
@@ -115,7 +115,7 @@ public class TranslationManagerTest {
 			Assert.assertNotNull(zipEntry);
 			Assert.assertFalse(zipEntry.isDirectory());
 
-			_assertXLIFFEquals(fileName, zipFile.getInputStream(zipEntry));
+			_assertXLIFFFile(fileName, zipFile.getInputStream(zipEntry));
 
 			Assert.assertEquals(
 				String.format(
