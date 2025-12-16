@@ -79,7 +79,7 @@ public class LayoutImportBackgroundTaskExecutorTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testCompletedWithErrorsStatus() throws Exception {
+	public void testGetStatusCompletedWithErrors() throws Exception {
 		ServiceContextThreadLocal.pushServiceContext(
 			ServiceContextTestUtil.getServiceContext());
 
