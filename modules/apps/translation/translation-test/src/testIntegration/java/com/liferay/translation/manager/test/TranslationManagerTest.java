@@ -78,14 +78,9 @@ public class TranslationManagerTest {
 
 		_assertXLIFFEquals(
 			"test-journal-article.xlf", new FileInputStream(xliff20File));
-	}
 
-	@Test
-	public void testGetXLIFFZipFile() throws Exception {
-		_validateZipContent(
-			"test-journal-article-v12.xlf", _MIMETYPE_XLIFF_1_2);
-
-		_validateZipContent("test-journal-article.xlf", _MIMETYPE_XLIFF_2_0);
+		_testGetXLIFFFile("test-journal-article-v12.xlf", _MIMETYPE_XLIFF_1_2);
+		_testGetXLIFFFile("test-journal-article.xlf", _MIMETYPE_XLIFF_2_0);
 	}
 
 	private void _assertXLIFFEquals(String expected, InputStream inputStream)
@@ -105,7 +100,7 @@ public class TranslationManagerTest {
 			LocaleUtil.toLanguageId(LocaleUtil.US), _TARGET_LANGUAGE_IDS[0]);
 	}
 
-	private void _validateZipContent(String fileName, String xliffMimeType)
+	private void _testGetXLIFFFile(String fileName, String xliffMimeType)
 		throws Exception {
 
 		File xliffZipFile = _translationManager.getXLIFFZipFile(

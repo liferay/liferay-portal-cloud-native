@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Reference;
 public class TranslationManagerImpl implements TranslationManager {
 
 	@Override
-	public String getEntryTitle(String className, long classPK, Locale locale) {
+	public String getTitle(String className, long classPK, Locale locale) {
 		InfoItemHelper infoItemHelper = new InfoItemHelper(
 			className, _infoItemServiceRegistry);
 
@@ -125,13 +125,13 @@ public class TranslationManagerImpl implements TranslationManager {
 				_language.get(locale, "translations");
 		}
 
-		String entryTitle = getEntryTitle(className, classPKs[0], locale);
+		String title = getTitle(className, classPKs[0], locale);
 
-		if (entryTitle != null) {
-			return entryTitle;
+		if (title != null) {
+			return title;
 		}
 
-		String title = _language.get(locale, "model.resource." + className);
+		title = _language.get(locale, "model.resource." + className);
 
 		return title + StringPool.SPACE + classPKs[0];
 	}
@@ -140,7 +140,7 @@ public class TranslationManagerImpl implements TranslationManager {
 		String className, long classPK, Locale locale, String sourceLanguageId,
 		String targetLanguageId) {
 
-		String title = getEntryTitle(className, classPK, locale);
+		String title = getTitle(className, classPK, locale);
 
 		if (title == null) {
 			title =

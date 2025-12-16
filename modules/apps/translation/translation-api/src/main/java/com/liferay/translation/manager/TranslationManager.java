@@ -17,7 +17,7 @@ import java.util.Locale;
  */
 public interface TranslationManager {
 
-	public String getEntryTitle(String className, long classPK, Locale locale);
+	public String getTitle(String className, long classPK, Locale locale);
 
 	public File getXLIFFFile(
 			String className, long classPK, String xliffMimeType, Locale locale,
