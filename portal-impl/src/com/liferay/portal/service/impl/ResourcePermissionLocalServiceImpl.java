@@ -2229,18 +2229,18 @@ public class ResourcePermissionLocalServiceImpl
 						)
 					);
 
-					Map<Long, Role> idRolesMap = new HashMap<>();
+					Map<Long, Role> rolesMapByRoleIds = new HashMap<>();
 
 					for (Object[] values :
 							(List<Object[]>)
 								resourcePermissionPersistence.dslQuery(
 									dslQuery, false)) {
 
-						Role role = idRolesMap.computeIfAbsent(
+						Role role = rolesMapByRoleIds.computeIfAbsent(
 							(Long)values[1],
-							key -> {
+							roleId -> {
 								Role localRole =
-									_rolePersistence.fetchByPrimaryKey(key);
+									_rolePersistence.fetchByPrimaryKey(roleId);
 
 								if (localRole == null) {
 									localRole = _dummyRole;
@@ -2251,7 +2251,7 @@ public class ResourcePermissionLocalServiceImpl
 
 						if (role != _dummyRole) {
 							List<Role> roles = localRolesMap.computeIfAbsent(
-								(String)values[0], key -> new ArrayList<>());
+								(String)values[0], roleId -> new ArrayList<>());
 
 							roles.add(role);
 						}
@@ -2272,10 +2272,10 @@ public class ResourcePermissionLocalServiceImpl
 				}
 			}
 
-			Map<Serializable, Role> roles = _rolePersistence.fetchByPrimaryKeys(
-				roleIds);
+			Map<Serializable, Role> rolesMapByRoleIds =
+				_rolePersistence.fetchByPrimaryKeys(roleIds);
 
-			return new ArrayList<>(roles.values());
+			return new ArrayList<>(rolesMapByRoleIds.values());
 		}
 
 		List<Role> roles = rolesMap.get(primKey);
