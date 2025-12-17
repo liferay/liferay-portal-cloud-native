@@ -136,7 +136,7 @@ public class S3Store implements Store {
 			}
 		}
 		catch (CompletionException completionException) {
-			throw _transform(completionException.getCause());
+			throw _toSystemException(completionException.getCause());
 		}
 	}
 
@@ -182,7 +182,7 @@ public class S3Store implements Store {
 				}
 			}
 			catch (CompletionException completionException) {
-				throw _transform(completionException.getCause());
+				throw _toSystemException(completionException.getCause());
 			}
 			finally {
 				FileUtil.delete(file);
@@ -236,7 +236,7 @@ public class S3Store implements Store {
 			}
 		}
 		catch (CompletionException completionException) {
-			throw _transform(completionException.getCause());
+			throw _toSystemException(completionException.getCause());
 		}
 	}
 
@@ -259,7 +259,7 @@ public class S3Store implements Store {
 			completableFuture.join();
 		}
 		catch (CompletionException completionException) {
-			throw _transform(completionException.getCause());
+			throw _toSystemException(completionException.getCause());
 		}
 	}
 
@@ -297,7 +297,7 @@ public class S3Store implements Store {
 					companyId, repositoryId, fileName, versionLabel);
 			}
 
-			throw _transform(throwable);
+			throw _toSystemException(throwable);
 		}
 	}
 
@@ -366,7 +366,7 @@ public class S3Store implements Store {
 					companyId, repositoryId, fileName);
 			}
 
-			throw _transform(throwable);
+			throw _toSystemException(throwable);
 		}
 	}
 
@@ -430,7 +430,7 @@ public class S3Store implements Store {
 				return false;
 			}
 
-			throw _transform(throwable);
+			throw _toSystemException(throwable);
 		}
 		catch (NoSuchFileException noSuchFileException) {
 
@@ -612,11 +612,11 @@ public class S3Store implements Store {
 			return s3Objects;
 		}
 		catch (CompletionException completionException) {
-			throw _transform(completionException.getCause());
+			throw _toSystemException(completionException.getCause());
 		}
 	}
 
-	private SystemException _transform(Throwable throwable) {
+	private SystemException _toSystemException(Throwable throwable) {
 		if (!(throwable instanceof AwsServiceException)) {
 			return new SystemException(throwable.getMessage(), throwable);
 		}
@@ -626,8 +626,7 @@ public class S3Store implements Store {
 		AwsServiceException awsServiceException =
 			(AwsServiceException)throwable;
 
-		AwsErrorDetails awsErrorDetails =
-			awsServiceException.awsErrorDetails();
+		AwsErrorDetails awsErrorDetails = awsServiceException.awsErrorDetails();
 
 		String errorCode = awsErrorDetails.errorCode();
 
