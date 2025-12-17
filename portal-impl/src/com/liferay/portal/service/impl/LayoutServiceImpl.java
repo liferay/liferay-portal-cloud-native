@@ -1172,7 +1172,7 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 	 *         DestinationNames#LAYOUTS_LOCAL_PUBLISHER}). See {@link
 	 *         DestinationNames}.
 	 * @param  cronText the cron text. See {@link
-	 *        com.liferay.portal.kernel.scheduler.CronTextUtil#getCronText}
+	 *         com.liferay.portal.kernel.scheduler.CronTextUtil#getCronText}
 	 * @param  schedulerStartDate the scheduler start date
 	 * @param  schedulerEndDate the scheduler end date
 	 * @param  description the scheduler description
@@ -1409,9 +1409,12 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 	 *         String)}.
 	 * @param  hasIconImage if the layout has a custom icon image
 	 * @param  iconBytes the byte array of the layout's new icon image
-	 * @param  styleBookEntryERC the external reference code of the style book entry
-	 * @param  faviconFileEntryERC the file entry ERC of the layout's new favicon
-	 * @param  faviconFileEntryScopeERC the file entry ScopeERC of the layout's new favicon
+	 * @param  styleBookEntryERC the external reference code of the style book
+	 *         entry
+	 * @param  faviconFileEntryERC the file entry external reference code of the
+	 *         layout's new favicon
+	 * @param  faviconFileEntryScopeERC the file entry scope external reference
+	 *         code of the layout's new favicon
 	 * @param  masterLayoutPageTemplateEntryERC the external reference code key
 	 *         of the master layout page template entry
 	 * @param  serviceContext the service context to be applied. Can set the
