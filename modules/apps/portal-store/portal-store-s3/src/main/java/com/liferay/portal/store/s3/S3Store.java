@@ -562,9 +562,8 @@ public class S3Store implements Store {
 
 	@Deactivate
 	protected void deactivate() {
-		_s3TransferManager.close();
 		_s3AsyncClient.close();
-
+		_s3TransferManager.close();
 		_threadPoolExecutor.shutdown();
 	}
 
