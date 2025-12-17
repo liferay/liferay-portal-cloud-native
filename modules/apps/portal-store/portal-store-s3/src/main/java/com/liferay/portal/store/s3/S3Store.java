@@ -617,42 +617,42 @@ public class S3Store implements Store {
 	}
 
 	private SystemException _transform(Throwable throwable) {
-		if (throwable instanceof AwsServiceException) {
-			AwsServiceException awsServiceException =
-				(AwsServiceException)throwable;
-
-			AwsErrorDetails awsErrorDetails =
-				awsServiceException.awsErrorDetails();
-
-			StringBundler sb = new StringBundler(10);
-
-			String errorCode = awsErrorDetails.errorCode();
-
-			if (errorCode != null) {
-				sb.append("{errorCode=");
-				sb.append(errorCode);
-				sb.append(StringPool.COMMA_AND_SPACE);
-			}
-			else {
-				sb.append("{");
-			}
-
-			sb.append("message=");
-			sb.append(awsServiceException.getMessage());
-			sb.append(", requestId=");
-			sb.append(awsServiceException.requestId());
-			sb.append(", statusCode=");
-			sb.append(awsServiceException.statusCode());
-			sb.append("}");
-
-			if (Objects.equals(errorCode, "AccessDenied")) {
-				return new AccessDeniedException(sb.toString());
-			}
-
-			return new SystemException(sb.toString());
+		if (!(throwable instanceof AwsServiceException)) {
+			return new SystemException(throwable.getMessage(), throwable);
 		}
 
-		return new SystemException(throwable.getMessage(), throwable);
+		AwsServiceException awsServiceException =
+			(AwsServiceException)throwable;
+
+		AwsErrorDetails awsErrorDetails =
+			awsServiceException.awsErrorDetails();
+
+		StringBundler sb = new StringBundler(10);
+
+		String errorCode = awsErrorDetails.errorCode();
+
+		if (errorCode != null) {
+			sb.append("{errorCode=");
+			sb.append(errorCode);
+			sb.append(StringPool.COMMA_AND_SPACE);
+		}
+		else {
+			sb.append("{");
+		}
+
+		sb.append("message=");
+		sb.append(awsServiceException.getMessage());
+		sb.append(", requestId=");
+		sb.append(awsServiceException.requestId());
+		sb.append(", statusCode=");
+		sb.append(awsServiceException.statusCode());
+		sb.append("}");
+
+		if (Objects.equals(errorCode, "AccessDenied")) {
+			return new AccessDeniedException(sb.toString());
+		}
+
+		return new SystemException(sb.toString());
 	}
 
 	private static final int _DELETE_MAX = 1000;
