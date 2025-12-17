@@ -581,9 +581,7 @@ public class S3Store implements Store {
 		String key = null;
 
 		for (S3Object s3Object : s3Objects) {
-			if ((key == null) ||
-				(key.compareTo(s3Object.key()) < 0)) {
-
+			if ((key == null) || (key.compareTo(s3Object.key()) < 0)) {
 				key = s3Object.key();
 			}
 		}
@@ -592,30 +590,30 @@ public class S3Store implements Store {
 	}
 
 	private List<S3Object> _getS3Objects(String prefix) {
-		List<S3Object> s3Objects = new ArrayList<>();
-
-		ListObjectsV2Publisher listObjectsV2Publisher =
-			_s3AsyncClient.listObjectsV2Paginator(
-				listObjectsV2RequestBuilder ->
-					listObjectsV2RequestBuilder.bucket(
-						_s3StoreConfiguration.bucketName()
-					).prefix(
-						prefix
-					));
-
-		CompletableFuture<Void> completableFuture =
-			listObjectsV2Publisher.subscribe(
-				listObjectsV2Response -> s3Objects.addAll(
-					listObjectsV2Response.contents()));
-
 		try {
+			List<S3Object> s3Objects = new ArrayList<>();
+
+			ListObjectsV2Publisher listObjectsV2Publisher =
+				_s3AsyncClient.listObjectsV2Paginator(
+					listObjectsV2RequestBuilder ->
+						listObjectsV2RequestBuilder.bucket(
+							_s3StoreConfiguration.bucketName()
+						).prefix(
+							prefix
+						));
+
+			CompletableFuture<Void> completableFuture =
+				listObjectsV2Publisher.subscribe(
+					listObjectsV2Response -> s3Objects.addAll(
+						listObjectsV2Response.contents()));
+
 			completableFuture.join();
+
+			return s3Objects;
 		}
 		catch (CompletionException completionException) {
 			throw _transform(completionException.getCause());
 		}
-
-		return s3Objects;
 	}
 
 	private SystemException _transform(Throwable throwable) {
