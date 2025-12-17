@@ -73,7 +73,7 @@ public class ScopeTest {
 	}
 
 	@Test
-	public void testScopeOfTypeGlobalSite() {
+	public void testScopeOfTypeSiteCompany() {
 		Mockito.when(
 			_group.isSite()
 		).thenReturn(
