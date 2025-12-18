@@ -8,6 +8,7 @@ data:
     010_install_prometheus_jmx_agent.sh: |
         #!/usr/bin/env bash
 
+        {{- if .Values.observability.prometheus.enabled }}
         if [ "${JMX_AGENT_YAML}x" != "x" ]
         then
             if [ ! -f /opt/liferay/metrics/jmx_prometheus_javaagent.jar ]
@@ -27,6 +28,9 @@ data:
 
             echo "${JMX_AGENT_YAML}" > /opt/liferay/metrics/metrics_exporter.yaml
         fi
+        {{- else }}
+        echo "Prometheus is not enabled, skipping JMX agent installation."
+        {{- end }}
     com.liferay.portal.k8s.agent.configuration.PortalK8sAgentConfiguration.config: |
         apiServerHost="$[env:KUBERNETES_SERVICE_HOST]"
         apiServerPort="$[env:KUBERNETES_SERVICE_PORT]"

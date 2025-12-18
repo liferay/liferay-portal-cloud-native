@@ -125,6 +125,22 @@ dependencies: {}
 env:
     -   name: DNS_MEMBERSHIP_SERVICE_NAME
         value: liferay-default-headless
+    -   name: JMX_AGENT_YAML
+        value: |
+            includeObjectNames: ["com.liferay.users.admin:*"]
+            openTelemetry:
+              endpoint: http://liferay-prometheus-server:9090/api/v1/otlp/v1/metrics
+              interval: 1
+              protocol: http/protobuf
+              serviceName: $(POD_APP)
+              serviceInstanceId: $(POD_NAME)
+              serviceNamespace: $(POD_NAMESPACE)
+              timeoutSeconds: 60
+            rules:
+            - name: server_live_users
+              pattern: ^com.liferay.users.admin<classification=live_users, name=LiveUsers><>ServerLiveUsersCount
+              type: GAUGE
+            - pattern: ".*"
     -   name: LIFERAY_CLUSTER_PERIOD_LINK_PERIOD_BIND_PERIOD_ADDR_OPENBRACKET__QUOTE_CLUSTER_MINUS_LINK_MINUS_CONTROL_QUOTE__CLOSEBRACKET_
         value: ${env.POD_IP}
     -   name: LIFERAY_CLUSTER_PERIOD_LINK_PERIOD_BIND_PERIOD_ADDR_OPENBRACKET__QUOTE_CLUSTER_MINUS_LINK_MINUS_UDP_QUOTE__CLOSEBRACKET_
@@ -175,6 +191,9 @@ livenessProbe:
     timeoutSeconds: 5
 nameOverride: ""
 nodeSelector: {}
+observability:
+    prometheus:
+        enabled: true
 podAnnotations: {}
 podLabels: {}
 podSecurityContext:
