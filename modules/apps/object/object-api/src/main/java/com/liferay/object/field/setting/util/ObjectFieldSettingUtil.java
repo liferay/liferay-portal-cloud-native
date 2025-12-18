@@ -110,12 +110,12 @@ public class ObjectFieldSettingUtil {
 			if (objectField.compareBusinessType(
 					ObjectFieldConstants.BUSINESS_TYPE_DATE)) {
 
-				return _getDate(defaultValue, "yyyy-MM-dd");
+				return _getDateString(defaultValue, "yyyy-MM-dd");
 			}
 			else if (objectField.compareBusinessType(
 						ObjectFieldConstants.BUSINESS_TYPE_DATE_TIME)) {
 
-				return _getDate(defaultValue, "yyyy-MM-dd HH:mm");
+				return _getDateString(defaultValue, "yyyy-MM-dd HH:mm");
 			}
 
 			return defaultValue;
@@ -197,7 +197,7 @@ public class ObjectFieldSettingUtil {
 				objectFieldSetting));
 	}
 
-	private static String _getDate(Object defaultValue, String pattern)
+	private static String _getDateString(Object defaultValue, String pattern)
 		throws ParseException {
 
 		return DateUtil.getDate(
