@@ -1,0 +1,12 @@
+[32m@clayui/nav:build: [0mcache hit, replaying output [2m2c709c60dd518ce9[0m
+[32m@clayui/nav:build: [0m$ yarn build:cjs && yarn build:esm
+[32m@clayui/nav:build: [0m$ cross-env NODE_ENV=production babel src --root-mode upward --out-dir lib/cjs --extensions .ts,.tsx
+[32m@clayui/nav:build: [0mBrowserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+[32m@clayui/nav:build: [0m  npx update-browserslist-db@latest
+[32m@clayui/nav:build: [0m  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[32m@clayui/nav:build: [0mSuccessfully compiled 3 files with Babel (136ms).
+[32m@clayui/nav:build: [0m$ cross-env NODE_ENV=production babel src --root-mode upward --out-dir lib/esm --extensions .ts,.tsx --env-name esm
+[32m@clayui/nav:build: [0mBrowserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+[32m@clayui/nav:build: [0m  npx update-browserslist-db@latest
+[32m@clayui/nav:build: [0m  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[32m@clayui/nav:build: [0mSuccessfully compiled 3 files with Babel (181ms).

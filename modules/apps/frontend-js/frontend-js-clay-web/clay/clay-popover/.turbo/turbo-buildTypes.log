@@ -1,0 +1,2 @@
+[34m@clayui/popover:buildTypes: [0mcache hit, replaying output [2mc971cac8df4162c0[0m
+[34m@clayui/popover:buildTypes: [0m$ cross-env NODE_ENV=production tsc --project ./tsconfig.declarations.json

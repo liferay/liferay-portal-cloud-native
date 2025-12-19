@@ -1,0 +1,12 @@
+[36m@clayui/pagination:build: [0mcache hit, replaying output [2m097ca548f18bf5f7[0m
+[36m@clayui/pagination:build: [0m$ yarn build:cjs && yarn build:esm
+[36m@clayui/pagination:build: [0m$ cross-env NODE_ENV=production babel src --root-mode upward --out-dir lib/cjs --extensions .ts,.tsx
+[36m@clayui/pagination:build: [0mBrowserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+[36m@clayui/pagination:build: [0m  npx update-browserslist-db@latest
+[36m@clayui/pagination:build: [0m  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[36m@clayui/pagination:build: [0mSuccessfully compiled 5 files with Babel (167ms).
+[36m@clayui/pagination:build: [0m$ cross-env NODE_ENV=production babel src --root-mode upward --out-dir lib/esm --extensions .ts,.tsx --env-name esm
+[36m@clayui/pagination:build: [0mBrowserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+[36m@clayui/pagination:build: [0m  npx update-browserslist-db@latest
+[36m@clayui/pagination:build: [0m  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[36m@clayui/pagination:build: [0mSuccessfully compiled 5 files with Babel (157ms).

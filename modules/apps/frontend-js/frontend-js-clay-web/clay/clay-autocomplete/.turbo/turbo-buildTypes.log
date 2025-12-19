@@ -1,0 +1,2 @@
+[32m@clayui/autocomplete:buildTypes: [0mcache hit, replaying output [2me6473fb3c8f1f858[0m
+[32m@clayui/autocomplete:buildTypes: [0m$ cross-env NODE_ENV=production tsc --project ./tsconfig.declarations.json
