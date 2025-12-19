@@ -2,9 +2,14 @@
 	"name": "@liferay/frontend-js-clay-web",
 	"private": true,
 	"scripts": {
-		"build": "node ./clay/clay-css/scripts/build.js && node-scripts build",
+		"build": "node-scripts build:custom && node-scripts build",
 		"checkFormat": "node-scripts format --check",
-		"format": "node-scripts format"
+		"format": "node-scripts format",
+		"test": "node-scripts test"
 	},
-	"version": "1.0.0"
+	"version": "1.0.0",
+	"main": "js/index.ts",
+	"devDependencies": {
+		"jest-axe": "^10.0.0"
+	}
 }

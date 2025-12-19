@@ -92,3 +92,8 @@
     # Ignore the copyright template file.
     #
     **/copyright.js
+
+    *
+    * Temporary Ignore until merged
+    *
+    apps/frontend-js/frontend-js-clay-web/clay
