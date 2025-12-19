@@ -6,10 +6,10 @@
 /* eslint-env node */
 
 module.exports = {
+	moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
 	moduleNameMapper: {
 		'@testing-library/user-event': '@testing-library/user-event-13-2-1',
 	},
-	moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
 	resolver: `${__dirname}/clay/jest-clay-lerna-resolver.js`,
 	setupFiles: [`${__dirname}/clay/setupTests.ts`, 'raf/polyfill'],
 	setupFilesAfterEnv: [`${__dirname}/clay/jest-setup.ts`],
