@@ -4,17 +4,6 @@
 	"description": "Clay UI components in React",
 	"license": "BSD-3-Clause",
 	"repository": "https://github.com/liferay/clay",
-	"main": "lib/cjs/index.js",
-	"module": "lib/esm/index.js",
-	"exports": {
-		".": {
-			"types": "./lib/index.d.ts",
-			"import": "./lib/esm/index.js",
-			"require": "./lib/cjs/index.js"
-		}
-	},
-	"types": "lib/index.d.ts",
-	"ts:main": "src/index.ts",
 	"files": [
 		"lib"
 	],
@@ -59,5 +48,6 @@
 	},
 	"browserslist": [
 		"extends browserslist-config-clay"
-	]
+	],
+	"main": "src/index.ts"
 }

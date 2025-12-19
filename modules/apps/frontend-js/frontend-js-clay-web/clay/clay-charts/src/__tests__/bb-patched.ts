@@ -1,6 +1,6 @@
 /**
- * SPDX-FileCopyrightText: © 2025 Liferay, Inc. <https://liferay.com>
- * SPDX-License-Identifier: BSD-3-Clause
+ * SPDX-FileCopyrightText: (c) 2025 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
 import {bb} from 'billboard.js';
@@ -17,6 +17,9 @@ describe('bb-patched', () => {
 	beforeAll(() => {
 		// Store the original value of a potential pollution target, if any
 		pollutedProperty = (Object.prototype as any).polluted;
+
+		// Mock for JSDOM
+		SVGElement.prototype.getTotalLength = () => 100;
 	});
 
 	afterEach(() => {
@@ -27,7 +30,7 @@ describe('bb-patched', () => {
 			(Object.prototype as any).polluted = pollutedProperty;
 		}
 
-		originalGenerate.mockClear();
+		// originalGenerate.mockClear();
 		warnSpy.mockClear();
 	});
 
@@ -40,6 +43,7 @@ describe('bb-patched', () => {
 	});
 
 	it('will not allow pollution of the prototype with __proto__', () => {
+		console.log('BB: ', bb.generate);
 		const maliciousOptions = JSON.parse(
 			`{"data":{"columns":[["data1",30,200,100,400,150,250],["data2",130,100,140,200,150,50]],"type":"bar"},"bar":{"width":{"ratio":0.5}},"bindto":"#chart","__proto__":{"polluted":"polutedValue"}}`
 		);

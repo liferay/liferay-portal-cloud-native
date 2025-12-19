@@ -4,9 +4,6 @@
 	"description": "ClayProvider component in React",
 	"license": "BSD-3-Clause",
 	"repository": "https://github.com/liferay/clay",
-	"main": "lib/cjs/index.js",
-	"types": "lib/index.d.ts",
-	"ts:main": "src/index.ts",
 	"files": [
 		"lib"
 	],
@@ -31,5 +28,6 @@
 	},
 	"browserslist": [
 		"extends browserslist-config-clay"
-	]
+	],
+	"main": "src/index.ts"
 }

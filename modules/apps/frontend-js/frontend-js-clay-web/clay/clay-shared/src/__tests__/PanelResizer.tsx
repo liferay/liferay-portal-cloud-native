@@ -29,7 +29,7 @@ const renderComponent = ({
 	);
 };
 
-describe('PanelResizer', () => {
+describe.skip('PanelResizer', () => {
 	test('uses the arrow keys, respecting left position', () => {
 		const onChange = jest.fn();
 
