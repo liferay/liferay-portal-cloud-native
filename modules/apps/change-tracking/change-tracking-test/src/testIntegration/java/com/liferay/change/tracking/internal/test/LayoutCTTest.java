@@ -1155,13 +1155,13 @@ public class LayoutCTTest {
 		Assert.assertEquals(
 			CTConstants.CT_CHANGE_TYPE_MODIFICATION, ctEntry2.getChangeType());
 
-		Assert.assertTrue(_hasDeletionConflict(layout));
+		Assert.assertTrue(_hasConflictInfo(layout));
 
 		otherCTCollection.setStatus(WorkflowConstants.STATUS_INCOMPLETE);
 
 		_ctCollectionLocalService.updateCTCollection(otherCTCollection);
 
-		Assert.assertTrue(_hasDeletionConflict(layout));
+		Assert.assertTrue(_hasConflictInfo(layout));
 	}
 
 	@Test
@@ -1365,7 +1365,7 @@ public class LayoutCTTest {
 		}
 	}
 
-	private boolean _hasDeletionConflict(Layout layout) throws Exception {
+	private boolean _hasConflictInfo(Layout layout) throws Exception {
 		Map<Long, List<ConflictInfo>> conflictInfoMap =
 			_ctCollectionLocalService.checkConflicts(_ctCollection);
 
