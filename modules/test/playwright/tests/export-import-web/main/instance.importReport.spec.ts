@@ -82,23 +82,13 @@ test('Can see error report and details', async ({
 	);
 
 	await clickAndExpectToBeVisible({
-		target: exportImportPage.page.getByRole('link', {
-			name: 'Clear',
-		}),
+		target: exportImportPage.clearMenuItem,
 		trigger: exportImportPage.taskActionsMenu(exportName),
 	});
 
-	await expect(
-		exportImportPage.page.getByRole('menuitem', {
-			name: 'View Report Entries',
-		})
-	).toBeVisible();
+	await expect(exportImportPage.viewReportEntriesMenuItem).toBeVisible();
 
-	await expect(
-		exportImportPage.page.getByRole('menuitem', {
-			name: 'Export Report Entries',
-		})
-	).toBeVisible();
+	await expect(exportImportPage.exportReportEntriesMenuItem).toBeVisible();
 
 	await exportImportPage.goToImportDetails(exportName);
 
@@ -166,21 +156,13 @@ test('Report entries actions are not visible for a successful import', async ({
 	);
 
 	await clickAndExpectToBeVisible({
-		target: exportImportPage.page.getByRole('link', {
-			name: 'Clear',
-		}),
+		target: exportImportPage.clearMenuItem,
 		trigger: exportImportPage.taskActionsMenu(exportName),
 	});
 
-	await expect(
-		exportImportPage.page.getByRole('menuitem', {
-			name: 'View Report Entries',
-		})
-	).not.toBeVisible();
+	await expect(exportImportPage.viewReportEntriesMenuItem).not.toBeVisible();
 
 	await expect(
-		exportImportPage.page.getByRole('menuitem', {
-			name: 'Export Report Entries',
-		})
+		exportImportPage.exportReportEntriesMenuItem
 	).not.toBeVisible();
 });
