@@ -14,21 +14,29 @@
 		"noPropertyAccessFromIndexSignature": true,
 		"noUncheckedIndexedAccess": true,
 		"noUnusedParameters": true,
+		"paths": {
+			"*": [
+				"custom-types/*",
+				"node_modules/*",
+				"packages/*"
+			],
+			"@clayui/*": [
+				"node_modules/@clayui/*/src"
+			]
+		},
 		"removeComments": true,
 		"resolveJsonModule": true,
 		"strict": true,
 		"strictFunctionTypes": true,
 		"strictNullChecks": true,
-		"target": "es2015",
-		"paths": {
-			"@clayui/*": ["node_modules/@clayui/*/src"],
-			"*": ["custom-types/*", "node_modules/*", "packages/*"]
-		}
+		"target": "es2015"
 	},
-	"include": ["packages/**/*"],
 	"exclude": [
 		"node_modules",
 		"packages/**/lib",
 		"packages/generator-clay-component"
+	],
+	"include": [
+		"packages/**/*"
 	]
 }

@@ -1328,8 +1328,8 @@
 	&:not(:disabled):not(.disabled).active,
 	.show > &.dropdown-toggle {
 		background-color: $active-background;
-		color: color-yiq($active-background);
 		border-color: $active-border;
+		color: color-yiq($active-background);
 
 		@if $enable-gradients {
 			background-image: none;
