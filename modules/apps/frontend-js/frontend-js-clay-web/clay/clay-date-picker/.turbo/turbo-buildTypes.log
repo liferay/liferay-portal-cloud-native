@@ -1,2 +1,0 @@
-[36m@clayui/date-picker:buildTypes: [0mcache hit, replaying output [2mcede7b5fd7d43911[0m
-[36m@clayui/date-picker:buildTypes: [0m$ cross-env NODE_ENV=production tsc --project ./tsconfig.declarations.json

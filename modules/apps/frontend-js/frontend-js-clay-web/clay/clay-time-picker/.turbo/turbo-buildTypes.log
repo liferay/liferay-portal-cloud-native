@@ -1,2 +1,0 @@
-[36m@clayui/time-picker:buildTypes: [0mcache hit, replaying output [2m4b31a44f540d01be[0m
-[36m@clayui/time-picker:buildTypes: [0m$ cross-env NODE_ENV=production tsc --project ./tsconfig.declarations.json

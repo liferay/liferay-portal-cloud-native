@@ -1,2 +1,0 @@
-[33m@clayui/toolbar:buildTypes: [0mcache hit, replaying output [2mdcfbc6b45badde39[0m
-[33m@clayui/toolbar:buildTypes: [0m$ cross-env NODE_ENV=production tsc --project ./tsconfig.declarations.json
