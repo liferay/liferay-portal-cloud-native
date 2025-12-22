@@ -2981,7 +2981,6 @@ public class ObjectDefinitionResourceTest
 
 		ObjectDefinition randomModifiableSystemObjectDefinition =
 			_randomModifiableSystemObjectDefinition();
-
 		ObjectDefinition randomObjectDefinition = randomObjectDefinition();
 
 		ObjectRelationship objectRelationship = _createObjectRelationship(
