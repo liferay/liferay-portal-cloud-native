@@ -16,6 +16,7 @@ import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PropsValues;
+import com.liferay.portal.kernel.util.Time;
 
 import java.io.InputStream;
 
@@ -180,8 +181,7 @@ public class HTTPTestUtil {
 		}
 
 		options.setMethod(httpMethod);
-
-		options.setTimeout(_TIMEOUT);
+		options.setTimeout((int)Time.MINUTE * 2);
 
 		if (body != null) {
 			options.setBody(
@@ -191,8 +191,6 @@ public class HTTPTestUtil {
 
 		return options;
 	}
-
-	private static final int _TIMEOUT = 120_000;
 
 	private static String _baseURL = "http://localhost:8080";
 	private static String _credentials =
