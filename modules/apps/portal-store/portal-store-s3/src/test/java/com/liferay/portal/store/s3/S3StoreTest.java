@@ -138,13 +138,13 @@ public class S3StoreTest {
 		Mockito.when(
 			_s3StoreConfiguration.proxyHost()
 		).thenReturn(
-			_INET_SOCKET_ADDRESS.getHostString()
+			_inetSocketAddress.getHostString()
 		);
 
 		Mockito.when(
 			_s3StoreConfiguration.proxyPort()
 		).thenReturn(
-			_INET_SOCKET_ADDRESS.getPort()
+			_inetSocketAddress.getPort()
 		);
 
 		if (Validator.isNotNull(proxyUserName)) {
@@ -184,7 +184,7 @@ public class S3StoreTest {
 		HttpProxyServerBootstrap httpProxyServerBootstrap =
 			DefaultHttpProxyServer.bootstrap();
 
-		httpProxyServerBootstrap.withAddress(_INET_SOCKET_ADDRESS);
+		httpProxyServerBootstrap.withAddress(_inetSocketAddress);
 		httpProxyServerBootstrap.withFiltersSource(
 			new HttpFiltersSourceAdapter() {
 
@@ -255,11 +255,10 @@ public class S3StoreTest {
 		}
 	}
 
-	private static final InetSocketAddress _INET_SOCKET_ADDRESS =
-		new InetSocketAddress("localhost", 4250);
-
 	private final MockedStatic<ConfigurableUtil> _configurableUtilMockedStatic =
 		Mockito.mockStatic(ConfigurableUtil.class);
+	private final InetSocketAddress _inetSocketAddress = new InetSocketAddress(
+		"localhost", 4250);
 	private S3StoreConfiguration _s3StoreConfiguration;
 
 }

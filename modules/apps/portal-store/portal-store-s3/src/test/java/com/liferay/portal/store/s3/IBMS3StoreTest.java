@@ -117,37 +117,37 @@ public class IBMS3StoreTest {
 	}
 
 	@Test
-	public void testProxy() throws Exception {
-		_mockProxy(null, null);
+	public void testHasFile() throws Exception {
+		_mock(null, null);
 
-		_testProxy(true, null, null);
+		_testHasFile(true, null, null);
 
 		String proxyUserName = RandomTestUtil.randomString();
 		String proxyPassword = RandomTestUtil.randomString();
 
-		_mockProxy(proxyUserName, proxyPassword);
+		_mock(proxyUserName, proxyPassword);
 
-		_testProxy(false, proxyUserName, proxyPassword + "1");
+		_testHasFile(false, proxyUserName, proxyPassword + "1");
 
 		proxyUserName = RandomTestUtil.randomString();
 		proxyPassword = RandomTestUtil.randomString();
 
-		_mockProxy(proxyUserName, proxyPassword);
+		_mock(proxyUserName, proxyPassword);
 
-		_testProxy(true, proxyUserName, proxyPassword);
+		_testHasFile(true, proxyUserName, proxyPassword);
 	}
 
-	private void _mockProxy(String proxyUserName, String proxyPassword) {
+	private void _mock(String proxyUserName, String proxyPassword) {
 		Mockito.when(
 			_ibmS3StoreConfiguration.proxyHost()
 		).thenReturn(
-			_INET_SOCKET_ADDRESS.getHostString()
+			_inetSocketAddress.getHostString()
 		);
 
 		Mockito.when(
 			_ibmS3StoreConfiguration.proxyPort()
 		).thenReturn(
-			_INET_SOCKET_ADDRESS.getPort()
+			_inetSocketAddress.getPort()
 		);
 
 		if (Validator.isNotNull(proxyUserName)) {
@@ -178,7 +178,7 @@ public class IBMS3StoreTest {
 		}
 	}
 
-	private void _testProxy(
+	private void _testHasFile(
 			boolean expectedProxy, String proxyUserName, String proxyPassword)
 		throws Exception {
 
@@ -187,7 +187,7 @@ public class IBMS3StoreTest {
 		HttpProxyServerBootstrap httpProxyServerBootstrap =
 			DefaultHttpProxyServer.bootstrap();
 
-		httpProxyServerBootstrap.withAddress(_INET_SOCKET_ADDRESS);
+		httpProxyServerBootstrap.withAddress(_inetSocketAddress);
 		httpProxyServerBootstrap.withFiltersSource(
 			new HttpFiltersSourceAdapter() {
 
@@ -258,11 +258,10 @@ public class IBMS3StoreTest {
 		}
 	}
 
-	private static final InetSocketAddress _INET_SOCKET_ADDRESS =
-		new InetSocketAddress("localhost", 4250);
-
 	private final MockedStatic<ConfigurableUtil> _configurableUtilMockedStatic =
 		Mockito.mockStatic(ConfigurableUtil.class);
 	private S3StoreConfiguration _ibmS3StoreConfiguration;
+	private final InetSocketAddress _inetSocketAddress = new InetSocketAddress(
+		"localhost", 4250);
 
 }
