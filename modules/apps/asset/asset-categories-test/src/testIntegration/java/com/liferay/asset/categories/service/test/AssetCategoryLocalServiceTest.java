@@ -98,11 +98,12 @@ public class AssetCategoryLocalServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		_group1 = GroupTestUtil.addGroup();
-		_group2 = GroupTestUtil.addGroup();
 
 		_assetVocabulary = _assetVocabularyLocalService.addVocabulary(
 			TestPropsValues.getUserId(), _group1.getGroupId(), "Vocabulary",
 			new ServiceContext());
+
+		_group2 = GroupTestUtil.addGroup();
 	}
 
 	@Test
@@ -136,7 +137,7 @@ public class AssetCategoryLocalServiceTest {
 	}
 
 	@Test(expected = NoSuchCategoryException.class)
-	public void testAddAssetCategoryInParentCategoryFromDifferentGroup()
+	public void testAddAssetCategoryInParentAssetCategoryFromDifferentGroup()
 		throws Exception {
 
 		AssetVocabulary assetVocabulary1 = AssetTestUtil.addVocabulary(
@@ -155,7 +156,7 @@ public class AssetCategoryLocalServiceTest {
 	}
 
 	@Test(expected = NoSuchVocabularyException.class)
-	public void testAddAssetCategoryInVocabularyFromDifferentGroup()
+	public void testAddAssetCategoryInAssetVocabularyFromDifferentGroup()
 		throws Exception {
 
 		AssetVocabulary assetVocabulary = AssetTestUtil.addVocabulary(
