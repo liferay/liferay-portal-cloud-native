@@ -1343,16 +1343,15 @@ public class TaxonomyCategoryResourceTest
 		_testPostTaxonomyCategoryBatchCompleteReferences(
 			_depotAssetVocabulary, createStrategy, testDepotEntry.getGroupId(),
 			"assetLibraryId", testDepotEntry.getDepotEntryId());
-		_testPostTaxonomyCategoryBatchFullLazyReferences(
-			createStrategy, testDepotEntry.getGroupId(), "assetLibraryId",
-			testDepotEntry.getDepotEntryId());
 		_testPostTaxonomyCategoryBatchEmptyParentTaxonomyCategory(
 			_depotAssetVocabulary, createStrategy, testDepotEntry.getGroupId(),
 			"assetLibraryId", testDepotEntry.getDepotEntryId());
 		_testPostTaxonomyCategoryBatchEmptyParentTaxonomyVocabulary(
 			createStrategy, testDepotEntry.getGroupId(), "assetLibraryId",
 			testDepotEntry.getDepotEntryId());
-	}
+		_testPostTaxonomyCategoryBatchFullLazyReferences(
+			createStrategy, testDepotEntry.getGroupId(), "assetLibraryId",
+			testDepotEntry.getDepotEntryId());	}
 
 	private void _testPostSiteTaxonomyCategoryBatch(String createStrategy)
 		throws Exception {
