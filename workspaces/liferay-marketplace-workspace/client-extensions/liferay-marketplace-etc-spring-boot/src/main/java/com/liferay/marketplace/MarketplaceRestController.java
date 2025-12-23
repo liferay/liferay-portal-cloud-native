@@ -175,13 +175,13 @@ public class MarketplaceRestController extends BaseRestController {
 			_marketplaceService.getAccountResource();
 
 		com.liferay.headless.admin.user.client.pagination.Page<Account>
-			accountPage = accountResource.getAccountsPage(
+			accountsPage = accountResource.getAccountsPage(
 				"", "name eq '" + account.getName() + "'",
 				com.liferay.headless.admin.user.client.pagination.Pagination.of(
 					1, 1),
 				"");
 
-		if (accountPage.getTotalCount() > 0) {
+		if (accountsPage.getTotalCount() > 0) {
 			throw new ResponseStatusException(
 				HttpStatus.CONFLICT, "Account already exists");
 		}
@@ -319,7 +319,7 @@ public class MarketplaceRestController extends BaseRestController {
 			Objects.equals(
 				order.getOrderTypeExternalReferenceCode(), "DXP_APP")) {
 
-			Page<OrderItem> orderItemPage =
+			Page<OrderItem> orderItemsPage =
 				_marketplaceService.getOrderItemResource(
 				).getOrderIdOrderItemsPage(
 					order.getId(), Pagination.of(1, 10)
@@ -328,7 +328,7 @@ public class MarketplaceRestController extends BaseRestController {
 			Map<String, String> productSpecificationsMap =
 				_marketplaceService.getProductSpecificationsMap(
 					_marketplaceService.getSku(
-						orderItemPage.fetchFirstItem(
+						orderItemsPage.fetchFirstItem(
 						).getSkuId()
 					).getProductId());
 
@@ -344,7 +344,7 @@ public class MarketplaceRestController extends BaseRestController {
 
 			_setUpProductEntitlements(
 				jwt, productSpecificationsMap.get("license-type"), order,
-				orderItemPage);
+				orderItemsPage);
 		}
 	}
 
@@ -712,7 +712,7 @@ public class MarketplaceRestController extends BaseRestController {
 
 	private void _setUpProductEntitlements(
 			Jwt jwt, String licenseType, Order order,
-			Page<OrderItem> orderItemPage)
+			Page<OrderItem> orderItemsPage)
 		throws Exception {
 
 		String accountExternalReferenceCode =
@@ -733,7 +733,7 @@ public class MarketplaceRestController extends BaseRestController {
 		}
 
 		try {
-			for (OrderItem orderItem : orderItemPage.getItems()) {
+			for (OrderItem orderItem : orderItemsPage.getItems()) {
 				_koroneikiService.postAccountAccountKeyProductPurchase(
 					accountExternalReferenceCode, jwt, licenseType,
 					MarketplaceUtil.getSkuOptionValue(
