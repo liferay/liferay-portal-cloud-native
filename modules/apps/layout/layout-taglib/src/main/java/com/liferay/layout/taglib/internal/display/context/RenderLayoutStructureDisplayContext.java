@@ -485,13 +485,13 @@ public class RenderLayoutStructureDisplayContext {
 		LayoutStructureRulesHelper layoutStructureRulesHelper =
 			ServletContextUtil.getLayoutStructureRulesHelper();
 
+		InfoItemFieldValues infoItemFieldValues = null;
+
 		Object infoItem = _httpServletRequest.getAttribute(
 			InfoDisplayWebKeys.INFO_ITEM);
 
 		InfoItemFieldValuesProvider infoItemFieldValuesProvider =
 			_getInfoFieldValuesProvider(infoItem);
-
-		InfoItemFieldValues infoItemFieldValues = null;
 
 		if (infoItemFieldValuesProvider != null) {
 			infoItemFieldValues =

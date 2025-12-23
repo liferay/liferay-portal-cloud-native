@@ -61,15 +61,14 @@ public class LayoutStructureRulesHelperImpl
 		LayoutStructure layoutStructure, Locale locale,
 		PermissionChecker permissionChecker, long[] segmentsEntryIds) {
 
+		Map<String, Object> infoItemFieldValuesMap = _parseInfoItemFieldValues(
+			infoItemFieldValues, locale);
 		Map<String, List<String>> itemIdsMap = new HashMap<>();
 		JSONArray jsonArray = _jsonFactory.createJSONArray();
 		Map<String, List<String>> layoutStructureRuleIdsMap = new HashMap<>();
 		LayoutStructureRulesContext layoutStructureRulesContext =
 			new LayoutStructureRulesContext(
 				groupId, permissionChecker, segmentsEntryIds);
-
-		Map<String, Object> infoItemFieldValuesMap = _parseInfoItemFieldValues(
-			infoItemFieldValues, locale);
 
 		for (LayoutStructureRule layoutStructureRule :
 				layoutStructure.getLayoutStructureRules()) {
