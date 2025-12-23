@@ -13,7 +13,7 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface ContextDataInjector {
 
-	public Object getValue(Class<?> contextClass);
+	public Object getValue(Class<?> fieldClass);
 
 	public Object inject(Object instance) throws Exception;
 

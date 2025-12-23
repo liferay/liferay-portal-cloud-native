@@ -61,8 +61,8 @@ public class ContextDataInjectorBuilderFactoryImpl
 				return new ContextDataInjector() {
 
 					@Override
-					public Object getValue(Class<?> contextClass) {
-						return _getValue(contextClass);
+					public Object getValue(Class<?> fieldClass) {
+						return _getValue(fieldClass);
 					}
 
 					@Override
