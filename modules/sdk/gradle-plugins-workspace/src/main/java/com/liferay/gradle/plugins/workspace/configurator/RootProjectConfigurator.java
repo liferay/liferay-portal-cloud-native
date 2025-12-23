@@ -185,10 +185,10 @@ public class RootProjectConfigurator implements Plugin<Project> {
 
 	public static final String TAG_DOCKER_IMAGE_TASK_NAME = "tagDockerImage";
 
+	public static final String UPGRADE_JAKARTA_TASK_NAME = "upgradeJakarta";
+
 	public static final String UPGRADE_SOURCE_CODE_TASK_NAME =
 		"upgradeSourceCode";
-
-	public static final String UPGRADE_JAKARTA_TASK_NAME = "upgradeJakarta";
 
 	public static final String VERIFY_BUNDLE_TASK_NAME = "verifyBundle";
 
@@ -1508,20 +1508,6 @@ public class RootProjectConfigurator implements Plugin<Project> {
 		return dockerStopContainer;
 	}
 
-	private FormatSourceTask _addTaskUpgradeSourceCode(Project project) {
-		FormatSourceTask formatSourceTask = GradleUtil.addTask(
-			project, UPGRADE_SOURCE_CODE_TASK_NAME, FormatSourceTask.class);
-
-		formatSourceTask.onlyIf(_skipIfExecutingParentTaskSpec);
-		formatSourceTask.setCheckCategoryNames("Upgrade");
-		formatSourceTask.setDescription(
-			"Runs source code upgrade for breaking changes in the new " +
-				"Liferay version.");
-		formatSourceTask.setGroup("build");
-
-		return formatSourceTask;
-	}
-
 	private FormatSourceTask _addTaskUpgradeJakarta(Project project) {
 		FormatSourceTask formatSourceTask = GradleUtil.addTask(
 			project, UPGRADE_JAKARTA_TASK_NAME, FormatSourceTask.class);
@@ -1532,6 +1518,20 @@ public class RootProjectConfigurator implements Plugin<Project> {
 			"Runs the Jakarta source code upgrade.");
 		formatSourceTask.setGroup("build");
 		formatSourceTask.setJavaParserEnabled(false);
+
+		return formatSourceTask;
+	}
+
+	private FormatSourceTask _addTaskUpgradeSourceCode(Project project) {
+		FormatSourceTask formatSourceTask = GradleUtil.addTask(
+			project, UPGRADE_SOURCE_CODE_TASK_NAME, FormatSourceTask.class);
+
+		formatSourceTask.onlyIf(_skipIfExecutingParentTaskSpec);
+		formatSourceTask.setCheckCategoryNames("Upgrade");
+		formatSourceTask.setDescription(
+			"Runs source code upgrade for breaking changes in the new " +
+				"Liferay version.");
+		formatSourceTask.setGroup("build");
 
 		return formatSourceTask;
 	}
