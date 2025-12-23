@@ -286,12 +286,12 @@ public class DigitalSalesRoomTemplateResourceImpl
 			throw new UnsupportedOperationException();
 		}
 
-		ObjectDefinition objectDefinition = _getObjectDefinition();
-
 		Group group = _addGroup(
 			digitalSalesRoomTemplate.getDescription(),
 			"com.liferay.digital.sales.room.site.initializer",
 			digitalSalesRoomTemplate.getName());
+
+		ObjectDefinition objectDefinition = _getObjectDefinition();
 
 		group.setClassName(objectDefinition.getClassName());
 
