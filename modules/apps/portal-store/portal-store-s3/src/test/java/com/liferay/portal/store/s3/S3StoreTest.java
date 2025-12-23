@@ -182,8 +182,7 @@ public class S3StoreTest {
 	}
 
 	private void _testProxy(
-			boolean expectedProxy, String proxyUserName,
-			String proxyPassword)
+			boolean expectedProxy, String proxyUserName, String proxyPassword)
 		throws Exception {
 
 		AtomicBoolean proxy = new AtomicBoolean(false);
