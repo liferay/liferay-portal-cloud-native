@@ -20,7 +20,7 @@
 			"done": false,
 			"externalReferenceCode": "STEP_1",
 			"stepNumber": 1,
-			"timeToComplete": "1 min",
+			"timeToComplete": "1 Minute",
 			"title": "Introduction"
 		},
 		{
@@ -32,7 +32,7 @@
 			"done": false,
 			"externalReferenceCode": "STEP_2",
 			"stepNumber": 2,
-			"timeToComplete": "3 min",
+			"timeToComplete": "3 Minutes",
 			"title": "Activating Users"
 		},
 		{
@@ -44,7 +44,7 @@
 			"done": false,
 			"externalReferenceCode": "STEP_3",
 			"stepNumber": 3,
-			"timeToComplete": "4 min",
+			"timeToComplete": "4 Minutes",
 			"title": "You as a Customer"
 		},
 		{
@@ -56,7 +56,7 @@
 			"done": false,
 			"externalReferenceCode": "STEP_4",
 			"stepNumber": 4,
-			"timeToComplete": "5 min",
+			"timeToComplete": "5 Minutes",
 			"title": "You as a Customer Support Representative"
 		},
 		{
@@ -68,7 +68,7 @@
 			"done": false,
 			"externalReferenceCode": "STEP_5",
 			"stepNumber": 5,
-			"timeToComplete": "30 min",
+			"timeToComplete": "30 Minutes",
 			"title": "You as a Clarity Admin, Part I: Understanding Objects"
 		},
 		{
@@ -80,7 +80,7 @@
 			"done": false,
 			"externalReferenceCode": "STEP_6",
 			"stepNumber": 6,
-			"timeToComplete": "25 min",
+			"timeToComplete": "25 Minutes",
 			"title": "You as a Clarity Admin, Part II: Building Pages With No-Code"
 		},
 		{
@@ -92,7 +92,7 @@
 			"done": false,
 			"externalReferenceCode": "STEP_7",
 			"stepNumber": 7,
-			"timeToComplete": "15 min",
+			"timeToComplete": "15 Minutes",
 			"title": "You as a Clarity Admin, Part III: Client Extensions"
 		},
 		{
@@ -104,7 +104,7 @@
 			"done": false,
 			"externalReferenceCode": "STEP_8",
 			"stepNumber": 8,
-			"timeToComplete": "10 min",
+			"timeToComplete": "10 Minutes",
 			"title": "You as a Clarity Admin, Part IV: Additional information"
 		}
 	]
