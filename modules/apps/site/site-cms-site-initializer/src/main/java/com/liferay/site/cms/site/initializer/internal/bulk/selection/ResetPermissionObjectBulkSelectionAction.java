@@ -76,11 +76,11 @@ public class ResetPermissionObjectBulkSelectionAction
 
 			values = objectEntry.getValues();
 
-			long companyId = objectEntry.getCompanyId();
+			long objectDefinitionId = _getObjectDefinitionId(
+				objectEntry.getCompanyId());
 
 			bulkSelection.forEach(
 				object -> {
-					long objectDefinitionId = _getObjectDefinitionId(companyId);
 					String status = "completed";
 
 					try {
