@@ -6889,11 +6889,11 @@ public class ObjectEntryResourceTest {
 		throws Exception {
 
 		TaxonomyCategory taxonomyCategory1 =
-			_addTaxonomyVocabularyTaxonomyCategory();
+			_postTaxonomyVocabularyTaxonomyCategory();
 		TaxonomyCategory taxonomyCategory2 =
-			_addTaxonomyVocabularyTaxonomyCategory();
+			_postTaxonomyVocabularyTaxonomyCategory();
 		TaxonomyCategory taxonomyCategory3 =
-			_addTaxonomyVocabularyTaxonomyCategory();
+			_postTaxonomyVocabularyTaxonomyCategory();
 
 		_postObjectEntryWithTaxonomyCategories();
 		_postObjectEntryWithTaxonomyCategories(taxonomyCategory1);
@@ -8304,7 +8304,7 @@ public class ObjectEntryResourceTest {
 				new ServiceContext());
 
 		TaxonomyCategory taxonomyCategory1 =
-			_addTaxonomyVocabularyTaxonomyCategory(
+			_postTaxonomyVocabularyTaxonomyCategory(
 				group1.getGroupId(), assetVocabulary1.getVocabularyId());
 
 		Group group2 = _groupLocalService.getGroup(
@@ -8318,17 +8318,17 @@ public class ObjectEntryResourceTest {
 				new ServiceContext());
 
 		TaxonomyCategory taxonomyCategory2 =
-			_addTaxonomyVocabularyTaxonomyCategory(
+			_postTaxonomyVocabularyTaxonomyCategory(
 				group2.getGroupId(), assetVocabulary2.getVocabularyId());
 
 		Group group3 = _groupLocalService.fetchGroup(_testGroupId);
 
 		TaxonomyCategory taxonomyCategory3 =
-			_addTaxonomyVocabularyTaxonomyCategory(
+			_postTaxonomyVocabularyTaxonomyCategory(
 				group3.getGroupId(), _assetVocabulary.getVocabularyId());
 
 		TaxonomyCategory taxonomyCategory4 =
-			_addTaxonomyCategoryTaxonomyCategory(
+			 _postTaxonomyCategoryTaxonomyCategory(
 				group3.getGroupId(), taxonomyCategory3.getId(),
 				taxonomyCategory3.getTaxonomyVocabularyId());
 
@@ -8360,9 +8360,9 @@ public class ObjectEntryResourceTest {
 		throws Exception {
 
 		TaxonomyCategory taxonomyCategory1 =
-			_addTaxonomyVocabularyTaxonomyCategory();
+			_postTaxonomyVocabularyTaxonomyCategory();
 		TaxonomyCategory taxonomyCategory2 =
-			_addTaxonomyVocabularyTaxonomyCategory();
+			_postTaxonomyVocabularyTaxonomyCategory();
 
 		JSONObject jsonObject = HTTPTestUtil.invokeToJSONObject(
 			JSONUtil.put(
@@ -8863,9 +8863,9 @@ public class ObjectEntryResourceTest {
 	@Test
 	public void testPatchObjectEntryWithTaxonomyCategories() throws Exception {
 		TaxonomyCategory taxonomyCategory1 =
-			_addTaxonomyVocabularyTaxonomyCategory();
+			_postTaxonomyVocabularyTaxonomyCategory();
 		TaxonomyCategory taxonomyCategory2 =
-			_addTaxonomyVocabularyTaxonomyCategory();
+			_postTaxonomyVocabularyTaxonomyCategory();
 
 		JSONObject jsonObject = HTTPTestUtil.invokeToJSONObject(
 			JSONUtil.put(
@@ -8878,7 +8878,7 @@ public class ObjectEntryResourceTest {
 			_objectDefinition1.getRESTContextPath(), Http.Method.POST);
 
 		TaxonomyCategory taxonomyCategory3 =
-			_addTaxonomyVocabularyTaxonomyCategory();
+			_postTaxonomyVocabularyTaxonomyCategory();
 
 		jsonObject = HTTPTestUtil.invokeToJSONObject(
 			JSONUtil.put(
@@ -10720,7 +10720,7 @@ public class ObjectEntryResourceTest {
 
 		try {
 			TaxonomyCategory taxonomyCategory =
-				_addTaxonomyVocabularyTaxonomyCategory();
+				_postTaxonomyVocabularyTaxonomyCategory();
 
 			JSONObject jsonObject = HTTPTestUtil.invokeToJSONObject(
 				JSONUtil.put(
@@ -10803,11 +10803,11 @@ public class ObjectEntryResourceTest {
 			JSONCompareMode.STRICT);
 
 		TaxonomyCategory taxonomyCategory1 =
-			_addTaxonomyVocabularyTaxonomyCategory(
+			_postTaxonomyVocabularyTaxonomyCategory(
 				assetVocabulary.getGroupId(),
 				assetVocabulary.getVocabularyId());
 		TaxonomyCategory taxonomyCategory2 =
-			_addTaxonomyVocabularyTaxonomyCategory(
+			_postTaxonomyVocabularyTaxonomyCategory(
 				assetVocabulary.getGroupId(),
 				assetVocabulary.getVocabularyId());
 
@@ -15348,7 +15348,7 @@ public class ObjectEntryResourceTest {
 			actionId);
 	}
 
-	private TaxonomyCategory _addTaxonomyCategoryTaxonomyCategory(
+	private TaxonomyCategory  _postTaxonomyCategoryTaxonomyCategory(
 			long groupId, String taxonomyCategoryId, long taxonomyVocabularyId)
 		throws Exception {
 
@@ -15357,14 +15357,14 @@ public class ObjectEntryResourceTest {
 			_randomTaxonomyCategory(groupId, taxonomyVocabularyId));
 	}
 
-	private TaxonomyCategory _addTaxonomyVocabularyTaxonomyCategory()
+	private TaxonomyCategory _postTaxonomyVocabularyTaxonomyCategory()
 		throws Exception {
 
-		return _addTaxonomyVocabularyTaxonomyCategory(
+		return _postTaxonomyVocabularyTaxonomyCategory(
 			_testGroupId, _assetVocabulary.getVocabularyId());
 	}
 
-	private TaxonomyCategory _addTaxonomyVocabularyTaxonomyCategory(
+	private TaxonomyCategory _postTaxonomyVocabularyTaxonomyCategory(
 			long groupId, long taxonomyVocabularyId)
 		throws Exception {
 
