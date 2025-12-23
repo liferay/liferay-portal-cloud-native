@@ -1,8 +1,8 @@
-task buildIBMS3StoreUnitTest(type: Copy)
+task buildIBMS3StoreTest(type: Copy)
 
-buildIBMS3StoreUnitTest {
+buildIBMS3StoreTest {
 	doFirst {
-		delete "src/test/java/com/liferay/portal/store/s3/IBMS3StoreUnitTest.java"
+		delete "src/test/java/com/liferay/portal/store/s3/IBMS3StoreTest.java"
 
 	}
 
@@ -31,7 +31,7 @@ buildIBMS3StoreUnitTest {
 	filter {
 		String line ->
 
-		line.replace "public class S3StoreUnitTest", "@Generated(\"\")\npublic class IBMS3StoreUnitTest"
+		line.replace "public class S3StoreTest", "@Generated(\"\")\npublic class IBMS3StoreTest"
 	}
 
 	filter {
@@ -40,20 +40,20 @@ buildIBMS3StoreUnitTest {
 		line.replace "s3Store", "ibmS3Store"
 	}
 
-	from new File("src/test/java/com/liferay/portal/store/s3/S3StoreUnitTest.java")
+	from new File("src/test/java/com/liferay/portal/store/s3/S3StoreTest.java")
 	into "src/test/java/com/liferay/portal/store/s3"
 	rename {
-		"IBMS3StoreUnitTest.java"
+		"IBMS3StoreTest.java"
 
 	}
 }
 
 clean {
-	delete "src/test/java/com/liferay/portal/store/s3/IBMS3StoreUnitTest.java"
+	delete "src/test/java/com/liferay/portal/store/s3/IBMS3StoreTest.java"
 }
 
 compileJava {
-	dependsOn buildIBMS3StoreUnitTest
+	dependsOn buildIBMS3StoreTest
 }
 
 dependencies {

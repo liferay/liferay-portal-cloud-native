@@ -15,6 +15,8 @@ import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
 import io.netty.handler.codec.http.HttpRequest;
 
+import jakarta.annotation.Generated;
+
 import java.net.InetSocketAddress;
 
 import java.util.Collections;
@@ -41,7 +43,8 @@ import org.mockito.Mockito;
 /**
  * @author Kevin Lee
  */
-public class S3StoreUnitTest {
+@Generated("")
+public class IBMS3StoreTest {
 
 	@ClassRule
 	@Rule
@@ -50,52 +53,52 @@ public class S3StoreUnitTest {
 
 	@Before
 	public void setUp() {
-		_s3StoreConfiguration = Mockito.mock(S3StoreConfiguration.class);
+		_ibmS3StoreConfiguration = Mockito.mock(S3StoreConfiguration.class);
 
 		Mockito.when(
-			_s3StoreConfiguration.accessKey()
+			_ibmS3StoreConfiguration.accessKey()
 		).thenReturn(
 			RandomTestUtil.randomString()
 		);
 
 		Mockito.when(
-			_s3StoreConfiguration.bucketName()
+			_ibmS3StoreConfiguration.bucketName()
 		).thenReturn(
 			RandomTestUtil.randomString()
 		);
 
 		Mockito.when(
-			_s3StoreConfiguration.connectionTimeout()
+			_ibmS3StoreConfiguration.connectionTimeout()
 		).thenReturn(
 			1000
 		);
 
 		Mockito.when(
-			_s3StoreConfiguration.httpClientMaxConnections()
+			_ibmS3StoreConfiguration.httpClientMaxConnections()
 		).thenReturn(
 			1
 		);
 
 		Mockito.when(
-			_s3StoreConfiguration.maxPoolSize()
+			_ibmS3StoreConfiguration.maxPoolSize()
 		).thenReturn(
 			1
 		);
 
 		Mockito.when(
-			_s3StoreConfiguration.s3Region()
+			_ibmS3StoreConfiguration.s3Region()
 		).thenReturn(
 			"us-east-1"
 		);
 
 		Mockito.when(
-			_s3StoreConfiguration.s3StorageClass()
+			_ibmS3StoreConfiguration.s3StorageClass()
 		).thenReturn(
 			"STANDARD"
 		);
 
 		Mockito.when(
-			_s3StoreConfiguration.secretKey()
+			_ibmS3StoreConfiguration.secretKey()
 		).thenReturn(
 			RandomTestUtil.randomString()
 		);
@@ -104,7 +107,7 @@ public class S3StoreUnitTest {
 			() -> ConfigurableUtil.createConfigurable(
 				Mockito.eq(S3StoreConfiguration.class), Mockito.anyMap())
 		).thenReturn(
-			_s3StoreConfiguration
+			_ibmS3StoreConfiguration
 		);
 	}
 
@@ -118,22 +121,16 @@ public class S3StoreUnitTest {
 		_mockProxy(null, null);
 
 		_testProxy(true, null, null);
-	}
 
-	@Test
-	public void testProxyAuthentication() throws Exception {
 		String proxyUserName = RandomTestUtil.randomString();
 		String proxyPassword = RandomTestUtil.randomString();
 
 		_mockProxy(proxyUserName, proxyPassword);
 
 		_testProxy(true, proxyUserName, proxyPassword);
-	}
 
-	@Test
-	public void testProxyAuthenticationFailed() throws Exception {
-		String proxyUserName = RandomTestUtil.randomString();
-		String proxyPassword = RandomTestUtil.randomString();
+		proxyUserName = RandomTestUtil.randomString();
+		proxyPassword = RandomTestUtil.randomString();
 
 		_mockProxy(proxyUserName, proxyPassword);
 
@@ -142,39 +139,39 @@ public class S3StoreUnitTest {
 
 	private void _mockProxy(String proxyUserName, String proxyPassword) {
 		Mockito.when(
-			_s3StoreConfiguration.proxyHost()
+			_ibmS3StoreConfiguration.proxyHost()
 		).thenReturn(
 			_INET_SOCKET_ADDRESS.getHostString()
 		);
 
 		Mockito.when(
-			_s3StoreConfiguration.proxyPort()
+			_ibmS3StoreConfiguration.proxyPort()
 		).thenReturn(
 			_INET_SOCKET_ADDRESS.getPort()
 		);
 
 		if (Validator.isNotNull(proxyUserName)) {
 			Mockito.when(
-				_s3StoreConfiguration.proxyAuthType()
+				_ibmS3StoreConfiguration.proxyAuthType()
 			).thenReturn(
 				"username-password"
 			);
 
 			Mockito.when(
-				_s3StoreConfiguration.proxyPassword()
+				_ibmS3StoreConfiguration.proxyPassword()
 			).thenReturn(
 				proxyPassword
 			);
 
 			Mockito.when(
-				_s3StoreConfiguration.proxyUsername()
+				_ibmS3StoreConfiguration.proxyUsername()
 			).thenReturn(
 				proxyUserName
 			);
 		}
 		else {
 			Mockito.when(
-				_s3StoreConfiguration.proxyAuthType()
+				_ibmS3StoreConfiguration.proxyAuthType()
 			).thenReturn(
 				"none"
 			);
@@ -232,12 +229,12 @@ public class S3StoreUnitTest {
 		HttpProxyServer httpProxyServer = httpProxyServerBootstrap.start();
 
 		try {
-			S3Store s3Store = new S3Store();
+			IBMS3Store ibmS3Store = new IBMS3Store();
 
-			s3Store.activate(Collections.emptyMap());
+			ibmS3Store.activate(Collections.emptyMap());
 
 			try {
-				s3Store.hasFile(
+				ibmS3Store.hasFile(
 					RandomTestUtil.randomLong(), RandomTestUtil.randomLong(),
 					RandomTestUtil.randomString(), Store.VERSION_DEFAULT);
 
@@ -254,7 +251,7 @@ public class S3StoreUnitTest {
 				Assert.assertEquals(expectedProxyHit, proxyHit.get());
 			}
 			finally {
-				s3Store.deactivate();
+				ibmS3Store.deactivate();
 			}
 		}
 		finally {
@@ -267,6 +264,6 @@ public class S3StoreUnitTest {
 
 	private final MockedStatic<ConfigurableUtil> _configurableUtilMockedStatic =
 		Mockito.mockStatic(ConfigurableUtil.class);
-	private S3StoreConfiguration _s3StoreConfiguration;
+	private S3StoreConfiguration _ibmS3StoreConfiguration;
 
 }
