@@ -35,14 +35,14 @@ List<Map<String, Object>> classTypesList = new ArrayList<>();
 
 			<%
 			for (long classNameId : editAssetListDisplayContext.getAvailableClassNameIds()) {
-				String itemTypeLabel = _getItemTypeLabel(ClassNameLocalServiceUtil.getClassName(classNameId), locale, company);
+				String label = _getLabel(ClassNameLocalServiceUtil.getClassName(classNameId), locale, company);
 
 				if (Arrays.binarySearch(classNameIds, classNameId) < 0) {
-					typesLeftList.add(new KeyValuePair(String.valueOf(classNameId), itemTypeLabel));
+					typesLeftList.add(new KeyValuePair(String.valueOf(classNameId), label));
 				}
 			%>
 
-				<aui:option label="<%= itemTypeLabel %>" selected="<%= (classNameIds.length == 1) && (classNameId == classNameIds[0]) %>" value="<%= classNameId %>" />
+				<aui:option label="<%= label %>" selected="<%= (classNameIds.length == 1) && (classNameId == classNameIds[0]) %>" value="<%= classNameId %>" />
 
 			<%
 			}
@@ -66,7 +66,7 @@ List<Map<String, Object>> classTypesList = new ArrayList<>();
 	List<KeyValuePair> typesRightList = new ArrayList<KeyValuePair>();
 
 	for (long classNameId : editAssetListDisplayContext.getClassNameIds()) {
-		typesRightList.add(new KeyValuePair(String.valueOf(classNameId), _getItemTypeLabel(ClassNameLocalServiceUtil.getClassName(classNameId), locale, company)));
+		typesRightList.add(new KeyValuePair(String.valueOf(classNameId), _getLabel(ClassNameLocalServiceUtil.getClassName(classNameId), locale, company)));
 	}
 	%>
 
@@ -323,15 +323,15 @@ List<Map<String, Object>> classTypesList = new ArrayList<>();
 />
 
 <%!
-private String _getItemTypeLabel(ClassName className, Locale locale, Company company) {
-	String itemTypeLabel = ResourceActionsUtil.getModelResource(locale, className.getValue());
+private String _getLabel(ClassName className, Locale locale, Company company) {
+	String label = ResourceActionsUtil.getModelResource(locale, className.getValue());
 
 	ObjectDefinition objectDefinition = ObjectDefinitionLocalServiceUtil.fetchObjectDefinitionByClassName(company.getCompanyId(), className.getValue());
 
 	if ((objectDefinition != null) && objectDefinition.isCMS()) {
-		itemTypeLabel = StringUtil.appendParentheticalSuffix(itemTypeLabel, "CMS");
+		label = StringUtil.appendParentheticalSuffix(label, "CMS");
 	}
 
-	return itemTypeLabel;
+	return label;
 }
 %>
