@@ -71,6 +71,10 @@ public class CTEntryResourceTest extends BaseCTEntryResourceTestCase {
 	@After
 	@Override
 	public void tearDown() throws Exception {
+
+		// @DeleteAfterTestRun will not work because super#tearDown deletes
+		// groups that must be deleted after the change tracking collections
+
 		for (CTCollection ctCollection : _ctCollections) {
 			_ctCollectionLocalService.deleteCTCollection(ctCollection);
 		}
