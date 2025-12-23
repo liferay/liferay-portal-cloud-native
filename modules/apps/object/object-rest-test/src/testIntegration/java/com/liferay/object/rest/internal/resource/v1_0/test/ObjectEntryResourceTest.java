@@ -15330,28 +15330,29 @@ public class ObjectEntryResourceTest {
 	}
 
 	private TaxonomyCategory _addTaxonomyCategory(
-			long groupId, long vocabularyId)
+			long groupId, long taxonomyVocabularyId)
 		throws Exception {
 
+		TaxonomyCategory taxonomyCategory = new TaxonomyCategory() {
+			{
+				dateCreated = RandomTestUtil.nextDate();
+				dateModified = RandomTestUtil.nextDate();
+				description = StringUtil.toLowerCase(
+					RandomTestUtil.randomString());
+				externalReferenceCode = StringUtil.toLowerCase(
+					RandomTestUtil.randomString());
+				id = StringUtil.toLowerCase(RandomTestUtil.randomString());
+				name = StringUtil.toLowerCase(RandomTestUtil.randomString());
+				numberOfTaxonomyCategories = RandomTestUtil.randomInt();
+				siteId = groupId;
+				taxonomyCategoryUsageCount = RandomTestUtil.randomInt();
+			}
+		};
+
+		taxonomyCategory.setTaxonomyVocabularyId(taxonomyVocabularyId);
+
 		return _taxonomyCategoryResource.postTaxonomyVocabularyTaxonomyCategory(
-			vocabularyId,
-			new TaxonomyCategory() {
-				{
-					dateCreated = RandomTestUtil.nextDate();
-					dateModified = RandomTestUtil.nextDate();
-					description = StringUtil.toLowerCase(
-						RandomTestUtil.randomString());
-					externalReferenceCode = StringUtil.toLowerCase(
-						RandomTestUtil.randomString());
-					id = StringUtil.toLowerCase(RandomTestUtil.randomString());
-					name = StringUtil.toLowerCase(
-						RandomTestUtil.randomString());
-					numberOfTaxonomyCategories = RandomTestUtil.randomInt();
-					siteId = groupId;
-					taxonomyCategoryUsageCount = RandomTestUtil.randomInt();
-					taxonomyVocabularyId = vocabularyId;
-				}
-			});
+			taxonomyVocabularyId, taxonomyCategory);
 	}
 
 	private FileEntry _addTempFileEntry(
