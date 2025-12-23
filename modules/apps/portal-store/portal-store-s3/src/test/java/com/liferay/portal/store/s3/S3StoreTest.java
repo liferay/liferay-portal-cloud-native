@@ -182,11 +182,11 @@ public class S3StoreTest {
 	}
 
 	private void _testProxy(
-			boolean expectedProxyHit, String proxyUserName,
+			boolean expectedProxy, String proxyUserName,
 			String proxyPassword)
 		throws Exception {
 
-		AtomicBoolean proxyHit = new AtomicBoolean(false);
+		AtomicBoolean proxy = new AtomicBoolean(false);
 
 		HttpProxyServerBootstrap httpProxyServerBootstrap =
 			DefaultHttpProxyServer.bootstrap();
@@ -197,7 +197,7 @@ public class S3StoreTest {
 
 				@Override
 				public HttpFilters filterRequest(HttpRequest httpRequest) {
-					proxyHit.set(true);
+					proxy.set(true);
 
 					return super.filterRequest(httpRequest);
 				}
@@ -251,7 +251,7 @@ public class S3StoreTest {
 					message.contains("Status Code: 403") ||
 					message.contains("Status Code: 407"));
 
-				Assert.assertEquals(expectedProxyHit, proxyHit.get());
+				Assert.assertEquals(expectedProxy, proxy.get());
 			}
 			finally {
 				s3Store.deactivate();
