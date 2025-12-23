@@ -27,11 +27,11 @@ import java.util.Map;
 public class UpdateSettingsClusterRequestExecutor {
 
 	public UpdateSettingsClusterRequestExecutor(
-		JSONFactory jsonFactory,
-		ElasticsearchClientResolver elasticsearchClientResolver) {
+		ElasticsearchClientResolver elasticsearchClientResolver,
+		JSONFactory jsonFactory) {
 
-		_jsonFactory = jsonFactory;
 		_elasticsearchClientResolver = elasticsearchClientResolver;
+		_jsonFactory = jsonFactory;
 	}
 
 	public UpdateSettingsClusterResponse execute(

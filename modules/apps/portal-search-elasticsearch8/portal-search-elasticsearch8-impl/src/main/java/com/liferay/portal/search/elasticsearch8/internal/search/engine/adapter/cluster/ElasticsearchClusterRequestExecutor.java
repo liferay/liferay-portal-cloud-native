@@ -79,7 +79,7 @@ public class ElasticsearchClusterRequestExecutor
 			_elasticsearchClientResolver);
 		_updateSettingsClusterRequestExecutor =
 			new UpdateSettingsClusterRequestExecutor(
-				_jsonFactory, _elasticsearchClientResolver);
+				_elasticsearchClientResolver, _jsonFactory);
 	}
 
 	@Reference
