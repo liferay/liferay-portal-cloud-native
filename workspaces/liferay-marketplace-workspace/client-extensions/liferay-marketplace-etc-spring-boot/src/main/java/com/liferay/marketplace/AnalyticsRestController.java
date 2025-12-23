@@ -169,7 +169,7 @@ public class AnalyticsRestController extends BaseRestController {
 	@GetMapping("project/{projectId}")
 	public String getProject(@PathVariable String projectId) throws Exception {
 		return get(
-			"Basic " + _getBasicAuthorization(),
+			_getAuthorization(),
 			UriComponentsBuilder.fromUriString(
 				_analyticsAuthUrl
 			).path(
@@ -206,7 +206,7 @@ public class AnalyticsRestController extends BaseRestController {
 		).baseUrl(
 			_analyticsAuthUrl
 		).defaultHeader(
-			HttpHeaders.AUTHORIZATION, "Basic " + _getBasicAuthorization()
+			HttpHeaders.AUTHORIZATION, _getAuthorization()
 		).build(
 		).post(
 		).uri(
@@ -280,13 +280,13 @@ public class AnalyticsRestController extends BaseRestController {
 		);
 	}
 
-	private String _getBasicAuthorization() {
+	private String _getAuthorization() {
 		Base64.Encoder encoder = Base64.getEncoder();
 
 		String authorization =
 			_analyticsAuthEmailAddress + ":" + _analyticsAuthPassword;
 
-		return encoder.encodeToString(authorization.getBytes());
+		return "Basic " +  encoder.encodeToString(authorization.getBytes());
 	}
 
 	private static final Log _log = LogFactory.getLog(
