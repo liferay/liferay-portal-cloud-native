@@ -9,6 +9,7 @@ import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.vulcan.fields.NestedFieldsContext;
 import com.liferay.portal.vulcan.internal.accept.language.AcceptLanguageImpl;
 import com.liferay.portal.vulcan.internal.fields.NestedFieldsSetterUtil;
 import com.liferay.portal.vulcan.internal.fields.servlet.NestedFieldsHttpServletRequestWrapper;
@@ -57,96 +58,8 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 		try {
 			NestedFieldsSetterUtil.setNestedFields(
 				writerInterceptorContext.getEntity(),
-				(fieldName, nestedFieldsContext, resource) -> {
-					Message message = nestedFieldsContext.getMessage();
-
-					NestedFieldsHttpServletRequestWrapper httpServletRequest =
-						new NestedFieldsHttpServletRequestWrapper(
-							fieldName,
-							(HttpServletRequest)message.getContextualProperty(
-								"HTTP.REQUEST"));
-
-					message.put("HTTP.REQUEST", httpServletRequest);
-
-					message.setExchange(
-						new ExchangeWrapper(message.getExchange(), resource));
-
-					return new NestedFieldsSetterUtil.
-						NestedFieldsSetterSafeCloseable() {
-
-						@Override
-						public void close() {
-							NestedFieldsHttpServletRequestWrapper
-								nestedFieldsHttpServletRequestWrapper =
-									(NestedFieldsHttpServletRequestWrapper)
-										message.getContextualProperty(
-											"HTTP.REQUEST");
-
-							message.put(
-								"HTTP.REQUEST",
-								nestedFieldsHttpServletRequestWrapper.
-									getRequest());
-
-							Exchange exchange = message.getExchange();
-
-							if (exchange instanceof ExchangeWrapper) {
-								ExchangeWrapper exchangeWrapper =
-									(ExchangeWrapper)exchange;
-
-								message.setExchange(
-									exchangeWrapper.getExchange());
-							}
-						}
-
-						@Override
-						public ContextDataInjector getContextDataInjector()
-							throws Exception {
-
-							return _contextDataInjectorBuilderFactory.builder(
-							).acceptLanguage(
-								new AcceptLanguageImpl(
-									httpServletRequest, _language, _portal)
-							).company(
-								_portal.getCompany(httpServletRequest)
-							).fallbackContextValueFunction(
-								contextClass -> {
-									if (contextClass.equals(UriInfo.class)) {
-										return new UriInfoImpl(message);
-									}
-
-									ProviderFactory providerFactory =
-										ProviderFactory.getInstance(message);
-
-									ContextProvider<?> contextProvider =
-										providerFactory.createContextProvider(
-											contextClass, message);
-
-									if (contextProvider != null) {
-										return contextProvider.createContext(
-											message);
-									}
-
-									return null;
-								}
-							).httpServletRequest(
-								httpServletRequest
-							).httpServletResponse(
-								(HttpServletResponse)
-									message.getContextualProperty(
-										"HTTP.RESPONSE")
-							).scopeChecker(
-								_scopeChecker
-							).uriInfo(
-								UriInfoUtil.getVulcanUriInfo(
-									httpServletRequest,
-									new UriInfoImpl(message))
-							).user(
-								_portal.getUser(httpServletRequest)
-							).build();
-						}
-
-					};
-				});
+				(fieldName, nestedFieldsContext, resource) -> _setNestedFields(
+					fieldName, nestedFieldsContext, resource));
 		}
 		catch (Exception exception) {
 			_log.error(exception);
@@ -155,6 +68,94 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 		}
 
 		writerInterceptorContext.proceed();
+	}
+
+	private NestedFieldsSetterUtil.NestedFieldsSetterSafeCloseable
+			_setNestedFields(
+				String fieldName, NestedFieldsContext nestedFieldsContext,
+				Object resource)
+		throws Exception {
+
+		Message message = nestedFieldsContext.getMessage();
+
+		NestedFieldsHttpServletRequestWrapper httpServletRequest =
+			new NestedFieldsHttpServletRequestWrapper(
+				fieldName,
+				(HttpServletRequest)message.getContextualProperty(
+					"HTTP.REQUEST"));
+
+		message.put("HTTP.REQUEST", httpServletRequest);
+
+		message.setExchange(
+			new ExchangeWrapper(message.getExchange(), resource));
+
+		return new NestedFieldsSetterUtil.NestedFieldsSetterSafeCloseable() {
+
+			@Override
+			public void close() {
+				NestedFieldsHttpServletRequestWrapper
+					nestedFieldsHttpServletRequestWrapper =
+						(NestedFieldsHttpServletRequestWrapper)
+							message.getContextualProperty("HTTP.REQUEST");
+
+				message.put(
+					"HTTP.REQUEST",
+					nestedFieldsHttpServletRequestWrapper.getRequest());
+
+				Exchange exchange = message.getExchange();
+
+				if (exchange instanceof ExchangeWrapper) {
+					ExchangeWrapper exchangeWrapper = (ExchangeWrapper)exchange;
+
+					message.setExchange(exchangeWrapper.getExchange());
+				}
+			}
+
+			@Override
+			public ContextDataInjector getContextDataInjector()
+				throws Exception {
+
+				return _contextDataInjectorBuilderFactory.builder(
+				).acceptLanguage(
+					new AcceptLanguageImpl(
+						httpServletRequest, _language, _portal)
+				).company(
+					_portal.getCompany(httpServletRequest)
+				).fallbackContextValueFunction(
+					contextClass -> {
+						if (contextClass.equals(UriInfo.class)) {
+							return new UriInfoImpl(message);
+						}
+
+						ProviderFactory providerFactory =
+							ProviderFactory.getInstance(message);
+
+						ContextProvider<?> contextProvider =
+							providerFactory.createContextProvider(
+								contextClass, message);
+
+						if (contextProvider != null) {
+							return contextProvider.createContext(message);
+						}
+
+						return null;
+					}
+				).httpServletRequest(
+					httpServletRequest
+				).httpServletResponse(
+					(HttpServletResponse)message.getContextualProperty(
+						"HTTP.RESPONSE")
+				).scopeChecker(
+					_scopeChecker
+				).uriInfo(
+					UriInfoUtil.getVulcanUriInfo(
+						httpServletRequest, new UriInfoImpl(message))
+				).user(
+					_portal.getUser(httpServletRequest)
+				).build();
+			}
+
+		};
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
