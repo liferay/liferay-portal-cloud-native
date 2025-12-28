@@ -48,19 +48,20 @@ public class ScopeUtilTest {
 		Long scopeGroupId = RandomTestUtil.randomLong();
 
 		Assert.assertEquals(
+			Long.valueOf(group.getGroupId()),
+			ScopeUtil.getItemGroupId(
+				_COMPANY_ID, group.getExternalReferenceCode(), scopeGroupId));
+		Assert.assertEquals(
 			scopeGroupId,
-			ScopeUtil.getItemGroupId(_COMPANY_ID, null, scopeGroupId));
+			ScopeUtil.getItemGroupId(_COMPANY_ID, "null", scopeGroupId));
 		Assert.assertEquals(
 			scopeGroupId,
 			ScopeUtil.getItemGroupId(
 				_COMPANY_ID, StringPool.BLANK, scopeGroupId));
 		Assert.assertEquals(
 			scopeGroupId,
-			ScopeUtil.getItemGroupId(_COMPANY_ID, "null", scopeGroupId));
-		Assert.assertEquals(
-			Long.valueOf(group.getGroupId()),
-			ScopeUtil.getItemGroupId(
-				_COMPANY_ID, group.getExternalReferenceCode(), scopeGroupId));
+			ScopeUtil.getItemGroupId(_COMPANY_ID, null, scopeGroupId));
+
 		Assert.assertNull(
 			ScopeUtil.getItemGroupId(
 				_COMPANY_ID, RandomTestUtil.randomString(), scopeGroupId));
@@ -79,22 +80,23 @@ public class ScopeUtilTest {
 
 		String scopeExternalReferenceCode = RandomTestUtil.randomString();
 
-		Assert.assertNull(
+		Assert.assertEquals(
+			scopeExternalReferenceCode,
 			ScopeUtil.getItemScopeExternalReferenceCode(
-				null, group.getGroupId()));
-		Assert.assertNull(
-			ScopeUtil.getItemScopeExternalReferenceCode(
-				StringPool.BLANK, group.getGroupId()));
+				scopeExternalReferenceCode, group.getGroupId()));
+
 		Assert.assertNull(
 			ScopeUtil.getItemScopeExternalReferenceCode(
 				"null", group.getGroupId()));
 		Assert.assertNull(
 			ScopeUtil.getItemScopeExternalReferenceCode(
-				group.getExternalReferenceCode(), group.getGroupId()));
-		Assert.assertEquals(
-			scopeExternalReferenceCode,
+				StringPool.BLANK, group.getGroupId()));
+		Assert.assertNull(
 			ScopeUtil.getItemScopeExternalReferenceCode(
-				scopeExternalReferenceCode, group.getGroupId()));
+				group.getExternalReferenceCode(), group.getGroupId()));
+		Assert.assertNull(
+			ScopeUtil.getItemScopeExternalReferenceCode(
+				null, group.getGroupId()));
 	}
 
 	private Group _getGroup(String externalReferenceCode, long groupId) {
