@@ -197,9 +197,7 @@ resource "kubernetes_storage_class" "gp3_storage_class" {
 	allowed_topologies {
 		match_label_expressions {
 			key="eks.amazonaws.com/compute-type"
-			values=[
-				"auto"
-			]
+			values=["auto"]
 		}
 	}
 	metadata {
