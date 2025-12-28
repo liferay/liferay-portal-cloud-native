@@ -29,9 +29,7 @@ module "eks" {
 	cloudwatch_log_group_retention_in_days=90
 	compute_config={
 		enabled=true
-		node_pools=[
-			"general-purpose"
-		]
+		node_pools=["general-purpose"]
 	}
 	create_cloudwatch_log_group=true
 	create_kms_key=false
