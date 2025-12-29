@@ -16940,7 +16940,6 @@ public class ObjectEntryResourceTest {
 		_assertCommentJSONObject(
 			jsonArray.getJSONObject(1), _ERC_VALUE_1, jsonObject.getInt("id"),
 			text1);
-
 		_assertCommentJSONObject(
 			jsonArray.getJSONObject(2), _ERC_VALUE_2, jsonObject.getInt("id"),
 			text2);
