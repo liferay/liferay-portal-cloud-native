@@ -663,7 +663,6 @@ public class LayoutSetPrototypePropagationTest
 		Assert.assertEquals(
 			siteLayoutFromMasterLayoutTheme.getThemeId(),
 			siteTemplateLayoutFromMasterLayoutTheme.getThemeId());
-
 		Assert.assertEquals(
 			siteLayoutFromMasterLayoutTheme.getThemeId(), _THEME_ID);
 	}
