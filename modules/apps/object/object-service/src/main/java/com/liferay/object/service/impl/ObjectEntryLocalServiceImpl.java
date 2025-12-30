@@ -1125,6 +1125,8 @@ public class ObjectEntryLocalServiceImpl
 			DynamicObjectDefinitionTableUtil.getDynamicObjectDefinitionTable(
 				true, objectDefinition, _objectFieldLocalService);
 
+		ObjectFieldBag objectFieldBag = objectDefinition.getObjectFieldBag();
+
 		SystemObjectDefinitionManager systemObjectDefinitionManager = null;
 
 		if (objectDefinition.isUnmodifiableSystemObject()) {
@@ -1139,8 +1141,6 @@ public class ObjectEntryLocalServiceImpl
 			_getSelectExpressions(
 				extensionDynamicObjectDefinitionTable, primaryKey, null,
 				systemObjectDefinitionManager));
-
-		ObjectFieldBag objectFieldBag = objectDefinition.getObjectFieldBag();
 
 		List<Object[]> rows = _list(
 			_getExtensionDynamicObjectDefinitionTableSelectDSLQuery(
@@ -1594,11 +1594,9 @@ public class ObjectEntryLocalServiceImpl
 		).limit(
 			start, end
 		);
-
 		DynamicObjectDefinitionTable dynamicObjectDefinitionTable =
 			DynamicObjectDefinitionTableUtil.getDynamicObjectDefinitionTable(
 				false, objectDefinition, _objectFieldLocalService);
-
 		ObjectFieldBag objectFieldBag = objectDefinition.getObjectFieldBag();
 
 		return TransformUtil.transform(
@@ -1800,14 +1798,13 @@ public class ObjectEntryLocalServiceImpl
 				);
 		}
 
+		ObjectFieldBag objectFieldBag = objectDefinition.getObjectFieldBag();
 		Expression<?>[] selectExpressions = ArrayUtil.append(
 			_getSelectExpressions(dynamicObjectDefinitionLocalizationTable),
 			_getSelectExpressions(
 				dynamicObjectDefinitionTable, objectEntry.getObjectEntryId(),
 				null, null),
 			extensionSelectExpressions);
-
-		ObjectFieldBag objectFieldBag = objectDefinition.getObjectFieldBag();
 
 		List<Object[]> rows = _list(
 			DSLQueryFactoryUtil.select(

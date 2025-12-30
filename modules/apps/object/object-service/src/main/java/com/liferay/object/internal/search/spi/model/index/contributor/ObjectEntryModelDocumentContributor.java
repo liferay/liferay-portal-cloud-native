@@ -328,8 +328,6 @@ public class ObjectEntryModelDocumentContributor
 		document.addKeyword(
 			"objectDefinitionName", objectDefinition.getShortName());
 
-		Map<String, Serializable> values = null;
-
 		ObjectFieldBag objectFieldBag = objectDefinition.getObjectFieldBag();
 
 		List<ObjectField> objectFields = null;
@@ -344,6 +342,7 @@ public class ObjectEntryModelDocumentContributor
 		}
 
 		ObjectContentHelper objectContentHelper = null;
+		Map<String, Serializable> values = null;
 
 		if (!objectFields.isEmpty()) {
 			values = objectEntry.getIndexedValues();
