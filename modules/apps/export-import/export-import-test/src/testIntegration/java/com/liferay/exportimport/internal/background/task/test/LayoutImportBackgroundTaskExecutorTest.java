@@ -89,71 +89,68 @@ public class LayoutImportBackgroundTaskExecutorTest {
 		FeatureFlagTestUtil.invokeFeatureFlagListeners(
 			TestPropsValues.getCompanyId(), true, "LPD-35914");
 
-		try {
-			ServiceContextThreadLocal.pushServiceContext(
-				ServiceContextTestUtil.getServiceContext());
+		ServiceContextThreadLocal.pushServiceContext(
+			ServiceContextTestUtil.getServiceContext());
 
-			UserTestUtil.setUser(TestPropsValues.getUser());
+		UserTestUtil.setUser(TestPropsValues.getUser());
 
-			Group group = _stagingGroupHelper.fetchCompanyGroup(
-				TestPropsValues.getCompanyId());
+		Group group = _stagingGroupHelper.fetchCompanyGroup(
+			TestPropsValues.getCompanyId());
 
-			ObjectDefinition objectDefinition = _addObjectDefinition(
-				ObjectDefinitionConstants.SCOPE_COMPANY);
+		ObjectDefinition objectDefinition = _addObjectDefinition(
+			ObjectDefinitionConstants.SCOPE_COMPANY);
 
-			ObjectEntry[] objectEntries = _addObjectEntries(
-				3, 0L, objectDefinition);
+		ObjectEntry[] objectEntries = _addObjectEntries(
+			3, 0L, objectDefinition);
 
-			File larFile = _exportLayouts(
-				true, group.getGroupId(), false, new long[0], objectDefinition);
+		File larFile = _exportLayouts(
+			true, group.getGroupId(), false, new long[0], objectDefinition);
 
-			_deleteObjectEntries(objectEntries);
+		_deleteObjectEntries(objectEntries);
 
-			ObjectEntry objectEntry = objectEntries[1];
+		ObjectEntry objectEntry = objectEntries[1];
 
-			Map<String, Serializable> values = objectEntry.getValues();
+		Map<String, Serializable> values = objectEntry.getValues();
 
-			_addObjectEntry(
-				GroupConstants.DEFAULT_PARENT_GROUP_ID, objectDefinition,
-				values.get(_OBJECT_FIELD_NAME_TEXT));
+		_addObjectEntry(
+			GroupConstants.DEFAULT_PARENT_GROUP_ID, objectDefinition,
+			values.get(_OBJECT_FIELD_NAME_TEXT));
 
-			long backgroundTaskId =
-				ExportImportLocalServiceUtil.importLayoutsInBackground(
-					TestPropsValues.getUserId(),
-					ExportImportConfigurationLocalServiceUtil.
-						addExportImportConfiguration(
-							TestPropsValues.getUserId(), group.getGroupId(),
-							RandomTestUtil.randomString(),
-							RandomTestUtil.randomString(), 0,
-							ExportImportConfigurationSettingsMapFactoryUtil.
-								buildImportLayoutSettingsMap(
-									TestPropsValues.getUser(),
-									group.getGroupId(), false, new long[0],
-									_getExportImportParameterMap(
-										false, true,
-										Arrays.asList(objectDefinition))),
-							WorkflowConstants.STATUS_DRAFT,
-							ServiceContextTestUtil.getServiceContext()),
-					larFile);
+		long backgroundTaskId =
+			ExportImportLocalServiceUtil.importLayoutsInBackground(
+				TestPropsValues.getUserId(),
+				ExportImportConfigurationLocalServiceUtil.
+					addExportImportConfiguration(
+						TestPropsValues.getUserId(), group.getGroupId(),
+						RandomTestUtil.randomString(),
+						RandomTestUtil.randomString(), 0,
+						ExportImportConfigurationSettingsMapFactoryUtil.
+							buildImportLayoutSettingsMap(
+								TestPropsValues.getUser(), group.getGroupId(),
+								false, new long[0],
+								_getExportImportParameterMap(
+									false, true,
+									Arrays.asList(objectDefinition))),
+						WorkflowConstants.STATUS_DRAFT,
+						ServiceContextTestUtil.getServiceContext()),
+				larFile);
 
-			ExportImportTestUtil.retryAssert(
-				1, TimeUnit.SECONDS, 5, TimeUnit.SECONDS,
-				() -> {
-					BackgroundTask backgroundTask =
-						_backgroundTaskLocalService.getBackgroundTask(
-							backgroundTaskId);
+		ExportImportTestUtil.retryAssert(
+			1, TimeUnit.SECONDS, 5, TimeUnit.SECONDS,
+			() -> {
+				BackgroundTask backgroundTask =
+					_backgroundTaskLocalService.getBackgroundTask(
+						backgroundTaskId);
 
-					Assert.assertEquals(
-						BackgroundTaskConstants.STATUS_COMPLETED_WITH_ERRORS,
-						backgroundTask.getStatus());
-				});
+				Assert.assertEquals(
+					BackgroundTaskConstants.STATUS_COMPLETED_WITH_ERRORS,
+					backgroundTask.getStatus());
+			});
 
-			ServiceContextThreadLocal.popServiceContext();
-		}
-		finally {
-			FeatureFlagTestUtil.invokeFeatureFlagListeners(
-				TestPropsValues.getCompanyId(), false, "LPD-35914");
-		}
+		ServiceContextThreadLocal.popServiceContext();
+
+		FeatureFlagTestUtil.invokeFeatureFlagListeners(
+			TestPropsValues.getCompanyId(), false, "LPD-35914");
 	}
 
 	private DLFileEntry _addDLFileEntry(String content, long groupId)
