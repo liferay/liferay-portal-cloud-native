@@ -12,7 +12,7 @@ liferay-hubspot-etc-spring-boot-oahs:
 liferay-hubspot-etc-spring-boot-oaua:
     .serviceAddress: localhost:58081
     .serviceScheme: http
-    name: Liferay HubSpot Spring Boot OAuth Application User Agent
+    name: Liferay HubSpot Etc Spring Boot OAuth Application User Agent
     scopes:
         -   Liferay.Headless.Admin.User.everything
     type: oAuthApplicationUserAgent
