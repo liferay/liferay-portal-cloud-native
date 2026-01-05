@@ -65,7 +65,7 @@ public class HubSpotRestController extends BaseRestController {
 				return;
 			}
 
-			contactJSONObject = _hubSpotService.searchHubSpotResource(
+			contactJSONObject = _hubSpotService.search(
 				"contacts", "email", contactJSONObject.getString("email"));
 
 			if (contactJSONObject == null) {
@@ -129,8 +129,7 @@ public class HubSpotRestController extends BaseRestController {
 			).toUri());
 
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				StringBundler.concat("Updated ", path, " with: ", body));
+			_log.info(StringBundler.concat("Updated ", path, " with: ", body));
 		}
 	}
 

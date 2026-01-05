@@ -204,30 +204,29 @@ public class HubSpotService extends BaseService {
 	private JSONObject _getHubSpotPropertiesJSONObject(
 		JSONObject jsonObject, String propertyName) {
 
+		JSONObject propertiesJSONObject = new JSONObject();
+
 		Map<String, JSONObject> map = _toMap(
 			_getPropertyJSONArray(propertyName));
 
-		JSONObject propertiesJSONObject = new JSONObject();
-
 		for (String key : jsonObject.keySet()) {
-			Object value = jsonObject.get(key);
-
 			String normalizedKey = _normalizeKey(key);
 
 			if (!map.containsKey(normalizedKey)) {
 				continue;
 			}
 
-			JSONObject hubspotPropertyJSONObject = map.get(normalizedKey);
+			Object value = jsonObject.get(key);
 
 			Object propertyValue = value;
 
-			JSONArray optionsJSONArray =
-				hubspotPropertyJSONObject.optJSONArray("options");
+			JSONObject hubspotPropertyJSONObject = map.get(normalizedKey);
+
+			JSONArray optionsJSONArray = hubspotPropertyJSONObject.optJSONArray(
+				"options");
 
 			for (int i = 0; i < optionsJSONArray.length(); i++) {
-				JSONObject optionJSONObject =
-					optionsJSONArray.getJSONObject(i);
+				JSONObject optionJSONObject = optionsJSONArray.getJSONObject(i);
 
 				if (Objects.equals(
 						_normalizeKey(optionJSONObject.getString("value")),
