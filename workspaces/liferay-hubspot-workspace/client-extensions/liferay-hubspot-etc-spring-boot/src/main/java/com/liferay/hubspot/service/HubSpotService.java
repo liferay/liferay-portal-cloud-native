@@ -31,7 +31,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Component
 public class HubSpotService extends BaseService {
 
-	public JSONObject createCompany(JSONObject propertiesJSONObject) {
+	public JSONObject postCompany(JSONObject propertiesJSONObject) {
 		JSONObject companyJSONObject = searchHubSpotResource(
 			"companies", "name", propertiesJSONObject.getString("name"));
 
@@ -62,7 +62,7 @@ public class HubSpotService extends BaseService {
 		return null;
 	}
 
-	public JSONObject createContact(JSONObject propertiesJSONObject) {
+	public JSONObject postContact(JSONObject propertiesJSONObject) {
 		JSONObject contactJSONObject = searchHubSpotResource(
 			"contacts", "email", propertiesJSONObject.getString("email"));
 
@@ -93,7 +93,7 @@ public class HubSpotService extends BaseService {
 		return null;
 	}
 
-	public JSONObject createLead(
+	public JSONObject postLead(
 		String contactId, JSONObject propertiesJSONObject) {
 
 		JSONObject jsonObject = new JSONObject(

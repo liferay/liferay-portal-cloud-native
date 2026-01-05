@@ -33,7 +33,7 @@ public class HubSpotRestController extends BaseRestController {
 
 	@PostMapping("/company")
 	public void postCompany(@RequestBody String json) throws Exception {
-		JSONObject jsonObject = _hubSpotService.createCompany(
+		JSONObject jsonObject = _hubSpotService.postCompany(
 			_getObjectEntryValuesJSONObject(json));
 
 		_patchObjectEntry(jsonObject, "o/c/h1s4companies/" + _getClassPK(json));
@@ -41,7 +41,7 @@ public class HubSpotRestController extends BaseRestController {
 
 	@PostMapping("/contact")
 	public void postContact(@RequestBody String json) throws Exception {
-		JSONObject jsonObject = _hubSpotService.createContact(
+		JSONObject jsonObject = _hubSpotService.postContact(
 			_getObjectEntryValuesJSONObject(json));
 
 		_patchObjectEntry(jsonObject, "o/c/h1s4contacts/" + _getClassPK(json));
@@ -82,7 +82,7 @@ public class HubSpotRestController extends BaseRestController {
 			contactId = contactJSONObject.getString("id");
 		}
 
-		JSONObject leadJSONObject = _hubSpotService.createLead(
+		JSONObject leadJSONObject = _hubSpotService.postLead(
 			contactId, jsonObject);
 
 		_patchObjectEntry(leadJSONObject, "o/c/h1s4leads/" + _getClassPK(json));
