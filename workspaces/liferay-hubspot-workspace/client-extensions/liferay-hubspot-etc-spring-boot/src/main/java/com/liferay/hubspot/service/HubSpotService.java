@@ -214,31 +214,33 @@ public class HubSpotService extends BaseService {
 
 			String normalizedKey = _normalizeKey(key);
 
-			if (map.containsKey(normalizedKey)) {
-				JSONObject hubspotPropertyJSONObject = map.get(normalizedKey);
-
-				Object propertyValue = value;
-
-				JSONArray optionsJSONArray =
-					hubspotPropertyJSONObject.optJSONArray("options");
-
-				for (int i = 0; i < optionsJSONArray.length(); i++) {
-					JSONObject optionJSONObject =
-						optionsJSONArray.getJSONObject(i);
-
-					if (Objects.equals(
-							_normalizeKey(optionJSONObject.getString("value")),
-							_normalizeKey(String.valueOf(value)))) {
-
-						propertyValue = optionJSONObject.getString("value");
-
-						break;
-					}
-				}
-
-				propertiesJSONObject.put(
-					hubspotPropertyJSONObject.getString("name"), propertyValue);
+			if (!map.containsKey(normalizedKey)) {
+				continue;
 			}
+
+			JSONObject hubspotPropertyJSONObject = map.get(normalizedKey);
+
+			Object propertyValue = value;
+
+			JSONArray optionsJSONArray =
+				hubspotPropertyJSONObject.optJSONArray("options");
+
+			for (int i = 0; i < optionsJSONArray.length(); i++) {
+				JSONObject optionJSONObject =
+					optionsJSONArray.getJSONObject(i);
+
+				if (Objects.equals(
+						_normalizeKey(optionJSONObject.getString("value")),
+						_normalizeKey(String.valueOf(value)))) {
+
+					propertyValue = optionJSONObject.getString("value");
+
+					break;
+				}
+			}
+
+			propertiesJSONObject.put(
+				hubspotPropertyJSONObject.getString("name"), propertyValue);
 		}
 
 		return propertiesJSONObject;
