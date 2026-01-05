@@ -645,7 +645,7 @@ public class JUnitBatchTestClassGroup extends BatchTestClassGroup {
 					0, TestClassGroupFactory.newAxisTestClassGroup(this));
 			}
 			else {
-				List<List<TestClass>> testClassLists;
+				List<List<TestClass>> testClassLists = null;
 
 				GroupingStrategy groupingStrategy = getGroupingStrategy();
 

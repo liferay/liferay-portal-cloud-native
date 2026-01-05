@@ -124,7 +124,7 @@ public class BaseTestTask implements TestTask {
 
 	@Override
 	public long getWeight() {
-		long weight = 0L;
+		long weight = 0;
 
 		if (_groupingStrategy ==
 				TestClassGroup.GroupingStrategy.TEST_TASK_AVERAGE_DURATION) {
@@ -144,7 +144,7 @@ public class BaseTestTask implements TestTask {
 			weight = getLongestDuration();
 		}
 
-		if (weight <= 0L) {
+		if (weight <= 0) {
 			return Long.MAX_VALUE;
 		}
 
