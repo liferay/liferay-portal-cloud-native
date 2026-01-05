@@ -51,11 +51,12 @@ public class HubSpotRestController extends BaseRestController {
 
 		String contactId = null;
 
-		String value = jsonObject.optString(
+		String externalReferenceCode = jsonObject.optString(
 			"r_h1s4ContactToH1S4Leads_c_h1s4ContactERC");
 
-		if (value.startsWith(_PREFIX_HUBSPOT_ID)) {
-			contactId = StringUtil.replace(value, _PREFIX_HUBSPOT_ID, null);
+		if (externalReferenceCode.startsWith(_PREFIX_HUBSPOT_ID)) {
+			contactId = StringUtil.replace(
+				externalReferenceCode, _PREFIX_HUBSPOT_ID, null);
 		}
 		else {
 			JSONObject contactJSONObject = _getH1S4ContactJSONObject(
