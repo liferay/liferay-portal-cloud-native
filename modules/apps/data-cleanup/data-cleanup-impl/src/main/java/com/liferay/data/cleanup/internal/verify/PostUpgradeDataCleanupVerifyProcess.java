@@ -10,6 +10,7 @@ import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.ResourceActionLocalService;
 import com.liferay.portal.kernel.service.ServiceComponentLocalService;
+import com.liferay.portal.kernel.util.ClassUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.portal.tools.DBUpgrader;
@@ -50,8 +51,7 @@ public class PostUpgradeDataCleanupVerifyProcess extends VerifyProcess {
 				_getPostUpgradeDataCleanupProcesses()) {
 
 			try (LoggingTimer loggingTimer = new LoggingTimer(
-					postUpgradeDataCleanupProcess.getClass(
-					).getName())) {
+					ClassUtil.getClassName(postUpgradeDataCleanupProcess))) {
 
 				postUpgradeDataCleanupProcess.cleanUp();
 			}
