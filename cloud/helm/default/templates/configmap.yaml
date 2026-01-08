@@ -24,9 +24,9 @@ data:
                     https://github.com/prometheus/jmx_exporter/releases/download/${JMX_AGENT_VERSION}/jmx_prometheus_javaagent-${JMX_AGENT_VERSION}.jar
             fi
 
-            export CATALINA_OPTS="${CATALINA_OPTS} -javaagent:/opt/liferay/metrics/jmx_prometheus_javaagent.jar=${JMX_AGENT_PORT:+${JMX_AGENT_PORT}:}/opt/liferay/metrics/metrics_exporter.yaml"
-
             echo "${JMX_AGENT_YAML}" > /opt/liferay/metrics/metrics_exporter.yaml
+
+            export CATALINA_OPTS="${CATALINA_OPTS} -javaagent:/opt/liferay/metrics/jmx_prometheus_javaagent.jar=${JMX_AGENT_PORT:+${JMX_AGENT_PORT}:}/opt/liferay/metrics/metrics_exporter.yaml -Dprometheus.jmx.otel.propagators=none"
         fi
         {{- else }}
         echo "Prometheus is not enabled, skipping JMX agent installation."
