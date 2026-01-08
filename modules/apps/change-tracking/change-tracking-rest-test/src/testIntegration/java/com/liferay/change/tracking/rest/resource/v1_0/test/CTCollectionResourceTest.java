@@ -84,7 +84,6 @@ public class CTCollectionResourceTest extends BaseCTCollectionResourceTestCase {
 
 		_assertCTCollectionActions(
 			ctCollection, WorkflowConstants.STATUS_EXPIRED);
-
 		_assertCTCollectionActions(
 			ctCollection, WorkflowConstants.STATUS_INCOMPLETE);
 	}
