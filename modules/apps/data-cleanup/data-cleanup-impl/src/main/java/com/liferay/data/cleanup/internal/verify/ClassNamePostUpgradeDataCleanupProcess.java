@@ -67,6 +67,7 @@ public class ClassNamePostUpgradeDataCleanupProcess
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 		DBInspector dbInspector = new DBInspector(connection);
 		Set<String> models = new HashSet<>(ModelHintsUtil.getModels());
+
 		List<String> tableNames = new ArrayList<>();
 
 		for (String tableName : dbInspector.getTableNames(null)) {
