@@ -1138,8 +1138,8 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 
 		draftContentPageSpecification.setPageExperiences(
 			PageExperiencesTestUtil.getDefaultPageExperiences(
-				draftContentPageSpecificationExternalReferenceCode,
-				pageElements));
+				pageElements,
+				draftContentPageSpecificationExternalReferenceCode));
 
 		ContentPageSpecification publishedContentPageSpecification =
 			PageSpecificationsTestUtil.getContentPageSpecification(
@@ -1151,7 +1151,7 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 
 		publishedContentPageSpecification.setPageExperiences(
 			PageExperiencesTestUtil.getDefaultPageExperiences(
-				sitePage.getExternalReferenceCode(), pageElements));
+				pageElements, sitePage.getExternalReferenceCode()));
 
 		sitePage.setPageSpecifications(
 			() -> new PageSpecification[] {

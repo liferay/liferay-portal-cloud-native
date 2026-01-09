@@ -75,8 +75,8 @@ public class PageExperiencesTestUtil {
 	}
 
 	public static PageExperience[] getDefaultPageExperiences(
-		String pageSpecificationExternalReferenceCode,
-		PageElement[] pageElements) {
+		PageElement[] pageElements,
+		String pageSpecificationExternalReferenceCode) {
 
 		PageExperience pageExperience = new PageExperience();
 
