@@ -162,13 +162,11 @@ public class PageExperienceResourceTest
 			PageExperiencesTestUtil.getPageExperience(
 				_draftLayout.getExternalReferenceCode(), 1,
 				testGroup.getGroupId(), null));
-
 		_testPostSitePageSpecificationPageExperience(
 			PageExperiencesTestUtil.getPageExperience(
 				_draftLayout.getExternalReferenceCode(), 2,
 				testGroup.getGroupId(),
 				SegmentsTestUtil.addSegmentsEntry(testGroup.getGroupId())));
-
 		_testPostSitePageSpecificationPageExperience(
 			PageExperiencesTestUtil.getPageExperience(
 				_draftLayout.getExternalReferenceCode(), 3,

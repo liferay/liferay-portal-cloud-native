@@ -2217,11 +2217,10 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 			}
 		}
 
-		Arrays.sort(
-			pageExperiences,
-			Comparator.comparingInt(
-				PageExperience::getPriority
-			).reversed());
+		Comparator<PageExperience> comparator = Comparator.comparingInt(
+			PageExperience::getPriority);
+
+		Arrays.sort(pageExperiences, comparator.reversed());
 
 		_testPutSiteSitePageWithPageExperiences(
 			pageExperiences, putSitePage, sitePageResource);
