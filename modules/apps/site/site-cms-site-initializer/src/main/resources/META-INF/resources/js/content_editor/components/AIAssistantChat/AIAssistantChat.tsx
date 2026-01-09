@@ -282,7 +282,7 @@ const AIAssistantChat: React.FC = () => {
 							</div>
 
 							<span className="ai-assistant-chat__generating-loading-text font-weight-semi-bold m-2 tex">
-								{Liferay.Language.get('generating')}...
+								{Liferay.Language.get('generating')}
 							</span>
 						</div>
 					)}

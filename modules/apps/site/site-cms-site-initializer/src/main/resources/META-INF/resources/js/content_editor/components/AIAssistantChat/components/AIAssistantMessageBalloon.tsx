@@ -28,7 +28,7 @@ const AssistantMessageBalloon: React.FC<{error: boolean; message: string}> = ({
 
 			<span className="m-2">
 				{error
-					? Liferay.Language.get('generating-content-failed')
+					? Liferay.Language.get('unable-to-generate-content')
 					: message}
 			</span>
 		</div>
