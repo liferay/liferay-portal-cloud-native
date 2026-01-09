@@ -44,7 +44,7 @@ public class TicketsTicketAttachmentsRestController extends BaseRestController {
 		@AuthenticationPrincipal Jwt jwt,
 		@PathVariable("ticketId") String ticketId) {
 
-		return _getResponse(jwt, ticketId, true);
+		return _getResponseEntity(jwt, ticketId, true);
 	}
 
 	@GetMapping("/upload-access-check")
@@ -52,10 +52,10 @@ public class TicketsTicketAttachmentsRestController extends BaseRestController {
 		@AuthenticationPrincipal Jwt jwt,
 		@PathVariable("ticketId") String ticketId) {
 
-		return _getResponse(jwt, ticketId, false);
+		return _getResponseEntity(jwt, ticketId, false);
 	}
 
-	private ResponseEntity<String> _getResponse(
+	private ResponseEntity<String> _getResponseEntity(
 		Jwt jwt, String ticketId, boolean allowClosedTicket) {
 
 		try {
