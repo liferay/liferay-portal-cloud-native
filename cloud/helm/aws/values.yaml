@@ -48,7 +48,7 @@ liferay-default:
                                     tree /temp/{{ . }}
                                     {{- end }}
                                     {{- else }}
-                                    echo "Overlay not enabled."
+                                    echo "Overlay is not enabled."
                                     {{- end }}
                         image: {{ printf "%s:%s" .image.repository (.image.tag | toString) }}
                         imagePullPolicy: {{ .image.pullPolicy }}
