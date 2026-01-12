@@ -65,9 +65,10 @@ public class DLReferencesExportImportContentProcessorTest {
 
 		_sourceGroup = GroupTestUtil.addGroup();
 
+		GroupTestUtil.addLayoutSetVirtualHosts(_sourceGroup);
+
 		_targetGroup = GroupTestUtil.addGroup();
 
-		GroupTestUtil.addLayoutSetVirtualHosts(_sourceGroup);
 		GroupTestUtil.addLayoutSetVirtualHosts(_targetGroup);
 
 		_fileEntry = DLAppLocalServiceUtil.addFileEntry(
