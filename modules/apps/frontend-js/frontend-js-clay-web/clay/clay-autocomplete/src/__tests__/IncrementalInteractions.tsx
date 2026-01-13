@@ -21,7 +21,7 @@ global.ResizeObserver = require('resize-observer-polyfill');
 /**
  * Incremental iteration tests for the new autocomplete behavior.
  */
-describe.skip('Autocomplete incremental interactions', () => {
+describe('Autocomplete incremental interactions', () => {
 	afterEach(cleanup);
 
 	it('render default component', () => {

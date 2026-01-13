@@ -9,7 +9,7 @@ import React from 'react';
 
 import {Option, Picker} from '../../';
 
-describe.skip('Picker incremental interactions', () => {
+describe('Picker incremental interactions', () => {
 	afterEach(cleanup);
 
 	it('click trigger expand menu', () => {

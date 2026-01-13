@@ -1,9 +1,10 @@
 /**
- * SPDX-FileCopyrightText: (c) 2026 Liferay, Inc. https://liferay.com
- * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ * SPDX-FileCopyrightText: © 2025 Liferay, Inc. <https://liferay.com>
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 import {AnnouncerAPI} from '@clayui/core';
+import {CollectionState} from '@clayui/core/src/collection/types';
 import {NetworkStatus} from '@clayui/data-provider';
 import LoadingIndicator from '@clayui/loading-indicator';
 import {sub} from '@clayui/shared';
@@ -11,10 +12,7 @@ import React, {RefObject, useCallback, useEffect, useRef} from 'react';
 
 import {AutocompleteMessages} from './Autocomplete';
 
-import type {CollectionState} from '@clayui/core/src/collection/types';
-
 interface IProps {
-
 	/**
 	 * Reference to the announcer API.
 	 */
@@ -58,23 +56,22 @@ export function useInfiniteScroll({
 	const isInfiniteScrollEnabled = Boolean(onLoadMore);
 	const isLoading = Boolean(loadingState < NetworkStatus.Unused);
 
-	const isInitialLoadAnnouncementPendingRef = useRef<boolean>(
+	const isInitialLoadAnnouncementPending = useRef<boolean>(
 		isInfiniteScrollEnabled
 	);
-	const lastCountAnnouncedRef = useRef<number | null>(null);
+	const lastCountAnnounced = useRef<number | null>(null);
 
 	useEffect(() => {
 		if (active) {
 			if (isLoading) {
 				announcer.current?.announce(messages.infiniteScrollOnLoad);
-				lastCountAnnouncedRef.current = null;
-			}
-			else if (lastCountAnnouncedRef.current !== currentCount) {
-				const singular = isInitialLoadAnnouncementPendingRef.current
+				lastCountAnnounced.current = null;
+			} else if (lastCountAnnounced.current !== currentCount) {
+				const singular = isInitialLoadAnnouncementPending.current
 					? messages.infiniteScrollInitialLoad
 					: messages.infiniteScrollOnLoaded;
 
-				const plural = isInitialLoadAnnouncementPendingRef.current
+				const plural = isInitialLoadAnnouncementPending.current
 					? messages.infiniteScrollInitialLoadPlural
 					: messages.infiniteScrollOnLoadedPlural;
 
@@ -83,13 +80,11 @@ export function useInfiniteScroll({
 				]);
 
 				announcer.current?.announce(message);
-				lastCountAnnouncedRef.current = currentCount;
-				isInitialLoadAnnouncementPendingRef.current = false;
+				lastCountAnnounced.current = currentCount;
+				isInitialLoadAnnouncementPending.current = false;
 			}
-		}
-		else {
-			isInitialLoadAnnouncementPendingRef.current =
-				isInfiniteScrollEnabled;
+		} else {
+			isInitialLoadAnnouncementPending.current = isInfiniteScrollEnabled;
 		}
 	}, [active, isLoading, currentCount]);
 
