@@ -6,7 +6,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
 >
-	<description>Provides the Liferay Digital Sales Room UI common tags, prefixed with <![CDATA[<code>digital-sales-room-ui:</code>]]>.</description>
+	<description></description>
 	<tlib-version>1.0</tlib-version>
 	<short-name>liferay-digital-sales-room-ui</short-name>
 	<uri>http://liferay.com/tld/digital-sales-room-ui</uri>
