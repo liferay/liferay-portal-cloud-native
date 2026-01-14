@@ -520,8 +520,8 @@ public class LayoutStagedModelDataHandlerTest
 			Layout importedLiveDraftLayout = null;
 
 			try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
-				"com.liferay.portal.service.impl.LayoutLocalServiceImpl",
-				LoggerTestUtil.ERROR)) {
+					"com.liferay.portal.service.impl.LayoutLocalServiceImpl",
+					LoggerTestUtil.ERROR)) {
 
 				importedLiveDraftLayout = liveLayout.fetchDraftLayout();
 
@@ -976,7 +976,7 @@ public class LayoutStagedModelDataHandlerTest
 				PortletDataContextFactoryUtil.clonePortletDataContext(
 					portletDataContext));
 
-			Layout exportedLayout = (Layout) readExportedStagedModel(layout);
+			Layout exportedLayout = (Layout)readExportedStagedModel(layout);
 
 			StagedModelDataHandlerUtil.importStagedModel(
 				portletDataContext, exportedLayout);
@@ -1364,7 +1364,7 @@ public class LayoutStagedModelDataHandlerTest
 				PortletDataContextFactoryUtil.clonePortletDataContext(
 					portletDataContext));
 
-			Layout exportedLayout = (Layout) readExportedStagedModel(layout);
+			Layout exportedLayout = (Layout)readExportedStagedModel(layout);
 
 			StagedModelDataHandlerUtil.importStagedModel(
 				portletDataContext, exportedLayout);
@@ -1436,12 +1436,12 @@ public class LayoutStagedModelDataHandlerTest
 				PortletDataContextFactoryUtil.clonePortletDataContext(
 					portletDataContext));
 
-			Layout exportedLayout = (Layout) readExportedStagedModel(layout);
+			Layout exportedLayout = (Layout)readExportedStagedModel(layout);
 
 			StagedModelDataHandlerUtil.importStagedModel(
 				portletDataContext, exportedLayout);
 
-			Layout exportedLinkedLayout = (Layout) readExportedStagedModel(
+			Layout exportedLinkedLayout = (Layout)readExportedStagedModel(
 				linkedLayout);
 
 			StagedModelDataHandlerUtil.importStagedModel(
@@ -1517,9 +1517,9 @@ public class LayoutStagedModelDataHandlerTest
 				PortletDataContextFactoryUtil.clonePortletDataContext(
 					portletDataContext));
 
-			FileEntry exportedFileEntry = (FileEntry) readExportedStagedModel(
+			FileEntry exportedFileEntry = (FileEntry)readExportedStagedModel(
 				fileEntry);
-			Layout exportedLayout = (Layout) readExportedStagedModel(layout);
+			Layout exportedLayout = (Layout)readExportedStagedModel(layout);
 
 			StagedModelDataHandlerUtil.importStagedModel(
 				portletDataContext, exportedFileEntry);
@@ -2460,7 +2460,7 @@ public class LayoutStagedModelDataHandlerTest
 				PortletDataContextFactoryUtil.clonePortletDataContext(
 					portletDataContext));
 
-			Layout exportedLayout = (Layout) readExportedStagedModel(layout);
+			Layout exportedLayout = (Layout)readExportedStagedModel(layout);
 
 			StagedModelDataHandlerUtil.importStagedModel(
 				portletDataContext, exportedLayout);
@@ -2511,7 +2511,7 @@ public class LayoutStagedModelDataHandlerTest
 				PortletDataContextFactoryUtil.clonePortletDataContext(
 					portletDataContext));
 
-			Layout exportedLayout = (Layout) readExportedStagedModel(layout);
+			Layout exportedLayout = (Layout)readExportedStagedModel(layout);
 
 			StagedModelDataHandlerUtil.importStagedModel(
 				portletDataContext, exportedLayout);
@@ -2524,9 +2524,10 @@ public class LayoutStagedModelDataHandlerTest
 				PortletDataContextFactoryUtil.clonePortletDataContext(
 					portletDataContext));
 
-			Layout importedLayout = _layoutLocalService.getLayoutByUuidAndGroupId(
-				layout.getUuid(), liveGroup.getGroupId(),
-				layout.isPrivateLayout());
+			Layout importedLayout =
+				_layoutLocalService.getLayoutByUuidAndGroupId(
+					layout.getUuid(), liveGroup.getGroupId(),
+					layout.isPrivateLayout());
 
 			Assert.assertEquals(
 				1,
