@@ -137,6 +137,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.Assert;
 import org.junit.ClassRule;
@@ -2782,10 +2783,46 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 
 		_testPutSiteSitePageWithPageExperiences(
 			pageExperiences, putSitePage, sitePageResource);
+
+		PageExperience[] putPageExperiences = ArrayUtil.append(
+			PageExperiencesTestUtil.getPageExperiences(
+				testCompany.getGroupId(), testGroup.getGroupId(),
+				contentPageSpecification.getExternalReferenceCode()),
+			defaultPageExperience);
+
+		Arrays.sort(putPageExperiences, comparator);
+
+		putPageExperiences = TransformUtil.transform(
+			putPageExperiences,
+			pageExperience -> {
+				pageExperience.setPriority(() -> null);
+
+				return pageExperience;
+			},
+			PageExperience.class);
+
+		PageExperience[] expectedPageExperiences = Arrays.copyOf(
+			putPageExperiences, putPageExperiences.length);
+
+		AtomicInteger priority = new AtomicInteger();
+
+		expectedPageExperiences = TransformUtil.transform(
+			expectedPageExperiences,
+			pageExperience -> {
+				pageExperience.setPriority(priority::getAndDecrement);
+
+				return pageExperience;
+			},
+			PageExperience.class);
+
+		_testPutSiteSitePageWithPageExperiences(
+			expectedPageExperiences, putPageExperiences, putSitePage,
+			sitePageResource);
 	}
 
 	private SitePage _testPutSiteSitePageWithPageExperiences(
-			PageExperience[] pageExperiences, SitePage sitePage,
+			PageExperience[] expectedPageExperiences,
+			PageExperience[] putPageExperiences, SitePage sitePage,
 			SitePageResource sitePageResource)
 		throws Exception {
 
@@ -2795,7 +2832,7 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 		ContentPageSpecification contentPageSpecification =
 			(ContentPageSpecification)pageSpecifications[0];
 
-		contentPageSpecification.setPageExperiences(pageExperiences);
+		contentPageSpecification.setPageExperiences(putPageExperiences);
 
 		SitePage putSitePage = sitePageResource.putSiteSitePage(
 			testGroup.getExternalReferenceCode(),
@@ -2807,9 +2844,19 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 			(ContentPageSpecification)pageSpecifications[0];
 
 		Assert.assertArrayEquals(
-			pageExperiences, contentPageSpecification.getPageExperiences());
+			expectedPageExperiences,
+			contentPageSpecification.getPageExperiences());
 
 		return putSitePage;
+	}
+
+	private SitePage _testPutSiteSitePageWithPageExperiences(
+			PageExperience[] pageExperiences, SitePage sitePage,
+			SitePageResource sitePageResource)
+		throws Exception {
+
+		return _testPutSiteSitePageWithPageExperiences(
+			pageExperiences, pageExperiences, sitePage, sitePageResource);
 	}
 
 	private void _testPutSiteSitePageWithPageSpecifications() throws Exception {
