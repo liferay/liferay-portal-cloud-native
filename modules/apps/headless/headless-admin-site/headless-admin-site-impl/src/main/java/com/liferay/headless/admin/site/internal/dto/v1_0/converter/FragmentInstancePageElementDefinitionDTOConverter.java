@@ -198,10 +198,10 @@ public class FragmentInstancePageElementDefinitionDTOConverter
 			return Collections.emptyMap();
 		}
 
+		Map<String, FragmentConfigurationFieldValue> map = new HashMap<>();
+
 		DTOConverterContext dtoConverterContext = _getDTOConverterContext(
 			fragmentEntryLink.getCompanyId(), fragmentEntryLink.getGroupId());
-
-		Map<String, FragmentConfigurationFieldValue> map = new HashMap<>();
 
 		for (FragmentConfigurationField fragmentConfigurationField :
 				_fragmentEntryConfigurationParser.
