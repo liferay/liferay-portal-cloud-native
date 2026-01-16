@@ -242,18 +242,18 @@ public class MarketplaceUtil {
 
 		ZonedDateTime zonedDateTime = ZonedDateTime.now();
 
-		if (Objects.equals(licenseUsageType, "trial")) {
-			return Date.from(
-				zonedDateTime.plusMonths(
-					1
-				).toInstant());
-		}
-		else if (Objects.equals(licenseType, "Subscription")) {
+		if (Objects.equals(licenseType, "Subscription")) {
 			Instant instant = zonedDateTime.plusYears(
 				1
 			).toInstant();
 
 			return Date.from(instant);
+		}
+		else if (Objects.equals(licenseUsageType, "trial")) {
+			return Date.from(
+				zonedDateTime.plusMonths(
+					1
+				).toInstant());
 		}
 
 		return null;
