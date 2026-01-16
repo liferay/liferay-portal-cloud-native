@@ -45,9 +45,7 @@ public class SandboxHelperTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testSandboxWithCTCollectionWithIncompleteStatus()
-		throws Exception {
-
+	public void testSandbox() throws Exception {
 		try (CompanyConfigurationTemporarySwapper
 				companyConfigurationTemporarySwapper =
 					new CompanyConfigurationTemporarySwapper(

@@ -130,9 +130,7 @@ public class CTEntryLocalServiceTest {
 		CTCollection ctCollection2 =
 			CTCollectionTestUtil.createCTCollectionWithIncompleteStatus(
 				TestPropsValues.getUser());
-
 		CTEntry ctEntry2 = null;
-
 		String folderName2 = "Test folder name 2";
 
 		try (SafeCloseable safeCloseable =
