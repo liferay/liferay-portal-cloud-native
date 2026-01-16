@@ -74,7 +74,7 @@ public class SalesforceService extends BaseService {
 			AccessToken accessToken = idTokenCredential.refreshAccessToken();
 
 			if (accessToken == null) {
-				throw new Exception("Unable to retrieve Google identity token");
+				throw new Exception("Unable to get access token");
 			}
 
 			_accessToken = accessToken;
