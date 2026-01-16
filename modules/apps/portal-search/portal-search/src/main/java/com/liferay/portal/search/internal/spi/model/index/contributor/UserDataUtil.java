@@ -43,8 +43,7 @@ public class UserDataUtil {
 
 					if (table == null) {
 
-						// DSL is not enabled for this model class, fallback to
-						// user fetching.
+						// DSL queries are not enabled for this model class
 
 						return null;
 					}
