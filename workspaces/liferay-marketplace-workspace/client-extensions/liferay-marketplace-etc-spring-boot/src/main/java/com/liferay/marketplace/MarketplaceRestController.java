@@ -893,7 +893,7 @@ public class MarketplaceRestController extends BaseRestController {
 		Product product = _marketplaceService.getProductBySkuId(
 			orderItem.getSkuId());
 
-		_salesforceService.postOpportunity(
+		_salesforceService.postSalesforceOpportunity(
 			new SalesforceOpportunity(
 				licenseType, order, orderItem, product, userAccount));
 	}

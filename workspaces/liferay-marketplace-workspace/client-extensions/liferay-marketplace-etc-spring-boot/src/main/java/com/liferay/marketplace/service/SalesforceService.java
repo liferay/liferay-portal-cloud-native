@@ -31,7 +31,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Component
 public class SalesforceService extends BaseService {
 
-	public void postOpportunity(SalesforceOpportunity salesforceOpportunity)
+	public void postSalesforceOpportunity(
+			SalesforceOpportunity salesforceOpportunity)
 		throws Exception {
 
 		post(
@@ -45,7 +46,7 @@ public class SalesforceService extends BaseService {
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"Created salesforce opportunity " +
+				"Created Salesforce opportunity " +
 					salesforceOpportunity.toString());
 		}
 	}
