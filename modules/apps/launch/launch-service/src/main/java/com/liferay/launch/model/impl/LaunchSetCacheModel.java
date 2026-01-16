@@ -85,10 +85,10 @@ public class LaunchSetCacheModel
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
-		sb.append(", name=");
-		sb.append(name);
 		sb.append(", description=");
 		sb.append(description);
+		sb.append(", name=");
+		sb.append(name);
 		sb.append(", status=");
 		sb.append(status);
 		sb.append(", statusByUserId=");
@@ -138,18 +138,18 @@ public class LaunchSetCacheModel
 			launchSetImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
-		if (name == null) {
-			launchSetImpl.setName("");
-		}
-		else {
-			launchSetImpl.setName(name);
-		}
-
 		if (description == null) {
 			launchSetImpl.setDescription("");
 		}
 		else {
 			launchSetImpl.setDescription(description);
+		}
+
+		if (name == null) {
+			launchSetImpl.setName("");
+		}
+		else {
+			launchSetImpl.setName(name);
 		}
 
 		launchSetImpl.setStatus(status);
@@ -180,8 +180,8 @@ public class LaunchSetCacheModel
 		userId = objectInput.readLong();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
-		name = objectInput.readUTF();
 		description = objectInput.readUTF();
+		name = objectInput.readUTF();
 
 		status = objectInput.readInt();
 
@@ -215,18 +215,18 @@ public class LaunchSetCacheModel
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
 
-		if (name == null) {
-			objectOutput.writeUTF("");
-		}
-		else {
-			objectOutput.writeUTF(name);
-		}
-
 		if (description == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(description);
+		}
+
+		if (name == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(name);
 		}
 
 		objectOutput.writeInt(status);
@@ -243,8 +243,8 @@ public class LaunchSetCacheModel
 	public long userId;
 	public long createDate;
 	public long modifiedDate;
-	public String name;
 	public String description;
+	public String name;
 	public int status;
 	public long statusByUserId;
 	public long statusDate;

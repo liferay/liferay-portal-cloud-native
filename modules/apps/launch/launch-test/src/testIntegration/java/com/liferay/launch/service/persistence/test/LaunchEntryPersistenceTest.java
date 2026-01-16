@@ -7,7 +7,7 @@ package com.liferay.launch.service.persistence.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.launch.exception.DuplicateLaunchEntryExternalReferenceCodeException;
-import com.liferay.launch.exception.NoSuchEntryException;
+import com.liferay.launch.exception.NoSuchLaunchEntryException;
 import com.liferay.launch.model.LaunchEntry;
 import com.liferay.launch.service.LaunchEntryLocalServiceUtil;
 import com.liferay.launch.service.persistence.LaunchEntryPersistence;
@@ -251,7 +251,7 @@ public class LaunchEntryPersistenceTest {
 		Assert.assertEquals(existingLaunchEntry, newLaunchEntry);
 	}
 
-	@Test(expected = NoSuchEntryException.class)
+	@Test(expected = NoSuchLaunchEntryException.class)
 	public void testFindByPrimaryKeyMissing() throws Exception {
 		long pk = RandomTestUtil.nextLong();
 

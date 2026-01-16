@@ -69,7 +69,7 @@ public class LaunchSetModelImpl
 		{"externalReferenceCode", Types.VARCHAR}, {"launchSetId", Types.BIGINT},
 		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
-		{"name", Types.VARCHAR}, {"description", Types.VARCHAR},
+		{"description", Types.VARCHAR}, {"name", Types.VARCHAR},
 		{"status", Types.INTEGER}, {"statusByUserId", Types.BIGINT},
 		{"statusDate", Types.TIMESTAMP}
 	};
@@ -86,15 +86,15 @@ public class LaunchSetModelImpl
 		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("statusByUserId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table LaunchSet (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,externalReferenceCode VARCHAR(75) null,launchSetId LONG not null primary key,companyId LONG,userId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description VARCHAR(75) null,status INTEGER,statusByUserId LONG,statusDate DATE null)";
+		"create table LaunchSet (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,externalReferenceCode VARCHAR(75) null,launchSetId LONG not null primary key,companyId LONG,userId LONG,createDate DATE null,modifiedDate DATE null,description VARCHAR(75) null,name VARCHAR(75) null,status INTEGER,statusByUserId LONG,statusDate DATE null)";
 
 	public static final String TABLE_SQL_DROP = "drop table LaunchSet";
 
@@ -267,9 +267,9 @@ public class LaunchSetModelImpl
 				"createDate", LaunchSet::getCreateDate);
 			attributeGetterFunctions.put(
 				"modifiedDate", LaunchSet::getModifiedDate);
-			attributeGetterFunctions.put("name", LaunchSet::getName);
 			attributeGetterFunctions.put(
 				"description", LaunchSet::getDescription);
+			attributeGetterFunctions.put("name", LaunchSet::getName);
 			attributeGetterFunctions.put("status", LaunchSet::getStatus);
 			attributeGetterFunctions.put(
 				"statusByUserId", LaunchSet::getStatusByUserId);
@@ -315,10 +315,10 @@ public class LaunchSetModelImpl
 				"modifiedDate",
 				(BiConsumer<LaunchSet, Date>)LaunchSet::setModifiedDate);
 			attributeSetterBiConsumers.put(
-				"name", (BiConsumer<LaunchSet, String>)LaunchSet::setName);
-			attributeSetterBiConsumers.put(
 				"description",
 				(BiConsumer<LaunchSet, String>)LaunchSet::setDescription);
+			attributeSetterBiConsumers.put(
+				"name", (BiConsumer<LaunchSet, String>)LaunchSet::setName);
 			attributeSetterBiConsumers.put(
 				"status", (BiConsumer<LaunchSet, Integer>)LaunchSet::setStatus);
 			attributeSetterBiConsumers.put(
@@ -525,26 +525,6 @@ public class LaunchSetModelImpl
 
 	@JSON
 	@Override
-	public String getName() {
-		if (_name == null) {
-			return "";
-		}
-		else {
-			return _name;
-		}
-	}
-
-	@Override
-	public void setName(String name) {
-		if (_columnOriginalValues == Collections.EMPTY_MAP) {
-			_setColumnOriginalValues();
-		}
-
-		_name = name;
-	}
-
-	@JSON
-	@Override
 	public String getDescription() {
 		if (_description == null) {
 			return "";
@@ -561,6 +541,26 @@ public class LaunchSetModelImpl
 		}
 
 		_description = description;
+	}
+
+	@JSON
+	@Override
+	public String getName() {
+		if (_name == null) {
+			return "";
+		}
+		else {
+			return _name;
+		}
+	}
+
+	@Override
+	public void setName(String name) {
+		if (_columnOriginalValues == Collections.EMPTY_MAP) {
+			_setColumnOriginalValues();
+		}
+
+		_name = name;
 	}
 
 	@JSON
@@ -704,8 +704,8 @@ public class LaunchSetModelImpl
 		launchSetImpl.setUserId(getUserId());
 		launchSetImpl.setCreateDate(getCreateDate());
 		launchSetImpl.setModifiedDate(getModifiedDate());
-		launchSetImpl.setName(getName());
 		launchSetImpl.setDescription(getDescription());
+		launchSetImpl.setName(getName());
 		launchSetImpl.setStatus(getStatus());
 		launchSetImpl.setStatusByUserId(getStatusByUserId());
 		launchSetImpl.setStatusDate(getStatusDate());
@@ -733,9 +733,9 @@ public class LaunchSetModelImpl
 			this.<Date>getColumnOriginalValue("createDate"));
 		launchSetImpl.setModifiedDate(
 			this.<Date>getColumnOriginalValue("modifiedDate"));
-		launchSetImpl.setName(this.<String>getColumnOriginalValue("name"));
 		launchSetImpl.setDescription(
 			this.<String>getColumnOriginalValue("description"));
+		launchSetImpl.setName(this.<String>getColumnOriginalValue("name"));
 		launchSetImpl.setStatus(this.<Integer>getColumnOriginalValue("status"));
 		launchSetImpl.setStatusByUserId(
 			this.<Long>getColumnOriginalValue("statusByUserId"));
@@ -862,20 +862,20 @@ public class LaunchSetModelImpl
 			launchSetCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
-		launchSetCacheModel.name = getName();
-
-		String name = launchSetCacheModel.name;
-
-		if ((name != null) && (name.length() == 0)) {
-			launchSetCacheModel.name = null;
-		}
-
 		launchSetCacheModel.description = getDescription();
 
 		String description = launchSetCacheModel.description;
 
 		if ((description != null) && (description.length() == 0)) {
 			launchSetCacheModel.description = null;
+		}
+
+		launchSetCacheModel.name = getName();
+
+		String name = launchSetCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			launchSetCacheModel.name = null;
 		}
 
 		launchSetCacheModel.status = getStatus();
@@ -961,8 +961,8 @@ public class LaunchSetModelImpl
 	private Date _createDate;
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
-	private String _name;
 	private String _description;
+	private String _name;
 	private int _status;
 	private long _statusByUserId;
 	private Date _statusDate;
@@ -1006,8 +1006,8 @@ public class LaunchSetModelImpl
 		_columnOriginalValues.put("userId", _userId);
 		_columnOriginalValues.put("createDate", _createDate);
 		_columnOriginalValues.put("modifiedDate", _modifiedDate);
-		_columnOriginalValues.put("name", _name);
 		_columnOriginalValues.put("description", _description);
+		_columnOriginalValues.put("name", _name);
 		_columnOriginalValues.put("status", _status);
 		_columnOriginalValues.put("statusByUserId", _statusByUserId);
 		_columnOriginalValues.put("statusDate", _statusDate);
@@ -1050,9 +1050,9 @@ public class LaunchSetModelImpl
 
 		columnBitmasks.put("modifiedDate", 128L);
 
-		columnBitmasks.put("name", 256L);
+		columnBitmasks.put("description", 256L);
 
-		columnBitmasks.put("description", 512L);
+		columnBitmasks.put("name", 512L);
 
 		columnBitmasks.put("status", 1024L);
 

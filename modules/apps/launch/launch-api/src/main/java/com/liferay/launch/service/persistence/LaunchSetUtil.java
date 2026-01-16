@@ -185,11 +185,11 @@ public class LaunchSetUtil {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public static LaunchSet findByUuid_First(
 			String uuid, OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -213,11 +213,11 @@ public class LaunchSetUtil {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public static LaunchSet findByUuid_Last(
 			String uuid, OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -242,12 +242,12 @@ public class LaunchSetUtil {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	public static LaunchSet[] findByUuid_PrevAndNext(
 			long launchSetId, String uuid,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByUuid_PrevAndNext(
 			launchSetId, uuid, orderByComparator);
@@ -355,12 +355,12 @@ public class LaunchSetUtil {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public static LaunchSet findByUuid_C_First(
 			String uuid, long companyId,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByUuid_C_First(
 			uuid, companyId, orderByComparator);
@@ -389,12 +389,12 @@ public class LaunchSetUtil {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public static LaunchSet findByUuid_C_Last(
 			String uuid, long companyId,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByUuid_C_Last(
 			uuid, companyId, orderByComparator);
@@ -424,12 +424,12 @@ public class LaunchSetUtil {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	public static LaunchSet[] findByUuid_C_PrevAndNext(
 			long launchSetId, String uuid, long companyId,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByUuid_C_PrevAndNext(
 			launchSetId, uuid, companyId, orderByComparator);
@@ -534,11 +534,11 @@ public class LaunchSetUtil {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public static LaunchSet findByCompanyId_First(
 			long companyId, OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByCompanyId_First(
 			companyId, orderByComparator);
@@ -564,11 +564,11 @@ public class LaunchSetUtil {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public static LaunchSet findByCompanyId_Last(
 			long companyId, OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByCompanyId_Last(
 			companyId, orderByComparator);
@@ -595,12 +595,12 @@ public class LaunchSetUtil {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	public static LaunchSet[] findByCompanyId_PrevAndNext(
 			long launchSetId, long companyId,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByCompanyId_PrevAndNext(
 			launchSetId, companyId, orderByComparator);
@@ -708,12 +708,12 @@ public class LaunchSetUtil {
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public static LaunchSet findByC_U_First(
 			long companyId, long userId,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByC_U_First(
 			companyId, userId, orderByComparator);
@@ -742,12 +742,12 @@ public class LaunchSetUtil {
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public static LaunchSet findByC_U_Last(
 			long companyId, long userId,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByC_U_Last(
 			companyId, userId, orderByComparator);
@@ -777,12 +777,12 @@ public class LaunchSetUtil {
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	public static LaunchSet[] findByC_U_PrevAndNext(
 			long launchSetId, long companyId, long userId,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByC_U_PrevAndNext(
 			launchSetId, companyId, userId, orderByComparator);
@@ -892,12 +892,12 @@ public class LaunchSetUtil {
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public static LaunchSet findByC_S_First(
 			long companyId, int status,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByC_S_First(
 			companyId, status, orderByComparator);
@@ -926,12 +926,12 @@ public class LaunchSetUtil {
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public static LaunchSet findByC_S_Last(
 			long companyId, int status,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByC_S_Last(
 			companyId, status, orderByComparator);
@@ -961,12 +961,12 @@ public class LaunchSetUtil {
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	public static LaunchSet[] findByC_S_PrevAndNext(
 			long launchSetId, long companyId, int status,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByC_S_PrevAndNext(
 			launchSetId, companyId, status, orderByComparator);
@@ -1085,16 +1085,16 @@ public class LaunchSetUtil {
 	}
 
 	/**
-	 * Returns the launch set where externalReferenceCode = &#63; and companyId = &#63; or throws a <code>NoSuchSetException</code> if it could not be found.
+	 * Returns the launch set where externalReferenceCode = &#63; and companyId = &#63; or throws a <code>NoSuchLaunchSetException</code> if it could not be found.
 	 *
 	 * @param externalReferenceCode the external reference code
 	 * @param companyId the company ID
 	 * @return the matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public static LaunchSet findByERC_C(
 			String externalReferenceCode, long companyId)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByERC_C(externalReferenceCode, companyId);
 	}
@@ -1136,7 +1136,7 @@ public class LaunchSetUtil {
 	 */
 	public static LaunchSet removeByERC_C(
 			String externalReferenceCode, long companyId)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().removeByERC_C(externalReferenceCode, companyId);
 	}
@@ -1187,10 +1187,10 @@ public class LaunchSetUtil {
 	 *
 	 * @param launchSetId the primary key of the launch set
 	 * @return the launch set that was removed
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	public static LaunchSet remove(long launchSetId)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().remove(launchSetId);
 	}
@@ -1200,14 +1200,14 @@ public class LaunchSetUtil {
 	}
 
 	/**
-	 * Returns the launch set with the primary key or throws a <code>NoSuchSetException</code> if it could not be found.
+	 * Returns the launch set with the primary key or throws a <code>NoSuchLaunchSetException</code> if it could not be found.
 	 *
 	 * @param launchSetId the primary key of the launch set
 	 * @return the launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	public static LaunchSet findByPrimaryKey(long launchSetId)
-		throws com.liferay.launch.exception.NoSuchSetException {
+		throws com.liferay.launch.exception.NoSuchLaunchSetException {
 
 		return getPersistence().findByPrimaryKey(launchSetId);
 	}

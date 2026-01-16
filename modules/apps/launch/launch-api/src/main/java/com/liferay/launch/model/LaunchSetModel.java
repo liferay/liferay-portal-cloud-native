@@ -193,21 +193,6 @@ public interface LaunchSetModel
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Returns the name of this launch set.
-	 *
-	 * @return the name of this launch set
-	 */
-	@AutoEscape
-	public String getName();
-
-	/**
-	 * Sets the name of this launch set.
-	 *
-	 * @param name the name of this launch set
-	 */
-	public void setName(String name);
-
-	/**
 	 * Returns the description of this launch set.
 	 *
 	 * @return the description of this launch set
@@ -221,6 +206,21 @@ public interface LaunchSetModel
 	 * @param description the description of this launch set
 	 */
 	public void setDescription(String description);
+
+	/**
+	 * Returns the name of this launch set.
+	 *
+	 * @return the name of this launch set
+	 */
+	@AutoEscape
+	public String getName();
+
+	/**
+	 * Sets the name of this launch set.
+	 *
+	 * @param name the name of this launch set
+	 */
+	public void setName(String name);
 
 	/**
 	 * Returns the status of this launch set.

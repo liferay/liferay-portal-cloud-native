@@ -6,7 +6,7 @@
 package com.liferay.launch.service.persistence.impl;
 
 import com.liferay.launch.exception.DuplicateLaunchSetExternalReferenceCodeException;
-import com.liferay.launch.exception.NoSuchSetException;
+import com.liferay.launch.exception.NoSuchLaunchSetException;
 import com.liferay.launch.model.LaunchSet;
 import com.liferay.launch.model.LaunchSetTable;
 import com.liferay.launch.model.impl.LaunchSetImpl;
@@ -277,12 +277,12 @@ public class LaunchSetPersistenceImpl
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	@Override
 	public LaunchSet findByUuid_First(
 			String uuid, OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = fetchByUuid_First(uuid, orderByComparator);
 
@@ -299,7 +299,7 @@ public class LaunchSetPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchSetException(sb.toString());
+		throw new NoSuchLaunchSetException(sb.toString());
 	}
 
 	/**
@@ -328,12 +328,12 @@ public class LaunchSetPersistenceImpl
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	@Override
 	public LaunchSet findByUuid_Last(
 			String uuid, OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = fetchByUuid_Last(uuid, orderByComparator);
 
@@ -350,7 +350,7 @@ public class LaunchSetPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchSetException(sb.toString());
+		throw new NoSuchLaunchSetException(sb.toString());
 	}
 
 	/**
@@ -387,13 +387,13 @@ public class LaunchSetPersistenceImpl
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	@Override
 	public LaunchSet[] findByUuid_PrevAndNext(
 			long launchSetId, String uuid,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -823,13 +823,13 @@ public class LaunchSetPersistenceImpl
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	@Override
 	public LaunchSet findByUuid_C_First(
 			String uuid, long companyId,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = fetchByUuid_C_First(
 			uuid, companyId, orderByComparator);
@@ -850,7 +850,7 @@ public class LaunchSetPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchSetException(sb.toString());
+		throw new NoSuchLaunchSetException(sb.toString());
 	}
 
 	/**
@@ -883,13 +883,13 @@ public class LaunchSetPersistenceImpl
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	@Override
 	public LaunchSet findByUuid_C_Last(
 			String uuid, long companyId,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = fetchByUuid_C_Last(
 			uuid, companyId, orderByComparator);
@@ -910,7 +910,7 @@ public class LaunchSetPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchSetException(sb.toString());
+		throw new NoSuchLaunchSetException(sb.toString());
 	}
 
 	/**
@@ -950,13 +950,13 @@ public class LaunchSetPersistenceImpl
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	@Override
 	public LaunchSet[] findByUuid_C_PrevAndNext(
 			long launchSetId, String uuid, long companyId,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -1374,12 +1374,12 @@ public class LaunchSetPersistenceImpl
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	@Override
 	public LaunchSet findByCompanyId_First(
 			long companyId, OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = fetchByCompanyId_First(
 			companyId, orderByComparator);
@@ -1397,7 +1397,7 @@ public class LaunchSetPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchSetException(sb.toString());
+		throw new NoSuchLaunchSetException(sb.toString());
 	}
 
 	/**
@@ -1427,12 +1427,12 @@ public class LaunchSetPersistenceImpl
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	@Override
 	public LaunchSet findByCompanyId_Last(
 			long companyId, OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = fetchByCompanyId_Last(
 			companyId, orderByComparator);
@@ -1450,7 +1450,7 @@ public class LaunchSetPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchSetException(sb.toString());
+		throw new NoSuchLaunchSetException(sb.toString());
 	}
 
 	/**
@@ -1487,13 +1487,13 @@ public class LaunchSetPersistenceImpl
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	@Override
 	public LaunchSet[] findByCompanyId_PrevAndNext(
 			long launchSetId, long companyId,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = findByPrimaryKey(launchSetId);
 
@@ -1882,13 +1882,13 @@ public class LaunchSetPersistenceImpl
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	@Override
 	public LaunchSet findByC_U_First(
 			long companyId, long userId,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = fetchByC_U_First(
 			companyId, userId, orderByComparator);
@@ -1909,7 +1909,7 @@ public class LaunchSetPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchSetException(sb.toString());
+		throw new NoSuchLaunchSetException(sb.toString());
 	}
 
 	/**
@@ -1942,13 +1942,13 @@ public class LaunchSetPersistenceImpl
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	@Override
 	public LaunchSet findByC_U_Last(
 			long companyId, long userId,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = fetchByC_U_Last(
 			companyId, userId, orderByComparator);
@@ -1969,7 +1969,7 @@ public class LaunchSetPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchSetException(sb.toString());
+		throw new NoSuchLaunchSetException(sb.toString());
 	}
 
 	/**
@@ -2009,13 +2009,13 @@ public class LaunchSetPersistenceImpl
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	@Override
 	public LaunchSet[] findByC_U_PrevAndNext(
 			long launchSetId, long companyId, long userId,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = findByPrimaryKey(launchSetId);
 
@@ -2420,13 +2420,13 @@ public class LaunchSetPersistenceImpl
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	@Override
 	public LaunchSet findByC_S_First(
 			long companyId, int status,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = fetchByC_S_First(
 			companyId, status, orderByComparator);
@@ -2447,7 +2447,7 @@ public class LaunchSetPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchSetException(sb.toString());
+		throw new NoSuchLaunchSetException(sb.toString());
 	}
 
 	/**
@@ -2480,13 +2480,13 @@ public class LaunchSetPersistenceImpl
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	@Override
 	public LaunchSet findByC_S_Last(
 			long companyId, int status,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = fetchByC_S_Last(
 			companyId, status, orderByComparator);
@@ -2507,7 +2507,7 @@ public class LaunchSetPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchSetException(sb.toString());
+		throw new NoSuchLaunchSetException(sb.toString());
 	}
 
 	/**
@@ -2547,13 +2547,13 @@ public class LaunchSetPersistenceImpl
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	@Override
 	public LaunchSet[] findByC_S_PrevAndNext(
 			long launchSetId, long companyId, int status,
 			OrderByComparator<LaunchSet> orderByComparator)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = findByPrimaryKey(launchSetId);
 
@@ -3046,16 +3046,16 @@ public class LaunchSetPersistenceImpl
 	private FinderPath _finderPathFetchByERC_C;
 
 	/**
-	 * Returns the launch set where externalReferenceCode = &#63; and companyId = &#63; or throws a <code>NoSuchSetException</code> if it could not be found.
+	 * Returns the launch set where externalReferenceCode = &#63; and companyId = &#63; or throws a <code>NoSuchLaunchSetException</code> if it could not be found.
 	 *
 	 * @param externalReferenceCode the external reference code
 	 * @param companyId the company ID
 	 * @return the matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	@Override
 	public LaunchSet findByERC_C(String externalReferenceCode, long companyId)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = fetchByERC_C(externalReferenceCode, companyId);
 
@@ -3076,7 +3076,7 @@ public class LaunchSetPersistenceImpl
 				_log.debug(sb.toString());
 			}
 
-			throw new NoSuchSetException(sb.toString());
+			throw new NoSuchLaunchSetException(sb.toString());
 		}
 
 		return launchSet;
@@ -3211,7 +3211,7 @@ public class LaunchSetPersistenceImpl
 	 */
 	@Override
 	public LaunchSet removeByERC_C(String externalReferenceCode, long companyId)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = findByERC_C(externalReferenceCode, companyId);
 
@@ -3384,10 +3384,10 @@ public class LaunchSetPersistenceImpl
 	 *
 	 * @param launchSetId the primary key of the launch set
 	 * @return the launch set that was removed
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	@Override
-	public LaunchSet remove(long launchSetId) throws NoSuchSetException {
+	public LaunchSet remove(long launchSetId) throws NoSuchLaunchSetException {
 		return remove((Serializable)launchSetId);
 	}
 
@@ -3396,10 +3396,12 @@ public class LaunchSetPersistenceImpl
 	 *
 	 * @param primaryKey the primary key of the launch set
 	 * @return the launch set that was removed
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	@Override
-	public LaunchSet remove(Serializable primaryKey) throws NoSuchSetException {
+	public LaunchSet remove(Serializable primaryKey)
+		throws NoSuchLaunchSetException {
+
 		Session session = null;
 
 		try {
@@ -3413,13 +3415,13 @@ public class LaunchSetPersistenceImpl
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchSetException(
+				throw new NoSuchLaunchSetException(
 					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(launchSet);
 		}
-		catch (NoSuchSetException noSuchEntityException) {
+		catch (NoSuchLaunchSetException noSuchEntityException) {
 			throw noSuchEntityException;
 		}
 		catch (Exception exception) {
@@ -3610,11 +3612,11 @@ public class LaunchSetPersistenceImpl
 	 *
 	 * @param primaryKey the primary key of the launch set
 	 * @return the launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	@Override
 	public LaunchSet findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		LaunchSet launchSet = fetchByPrimaryKey(primaryKey);
 
@@ -3623,7 +3625,7 @@ public class LaunchSetPersistenceImpl
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchSetException(
+			throw new NoSuchLaunchSetException(
 				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
@@ -3631,15 +3633,15 @@ public class LaunchSetPersistenceImpl
 	}
 
 	/**
-	 * Returns the launch set with the primary key or throws a <code>NoSuchSetException</code> if it could not be found.
+	 * Returns the launch set with the primary key or throws a <code>NoSuchLaunchSetException</code> if it could not be found.
 	 *
 	 * @param launchSetId the primary key of the launch set
 	 * @return the launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	@Override
 	public LaunchSet findByPrimaryKey(long launchSetId)
-		throws NoSuchSetException {
+		throws NoSuchLaunchSetException {
 
 		return findByPrimaryKey((Serializable)launchSetId);
 	}

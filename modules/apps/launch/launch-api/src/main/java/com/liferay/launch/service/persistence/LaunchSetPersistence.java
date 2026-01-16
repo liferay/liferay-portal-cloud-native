@@ -5,7 +5,7 @@
 
 package com.liferay.launch.service.persistence;
 
-import com.liferay.launch.exception.NoSuchSetException;
+import com.liferay.launch.exception.NoSuchLaunchSetException;
 import com.liferay.launch.model.LaunchSet;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
@@ -98,13 +98,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public LaunchSet findByUuid_First(
 			String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Returns the first launch set in the ordered set where uuid = &#63;.
@@ -124,13 +124,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public LaunchSet findByUuid_Last(
 			String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Returns the last launch set in the ordered set where uuid = &#63;.
@@ -151,13 +151,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	public LaunchSet[] findByUuid_PrevAndNext(
 			long launchSetId, String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Removes all the launch sets where uuid = &#63; from the database.
@@ -246,13 +246,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public LaunchSet findByUuid_C_First(
 			String uuid, long companyId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Returns the first launch set in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -274,13 +274,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public LaunchSet findByUuid_C_Last(
 			String uuid, long companyId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Returns the last launch set in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -303,13 +303,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	public LaunchSet[] findByUuid_C_PrevAndNext(
 			long launchSetId, String uuid, long companyId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Removes all the launch sets where uuid = &#63; and companyId = &#63; from the database.
@@ -395,13 +395,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public LaunchSet findByCompanyId_First(
 			long companyId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Returns the first launch set in the ordered set where companyId = &#63;.
@@ -421,13 +421,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public LaunchSet findByCompanyId_Last(
 			long companyId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Returns the last launch set in the ordered set where companyId = &#63;.
@@ -448,13 +448,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	public LaunchSet[] findByCompanyId_PrevAndNext(
 			long launchSetId, long companyId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Removes all the launch sets where companyId = &#63; from the database.
@@ -543,13 +543,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public LaunchSet findByC_U_First(
 			long companyId, long userId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Returns the first launch set in the ordered set where companyId = &#63; and userId = &#63;.
@@ -571,13 +571,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public LaunchSet findByC_U_Last(
 			long companyId, long userId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Returns the last launch set in the ordered set where companyId = &#63; and userId = &#63;.
@@ -600,13 +600,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	public LaunchSet[] findByC_U_PrevAndNext(
 			long launchSetId, long companyId, long userId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Removes all the launch sets where companyId = &#63; and userId = &#63; from the database.
@@ -697,13 +697,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public LaunchSet findByC_S_First(
 			long companyId, int status,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Returns the first launch set in the ordered set where companyId = &#63; and status = &#63;.
@@ -725,13 +725,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public LaunchSet findByC_S_Last(
 			long companyId, int status,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Returns the last launch set in the ordered set where companyId = &#63; and status = &#63;.
@@ -754,13 +754,13 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	public LaunchSet[] findByC_S_PrevAndNext(
 			long launchSetId, long companyId, int status,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchSet>
 				orderByComparator)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Returns all the launch sets where companyId = &#63; and status = any &#63;.
@@ -858,15 +858,15 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	public int countByC_S(long companyId, int[] statuses);
 
 	/**
-	 * Returns the launch set where externalReferenceCode = &#63; and companyId = &#63; or throws a <code>NoSuchSetException</code> if it could not be found.
+	 * Returns the launch set where externalReferenceCode = &#63; and companyId = &#63; or throws a <code>NoSuchLaunchSetException</code> if it could not be found.
 	 *
 	 * @param externalReferenceCode the external reference code
 	 * @param companyId the company ID
 	 * @return the matching launch set
-	 * @throws NoSuchSetException if a matching launch set could not be found
+	 * @throws NoSuchLaunchSetException if a matching launch set could not be found
 	 */
 	public LaunchSet findByERC_C(String externalReferenceCode, long companyId)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Returns the launch set where externalReferenceCode = &#63; and companyId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -896,7 +896,7 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 * @return the launch set that was removed
 	 */
 	public LaunchSet removeByERC_C(String externalReferenceCode, long companyId)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Returns the number of launch sets where externalReferenceCode = &#63; and companyId = &#63;.
@@ -934,21 +934,21 @@ public interface LaunchSetPersistence extends BasePersistence<LaunchSet> {
 	 *
 	 * @param launchSetId the primary key of the launch set
 	 * @return the launch set that was removed
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
-	public LaunchSet remove(long launchSetId) throws NoSuchSetException;
+	public LaunchSet remove(long launchSetId) throws NoSuchLaunchSetException;
 
 	public LaunchSet updateImpl(LaunchSet launchSet);
 
 	/**
-	 * Returns the launch set with the primary key or throws a <code>NoSuchSetException</code> if it could not be found.
+	 * Returns the launch set with the primary key or throws a <code>NoSuchLaunchSetException</code> if it could not be found.
 	 *
 	 * @param launchSetId the primary key of the launch set
 	 * @return the launch set
-	 * @throws NoSuchSetException if a launch set with the primary key could not be found
+	 * @throws NoSuchLaunchSetException if a launch set with the primary key could not be found
 	 */
 	public LaunchSet findByPrimaryKey(long launchSetId)
-		throws NoSuchSetException;
+		throws NoSuchLaunchSetException;
 
 	/**
 	 * Returns the launch set with the primary key or returns <code>null</code> if it could not be found.

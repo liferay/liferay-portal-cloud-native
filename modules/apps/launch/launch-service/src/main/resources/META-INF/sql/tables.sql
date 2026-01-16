@@ -22,8 +22,8 @@ create table LaunchSet (
 	userId LONG,
 	createDate DATE null,
 	modifiedDate DATE null,
-	name VARCHAR(75) null,
 	description VARCHAR(75) null,
+	name VARCHAR(75) null,
 	status INTEGER,
 	statusByUserId LONG,
 	statusDate DATE null

@@ -7,7 +7,7 @@ package com.liferay.launch.service.persistence.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.launch.exception.DuplicateLaunchSetExternalReferenceCodeException;
-import com.liferay.launch.exception.NoSuchSetException;
+import com.liferay.launch.exception.NoSuchLaunchSetException;
 import com.liferay.launch.model.LaunchSet;
 import com.liferay.launch.service.LaunchSetLocalServiceUtil;
 import com.liferay.launch.service.persistence.LaunchSetPersistence;
@@ -130,9 +130,9 @@ public class LaunchSetPersistenceTest {
 
 		newLaunchSet.setModifiedDate(RandomTestUtil.nextDate());
 
-		newLaunchSet.setName(RandomTestUtil.randomString());
-
 		newLaunchSet.setDescription(RandomTestUtil.randomString());
+
+		newLaunchSet.setName(RandomTestUtil.randomString());
 
 		newLaunchSet.setStatus(RandomTestUtil.nextInt());
 
@@ -165,9 +165,9 @@ public class LaunchSetPersistenceTest {
 			Time.getShortTimestamp(existingLaunchSet.getModifiedDate()),
 			Time.getShortTimestamp(newLaunchSet.getModifiedDate()));
 		Assert.assertEquals(
-			existingLaunchSet.getName(), newLaunchSet.getName());
-		Assert.assertEquals(
 			existingLaunchSet.getDescription(), newLaunchSet.getDescription());
+		Assert.assertEquals(
+			existingLaunchSet.getName(), newLaunchSet.getName());
 		Assert.assertEquals(
 			existingLaunchSet.getStatus(), newLaunchSet.getStatus());
 		Assert.assertEquals(
@@ -264,7 +264,7 @@ public class LaunchSetPersistenceTest {
 		Assert.assertEquals(existingLaunchSet, newLaunchSet);
 	}
 
-	@Test(expected = NoSuchSetException.class)
+	@Test(expected = NoSuchLaunchSetException.class)
 	public void testFindByPrimaryKeyMissing() throws Exception {
 		long pk = RandomTestUtil.nextLong();
 
@@ -282,7 +282,7 @@ public class LaunchSetPersistenceTest {
 			"LaunchSet", "mvccVersion", true, "uuid", true,
 			"externalReferenceCode", true, "launchSetId", true, "companyId",
 			true, "userId", true, "createDate", true, "modifiedDate", true,
-			"name", true, "description", true, "status", true, "statusByUserId",
+			"description", true, "name", true, "status", true, "statusByUserId",
 			true, "statusDate", true);
 	}
 
@@ -577,9 +577,9 @@ public class LaunchSetPersistenceTest {
 
 		launchSet.setModifiedDate(RandomTestUtil.nextDate());
 
-		launchSet.setName(RandomTestUtil.randomString());
-
 		launchSet.setDescription(RandomTestUtil.randomString());
+
+		launchSet.setName(RandomTestUtil.randomString());
 
 		launchSet.setStatus(RandomTestUtil.nextInt());
 

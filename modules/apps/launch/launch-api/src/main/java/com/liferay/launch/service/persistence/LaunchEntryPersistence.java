@@ -5,7 +5,7 @@
 
 package com.liferay.launch.service.persistence;
 
-import com.liferay.launch.exception.NoSuchEntryException;
+import com.liferay.launch.exception.NoSuchLaunchEntryException;
 import com.liferay.launch.model.LaunchEntry;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
@@ -98,13 +98,13 @@ public interface LaunchEntryPersistence extends BasePersistence<LaunchEntry> {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public LaunchEntry findByUuid_First(
 			String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchEntry>
 				orderByComparator)
-		throws NoSuchEntryException;
+		throws NoSuchLaunchEntryException;
 
 	/**
 	 * Returns the first launch entry in the ordered set where uuid = &#63;.
@@ -124,13 +124,13 @@ public interface LaunchEntryPersistence extends BasePersistence<LaunchEntry> {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public LaunchEntry findByUuid_Last(
 			String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchEntry>
 				orderByComparator)
-		throws NoSuchEntryException;
+		throws NoSuchLaunchEntryException;
 
 	/**
 	 * Returns the last launch entry in the ordered set where uuid = &#63;.
@@ -151,13 +151,13 @@ public interface LaunchEntryPersistence extends BasePersistence<LaunchEntry> {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch entry
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	public LaunchEntry[] findByUuid_PrevAndNext(
 			long launchEntryId, String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchEntry>
 				orderByComparator)
-		throws NoSuchEntryException;
+		throws NoSuchLaunchEntryException;
 
 	/**
 	 * Removes all the launch entries where uuid = &#63; from the database.
@@ -247,13 +247,13 @@ public interface LaunchEntryPersistence extends BasePersistence<LaunchEntry> {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public LaunchEntry findByUuid_C_First(
 			String uuid, long companyId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchEntry>
 				orderByComparator)
-		throws NoSuchEntryException;
+		throws NoSuchLaunchEntryException;
 
 	/**
 	 * Returns the first launch entry in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -275,13 +275,13 @@ public interface LaunchEntryPersistence extends BasePersistence<LaunchEntry> {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public LaunchEntry findByUuid_C_Last(
 			String uuid, long companyId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchEntry>
 				orderByComparator)
-		throws NoSuchEntryException;
+		throws NoSuchLaunchEntryException;
 
 	/**
 	 * Returns the last launch entry in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -304,13 +304,13 @@ public interface LaunchEntryPersistence extends BasePersistence<LaunchEntry> {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch entry
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	public LaunchEntry[] findByUuid_C_PrevAndNext(
 			long launchEntryId, String uuid, long companyId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchEntry>
 				orderByComparator)
-		throws NoSuchEntryException;
+		throws NoSuchLaunchEntryException;
 
 	/**
 	 * Removes all the launch entries where uuid = &#63; and companyId = &#63; from the database.
@@ -396,13 +396,13 @@ public interface LaunchEntryPersistence extends BasePersistence<LaunchEntry> {
 	 * @param launchSetId the launch set ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public LaunchEntry findByLaunchSetId_First(
 			long launchSetId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchEntry>
 				orderByComparator)
-		throws NoSuchEntryException;
+		throws NoSuchLaunchEntryException;
 
 	/**
 	 * Returns the first launch entry in the ordered set where launchSetId = &#63;.
@@ -422,13 +422,13 @@ public interface LaunchEntryPersistence extends BasePersistence<LaunchEntry> {
 	 * @param launchSetId the launch set ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public LaunchEntry findByLaunchSetId_Last(
 			long launchSetId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchEntry>
 				orderByComparator)
-		throws NoSuchEntryException;
+		throws NoSuchLaunchEntryException;
 
 	/**
 	 * Returns the last launch entry in the ordered set where launchSetId = &#63;.
@@ -449,13 +449,13 @@ public interface LaunchEntryPersistence extends BasePersistence<LaunchEntry> {
 	 * @param launchSetId the launch set ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch entry
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	public LaunchEntry[] findByLaunchSetId_PrevAndNext(
 			long launchEntryId, long launchSetId,
 			com.liferay.portal.kernel.util.OrderByComparator<LaunchEntry>
 				orderByComparator)
-		throws NoSuchEntryException;
+		throws NoSuchLaunchEntryException;
 
 	/**
 	 * Removes all the launch entries where launchSetId = &#63; from the database.
@@ -473,17 +473,17 @@ public interface LaunchEntryPersistence extends BasePersistence<LaunchEntry> {
 	public int countByLaunchSetId(long launchSetId);
 
 	/**
-	 * Returns the launch entry where classNameId = &#63; and classPK = &#63; and classVersion = &#63; or throws a <code>NoSuchEntryException</code> if it could not be found.
+	 * Returns the launch entry where classNameId = &#63; and classPK = &#63; and classVersion = &#63; or throws a <code>NoSuchLaunchEntryException</code> if it could not be found.
 	 *
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param classVersion the class version
 	 * @return the matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public LaunchEntry findByC_C_C(
 			long classNameId, long classPK, String classVersion)
-		throws NoSuchEntryException;
+		throws NoSuchLaunchEntryException;
 
 	/**
 	 * Returns the launch entry where classNameId = &#63; and classPK = &#63; and classVersion = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -519,7 +519,7 @@ public interface LaunchEntryPersistence extends BasePersistence<LaunchEntry> {
 	 */
 	public LaunchEntry removeByC_C_C(
 			long classNameId, long classPK, String classVersion)
-		throws NoSuchEntryException;
+		throws NoSuchLaunchEntryException;
 
 	/**
 	 * Returns the number of launch entries where classNameId = &#63; and classPK = &#63; and classVersion = &#63;.
@@ -533,15 +533,15 @@ public interface LaunchEntryPersistence extends BasePersistence<LaunchEntry> {
 		long classNameId, long classPK, String classVersion);
 
 	/**
-	 * Returns the launch entry where externalReferenceCode = &#63; and companyId = &#63; or throws a <code>NoSuchEntryException</code> if it could not be found.
+	 * Returns the launch entry where externalReferenceCode = &#63; and companyId = &#63; or throws a <code>NoSuchLaunchEntryException</code> if it could not be found.
 	 *
 	 * @param externalReferenceCode the external reference code
 	 * @param companyId the company ID
 	 * @return the matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public LaunchEntry findByERC_C(String externalReferenceCode, long companyId)
-		throws NoSuchEntryException;
+		throws NoSuchLaunchEntryException;
 
 	/**
 	 * Returns the launch entry where externalReferenceCode = &#63; and companyId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -573,7 +573,7 @@ public interface LaunchEntryPersistence extends BasePersistence<LaunchEntry> {
 	 */
 	public LaunchEntry removeByERC_C(
 			String externalReferenceCode, long companyId)
-		throws NoSuchEntryException;
+		throws NoSuchLaunchEntryException;
 
 	/**
 	 * Returns the number of launch entries where externalReferenceCode = &#63; and companyId = &#63;.
@@ -611,21 +611,22 @@ public interface LaunchEntryPersistence extends BasePersistence<LaunchEntry> {
 	 *
 	 * @param launchEntryId the primary key of the launch entry
 	 * @return the launch entry that was removed
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
-	public LaunchEntry remove(long launchEntryId) throws NoSuchEntryException;
+	public LaunchEntry remove(long launchEntryId)
+		throws NoSuchLaunchEntryException;
 
 	public LaunchEntry updateImpl(LaunchEntry launchEntry);
 
 	/**
-	 * Returns the launch entry with the primary key or throws a <code>NoSuchEntryException</code> if it could not be found.
+	 * Returns the launch entry with the primary key or throws a <code>NoSuchLaunchEntryException</code> if it could not be found.
 	 *
 	 * @param launchEntryId the primary key of the launch entry
 	 * @return the launch entry
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	public LaunchEntry findByPrimaryKey(long launchEntryId)
-		throws NoSuchEntryException;
+		throws NoSuchLaunchEntryException;
 
 	/**
 	 * Returns the launch entry with the primary key or returns <code>null</code> if it could not be found.

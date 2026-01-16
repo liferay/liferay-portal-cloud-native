@@ -187,11 +187,11 @@ public class LaunchEntryUtil {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public static LaunchEntry findByUuid_First(
 			String uuid, OrderByComparator<LaunchEntry> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -215,11 +215,11 @@ public class LaunchEntryUtil {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public static LaunchEntry findByUuid_Last(
 			String uuid, OrderByComparator<LaunchEntry> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -244,12 +244,12 @@ public class LaunchEntryUtil {
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch entry
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	public static LaunchEntry[] findByUuid_PrevAndNext(
 			long launchEntryId, String uuid,
 			OrderByComparator<LaunchEntry> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().findByUuid_PrevAndNext(
 			launchEntryId, uuid, orderByComparator);
@@ -357,12 +357,12 @@ public class LaunchEntryUtil {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public static LaunchEntry findByUuid_C_First(
 			String uuid, long companyId,
 			OrderByComparator<LaunchEntry> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().findByUuid_C_First(
 			uuid, companyId, orderByComparator);
@@ -391,12 +391,12 @@ public class LaunchEntryUtil {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public static LaunchEntry findByUuid_C_Last(
 			String uuid, long companyId,
 			OrderByComparator<LaunchEntry> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().findByUuid_C_Last(
 			uuid, companyId, orderByComparator);
@@ -426,12 +426,12 @@ public class LaunchEntryUtil {
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch entry
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	public static LaunchEntry[] findByUuid_C_PrevAndNext(
 			long launchEntryId, String uuid, long companyId,
 			OrderByComparator<LaunchEntry> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().findByUuid_C_PrevAndNext(
 			launchEntryId, uuid, companyId, orderByComparator);
@@ -536,11 +536,11 @@ public class LaunchEntryUtil {
 	 * @param launchSetId the launch set ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public static LaunchEntry findByLaunchSetId_First(
 			long launchSetId, OrderByComparator<LaunchEntry> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().findByLaunchSetId_First(
 			launchSetId, orderByComparator);
@@ -566,11 +566,11 @@ public class LaunchEntryUtil {
 	 * @param launchSetId the launch set ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public static LaunchEntry findByLaunchSetId_Last(
 			long launchSetId, OrderByComparator<LaunchEntry> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().findByLaunchSetId_Last(
 			launchSetId, orderByComparator);
@@ -597,12 +597,12 @@ public class LaunchEntryUtil {
 	 * @param launchSetId the launch set ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch entry
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	public static LaunchEntry[] findByLaunchSetId_PrevAndNext(
 			long launchEntryId, long launchSetId,
 			OrderByComparator<LaunchEntry> orderByComparator)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().findByLaunchSetId_PrevAndNext(
 			launchEntryId, launchSetId, orderByComparator);
@@ -628,17 +628,17 @@ public class LaunchEntryUtil {
 	}
 
 	/**
-	 * Returns the launch entry where classNameId = &#63; and classPK = &#63; and classVersion = &#63; or throws a <code>NoSuchEntryException</code> if it could not be found.
+	 * Returns the launch entry where classNameId = &#63; and classPK = &#63; and classVersion = &#63; or throws a <code>NoSuchLaunchEntryException</code> if it could not be found.
 	 *
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param classVersion the class version
 	 * @return the matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public static LaunchEntry findByC_C_C(
 			long classNameId, long classPK, String classVersion)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().findByC_C_C(classNameId, classPK, classVersion);
 	}
@@ -685,7 +685,7 @@ public class LaunchEntryUtil {
 	 */
 	public static LaunchEntry removeByC_C_C(
 			long classNameId, long classPK, String classVersion)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().removeByC_C_C(
 			classNameId, classPK, classVersion);
@@ -707,16 +707,16 @@ public class LaunchEntryUtil {
 	}
 
 	/**
-	 * Returns the launch entry where externalReferenceCode = &#63; and companyId = &#63; or throws a <code>NoSuchEntryException</code> if it could not be found.
+	 * Returns the launch entry where externalReferenceCode = &#63; and companyId = &#63; or throws a <code>NoSuchLaunchEntryException</code> if it could not be found.
 	 *
 	 * @param externalReferenceCode the external reference code
 	 * @param companyId the company ID
 	 * @return the matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	public static LaunchEntry findByERC_C(
 			String externalReferenceCode, long companyId)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().findByERC_C(externalReferenceCode, companyId);
 	}
@@ -758,7 +758,7 @@ public class LaunchEntryUtil {
 	 */
 	public static LaunchEntry removeByERC_C(
 			String externalReferenceCode, long companyId)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().removeByERC_C(externalReferenceCode, companyId);
 	}
@@ -809,10 +809,10 @@ public class LaunchEntryUtil {
 	 *
 	 * @param launchEntryId the primary key of the launch entry
 	 * @return the launch entry that was removed
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	public static LaunchEntry remove(long launchEntryId)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().remove(launchEntryId);
 	}
@@ -822,14 +822,14 @@ public class LaunchEntryUtil {
 	}
 
 	/**
-	 * Returns the launch entry with the primary key or throws a <code>NoSuchEntryException</code> if it could not be found.
+	 * Returns the launch entry with the primary key or throws a <code>NoSuchLaunchEntryException</code> if it could not be found.
 	 *
 	 * @param launchEntryId the primary key of the launch entry
 	 * @return the launch entry
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	public static LaunchEntry findByPrimaryKey(long launchEntryId)
-		throws com.liferay.launch.exception.NoSuchEntryException {
+		throws com.liferay.launch.exception.NoSuchLaunchEntryException {
 
 		return getPersistence().findByPrimaryKey(launchEntryId);
 	}

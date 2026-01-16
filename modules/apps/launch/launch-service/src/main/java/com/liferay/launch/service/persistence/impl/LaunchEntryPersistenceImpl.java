@@ -6,7 +6,7 @@
 package com.liferay.launch.service.persistence.impl;
 
 import com.liferay.launch.exception.DuplicateLaunchEntryExternalReferenceCodeException;
-import com.liferay.launch.exception.NoSuchEntryException;
+import com.liferay.launch.exception.NoSuchLaunchEntryException;
 import com.liferay.launch.model.LaunchEntry;
 import com.liferay.launch.model.LaunchEntryTable;
 import com.liferay.launch.model.impl.LaunchEntryImpl;
@@ -275,12 +275,12 @@ public class LaunchEntryPersistenceImpl
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	@Override
 	public LaunchEntry findByUuid_First(
 			String uuid, OrderByComparator<LaunchEntry> orderByComparator)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		LaunchEntry launchEntry = fetchByUuid_First(uuid, orderByComparator);
 
@@ -297,7 +297,7 @@ public class LaunchEntryPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchEntryException(sb.toString());
+		throw new NoSuchLaunchEntryException(sb.toString());
 	}
 
 	/**
@@ -326,12 +326,12 @@ public class LaunchEntryPersistenceImpl
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	@Override
 	public LaunchEntry findByUuid_Last(
 			String uuid, OrderByComparator<LaunchEntry> orderByComparator)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		LaunchEntry launchEntry = fetchByUuid_Last(uuid, orderByComparator);
 
@@ -348,7 +348,7 @@ public class LaunchEntryPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchEntryException(sb.toString());
+		throw new NoSuchLaunchEntryException(sb.toString());
 	}
 
 	/**
@@ -385,13 +385,13 @@ public class LaunchEntryPersistenceImpl
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch entry
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	@Override
 	public LaunchEntry[] findByUuid_PrevAndNext(
 			long launchEntryId, String uuid,
 			OrderByComparator<LaunchEntry> orderByComparator)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -821,13 +821,13 @@ public class LaunchEntryPersistenceImpl
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	@Override
 	public LaunchEntry findByUuid_C_First(
 			String uuid, long companyId,
 			OrderByComparator<LaunchEntry> orderByComparator)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		LaunchEntry launchEntry = fetchByUuid_C_First(
 			uuid, companyId, orderByComparator);
@@ -848,7 +848,7 @@ public class LaunchEntryPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchEntryException(sb.toString());
+		throw new NoSuchLaunchEntryException(sb.toString());
 	}
 
 	/**
@@ -881,13 +881,13 @@ public class LaunchEntryPersistenceImpl
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	@Override
 	public LaunchEntry findByUuid_C_Last(
 			String uuid, long companyId,
 			OrderByComparator<LaunchEntry> orderByComparator)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		LaunchEntry launchEntry = fetchByUuid_C_Last(
 			uuid, companyId, orderByComparator);
@@ -908,7 +908,7 @@ public class LaunchEntryPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchEntryException(sb.toString());
+		throw new NoSuchLaunchEntryException(sb.toString());
 	}
 
 	/**
@@ -948,13 +948,13 @@ public class LaunchEntryPersistenceImpl
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch entry
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	@Override
 	public LaunchEntry[] findByUuid_C_PrevAndNext(
 			long launchEntryId, String uuid, long companyId,
 			OrderByComparator<LaunchEntry> orderByComparator)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -1376,12 +1376,12 @@ public class LaunchEntryPersistenceImpl
 	 * @param launchSetId the launch set ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	@Override
 	public LaunchEntry findByLaunchSetId_First(
 			long launchSetId, OrderByComparator<LaunchEntry> orderByComparator)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		LaunchEntry launchEntry = fetchByLaunchSetId_First(
 			launchSetId, orderByComparator);
@@ -1399,7 +1399,7 @@ public class LaunchEntryPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchEntryException(sb.toString());
+		throw new NoSuchLaunchEntryException(sb.toString());
 	}
 
 	/**
@@ -1429,12 +1429,12 @@ public class LaunchEntryPersistenceImpl
 	 * @param launchSetId the launch set ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	@Override
 	public LaunchEntry findByLaunchSetId_Last(
 			long launchSetId, OrderByComparator<LaunchEntry> orderByComparator)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		LaunchEntry launchEntry = fetchByLaunchSetId_Last(
 			launchSetId, orderByComparator);
@@ -1452,7 +1452,7 @@ public class LaunchEntryPersistenceImpl
 
 		sb.append("}");
 
-		throw new NoSuchEntryException(sb.toString());
+		throw new NoSuchLaunchEntryException(sb.toString());
 	}
 
 	/**
@@ -1489,13 +1489,13 @@ public class LaunchEntryPersistenceImpl
 	 * @param launchSetId the launch set ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next launch entry
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	@Override
 	public LaunchEntry[] findByLaunchSetId_PrevAndNext(
 			long launchEntryId, long launchSetId,
 			OrderByComparator<LaunchEntry> orderByComparator)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		LaunchEntry launchEntry = findByPrimaryKey(launchEntryId);
 
@@ -1702,18 +1702,18 @@ public class LaunchEntryPersistenceImpl
 	private FinderPath _finderPathFetchByC_C_C;
 
 	/**
-	 * Returns the launch entry where classNameId = &#63; and classPK = &#63; and classVersion = &#63; or throws a <code>NoSuchEntryException</code> if it could not be found.
+	 * Returns the launch entry where classNameId = &#63; and classPK = &#63; and classVersion = &#63; or throws a <code>NoSuchLaunchEntryException</code> if it could not be found.
 	 *
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @param classVersion the class version
 	 * @return the matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	@Override
 	public LaunchEntry findByC_C_C(
 			long classNameId, long classPK, String classVersion)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		LaunchEntry launchEntry = fetchByC_C_C(
 			classNameId, classPK, classVersion);
@@ -1738,7 +1738,7 @@ public class LaunchEntryPersistenceImpl
 				_log.debug(sb.toString());
 			}
 
-			throw new NoSuchEntryException(sb.toString());
+			throw new NoSuchLaunchEntryException(sb.toString());
 		}
 
 		return launchEntry;
@@ -1881,7 +1881,7 @@ public class LaunchEntryPersistenceImpl
 	@Override
 	public LaunchEntry removeByC_C_C(
 			long classNameId, long classPK, String classVersion)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		LaunchEntry launchEntry = findByC_C_C(
 			classNameId, classPK, classVersion);
@@ -1926,16 +1926,16 @@ public class LaunchEntryPersistenceImpl
 	private FinderPath _finderPathFetchByERC_C;
 
 	/**
-	 * Returns the launch entry where externalReferenceCode = &#63; and companyId = &#63; or throws a <code>NoSuchEntryException</code> if it could not be found.
+	 * Returns the launch entry where externalReferenceCode = &#63; and companyId = &#63; or throws a <code>NoSuchLaunchEntryException</code> if it could not be found.
 	 *
 	 * @param externalReferenceCode the external reference code
 	 * @param companyId the company ID
 	 * @return the matching launch entry
-	 * @throws NoSuchEntryException if a matching launch entry could not be found
+	 * @throws NoSuchLaunchEntryException if a matching launch entry could not be found
 	 */
 	@Override
 	public LaunchEntry findByERC_C(String externalReferenceCode, long companyId)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		LaunchEntry launchEntry = fetchByERC_C(
 			externalReferenceCode, companyId);
@@ -1957,7 +1957,7 @@ public class LaunchEntryPersistenceImpl
 				_log.debug(sb.toString());
 			}
 
-			throw new NoSuchEntryException(sb.toString());
+			throw new NoSuchLaunchEntryException(sb.toString());
 		}
 
 		return launchEntry;
@@ -2093,7 +2093,7 @@ public class LaunchEntryPersistenceImpl
 	@Override
 	public LaunchEntry removeByERC_C(
 			String externalReferenceCode, long companyId)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		LaunchEntry launchEntry = findByERC_C(externalReferenceCode, companyId);
 
@@ -2286,10 +2286,12 @@ public class LaunchEntryPersistenceImpl
 	 *
 	 * @param launchEntryId the primary key of the launch entry
 	 * @return the launch entry that was removed
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	@Override
-	public LaunchEntry remove(long launchEntryId) throws NoSuchEntryException {
+	public LaunchEntry remove(long launchEntryId)
+		throws NoSuchLaunchEntryException {
+
 		return remove((Serializable)launchEntryId);
 	}
 
@@ -2298,11 +2300,11 @@ public class LaunchEntryPersistenceImpl
 	 *
 	 * @param primaryKey the primary key of the launch entry
 	 * @return the launch entry that was removed
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	@Override
 	public LaunchEntry remove(Serializable primaryKey)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		Session session = null;
 
@@ -2317,13 +2319,13 @@ public class LaunchEntryPersistenceImpl
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchEntryException(
+				throw new NoSuchLaunchEntryException(
 					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(launchEntry);
 		}
-		catch (NoSuchEntryException noSuchEntityException) {
+		catch (NoSuchLaunchEntryException noSuchEntityException) {
 			throw noSuchEntityException;
 		}
 		catch (Exception exception) {
@@ -2517,11 +2519,11 @@ public class LaunchEntryPersistenceImpl
 	 *
 	 * @param primaryKey the primary key of the launch entry
 	 * @return the launch entry
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	@Override
 	public LaunchEntry findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		LaunchEntry launchEntry = fetchByPrimaryKey(primaryKey);
 
@@ -2530,7 +2532,7 @@ public class LaunchEntryPersistenceImpl
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchEntryException(
+			throw new NoSuchLaunchEntryException(
 				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
@@ -2538,15 +2540,15 @@ public class LaunchEntryPersistenceImpl
 	}
 
 	/**
-	 * Returns the launch entry with the primary key or throws a <code>NoSuchEntryException</code> if it could not be found.
+	 * Returns the launch entry with the primary key or throws a <code>NoSuchLaunchEntryException</code> if it could not be found.
 	 *
 	 * @param launchEntryId the primary key of the launch entry
 	 * @return the launch entry
-	 * @throws NoSuchEntryException if a launch entry with the primary key could not be found
+	 * @throws NoSuchLaunchEntryException if a launch entry with the primary key could not be found
 	 */
 	@Override
 	public LaunchEntry findByPrimaryKey(long launchEntryId)
-		throws NoSuchEntryException {
+		throws NoSuchLaunchEntryException {
 
 		return findByPrimaryKey((Serializable)launchEntryId);
 	}
