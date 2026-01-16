@@ -566,7 +566,8 @@ public class MarketplaceService extends BaseService {
 		}
 		catch (Exception exception) {
 			_log.error(
-				"Unable to post notification queue " + externalReferenceCode,
+				"Unable to post notification queue entry " +
+					externalReferenceCode,
 				exception);
 		}
 	}
