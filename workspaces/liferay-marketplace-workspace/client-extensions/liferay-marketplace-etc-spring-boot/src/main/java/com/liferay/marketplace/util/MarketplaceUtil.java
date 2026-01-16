@@ -23,7 +23,6 @@ import java.nio.file.Path;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -194,14 +193,6 @@ public class MarketplaceUtil {
 		catch (Exception exception) {
 			_log.error(exception);
 		}
-	}
-
-	public static String formatDateToISOString(Date date) {
-		if (date == null) {
-			return null;
-		}
-
-		return DateTimeFormatter.ISO_INSTANT.format(date.toInstant());
 	}
 
 	public static Map<String, Properties> getArtifactPropertiesMap(

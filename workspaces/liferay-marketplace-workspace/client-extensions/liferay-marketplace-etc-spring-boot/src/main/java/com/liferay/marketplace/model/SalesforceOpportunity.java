@@ -14,6 +14,9 @@ import com.liferay.headless.commerce.admin.order.client.dto.v1_0.OrderItem;
 import com.liferay.headless.commerce.admin.order.client.dto.v1_0.ShippingAddress;
 import com.liferay.marketplace.util.MarketplaceUtil;
 
+import java.time.format.DateTimeFormatter;
+
+import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
 
@@ -54,8 +57,7 @@ public class SalesforceOpportunity {
 		).put(
 			"billingAddress", _getBillingAddressJSONObject()
 		).put(
-			"closeDate",
-			MarketplaceUtil.formatDateToISOString(_order.getCreateDate())
+			"closeDate", _formatDateToISOString(_order.getCreateDate())
 		).put(
 			"marketplaceDealId", _order.getId()
 		).put(
@@ -84,6 +86,14 @@ public class SalesforceOpportunity {
 		}
 
 		return jsonObject.toString();
+	}
+
+	private String _formatDateToISOString(Date date) {
+		if (date == null) {
+			return null;
+		}
+
+		return DateTimeFormatter.ISO_INSTANT.format(date.toInstant());
 	}
 
 	private JSONObject _getBillingAddressJSONObject() {
@@ -142,7 +152,7 @@ public class SalesforceOpportunity {
 			"orderType", "New"
 		).put(
 			"productEndDate",
-			MarketplaceUtil.formatDateToISOString(
+			_formatDateToISOString(
 				MarketplaceUtil.getOrderPurchaseEndDate(
 					_licenseType,
 					MarketplaceUtil.getSkuOptionValue(
@@ -152,8 +162,7 @@ public class SalesforceOpportunity {
 		).put(
 			"productName", MarketplaceUtil.getDefaultLocale(_product.getName())
 		).put(
-			"productStartDate",
-			MarketplaceUtil.formatDateToISOString(_order.getCreateDate())
+			"productStartDate", _formatDateToISOString(_order.getCreateDate())
 		).put(
 			"quantity", _orderItem.getQuantity()
 		);
