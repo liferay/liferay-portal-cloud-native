@@ -165,7 +165,7 @@ public class OrganizationModelDocumentContributor
 						List<String> countryNames = addressValues.get(1);
 
 						countryNames.addAll(
-							_getLocalizedCountryNames((String)values[2]));
+							_getCountryNames((String)values[2]));
 
 						List<String> regionNames = addressValues.get(2);
 
@@ -214,7 +214,7 @@ public class OrganizationModelDocumentContributor
 				Country country = address.getCountry();
 
 				countryNames.addAll(
-					_getLocalizedCountryNames(country.getName()));
+					_getCountryNames(country.getName()));
 
 				Region region = address.getRegion();
 
@@ -234,17 +234,17 @@ public class OrganizationModelDocumentContributor
 		return addressDataMap.get(organization.getOrganizationId());
 	}
 
-	private Set<String> _getLocalizedCountryNames(String name) {
+	private Set<String> _getCountryNames(String name) {
 		Set<String> countryNames = new HashSet<>();
 
 		for (Locale locale : _language.getAvailableLocales()) {
-			countryNames.add(StringUtil.toLowerCase(_getName(locale, name)));
+			countryNames.add(StringUtil.toLowerCase(_getCountryName(locale, name)));
 		}
 
 		return countryNames;
 	}
 
-	private String _getName(Locale locale, String name) {
+	private String _getCountryName(Locale locale, String name) {
 		String localizedName = LanguageUtil.get(
 			locale, CountryConstants.NAME_PREFIX + name);
 
@@ -309,7 +309,7 @@ public class OrganizationModelDocumentContributor
 					organization.getCountryId());
 
 				countryNames = new ArrayList<>(
-					_getLocalizedCountryNames(country.getName()));
+					_getCountryNames(country.getName()));
 			}
 			catch (NoSuchCountryException noSuchCountryException) {
 				if (_log.isWarnEnabled()) {
