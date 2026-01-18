@@ -213,8 +213,7 @@ public class OrganizationModelDocumentContributor
 
 				Country country = address.getCountry();
 
-				countryNames.addAll(
-					_getCountryNames(country.getName()));
+				countryNames.addAll(_getCountryNames(country.getName()));
 
 				Region region = address.getRegion();
 
@@ -234,16 +233,6 @@ public class OrganizationModelDocumentContributor
 		return addressDataMap.get(organization.getOrganizationId());
 	}
 
-	private Set<String> _getCountryNames(String name) {
-		Set<String> countryNames = new HashSet<>();
-
-		for (Locale locale : _language.getAvailableLocales()) {
-			countryNames.add(StringUtil.toLowerCase(_getCountryName(locale, name)));
-		}
-
-		return countryNames;
-	}
-
 	private String _getCountryName(Locale locale, String name) {
 		String localizedName = LanguageUtil.get(
 			locale, CountryConstants.NAME_PREFIX + name);
@@ -253,6 +242,17 @@ public class OrganizationModelDocumentContributor
 		}
 
 		return name;
+	}
+
+	private Set<String> _getCountryNames(String name) {
+		Set<String> countryNames = new HashSet<>();
+
+		for (Locale locale : _language.getAvailableLocales()) {
+			countryNames.add(
+				StringUtil.toLowerCase(_getCountryName(locale, name)));
+		}
+
+		return countryNames;
 	}
 
 	private String _getOrganizationName(String organizationIdString) {
