@@ -244,8 +244,8 @@ public class TestrayJobHistory extends BaseJobHistory {
 	}
 
 	private String _fixStatus(String status) {
-		status = status.replace("REGRESSION", "FAILED");
 		status = status.replace("FIXED", "PASSED");
+		status = status.replace("REGRESSION", "FAILED");
 
 		return status;
 	}

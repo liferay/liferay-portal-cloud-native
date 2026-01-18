@@ -221,8 +221,8 @@ public class TestrayTestClassHistory extends BaseTestClassHistory {
 
 		String testClassName = testClassReport.getTestClassName();
 
-		if (testClassName.contains("PortalLogAssertorTest") ||
-			testClassName.contains("JenkinsLogAsserterTest")) {
+		if (testClassName.contains("JenkinsLogAsserterTest") ||
+			testClassName.contains("PortalLogAssertorTest")) {
 
 			return true;
 		}
@@ -237,8 +237,8 @@ public class TestrayTestClassHistory extends BaseTestClassHistory {
 	}
 
 	private String _fixStatus(String status) {
-		status = status.replace("REGRESSION", "FAILED");
 		status = status.replace("FIXED", "PASSED");
+		status = status.replace("REGRESSION", "FAILED");
 
 		return status;
 	}
