@@ -306,6 +306,8 @@ public class AssetTagStagedModelDataHandler
 			long importedTagId)
 		throws Exception {
 
+		List<Long> groupIds = new ArrayList<>();
+
 		String xml = portletDataContext.getZipEntryAsString(
 			ExportImportPathUtil.getModelPath(
 				assetTag, AssetTagGroupRel.class.getSimpleName()));
@@ -313,8 +315,6 @@ public class AssetTagStagedModelDataHandler
 		Document document = SAXReaderUtil.read(xml);
 
 		Element rootElement = document.getRootElement();
-
-		List<Long> groupIds = new ArrayList<>();
 
 		for (Element groupElement : rootElement.elements("group")) {
 			Group group = _groupLocalService.fetchGroupByExternalReferenceCode(
