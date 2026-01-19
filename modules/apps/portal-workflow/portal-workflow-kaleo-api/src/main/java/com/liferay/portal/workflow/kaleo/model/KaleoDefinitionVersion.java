@@ -53,13 +53,13 @@ public interface KaleoDefinitionVersion
 
 	public String getContentAsXML();
 
-	public boolean isLatest()
-		throws com.liferay.portal.kernel.exception.PortalException;
-
 	public KaleoDefinition getKaleoDefinition()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public KaleoNode getKaleoStartNode()
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public boolean isLatest()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public void setContentAsXML(String contentAsXML);
