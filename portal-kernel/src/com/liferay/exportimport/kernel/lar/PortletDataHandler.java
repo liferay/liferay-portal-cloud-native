@@ -107,17 +107,6 @@ public interface PortletDataHandler {
 				boolean privateLayout)
 		throws Exception;
 
-	/**
-	 * Returns the number of entities defined for this data handler that are
-	 * available for export according to the provided manifest summary, or
-	 * <code>-1</code> if no entities are included in the manifest summary.
-	 *
-	 * @param  manifestSummary the manifest summary listing the number of
-	 *         exportable entities
-	 * @return the number of entities that are available for export according to
-	 *         the manifest summary, or <code>-1</code> if no entities are
-	 *         included in the manifest summary
-	 */
 	public long getExportModelCount(ManifestSummary manifestSummary);
 
 	/**
@@ -270,14 +259,6 @@ public interface PortletDataHandler {
 		return null;
 	}
 
-	/**
-	 * Returns an array of the controls defined for this data handler. These
-	 * controls enable the developer to create fine grained controls over
-	 * staging publication behavior. The controls are rendered in the publish
-	 * UI.
-	 *
-	 * @return an array of the controls defined for this data handler
-	 */
 	public default PortletDataHandlerControl[]
 		getStagingPortletDataHandlerControls() {
 

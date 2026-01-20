@@ -238,9 +238,7 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(user
 												}
 
 												long importModelCount = portletDataHandler.getExportModelCount(manifestSummary);
-
 												long modelDeletionCount = manifestSummary.getModelDeletionCount(portletDataHandler.getDeletionSystemEventStagedModelTypes());
-
 												String tag = portletDataHandler.getTag(locale);
 											%>
 

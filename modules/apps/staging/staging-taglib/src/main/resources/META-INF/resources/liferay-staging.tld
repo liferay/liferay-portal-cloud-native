@@ -96,19 +96,19 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>The language key of the checkbox's suggestion text. It is displayed after the warning.</description>
+			<description></description>
 			<name>suggestion</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>The checkbox's tag. It is displayed after the label.</description>
+			<description></description>
 			<name>tag</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>The language key of the checkbox's warning text. It is displayed after the label.</description>
+			<description></description>
 			<name>warning</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
