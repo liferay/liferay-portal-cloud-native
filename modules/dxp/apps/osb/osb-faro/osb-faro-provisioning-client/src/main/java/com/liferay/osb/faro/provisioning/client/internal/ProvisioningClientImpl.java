@@ -96,13 +96,11 @@ public class ProvisioningClientImpl implements ProvisioningClient {
 		}
 
 		productConsumption.setEndDate(productPurchase.getEndDate());
-		productConsumption.setProductKey(productPurchase.getProductKey());
-		productConsumption.setProductPurchaseKey(productPurchase.getKey());
-
-		productConsumption.setStartDate(date);
-
 		productConsumption.setExternalLinks(
 			new ExternalLink[] {_createExternalLink(date, groupId)});
+		productConsumption.setProductKey(productPurchase.getProductKey());
+		productConsumption.setProductPurchaseKey(productPurchase.getKey());
+		productConsumption.setStartDate(date);
 
 		KoroneikiHttpUtil.postProductConsumption(
 			account.getKey(), productConsumption);
@@ -475,9 +473,7 @@ public class ProvisioningClientImpl implements ProvisioningClient {
 
 		Date baseProductPurchaseStartDate = baseProductPurchase.getStartDate();
 
-		Date now = new Date();
-
-		if (baseProductPurchaseStartDate.getTime() > now.getTime()) {
+		if (baseProductPurchaseStartDate.getTime() > System.currentTimeMillis()) {
 			return false;
 		}
 
