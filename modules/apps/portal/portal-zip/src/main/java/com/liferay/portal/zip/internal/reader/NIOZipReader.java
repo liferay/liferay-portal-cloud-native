@@ -174,8 +174,7 @@ public class NIOZipReader extends BaseZipReader {
 			super.close();
 
 			throw new UncheckedIOException(
-				"Failed to initialize NioZipReader for " + file.getPath(),
-				ioException);
+				"Unable to initialize " + file.getPath(), ioException);
 		}
 	}
 

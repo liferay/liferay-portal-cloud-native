@@ -142,8 +142,7 @@ public abstract class BaseZipReader implements ZipReader {
 
 	private void _deleteFile(File file) {
 		if (!file.delete() && _log.isWarnEnabled()) {
-			_log.warn(
-				"Failed to delete temporary file " + file.getAbsolutePath());
+			_log.warn("Unable to delete file " + file.getAbsolutePath());
 		}
 	}
 

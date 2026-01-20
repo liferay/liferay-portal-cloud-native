@@ -169,17 +169,13 @@ public abstract class BaseZipReaderTestCase {
 	@Test
 	public void testGetEntryAsString() {
 		Assert.assertEquals(
-			_expectedContent0, _zipReader.getEntryAsString(_FILE_PATH_0));
-
-		Assert.assertEquals(
 			_expectedContent0, _zipReader.getEntryAsString("/" + _FILE_PATH_0));
-
+		Assert.assertEquals(
+			_expectedContent0, _zipReader.getEntryAsString(_FILE_PATH_0));
 		Assert.assertEquals(
 			_expectedContent1, _zipReader.getEntryAsString(_FILE_PATH_1));
-
 		Assert.assertEquals(
 			_expectedContent2, _zipReader.getEntryAsString(_FILE_PATH_2));
-
 		Assert.assertEquals(
 			_expectedContent3, _zipReader.getEntryAsString(_FILE_PATH_3));
 	}
