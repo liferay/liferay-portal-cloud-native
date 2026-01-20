@@ -16912,24 +16912,24 @@ public class ObjectEntryResourceTest {
 
 		long objectEntryId = objectEntryJSONObject.getLong("id");
 
-		List<com.liferay.portal.kernel.comment.Comment> comments =
+		List<com.liferay.portal.kernel.comment.Comment> serviceBuilderComment =
 			_commentManager.getComments(
 				objectDefinition.getClassName(), objectEntryId,
 				WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		Assert.assertFalse(comments.isEmpty());
+		Assert.assertFalse(serviceBuilderComment.isEmpty());
 
 		endpoint = _getDeletePatchPutEndpoint(
 			groupId, objectDefinition, objectEntryJSONObject);
 
 		HTTPTestUtil.invokeToJSONObject(null, endpoint, Http.Method.DELETE);
 
-		comments = _commentManager.getComments(
+		serviceBuilderComment = _commentManager.getComments(
 			objectDefinition.getClassName(), objectEntryId,
 			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertTrue(comments.isEmpty());
+		Assert.assertTrue(serviceBuilderComment.isEmpty());
 	}
 
 	private void _testFilterObjectEntriesByRelatedLocalizedObjectEntries(
