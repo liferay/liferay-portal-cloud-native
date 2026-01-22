@@ -4975,6 +4975,22 @@
 	},
 	{
 		"classNames": [
+			"ProxyModeThreadLocal"
+		],
+		"from": "setForceSync(boolean paramName)",
+		"hasMessage": true,
+		"issueKey": "LPD-58370"
+	},
+	{
+		"classNames": [
+			"ProxyModeThreadLocal"
+		],
+		"from": "setWithSafeClosable(boolean paramName)",
+		"hasMessage": true,
+		"issueKey": "LPD-58370"
+	},
+	{
+		"classNames": [
 			"LayoutCopyHelper"
 		],
 		"from": "copyLayout",
