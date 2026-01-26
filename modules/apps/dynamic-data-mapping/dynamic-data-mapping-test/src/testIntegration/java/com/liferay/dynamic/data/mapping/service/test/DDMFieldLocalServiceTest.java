@@ -572,19 +572,19 @@ public class DDMFieldLocalServiceTest {
 	}
 
 	private void _assertDDMFormFieldValue(
-		DDMFormFieldValue ddmFormFieldValue, List<Locale> localesWithValue,
-		List<Locale> localesWithoutValue) {
+		DDMFormFieldValue ddmFormFieldValue, List<Locale> locales1,
+		List<Locale> locales2) {
 
 		Value value = ddmFormFieldValue.getValue();
 
 		Map<Locale, String> values = value.getValues();
 
-		for (Locale locale : localesWithValue) {
+		for (Locale locale : locales1) {
 			Assert.assertEquals(
 				LocaleUtil.toLanguageId(locale) + " value", values.get(locale));
 		}
 
-		for (Locale locale : localesWithoutValue) {
+		for (Locale locale : locales2) {
 			Assert.assertNull(values.get(locale));
 		}
 	}
