@@ -32,7 +32,7 @@ public class TextEmbeddingContentHelper<T extends BaseModel<T>> {
 		_size = size;
 		_textEmbeddingDocumentContributor = textEmbeddingDocumentContributor;
 
-		_nonlocalizedContentSB = new StringBundler((_size * 2) - 1);
+		_nonlocalizedContentSB = new StringBundler((size * 2) - 1);
 	}
 
 	public void appendToAll(String value) {
