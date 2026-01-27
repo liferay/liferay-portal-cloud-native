@@ -38,9 +38,7 @@ public class TextEmbeddingContentHelper<T extends BaseModel<T>> {
 	public void append(String value) {
 		_append(_nonlocalizedContentSB, value);
 
-		for (StringBundler localizedContentSB :
-				_localizedContentSBs.values()) {
-
+		for (StringBundler localizedContentSB : _localizedContentSBs.values()) {
 			_append(localizedContentSB, value);
 		}
 	}
@@ -69,8 +67,7 @@ public class TextEmbeddingContentHelper<T extends BaseModel<T>> {
 	}
 
 	public String getLocalizedContent(String languageId) {
-		StringBundler localizedContentSB = _localizedContentSBs.get(
-			languageId);
+		StringBundler localizedContentSB = _localizedContentSBs.get(languageId);
 
 		if ((localizedContentSB != null) &&
 			(localizedContentSB.length() != 0)) {
