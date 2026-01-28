@@ -1451,37 +1451,34 @@ public class TaxonomyCategoryResourceTest
 			parentTaxonomyVocabulary);
 		randomTaxonomyCategory.setTaxonomyVocabularyId(() -> null);
 
-		try {
-			TaxonomyCategory postTaxonomyCategory =
-				testPostSiteTaxonomyCategory_addTaxonomyCategory(
-					randomTaxonomyCategory);
+		TaxonomyCategory postTaxonomyCategory =
+			testPostSiteTaxonomyCategory_addTaxonomyCategory(
+				randomTaxonomyCategory);
 
-			AssetVocabulary assetVocabulary =
-				_assetVocabularyLocalService.getAssetVocabulary(
-					postTaxonomyCategory.getTaxonomyVocabularyId());
+		AssetVocabulary assetVocabulary =
+			_assetVocabularyLocalService.getAssetVocabulary(
+				postTaxonomyCategory.getTaxonomyVocabularyId());
 
-			Assert.assertEquals(
-				AssetVocabularyConstants.VISIBILITY_TYPE_EMPTY,
-				assetVocabulary.getVisibilityType());
+		Assert.assertEquals(
+			AssetVocabularyConstants.VISIBILITY_TYPE_EMPTY,
+			assetVocabulary.getVisibilityType());
 
-			List<AssetVocabularyGroupRel> assetVocabularyGroupRels =
-				_assetVocabularyGroupRelLocalService.
-					getAssetVocabularyGroupRelsByVocabularyId(
-						assetVocabulary.getVocabularyId());
+		List<AssetVocabularyGroupRel> assetVocabularyGroupRels =
+			_assetVocabularyGroupRelLocalService.
+				getAssetVocabularyGroupRelsByVocabularyId(
+					assetVocabulary.getVocabularyId());
 
-			Assert.assertEquals(
-				assetVocabularyGroupRels.toString(), 1,
-				assetVocabularyGroupRels.size());
+		Assert.assertEquals(
+			assetVocabularyGroupRels.toString(), 1,
+			assetVocabularyGroupRels.size());
 
-			AssetVocabularyGroupRel assetVocabularyGroupRel =
-				assetVocabularyGroupRels.get(0);
+		AssetVocabularyGroupRel assetVocabularyGroupRel =
+			assetVocabularyGroupRels.get(0);
 
-			Assert.assertEquals(-1L, assetVocabularyGroupRel.getGroupId());
-		}
-		finally {
-			irrelevantGroup = originalIrrelevantGroup;
-			testGroup = originalTestGroup;
-		}
+		Assert.assertEquals(-1L, assetVocabularyGroupRel.getGroupId());
+
+		irrelevantGroup = originalIrrelevantGroup;
+		testGroup = originalTestGroup;
 	}
 
 	private void _testPostTaxonomyCategoryBatch(
