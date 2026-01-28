@@ -1731,10 +1731,8 @@ public abstract class BaseBuild implements Build {
 
 		Set<String> cachedBuildURLs = properties.stringPropertyNames();
 
-		if (!cachedBuildURLs.isEmpty()) {
-			if (cachedBuildURLs.contains(getBuildURL())) {
-				return;
-			}
+		if (cachedBuildURLs.contains(getBuildURL())) {
+			return;
 		}
 
 		if (different && isParentBuildRoot()) {
