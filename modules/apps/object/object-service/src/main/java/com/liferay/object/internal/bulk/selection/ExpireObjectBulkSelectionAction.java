@@ -44,7 +44,7 @@ public class ExpireObjectBulkSelectionAction
 			ObjectEntryFolder objectEntryFolder = (ObjectEntryFolder)object;
 
 			throw new IllegalArgumentException(
-				"Object Entry Folders do not support expiration " +
+				"Object entry folders do not support expiration " +
 					objectEntryFolder);
 		}
 		else {
