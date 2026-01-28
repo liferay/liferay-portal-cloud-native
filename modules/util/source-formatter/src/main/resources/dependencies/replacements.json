@@ -4949,15 +4949,6 @@
 	},
 	{
 		"classNames": [
-			"MBMessageLocalService",
-			"MBMessageLocalServiceUtil"
-		],
-		"from": "addDiscussionMessage(long param, String param, long param, String param, long param, long param, long param, String param, String param, ServiceContext param)",
-		"issueKey": "LPD-58406",
-		"to": "addDiscussionMessage(null, param#0#, param#1#, param#2#, param#3#, param#4#, param#5#, param#6#, param#7#, param#8#, param#9#)"
-	},
-	{
-		"classNames": [
 			"OrganizationLocalService",
 			"OrganizationLocalServiceUtil"
 		],
@@ -4972,6 +4963,15 @@
 		"from": "getUser(long paramName, long paramName, String paramName, String paramName, boolean paramName)",
 		"issueKey": "LPD-58380",
 		"to": "getUser(param#0#, param#1#, param#2#, param#3#, param#4#, false)"
+	},
+	{
+		"classNames": [
+			"MBMessageLocalService",
+			"MBMessageLocalServiceUtil"
+		],
+		"from": "addDiscussionMessage(long param, String param, long param, String param, long param, long param, long param, String param, String param, ServiceContext param)",
+		"issueKey": "LPD-58406",
+		"to": "addDiscussionMessage(null, param#0#, param#1#, param#2#, param#3#, param#4#, param#5#, param#6#, param#7#, param#8#, param#9#)"
 	},
 	{
 		"classNames": [
