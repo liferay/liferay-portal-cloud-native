@@ -53,10 +53,10 @@ public class DeleteStructureStrutsAction implements StrutsAction {
 
 		JSONObject jsonObject = _jsonFactory.createJSONObject();
 
-		long objectDefinitionId = ParamUtil.getLong(
-			httpServletRequest, "objectDefinitionId");
-
 		try {
+			long objectDefinitionId = ParamUtil.getLong(
+				httpServletRequest, "objectDefinitionId");
+
 			_deleteStructures(objectDefinitionId);
 		}
 		catch (Exception exception) {

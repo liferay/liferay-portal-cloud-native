@@ -57,18 +57,19 @@ public class UpdateStructureStrutsAction implements StrutsAction {
 
 		JSONObject jsonObject = _jsonFactory.createJSONObject();
 
-		String[] deletedObjectRelationshipERCs = ParamUtil.getStringValues(
-			httpServletRequest, "deletedObjectRelationshipERCs");
-		String[] deletedRepeatableGroupsERCs = ParamUtil.getStringValues(
-			httpServletRequest, "deletedRepeatableGroupsERCs");
-		String objectDefinition = ParamUtil.getString(
-			httpServletRequest, "objectDefinition");
-		JSONArray repeatableGroupObjectDefinitionsJSONArray =
-			_jsonFactory.createJSONArray(
-				ParamUtil.getString(
-					httpServletRequest, "repeatableGroupObjectDefinitions"));
-
 		try {
+			String[] deletedObjectRelationshipERCs = ParamUtil.getStringValues(
+				httpServletRequest, "deletedObjectRelationshipERCs");
+			String[] deletedRepeatableGroupsERCs = ParamUtil.getStringValues(
+				httpServletRequest, "deletedRepeatableGroupsERCs");
+			String objectDefinition = ParamUtil.getString(
+				httpServletRequest, "objectDefinition");
+			JSONArray repeatableGroupObjectDefinitionsJSONArray =
+				_jsonFactory.createJSONArray(
+					ParamUtil.getString(
+						httpServletRequest,
+						"repeatableGroupObjectDefinitions"));
+
 			_updateStructure(
 				deletedRepeatableGroupsERCs, httpServletRequest,
 				objectDefinition, deletedObjectRelationshipERCs,
