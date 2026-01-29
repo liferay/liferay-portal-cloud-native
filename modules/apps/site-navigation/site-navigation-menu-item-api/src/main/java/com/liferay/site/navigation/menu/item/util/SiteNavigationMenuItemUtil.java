@@ -149,11 +149,9 @@ public class SiteNavigationMenuItemUtil {
 						typeSettingsUnicodeProperties.getProperty(
 							"name_" + defaultLanguageId))) {
 
-					String defaultTitle =
-						typeSettingsUnicodeProperties.getProperty("title");
-
 					typeSettingsUnicodeProperties.setProperty(
-						"name_" + defaultLanguageId, defaultTitle);
+						"name_" + defaultLanguageId,
+						typeSettingsUnicodeProperties.getProperty("title"));
 				}
 			}
 		}
