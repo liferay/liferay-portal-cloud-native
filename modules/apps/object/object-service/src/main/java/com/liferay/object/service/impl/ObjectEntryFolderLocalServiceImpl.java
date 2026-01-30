@@ -11,6 +11,7 @@ import com.liferay.depot.constants.DepotRolesConstants;
 import com.liferay.depot.model.DepotEntry;
 import com.liferay.depot.service.DepotEntryLocalService;
 import com.liferay.exportimport.kernel.empty.model.EmptyModelManager;
+import com.liferay.exportimport.kernel.empty.model.EmptyModelManagerUtil;
 import com.liferay.object.constants.ObjectDefinitionConstants;
 import com.liferay.object.constants.ObjectEntryFolderConstants;
 import com.liferay.object.entry.folder.subscription.util.ObjectEntryFolderSubscriptionUtil;
@@ -573,9 +574,13 @@ public class ObjectEntryFolderLocalServiceImpl
 		objectEntryFolder.setName(name);
 		objectEntryFolder.setTreePath(objectEntryFolder.buildTreePath());
 
-		if (objectEntryFolder.getStatus() == WorkflowConstants.STATUS_EMPTY) {
-			objectEntryFolder.setStatus(WorkflowConstants.STATUS_APPROVED);
-		}
+		objectEntryFolder.setStatus(
+			EmptyModelManagerUtil.solveEmptyModel(
+				objectEntryFolder.getStatus(), objectEntryFolder.getGroupId(),
+				objectEntryFolder.getCompanyId(),
+				objectEntryFolder.getExternalReferenceCode(),
+				objectEntryFolder.getModelClassName(),
+				() -> WorkflowConstants.STATUS_APPROVED));
 
 		_updateWorkflowDefinitionLinks(objectEntryFolderId, serviceContext);
 
