@@ -5311,6 +5311,15 @@
 		"to": "fetchCommercePriceEntry(param#1#, null, StringPool.BLANK)"
 	},
 	{
+		"from": "StorageEngineUtil.getFields(long paramName)",
+		"issueKey": "LPD-65038",
+		"newImports": [
+			"com.liferay.dynamic.data.mapping.util.DDMUtil",
+			"com.liferay.portal.kernel.service.ServiceContextThreadLocal"
+		],
+		"to": "DDMUtil.getFields(param#0#, ServiceContextThreadLocal.getServiceContext())"
+	},
+	{
 		"from": "PropsValues.FEATURE_FLAGS_JSON",
 		"issueKey": "LPD-66289",
 		"newImports": [
