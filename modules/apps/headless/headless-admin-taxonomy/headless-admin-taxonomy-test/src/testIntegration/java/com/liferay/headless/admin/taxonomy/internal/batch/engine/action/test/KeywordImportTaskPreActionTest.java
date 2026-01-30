@@ -102,8 +102,8 @@ public class KeywordImportTaskPreActionTest {
 		String virtualHostname = "www.able.com";
 
 		Company company = CompanyLocalServiceUtil.addCompany(
-			null, virtualHostname, virtualHostname, virtualHostname, 0,
-			true, true, null, null, null, null, null, null);
+			null, virtualHostname, virtualHostname, virtualHostname, 0, true,
+			true, null, null, null, null, null, null);
 
 		PortalInstances.initCompany(company);
 
