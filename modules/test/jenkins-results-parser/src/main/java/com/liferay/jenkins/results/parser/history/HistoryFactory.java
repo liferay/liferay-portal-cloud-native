@@ -23,7 +23,7 @@ public class HistoryFactory {
 		String batchName, JobHistory jobHistory, JSONObject jsonObject) {
 
 		if (jobHistory == null) {
-			throw new RuntimeException("Job History is null");
+			throw new RuntimeException("Job history is null");
 		}
 
 		BatchHistory batchHistory = _batchHistories.get(batchName);
@@ -81,7 +81,7 @@ public class HistoryFactory {
 		String testClassName) {
 
 		if (batchHistory == null) {
-			throw new RuntimeException("Batch History is null");
+			throw new RuntimeException("Batch history is null");
 		}
 
 		TestClassHistory testClassHistory = _testClassHistories.get(
@@ -107,7 +107,7 @@ public class HistoryFactory {
 		BatchHistory batchHistory, JSONObject jsonObject, String testTaskName) {
 
 		if (batchHistory == null) {
-			throw new RuntimeException("Batch History is null");
+			throw new RuntimeException("Batch history is null");
 		}
 
 		TestTaskHistory testTaskHistory = _testTaskHistories.get(testTaskName);
