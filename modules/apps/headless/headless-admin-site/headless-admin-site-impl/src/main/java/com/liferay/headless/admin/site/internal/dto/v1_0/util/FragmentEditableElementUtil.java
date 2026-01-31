@@ -569,7 +569,7 @@ public class FragmentEditableElementUtil {
 		throws Exception {
 
 		if (!(value instanceof JSONObject)) {
-			return _getUrlImageValue(GetterUtil.getString(value));
+			return _getURLImageValue(GetterUtil.getString(value));
 		}
 
 		JSONObject jsonObject = (JSONObject)value;
@@ -596,7 +596,7 @@ public class FragmentEditableElementUtil {
 			return itemImageValue;
 		}
 
-		return _getUrlImageValue(jsonObject.getString("url"));
+		return _getURLImageValue(jsonObject.getString("url"));
 	}
 
 	private static JSONObject _getImageValueJSONObject(
@@ -651,7 +651,7 @@ public class FragmentEditableElementUtil {
 		return jsonObject;
 	}
 
-	private static URLImageValue _getUrlImageValue(String url) {
+	private static URLImageValue _getURLImageValue(String url) {
 		if (Validator.isNull(url)) {
 			return null;
 		}
