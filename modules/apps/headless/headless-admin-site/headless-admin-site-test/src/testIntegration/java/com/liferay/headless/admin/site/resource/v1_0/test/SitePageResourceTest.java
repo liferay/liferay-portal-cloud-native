@@ -2669,10 +2669,8 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 	}
 
 	private void _testPutSiteSitePageWithExportedSitePage() throws Exception {
-		Layout layout = LayoutTestUtil.addTypeContentLayout(irrelevantGroup);
-
 		String languageId = LocaleUtil.toLanguageId(LocaleUtil.getDefault());
-
+		Layout layout = LayoutTestUtil.addTypeContentLayout(irrelevantGroup);
 		String url = RandomTestUtil.randomString();
 
 		_addFragmentEntryLinksAndPublishLayout(
