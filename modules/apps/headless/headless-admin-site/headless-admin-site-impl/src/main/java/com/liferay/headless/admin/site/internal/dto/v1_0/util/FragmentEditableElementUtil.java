@@ -565,7 +565,7 @@ public class FragmentEditableElementUtil {
 	}
 
 	private static ImageValue _getImageValue(
-			long companyId, Object value, long scopeGroupId)
+			long companyId, long scopeGroupId, Object value)
 		throws Exception {
 
 		if (!(value instanceof JSONObject)) {
@@ -897,7 +897,7 @@ public class FragmentEditableElementUtil {
 			LocalizedValueUtil.toLocalizedValues(
 				jsonObject,
 				key -> _getImageValue(
-					companyId, jsonObject.get(key), scopeGroupId));
+					companyId, scopeGroupId, jsonObject.get(key)));
 
 		if (MapUtil.isEmpty(imageValueMap)) {
 			return null;
