@@ -211,11 +211,11 @@ public class RecentGroupManagerImpl implements RecentGroupManager {
 				continue;
 			}
 
+			Layout privateLayout = null;
+
 			Layout layout = _layoutLocalService.fetchFirstLayout(
 				group.getGroupId(), false,
 				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
-
-			Layout privateLayout = null;
 
 			if (layout == null) {
 				privateLayout = _layoutLocalService.fetchFirstLayout(
