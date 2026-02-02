@@ -65,7 +65,8 @@ public class OAuth2ApplicationModelListener
 			return;
 		}
 
-		throw new ModelListenerException("Unable to delete OAuth2Application");
+		throw new ModelListenerException(
+			"Unable to delete OAuth 2 application");
 	}
 
 	@Override

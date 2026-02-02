@@ -132,7 +132,7 @@ public class AnalyticsCloudClient {
 
 		if (oAuth2Application == null) {
 			throw new DataSourceConnectionException(
-				"No OAuth2Application found for ANALYTICS-CLOUD");
+				"No OAuth2 application found for ANALYTICS-CLOUD");
 		}
 
 		JSONObject connectionTokenJSONObject = _decodeToken(connectionToken);
