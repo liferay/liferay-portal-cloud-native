@@ -47,16 +47,13 @@ public class GetCollectionSupportedFiltersMVCResourceCommand
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		String collections = ParamUtil.getString(
-			resourceRequest, "collections");
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		JSONPortletResponseUtil.writeJSON(
 			resourceRequest, resourceResponse,
 			_getSupportedFiltersJSONObject(
-				_jsonFactory.createJSONArray(collections), themeDisplay));
+				_jsonFactory.createJSONArray(
+					ParamUtil.getString(resourceRequest, "collections")),
+				(ThemeDisplay)resourceRequest.getAttribute(
+					WebKeys.THEME_DISPLAY)));
 	}
 
 	private JSONObject _getSupportedFiltersJSONObject(
