@@ -119,9 +119,9 @@ public class InviteMemberMVCRenderCommand implements MVCRenderCommand {
 				return "/room/invite_member.jsp";
 			}
 
+			Group group = _groupLocalService.getGroup(ticket.getClassPK());
 			HttpServletResponse httpServletResponse =
 				_portal.getHttpServletResponse(renderResponse);
-			Group group = _groupLocalService.getGroup(ticket.getClassPK());
 
 			httpServletResponse.sendRedirect(
 				PortletURLBuilder.create(

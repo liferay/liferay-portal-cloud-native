@@ -47,7 +47,6 @@ public class InvitedMemberBriefResourceImpl
 		}
 
 		Group group = _groupService.getGroup(digitalSalesRoomId);
-
 		Ticket ticket = _ticketLocalService.getTicket(invitedMemberBriefId);
 
 		if (!Objects.equals(Group.class.getName(), ticket.getClassName()) ||
