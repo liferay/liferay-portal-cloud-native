@@ -39,6 +39,26 @@ liferay-default:
                           - bash
                           - -c
                           - |
+                                function download_module {
+                                    local http_code=$(\
+                                        curl \
+                                            "https://releases.liferay.com/opensearch2/dxp/${product_version}/${filename_prefix}.${1}.jar" \
+                                            --location \
+                                            --output-dir "${deploy_dir}" \
+                                            --remote-name \
+                                            --retry 5 \
+                                            --retry-all-errors \
+                                            --retry-delay 2 \
+                                            --write-out "%{http_code}")
+
+                                    if [ "${http_code}" != "200" ]
+                                    then
+                                        echo "Unable to download OpenSearch modules for product version ${product_version}." >&2
+
+                                        exit 1
+                                    fi
+                                }
+
                                 function main {
                                     set -e
 
@@ -49,26 +69,9 @@ liferay-default:
                                     rm --force --verbose "/temp/osgi/modules/${filename_prefix}"*
 
                                     mkdir --parents "${deploy_dir}"
-
-                                    for type in api impl; do
-                                        local http_code=$(\
-                                            curl \
-                                                "https://releases.liferay.com/opensearch2/dxp/${product_version}/${filename_prefix}.${type}.jar" \
-                                                --location \
-                                                --output-dir "${deploy_dir}" \
-                                                --remote-name \
-                                                --retry 5 \
-                                                --retry-all-errors \
-                                                --retry-delay 2 \
-                                                --write-out "%{http_code}")
-
-                                        if [ "${http_code}" != "200" ]
-                                        then
-                                            echo "Unable to download OpenSearch modules for product version ${product_version}." >&2
-
-                                            exit 1
-                                        fi
-                                    done
+                    
+                                    download_module "api"
+                                    download_module "impl"
                                 }
 
                                 main
