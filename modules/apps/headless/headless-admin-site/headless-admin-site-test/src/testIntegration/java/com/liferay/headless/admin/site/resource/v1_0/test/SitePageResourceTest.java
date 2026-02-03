@@ -408,7 +408,12 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 
 	@Override
 	@Test
-	@TestInfo({"LPD-72013", "LPD-74331", "LPD-75450", "LPD-77124", "LPD-77852"})
+	@TestInfo(
+		{
+			"LPD-72013", "LPD-74331", "LPD-75450", "LPD-77124", "LPD-77505",
+			"LPD-77852"
+		}
+	)
 	public void testPutSiteSitePage() throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
@@ -2842,7 +2847,18 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 					JSONUtil.put("image-square", JSONUtil.put(languageId, url)),
 					JSONUtil.put(
 						"image-square",
-						JSONUtil.put(languageId, JSONUtil.put("url", url))))),
+						JSONUtil.put(languageId, JSONUtil.put("url", url))))
+			).put(
+				"BASIC_COMPONENT-slider",
+				JSONUtil.putAll(
+					JSONUtil.put("01-01-image", JSONUtil.put(languageId, url)),
+					JSONUtil.put(
+						"02-01-image",
+						JSONUtil.put(languageId, JSONUtil.put("url", url))),
+					JSONUtil.put(
+						"03-01-image",
+						JSONUtil.put(languageId, JSONUtil.put("url", url))))
+			),
 			layout);
 
 		SitePageResource sitePageResource = _getSitePageResource(
@@ -2858,7 +2874,7 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 			url);
 
 		_assertFragmentImageValues(
-			2, fragmentImageValue,
+			5, fragmentImageValue,
 			sitePageResource.getSiteSitePage(
 				irrelevantGroup.getExternalReferenceCode(),
 				layout.getExternalReferenceCode()));
@@ -2866,7 +2882,7 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 		_testPutSiteSitePage(sitePage, testGroup, sitePage);
 
 		_assertFragmentImageValues(
-			2, fragmentImageValue,
+			5, fragmentImageValue,
 			sitePageResource.getSiteSitePage(
 				testGroup.getExternalReferenceCode(),
 				layout.getExternalReferenceCode()));
@@ -2877,7 +2893,7 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 		_testPutSiteSitePage(sitePage, irrelevantGroup, sitePage);
 
 		_assertFragmentImageValues(
-			2, fragmentImageValue,
+			5, fragmentImageValue,
 			sitePageResource.getSiteSitePage(
 				irrelevantGroup.getExternalReferenceCode(),
 				layout.getExternalReferenceCode()));
@@ -2885,7 +2901,7 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 		_testPutSiteSitePage(sitePage, testGroup, sitePage);
 
 		_assertFragmentImageValues(
-			2, fragmentImageValue,
+			5, fragmentImageValue,
 			sitePageResource.getSiteSitePage(
 				testGroup.getExternalReferenceCode(),
 				layout.getExternalReferenceCode()));
