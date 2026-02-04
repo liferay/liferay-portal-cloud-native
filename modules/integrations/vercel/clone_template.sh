@@ -18,7 +18,7 @@ function main {
 		destination_dir="${2}"
 	fi
 
-	mkdir -p "${destination_dir}"
+	mkdir --parents "${destination_dir}"
 
 	echo "Moving ${template_dir} to ${destination_dir}."
 
