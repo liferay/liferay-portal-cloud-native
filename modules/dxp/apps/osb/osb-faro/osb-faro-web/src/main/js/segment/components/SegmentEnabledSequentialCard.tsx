@@ -29,7 +29,7 @@ const SegmentEnabledSequentialCard: React.FC<ISegmentEnabledSequentialCardProps>
 
 			<Text color='secondary' size={3}>
 				{Liferay.Language.get(
-					'when-this-is-enabled,-event-2-must-occur-after-event-1,-with-any-number-of-events-in-between.-When-this-is-disabled,-events-can-be-completed-in-any-order.-nested-criteria-are-not-supported'
+					'when-this-is-enabled,-event-2-must-occur-after-event-1,-with-any-number-of-events-in-between.-when-this-is-disabled,-events-can-be-completed-in-any-order.-nested-criteria-are-not-supported'
 				)}
 			</Text>
 		</Card.Body>
