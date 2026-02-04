@@ -51,19 +51,11 @@ public class MarketplaceTopicSubscriber {
 				ApiService apiService = subscriber.stopAsync();
 
 				apiService.awaitTerminated();
-
-				if (_log.isInfoEnabled()) {
-					_log.info("Subscriber shut down cleanly");
-				}
 			}
 		}
 
 		if (_subscriptionAdminClient != null) {
 			_subscriptionAdminClient.close();
-
-			if (_log.isInfoEnabled()) {
-				_log.info("Subscription admin client closed");
-			}
 		}
 	}
 
