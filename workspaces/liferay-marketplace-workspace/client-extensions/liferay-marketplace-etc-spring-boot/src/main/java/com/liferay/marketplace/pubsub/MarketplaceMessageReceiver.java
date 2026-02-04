@@ -21,8 +21,8 @@ import org.apache.commons.logging.LogFactory;
  */
 public class MarketplaceMessageReceiver implements MessageReceiver {
 
-	public MarketplaceMessageReceiver(String topic) {
-		_topic = topic;
+	public MarketplaceMessageReceiver(String topicName) {
+		_topicName = topicName;
 	}
 
 	@Override
@@ -31,25 +31,25 @@ public class MarketplaceMessageReceiver implements MessageReceiver {
 
 		try {
 			if (Objects.equals(
-					_topic,
+					_topicName,
 					MarketplaceConstants.
-						PUBSUB_TOPIC_KORONEIKI_ACCOUNT_CREATE)) {
+						PUBSUB_TOPIC_NAME_KORONEIKI_ACCOUNT_CREATE)) {
 
 				// PLACEHOLDER
 
 			}
 			else if (Objects.equals(
-						_topic,
+						_topicName,
 						MarketplaceConstants.
-							PUBSUB_TOPIC_KORONEIKI_ACCOUNT_UPDATE)) {
+							PUBSUB_TOPIC_NAME_KORONEIKI_ACCOUNT_UPDATE)) {
 
 				// PLACEHOLDER
 
 			}
 			else if (Objects.equals(
-						_topic,
+						_topicName,
 						MarketplaceConstants.
-							PUBSUB_TOPIC_KORONEIKI_ENTITLEMENT_CREATE)) {
+							PUBSUB_TOPIC_NAME_KORONEIKI_ENTITLEMENT_CREATE)) {
 
 				// PLACEHOLDER
 
@@ -67,6 +67,6 @@ public class MarketplaceMessageReceiver implements MessageReceiver {
 	private static final Log _log = LogFactory.getLog(
 		MarketplaceMessageReceiver.class);
 
-	private final String _topic;
+	private final String _topicName;
 
 }

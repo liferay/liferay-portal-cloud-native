@@ -64,19 +64,19 @@ public class MarketplaceConstants {
 
 	public static final String ORDER_STATUS_PROCESSING_LABEL = "Processing";
 
-	public static final String PUBSUB_TOPIC_KORONEIKI_ACCOUNT_CREATE =
+	public static final String PUBSUB_TOPIC_NAME_KORONEIKI_ACCOUNT_CREATE =
 		"koroneiki.account.create";
 
-	public static final String PUBSUB_TOPIC_KORONEIKI_ACCOUNT_UPDATE =
+	public static final String PUBSUB_TOPIC_NAME_KORONEIKI_ACCOUNT_UPDATE =
 		"koroneiki.account.update";
 
-	public static final String PUBSUB_TOPIC_KORONEIKI_ENTITLEMENT_CREATE =
+	public static final String PUBSUB_TOPIC_NAME_KORONEIKI_ENTITLEMENT_CREATE =
 		"koroneiki.entitlement.create";
 
-	public static final String[] PUBSUB_TOPICS = {
-		PUBSUB_TOPIC_KORONEIKI_ACCOUNT_CREATE,
-		PUBSUB_TOPIC_KORONEIKI_ACCOUNT_UPDATE,
-		PUBSUB_TOPIC_KORONEIKI_ENTITLEMENT_CREATE
+	public static final String[] PUBSUB_TOPIC_NAMES = {
+		PUBSUB_TOPIC_NAME_KORONEIKI_ACCOUNT_CREATE,
+		PUBSUB_TOPIC_NAME_KORONEIKI_ACCOUNT_UPDATE,
+		PUBSUB_TOPIC_NAME_KORONEIKI_ENTITLEMENT_CREATE
 	};
 
 	public static String getOrderPaymentMethodLabel(String paymentMethod) {

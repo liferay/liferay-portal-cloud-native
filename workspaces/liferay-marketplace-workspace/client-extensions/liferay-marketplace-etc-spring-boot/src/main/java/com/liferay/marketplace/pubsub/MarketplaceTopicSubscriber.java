@@ -79,10 +79,10 @@ public class MarketplaceTopicSubscriber {
 					credentialsProvider
 				).build());
 
-		for (String pubsubTopic : MarketplaceConstants.PUBSUB_TOPICS) {
+		for (String topicName : MarketplaceConstants.PUBSUB_TOPIC_NAMES) {
 			String subscriptionName = StringBundler.concat(
 				"projects/", _projectId, "/subscriptions/marketplace_",
-				pubsubTopic, "-subscription");
+				topicName, "-subscription");
 
 			try {
 				try {
@@ -100,7 +100,7 @@ public class MarketplaceTopicSubscriber {
 						).setTopic(
 							String.valueOf(
 								TopicName.ofProjectTopicName(
-									_projectId, pubsubTopic))
+									_projectId, topicName))
 						).build());
 
 					if (_log.isInfoEnabled()) {
@@ -110,7 +110,7 @@ public class MarketplaceTopicSubscriber {
 
 				Subscriber subscriber = Subscriber.newBuilder(
 					subscriptionName,
-					new MarketplaceMessageReceiver(pubsubTopic)
+					new MarketplaceMessageReceiver(topicName)
 				).setCredentialsProvider(
 					credentialsProvider
 				).build();
@@ -129,8 +129,8 @@ public class MarketplaceTopicSubscriber {
 			}
 			catch (Exception exception) {
 				_log.error(
-					"Failed to initialize Pubsub subscription for topic: " +
-						pubsubTopic,
+					"Failed to initialize Pubsub subscription for topicName: " +
+						topicName,
 					exception);
 
 				throw exception;
