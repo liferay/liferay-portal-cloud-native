@@ -192,7 +192,6 @@ public class DepotEntryAdminSearchProvider {
 		SearchContext searchContext = new SearchContext();
 
 		searchContext.setAttribute(Field.TYPE, depotEntryType);
-
 		searchContext.setBooleanClauses(_getBooleanClauses());
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
