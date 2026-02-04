@@ -84,7 +84,7 @@ public class ImportTaskResourceTest {
 	@Test
 	public void testPostImportTask() throws Exception {
 
-		// createStrategy "INSERT", executeStatus "COMPLETED", updateStrategy
+		// Create strategy "INSERT", execute status "COMPLETED", update strategy
 		// null
 
 		JSONObject jsonObject = JSONUtil.put(
@@ -102,7 +102,7 @@ public class ImportTaskResourceTest {
 			jsonObject.toString(), objectEntryFolder.toString(),
 			JSONCompareMode.LENIENT);
 
-		// createStrategy "INSERT", executeStatus "FAILED", updateStrategy
+		// Create strategy "INSERT", execute status "FAILED", update strategy
 		// null
 
 		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
@@ -127,8 +127,7 @@ public class ImportTaskResourceTest {
 				JSONCompareMode.LENIENT);
 		}
 
-		// createStrategy "UPSERT", executeStatus "COMPLETED", updateStrategy
-		// null
+		// Create strategy "UPSERT", execute status "COMPLETED", update strategy
 
 		jsonObject = JSONUtil.put(
 			"description", RandomTestUtil.randomString()
@@ -147,7 +146,7 @@ public class ImportTaskResourceTest {
 			jsonObject.toString(), objectEntryFolder.toString(),
 			JSONCompareMode.LENIENT);
 
-		// createStrategy "UPSERT", executeStatus "COMPLETED", updateStrategy
+		// Create strategy "UPSERT", execute status "COMPLETED", update strategy
 		// "PARTIAL_UPDATE"
 
 		jsonObject = JSONUtil.put(
@@ -171,7 +170,7 @@ public class ImportTaskResourceTest {
 			jsonObject.toString(), objectEntryFolder.toString(),
 			JSONCompareMode.LENIENT);
 
-		// createStrategy "UPSERT", executeStatus "COMPLETED", updateStrategy
+		// Create strategy "UPSERT", execute status "COMPLETED", update strategy
 		// "UPDATE"
 
 		jsonObject = JSONUtil.put(
