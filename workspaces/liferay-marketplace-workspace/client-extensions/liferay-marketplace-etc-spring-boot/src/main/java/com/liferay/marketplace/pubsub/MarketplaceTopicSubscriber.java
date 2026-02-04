@@ -73,10 +73,6 @@ public class MarketplaceTopicSubscriber {
 		CredentialsProvider credentialsProvider =
 			FixedCredentialsProvider.create(googleCredentials);
 
-		if (credentialsProvider == null) {
-			return;
-		}
-
 		SubscriptionAdminSettings subscriptionAdminSettings =
 			SubscriptionAdminSettings.newBuilder(
 			).setCredentialsProvider(
