@@ -108,13 +108,14 @@ public class UpdateStructureStrutsAction implements StrutsAction {
 	private void _deleteRelationships(long objectDefinitionId)
 		throws Exception {
 
-		for (com.liferay.object.model.ObjectRelationship objectRelationship :
-				_objectRelationshipLocalService.
-					getObjectRelationshipsByObjectDefinitionId2(
-						objectDefinitionId, false)) {
+		for (com.liferay.object.model.ObjectRelationship
+				serviceBuilderObjectRelationship :
+					_objectRelationshipLocalService.
+						getObjectRelationshipsByObjectDefinitionId2(
+							objectDefinitionId, false)) {
 
 			_objectRelationshipLocalService.deleteObjectRelationship(
-				objectRelationship);
+				serviceBuilderObjectRelationship);
 		}
 	}
 
