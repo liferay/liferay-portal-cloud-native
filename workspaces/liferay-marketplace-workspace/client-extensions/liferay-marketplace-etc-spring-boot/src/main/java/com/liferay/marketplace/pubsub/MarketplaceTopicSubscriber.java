@@ -68,7 +68,17 @@ public class MarketplaceTopicSubscriber {
 
 	@PostConstruct
 	protected void activate() throws Exception {
-		CredentialsProvider credentialsProvider = _getCredentialsProvider();
+		GoogleCredentials googleCredentials =
+			ServiceAccountCredentials.fromStream(
+				new ByteArrayInputStream(
+					_serviceAccountKey.getBytes(StandardCharsets.UTF_8))
+			).createScoped(
+				Collections.singletonList(
+					"https://www.googleapis.com/auth/cloud-platform")
+			);
+
+		CredentialsProvider credentialsProvider =
+			FixedCredentialsProvider.create(googleCredentials);
 
 		if (credentialsProvider == null) {
 			return;
@@ -148,19 +158,6 @@ public class MarketplaceTopicSubscriber {
 				throw exception;
 			}
 		}
-	}
-
-	private CredentialsProvider _getCredentialsProvider() throws Exception {
-		GoogleCredentials googleCredentials =
-			ServiceAccountCredentials.fromStream(
-				new ByteArrayInputStream(
-					_serviceAccountKey.getBytes(StandardCharsets.UTF_8))
-			).createScoped(
-				Collections.singletonList(
-					"https://www.googleapis.com/auth/cloud-platform")
-			);
-
-		return FixedCredentialsProvider.create(googleCredentials);
 	}
 
 	private static final Log _log = LogFactory.getLog(
