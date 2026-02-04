@@ -42,7 +42,7 @@ liferay-default:
                             function download_module {
                                 local product_version="{{ .image.tag }}"
 
-                                local http_code=$(\
+                                local http_code=$( \
                                     curl \
                                         "https://releases.liferay.com/opensearch2/dxp/${product_version}/com.liferay.portal.search.opensearch2.${1}.jar" \
                                         --location \
