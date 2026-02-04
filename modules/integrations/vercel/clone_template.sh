@@ -1,13 +1,6 @@
 #!/bin/bash
 
 function main {
-	local destination=$(pwd)
-
-	if [ -n "${2}" ]
-	then
-		destination="${2}"
-	fi
-
 	local temp_dir=$(mktemp -d)
 
 	git clone \
@@ -17,6 +10,13 @@ function main {
 		https://github.com/liferay/liferay-portal.git "${temp_dir}"
 
 	local template_origin="${temp_dir}/modules/integrations/vercel/${1}"
+
+	local destination=$(pwd)
+
+	if [ -n "${2}" ]
+	then
+		destination="${2}"
+	fi
 
 	echo "Moving ${template_origin} to ${destination}"
 
