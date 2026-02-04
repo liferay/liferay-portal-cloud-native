@@ -87,6 +87,10 @@ public class MarketplaceTopicSubscriber {
 				_subscriptionAdminClient.getSubscription(subscriptionName);
 			}
 			catch (NotFoundException notFoundException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(notFoundException);
+				}
+
 				_subscriptionAdminClient.createSubscription(
 					Subscription.newBuilder(
 					).setAckDeadlineSeconds(
