@@ -21,7 +21,6 @@ import com.liferay.marketplace.constants.MarketplaceConstants;
 import com.liferay.petra.string.StringBundler;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 
 import java.nio.charset.StandardCharsets;
 
@@ -75,9 +74,9 @@ public class MarketplaceTopicSubscriber {
 
 		_subscriptionAdminClient = SubscriptionAdminClient.create(
 			SubscriptionAdminSettings.newBuilder(
-				).setCredentialsProvider(
-					credentialsProvider
-				).build());
+			).setCredentialsProvider(
+				credentialsProvider
+			).build());
 
 		for (String topicName : MarketplaceConstants.PUBSUB_TOPIC_NAMES) {
 			String subscriptionName = StringBundler.concat(
@@ -96,14 +95,12 @@ public class MarketplaceTopicSubscriber {
 						subscriptionName
 					).setTopic(
 						String.valueOf(
-							TopicName.ofProjectTopicName(
-								_projectId, topicName))
+							TopicName.ofProjectTopicName(_projectId, topicName))
 					).build());
 			}
 
 			Subscriber subscriber = Subscriber.newBuilder(
-				subscriptionName,
-				new MarketplaceMessageReceiver(topicName)
+				subscriptionName, new MarketplaceMessageReceiver(topicName)
 			).setCredentialsProvider(
 				credentialsProvider
 			).build();
@@ -116,8 +113,7 @@ public class MarketplaceTopicSubscriber {
 
 			if (_log.isInfoEnabled()) {
 				_log.info(
-					"Subscribed to " +
-						subscriber.getSubscriptionNameString());
+					"Subscribed to " + subscriber.getSubscriptionNameString());
 			}
 		}
 	}
