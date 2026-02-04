@@ -78,47 +78,61 @@ public class MarketplaceTopicSubscriber {
 				credentialsProvider
 			).build());
 
-		for (String topicName : MarketplaceConstants.PUBSUB_TOPIC_NAMES) {
-			String subscriptionName = StringBundler.concat(
-				"projects/", _projectId, "/subscriptions/marketplace_",
-				topicName, "-subscription");
+		_subscribe(
+			credentialsProvider,
+			MarketplaceConstants.PUBSUB_TOPIC_NAME_KORONEIKI_ACCOUNT_CREATE);
+		_subscribe(
+			credentialsProvider,
+			MarketplaceConstants.PUBSUB_TOPIC_NAME_KORONEIKI_ACCOUNT_UPDATE);
+		_subscribe(
+			credentialsProvider,
+			MarketplaceConstants.
+				PUBSUB_TOPIC_NAME_KORONEIKI_ENTITLEMENT_CREATE);
+	}
 
-			try {
-				_subscriptionAdminClient.getSubscription(subscriptionName);
+	private void _subscribe(
+			CredentialsProvider credentialsProvider, String topicName)
+		throws Exception {
+
+		String subscriptionName = StringBundler.concat(
+			"projects/", _projectId, "/subscriptions/marketplace_", topicName,
+			"-subscription");
+
+		try {
+			_subscriptionAdminClient.getSubscription(subscriptionName);
+		}
+		catch (NotFoundException notFoundException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(notFoundException);
 			}
-			catch (NotFoundException notFoundException) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(notFoundException);
-				}
 
-				_subscriptionAdminClient.createSubscription(
-					Subscription.newBuilder(
-					).setAckDeadlineSeconds(
-						30
-					).setName(
-						subscriptionName
-					).setTopic(
-						String.valueOf(
-							TopicName.ofProjectTopicName(_projectId, topicName))
-					).build());
-			}
+			_subscriptionAdminClient.createSubscription(
+				Subscription.newBuilder(
+				).setAckDeadlineSeconds(
+					30
+				).setName(
+					subscriptionName
+				).setTopic(
+					String.valueOf(
+						TopicName.ofProjectTopicName(_projectId, topicName))
+				).build());
+		}
 
-			Subscriber subscriber = Subscriber.newBuilder(
-				subscriptionName, new MarketplaceMessageReceiver(topicName)
-			).setCredentialsProvider(
-				credentialsProvider
-			).build();
+		Subscriber subscriber = Subscriber.newBuilder(
+			subscriptionName, new MarketplaceMessageReceiver(topicName)
+		).setCredentialsProvider(
+			credentialsProvider
+		).build();
 
-			_subscribers.add(subscriber);
+		_subscribers.add(subscriber);
 
-			ApiService apiService = subscriber.startAsync();
+		ApiService apiService = subscriber.startAsync();
 
-			apiService.awaitRunning();
+		apiService.awaitRunning();
 
-			if (_log.isInfoEnabled()) {
-				_log.info(
-					"Subscribed to " + subscriber.getSubscriptionNameString());
-			}
+		if (_log.isInfoEnabled()) {
+			_log.info(
+				"Subscribed to " + subscriber.getSubscriptionNameString());
 		}
 	}
 

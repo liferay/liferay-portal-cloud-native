@@ -73,12 +73,6 @@ public class MarketplaceConstants {
 	public static final String PUBSUB_TOPIC_NAME_KORONEIKI_ENTITLEMENT_CREATE =
 		"koroneiki.entitlement.create";
 
-	public static final String[] PUBSUB_TOPIC_NAMES = {
-		PUBSUB_TOPIC_NAME_KORONEIKI_ACCOUNT_CREATE,
-		PUBSUB_TOPIC_NAME_KORONEIKI_ACCOUNT_UPDATE,
-		PUBSUB_TOPIC_NAME_KORONEIKI_ENTITLEMENT_CREATE
-	};
-
 	public static String getOrderPaymentMethodLabel(String paymentMethod) {
 		if (Objects.equals(paymentMethod, ORDER_PAYMENT_METHOD_MONEY_ORDER)) {
 			return ORDER_PAYMENT_METHOD_MONEY_ORDER_LABEL;
