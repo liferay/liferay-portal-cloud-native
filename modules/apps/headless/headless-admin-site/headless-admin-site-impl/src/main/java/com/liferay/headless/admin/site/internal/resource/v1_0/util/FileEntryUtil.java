@@ -74,8 +74,8 @@ public class FileEntryUtil {
 			throw new UnsupportedOperationException(
 				StringBundler.concat(
 					"Unable to download file from ",
-					thumbnailURLReference.getUrl(), ", unsupported protocol: ",
-					url.getProtocol()));
+					thumbnailURLReference.getUrl(),
+					" because of unsupported protocol ", url.getProtocol()));
 		}
 
 		URLConnection urlConnection = url.openConnection();
