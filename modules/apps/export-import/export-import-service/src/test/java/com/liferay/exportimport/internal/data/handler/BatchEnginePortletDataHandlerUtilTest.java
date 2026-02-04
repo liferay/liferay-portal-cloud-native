@@ -199,7 +199,34 @@ public class BatchEnginePortletDataHandlerUtilTest {
 				).put(
 					PortletDataHandlerKeys.PERMISSIONS, new String[] {"true"}
 				).build()));
-
+		Assert.assertEquals(
+			"comments",
+			_getBatchRestrictFields(
+				HashMapBuilder.put(
+					PortletDataHandlerKeys.COMMENTS, new String[] {"false"}
+				).put(
+					PortletDataHandlerKeys.PERMISSIONS, new String[] {"true"}
+				).build()));
+		Assert.assertEquals(
+			"comments,permissions",
+			_getBatchRestrictFields(
+				HashMapBuilder.put(
+					PortletDataHandlerKeys.COMMENTS, new String[] {"false"}
+				).build()));
+		Assert.assertEquals(
+			"comments,permissions",
+			_getBatchRestrictFields(
+				HashMapBuilder.put(
+					PortletDataHandlerKeys.COMMENTS, new String[] {"false"}
+				).put(
+					PortletDataHandlerKeys.PERMISSIONS, new String[] {"false"}
+				).build()));
+		Assert.assertEquals(
+			"comments,permissions",
+			_getBatchRestrictFields(
+				HashMapBuilder.put(
+					PortletDataHandlerKeys.PERMISSIONS, new String[] {"false"}
+				).build()));
 		Assert.assertEquals(
 			"permissions",
 			_getBatchRestrictFields(
@@ -209,37 +236,6 @@ public class BatchEnginePortletDataHandlerUtilTest {
 					PortletDataHandlerKeys.PERMISSIONS, new String[] {"false"}
 				).build()));
 
-		Assert.assertEquals(
-			"comments",
-			_getBatchRestrictFields(
-				HashMapBuilder.put(
-					PortletDataHandlerKeys.COMMENTS, new String[] {"false"}
-				).put(
-					PortletDataHandlerKeys.PERMISSIONS, new String[] {"true"}
-				).build()));
-
-		Assert.assertEquals(
-			"comments,permissions",
-			_getBatchRestrictFields(
-				HashMapBuilder.put(
-					PortletDataHandlerKeys.COMMENTS, new String[] {"false"}
-				).put(
-					PortletDataHandlerKeys.PERMISSIONS, new String[] {"false"}
-				).build()));
-
-		Assert.assertEquals(
-			"comments,permissions",
-			_getBatchRestrictFields(
-				HashMapBuilder.put(
-					PortletDataHandlerKeys.COMMENTS, new String[] {"false"}
-				).build()));
-
-		Assert.assertEquals(
-			"comments,permissions",
-			_getBatchRestrictFields(
-				HashMapBuilder.put(
-					PortletDataHandlerKeys.PERMISSIONS, new String[] {"false"}
-				).build()));
 	}
 
 	@Test
