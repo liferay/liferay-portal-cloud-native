@@ -107,7 +107,7 @@ public class ConfigurationDataCleanupPreupgradeProcessTest
 
 	@Test
 	public void testUpgradeWithNullDictionary() throws Exception {
-		String configurationId = "test.configuration.null.dictionary";
+		String configurationId = RandomTestUtil.randomString();
 
 		try {
 			try (PreparedStatement preparedStatement =
