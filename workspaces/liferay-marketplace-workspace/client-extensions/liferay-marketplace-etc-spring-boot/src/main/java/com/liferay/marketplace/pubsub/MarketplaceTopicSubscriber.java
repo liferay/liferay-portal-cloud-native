@@ -100,10 +100,6 @@ public class MarketplaceTopicSubscriber {
 								TopicName.ofProjectTopicName(
 									_projectId, topicName))
 						).build());
-
-					if (_log.isInfoEnabled()) {
-						_log.info("Subscription created " + subscriptionName);
-					}
 				}
 
 				Subscriber subscriber = Subscriber.newBuilder(
