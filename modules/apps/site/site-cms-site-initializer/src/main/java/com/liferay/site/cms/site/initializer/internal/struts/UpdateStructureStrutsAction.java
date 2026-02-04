@@ -182,15 +182,13 @@ public class UpdateStructureStrutsAction implements StrutsAction {
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		List<ObjectDefinition> repeatableGroupObjectDefinitions =
-			_getObjectDefinitions(repeatableGroupObjectDefinitionsJSONArray);
-
 		Callable<Void> callable = new UpdateStructureCallable(
 			themeDisplay.getCompanyId(), deletedObjectRelationshipsJSONArray,
 			deletedRepeatableGroupsERCs,
 			ObjectDefinition.toDTO(objectDefinitionString),
 			_getObjectRelationships(objectRelationshipsJSONArray),
-			repeatableGroupObjectDefinitions, themeDisplay.getUser());
+			_getObjectDefinitions(repeatableGroupObjectDefinitionsJSONArray),
+			themeDisplay.getUser());
 
 		try {
 			TransactionInvokerUtil.invoke(_transactionConfig, callable);
