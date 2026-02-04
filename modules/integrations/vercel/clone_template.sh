@@ -1,33 +1,33 @@
 #!/bin/bash
 
 function main {
-	DESTINATION=$(pwd)
+	local destination=$(pwd)
 
 	if [ -n "${2}" ]
 	then
-		DESTINATION="${2}"
+		destination="${2}"
 	fi
 
-	TEMP_DIR=$(mktemp -d)
+	local temp_dir=$(mktemp -d)
 
 	git clone \
 		--branch=master \
 		--depth 1 \
 		--single-branch \
-		https://github.com/liferay/liferay-portal.git "${TEMP_DIR}"
+		https://github.com/liferay/liferay-portal.git "${temp_dir}"
 
-	local template_origin="${TEMP_DIR}/modules/integrations/vercel/${1}"
+	local template_origin="${temp_dir}/modules/integrations/vercel/${1}"
 
-	echo "Moving ${template_origin} to ${DESTINATION}"
+	echo "Moving ${template_origin} to ${destination}"
 
-	if [ ! -d "${DESTINATION}" ]
+	if [ ! -d "${destination}" ]
 	then
-		mkdir -p "${DESTINATION}"
+		mkdir -p "${destination}"
 	fi
 
-	mv -v "${template_origin}" "${DESTINATION}"
+	mv -v "${template_origin}" "${destination}"
 
-	cd "${DESTINATION}/${1}" && git init && git add . && git commit --message "chore: clone ${1}"
+	cd "${destination}/${1}" && git init && git add . && git commit --message "chore: clone ${1}"
 }
 
 main "${@}"
