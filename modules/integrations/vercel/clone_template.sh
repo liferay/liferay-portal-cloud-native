@@ -9,8 +9,6 @@ function main {
 		--single-branch \
 		https://github.com/liferay/liferay-portal.git "${temp_dir}"
 
-	local template_dir="${temp_dir}/modules/integrations/vercel/${1}"
-
 	local destination_dir=$(pwd)
 
 	if [ -n "${2}" ]
@@ -20,7 +18,7 @@ function main {
 
 	mkdir --parents "${destination_dir}"
 
-	mv "${template_dir}" "${destination_dir}"
+	mv "${temp_dir}/modules/integrations/vercel/${1}" "${destination_dir}"
 
 	cd "${destination_dir}/${1}" && git init && git add . && git commit --message "chore: clone ${1}"
 }
