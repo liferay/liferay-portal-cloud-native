@@ -115,12 +115,14 @@ public class ElasticsearchIndexingFixture implements IndexingFixture {
 				_elasticsearchFixture, indexNameBuilder, localization,
 				searchEngineAdapter);
 
+		_indexSearcher = elasticsearchIndexSearcher;
+
 		IndexWriter indexWriter = _createIndexWriter(
 			_elasticsearchFixture, indexNameBuilder, localization,
 			searchEngineAdapter);
 
-		_indexSearcher = elasticsearchIndexSearcher;
 		_indexWriter = indexWriter;
+
 		_searchEngineAdapter = searchEngineAdapter;
 
 		_createIndex(indexNameBuilder);

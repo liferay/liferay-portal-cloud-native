@@ -117,6 +117,12 @@ public class SearchRequestExecutorFixture {
 		ReflectionTestUtil.setFieldValue(
 			commonSearchRequestBuilderAssembler, "_complexQueryBuilderFactory",
 			complexQueryBuilderFactory);
+		ReflectionTestUtil.setFieldValue(
+			commonSearchRequestBuilderAssembler, "_facetTranslator",
+			_createFacetTranslator(facetProcessor));
+		ReflectionTestUtil.setFieldValue(
+			commonSearchRequestBuilderAssembler, "_filterTranslator",
+			new ElasticsearchFilterTranslator());
 
 		ElasticsearchQueryTranslatorFixture
 			legacyElasticsearchQueryTranslatorFixture =
@@ -126,14 +132,6 @@ public class SearchRequestExecutorFixture {
 			ElasticsearchQueryTranslator legacyElasticsearchQueryTranslator =
 				legacyElasticsearchQueryTranslatorFixture.
 					getElasticsearchQueryTranslator();
-
-		ReflectionTestUtil.setFieldValue(
-			commonSearchRequestBuilderAssembler, "_facetTranslator",
-			_createFacetTranslator(facetProcessor));
-
-		ReflectionTestUtil.setFieldValue(
-			commonSearchRequestBuilderAssembler, "_filterTranslator",
-			new ElasticsearchFilterTranslator());
 
 		ReflectionTestUtil.setFieldValue(
 			commonSearchRequestBuilderAssembler, "_legacyQueryTranslator",

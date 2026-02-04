@@ -574,6 +574,9 @@ public class CommonSearchSourceBuilderAssemblerImplTest {
 		ReflectionTestUtil.setFieldValue(
 			commonSearchSourceBuilderAssembler, "_facetTranslator",
 			new DefaultFacetTranslator());
+		ReflectionTestUtil.setFieldValue(
+			commonSearchSourceBuilderAssembler, "_filterTranslator",
+			new ElasticsearchFilterTranslator());
 
 		ElasticsearchQueryTranslatorFixture
 			legacyElasticsearchQueryTranslatorFixture =
@@ -585,12 +588,9 @@ public class CommonSearchSourceBuilderAssemblerImplTest {
 					getElasticsearchQueryTranslator();
 
 		ReflectionTestUtil.setFieldValue(
-			commonSearchSourceBuilderAssembler, "_filterTranslator",
-			new ElasticsearchFilterTranslator());
-
-		ReflectionTestUtil.setFieldValue(
 			commonSearchSourceBuilderAssembler, "_legacyQueryTranslator",
 			legacyElasticsearchQueryTranslator);
+
 		ReflectionTestUtil.setFieldValue(
 			commonSearchSourceBuilderAssembler, "_queryTranslator",
 			new ElasticsearchQueryTranslator());
