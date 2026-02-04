@@ -18,9 +18,9 @@ function main {
 		destination_dir="${2}"
 	fi
 
-	echo "Moving ${template_dir} to ${destination_dir}."
-
 	mkdir -p "${destination_dir}"
+
+	echo "Moving ${template_dir} to ${destination_dir}."
 
 	mv -v "${template_dir}" "${destination_dir}"
 
