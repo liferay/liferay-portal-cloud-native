@@ -232,12 +232,12 @@ public class ClientExtensionOSGiCommandsTest {
 
 		String dataRow = lines[2];
 
-		String expectedDataPattern = StringBundler.concat(
-			"\\| ", _configurationPids.get(0),
-			"\\s*\\| Liferay Sample CX 1\\s*\\| customElement \\s*\\| ",
-			"default\\s*\\|");
-
-		Assert.assertTrue(dataRow.matches(expectedDataPattern));
+		Assert.assertTrue(
+			dataRow.matches(
+				StringBundler.concat(
+					"\\| ", _configurationPids.get(0),
+					"\\s*\\| Liferay Sample CX 1\\s*\\| customElement \\s*\\| ",
+					"default\\s*\\|")));
 	}
 
 	@Test
