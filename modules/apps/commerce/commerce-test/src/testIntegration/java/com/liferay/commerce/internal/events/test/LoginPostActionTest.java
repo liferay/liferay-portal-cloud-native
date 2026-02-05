@@ -122,6 +122,7 @@ public class LoginPostActionTest {
 
 			commerceOrder = CommerceTestUtil.addCheckoutDetailsToCommerceOrder(
 				commerceOrder, commerceOrder.getUserId(), false);
+
 			commerceOrder = _commerceOrderEngine.checkoutCommerceOrder(
 				commerceOrder, user.getUserId());
 
