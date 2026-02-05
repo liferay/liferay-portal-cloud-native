@@ -366,11 +366,11 @@ public class ClientExtensionOSGiCommandsTest {
 	private void _testGetConfigurations(
 		List<String> filterStrings, List<String> expectedNames) {
 
+		Set<String> namesSet = new HashSet<>();
+
 		Configuration[] configurations = _getConfigurations(
 			ArrayUtil.append(
 				filterStrings.toArray(new String[0]), "test.only=true"));
-
-		Set<String> namesSet = new HashSet<>();
 
 		if (configurations != null) {
 			for (Configuration configuration : configurations) {
