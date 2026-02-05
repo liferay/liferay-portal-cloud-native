@@ -223,17 +223,11 @@ public class ClientExtensionOSGiCommandsTest {
 		String[] lines = output.split(System.lineSeparator());
 
 		Assert.assertTrue(lines.length >= 3);
-
-		String firstLine = lines[0];
-
 		Assert.assertTrue(
-			firstLine.matches(
+			lines[0].matches(
 				"\\| pid\\s*\\| name\\s*\\| type\\s*\\| webId\\s*\\|"));
-
-		String dataRow = lines[2];
-
 		Assert.assertTrue(
-			dataRow.matches(
+			lines[2].matches(
 				StringBundler.concat(
 					"\\| ", _configurationPids.get(0),
 					"\\s*\\| Liferay Sample CX 1\\s*\\| customElement \\s*\\| ",
