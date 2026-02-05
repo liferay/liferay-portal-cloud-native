@@ -91,7 +91,6 @@ public class OAuth2ApplicationAnalyticsCloudUpgradeProcess
 			_oAuth2ApplicationLocalService.
 				fetchOAuth2ApplicationByExternalReferenceCode(
 					"ANALYTICS-CLOUD", companyId);
-
 		User user = _userLocalService.fetchUserByScreenName(
 			companyId, UserConstants.SCREEN_NAME_DEFAULT_SERVICE_ACCOUNT);
 
