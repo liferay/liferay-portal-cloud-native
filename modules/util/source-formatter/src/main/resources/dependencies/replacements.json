@@ -3712,7 +3712,11 @@
 		],
 		"from": "regex:(?<variableName>\\w+)\\.(?<prefixMethodName>get|set)Type(?<suffix>Id)?",
 		"issueKey": "LPD-36750",
-		"to": "${variableName}.${prefixMethodName}ListType${suffix}"
+		"to": "${variableName}.${prefixMethodName}ListType${suffix}",
+		"validExtensions": [
+			"java",
+			"jsp"
+		]
 	},
 	{
 		"classNames": [
@@ -5305,6 +5309,15 @@
 			"com.liferay.petra.string.StringPool"
 		],
 		"to": "fetchCommercePriceEntry(param#1#, null, StringPool.BLANK)"
+	},
+	{
+		"from": "PropsValues.FEATURE_FLAGS_JSON",
+		"issueKey": "LPD-66289",
+		"newImports": [
+			"com.liferay.portal.kernel.json.JSONFactoryUtil",
+			"com.liferay.portal.kernel.util.PropsUtil"
+		],
+		"to": "String.valueOf(JSONFactoryUtil.createJSONObject(PropsUtil.getProperties(\"feature.flag.\", true)))"
 	},
 	{
 		"from": "PropsFiles.CAPTCHA",

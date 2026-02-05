@@ -15689,6 +15689,12 @@ cluster.link.bind.addr["cluster-link-udp"]=127.0.0.1</echo>
 								<then>
 									<property name="mysql.host" value="127.0.0.1" />
 								</then>
+								<elseif>
+									<isset property="database.host" />
+									<then>
+										<property name="mysql.host" value="${database.host}" />
+									</then>
+								</elseif>
 								<else>
 									<property name="mysql.host" value="" />
 								</else>
@@ -15709,6 +15715,8 @@ cluster.link.bind.addr["cluster-link-udp"]=127.0.0.1</echo>
 									<arg line="${arg.line}" />
 								</exec>
 							</retry>
+
+							<get-database-property property.name="database.version" />
 
 							<is-less-than arg1="${database.version}" arg2="8.0" property.name="mysql.upgrade" />
 
@@ -15785,12 +15793,20 @@ cluster.link.bind.addr["cluster-link-udp"]=127.0.0.1</echo>
 								<param name="sql.file" value="create-bare-${database.type}.sql" />
 							</antcall>
 
+							<get-database-property property.name="database.host" />
 							<get-database-property property.name="database.schema" />
 							<get-database-property property.name="database.username" />
+
+							<condition property="database.host" value="localhost">
+								<not>
+									<isset property="database.host" />
+								</not>
+							</condition>
 
 							<exec executable="${postgresql.executable}" failonerror="true">
 								<arg value="--dbname=${database.schema}" />
 								<arg value="--file=${liferay.home}/${database.type}.sql" />
+								<arg value="--host=${database.host}" />
 								<arg value="--username=${database.username}" />
 							</exec>
 						</then>
@@ -17703,9 +17719,14 @@ CATALINA_OPTS="$CATALINA_OPTS -Dcom.sun.management.jmxremote -Dcom.sun.managemen
 			<finally>
 				<lstopwatch action="total" name="upgrade-legacy-database" />
 
-				<print-docker-database-logs />
+				<if>
+					<isset property="database.docker.image" />
+					<then>
+						<print-docker-database-logs />
 
-				<print-docker-stats />
+						<print-docker-stats />
+					</then>
+				</if>
 			</finally>
 		</trycatch>
 	</target>
