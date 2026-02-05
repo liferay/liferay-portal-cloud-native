@@ -261,9 +261,9 @@ public class ClientExtensionOSGiCommandsTest {
 
 		List<Integer> types = new ArrayList<>();
 
-		ConfigurationListener configurationListener = event -> {
-			if (Objects.equals(event.getPid(), pid)) {
-				types.add(event.getType());
+		ConfigurationListener configurationListener = configurationEvent -> {
+			if (Objects.equals(configurationEvent.getPid(), pid)) {
+				types.add(configurationEvent.getType());
 
 				countDownLatch.countDown();
 			}
