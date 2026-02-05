@@ -163,55 +163,21 @@ public class ClientExtensionOSGiCommandsTest {
 
 	@Test
 	public void testGetConfigurations() {
-		_testGetConfigurations(
-			List.of(),
-			List.of(
-				"Liferay Test CX 1", "Liferay Test CX 2",
-				"Liferay Test CX 3"));
-		_testGetConfigurations(
-			List.of("deploymentType=bundle"), List.of("Liferay Test CX 1"));
-		_testGetConfigurations(
-			List.of("deploymentType=agent"),
-			List.of("Liferay Test CX 2", "Liferay Test CX 3"));
-		_testGetConfigurations(
-			List.of("webId=default"),
-			List.of("Liferay Test CX 1", "Liferay Test CX 2"));
-		_testGetConfigurations(
-			List.of("webId=liferay.com"),
-			List.of("Liferay Test CX 1", "Liferay Test CX 2"));
-		_testGetConfigurations(
-			List.of("webId=" + _companyWebId), List.of("Liferay Test CX 3"));
-		_testGetConfigurations(
-			List.of("type=customElement"),
-			List.of("Liferay Test CX 1", "Liferay Test CX 2"));
-		_testGetConfigurations(
-			List.of("type=instanceSettings"), List.of("Liferay Test CX 3"));
-		_testGetConfigurations(
-			List.of("deploymentType=bundle", "type=customElement"),
-			List.of("Liferay Test CX 1"));
-		_testGetConfigurations(
-			List.of(
-				"deploymentType=agent", "webId=" + _companyWebId,
-				"type=instanceSettings"),
-			List.of("Liferay Test CX 3"));
-
-		_testGetConfigurations(
-			List.of("name=" + RandomTestUtil.randomString()), List.of());
-		_testGetConfigurations(
-			List.of(
-				"deploymentType=prod", "name=" + RandomTestUtil.randomString()),
-			List.of());
-		_testGetConfigurations(
-			List.of(
-				RandomTestUtil.randomString() + "=" +
-					RandomTestUtil.randomString()),
-			List.of());
-		_testGetConfigurations(
-			List.of(RandomTestUtil.randomString()), List.of());
-		_testGetConfigurations(
-			List.of(
-				RandomTestUtil.randomString(), RandomTestUtil.randomString()),
-			List.of());
+		_testGetConfigurations(List.of(), List.of("Liferay Test CX 1", "Liferay Test CX 2", "Liferay Test CX 3"));
+		_testGetConfigurations(List.of("deploymentType=bundle"), List.of("Liferay Test CX 1"));
+		_testGetConfigurations(List.of("deploymentType=agent"), List.of("Liferay Test CX 2", "Liferay Test CX 3"));
+		_testGetConfigurations(List.of("webId=default"), List.of("Liferay Test CX 1", "Liferay Test CX 2"));
+		_testGetConfigurations(List.of("webId=liferay.com"), List.of("Liferay Test CX 1", "Liferay Test CX 2"));
+		_testGetConfigurations(List.of("webId=" + _companyWebId), List.of("Liferay Test CX 3"));
+		_testGetConfigurations(List.of("type=customElement"), List.of("Liferay Test CX 1", "Liferay Test CX 2"));
+		_testGetConfigurations(List.of("type=instanceSettings"), List.of("Liferay Test CX 3"));
+		_testGetConfigurations(List.of("deploymentType=bundle", "type=customElement"), List.of("Liferay Test CX 1"));
+		_testGetConfigurations(List.of("deploymentType=agent", "webId=" + _companyWebId, "type=instanceSettings"), List.of("Liferay Test CX 3"));
+		_testGetConfigurations(List.of("name=" + RandomTestUtil.randomString()), List.of());
+		_testGetConfigurations(List.of("deploymentType=prod", "name=" + RandomTestUtil.randomString()), List.of());
+		_testGetConfigurations(List.of(RandomTestUtil.randomString() + "=" + RandomTestUtil.randomString()), List.of());
+		_testGetConfigurations(List.of(RandomTestUtil.randomString()), List.of());
+		_testGetConfigurations(List.of(RandomTestUtil.randomString(), RandomTestUtil.randomString()), List.of());
 	}
 
 	@Test
