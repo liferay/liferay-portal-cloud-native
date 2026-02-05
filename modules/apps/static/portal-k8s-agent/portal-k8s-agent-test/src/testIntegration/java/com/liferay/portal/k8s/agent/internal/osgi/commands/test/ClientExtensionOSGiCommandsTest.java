@@ -77,19 +77,19 @@ public class ClientExtensionOSGiCommandsTest {
 		_configurationPids.add(
 			ConfigurationTestUtil.createFactoryConfiguration(
 				CETConfiguration.class.getName(),
-				"liferay-sample-cx-1/liferay.com",
+				"liferay-test-cx-1/liferay.com",
 				HashMapDictionaryBuilder.<String, Object>put(
 					".client.extension.config.key",
 					CETConfiguration.class.getName() +
-						"~liferay-sample-cx-1/liferay.com"
+						"~liferay-test-cx-1/liferay.com"
 				).put(
-					"baseURL", "${portalURL}/o/liferay-sample-cx-1"
+					"baseURL", "${portalURL}/o/liferay-test-cx-1"
 				).put(
 					"dxp.lxc.liferay.com.virtualInstanceId", "default"
 				).put(
-					"name", "Liferay Sample CX 1"
+					"name", "Liferay Test CX 1"
 				).put(
-					"projectName", "liferay-sample-cx-1"
+					"projectName", "liferay-test-cx-1"
 				).put(
 					"test.only", "true"
 				).put(
@@ -98,18 +98,18 @@ public class ClientExtensionOSGiCommandsTest {
 		_configurationPids.add(
 			ConfigurationTestUtil.createFactoryConfiguration(
 				CETConfiguration.class.getName(),
-				"liferay-sample-cx-2/liferay.com",
+				"liferay-test-cx-2/liferay.com",
 				HashMapDictionaryBuilder.<String, Object>put(
 					".k8s.config.key",
-					CETConfiguration.class.getName() + "~liferay-sample-cx-2"
+					CETConfiguration.class.getName() + "~liferay-test-cx-2"
 				).put(
-					"baseURL", "${portalURL}/o/liferay-sample-cx-2"
+					"baseURL", "${portalURL}/o/liferay-test-cx-2"
 				).put(
 					"dxp.lxc.liferay.com.virtualInstanceId", "default"
 				).put(
-					"name", "Liferay Sample CX 2"
+					"name", "Liferay Test CX 2"
 				).put(
-					"projectName", "liferay-sample-cx-2"
+					"projectName", "liferay-test-cx-2"
 				).put(
 					"test.only", "true"
 				).put(
@@ -118,19 +118,19 @@ public class ClientExtensionOSGiCommandsTest {
 		_configurationPids.add(
 			ConfigurationTestUtil.createFactoryConfiguration(
 				AccountEntryEmailConfiguration.class.getName(),
-				"liferay-sample-cx-3/" + _companyWebId,
+				"liferay-test-cx-3/" + _companyWebId,
 				HashMapDictionaryBuilder.<String, Object>put(
 					".k8s.config.key",
 					AccountEntryEmailConfiguration.class.getName() +
-						"~liferay-sample-cx-3/" + _companyWebId
+						"~liferay-test-cx-3/" + _companyWebId
 				).put(
-					"baseURL", "${portalURL}/o/liferay-sample-cx-3"
+					"baseURL", "${portalURL}/o/liferay-test-cx-3"
 				).put(
 					"dxp.lxc.liferay.com.virtualInstanceId", _companyWebId
 				).put(
-					"name", "Liferay Sample CX 3"
+					"name", "Liferay Test CX 3"
 				).put(
-					"projectName", "liferay-sample-cx-3"
+					"projectName", "liferay-test-cx-3"
 				).put(
 					"test.only", "true"
 				).put(
@@ -149,7 +149,7 @@ public class ClientExtensionOSGiCommandsTest {
 	public void testGetConfiguration() {
 		String pid =
 			CETConfiguration.class.getName() +
-				"~liferay-sample-cx-1/liferay.com";
+				"~liferay-test-cx-1/liferay.com";
 
 		Configuration configuration = _getConfiguration(pid);
 
@@ -166,34 +166,34 @@ public class ClientExtensionOSGiCommandsTest {
 		_testGetConfigurations(
 			List.of(),
 			List.of(
-				"Liferay Sample CX 1", "Liferay Sample CX 2",
-				"Liferay Sample CX 3"));
+				"Liferay Test CX 1", "Liferay Test CX 2",
+				"Liferay Test CX 3"));
 		_testGetConfigurations(
-			List.of("deploymentType=bundle"), List.of("Liferay Sample CX 1"));
+			List.of("deploymentType=bundle"), List.of("Liferay Test CX 1"));
 		_testGetConfigurations(
 			List.of("deploymentType=agent"),
-			List.of("Liferay Sample CX 2", "Liferay Sample CX 3"));
+			List.of("Liferay Test CX 2", "Liferay Test CX 3"));
 		_testGetConfigurations(
 			List.of("webId=default"),
-			List.of("Liferay Sample CX 1", "Liferay Sample CX 2"));
+			List.of("Liferay Test CX 1", "Liferay Test CX 2"));
 		_testGetConfigurations(
 			List.of("webId=liferay.com"),
-			List.of("Liferay Sample CX 1", "Liferay Sample CX 2"));
+			List.of("Liferay Test CX 1", "Liferay Test CX 2"));
 		_testGetConfigurations(
-			List.of("webId=" + _companyWebId), List.of("Liferay Sample CX 3"));
+			List.of("webId=" + _companyWebId), List.of("Liferay Test CX 3"));
 		_testGetConfigurations(
 			List.of("type=customElement"),
-			List.of("Liferay Sample CX 1", "Liferay Sample CX 2"));
+			List.of("Liferay Test CX 1", "Liferay Test CX 2"));
 		_testGetConfigurations(
-			List.of("type=instanceSettings"), List.of("Liferay Sample CX 3"));
+			List.of("type=instanceSettings"), List.of("Liferay Test CX 3"));
 		_testGetConfigurations(
 			List.of("deploymentType=bundle", "type=customElement"),
-			List.of("Liferay Sample CX 1"));
+			List.of("Liferay Test CX 1"));
 		_testGetConfigurations(
 			List.of(
 				"deploymentType=agent", "webId=" + _companyWebId,
 				"type=instanceSettings"),
-			List.of("Liferay Sample CX 3"));
+			List.of("Liferay Test CX 3"));
 
 		_testGetConfigurations(
 			List.of("name=" + RandomTestUtil.randomString()), List.of());
@@ -228,7 +228,7 @@ public class ClientExtensionOSGiCommandsTest {
 			lines[2].matches(
 				StringBundler.concat(
 					"\\| ", _configurationPids.get(0),
-					"\\s*\\| Liferay Sample CX 1\\s*\\| customElement \\s*\\| ",
+					"\\s*\\| Liferay Test CX 1\\s*\\| customElement \\s*\\| ",
 					"default\\s*\\|")));
 	}
 
@@ -236,7 +236,7 @@ public class ClientExtensionOSGiCommandsTest {
 	public void testReload() throws Exception {
 		String pid =
 			CETConfiguration.class.getName() +
-				"~liferay-sample-cx-1/liferay.com";
+				"~liferay-test-cx-1/liferay.com";
 
 		_testReload(pid, "Reloaded configuration for PID " + pid);
 
@@ -283,8 +283,8 @@ public class ClientExtensionOSGiCommandsTest {
 	public void testShow() throws Exception {
 		_testShow(
 			CETConfiguration.class.getName() +
-				"~liferay-sample-cx-1/liferay.com",
-			"projectName: liferay-sample-cx-1");
+				"~liferay-test-cx-1/liferay.com",
+			"projectName: liferay-test-cx-1");
 
 		String pid = RandomTestUtil.randomString();
 
