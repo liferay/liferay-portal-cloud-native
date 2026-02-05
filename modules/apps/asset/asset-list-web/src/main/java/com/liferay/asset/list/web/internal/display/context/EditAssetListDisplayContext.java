@@ -1008,7 +1008,7 @@ public class EditAssetListDisplayContext {
 						return true;
 					}
 
-					String className = "";
+					String className = null;
 
 					try {
 						className =
