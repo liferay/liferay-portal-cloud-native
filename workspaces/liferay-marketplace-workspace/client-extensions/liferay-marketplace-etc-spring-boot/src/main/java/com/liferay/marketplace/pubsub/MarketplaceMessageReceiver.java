@@ -21,6 +21,7 @@ import com.liferay.headless.admin.user.client.resource.v1_0.PostalAddressResourc
 import com.liferay.marketplace.constants.MarketplaceConstants;
 import com.liferay.marketplace.service.KoroneikiService;
 import com.liferay.marketplace.service.MarketplaceService;
+import com.liferay.petra.string.StringBundler;
 
 import java.util.Objects;
 
@@ -87,9 +88,11 @@ public class MarketplaceMessageReceiver implements MessageReceiver {
 			ackReplyConsumer.ack();
 		}
 		catch (Exception exception) {
-			_log.error("Unable to process message from topic " + _topicName);
-			_log.error("Message " + jsonObject);
-			_log.error(exception);
+			_log.error(
+				StringBundler.concat(
+					"Unable to process ", jsonObject, " for topic ",
+					_topicName),
+				exception);
 
 			ackReplyConsumer.nack();
 		}
