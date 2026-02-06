@@ -10,18 +10,19 @@
 <%
 CommerceShippingFixedOptionRelsDisplayContext commerceShippingFixedOptionRelsDisplayContext = (CommerceShippingFixedOptionRelsDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
-CommerceShippingFixedOptionRel commerceShippingFixedOptionRel = commerceShippingFixedOptionRelsDisplayContext.getCommerceShippingFixedOptionRel();
-
-long countryId = commerceShippingFixedOptionRelsDisplayContext.getCountryId();
-long regionId = commerceShippingFixedOptionRelsDisplayContext.getRegionId();
 long commerceShippingFixedOptionId = commerceShippingFixedOptionRelsDisplayContext.getCommerceShippingFixedOptionId();
-long commerceShippingMethodId = commerceShippingFixedOptionRelsDisplayContext.getCommerceShippingMethodId();
 
 long commerceShippingFixedOptionRelId = 0;
+
+CommerceShippingFixedOptionRel commerceShippingFixedOptionRel = commerceShippingFixedOptionRelsDisplayContext.getCommerceShippingFixedOptionRel();
 
 if (commerceShippingFixedOptionRel != null) {
 	commerceShippingFixedOptionRelId = commerceShippingFixedOptionRel.getCommerceShippingFixedOptionRelId();
 }
+
+long commerceShippingMethodId = commerceShippingFixedOptionRelsDisplayContext.getCommerceShippingMethodId();
+long countryId = commerceShippingFixedOptionRelsDisplayContext.getCountryId();
+long regionId = commerceShippingFixedOptionRelsDisplayContext.getRegionId();
 %>
 
 <liferay-frontend:side-panel-content
