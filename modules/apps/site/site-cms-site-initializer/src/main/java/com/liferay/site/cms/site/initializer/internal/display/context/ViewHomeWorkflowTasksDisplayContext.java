@@ -53,20 +53,19 @@ public class ViewHomeWorkflowTasksDisplayContext {
 	}
 
 	public Map<String, Object> getReactData() throws Exception {
-		LiferayPortletURL myWorkflowTasksURLPortletURL =
-			PortletURLFactoryUtil.create(
-				_httpServletRequest, PortletKeys.MY_WORKFLOW_TASK,
-				LayoutLocalServiceUtil.getFriendlyURLLayout(
-					_themeDisplay.getScopeGroupId(), false,
-					PropsValues.CONTROL_PANEL_LAYOUT_FRIENDLY_URL),
-				PortletRequest.RENDER_PHASE);
+		LiferayPortletURL liferayPortletURL = PortletURLFactoryUtil.create(
+			_httpServletRequest, PortletKeys.MY_WORKFLOW_TASK,
+			LayoutLocalServiceUtil.getFriendlyURLLayout(
+				_themeDisplay.getScopeGroupId(), false,
+				PropsValues.CONTROL_PANEL_LAYOUT_FRIENDLY_URL),
+			PortletRequest.RENDER_PHASE);
 
 		return HashMapBuilder.<String, Object>put(
 			"id", CMSSiteInitializerFDSNames.HOME_MY_WORKFLOW_TASKS_SECTION
 		).put(
 			"myRolesWorkflowTasksURL",
 			PortletURLBuilder.create(
-				myWorkflowTasksURLPortletURL
+				liferayPortletURL
 			).setRedirect(
 				_themeDisplay.getURLCurrent()
 			).setTabs1(
@@ -75,7 +74,7 @@ public class ViewHomeWorkflowTasksDisplayContext {
 		).put(
 			"myWorkflowTasksURL",
 			PortletURLBuilder.create(
-				myWorkflowTasksURLPortletURL
+				liferayPortletURL
 			).setRedirect(
 				_themeDisplay.getURLCurrent()
 			).buildString()
