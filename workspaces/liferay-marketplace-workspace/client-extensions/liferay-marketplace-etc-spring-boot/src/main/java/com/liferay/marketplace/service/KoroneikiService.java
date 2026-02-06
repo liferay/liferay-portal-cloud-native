@@ -117,9 +117,9 @@ public class KoroneikiService {
 	public String getSalesforceAccountKey(Account koroneikiAccount) {
 		for (ExternalLink externalLink : koroneikiAccount.getExternalLinks()) {
 			if ((StringUtil.equalsIgnoreCase(
-					externalLink.getDomain(), "salesforce") ||
+					externalLink.getDomain(), "dossiera") ||
 				 StringUtil.equalsIgnoreCase(
-					 externalLink.getDomain(), "dossiera")) &&
+					 externalLink.getDomain(), "salesforce")) &&
 				StringUtil.equalsIgnoreCase(
 					externalLink.getEntityName(), "account")) {
 
