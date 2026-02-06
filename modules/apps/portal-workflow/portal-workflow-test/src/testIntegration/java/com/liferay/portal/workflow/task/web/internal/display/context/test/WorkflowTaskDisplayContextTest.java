@@ -67,7 +67,6 @@ public class WorkflowTaskDisplayContextTest {
 	public void setUp() throws Exception {
 		_cmsGroup = CMSTestUtil.getOrAddGroup(
 			WorkflowTaskDisplayContextTest.class);
-
 		_group = GroupTestUtil.addGroup();
 	}
 
@@ -102,16 +101,16 @@ public class WorkflowTaskDisplayContextTest {
 		themeDisplay.setLayoutSet(layout.getLayoutSet());
 
 		themeDisplay.setLocale(LocaleUtil.getSiteDefault());
-		themeDisplay.setPortalURL("http://localhost:8080");
-		themeDisplay.setServerName("localhost");
 
 		User user = UserTestUtil.getAdminUser(group.getCompanyId());
 
 		themeDisplay.setPermissionChecker(
 			PermissionCheckerFactoryUtil.create(user));
-		themeDisplay.setRealUser(user);
 
+		themeDisplay.setPortalURL("http://localhost:8080");
+		themeDisplay.setRealUser(user);
 		themeDisplay.setScopeGroupId(group.getGroupId());
+		themeDisplay.setServerName("localhost");
 		themeDisplay.setSiteGroupId(group.getGroupId());
 		themeDisplay.setUser(user);
 
