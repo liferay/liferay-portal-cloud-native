@@ -7,3 +7,8 @@
 # Bundle Version 1.1.0
 #
 cbfbcbeaf9935f3eca8448f7e25147c2bc3c0def^..a654fd8bc09c00e185d476e42fdaf4c766701fac=LPD-69878
+
+#
+# Bundle Version 1.2.0
+#
+a654fd8bc09c00e185d476e42fdaf4c766701fac^..20b485be6f5b36cc2482e4a225ebe7562c407e29=LPD-75346 LPD-77230
