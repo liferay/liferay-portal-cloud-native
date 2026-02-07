@@ -165,7 +165,6 @@ public class UpdateSegmentsExperienceMVCActionCommandTest {
 
 		mockLiferayPortletActionRequest.addParameter(
 			"segmentsExperienceId", String.valueOf(segmentsExperienceId));
-
 		mockLiferayPortletActionRequest.setAttribute(
 			JavaConstants.JAKARTA_PORTLET_CONFIG, null);
 
