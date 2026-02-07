@@ -3280,7 +3280,6 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 		_testPutSiteSitePageWithPageSpecifications(
 			PageSpecification.Status.DRAFT, PageSpecification.Status.DRAFT,
 			PageSpecification.Status.APPROVED, PageSpecification.Status.DRAFT);
-		_testPutSiteSitePageWithPageSpecificationsWithCustomFields();
 		_testPutSiteSitePageWithPageSpecifications(
 			PageSpecificationsTestUtil::getEmbeddedPageSpecifications,
 			SitePage.Type.EMBEDDED_PAGE);
@@ -3293,6 +3292,7 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 		_testPutSiteSitePageWithPageSpecifications(
 			PageSpecificationsTestUtil::getPageSetPageSpecifications,
 			SitePage.Type.PAGE_SET_PAGE);
+		_testPutSiteSitePageWithPageSpecificationsWithCustomFields();
 		_testPutSiteSitePageWithPageSpecificationsWithWidgetPageSpecification(
 			"1_column", "1_2_1_columns_i");
 		_testPutSiteSitePageWithPageSpecificationsWithWidgetPageSpecification(
