@@ -47,16 +47,19 @@ public class SegmentsExperienceUpgradeProcess extends UpgradeProcess {
 			ResultSet resultSet = selectPreparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
-				long segmentsExperienceGroupId = resultSet.getLong(3);
 				String segmentsEntryERC = resultSet.getString(4);
-				long segmentsEntryGroupId = resultSet.getLong(5);
+
+				updatePreparedStatement.setString(1, segmentsEntryERC);
+
 				String segmentsEntryScopeERC = resultSet.getString(6);
+
+				long segmentsExperienceGroupId = resultSet.getLong(3);
+				long segmentsEntryGroupId = resultSet.getLong(5);
 
 				if (segmentsExperienceGroupId == segmentsEntryGroupId) {
 					segmentsEntryScopeERC = null;
 				}
 
-				updatePreparedStatement.setString(1, segmentsEntryERC);
 				updatePreparedStatement.setString(2, segmentsEntryScopeERC);
 
 				updatePreparedStatement.setLong(
