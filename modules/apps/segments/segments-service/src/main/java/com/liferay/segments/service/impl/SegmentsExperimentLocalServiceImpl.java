@@ -286,8 +286,7 @@ public class SegmentsExperimentLocalServiceImpl
 			ProjectionFactoryUtil.property("segmentsExperienceId"));
 
 		List<Long> segmentsExperienceIds =
-			_segmentsExperienceLocalService.dynamicQuery(
-				dynamicQuery);
+			_segmentsExperienceLocalService.dynamicQuery(dynamicQuery);
 
 		if (segmentsExperienceIds.isEmpty()) {
 			return Collections.emptyList();

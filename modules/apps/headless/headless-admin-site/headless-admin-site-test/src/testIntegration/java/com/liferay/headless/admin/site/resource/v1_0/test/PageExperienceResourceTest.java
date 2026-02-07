@@ -380,8 +380,23 @@ public class PageExperienceResourceTest
 		return pageExperience;
 	}
 
-	private void _testPostSitePageSpecificationPageExperienceWithMissingOptionalReference(
-			int count, UnsafeRunnable<Exception> unsafeRunnable)
+	private void _testPostSitePageSpecificationPageExperience(
+			PageExperience pageExperience)
+		throws Exception {
+
+		PageExperience postPageExperience =
+			pageExperienceResource.postSitePageSpecificationPageExperience(
+				testGroup.getExternalReferenceCode(),
+				pageExperience.getPageSpecificationExternalReferenceCode(),
+				pageExperience);
+
+		assertEquals(pageExperience, postPageExperience);
+		assertValid(postPageExperience);
+	}
+
+	private void
+			_testPostSitePageSpecificationPageExperienceWithMissingOptionalReference(
+				int count, UnsafeRunnable<Exception> unsafeRunnable)
 		throws Exception {
 
 		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
@@ -404,20 +419,6 @@ public class PageExperienceResourceTest
 						"Optional reference generated for missing"));
 			}
 		}
-	}
-
-	private void _testPostSitePageSpecificationPageExperience(
-			PageExperience pageExperience)
-		throws Exception {
-
-		PageExperience postPageExperience =
-			pageExperienceResource.postSitePageSpecificationPageExperience(
-				testGroup.getExternalReferenceCode(),
-				pageExperience.getPageSpecificationExternalReferenceCode(),
-				pageExperience);
-
-		assertEquals(pageExperience, postPageExperience);
-		assertValid(postPageExperience);
 	}
 
 	private PageExperience _testPutSitePageExperience(
