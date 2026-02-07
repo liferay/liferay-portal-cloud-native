@@ -69,7 +69,7 @@ public class DefaultSegmentsExperienceRequestProcessor
 		for (long segmentsEntryId : segmentsEntryIds) {
 			if (segmentsEntryId == SegmentsEntryConstants.ID_DEFAULT) {
 				scopeERCToSegmentsEntriesMap.computeIfAbsent(
-					null, k -> new ArrayList<>()
+					null, key -> new ArrayList<>()
 				).add(
 					null
 				);
@@ -87,7 +87,7 @@ public class DefaultSegmentsExperienceRequestProcessor
 			scopeERCToSegmentsEntriesMap.computeIfAbsent(
 				ScopeUtil.getItemScopeExternalReferenceCode(
 					segmentsEntry.getGroupId(), groupId),
-				k -> new ArrayList<>()
+				key -> new ArrayList<>()
 			).add(
 				segmentsEntry.getExternalReferenceCode()
 			);
