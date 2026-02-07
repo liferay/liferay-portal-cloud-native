@@ -183,7 +183,7 @@ public class PageExperienceResourceTest
 		Group companyGroup = _groupLocalService.getGroup(
 			testCompany.getGroupId());
 
-		_testMissingOptionalReference(
+		_testPostSitePageSpecificationPageExperienceWithMissingOptionalReference(
 			1,
 			() -> _testPostSitePageSpecificationPageExperience(
 				PageExperiencesTestUtil.getPageExperience(
@@ -191,7 +191,7 @@ public class PageExperienceResourceTest
 					testGroup.getGroupId(), RandomTestUtil.randomString(),
 					companyGroup.getExternalReferenceCode())));
 
-		_testMissingOptionalReference(
+		_testPostSitePageSpecificationPageExperienceWithMissingOptionalReference(
 			1,
 			() -> _testPostSitePageSpecificationPageExperience(
 				PageExperiencesTestUtil.getPageExperience(
@@ -380,7 +380,7 @@ public class PageExperienceResourceTest
 		return pageExperience;
 	}
 
-	private void _testMissingOptionalReference(
+	private void _testPostSitePageSpecificationPageExperienceWithMissingOptionalReference(
 			int count, UnsafeRunnable<Exception> unsafeRunnable)
 		throws Exception {
 
