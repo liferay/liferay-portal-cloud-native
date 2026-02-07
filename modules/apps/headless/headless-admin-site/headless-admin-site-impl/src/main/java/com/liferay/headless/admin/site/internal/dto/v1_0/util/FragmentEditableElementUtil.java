@@ -703,17 +703,17 @@ public class FragmentEditableElementUtil {
 			jsonObject = (JSONObject)value;
 		}
 		else {
-			String stringValue = GetterUtil.getString(value);
+			String valueString = GetterUtil.getString(value);
 
-			if (Validator.isNull(stringValue)) {
+			if (Validator.isNull(valueString)) {
 				return null;
 			}
 
 			jsonObject = JSONFactoryUtil.safeCreateJSONObject(
-				stringValue, true);
+				valueString, true);
 
 			if (jsonObject == null) {
-				return _getURLImageValue(stringValue);
+				return _getURLImageValue(valueString);
 			}
 		}
 
