@@ -251,7 +251,7 @@ public class SegmentsExperimentLocalServiceImpl
 	public List<SegmentsExperiment> getSegmentsEntrySegmentsExperiments(
 		String segmentsEntryERC, long segmentsEntryGroupId) {
 
-		DynamicQuery experienceQuery =
+		DynamicQuery segmentsExperienceDynamicQuery =
 			_segmentsExperienceLocalService.dynamicQuery();
 
 		Property segmentsEntryERCProperty = PropertyFactoryUtil.forName(
@@ -280,13 +280,14 @@ public class SegmentsExperimentLocalServiceImpl
 			criterion = RestrictionsFactoryUtil.or(criterion, remoteCriterion);
 		}
 
-		experienceQuery.add(criterion);
+		segmentsExperienceDynamicQuery.add(criterion);
 
-		experienceQuery.setProjection(
+		segmentsExperienceDynamicQuery.setProjection(
 			ProjectionFactoryUtil.property("segmentsExperienceId"));
 
 		List<Long> segmentsExperienceIds =
-			_segmentsExperienceLocalService.dynamicQuery(experienceQuery);
+			_segmentsExperienceLocalService.dynamicQuery(
+				segmentsExperienceDynamicQuery);
 
 		if (segmentsExperienceIds.isEmpty()) {
 			return Collections.emptyList();
