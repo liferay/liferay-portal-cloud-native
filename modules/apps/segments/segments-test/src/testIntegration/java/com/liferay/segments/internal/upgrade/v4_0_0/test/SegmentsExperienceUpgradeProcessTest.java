@@ -116,12 +116,10 @@ public class SegmentsExperienceUpgradeProcessTest
 			segmentsExperience0.getCtCollectionId(),
 			SegmentsEntryConstants.ID_DEFAULT,
 			segmentsExperience0.getSegmentsExperienceId());
-
 		_updateSegmentsEntryId(
 			segmentsExperience1.getCtCollectionId(),
 			segmentsEntry1.getSegmentsEntryId(),
 			segmentsExperience1.getSegmentsExperienceId());
-
 		_updateSegmentsEntryId(
 			segmentsExperience2.getCtCollectionId(),
 			segmentsEntry2.getSegmentsEntryId(),
@@ -140,9 +138,7 @@ public class SegmentsExperienceUpgradeProcessTest
 				segmentsExperience2.getSegmentsExperienceId());
 
 		_assertSegmentsExperience(_group, null, segmentsExperience0);
-
 		_assertSegmentsExperience(_group, segmentsEntry1, segmentsExperience1);
-
 		_assertSegmentsExperience(
 			companyGroup, segmentsEntry2, segmentsExperience2);
 
