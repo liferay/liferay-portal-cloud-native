@@ -89,7 +89,7 @@ public class VerticalNavTag extends BaseContainerTag {
 	}
 
 	public void setDisplayType(String displayType) {
-		if (_displayTypeOptions.contains(displayType)) {
+		if (_displayTypes.contains(displayType)) {
 			_displayType = displayType;
 		}
 	}
@@ -99,7 +99,7 @@ public class VerticalNavTag extends BaseContainerTag {
 	}
 
 	public void setSize(String size) {
-		if (_sizeOptions.contains(size)) {
+		if (_sizes.contains(size)) {
 			_size = size;
 		}
 	}
@@ -452,9 +452,9 @@ public class VerticalNavTag extends BaseContainerTag {
 
 	private static final String _SIZE_MEDIUM = "md";
 
-	private static final List<String> _displayTypeOptions = List.of(
+	private static final List<String> _displayTypes = List.of(
 		_DISPLAY_TYPE_PRIMARY, _DISPLAY_TYPE_TRANSPARENT);
-	private static final List<String> _sizeOptions = List.of(
+	private static final List<String> _sizes = List.of(
 		_SIZE_LARGE, _SIZE_MEDIUM);
 
 	private String _active;
