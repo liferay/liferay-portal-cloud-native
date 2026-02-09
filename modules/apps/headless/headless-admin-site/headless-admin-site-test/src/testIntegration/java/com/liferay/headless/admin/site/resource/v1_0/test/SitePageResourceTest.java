@@ -417,6 +417,9 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 		_testPutSiteSitePage(serviceContext, SitePage.Type.PAGE_SET_PAGE);
 		_testPutSiteSitePage(serviceContext, SitePage.Type.WIDGET_PAGE);
 
+		_testPutSiteSitePage(true, serviceContext, SitePage.Type.CONTENT_PAGE);
+		_testPutSiteSitePage(true, serviceContext, SitePage.Type.WIDGET_PAGE);
+
 		_testPutSiteSitePageWithEmptyLayout(serviceContext);
 
 		_testPutSiteSitePageWithExportedSitePage();
@@ -2719,10 +2722,12 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 	}
 
 	private void _testPutSiteSitePage(
-			ServiceContext serviceContext, SitePage.Type type)
+			boolean privatePage, ServiceContext serviceContext,
+			SitePage.Type type)
 		throws Exception {
 
-		SitePage sitePage = testPostSiteSitePage_addSitePage(
+		SitePage sitePage = sitePageResource.postSiteSitePage(
+			testGroup.getExternalReferenceCode(), privatePage,
 			_getRandomSitePage(type));
 
 		_assertSitePage(
@@ -2730,7 +2735,8 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 				sitePage.getExternalReferenceCode(), testGroup.getGroupId()),
 			sitePage);
 
-		Layout layout = LayoutTestUtil.addTypePortletLayout(testGroup);
+		Layout layout =
+			LayoutTestUtil.addTypePortletLayout(testGroup, privatePage);
 
 		sitePage = _getRandomSitePage(
 			sitePage.getExternalReferenceCode(),
@@ -2739,7 +2745,7 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 
 		SitePage putSitePage = sitePageResource.putSiteSitePage(
 			testGroup.getExternalReferenceCode(),
-			sitePage.getExternalReferenceCode(), false, sitePage);
+			sitePage.getExternalReferenceCode(), privatePage, sitePage);
 
 		assertEquals(sitePage, putSitePage);
 		assertValid(putSitePage);
@@ -2756,6 +2762,13 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 					ListUtil.filter(
 						_types, curType -> !Objects.equals(curType, type))),
 				sitePage.getUuid()));
+	}
+
+	private void _testPutSiteSitePage(
+			ServiceContext serviceContext, SitePage.Type type)
+		throws Exception {
+
+		_testPutSiteSitePage(false, serviceContext, type);
 	}
 
 	private SitePage _testPutSiteSitePage(
