@@ -23,6 +23,7 @@ import jakarta.servlet.jsp.JspWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -33,8 +34,7 @@ public class VerticalNavTag extends BaseContainerTag {
 
 	@Override
 	public int doStartTag() throws JspException {
-		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
-
+		setAttributeNamespace("clay:vertical_nav:");
 		setContainerElement("nav");
 
 		return super.doStartTag();
@@ -89,7 +89,9 @@ public class VerticalNavTag extends BaseContainerTag {
 	}
 
 	public void setDisplayType(String displayType) {
-		if (_displayTypes.contains(displayType)) {
+		if (Objects.equals(displayType, "primary") ||
+			Objects.equals(displayType, "transparent")) {
+
 			_displayType = displayType;
 		}
 	}
@@ -99,7 +101,7 @@ public class VerticalNavTag extends BaseContainerTag {
 	}
 
 	public void setSize(String size) {
-		if (_sizes.contains(size)) {
+		if (Objects.equals(size, "lg") || Objects.equals(size, "md")) {
 			_size = size;
 		}
 	}
@@ -116,7 +118,7 @@ public class VerticalNavTag extends BaseContainerTag {
 		_collapse = false;
 		_decorated = false;
 		_defaultExpandedKeys = null;
-		_displayType = _DISPLAY_TYPE_DEFAULT;
+		_displayType = "transparent";
 		_large = false;
 		_size = null;
 		_verticalNavItems = null;
@@ -157,15 +159,14 @@ public class VerticalNavTag extends BaseContainerTag {
 		).add(
 			"menubar-decorated", _decorated
 		).add(
-			"menubar-primary", _displayType.equals(_DISPLAY_TYPE_PRIMARY)
+			"menubar-primary", _displayType.equals("primary")
 		).add(
-			"menubar-transparent",
-			_displayType.equals(_DISPLAY_TYPE_TRANSPARENT)
+			"menubar-transparent", _displayType.equals("transparent")
 		).add(
 			"menubar-vertical-expand-lg", sizeIsNull && _large
 		).add(
 			"menubar-vertical-expand-md",
-			sizeIsNull && !_large && !_displayType.equals(_DISPLAY_TYPE_PRIMARY)
+			sizeIsNull && !_large && !_displayType.equals("primary")
 		).add(
 			String.format("menubar-vertical-expand-%s", _size), !sizeIsNull
 		);
@@ -439,29 +440,11 @@ public class VerticalNavTag extends BaseContainerTag {
 		jspWriter.write("</ul>");
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "clay:vertical_nav:";
-
-	private static final String _DISPLAY_TYPE_DEFAULT =
-		VerticalNavTag._DISPLAY_TYPE_TRANSPARENT;
-
-	private static final String _DISPLAY_TYPE_PRIMARY = "primary";
-
-	private static final String _DISPLAY_TYPE_TRANSPARENT = "transparent";
-
-	private static final String _SIZE_LARGE = "lg";
-
-	private static final String _SIZE_MEDIUM = "md";
-
-	private static final List<String> _displayTypes = List.of(
-		_DISPLAY_TYPE_PRIMARY, _DISPLAY_TYPE_TRANSPARENT);
-	private static final List<String> _sizes = List.of(
-		_SIZE_LARGE, _SIZE_MEDIUM);
-
 	private String _active;
 	private boolean _collapse;
 	private boolean _decorated;
 	private List<String> _defaultExpandedKeys;
-	private String _displayType = _DISPLAY_TYPE_DEFAULT;
+	private String _displayType = "transparent";
 	private boolean _large;
 	private String _size;
 	private List<VerticalNavItem> _verticalNavItems;
