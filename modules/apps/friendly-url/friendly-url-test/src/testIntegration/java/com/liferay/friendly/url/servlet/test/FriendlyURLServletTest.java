@@ -1154,8 +1154,6 @@ public class FriendlyURLServletTest {
 				LayoutUtilityPageEntryConstants.TYPE_CREATE_ACCOUNT, null,
 				ServiceContextTestUtil.getServiceContext());
 
-		// Add viewable layout to group to prevent errors
-
 		Layout layout = LayoutTestUtil.addTypePortletLayout(group);
 
 		Layout layoutUtilityPageEntryLayout = _layoutLocalService.getLayout(
@@ -1174,8 +1172,8 @@ public class FriendlyURLServletTest {
 		PermissionThreadLocal.setPermissionChecker(
 			PermissionCheckerFactoryUtil.create(_user));
 
-		int expectedStatusCode = 200;
-		String expectedUrl = getURL(layoutUtilityPageEntryLayout);
+		int expectedStatus = 200;
+		String expectedURL = getURL(layoutUtilityPageEntryLayout);
 
 		if (!guestViewable) {
 			Role guestRole = RoleLocalServiceUtil.getRole(
@@ -1195,17 +1193,16 @@ public class FriendlyURLServletTest {
 			_resourcePermissionLocalService.updateResourcePermission(
 				resourcePermission);
 
-			expectedStatusCode = 404;
-			expectedUrl = getURL(layout);
+			expectedStatus = 404;
+			expectedURL = getURL(layout);
 		}
 
 		testGetRedirect(
 			mockHttpServletRequest, mockHttpServletResponse,
 			getPath(group, layoutUtilityPageEntryLayout),
-			_redirectConstructor1.newInstance(expectedUrl));
+			_redirectConstructor1.newInstance(expectedURL));
 
-		Assert.assertEquals(
-			expectedStatusCode, mockHttpServletResponse.getStatus());
+		Assert.assertEquals(expectedStatus, mockHttpServletResponse.getStatus());
 	}
 
 	private void _testServiceRedirectWithRedirectEntry(
