@@ -39,6 +39,10 @@ public class ElasticsearchAggregationTranslatorFixture {
 			new DateRangeAggregationTranslator());
 		ReflectionTestUtil.setFieldValue(
 			elasticsearchAggregationTranslator,
+			"_geoDistanceAggregationTranslator",
+			new GeoDistanceAggregationTranslator());
+		ReflectionTestUtil.setFieldValue(
+			elasticsearchAggregationTranslator,
 			"_histogramAggregationTranslator",
 			new HistogramAggregationTranslator());
 		ReflectionTestUtil.setFieldValue(
@@ -47,11 +51,6 @@ public class ElasticsearchAggregationTranslatorFixture {
 		ReflectionTestUtil.setFieldValue(
 			elasticsearchAggregationTranslator, "_termsAggregationTranslator",
 			new TermsAggregationTranslator());
-
-		ReflectionTestUtil.setFieldValue(
-			elasticsearchAggregationTranslator,
-			"_geoDistanceAggregationTranslator",
-			new GeoDistanceAggregationTranslator());
 
 		_injectQueryAggregationTranslators(elasticsearchAggregationTranslator);
 		_injectScriptAggregationTranslators(elasticsearchAggregationTranslator);
