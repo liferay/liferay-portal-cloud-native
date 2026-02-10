@@ -233,9 +233,10 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		KaleoLog kaleoLog = _createKaleoLog(
 			kaleoInstanceToken, LogType.NODE_USAGE_METADATA, serviceContext);
 
+		kaleoLog.setKaleoClassName(KaleoNode.class.getName());
+
 		KaleoNode currentKaleoNode = kaleoInstanceToken.getCurrentKaleoNode();
 
-		kaleoLog.setKaleoClassName(KaleoNode.class.getName());
 		kaleoLog.setKaleoClassPK(currentKaleoNode.getKaleoNodeId());
 		kaleoLog.setKaleoDefinitionId(currentKaleoNode.getKaleoDefinitionId());
 		kaleoLog.setKaleoDefinitionVersionId(
