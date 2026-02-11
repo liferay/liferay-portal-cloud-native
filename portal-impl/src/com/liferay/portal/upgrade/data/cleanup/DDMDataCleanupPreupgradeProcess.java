@@ -40,7 +40,6 @@ public class DDMDataCleanupPreupgradeProcess
 		DataCleanupPreupgradeProcess
 			ddmStructureVersionDataCleanupPreupgradeProcess =
 				_getDDMStructureVersionDataCleanupPreupgradeProcess();
-
 		DataCleanupPreupgradeProcess
 			journalPointingOrphanDDMStructureCleanupPreupgradeProcess70to73 =
 				_getJournalPointingOrphanDDMStructureCleanupPreupgradeProcess70to73();
@@ -224,7 +223,7 @@ public class DDMDataCleanupPreupgradeProcess
 					return;
 				}
 
-				Map<Long, Long> parentGroupIdMap = new HashMap<>();
+				Map<Long, Long> parentGroupIds = new HashMap<>();
 
 				try (PreparedStatement preparedStatement =
 						connection.prepareStatement(
@@ -233,7 +232,7 @@ public class DDMDataCleanupPreupgradeProcess
 					ResultSet resultSet = preparedStatement.executeQuery()) {
 
 					while (resultSet.next()) {
-						parentGroupIdMap.put(
+						parentGroupIds.put(
 							resultSet.getLong("groupId"),
 							resultSet.getLong("parentGroupId"));
 					}
@@ -248,7 +247,7 @@ public class DDMDataCleanupPreupgradeProcess
 
 					while (resultSet.next()) {
 						structureKeysMap.computeIfAbsent(
-							resultSet.getLong("groupId"), k -> new HashSet<>()
+							resultSet.getLong("groupId"), key -> new HashSet<>()
 						).add(
 							resultSet.getString("structureKey")
 						);
@@ -308,7 +307,7 @@ public class DDMDataCleanupPreupgradeProcess
 							"DDMStructureKey");
 
 						if (_hasStructure(
-								groupId, parentGroupIdMap, structureKey,
+								groupId, parentGroupIds, structureKey,
 								structureKeysMap)) {
 
 							continue;
@@ -339,7 +338,7 @@ public class DDMDataCleanupPreupgradeProcess
 			}
 
 			private boolean _hasStructure(
-				long groupId, Map<Long, Long> parentGroupIdMap,
+				long groupId, Map<Long, Long> parentGroupIds,
 				String structureKey, Map<Long, Set<String>> structureKeysMap) {
 
 				while (true) {
@@ -352,7 +351,7 @@ public class DDMDataCleanupPreupgradeProcess
 						return true;
 					}
 
-					Long parentGroupId = parentGroupIdMap.get(groupId);
+					Long parentGroupId = parentGroupIds.get(groupId);
 
 					if (parentGroupId == null) {
 						break;
