@@ -684,6 +684,10 @@ public class ObjectDefinitionLocalServiceImpl
 					setDeleteObjectDefinitionIdWithSafeCloseable(
 						objectDefinition.getObjectDefinitionId())) {
 
+			_objectDefinitionSettingLocalService.
+				deleteObjectDefinitionSettingByObjectDefinitionId(
+					objectDefinition.getObjectDefinitionId());
+
 			_objectFieldLocalService.deleteObjectFieldByObjectDefinitionId(
 				objectDefinition.getObjectDefinitionId());
 
