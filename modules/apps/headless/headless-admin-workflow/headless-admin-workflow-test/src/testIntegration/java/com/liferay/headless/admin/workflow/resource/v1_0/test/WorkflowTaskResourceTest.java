@@ -149,11 +149,15 @@ public class WorkflowTaskResourceTest extends BaseWorkflowTaskResourceTestCase {
 		List<WorkflowTask> workflowTasks = (List<WorkflowTask>)page.getItems();
 
 		WorkflowTask workflowTask1 = workflowTasks.get(0);
-		WorkflowTask workflowTask2 = workflowTasks.get(1);
-		WorkflowTask workflowTask3 = workflowTasks.get(2);
 
 		_assertActions(false, workflowTask1);
+
+		WorkflowTask workflowTask2 = workflowTasks.get(1);
+
 		_assertActions(false, workflowTask2);
+
+		WorkflowTask workflowTask3 = workflowTasks.get(2);
+
 		_assertActions(false, workflowTask3);
 
 		assertEqualsIgnoringOrder(
@@ -184,11 +188,14 @@ public class WorkflowTaskResourceTest extends BaseWorkflowTaskResourceTestCase {
 
 		workflowTask1 = workflowTaskResource.postWorkflowTaskAssignToMe(
 			workflowTask1.getId(), new WorkflowTaskAssignToMe());
+
+		_assertActions(true, workflowTask1);
+
 		workflowTask2 = workflowTaskResource.postWorkflowTaskAssignToMe(
 			workflowTask2.getId(), new WorkflowTaskAssignToMe());
 
-		_assertActions(true, workflowTask1);
 		_assertActions(true, workflowTask2);
+
 		_assertActions(false, workflowTask3);
 	}
 
