@@ -278,12 +278,12 @@ public class DDMDataCleanupPreupgradeProcessTest
 
 		connection = _connection;
 
-		String globalStructureKey = RandomTestUtil.randomString();
+		String companyStructureKey = RandomTestUtil.randomString();
 		String orphanStructureKey = RandomTestUtil.randomString();
 		String parentStructureKey = RandomTestUtil.randomString();
 		long childGroupId = RandomTestUtil.nextLong();
 		long companyId = _getNonexistentCompanyId();
-		long globalGroupId = RandomTestUtil.nextLong();
+		long companyGroupId = RandomTestUtil.nextLong();
 		long orphanGroupId = RandomTestUtil.nextLong();
 		long otherGroupId = RandomTestUtil.nextLong();
 		long parentGroupId = RandomTestUtil.nextLong();
@@ -296,7 +296,7 @@ public class DDMDataCleanupPreupgradeProcessTest
 				DDMDataCleanupPreupgradeProcess.class.getName(),
 				() -> {
 					_insertGroup(
-						companyId, "/global", globalGroupId, "global", 0);
+						companyId, "/company", companyGroupId, "company", 0);
 					_insertGroup(
 						companyId, "/parent", parentGroupId, "parent", 0);
 					_insertGroup(
@@ -307,7 +307,7 @@ public class DDMDataCleanupPreupgradeProcessTest
 					_insertDDMStructure(
 						companyId, parentGroupId, parentStructureKey);
 					_insertDDMStructure(
-						companyId, globalGroupId, globalStructureKey);
+						companyId, companyGroupId, companyStructureKey);
 					_insertDDMStructure(
 						companyId, orphanGroupId, orphanStructureKey);
 
@@ -316,7 +316,7 @@ public class DDMDataCleanupPreupgradeProcessTest
 						"'" + parentStructureKey + "'");
 					_insertJournalArticle(
 						companyId, otherGroupId, "DDMStructureKey",
-						"'" + globalStructureKey + "'");
+						"'" + companyStructureKey + "'");
 					_insertJournalArticle(
 						companyId, otherGroupId, "DDMStructureKey",
 						"'" + orphanStructureKey + "'");
@@ -325,7 +325,7 @@ public class DDMDataCleanupPreupgradeProcessTest
 					Assert.assertFalse(
 						messages.toString(
 						).contains(
-							globalStructureKey
+							companyStructureKey
 						));
 					Assert.assertFalse(
 						messages.toString(
