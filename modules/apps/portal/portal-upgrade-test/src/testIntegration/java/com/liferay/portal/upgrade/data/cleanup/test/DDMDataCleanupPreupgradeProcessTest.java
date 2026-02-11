@@ -282,8 +282,8 @@ public class DDMDataCleanupPreupgradeProcessTest
 		String orphanStructureKey = RandomTestUtil.randomString();
 		String parentStructureKey = RandomTestUtil.randomString();
 		long childGroupId = RandomTestUtil.nextLong();
-		long companyId = _getNonexistentCompanyId();
 		long companyGroupId = RandomTestUtil.nextLong();
+		long companyId = _getNonexistentCompanyId();
 		long orphanGroupId = RandomTestUtil.nextLong();
 		long otherGroupId = RandomTestUtil.nextLong();
 		long parentGroupId = RandomTestUtil.nextLong();
