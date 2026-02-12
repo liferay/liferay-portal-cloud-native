@@ -86,7 +86,6 @@ public class ObjectEntryModelListenerTest {
 			ActionKeys.DELETE, ActionKeys.DELETE_DISCUSSION,
 			ActionKeys.PERMISSIONS, ActionKeys.UPDATE,
 			ActionKeys.UPDATE_DISCUSSION, ActionKeys.VIEW);
-
 		_assertResourceActions(
 			taskObjectEntry, DepotRolesConstants.ASSET_LIBRARY_ADMINISTRATOR,
 			ActionKeys.ADD_DISCUSSION, ActionKeys.DELETE,

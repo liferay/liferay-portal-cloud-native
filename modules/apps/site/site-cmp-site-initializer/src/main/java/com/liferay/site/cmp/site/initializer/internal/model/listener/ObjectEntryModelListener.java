@@ -165,18 +165,18 @@ public class ObjectEntryModelListener extends BaseModelListener<ObjectEntry> {
 			0, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Role role : roles) {
-			String[] actions = (String[])defaultPermissionsJSONObject.get(
+			String[] actionIds = (String[])defaultPermissionsJSONObject.get(
 				role.getName());
 
-			if (actions == null) {
-				actions = new String[0];
+			if (actionIds == null) {
+				actionIds = new String[0];
 			}
 
 			_resourcePermissionLocalService.setResourcePermissions(
 				objectEntry.getCompanyId(), objectEntry.getModelClassName(),
 				ResourceConstants.SCOPE_INDIVIDUAL,
 				String.valueOf(objectEntry.getObjectEntryId()),
-				role.getRoleId(), actions);
+				role.getRoleId(), actionIds);
 		}
 	}
 
