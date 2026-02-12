@@ -47,11 +47,9 @@ public abstract class BaseInfoMessageProductNavigationControlMenuEntry
 
 		featureIndicatorTag.setDark(true);
 		featureIndicatorTag.setInteractive(true);
-
 		featureIndicatorTag.setPageContext(
 			PageContextFactoryUtil.create(
 				httpServletRequest, httpServletResponse));
-
 		featureIndicatorTag.setType(getType());
 
 		try {
