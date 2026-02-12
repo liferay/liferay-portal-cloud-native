@@ -416,11 +416,11 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 		else if (BulkAction.Type.RESET_PERMISSION_BULK_ACTION.equals(type)) {
 			return _resetPermissionObjectBulkSelectionAction;
 		}
-		else if (BulkAction.Type.TAXONOMY_CATEGORY_BULK_ACTION.equals(type)) {
-			return _editObjectCategoriesBulkSelectionAction;
-		}
 		else if (BulkAction.Type.STATUS_BULK_ACTION.equals(type)) {
 			return _statusObjectBulkSelectionAction;
+		}
+		else if (BulkAction.Type.TAXONOMY_CATEGORY_BULK_ACTION.equals(type)) {
+			return _editObjectCategoriesBulkSelectionAction;
 		}
 
 		throw new UnsupportedOperationException();
