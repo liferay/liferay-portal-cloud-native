@@ -75,7 +75,7 @@ public class MarketplaceTopicSubscriber {
 			);
 		}
 		catch (Exception exception) {
-			_log.error("Unable to retrieve Google Credentials", exception);
+			_log.error("Unable to get Google Credentials", exception);
 
 			return;
 		}

@@ -199,7 +199,7 @@ public class ConsoleService extends BaseService {
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							StringBundler.concat(
-								"Retrying ", clientRequest.url(), " attempt: ",
+								"Retrying ", clientRequest.url(),
 								retrySignal.totalRetries() + 1));
 					}
 				}
