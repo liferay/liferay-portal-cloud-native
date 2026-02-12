@@ -290,20 +290,18 @@ public class AddFragmentCompositionMVCActionCommandTest {
 			mockLiferayPortletActionRequest,
 			new MockLiferayPortletActionResponse());
 
-		Assert.assertNotNull(jsonObject);
-
 		JSONObject fragmentCompositionJSONObject = jsonObject.getJSONObject(
 			"fragmentComposition");
 
 		Assert.assertFalse(
 			fragmentCompositionJSONObject.has("fragmentEntryKey"));
 
+		Assert.assertFalse(jsonObject.getBoolean("valid"));
+
 		Assert.assertEquals(
 			0,
 			_fragmentCompositionLocalService.getFragmentCompositionsCount(
 				fragmentCollection.getFragmentCollectionId()));
-
-		Assert.assertFalse(jsonObject.getBoolean("valid"));
 	}
 
 	@Test
