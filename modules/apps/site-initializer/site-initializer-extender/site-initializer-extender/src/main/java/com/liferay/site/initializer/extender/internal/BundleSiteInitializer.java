@@ -3324,11 +3324,10 @@ public class BundleSiteInitializer implements SiteInitializer {
 					continue;
 				}
 
+				String objectDefinitionName = objectDefinition.getName();
 				com.liferay.object.model.ObjectEntry serviceBuilderObjectEntry =
 					_objectEntryLocalService.getObjectEntry(
 						objectEntry.getId());
-
-				String objectDefinitionName = objectDefinition.getName();
 
 				siteNavigationMenuItemSettingsBuilder.put(
 					objectEntrySiteInitializerKey,
