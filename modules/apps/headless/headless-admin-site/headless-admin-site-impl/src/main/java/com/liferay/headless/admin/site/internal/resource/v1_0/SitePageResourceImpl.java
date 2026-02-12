@@ -421,6 +421,10 @@ public class SitePageResourceImpl
 					sitePage));
 		}
 
+		if (layout.isPrivateLayout() != privatePage) {
+			throw new UnsupportedOperationException();
+		}
+
 		_validateSitePageLayout(layout);
 
 		ServiceContext serviceContext = _getServiceContext(
