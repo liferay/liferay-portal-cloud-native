@@ -13,7 +13,7 @@
 	},
 	"maintenance-mode": {
 		"en_US": {
-			"message": "Learn more about maintenance features.",
+			"message": "Learn more about maintenance mode.",
 			"url": "https://learn.liferay.com/w/dxp/self-hosted-installation-and-upgrades/upgrading-liferay/deprecations-and-breaking-changes-reference/7-4-deprecations-and-breaking-changes/maintenance-mode-and-deprecations-in-7-4"
 		}
 	}
