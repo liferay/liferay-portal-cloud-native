@@ -384,7 +384,9 @@ public class SitePageResourceImpl
 			SitePage sitePage)
 		throws Exception {
 
-		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443")) {
+		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443") ||
+			(!FeatureFlagManagerUtil.isEnabled("LPD-38869") && privatePage)) {
+
 			throw new UnsupportedOperationException();
 		}
 
@@ -404,7 +406,9 @@ public class SitePageResourceImpl
 			SitePage sitePage)
 		throws Exception {
 
-		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443")) {
+		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443") ||
+			(!FeatureFlagManagerUtil.isEnabled("LPD-38869") && privatePage)) {
+
 			throw new UnsupportedOperationException();
 		}
 
