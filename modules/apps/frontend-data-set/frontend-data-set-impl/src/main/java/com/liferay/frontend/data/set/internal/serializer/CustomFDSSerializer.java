@@ -1395,9 +1395,11 @@ public class CustomFDSSerializer
 			ObjectEntry dataSetObjectEntry1, ObjectEntry dataSetObjectEntry2) {
 
 			long id1 = dataSetObjectEntry1.getId();
-			long id2 = dataSetObjectEntry2.getId();
 
 			int index1 = _ids.indexOf(id1);
+
+			long id2 = dataSetObjectEntry2.getId();
+
 			int index2 = _ids.indexOf(id2);
 
 			if ((index1 == -1) && (index2 == -1)) {
