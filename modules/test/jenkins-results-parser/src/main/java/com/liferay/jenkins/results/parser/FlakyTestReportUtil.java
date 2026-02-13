@@ -71,8 +71,7 @@ public class FlakyTestReportUtil {
 
 		TestrayJobHistory testrayJobHistory = (TestrayJobHistory)jobHistory;
 
-		testrayJobHistory.writeCIHistoryJSONFile(
-			ciHistoryJSONFilePath);
+		testrayJobHistory.writeCIHistoryJSONFile(ciHistoryJSONFilePath);
 
 		String flakyTestDataFilePath =
 			flakyTestReportFilePath + "/js/flaky-test-data.js";
