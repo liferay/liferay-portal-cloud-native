@@ -856,11 +856,11 @@ public class CustomFDSSerializer
 		if (FeatureFlagManagerUtil.isEnabled(
 				PortalUtil.getCompanyId(httpServletRequest), "LPD-76632")) {
 
-			List<String> ercs = ListUtil.fromString(
+			List<String> externalReferenceCodes = ListUtil.fromString(
 				MapUtil.getString(objectEntry.getProperties(), propertyKey),
 				StringPool.COMMA);
 
-			objectEntries.sort(new ObjectEntryERCComparator(ercs));
+			objectEntries.sort(new ObjectEntryERCComparator(externalReferenceCodes));
 		}
 		else {
 			List<Long> ids = ListUtil.toList(
@@ -1350,17 +1350,17 @@ public class CustomFDSSerializer
 	private static class ObjectEntryERCComparator
 		implements Comparator<ObjectEntry> {
 
-		public ObjectEntryERCComparator(List<String> ercs) {
-			_ercs = ercs;
+		public ObjectEntryERCComparator(List<String> externalReferenceCodes) {
+			_externalReferenceCodes = externalReferenceCodes;
 		}
 
 		@Override
 		public int compare(ObjectEntry objectEntry1, ObjectEntry objectEntry2) {
-			String erc1 = objectEntry1.getExternalReferenceCode();
-			String erc2 = objectEntry2.getExternalReferenceCode();
+			String externalReferenceCode1 = objectEntry1.getExternalReferenceCode();
+			String externalReferenceCode2 = objectEntry2.getExternalReferenceCode();
 
-			int index1 = _ercs.indexOf(erc1);
-			int index2 = _ercs.indexOf(erc2);
+			int index1 = _externalReferenceCodes.indexOf(externalReferenceCode1);
+			int index2 = _externalReferenceCodes.indexOf(externalReferenceCode2);
 
 			if ((index1 == -1) && (index2 == -1)) {
 				Date date = objectEntry1.getDateCreated();
@@ -1379,7 +1379,7 @@ public class CustomFDSSerializer
 			return Integer.compare(index1, index2);
 		}
 
-		private final List<String> _ercs;
+		private final List<String> _externalReferenceCodes;
 
 	}
 
