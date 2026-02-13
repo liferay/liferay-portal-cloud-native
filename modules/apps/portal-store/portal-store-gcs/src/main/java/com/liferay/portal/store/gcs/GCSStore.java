@@ -293,7 +293,7 @@ public class GCSStore implements Store {
 						if ((result == null) || !result.get()) {
 							_log.error(
 								StringBundler.concat(
-									"Error deleting objects in bucket ",
+									"Unable to delete objects in bucket ",
 									_gcsStoreConfiguration.bucketName(), " at ",
 									path));
 

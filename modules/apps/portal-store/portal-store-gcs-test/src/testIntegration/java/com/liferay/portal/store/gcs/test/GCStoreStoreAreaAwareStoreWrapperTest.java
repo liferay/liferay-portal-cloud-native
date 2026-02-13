@@ -58,7 +58,7 @@ public class GCStoreStoreAreaAwareStoreWrapperTest {
 	}
 
 	@Test
-	public void testDeleteCompanyDirectory() throws Exception {
+	public void testDeleteDirectory() throws Exception {
 		String fileName = StringUtil.randomString();
 
 		Company company = CompanyTestUtil.addCompany();

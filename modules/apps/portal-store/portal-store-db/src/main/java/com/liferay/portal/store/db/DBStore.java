@@ -63,7 +63,6 @@ public class DBStore implements Store {
 		actionableDynamicQuery.setAddCriteriaMethod(
 			dynamicQuery -> dynamicQuery.add(
 				RestrictionsFactoryUtil.eq("companyId", companyId)));
-
 		actionableDynamicQuery.setPerformActionMethod(
 			(DLContent dlContent) -> _dlContentLocalService.deleteDLContent(
 				dlContent));

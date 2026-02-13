@@ -48,8 +48,7 @@ public class ConfigurationDataCleanupPreupgradeProcess
 		}
 
 		long[] companyIds = PortalInstancePool.getCompanyIds();
-
-		Map<Long, Long> groupCompanyMap = getGroupCompanyMap();
+		Map<Long, Long> groupCompanyIds = getGroupCompanyIds();
 
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select configurationId, dictionary from Configuration_");
@@ -82,13 +81,13 @@ public class ConfigurationDataCleanupPreupgradeProcess
 				long groupId = _getPrimaryKey(dictionary, _groupIdPattern);
 
 				if (groupId != -1) {
-					if (!groupCompanyMap.containsKey(groupId)) {
+					if (!groupCompanyIds.containsKey(groupId)) {
 						_deleteConfiguration(
 							configurationId, dbInspector, "groupId", "Group_",
 							groupId, preparedStatement2);
 					}
 					else {
-						long groupCompanyId = groupCompanyMap.get(groupId);
+						long groupCompanyId = groupCompanyIds.get(groupId);
 
 						if (!ArrayUtil.contains(companyIds, groupCompanyId) ||
 							(PropsValues.DATABASE_PARTITION_ENABLED &&
@@ -107,21 +106,21 @@ public class ConfigurationDataCleanupPreupgradeProcess
 		}
 	}
 
-	protected Map<Long, Long> getGroupCompanyMap() throws Exception {
-		Map<Long, Long> map = new HashMap<>();
+	protected Map<Long, Long> getGroupCompanyIds() throws Exception {
+		Map<Long, Long> groupCompanyIds = new HashMap<>();
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select groupId, companyId from Group_");
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
-				map.put(
+				groupCompanyIds.put(
 					resultSet.getLong("groupId"),
 					resultSet.getLong("companyId"));
 			}
 		}
 
-		return map;
+		return groupCompanyIds;
 	}
 
 	private void _deleteConfiguration(

@@ -83,7 +83,6 @@ public class CTStore implements Store {
 			_ctsContentLocalService.getActionableDynamicQuery();
 
 		actionableDynamicQuery.setCompanyId(companyId);
-
 		actionableDynamicQuery.setPerformActionMethod(
 			(CTSContent ctsContent) -> _ctsContentLocalService.deleteCTSContent(
 				ctsContent));

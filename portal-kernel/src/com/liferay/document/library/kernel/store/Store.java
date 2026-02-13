@@ -39,11 +39,6 @@ public interface Store {
 			String versionLabel, InputStream inputStream)
 		throws PortalException;
 
-	/**
-	 * Deletes all the company's data from the store.
-	 *
-	 * @param companyId the primary key of the company
-	 */
 	public void deleteDirectory(long companyId) throws PortalException;
 
 	/**

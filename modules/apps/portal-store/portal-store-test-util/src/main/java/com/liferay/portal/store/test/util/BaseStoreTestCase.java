@@ -75,7 +75,6 @@ public abstract class BaseStoreTestCase {
 		Assert.assertFalse(
 			_store.hasFile(
 				_companyId, _repositoryId, fileName1, Store.VERSION_DEFAULT));
-
 		Assert.assertFalse(
 			_store.hasFile(
 				_companyId, repositoryId, fileName2, Store.VERSION_DEFAULT));

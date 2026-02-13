@@ -739,9 +739,8 @@ public class CompanyLocalServiceDBPartitionTest
 
 		_assertCache(_company1.getCompanyId(), true);
 
-		String fileName1 = "/" + RandomTestUtil.randomString();
-
 		long repositoryId = RandomTestUtil.nextLong();
+		String fileName1 = "/" + RandomTestUtil.randomString();
 
 		_store.addFile(
 			_company1.getCompanyId(), repositoryId, fileName1,
@@ -755,7 +754,6 @@ public class CompanyLocalServiceDBPartitionTest
 			ArrayUtil.contains(
 				CompanyLocalServiceTestUtil.getCompanyIdsBySQL(),
 				_company1.getCompanyId()));
-
 		Assert.assertFalse(
 			_store.hasFile(
 				_company1.getCompanyId(), repositoryId, fileName1,

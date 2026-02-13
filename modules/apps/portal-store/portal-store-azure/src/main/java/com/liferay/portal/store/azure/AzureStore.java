@@ -342,7 +342,7 @@ public class AzureStore implements Store {
 				_log.error(
 					StringBundler.concat(
 						"Unable to delete ", httpRequest.getUrl(),
-						" due to status code ", response.getStatusCode()));
+						" because of ", response.getStatusCode()));
 			}
 		}
 	}
