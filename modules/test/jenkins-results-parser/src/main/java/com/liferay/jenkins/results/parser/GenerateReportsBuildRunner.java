@@ -490,12 +490,12 @@ public class GenerateReportsBuildRunner extends BaseBuildRunner<BuildData> {
 
 		Files.deleteIfExists(Paths.get(reportFilePath, "ci-history.json.gz"));
 
-		File ciHistoryJSONObjectFile =
-			FlakyTestReportUtil.createCIHistoryJSONObjectFile(
+		File ciHistoryJSONFile =
+			FlakyTestReportUtil.createCIHistoryJSONFile(
 				reportFilePath, flakyTestReportFilePath);
 
 		FlakyTestReportUtil.writeHTMLFile(
-			ciHistoryJSONObjectFile, reportFilePath);
+			ciHistoryJSONFile, reportFilePath);
 
 		_updateReport(flakyTestReportFilePath);
 

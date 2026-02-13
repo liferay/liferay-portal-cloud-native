@@ -39,7 +39,7 @@ public class FlakyTestReportUtil {
 			_CI_HISTORY_DIR, new File(filePath + "ci-history"));
 	}
 
-	public static File createCIHistoryJSONObjectFile(
+	public static File createCIHistoryJSONFile(
 			String baseReportFilePath, String flakyTestReportFilePath)
 		throws IOException {
 
@@ -66,13 +66,13 @@ public class FlakyTestReportUtil {
 			return null;
 		}
 
-		String ciHistoryJSONObjectFilePath =
+		String ciHistoryJSONFilePath =
 			baseReportFilePath + "ci-history.json.gz";
 
 		TestrayJobHistory testrayJobHistory = (TestrayJobHistory)jobHistory;
 
-		testrayJobHistory.writeCIHistoryJSONObjectFile(
-			ciHistoryJSONObjectFilePath);
+		testrayJobHistory.writeCIHistoryJSONFile(
+			ciHistoryJSONFilePath);
 
 		String flakyTestDataFilePath =
 			flakyTestReportFilePath + "/js/flaky-test-data.js";
@@ -85,17 +85,17 @@ public class FlakyTestReportUtil {
 		CloudBucketUtil.copyGCPFile(
 			CloudBucketUtil.GCP_BUCKET_PATH_JENKINS_CI_DATA + "/ci-history/" +
 				upstreamBranchName + "/ci-history.json.gz",
-			ciHistoryJSONObjectFilePath);
+			ciHistoryJSONFilePath);
 
-		return new File(ciHistoryJSONObjectFilePath);
+		return new File(ciHistoryJSONFilePath);
 	}
 
 	public static void writeHTMLFile(
-			File ciHistoryJSONObjectFile, String reportsDirPath)
+			File ciHistoryJSONFile, String reportsDirPath)
 		throws IOException {
 
 		JSONObject ciHistoryJSONObject = new JSONObject(
-			JenkinsResultsParserUtil.read(ciHistoryJSONObjectFile));
+			JenkinsResultsParserUtil.read(ciHistoryJSONFile));
 
 		File ciHistoryFile = new File(reportsDirPath, "ci-history/index.html");
 
