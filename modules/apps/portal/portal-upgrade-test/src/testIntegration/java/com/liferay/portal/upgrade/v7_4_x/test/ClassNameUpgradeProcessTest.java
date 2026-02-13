@@ -75,9 +75,10 @@ public class ClassNameUpgradeProcessTest {
 	@Test
 	public void testDeleteAndUpdateDDMStructure() throws Exception {
 		long newClassNameId = _getClassNameId(_NEW_CLASS_NAME);
-		long oldClassNameId = _addClassName(_OLD_CLASS_NAME);
 
 		long newStructureId = _addDDMStructure(newClassNameId);
+
+		long oldClassNameId = _addClassName(_OLD_CLASS_NAME);
 
 		long oldStructureId = _addDDMStructure(oldClassNameId);
 
@@ -86,7 +87,6 @@ public class ClassNameUpgradeProcessTest {
 		runUpgrade();
 
 		Assert.assertEquals(0, _getDDMStructureClassNameId(newStructureId));
-
 		Assert.assertEquals(
 			newClassNameId, _getDDMStructureClassNameId(oldStructureId));
 	}
