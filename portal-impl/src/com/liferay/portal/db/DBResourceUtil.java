@@ -56,12 +56,12 @@ public class DBResourceUtil {
 		Set<String> liferayTableNames = new TreeSet<>(
 			String.CASE_INSENSITIVE_ORDER);
 
+		liferayTableNames.addAll(getModuleTableNames(connection));
+		liferayTableNames.addAll(getPortalTableNames(connection));
 		liferayTableNames.addAll(
 			getServiceComponentModuleTableNames(connection));
 		liferayTableNames.addAll(
 			getServiceComponentPortalTableNames(connection));
-		liferayTableNames.addAll(getModuleTableNames(connection));
-		liferayTableNames.addAll(getPortalTableNames(connection));
 
 		return liferayTableNames;
 	}
