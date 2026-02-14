@@ -59,8 +59,8 @@ public class SharingUserNotificationHandlerTest {
 			_sharingUserNotificationHandler, "_jsonFactory",
 			new JSONFactoryImpl());
 
-		_setUpSharingEntryLocalService();
 		_setUpServiceContext();
+		_setUpSharingEntryLocalService();
 	}
 
 	@Test
