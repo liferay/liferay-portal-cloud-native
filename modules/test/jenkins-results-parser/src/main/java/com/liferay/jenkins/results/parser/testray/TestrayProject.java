@@ -360,7 +360,7 @@ public class TestrayProject {
 
 		System.out.println(
 			JenkinsResultsParserUtil.combine(
-				"Gathering test case ids for project ", getName(), " at ",
+				"Gathering test case IDs for project ", getName(), " at ",
 				JenkinsResultsParserUtil.toDateString(new Date(start))));
 
 		_testrayCases = new HashMap<>();
@@ -387,7 +387,7 @@ public class TestrayProject {
 
 			System.out.println(
 				JenkinsResultsParserUtil.combine(
-					"Gathered test case ids for project ", getName(), " in ",
+					"Gathered test case IDs for project ", getName(), " in ",
 					JenkinsResultsParserUtil.toDurationString(duration)));
 		}
 	}
