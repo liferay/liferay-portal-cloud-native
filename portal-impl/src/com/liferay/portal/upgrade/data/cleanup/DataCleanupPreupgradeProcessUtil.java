@@ -14,6 +14,8 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.util.SystemBundleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
+import java.lang.reflect.Field;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -90,11 +92,9 @@ public class DataCleanupPreupgradeProcessUtil {
 
 				clazz = bundle.loadClass(implementationClassName.value());
 
-				return (String)clazz.getField(
-					"TABLE_NAME"
-				).get(
-					null
-				);
+				Field field = clazz.getField("TABLE_NAME");
+
+				return (String)field.get(null);
 			}
 			catch (ClassNotFoundException classNotFoundException) {
 				if (_log.isDebugEnabled()) {
