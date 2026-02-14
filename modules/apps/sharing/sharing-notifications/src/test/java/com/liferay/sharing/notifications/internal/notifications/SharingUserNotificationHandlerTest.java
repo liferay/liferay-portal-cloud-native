@@ -65,8 +65,8 @@ public class SharingUserNotificationHandlerTest {
 
 	@Test
 	public void testGetLink() throws Exception {
-		_testGetLink(true);
 		_testGetLink(false);
+		_testGetLink(true);
 		_testGetLinkWhenSharingEntryIsNull();
 	}
 
