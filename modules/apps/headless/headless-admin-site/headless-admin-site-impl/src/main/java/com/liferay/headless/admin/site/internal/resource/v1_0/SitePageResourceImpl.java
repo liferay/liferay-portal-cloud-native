@@ -117,7 +117,9 @@ public class SitePageResourceImpl
 			String sitePageExternalReferenceCode)
 		throws Exception {
 
-		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443")) {
+		if (!FeatureFlagManagerUtil.isEnabled(
+				contextCompany.getCompanyId(), "LPD-35443")) {
+
 			throw new UnsupportedOperationException();
 		}
 
@@ -233,7 +235,8 @@ public class SitePageResourceImpl
 
 			@Override
 			public boolean isActive(PortletDataContext portletDataContext) {
-				return FeatureFlagManagerUtil.isEnabled("LPD-35443");
+				return FeatureFlagManagerUtil.isEnabled(
+					portletDataContext.getCompanyId(), "LPD-35443");
 			}
 
 			@Override
@@ -256,7 +259,9 @@ public class SitePageResourceImpl
 			ContentPageSpecification contentPageSpecification)
 		throws Exception {
 
-		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443")) {
+		if (!FeatureFlagManagerUtil.isEnabled(
+				contextCompany.getCompanyId(), "LPD-35443")) {
+
 			throw new UnsupportedOperationException();
 		}
 
@@ -289,7 +294,9 @@ public class SitePageResourceImpl
 			Map<String, Serializable> parameters, String search)
 		throws Exception {
 
-		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443")) {
+		if (!FeatureFlagManagerUtil.isEnabled(
+				contextCompany.getCompanyId(), "LPD-35443")) {
+
 			throw new UnsupportedOperationException();
 		}
 
@@ -302,7 +309,9 @@ public class SitePageResourceImpl
 			String sitePageExternalReferenceCode)
 		throws Exception {
 
-		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443")) {
+		if (!FeatureFlagManagerUtil.isEnabled(
+				contextCompany.getCompanyId(), "LPD-35443")) {
+
 			throw new UnsupportedOperationException();
 		}
 
@@ -324,7 +333,9 @@ public class SitePageResourceImpl
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443")) {
+		if (!FeatureFlagManagerUtil.isEnabled(
+				contextCompany.getCompanyId(), "LPD-35443")) {
+
 			throw new UnsupportedOperationException();
 		}
 
@@ -381,8 +392,11 @@ public class SitePageResourceImpl
 			SitePage sitePage)
 		throws Exception {
 
-		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443") ||
-			(!FeatureFlagManagerUtil.isEnabled("LPD-38869") && privatePage)) {
+		if (!FeatureFlagManagerUtil.isEnabled(
+				contextCompany.getCompanyId(), "LPD-35443") ||
+			(!FeatureFlagManagerUtil.isEnabled(
+				contextCompany.getCompanyId(), "LPD-38869") &&
+			 privatePage)) {
 
 			throw new UnsupportedOperationException();
 		}
@@ -403,8 +417,11 @@ public class SitePageResourceImpl
 			SitePage sitePage)
 		throws Exception {
 
-		if (!FeatureFlagManagerUtil.isEnabled("LPD-35443") ||
-			(!FeatureFlagManagerUtil.isEnabled("LPD-38869") && privatePage)) {
+		if (!FeatureFlagManagerUtil.isEnabled(
+				contextCompany.getCompanyId(), "LPD-35443") ||
+			(!FeatureFlagManagerUtil.isEnabled(
+				contextCompany.getCompanyId(), "LPD-38869") &&
+			 privatePage)) {
 
 			throw new UnsupportedOperationException();
 		}
