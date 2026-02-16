@@ -151,12 +151,6 @@ public class InitUtil {
 
 		SanitizerLogWrapper.init();
 
-		// JSONFactory
-
-		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
-
-		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
-
 		// Configuration factory
 
 		ConfigurationFactoryUtil.setConfigurationFactory(
@@ -171,6 +165,12 @@ public class InitUtil {
 		FileUtil fileUtil = new FileUtil();
 
 		fileUtil.setFile(new FileImpl());
+
+		// JSON factory
+
+		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
+
+		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
 
 		// XML
 
