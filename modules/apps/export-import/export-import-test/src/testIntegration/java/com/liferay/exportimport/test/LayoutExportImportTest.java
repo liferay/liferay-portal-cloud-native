@@ -156,7 +156,7 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 		featureFlags = {@FeatureFlag("LPD-35443"), @FeatureFlag("LPD-35914")}
 	)
 	@Test
-	public void testDeleteMissingLayoutsSameSiteWithPromoteContentFeatureFlags()
+	public void testDeleteMissingLayoutsSameGroupWithPromoteContentFeatureFlags()
 		throws Exception {
 
 		FeatureFlagTestUtil.invokeFeatureFlagListeners(
