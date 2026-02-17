@@ -173,7 +173,7 @@ public class RankingJSONBuilder {
 		catch (PortalException portalException) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Error getting AssetRenderer for " +
+					"Unable to get asset renderer for " +
 						_document.getLong(Field.ENTRY_CLASS_PK),
 					portalException);
 			}
