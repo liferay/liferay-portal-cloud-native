@@ -70,7 +70,7 @@ public class ExportImportConfigurationParameterMapFactoryImpl
 		Map<String, String[]> parameterMap = new LinkedHashMap<>(
 			portletRequest.getParameterMap());
 
-		// Needs to be added before parameter replacement
+		// Add before parameter replacement
 
 		if (FeatureFlagManagerUtil.isEnabled(
 				CompanyThreadLocal.getCompanyId(), "LPD-35914") &&
