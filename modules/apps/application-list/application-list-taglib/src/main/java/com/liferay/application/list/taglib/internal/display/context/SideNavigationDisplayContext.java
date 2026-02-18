@@ -55,14 +55,13 @@ public class SideNavigationDisplayContext {
 	public List<String> getExpandedKeys() {
 		List<String> expandedKeys = new ArrayList<>();
 
-		String storedExpandedKeysAsString = SessionClicks.get(
+		String expandedKeysString = SessionClicks.get(
 			_httpServletRequest, _getExpandedKeysSessionKey(),
 			StringPool.BLANK);
 
-		if (!storedExpandedKeysAsString.isEmpty()) {
+		if (!expandedKeysString.isEmpty()) {
 			Collections.addAll(
-				expandedKeys,
-				storedExpandedKeysAsString.split(StringPool.COMMA));
+				expandedKeys, expandedKeysString.split(StringPool.COMMA));
 
 			return expandedKeys;
 		}
