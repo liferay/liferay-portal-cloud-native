@@ -77,8 +77,6 @@ public class WikiNodeIndexer extends BaseIndexer<WikiNode> {
 	protected Document doGetDocument(WikiNode wikiNode) throws Exception {
 		Document document = getBaseModelDocument(CLASS_NAME, wikiNode);
 
-		document.addKeyword(Field.UID, uidFactory.getUID(wikiNode));
-
 		document.addText(Field.DESCRIPTION, wikiNode.getDescription());
 
 		String title = wikiNode.getName();
@@ -88,6 +86,8 @@ public class WikiNodeIndexer extends BaseIndexer<WikiNode> {
 		}
 
 		document.addText(Field.TITLE, title);
+
+		document.addKeyword(Field.UID, uidFactory.getUID(wikiNode));
 
 		return document;
 	}
