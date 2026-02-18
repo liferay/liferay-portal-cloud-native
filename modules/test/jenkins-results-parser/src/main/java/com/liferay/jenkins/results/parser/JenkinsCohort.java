@@ -623,12 +623,12 @@ public class JenkinsCohort {
 		_getAWSFleetCloudsMap() {
 
 		if (!JenkinsResultsParserUtil.isCloudCINode()) {
-			_awsFleetCloudMap = new HashMap<>();
+			_awsFleetCloudsMap = new HashMap<>();
 
-			return _awsFleetCloudMap;
+			return _awsFleetCloudsMap;
 		}
 
-		_awsFleetCloudMap = new TreeMap<>();
+		_awsFleetCloudsMap = new TreeMap<>();
 
 		for (JenkinsMaster jenkinsMaster : getJenkinsMasters()) {
 			for (AWSFleetCloud awsFleetCloud :
@@ -637,16 +637,16 @@ public class JenkinsCohort {
 				String primaryLabel = awsFleetCloud.getPrimaryLabel();
 
 				List<AWSFleetCloud> awsFleetClouds =
-					_awsFleetCloudMap.getOrDefault(
+					_awsFleetCloudsMap.getOrDefault(
 						primaryLabel, new ArrayList<>());
 
 				awsFleetClouds.add(awsFleetCloud);
 
-				_awsFleetCloudMap.put(primaryLabel, awsFleetClouds);
+				_awsFleetCloudsMap.put(primaryLabel, awsFleetClouds);
 			}
 		}
 
-		return _awsFleetCloudMap;
+		return _awsFleetCloudsMap;
 	}
 
 	private void _loadBuildURL(String buildURL) {
@@ -757,7 +757,7 @@ public class JenkinsCohort {
 		}
 	}
 
-	private Map<String, List<AWSFleetCloud>> _awsFleetCloudMap;
+	private Map<String, List<AWSFleetCloud>> _awsFleetCloudsMap;
 	private final Map<String, JenkinsCohortJob> _jenkinsCohortJobsMap =
 		new HashMap<>();
 	private final Map<String, JenkinsMaster> _jenkinsMastersMap =
