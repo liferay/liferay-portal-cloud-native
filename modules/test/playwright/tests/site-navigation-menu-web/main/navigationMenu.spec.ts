@@ -1613,9 +1613,7 @@ test(
 		await apiHelpers.jsonWebServicesLayoutPageTemplateEntry.addDisplayPageLayoutPageTemplateEntry(
 			{
 				classNameId: className.classNameId,
-				classTypeId: String(
-					await getBasicWebContentStructureId(apiHelpers)
-				),
+				classTypeKey: 'BASIC-WEB-CONTENT',
 				groupId: site.id,
 				name: displayPageTemplateName,
 			}
