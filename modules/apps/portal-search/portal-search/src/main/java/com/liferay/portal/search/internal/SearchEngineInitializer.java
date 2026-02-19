@@ -210,7 +210,7 @@ public class SearchEngineInitializer implements Runnable {
 											backgroundTaskId);
 								SafeCloseable safeCloseable2 =
 									ReindexCacheThreadLocal.openReindexMode(
-										sharedReindexCacheMap, finalFullMode)) {
+										finalFullMode, sharedReindexCacheMap)) {
 
 								reindex(indexer);
 

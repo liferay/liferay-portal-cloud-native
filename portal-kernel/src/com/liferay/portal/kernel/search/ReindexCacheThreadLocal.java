@@ -112,7 +112,7 @@ public class ReindexCacheThreadLocal {
 	}
 
 	public static SafeCloseable openReindexMode(
-		Map<String, Object> sharedReindexCacheMap, boolean fullMode) {
+		boolean fullMode, Map<String, Object> sharedReindexCacheMap) {
 
 		SafeCloseable safeCloseable1 = _fullMode.setWithSafeCloseable(fullMode);
 
