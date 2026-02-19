@@ -354,13 +354,12 @@ public class AccountGroupLocalServiceImpl
 		accountGroup.setExternalReferenceCode(externalReferenceCode);
 		accountGroup.setDescription(description);
 		accountGroup.setName(name);
-		accountGroup.setExpandoBridgeAttributes(serviceContext);
-
 		accountGroup.setStatus(
 			EmptyModelManagerUtil.solveEmptyModel(
 				externalReferenceCode, accountGroup.getModelClassName(),
 				accountGroup.getCompanyId(), 0, accountGroup.getStatus(),
 				() -> WorkflowConstants.STATUS_APPROVED));
+		accountGroup.setExpandoBridgeAttributes(serviceContext);
 
 		return accountGroupPersistence.update(accountGroup);
 	}

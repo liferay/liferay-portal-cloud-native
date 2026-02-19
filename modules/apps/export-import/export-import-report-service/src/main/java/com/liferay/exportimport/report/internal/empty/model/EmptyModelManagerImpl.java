@@ -142,9 +142,10 @@ public class EmptyModelManagerImpl implements EmptyModelManager {
 		catch (Exception exception) {
 			_log.error(
 				StringBundler.concat(
-					"Error resolving the report entries for the class name \"",
-					className, "\" and the external reference code \"",
-					classExternalReferenceCode, "\""),
+					"Unable to resolve the export/import report entries for \"",
+					"the class external reference code ",
+					classExternalReferenceCode, "\" and class name \"",
+					className, , "\""),
 				exception);
 		}
 
