@@ -46,7 +46,7 @@ public class CopyBulkSelectionAction extends BaseObjectBulkSelectionAction {
 
 		if (Validator.isNull(objectEntryFolderId)) {
 			throw new IllegalArgumentException(
-				"No objectEntryFolderId specified");
+				"Object entry folder ID is null");
 		}
 
 		ObjectEntryFolder targetObjectEntryFolder =
