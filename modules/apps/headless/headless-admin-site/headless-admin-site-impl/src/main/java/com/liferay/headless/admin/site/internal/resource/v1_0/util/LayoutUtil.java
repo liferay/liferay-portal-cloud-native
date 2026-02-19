@@ -1258,7 +1258,7 @@ public class LayoutUtil {
 
 		List<String> nestedColumnIds =
 			com.liferay.petra.string.StringUtil.split(
-				layout.getTypeSettingsProperty(
+				unicodeProperties.get(
 					com.liferay.layout.admin.kernel.model.
 						LayoutTypePortletConstants.NESTED_COLUMN_IDS));
 
