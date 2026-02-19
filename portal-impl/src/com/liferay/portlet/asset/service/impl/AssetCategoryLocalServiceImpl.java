@@ -723,7 +723,6 @@ public class AssetCategoryLocalServiceImpl
 		category.setName(name);
 		category.setTitleMap(trimmedTitleMap);
 		category.setDescriptionMap(descriptionMap);
-
 		category.setStatus(
 			EmptyModelManagerUtil.solveEmptyModel(
 				externalReferenceCode, category.getModelClassName(),

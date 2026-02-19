@@ -573,7 +573,6 @@ public class ObjectEntryFolderLocalServiceImpl
 		objectEntryFolder.setLabelMap(_getLabelMap(labelMap, name));
 		objectEntryFolder.setName(name);
 		objectEntryFolder.setTreePath(objectEntryFolder.buildTreePath());
-
 		objectEntryFolder.setStatus(
 			EmptyModelManagerUtil.solveEmptyModel(
 				objectEntryFolder.getExternalReferenceCode(),

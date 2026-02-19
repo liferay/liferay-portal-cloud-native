@@ -145,7 +145,7 @@ public class EmptyModelManagerImpl implements EmptyModelManager {
 					"Unable to resolve the export/import report entries for \"",
 					"the class external reference code ",
 					classExternalReferenceCode, "\" and class name \"",
-					className, , "\""),
+					className, "\""),
 				exception);
 		}
 

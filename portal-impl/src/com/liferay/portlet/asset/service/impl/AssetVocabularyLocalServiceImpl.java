@@ -527,7 +527,6 @@ public class AssetVocabularyLocalServiceImpl
 		vocabulary.setDescriptionMap(descriptionMap);
 		vocabulary.setSettings(settings);
 		vocabulary.setVisibilityType(visibilityType);
-
 		vocabulary.setStatus(
 			EmptyModelManagerUtil.solveEmptyModel(
 				externalReferenceCode, vocabulary.getModelClassName(),
@@ -564,7 +563,6 @@ public class AssetVocabularyLocalServiceImpl
 		vocabulary.setDescriptionMap(descriptionMap);
 		vocabulary.setSettings(settings);
 		vocabulary.setVisibilityType(visibilityType);
-
 		vocabulary.setStatus(
 			EmptyModelManagerUtil.solveEmptyModel(
 				externalReferenceCode, vocabulary.getModelClassName(),

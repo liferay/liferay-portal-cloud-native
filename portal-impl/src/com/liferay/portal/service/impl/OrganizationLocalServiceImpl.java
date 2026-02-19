@@ -2183,7 +2183,6 @@ public class OrganizationLocalServiceImpl
 				externalReferenceCode, organization.getModelClassName(),
 				organization.getCompanyId(), 0L, organization.getStatus(),
 				() -> WorkflowConstants.STATUS_APPROVED));
-
 		organization.setExpandoBridgeAttributes(serviceContext);
 
 		organization = organizationPersistence.update(organization);

@@ -272,12 +272,13 @@ public class ExportImportReportEntryLocalServiceTest {
 					groupId, companyId, classExternalReferenceCode, classNameId,
 					exportImportConfigurationId2,
 					RandomTestUtil.randomString());
-		ExportImportReportEntry exportImportReportEntry3 = _markAsResolved(
-			_exportImportReportEntryLocalService.
-				getOrAddEmptyExportImportReportEntry(
-					groupId, companyId, classExternalReferenceCode, classNameId,
-					exportImportConfigurationId3,
-					RandomTestUtil.randomString()));
+		ExportImportReportEntry exportImportReportEntry3 =
+			_updateStatusResolved(
+				_exportImportReportEntryLocalService.
+					getOrAddEmptyExportImportReportEntry(
+						groupId, companyId, classExternalReferenceCode,
+						classNameId, exportImportConfigurationId3,
+						RandomTestUtil.randomString()));
 
 		ExportImportReportEntry randomExportImportReportEntry1 =
 			_exportImportReportEntryLocalService.
@@ -292,14 +293,14 @@ public class ExportImportReportEntryLocalServiceTest {
 					RandomTestUtil.randomLong(), RandomTestUtil.randomLong(),
 					RandomTestUtil.randomString());
 		ExportImportReportEntry randomExportImportReportEntry3 =
-			_markAsResolved(
+			_updateStatusResolved(
 				_exportImportReportEntryLocalService.
 					getOrAddEmptyExportImportReportEntry(
 						groupId, companyId, RandomTestUtil.randomString(),
 						classNameId, RandomTestUtil.randomLong(),
 						RandomTestUtil.randomString()));
 		ExportImportReportEntry randomExportImportReportEntry4 =
-			_markAsResolved(
+			_updateStatusResolved(
 				_exportImportReportEntryLocalService.
 					getOrAddEmptyExportImportReportEntry(
 						groupId, companyId, classExternalReferenceCode,
@@ -313,41 +314,35 @@ public class ExportImportReportEntryLocalServiceTest {
 		ExportImportThreadLocal.setExportImportConfigurationId(
 			exportImportConfigurationId1);
 
-		try {
-			_exportImportReportEntryLocalService.
-				resolveEmptyExportImportReportEntries(
-					groupId, companyId, classExternalReferenceCode,
-					classNameId);
+		_exportImportReportEntryLocalService.
+			resolveEmptyExportImportReportEntries(
+				groupId, companyId, classExternalReferenceCode, classNameId);
 
-			Assert.assertNull(
-				_exportImportReportEntryLocalService.
-					fetchExportImportReportEntry(
-						exportImportReportEntry1.
-							getExportImportReportEntryId()));
+		Assert.assertNull(
+			_exportImportReportEntryLocalService.fetchExportImportReportEntry(
+				exportImportReportEntry1.getExportImportReportEntryId()));
 
-			_assertStatus(
-				exportImportReportEntry2,
-				ExportImportReportEntryConstants.STATUS_RESOLVED, true);
-			_assertStatus(
-				exportImportReportEntry3,
-				ExportImportReportEntryConstants.STATUS_RESOLVED, false);
-			_assertStatus(
-				randomExportImportReportEntry1,
-				ExportImportReportEntryConstants.STATUS_UNRESOLVED, false);
-			_assertStatus(
-				randomExportImportReportEntry2,
-				ExportImportReportEntryConstants.STATUS_UNRESOLVED, false);
-			_assertStatus(
-				randomExportImportReportEntry3,
-				ExportImportReportEntryConstants.STATUS_RESOLVED, false);
-			_assertStatus(
-				randomExportImportReportEntry4,
-				ExportImportReportEntryConstants.STATUS_RESOLVED, false);
-		}
-		finally {
-			ExportImportThreadLocal.setExportImportConfigurationId(
-				originalExportImportConfigurationId);
-		}
+		_assertStatus(
+			exportImportReportEntry2,
+			ExportImportReportEntryConstants.STATUS_RESOLVED, true);
+		_assertStatus(
+			exportImportReportEntry3,
+			ExportImportReportEntryConstants.STATUS_RESOLVED, false);
+		_assertStatus(
+			randomExportImportReportEntry1,
+			ExportImportReportEntryConstants.STATUS_UNRESOLVED, false);
+		_assertStatus(
+			randomExportImportReportEntry2,
+			ExportImportReportEntryConstants.STATUS_UNRESOLVED, false);
+		_assertStatus(
+			randomExportImportReportEntry3,
+			ExportImportReportEntryConstants.STATUS_RESOLVED, false);
+		_assertStatus(
+			randomExportImportReportEntry4,
+			ExportImportReportEntryConstants.STATUS_RESOLVED, false);
+
+		ExportImportThreadLocal.setExportImportConfigurationId(
+			originalExportImportConfigurationId);
 	}
 
 	private void _assertStatus(
@@ -368,7 +363,7 @@ public class ExportImportReportEntryLocalServiceTest {
 		Assert.assertEquals(status, actualExportImportReportEntry.getStatus());
 	}
 
-	private ExportImportReportEntry _markAsResolved(
+	private ExportImportReportEntry _updateStatusResolved(
 		ExportImportReportEntry exportImportReportEntry) {
 
 		exportImportReportEntry.setStatus(

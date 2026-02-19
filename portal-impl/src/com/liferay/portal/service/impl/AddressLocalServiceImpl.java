@@ -320,7 +320,6 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 		address.setStreet3(street3);
 		address.setSubtype(subtype);
 		address.setZip(zip);
-
 		address.setStatus(
 			EmptyModelManagerUtil.solveEmptyModel(
 				externalReferenceCode, address.getModelClassName(),

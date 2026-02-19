@@ -2880,7 +2880,6 @@ public class ObjectDefinitionLocalServiceImpl
 			pkObjectFieldDBColumnName);
 		objectDefinition.setPKObjectFieldName(pkObjectFieldName);
 		objectDefinition.setScope(scope);
-
 		objectDefinition.setStatus(
 			EmptyModelManagerUtil.solveEmptyModel(
 				externalReferenceCode, objectDefinition.getModelClassName(),

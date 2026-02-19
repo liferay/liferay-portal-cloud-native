@@ -216,7 +216,6 @@ public class DLReferencesExportImportContentProcessor
 
 				long classNameId = _classNameLocalService.getClassNameId(
 					FileEntry.class);
-
 				long exportImportConfigurationId = GetterUtil.getLong(
 					ExportImportThreadLocal.getExportImportConfigurationId());
 

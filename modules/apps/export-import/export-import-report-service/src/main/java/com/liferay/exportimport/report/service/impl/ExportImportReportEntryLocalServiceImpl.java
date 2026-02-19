@@ -155,19 +155,18 @@ public class ExportImportReportEntryLocalServiceImpl
 
 				dynamicQuery.add(classNameIdProperty.eq(classNameId));
 
-				Property statusProperty = PropertyFactoryUtil.forName("status");
-
-				dynamicQuery.add(
-					statusProperty.eq(
-						ExportImportReportEntryConstants.STATUS_UNRESOLVED));
-
 				Property typeProperty = PropertyFactoryUtil.forName("type");
 
 				dynamicQuery.add(
 					typeProperty.eq(
 						ExportImportReportEntryConstants.TYPE_EMPTY));
-			});
 
+				Property statusProperty = PropertyFactoryUtil.forName("status");
+
+				dynamicQuery.add(
+					statusProperty.eq(
+						ExportImportReportEntryConstants.STATUS_UNRESOLVED));
+			});
 		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setGroupId(groupId);
 
@@ -212,8 +211,8 @@ public class ExportImportReportEntryLocalServiceImpl
 				catch (Exception exception) {
 					if (_log.isDebugEnabled()) {
 						_log.debug(
-							"Unable to resolve the report entry " +
-								exportImportReportEntryId,
+							"Unable to resolve the export/import report " +
+								"entry " + exportImportReportEntryId,
 							exception);
 					}
 				}

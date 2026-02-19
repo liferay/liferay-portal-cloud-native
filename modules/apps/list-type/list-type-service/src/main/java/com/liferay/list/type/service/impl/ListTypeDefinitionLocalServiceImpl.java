@@ -172,7 +172,6 @@ public class ListTypeDefinitionLocalServiceImpl
 		}
 
 		listTypeDefinition.setNameMap(nameMap);
-
 		listTypeDefinition.setStatus(
 			EmptyModelManagerUtil.solveEmptyModel(
 				externalReferenceCode, listTypeDefinition.getModelClassName(),

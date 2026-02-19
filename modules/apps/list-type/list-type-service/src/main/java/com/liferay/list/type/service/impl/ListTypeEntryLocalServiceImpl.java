@@ -227,7 +227,6 @@ public class ListTypeEntryLocalServiceImpl
 			listTypeEntryId);
 
 		listTypeEntry.setNameMap(nameMap);
-
 		listTypeEntry.setStatus(
 			EmptyModelManagerUtil.solveEmptyModel(
 				externalReferenceCode, listTypeEntry.getModelClassName(),

@@ -54,10 +54,10 @@ public class EmptyModelManagerImplTest {
 
 	@BeforeClass
 	public static void setUpClass() {
+		ReflectionTestUtil.setFieldValue(_emptyModelManager, "_log", _log);
+
 		_stagingGroupHelperUtilMockedStatic = Mockito.mockStatic(
 			StagingGroupHelperUtil.class);
-
-		ReflectionTestUtil.setFieldValue(_emptyModelManager, "_log", _log);
 	}
 
 	@AfterClass
@@ -569,9 +569,9 @@ public class EmptyModelManagerImplTest {
 			_log
 		).error(
 			StringBundler.concat(
-				"Error resolving the report entries for the class name \"",
-				"com.liferay.portal.kernel.model.User\" and the external ",
-				"reference code \"", externalReferenceCode, "\""),
+				"Unable to resolve the export/import report entries for \"",
+				"the class external reference code ", externalReferenceCode,
+				"\" and class name \"com.liferay.portal.kernel.model.User\""),
 			portalException
 		);
 	}
