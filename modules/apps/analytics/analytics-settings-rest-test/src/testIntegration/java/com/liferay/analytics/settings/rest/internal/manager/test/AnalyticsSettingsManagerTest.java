@@ -453,10 +453,10 @@ public class AnalyticsSettingsManagerTest {
 					_analyticsSettingsManager.getAnalyticsConfiguration(
 						TestPropsValues.getCompanyId());
 
-				Assert.assertEquals(token, analyticsConfiguration2.token());
 				Assert.assertEquals(
 					liferayAnalyticsCredentialType,
 					analyticsConfiguration2.liferayAnalyticsCredentialType());
+				Assert.assertEquals(token, analyticsConfiguration2.token());
 
 				return null;
 			});
