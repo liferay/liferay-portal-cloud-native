@@ -205,7 +205,7 @@ public class DatabaseTableAndColumnCaseDataCleanupPreupgradeProcessTest
 			Assert.assertTrue(
 				messages.contains(
 					StringBundler.concat(
-						"Table ", invalidTableName, ", renamed to ",
+						"Table ", invalidTableName, " was renamed to ",
 						testTableName, " because it was incorrectly cased")));
 
 			Assert.assertTrue(
@@ -213,9 +213,9 @@ public class DatabaseTableAndColumnCaseDataCleanupPreupgradeProcessTest
 				messages.contains(
 					StringBundler.concat(
 						"Table ", testTableName, StringPool.PERIOD,
-						invalidColumnName, ", renamed to ", testTableName,
+						invalidColumnName, " was renamed to ", testTableName,
 						StringPool.PERIOD, testColumnName,
-						" because it had an incorrect column name casing")));
+						" because it was incorrectly cased")));
 
 			DatabaseMetaData databaseMetaData = connection.getMetaData();
 
