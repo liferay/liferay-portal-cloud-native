@@ -756,11 +756,11 @@ public class ObjectEntryFolderResourceImpl
 						parentObjectEntryFolderExternalReferenceCode, groupId,
 						contextUser.getCompanyId());
 
-		if ((parentObjectEntryFolderId != null) &&
+		if (!ExportImportThreadLocal.isImportInProcess() &&
+			(parentObjectEntryFolderId != null) &&
 			(serviceBuilderObjectEntryFolder != null) &&
 			(serviceBuilderObjectEntryFolder.getObjectEntryFolderId() !=
-				parentObjectEntryFolderId) &&
-			!ExportImportThreadLocal.isImportInProcess()) {
+				parentObjectEntryFolderId)) {
 
 			throw new NoSuchObjectEntryFolderException();
 		}
