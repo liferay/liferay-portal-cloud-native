@@ -1164,9 +1164,6 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 			Layout importedLayout1 =
 				_layoutLocalService.fetchLayoutByUuidAndGroupId(
 					layout1.getUuid(), importedGroup.getGroupId(), false);
-			Layout importedLayout2 =
-				_layoutLocalService.fetchLayoutByUuidAndGroupId(
-					layout2.getUuid(), importedGroup.getGroupId(), false);
 
 			Layout importedLayout3 =
 				_layoutLocalService.fetchLayoutByUuidAndGroupId(
@@ -1180,6 +1177,10 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 
 			_layoutLocalService.updateLayout(importedLayout1);
 
+			Layout importedLayout2 =
+				_layoutLocalService.fetchLayoutByUuidAndGroupId(
+					layout2.getUuid(), importedGroup.getGroupId(), false);
+
 			importedLayout2.setPriority(3);
 
 			_layoutLocalService.updateLayout(importedLayout2);
@@ -1189,13 +1190,15 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 
 			importedLayout1 = _layoutLocalService.fetchLayoutByUuidAndGroupId(
 				layout1.getUuid(), importedGroup.getGroupId(), false);
-			importedLayout2 = _layoutLocalService.fetchLayoutByUuidAndGroupId(
-				layout2.getUuid(), importedGroup.getGroupId(), false);
 			importedLayout3 = _layoutLocalService.fetchLayoutByUuidAndGroupId(
 				layout3.getUuid(), importedGroup.getGroupId(), false);
 
 			Assert.assertTrue(
-				importedLayout3.getPriority() > importedLayout1.getPriority());
+				importedLayout1.getPriority() < importedLayout3.getPriority());
+
+			importedLayout2 = _layoutLocalService.fetchLayoutByUuidAndGroupId(
+				layout2.getUuid(), importedGroup.getGroupId(), false);
+
 			Assert.assertTrue(
 				importedLayout2.getPriority() > importedLayout3.getPriority());
 		}
