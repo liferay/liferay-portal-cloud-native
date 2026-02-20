@@ -413,10 +413,10 @@ public class AnalyticsSettingsManagerTest {
 			_analyticsSettingsManager.getAnalyticsConfiguration(
 				TestPropsValues.getCompanyId());
 
-		Assert.assertEquals(StringPool.BLANK, analyticsConfiguration1.token());
 		Assert.assertEquals(
 			StringPool.BLANK,
 			analyticsConfiguration1.liferayAnalyticsCredentialType());
+		Assert.assertEquals(StringPool.BLANK, analyticsConfiguration1.token());
 
 		String token = RandomTestUtil.randomString();
 
