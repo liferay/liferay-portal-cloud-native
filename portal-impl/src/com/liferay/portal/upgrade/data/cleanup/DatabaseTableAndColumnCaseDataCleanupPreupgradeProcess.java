@@ -79,8 +79,7 @@ public class DatabaseTableAndColumnCaseDataCleanupPreupgradeProcess
 			}
 
 			DataCleanupLoggingUtil.logRename(
-				_log, tableName, expectedTableName,
-				"it was incorrectly cased");
+				_log, tableName, expectedTableName, "it was incorrectly cased");
 
 			alterTableName(tableName, expectedTableName + "_temp");
 

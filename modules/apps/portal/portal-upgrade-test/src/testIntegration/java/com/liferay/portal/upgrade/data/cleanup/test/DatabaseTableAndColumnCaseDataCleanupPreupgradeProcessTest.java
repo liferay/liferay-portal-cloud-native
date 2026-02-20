@@ -206,8 +206,7 @@ public class DatabaseTableAndColumnCaseDataCleanupPreupgradeProcessTest
 				messages.contains(
 					StringBundler.concat(
 						"Table ", invalidTableName, ", renamed to ",
-						testTableName,
-						" because it was incorrectly cased")));
+						testTableName, " because it was incorrectly cased")));
 
 			Assert.assertTrue(
 				messages.toString(),
