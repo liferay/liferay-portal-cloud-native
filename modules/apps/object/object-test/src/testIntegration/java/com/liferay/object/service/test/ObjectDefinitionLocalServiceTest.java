@@ -842,6 +842,46 @@ public class ObjectDefinitionLocalServiceTest {
 
 	@FeatureFlag("LPD-17564")
 	@Test
+	public void testAddObjectDefinitionWithAcceptedGroupIds() throws Exception {
+		String name = ObjectDefinitionTestUtil.getRandomName();
+
+		DepotEntry depotEntry1 = _depotEntryLocalService.addDepotEntry(
+			RandomTestUtil.randomLocaleStringMap(), Collections.emptyMap(),
+			DepotConstants.TYPE_ASSET_LIBRARY,
+			ServiceContextTestUtil.getServiceContext());
+		DepotEntry depotEntry2 = _depotEntryLocalService.addDepotEntry(
+			RandomTestUtil.randomLocaleStringMap(), Collections.emptyMap(),
+			DepotConstants.TYPE_ASSET_LIBRARY,
+			ServiceContextTestUtil.getServiceContext());
+		DepotEntry depotEntry3 = _depotEntryLocalService.addDepotEntry(
+			RandomTestUtil.randomLocaleStringMap(), Collections.emptyMap(),
+			DepotConstants.TYPE_ASSET_LIBRARY,
+			ServiceContextTestUtil.getServiceContext());
+
+		String acceptedGroupIds = StringBundler.concat(
+			depotEntry1.getGroupId(), StringPool.COMMA,
+			depotEntry2.getGroupId(), StringPool.COMMA,
+			depotEntry3.getGroupId());
+
+		ObjectDefinition objectDefinition = _publishCustomObjectDefinition(
+			name, ObjectDefinitionConstants.SCOPE_DEPOT,
+			Collections.singletonList(
+				new ObjectDefinitionSettingBuilder(
+				).name(
+					ObjectDefinitionSettingConstants.NAME_ACCEPTED_GROUP_IDS
+				).value(
+					acceptedGroupIds
+				).build()));
+
+		_assertObjectDefinitionSettingsValues(
+			objectDefinition.getObjectDefinitionSettings(),
+			Collections.singletonMap(
+				ObjectDefinitionSettingConstants.NAME_ACCEPTED_GROUP_IDS,
+				acceptedGroupIds));
+	}
+
+	@FeatureFlag("LPD-17564")
+	@Test
 	public void testAddObjectDefinitionWithMissingWorkflowDefinitionReference()
 		throws Exception {
 
@@ -1171,59 +1211,6 @@ public class ObjectDefinitionLocalServiceTest {
 
 		_objectDefinitionLocalService.deleteObjectDefinition(objectDefinition1);
 		_objectDefinitionLocalService.deleteObjectDefinition(objectDefinition2);
-	}
-
-	@FeatureFlag("LPD-17564")
-	@Test
-	public void testAddObjectDefinitionWithAcceptedGroupIds()
-		throws Exception {
-
-		String name = ObjectDefinitionTestUtil.getRandomName();
-
-		StringBuilder sb = new StringBuilder();
-
-		DepotEntry depotEntry1 = _depotEntryLocalService.addDepotEntry(
-			RandomTestUtil.randomLocaleStringMap(), Collections.emptyMap(),
-			DepotConstants.TYPE_ASSET_LIBRARY,
-			ServiceContextTestUtil.getServiceContext());
-
-		sb.append(depotEntry1.getGroupId());
-
-		sb.append(StringPool.COMMA);
-
-		DepotEntry depotEntry2 = _depotEntryLocalService.addDepotEntry(
-			RandomTestUtil.randomLocaleStringMap(), Collections.emptyMap(),
-			DepotConstants.TYPE_ASSET_LIBRARY,
-			ServiceContextTestUtil.getServiceContext());
-
-		sb.append(depotEntry2.getGroupId());
-
-		sb.append(StringPool.COMMA);
-
-		DepotEntry depotEntry3 = _depotEntryLocalService.addDepotEntry(
-			RandomTestUtil.randomLocaleStringMap(), Collections.emptyMap(),
-			DepotConstants.TYPE_ASSET_LIBRARY,
-			ServiceContextTestUtil.getServiceContext());
-
-		sb.append(depotEntry3.getGroupId());
-
-		String acceptedGroupIds = sb.toString();
-
-		ObjectDefinition objectDefinition = _publishCustomObjectDefinition(
-			name, ObjectDefinitionConstants.SCOPE_DEPOT,
-			Collections.singletonList(
-				new ObjectDefinitionSettingBuilder(
-				).name(
-					ObjectDefinitionSettingConstants.NAME_ACCEPTED_GROUP_IDS
-				).value(
-					acceptedGroupIds
-				).build()));
-
-		_assertObjectDefinitionSettingsValues(
-			objectDefinition.getObjectDefinitionSettings(),
-			Collections.singletonMap(
-				ObjectDefinitionSettingConstants.NAME_ACCEPTED_GROUP_IDS,
-				acceptedGroupIds));
 	}
 
 	@FeatureFlag("LPD-17564")
