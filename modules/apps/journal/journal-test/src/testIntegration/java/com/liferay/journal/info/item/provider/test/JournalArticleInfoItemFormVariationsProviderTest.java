@@ -75,7 +75,6 @@ public class JournalArticleInfoItemFormVariationsProviderTest {
 	public void testGetInfoItemFormVariation() throws Exception {
 		DDMStructure ddmStructure = DDMStructureTestUtil.addStructure(
 			_group1.getGroupId(), JournalArticle.class.getName());
-
 		InfoItemFormVariationsProvider<?> infoItemFormVariationsProvider =
 			_infoItemServiceRegistry.getFirstInfoItemService(
 				InfoItemFormVariationsProvider.class,
@@ -90,6 +89,7 @@ public class JournalArticleInfoItemFormVariationsProviderTest {
 			ddmStructure,
 			infoItemFormVariationsProvider.getInfoItemFormVariation(
 				_group1.getGroupId(), ddmStructure.getStructureKey(), "-1"));
+
 		Assert.assertNull(
 			infoItemFormVariationsProvider.getInfoItemFormVariation(
 				_group1.getGroupId(), RandomTestUtil.randomString(),

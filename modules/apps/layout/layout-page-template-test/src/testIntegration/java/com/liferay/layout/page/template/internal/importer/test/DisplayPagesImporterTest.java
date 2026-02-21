@@ -337,6 +337,10 @@ public class DisplayPagesImporterTest {
 		try {
 			ServiceContextThreadLocal.pushServiceContext(serviceContext);
 
+			DLFileEntryType dlFileEntryType =
+				_dlFileEntryTypeLocalService.fetchDLFileEntryType(
+					DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT);
+
 			LayoutPageTemplateEntry masterLayoutPageTemplateEntry =
 				_layoutPageTemplateEntryLocalService.addLayoutPageTemplateEntry(
 					null, TestPropsValues.getUserId(), _group.getGroupId(), 0,
@@ -345,10 +349,6 @@ public class DisplayPagesImporterTest {
 					WorkflowConstants.STATUS_DRAFT,
 					ServiceContextTestUtil.getServiceContext(
 						_group.getGroupId()));
-
-			DLFileEntryType dlFileEntryType =
-				_dlFileEntryTypeLocalService.fetchDLFileEntryType(
-					DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT);
 
 			LayoutPageTemplateEntry layoutPageTemplateEntry =
 				_layoutPageTemplateEntryLocalService.addLayoutPageTemplateEntry(

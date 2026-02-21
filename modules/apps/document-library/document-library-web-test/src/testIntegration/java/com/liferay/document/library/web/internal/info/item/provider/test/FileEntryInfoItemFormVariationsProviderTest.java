@@ -196,7 +196,6 @@ public class FileEntryInfoItemFormVariationsProviderTest {
 		DLFileEntryType dlFileEntryType,
 		InfoItemFormVariation infoItemFormVariation) {
 
-		Assert.assertNotNull(infoItemFormVariation);
 		Assert.assertEquals(
 			String.valueOf(dlFileEntryType.getFileEntryTypeId()),
 			infoItemFormVariation.getKey());

@@ -289,7 +289,6 @@ public class DLFileEntryWorkflowHandlerTest {
 
 	private void _addLayoutPageTemplateEntry() throws Exception {
 		String name = StringUtil.randomString();
-
 		DLFileEntryType dlFileEntryType =
 			_dlFileEntryTypeLocalService.fetchDLFileEntryType(
 				DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT);

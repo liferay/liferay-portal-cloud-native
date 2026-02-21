@@ -43,7 +43,6 @@ public class LayoutPageTemplateEntryVerifyProcess extends VerifyProcess {
 						"type",
 						LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE));
 			});
-
 		layoutPageTemplateEntryActionableDynamicQuery.setPerformActionMethod(
 			(ActionableDynamicQuery.PerformActionMethod
 				<LayoutPageTemplateEntry>)layoutPageTemplateEntry -> {

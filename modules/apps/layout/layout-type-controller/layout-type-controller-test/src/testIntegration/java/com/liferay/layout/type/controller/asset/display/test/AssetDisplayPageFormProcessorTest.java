@@ -91,7 +91,6 @@ public class AssetDisplayPageFormProcessorTest {
 		throws Exception {
 
 		long classNameId = _portal.getClassNameId(FileEntry.class.getName());
-
 		DLFileEntryType dlFileEntryType =
 			_dlFileEntryTypeLocalService.fetchDLFileEntryType(
 				DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT);
@@ -188,7 +187,6 @@ public class AssetDisplayPageFormProcessorTest {
 	@Test
 	public void testProcessWithDefaultAssetDisplayPage() throws Exception {
 		long classNameId = _portal.getClassNameId(FileEntry.class.getName());
-
 		DLFileEntryType dlFileEntryType =
 			_dlFileEntryTypeLocalService.fetchDLFileEntryType(
 				DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT);

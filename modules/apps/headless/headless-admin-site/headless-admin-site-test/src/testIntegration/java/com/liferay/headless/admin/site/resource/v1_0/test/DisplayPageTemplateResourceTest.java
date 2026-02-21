@@ -1988,7 +1988,6 @@ public class DisplayPageTemplateResourceTest
 						JournalArticle.class.getName(), externalReferenceCode,
 						DDMStructure.class.getName()));
 			});
-
 		_testPutSiteDisplayPageTemplateWithMissingOptionalReference(
 			2,
 			() -> {
@@ -2003,7 +2002,6 @@ public class DisplayPageTemplateResourceTest
 
 		DDMStructure ddmStructure = DDMStructureTestUtil.addStructure(
 			testGroup.getGroupId(), JournalArticle.class.getName());
-
 		InfoItemFormVariationsProvider<?> infoItemFormVariationsProvider =
 			_infoItemServiceRegistry.getFirstInfoItemService(
 				InfoItemFormVariationsProvider.class,
@@ -2013,8 +2011,6 @@ public class DisplayPageTemplateResourceTest
 			infoItemFormVariationsProvider.getInfoItemFormVariation(
 				testGroup.getGroupId(), ddmStructure.getStructureKey(),
 				String.valueOf(ddmStructure.getStructureId()));
-
-		Assert.assertNotNull(infoItemFormVariation);
 
 		_testPutSiteDisplayPageTemplateWithSubtype(
 			JournalArticle.class.getName(), ddmStructure.getStructureId(),

@@ -304,7 +304,6 @@ public class LayoutsExporterImpl implements LayoutsExporter {
 
 						return layoutPageTemplateEntry.getClassTypeId();
 					});
-
 				setSubtypeKey(
 					() -> {
 						if (Validator.isNull(

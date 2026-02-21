@@ -296,6 +296,7 @@ public class LayoutPageTemplateEntryModelListener
 		LayoutStructure layoutStructure, long segmentsExperienceId) {
 
 		List<FragmentEntryLink> fragmentEntryLinks = new ArrayList<>();
+
 		long classTypeId = LayoutPageTemplateEntryUtil.getClassTypeId(
 			originalLayoutPageTemplateEntry);
 

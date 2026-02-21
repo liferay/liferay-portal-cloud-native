@@ -544,11 +544,10 @@ public class DisplayPageDisplayContext {
 			return false;
 		}
 
-		Long[] classTypeIds = classNameIdsMap.get(
-			layoutPageTemplateEntry.getClassNameId());
-
 		long classTypeId = LayoutPageTemplateEntryUtil.getClassTypeId(
 			layoutPageTemplateEntry);
+		Long[] classTypeIds = classNameIdsMap.get(
+			layoutPageTemplateEntry.getClassNameId());
 
 		if (((classTypeId == 0) && ArrayUtil.isEmpty(classTypeIds)) ||
 			ArrayUtil.contains(classTypeIds, classTypeId)) {
