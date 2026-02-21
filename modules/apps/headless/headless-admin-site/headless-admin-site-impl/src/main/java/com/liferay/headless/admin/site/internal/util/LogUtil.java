@@ -47,7 +47,7 @@ public class LogUtil {
 		if (_log.isWarnEnabled()) {
 			StringBundler sb = new StringBundler(2);
 
-			sb.append("Optional reference generated for missing className ");
+			sb.append("Optional reference generated for missing class name ");
 			sb.append(className);
 
 			_log.warn(sb.toString());
