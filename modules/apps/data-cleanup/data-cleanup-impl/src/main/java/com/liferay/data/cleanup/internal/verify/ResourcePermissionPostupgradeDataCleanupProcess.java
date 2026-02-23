@@ -59,12 +59,6 @@ public class ResourcePermissionPostupgradeDataCleanupProcess
 			return;
 		}
 
-		Set<String> portletIds = new HashSet<>();
-
-		for (Portlet portlet : PortletLocalServiceUtil.getPortlets()) {
-			portletIds.add(portlet.getPortletId());
-		}
-
 		String escapeClause = "";
 
 		DB db = DBManagerUtil.getDB();
@@ -74,6 +68,12 @@ public class ResourcePermissionPostupgradeDataCleanupProcess
 			(db.getDBType() == DBType.SQLSERVER)) {
 
 			escapeClause = "escape '\\' ";
+		}
+
+		Set<String> portletIds = new HashSet<>();
+
+		for (Portlet portlet : PortletLocalServiceUtil.getPortlets()) {
+			portletIds.add(portlet.getPortletId());
 		}
 
 		try (PreparedStatement preparedStatement = _connection.prepareStatement(
