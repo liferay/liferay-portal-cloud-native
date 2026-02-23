@@ -58,7 +58,7 @@ public class ResourcePermissionPostupgradeDataCleanupProcessTest
 				Assert.assertTrue(messages.toString(), messages.isEmpty());
 
 				Assert.assertTrue(
-					_existsResourcePermission(resourcePermissionId));
+					_hasResourcePermission(resourcePermissionId));
 			},
 			() -> _deleteResourcePermission(resourcePermissionId),
 			() -> _addResourcePermission(
@@ -88,9 +88,9 @@ public class ResourcePermissionPostupgradeDataCleanupProcessTest
 							"\" was not found")));
 
 				Assert.assertFalse(
-					_existsResourcePermission(resourcePermissionId1));
+					_hasResourcePermission(resourcePermissionId1));
 				Assert.assertFalse(
-					_existsResourcePermission(resourcePermissionId2));
+					_hasResourcePermission(resourcePermissionId2));
 			},
 			() -> {
 				_deleteResourcePermission(resourcePermissionId1);
@@ -121,7 +121,7 @@ public class ResourcePermissionPostupgradeDataCleanupProcessTest
 				Assert.assertTrue(messages.toString(), messages.isEmpty());
 
 				Assert.assertTrue(
-					_existsResourcePermission(resourcePermissionId));
+					_hasResourcePermission(resourcePermissionId));
 			},
 			() -> _deleteResourcePermission(resourcePermissionId),
 			() -> _addResourcePermission(
@@ -156,7 +156,7 @@ public class ResourcePermissionPostupgradeDataCleanupProcessTest
 							dbInspector.normalizeName("JournalArticle"))));
 
 				Assert.assertFalse(
-					_existsResourcePermission(resourcePermissionId));
+					_hasResourcePermission(resourcePermissionId));
 			},
 			() -> _deleteResourcePermission(resourcePermissionId),
 			() -> _addResourcePermission(
@@ -268,7 +268,7 @@ public class ResourcePermissionPostupgradeDataCleanupProcessTest
 		}
 	}
 
-	private boolean _existsResourcePermission(long resourcePermissionId)
+	private boolean _hasResourcePermission(long resourcePermissionId)
 		throws Exception {
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
