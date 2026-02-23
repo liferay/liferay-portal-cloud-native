@@ -58,6 +58,8 @@ public abstract class BaseModelListenerTestCase {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
+		company = CompanyTestUtil.addCompany();
+
 		modifiableSystemObjectDefinition1 =
 			_objectDefinitionLocalService.
 				fetchObjectDefinitionByExternalReferenceCode(
@@ -67,8 +69,6 @@ public abstract class BaseModelListenerTestCase {
 		modifiableSystemObjectDefinition1ClassNameId =
 			_classNameLocalService.getClassNameId(
 				modifiableSystemObjectDefinition1.getClassName());
-
-		company = CompanyTestUtil.addCompany();
 
 		_safeCloseable = CompanyThreadLocal.setCompanyIdWithSafeCloseable(
 			company.getCompanyId());

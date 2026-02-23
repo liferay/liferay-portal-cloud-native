@@ -15,10 +15,9 @@ import java.util.function.Supplier;
 public class RandomUtil {
 
 	public static int nextInt(int n) {
-		return _randomSupplier.get(
-		).nextInt(
-			n
-		);
+		Supplier<Random> supplier = _supplier.get();
+
+		return supplier.nextInt(n);
 	}
 
 	public static int[] nextInts(int n, int size) {
@@ -32,7 +31,7 @@ public class RandomUtil {
 			numbers[i] = i;
 		}
 
-		shuffle(_randomSupplier.get(), numbers);
+		shuffle(_supplier.get(), numbers);
 
 		if (size == n) {
 			return numbers;
@@ -80,14 +79,13 @@ public class RandomUtil {
 	}
 
 	public static String shuffle(String s) {
-		return shuffle(_randomSupplier.get(), s);
+		return shuffle(_supplier.get(), s);
 	}
 
-	protected static void setRandomSupplier(Supplier<Random> supplier) {
-		_randomSupplier = supplier;
+	protected static void setSupplier(Supplier<Random> supplier) {
+		_supplier = supplier;
 	}
 
-	private static Supplier<Random> _randomSupplier =
-		ThreadLocalRandom::current;
+	private static Supplier<Random> _supplier = ThreadLocalRandom::current;
 
 }
