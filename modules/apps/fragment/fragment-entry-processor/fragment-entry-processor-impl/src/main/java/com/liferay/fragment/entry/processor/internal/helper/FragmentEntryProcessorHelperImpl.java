@@ -818,9 +818,9 @@ public class FragmentEntryProcessorHelperImpl
 			return 0;
 		}
 
-		long scopeGroupId = ScopeUtil.getScopeGroupId(groupId);
-
 		try {
+			long scopeGroupId = ScopeUtil.getScopeGroupId(groupId);
+
 			Object infoItem = infoItemObjectProvider.getInfoItem(
 				scopeGroupId, ercInfoItemIdentifier);
 
