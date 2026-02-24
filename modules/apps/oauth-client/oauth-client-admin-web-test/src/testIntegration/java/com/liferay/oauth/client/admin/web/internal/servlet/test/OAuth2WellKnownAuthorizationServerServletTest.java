@@ -44,14 +44,15 @@ public class OAuth2WellKnownAuthorizationServerServletTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testNoMetadataEntriesReturns404() throws Exception {
+	public void testDoGet() throws Exception {
+		Http.Options options = new Http.Options();
+
+		options.setFollowRedirects(false);
+
 		String urlString =
 			TestPropsValues.PORTAL_URL +
 				"/o/.well-known/oauth-authorization-server";
 
-		Http.Options options = new Http.Options();
-
-		options.setFollowRedirects(false);
 		options.setLocation(urlString);
 
 		HttpUtil.URLtoString(options);
