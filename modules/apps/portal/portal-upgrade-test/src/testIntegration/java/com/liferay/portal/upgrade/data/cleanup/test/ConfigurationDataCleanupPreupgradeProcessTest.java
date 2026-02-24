@@ -34,6 +34,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
 import java.util.List;
 import java.util.Set;
 
@@ -210,8 +211,8 @@ public class ConfigurationDataCleanupPreupgradeProcessTest
 				ConfigurationDataCleanupPreupgradeProcess.class.getName(),
 				LoggerTestUtil.INFO)) {
 
-			HashMapDictionary<String, Object> existentDictionary;
-			HashMapDictionary<String, Object> nonexistentDictionary;
+			Dictionary<String, Object> existentDictionary;
+			Dictionary<String, Object> nonexistentDictionary;
 
 			if ((secondaryKey != null) && (secondaryKeyColumnName != null)) {
 				existentDictionary =
