@@ -84,7 +84,7 @@ public class KaleoDefinitionCTDisplayRenderer
 	}
 
 	@Override
-	public boolean showPreviewDiff() {
+	public boolean isShowPreviewDiff() {
 		return true;
 	}
 

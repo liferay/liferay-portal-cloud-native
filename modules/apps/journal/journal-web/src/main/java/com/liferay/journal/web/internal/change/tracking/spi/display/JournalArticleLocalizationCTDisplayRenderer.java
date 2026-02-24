@@ -102,7 +102,7 @@ public class JournalArticleLocalizationCTDisplayRenderer
 	}
 
 	@Override
-	public boolean showPreviewDiff() {
+	public boolean isShowPreviewDiff() {
 		return true;
 	}
 

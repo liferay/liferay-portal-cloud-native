@@ -97,7 +97,7 @@ public class FragmentEntryLinkCTDisplayRender
 	}
 
 	@Override
-	public boolean showPreviewDiff() {
+	public boolean isShowPreviewDiff() {
 		return true;
 	}
 

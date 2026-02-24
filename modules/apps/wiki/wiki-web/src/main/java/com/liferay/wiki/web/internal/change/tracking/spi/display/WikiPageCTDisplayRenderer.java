@@ -138,7 +138,7 @@ public class WikiPageCTDisplayRenderer extends BaseCTDisplayRenderer<WikiPage> {
 	}
 
 	@Override
-	public boolean showPreviewDiff() {
+	public boolean isShowPreviewDiff() {
 		return true;
 	}
 

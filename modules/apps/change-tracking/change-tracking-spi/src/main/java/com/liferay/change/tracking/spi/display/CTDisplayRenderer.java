@@ -115,7 +115,7 @@ public interface CTDisplayRenderer<T> {
 		return null;
 	}
 
-	public default boolean showPreviewDiff() {
+	public default boolean isShowPreviewDiff() {
 		return false;
 	}
 

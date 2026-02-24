@@ -129,7 +129,7 @@ public class DDMFormInstanceCTDisplayRenderer
 	}
 
 	@Override
-	public boolean showPreviewDiff() {
+	public boolean isShowPreviewDiff() {
 		return true;
 	}
 

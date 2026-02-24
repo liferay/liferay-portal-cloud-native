@@ -122,7 +122,7 @@ public class DDLRecordCTDisplayRenderer
 	}
 
 	@Override
-	public boolean showPreviewDiff() {
+	public boolean isShowPreviewDiff() {
 		return true;
 	}
 
