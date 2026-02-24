@@ -189,11 +189,8 @@ public class DataSetOrderValuesUpgradeProcessTest {
 					objectDefinitionExternalReferenceCode,
 					TestPropsValues.getCompanyId());
 
-		Assert.assertNotNull(objectDefinition);
-
 		ObjectEntry objectEntry1 = _createObjectEntry(
 			objectDefinition.getObjectDefinitionId(), relatedObjectEntryValues);
-
 		ObjectEntry objectEntry2 = _createObjectEntry(
 			objectDefinition.getObjectDefinitionId(), relatedObjectEntryValues);
 
