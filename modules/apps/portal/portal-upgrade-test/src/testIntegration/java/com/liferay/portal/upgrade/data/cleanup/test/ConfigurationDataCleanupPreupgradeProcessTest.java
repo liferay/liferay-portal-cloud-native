@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.upgrade.data.cleanup.DataCleanupPreupgradeException;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.test.log.LogCapture;
@@ -80,22 +79,18 @@ public class ConfigurationDataCleanupPreupgradeProcessTest
 	public void testUpgrade() throws Exception {
 		_testUpgrade(
 			0L, _getNonexistentCompanyId(), "companyId", null, null, "Company");
-
-		_testUpgrade(
-			TestPropsValues.getCompanyId(), _getNonexistentCompanyId(),
-			"companyId", null, null, "Company");
-
 		_testUpgrade(
 			TestPropsValues.getCompanyId(), _getNonexistentCompanyId(),
 			"companyId", TestPropsValues.getGroupId(), "groupId", "Company");
-
 		_testUpgrade(
-			TestPropsValues.getGroupId(), _getNonexistentGroupId(), "groupId",
-			null, null, "Group_");
-
+			TestPropsValues.getCompanyId(), _getNonexistentCompanyId(),
+			"companyId", null, null, "Company");
 		_testUpgrade(
 			TestPropsValues.getGroupId(), _getNonexistentGroupId(), "groupId",
 			TestPropsValues.getCompanyId(), "companyId", "Group_");
+		_testUpgrade(
+			TestPropsValues.getGroupId(), _getNonexistentGroupId(), "groupId",
+			null, null, "Group_");
 
 		long companyId = _getNonexistentCompanyId();
 
