@@ -671,11 +671,10 @@ public class BundleSiteInitializerTest {
 
 		String typeSettings = assetListEntrySegmentsEntryRel.getTypeSettings();
 
-		Assert.assertTrue(typeSettings.contains("queryValues0=Test Keyword"));
-
 		Assert.assertTrue(
 			typeSettings.contains(
 				"classTypeIdsJournalArticleAssetRendererFactory"));
+		Assert.assertTrue(typeSettings.contains("queryValues0=Test Keyword"));
 
 		assetListEntry = assetListEntries.get(1);
 
