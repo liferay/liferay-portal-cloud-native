@@ -49,7 +49,7 @@ public class DataSetOrderValuesUpgradeProcess extends UpgradeProcess {
 		_companyLocalService.forEachCompanyId(this::_updateDataSetOrderValues);
 	}
 
-	private void _convertOrderValue(
+	private void _updateDataSetOrderValue(
 		String propertyName, Map<String, Serializable> values) {
 
 		String propertyValue = GetterUtil.getString(values.get(propertyName));
@@ -71,8 +71,7 @@ public class DataSetOrderValuesUpgradeProcess extends UpgradeProcess {
 			}
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Unable to find object entry with ID " + id, exception);
+					_log.warn("Unable to get object entry " + id, exception);
 				}
 			}
 		}
@@ -109,11 +108,11 @@ public class DataSetOrderValuesUpgradeProcess extends UpgradeProcess {
 
 			Map<String, Serializable> values = objectEntry.getValues();
 
-			_convertOrderValue("creationActionsOrder", values);
-			_convertOrderValue("filtersOrder", values);
-			_convertOrderValue("itemActionsOrder", values);
-			_convertOrderValue("sortsOrder", values);
-			_convertOrderValue("tableSectionsOrder", values);
+			_updateDataSetOrderValue("creationActionsOrder", values);
+			_updateDataSetOrderValue("filtersOrder", values);
+			_updateDataSetOrderValue("itemActionsOrder", values);
+			_updateDataSetOrderValue("sortsOrder", values);
+			_updateDataSetOrderValue("tableSectionsOrder", values);
 
 			_objectEntryLocalService.updateObjectEntry(
 				objectEntry.getUserId(), objectEntry.getObjectEntryId(),
