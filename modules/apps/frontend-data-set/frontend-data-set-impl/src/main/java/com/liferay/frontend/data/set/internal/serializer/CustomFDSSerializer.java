@@ -845,16 +845,16 @@ public class CustomFDSSerializer
 		Predicate<ObjectEntry> predicate, String propertyKey,
 		String... relationshipNames) {
 
+		List<ObjectEntry> objectEntries = getRelatedObjectEntries(
+			externalReferenceCode, httpServletRequest, predicate,
+			relationshipNames);
+
 		ObjectEntry objectEntry = _getObjectEntry(
 			externalReferenceCode, _getObjectDefinition(httpServletRequest));
 
 		List<String> externalReferenceCodes = ListUtil.fromString(
 			MapUtil.getString(objectEntry.getProperties(), propertyKey),
 			StringPool.COMMA);
-
-		List<ObjectEntry> objectEntries = getRelatedObjectEntries(
-			externalReferenceCode, httpServletRequest, predicate,
-			relationshipNames);
 
 		objectEntries.sort(new ObjectEntryComparator(externalReferenceCodes));
 
