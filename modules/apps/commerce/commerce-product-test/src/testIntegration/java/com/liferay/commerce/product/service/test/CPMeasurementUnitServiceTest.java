@@ -62,12 +62,12 @@ public class CPMeasurementUnitServiceTest {
 			RandomTestUtil.randomString(3), RandomTestUtil.nextDouble(), true,
 			RandomTestUtil.nextDouble(), RandomTestUtil.nextInt(),
 			_serviceContext);
-
-		_user = UserTestUtil.addUser();
 		_role = _roleLocalService.addRole(
 			RandomTestUtil.randomString(), TestPropsValues.getUserId(), null, 0,
 			RandomTestUtil.randomString(), null, null,
 			RoleConstants.TYPE_REGULAR, null, _serviceContext);
+
+		_user = UserTestUtil.addUser();
 
 		_roleLocalService.addUserRole(_user.getUserId(), _role);
 	}
