@@ -49,78 +49,7 @@ public class UpdateOAuthClientASLocalMetadataMVCRenderCommand
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
 		try {
-			long oAuthClientASLocalMetadataId = ParamUtil.getLong(
-				renderRequest, "oAuthClientASLocalMetadataId");
-
-			if (!(oAuthClientASLocalMetadataId > 0)) {
-				return _getRenderJSP();
-			}
-
-			OAuthClientASLocalMetadata oAuthClientASLocalMetadata =
-				_oAuthClientASLocalMetadataService.
-					fetchOAuthClientASLocalMetadata(
-						oAuthClientASLocalMetadataId);
-
-			renderRequest.setAttribute(
-				OAuthClientASLocalMetadata.class.getName(),
-				oAuthClientASLocalMetadata);
-
-			OIDCProviderMetadata oidcProviderMetadata =
-				OIDCProviderMetadata.parse(
-					oAuthClientASLocalMetadata.getMetadataJSON());
-
-			URI authorizationEndpointURI =
-				oidcProviderMetadata.getAuthorizationEndpointURI();
-
-			if (authorizationEndpointURI != null) {
-				renderRequest.setAttribute(
-					OAuthClientWebKeys.AUTHORIZATION_ENDPOINT,
-					authorizationEndpointURI.toString());
-			}
-
-			if (oidcProviderMetadata.getGrantTypes() != null) {
-				renderRequest.setAttribute(
-					OAuthClientWebKeys.SUPPORTED_GRANT_TYPES,
-					StringUtil.merge(oidcProviderMetadata.getGrantTypes()));
-			}
-
-			URI jwksURI = oidcProviderMetadata.getJWKSetURI();
-
-			if (jwksURI != null) {
-				renderRequest.setAttribute(
-					OAuthClientWebKeys.JWKS_URI, jwksURI.toString());
-			}
-
-			Scope supportedScopes = oidcProviderMetadata.getScopes();
-
-			if (supportedScopes != null) {
-				renderRequest.setAttribute(
-					OAuthClientWebKeys.SUPPORTED_SCOPES,
-					supportedScopes.toString());
-			}
-
-			if (oidcProviderMetadata.getSubjectTypes() != null) {
-				renderRequest.setAttribute(
-					OAuthClientWebKeys.SUPPORTED_SUBJECT_TYPES,
-					StringUtil.merge(oidcProviderMetadata.getSubjectTypes()));
-			}
-
-			URI tokenEndpointURI = oidcProviderMetadata.getTokenEndpointURI();
-
-			if (tokenEndpointURI != null) {
-				renderRequest.setAttribute(
-					OAuthClientWebKeys.TOKEN_ENDPOINT,
-					tokenEndpointURI.toString());
-			}
-
-			URI userInfoEndpointURI =
-				oidcProviderMetadata.getUserInfoEndpointURI();
-
-			if (userInfoEndpointURI != null) {
-				renderRequest.setAttribute(
-					OAuthClientWebKeys.USER_INFO_ENDPOINT,
-					userInfoEndpointURI.toString());
-			}
+			_render(renderRequest);
 		}
 		catch (PortalException portalException) {
 			if (_log.isDebugEnabled()) {
@@ -131,10 +60,6 @@ public class UpdateOAuthClientASLocalMetadataMVCRenderCommand
 			throw new RuntimeException(parseException);
 		}
 
-		return _getRenderJSP();
-	}
-
-	private String _getRenderJSP() {
 		if (!FeatureFlagManagerUtil.isEnabled(
 				CompanyThreadLocal.getCompanyId(), "LPD-63415")) {
 
@@ -142,6 +67,77 @@ public class UpdateOAuthClientASLocalMetadataMVCRenderCommand
 		}
 
 		return "/admin/update_oauth_client_as_local_metadata.jsp";
+	}
+
+	private void _render(RenderRequest renderRequest) {
+		long oAuthClientASLocalMetadataId = ParamUtil.getLong(
+			renderRequest, "oAuthClientASLocalMetadataId");
+
+		if (!(oAuthClientASLocalMetadataId > 0)) {
+			return;
+		}
+
+		OAuthClientASLocalMetadata oAuthClientASLocalMetadata =
+			_oAuthClientASLocalMetadataService.fetchOAuthClientASLocalMetadata(
+				oAuthClientASLocalMetadataId);
+
+		renderRequest.setAttribute(
+			OAuthClientASLocalMetadata.class.getName(),
+			oAuthClientASLocalMetadata);
+
+		OIDCProviderMetadata oidcProviderMetadata = OIDCProviderMetadata.parse(
+			oAuthClientASLocalMetadata.getMetadataJSON());
+
+		URI authorizationEndpointURI =
+			oidcProviderMetadata.getAuthorizationEndpointURI();
+
+		if (authorizationEndpointURI != null) {
+			renderRequest.setAttribute(
+				OAuthClientWebKeys.AUTHORIZATION_ENDPOINT,
+				authorizationEndpointURI.toString());
+		}
+
+		if (oidcProviderMetadata.getGrantTypes() != null) {
+			renderRequest.setAttribute(
+				OAuthClientWebKeys.SUPPORTED_GRANT_TYPES,
+				StringUtil.merge(oidcProviderMetadata.getGrantTypes()));
+		}
+
+		URI jwksURI = oidcProviderMetadata.getJWKSetURI();
+
+		if (jwksURI != null) {
+			renderRequest.setAttribute(
+				OAuthClientWebKeys.JWKS_URI, jwksURI.toString());
+		}
+
+		Scope supportedScopes = oidcProviderMetadata.getScopes();
+
+		if (supportedScopes != null) {
+			renderRequest.setAttribute(
+				OAuthClientWebKeys.SUPPORTED_SCOPES,
+				supportedScopes.toString());
+		}
+
+		if (oidcProviderMetadata.getSubjectTypes() != null) {
+			renderRequest.setAttribute(
+				OAuthClientWebKeys.SUPPORTED_SUBJECT_TYPES,
+				StringUtil.merge(oidcProviderMetadata.getSubjectTypes()));
+		}
+
+		URI tokenEndpointURI = oidcProviderMetadata.getTokenEndpointURI();
+
+		if (tokenEndpointURI != null) {
+			renderRequest.setAttribute(
+				OAuthClientWebKeys.TOKEN_ENDPOINT, tokenEndpointURI.toString());
+		}
+
+		URI userInfoEndpointURI = oidcProviderMetadata.getUserInfoEndpointURI();
+
+		if (userInfoEndpointURI != null) {
+			renderRequest.setAttribute(
+				OAuthClientWebKeys.USER_INFO_ENDPOINT,
+				userInfoEndpointURI.toString());
+		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
