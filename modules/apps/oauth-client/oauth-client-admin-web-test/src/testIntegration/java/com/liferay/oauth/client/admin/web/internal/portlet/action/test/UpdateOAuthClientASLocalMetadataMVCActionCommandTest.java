@@ -245,15 +245,16 @@ public class UpdateOAuthClientASLocalMetadataMVCActionCommandTest {
 		Assert.assertEquals(
 			Issuer.parse(urlString), oidcProviderMetadata.getIssuer());
 		Assert.assertEquals(url, oidcProviderMetadata.getJWKSetURI());
-		Assert.assertEquals(url, oidcProviderMetadata.getTokenEndpointURI());
-		Assert.assertEquals(url, oidcProviderMetadata.getUserInfoEndpointURI());
+
+		Assert.assertEquals(
+			Scope.parse(supportedScope), oidcProviderMetadata.getScopes());
 
 		List<SubjectType> subjectTypes = oidcProviderMetadata.getSubjectTypes();
 
 		Assert.assertEquals(SubjectType.parse("public"), subjectTypes.get(0));
 
-		Assert.assertEquals(
-			Scope.parse(supportedScope), oidcProviderMetadata.getScopes());
+		Assert.assertEquals(url, oidcProviderMetadata.getTokenEndpointURI());
+		Assert.assertEquals(url, oidcProviderMetadata.getUserInfoEndpointURI());
 
 		AuthorizationServerMetadata authorizationServerMetadata =
 			AuthorizationServerMetadata.parse(
