@@ -267,15 +267,16 @@ public class UpdateOAuthClientASLocalMetadataMVCActionCommandTest {
 			authorizationServerMetadata.getScopes());
 		Assert.assertEquals(
 			url, authorizationServerMetadata.getAuthorizationEndpointURI());
-		Assert.assertEquals(url, authorizationServerMetadata.getJWKSetURI());
-		Assert.assertEquals(
-			url, authorizationServerMetadata.getTokenEndpointURI());
 
 		List<GrantType> grantTypes =
 			authorizationServerMetadata.getGrantTypes();
 
 		Assert.assertEquals(
 			GrantType.parse(supportedGrantType), grantTypes.get(0));
+
+		Assert.assertEquals(url, authorizationServerMetadata.getJWKSetURI());
+		Assert.assertEquals(
+			url, authorizationServerMetadata.getTokenEndpointURI());
 	}
 
 	private void _assertOAuthClientASLocalMetadata(
