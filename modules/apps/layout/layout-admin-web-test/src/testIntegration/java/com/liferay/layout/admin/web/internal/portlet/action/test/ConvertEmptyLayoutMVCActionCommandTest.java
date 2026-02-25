@@ -111,7 +111,6 @@ public class ConvertEmptyLayoutMVCActionCommandTest {
 		throws Exception {
 
 		Layout emptyLayout = LayoutTestUtil.addTypeEmptyLayout(_group);
-
 		LayoutPageTemplateEntry masterLayoutPageTemplateEntry =
 			LayoutPageTemplateTestUtil.addLayoutPageTemplateEntry(
 				_group.getGroupId(),
@@ -313,7 +312,6 @@ public class ConvertEmptyLayoutMVCActionCommandTest {
 
 	private void _testCannotConvertEmptyLayout(String type) throws Exception {
 		Layout emptyLayout = LayoutTestUtil.addTypeEmptyLayout(_group);
-
 		MockLiferayPortletActionResponse mockLiferayPortletActionResponse =
 			new MockLiferayPortletActionResponse();
 
