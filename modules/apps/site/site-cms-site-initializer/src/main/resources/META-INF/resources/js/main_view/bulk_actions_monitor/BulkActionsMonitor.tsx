@@ -19,7 +19,7 @@ import {
 	IBulkActionTask,
 	IBulkActionTaskStarter,
 	IBulkActionTaskStarterDTO,
-	IBulkActionTaskType,
+	IBulkActionType,
 } from '../../common/types/BulkActionTask';
 import {FDS_EVENT_UPDATE_DISPLAY} from '../../common/utils/constants';
 import {START_TASK} from '../../common/utils/events';
@@ -202,7 +202,7 @@ function BulkActionsMonitor() {
 
 	const postBulkAction = useCallback(
 		async (
-			bulkActionDTO: IBulkActionTaskStarterDTO<keyof IBulkActionTaskType>
+			bulkActionDTO: IBulkActionTaskStarterDTO<keyof IBulkActionType>
 		) => {
 			const bulkAction: IBulkActionTaskStarter =
 				new BulkActionTaskStarter(bulkActionDTO);
