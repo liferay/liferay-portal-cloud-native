@@ -17,6 +17,7 @@ import {
 	BULK_ACTION_DEFAULT_PERMISSIONS,
 	BULK_ACTION_DELETE,
 	BULK_ACTION_DELETE_ASSET_VERSION,
+	BULK_ACTION_DELETE_TASK,
 	BULK_ACTION_DOWNLOAD,
 	BULK_ACTION_DUE_DATE,
 	BULK_ACTION_EXPIRE,
@@ -184,6 +185,15 @@ const BULK_ACTION_MESSAGES: BulkActionMessage = {
 				'x-asset-versions-were-successfully-deleted'
 			),
 			singular: Liferay.Language.get('x-was-successfully-deleted'),
+		},
+	},
+	[BULK_ACTION_DELETE_TASK]: {
+		info: {
+			all: Liferay.Language.get('delete-action-started-for-all-tasks'),
+			plural: Liferay.Language.get('delete-action-started-for-x-tasks'),
+			singular: Liferay.Language.get(
+				'delete-action-started-for-one-task'
+			),
 		},
 	},
 	[BULK_ACTION_DOWNLOAD]: {
