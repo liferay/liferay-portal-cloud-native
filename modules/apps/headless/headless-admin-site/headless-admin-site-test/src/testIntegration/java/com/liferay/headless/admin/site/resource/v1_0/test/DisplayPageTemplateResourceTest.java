@@ -946,7 +946,7 @@ public class DisplayPageTemplateResourceTest
 			"com.liferay.journal.model.JournalArticle");
 	}
 
-	private String _getRenderDisplayPageTemplate(
+	private String _getRenderLayoutHTML(
 			JournalArticle journalArticle, Layout layout)
 		throws Exception {
 
@@ -1630,7 +1630,7 @@ public class DisplayPageTemplateResourceTest
 		assertValid(postDisplayPageTemplate);
 
 		PageElementsTestUtil.assertRenderedLayoutHTMLWithTemplateEntries(
-			_getRenderDisplayPageTemplate(
+			_getRenderLayoutHTML(
 				journalArticle,
 				_layoutLocalService.getLayoutByExternalReferenceCode(
 					postDisplayPageTemplate.getExternalReferenceCode(),
