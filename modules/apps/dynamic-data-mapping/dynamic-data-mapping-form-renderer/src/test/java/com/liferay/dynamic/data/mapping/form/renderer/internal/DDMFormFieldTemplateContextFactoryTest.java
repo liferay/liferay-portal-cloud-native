@@ -119,7 +119,6 @@ public class DDMFormFieldTemplateContextFactoryTest {
 			"nestedFields");
 
 		Assert.assertEquals(nestedFields.toString(), 3, nestedFields.size());
-
 		Assert.assertEquals(
 			"textField1",
 			MapUtil.getString(
