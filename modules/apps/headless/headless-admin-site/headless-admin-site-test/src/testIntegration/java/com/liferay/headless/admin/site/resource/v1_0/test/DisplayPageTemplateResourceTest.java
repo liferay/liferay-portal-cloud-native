@@ -890,7 +890,6 @@ public class DisplayPageTemplateResourceTest
 
 		publishedContentPageSpecification.setExternalReferenceCode(
 			displayPageTemplate.getExternalReferenceCode());
-
 		publishedContentPageSpecification.setPageExperiences(
 			PageExperiencesTestUtil.getDefaultPageExperiences(
 				publishedPageElements,
