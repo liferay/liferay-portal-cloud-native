@@ -533,7 +533,8 @@ public class BuildHistory {
 			String nextDateString = localDate.format(
 				DateTimeFormatter.ofPattern("yyyyMMdd"));
 
-			long nextDateDuration = buildJSONObject.getDuration() - startTimeMillis;
+			long nextDateDuration =
+				buildJSONObject.getDuration() - startTimeMillis;
 
 			_addData(
 				_dailyTotalBuildDurations, nextDateString, nextDateDuration);
