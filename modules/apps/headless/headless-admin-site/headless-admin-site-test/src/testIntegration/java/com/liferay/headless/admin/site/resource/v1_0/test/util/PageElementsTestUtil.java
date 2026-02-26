@@ -703,54 +703,64 @@ public class PageElementsTestUtil {
 		FragmentInstance actualFragmentInstance =
 			actualBasicFragmentInstancePageElementDefinition.
 				getFragmentInstance();
-		FragmentInstance expectedFragmentInstance =
-			expectedBasicFragmentInstancePageElementDefinition.
-				getFragmentInstance();
 
 		FragmentEditableElement[] actualFragmentEditableElements =
 			actualFragmentInstance.getFragmentEditableElements();
-		FragmentEditableElement[] expectedFragmentEditableElements =
-			expectedFragmentInstance.getFragmentEditableElements();
 
 		FragmentEditableElementValue actualFragmentEditableElementValue =
 			actualFragmentEditableElements[0].getFragmentEditableElementValue();
-		FragmentEditableElementValue expectedFragmentEditableElementValue =
-			expectedFragmentEditableElements[0].
-				getFragmentEditableElementValue();
 
 		TextFragmentEditableElementValue
 			actualTextFragmentEditableElementValue =
 				(TextFragmentEditableElementValue)
 					actualFragmentEditableElementValue;
+
+		FragmentLinkTextValue actualFragmentLinkTextValue =
+			actualTextFragmentEditableElementValue.getFragmentLinkTextValue();
+
+		TextFragmentValue actualTextFragmentValue =
+			actualFragmentLinkTextValue.getTextFragmentValue();
+
+		TextFragmentMappedValue actualTextFragmentMappedValue =
+			(TextFragmentMappedValue)actualTextFragmentValue;
+
+		FragmentMappedValue actualFragmentMappedValue =
+			actualTextFragmentMappedValue.getFragmentMappedValue();
+
+		Mapping actualMapping = actualFragmentMappedValue.getMapping();
+
+		String actualFieldKey = actualMapping.getFieldKey();
+
+		FragmentInstance expectedFragmentInstance =
+			expectedBasicFragmentInstancePageElementDefinition.
+				getFragmentInstance();
+
+		FragmentEditableElement[] expectedFragmentEditableElements =
+			expectedFragmentInstance.getFragmentEditableElements();
+
+		FragmentEditableElementValue expectedFragmentEditableElementValue =
+			expectedFragmentEditableElements[0].
+				getFragmentEditableElementValue();
+
 		TextFragmentEditableElementValue
 			expectedTextFragmentEditableElementValue =
 				(TextFragmentEditableElementValue)
 					expectedFragmentEditableElementValue;
 
-		FragmentLinkTextValue actualFragmentLinkTextValue =
-			actualTextFragmentEditableElementValue.getFragmentLinkTextValue();
 		FragmentLinkTextValue expectedFragmentLinkTextValue =
 			expectedTextFragmentEditableElementValue.getFragmentLinkTextValue();
 
-		TextFragmentValue actualTextFragmentValue =
-			actualFragmentLinkTextValue.getTextFragmentValue();
 		TextFragmentValue expectedTextFragmentValue =
 			expectedFragmentLinkTextValue.getTextFragmentValue();
 
-		TextFragmentMappedValue actualTextFragmentMappedValue =
-			(TextFragmentMappedValue)actualTextFragmentValue;
 		TextFragmentMappedValue expectedTextFragmentMappedValue =
 			(TextFragmentMappedValue)expectedTextFragmentValue;
 
-		FragmentMappedValue actualFragmentMappedValue =
-			actualTextFragmentMappedValue.getFragmentMappedValue();
 		FragmentMappedValue expectedFragmentMappedValue =
 			expectedTextFragmentMappedValue.getFragmentMappedValue();
 
-		Mapping actualMapping = actualFragmentMappedValue.getMapping();
 		Mapping expectedMapping = expectedFragmentMappedValue.getMapping();
 
-		String actualFieldKey = actualMapping.getFieldKey();
 		String expectedFieldKey = expectedMapping.getFieldKey();
 
 		if (expectedFieldKey.contains("__ERC__")) {

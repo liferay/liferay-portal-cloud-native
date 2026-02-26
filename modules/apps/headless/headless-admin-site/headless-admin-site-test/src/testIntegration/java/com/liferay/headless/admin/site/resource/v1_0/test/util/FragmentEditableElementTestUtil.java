@@ -331,7 +331,6 @@ public class FragmentEditableElementTestUtil {
 								fieldKey, scopeExternalReferenceCode)));
 				}
 			});
-
 		textFragmentEditableElementValue.setType(
 			FragmentEditableElementValue.Type.TEXT);
 

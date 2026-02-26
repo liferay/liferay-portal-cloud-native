@@ -1294,7 +1294,6 @@ public class DisplayPageTemplateResourceTest
 		FragmentEntry fragmentEntry =
 			FragmentEntryTestUtil.
 				addCompanyGroupFragmentEntryWithTextEditable();
-
 		JournalArticle journalArticle = _randomCompanyGroupJournalArticle();
 
 		DisplayPageTemplate displayPageTemplate =
