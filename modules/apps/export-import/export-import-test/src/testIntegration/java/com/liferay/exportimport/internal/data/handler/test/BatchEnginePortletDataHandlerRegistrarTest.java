@@ -81,11 +81,13 @@ public class BatchEnginePortletDataHandlerRegistrarTest {
 	@TestInfo({"LPD-56301", "LPD-65119", "LPD-68124"})
 	public void test() throws Exception {
 		String portletId1 = RandomTestUtil.randomString();
-		String portletId2 = RandomTestUtil.randomString();
 
 		Assert.assertNull(
 			_portletDataHandlerProvider.provide(
 				TestPropsValues.getCompanyId(), portletId1));
+
+		String portletId2 = RandomTestUtil.randomString();
+
 		Assert.assertNull(
 			_portletDataHandlerProvider.provide(
 				TestPropsValues.getCompanyId(), portletId2));
@@ -165,7 +167,6 @@ public class BatchEnginePortletDataHandlerRegistrarTest {
 						},
 						portletDataHandler.
 							getExportPortletDataHandlerControls()));
-
 			_assertPortletDataHandler(
 				TestPropsValues.getCompanyId(), portletId2,
 				portletDataHandler ->
