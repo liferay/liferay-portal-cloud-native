@@ -248,39 +248,37 @@ public class MarketplaceMessageReceiver implements MessageReceiver {
 		ChannelResource channelResource =
 			_marketplaceService.getChannelResource();
 
-		Channel marketplaceChannel =
-			channelResource.getChannelByExternalReferenceCode(
-				"MARKETPLACE-CHANNEL");
-
-		_marketplaceService.postOrder(
-			new Order() {
-				{
-					setAccountExternalReferenceCode(
-						productPurchase::getAccountKey);
-					setChannelId(marketplaceChannel::getId);
-					setCurrencyCode(() -> "USD");
-					setExternalReferenceCode(productPurchase::getKey);
-					setOrderItems(
-						() -> new OrderItem[] {
-							new OrderItem() {
-								{
-									setQuantity(
-										() -> new BigDecimal(
-											productPurchase.getQuantity()));
-									setSkuExternalReferenceCode(
-										productPurchase::getProductKey);
-								}
+		Order order = new Order() {
+			{
+				setAccountExternalReferenceCode(productPurchase::getAccountKey);
+				setCurrencyCode(() -> "USD");
+				setExternalReferenceCode(productPurchase::getKey);
+				setOrderItems(
+					() -> new OrderItem[] {
+						new OrderItem() {
+							{
+								setQuantity(
+									() -> new BigDecimal(
+										productPurchase.getQuantity()));
+								setSkuExternalReferenceCode(
+									productPurchase::getProductKey);
 							}
-						});
-					setOrderStatus(
-						() -> MarketplaceConstants.ORDER_STATUS_COMPLETED);
-					setOrderTypeExternalReferenceCode(() -> "SALESFORCE-ORDER");
-					setPaymentStatus(
-						() ->
-							MarketplaceConstants.
-								ORDER_PAYMENT_STATUS_COMPLETED);
-				}
-			});
+						}
+					});
+				setOrderStatus(
+					() -> MarketplaceConstants.ORDER_STATUS_COMPLETED);
+				setOrderTypeExternalReferenceCode(() -> "SALESFORCE-ORDER");
+				setPaymentStatus(
+					() -> MarketplaceConstants.ORDER_PAYMENT_STATUS_COMPLETED);
+			}
+		};
+
+		Channel channel = channelResource.getChannelByExternalReferenceCode(
+			"MARKETPLACE-CHANNEL");
+
+		order.setChannelId(channel::getId);
+
+		_marketplaceService.postOrder(order);
 	}
 
 	private static final Log _log = LogFactory.getLog(
