@@ -89,7 +89,7 @@ public class MarketplaceMessageReceiver implements MessageReceiver {
 			else if (Objects.equals(
 						_topicName,
 						MarketplaceConstants.
-							PUBSUB_TOPIC_NAME_KORONEIKI_PRODUCTPURCHASE_CREATE)) {
+							PUBSUB_TOPIC_NAME_KORONEIKI_PRODUCT_PURCHASE_CREATE)) {
 
 				ProductPurchase productPurchase = ProductPurchase.toDTO(
 					jsonObject.getJSONObject(

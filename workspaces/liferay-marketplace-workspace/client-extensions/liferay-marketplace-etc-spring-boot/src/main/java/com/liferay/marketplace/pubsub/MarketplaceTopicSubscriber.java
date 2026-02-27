@@ -98,7 +98,7 @@ public class MarketplaceTopicSubscriber {
 		_subscribe(
 			credentialsProvider,
 			MarketplaceConstants.
-				PUBSUB_TOPIC_NAME_KORONEIKI_PRODUCTPURCHASE_CREATE);
+				PUBSUB_TOPIC_NAME_KORONEIKI_PRODUCT_PURCHASE_CREATE);
 	}
 
 	private void _subscribe(

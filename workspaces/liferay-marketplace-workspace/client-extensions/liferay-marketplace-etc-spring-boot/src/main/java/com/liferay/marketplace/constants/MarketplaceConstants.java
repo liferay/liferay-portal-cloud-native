@@ -71,7 +71,7 @@ public class MarketplaceConstants {
 		"koroneiki.account.update";
 
 	public static final String
-		PUBSUB_TOPIC_NAME_KORONEIKI_PRODUCTPURCHASE_CREATE =
+		PUBSUB_TOPIC_NAME_KORONEIKI_PRODUCT_PURCHASE_CREATE =
 			"koroneiki.productpurchase.create";
 
 	public static String getOrderPaymentMethodLabel(String paymentMethod) {
