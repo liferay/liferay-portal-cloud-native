@@ -194,12 +194,11 @@ public class UserIndexerTest {
 				lastName
 			));
 
+		assertFirstNameFieldValue(
+			firstName, byAttribute("firstName_en_US", "Mary \"Jane Watson\""));
 		assertNoHits(byAttribute("firstName_en_US", "\"Mary Watson\""));
 		assertNoHits(
 			byAttribute("firstName_en_US", "\"Mary Jane\" Missingword"));
-
-		assertFirstNameFieldValue(
-			firstName, byAttribute("firstName_en_US", "Mary \"Jane Watson\""));
 	}
 
 	@Test
@@ -310,7 +309,6 @@ public class UserIndexerTest {
 		assertFieldValue(
 			"middleName_es_ES", middleName, LocaleUtil.SPAIN,
 			byAttribute("middleName_es_ES", "Pedro"));
-
 		assertUserId(user.getUserId(), byQueryString("Pedro"));
 		assertUserId(user.getUserId(), byQueryString("José Sánchez"));
 		assertUserId(user.getUserId(), byQueryString("Sánchez José"));
