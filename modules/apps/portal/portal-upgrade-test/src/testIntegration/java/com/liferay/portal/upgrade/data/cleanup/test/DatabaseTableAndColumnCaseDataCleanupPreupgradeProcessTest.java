@@ -86,7 +86,6 @@ public class DatabaseTableAndColumnCaseDataCleanupPreupgradeProcessTest
 			"testCOLUMN", databaseMetaData.getMaxColumnNameLength());
 		String invalidTableName = _getName(
 			"testTABLE", databaseMetaData.getMaxTableNameLength());
-
 		String testColumnName = _getName(
 			"testColumn", databaseMetaData.getMaxColumnNameLength());
 		String testTableName = _getName(
@@ -272,7 +271,7 @@ public class DatabaseTableAndColumnCaseDataCleanupPreupgradeProcessTest
 
 			int maxTableNameLength = databaseMetaData.getMaxTableNameLength();
 
-			String tempTableName;
+			String tempTableName = null;
 
 			if ((maxTableNameLength > 0) &&
 				((testTableName.length() + _TEMP_SUFFIX.length()) >
@@ -292,10 +291,10 @@ public class DatabaseTableAndColumnCaseDataCleanupPreupgradeProcessTest
 					"DROP_TABLE_IF_EXISTS(" + invalidTableName + ")"));
 			DBPartitionUtil.forEachCompanyId(
 				companyId -> _db.runSQL(
-					"DROP_TABLE_IF_EXISTS(" + testTableName + ")"));
+					"DROP_TABLE_IF_EXISTS(" + tempTableName + ")"));
 			DBPartitionUtil.forEachCompanyId(
 				companyId -> _db.runSQL(
-					"DROP_TABLE_IF_EXISTS(" + tempTableName + ")"));
+					"DROP_TABLE_IF_EXISTS(" + testTableName + ")"));
 		}
 	}
 
