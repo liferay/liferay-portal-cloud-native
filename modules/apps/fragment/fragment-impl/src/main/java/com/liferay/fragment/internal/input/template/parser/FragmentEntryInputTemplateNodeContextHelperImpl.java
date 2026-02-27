@@ -62,6 +62,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupedModel;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -498,10 +499,9 @@ public class FragmentEntryInputTemplateNodeContextHelperImpl
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		boolean cms = themeDisplay.getScopeGroup(
-		).isCMS();
+		Group group = themeDisplay.getScopeGroup();
 
-		inputTemplateNode.addAttribute("isCMS", cms);
+		inputTemplateNode.addAttribute("isCMS", group.isCMS());
 
 		Object object = httpServletRequest.getAttribute(
 			InfoDisplayWebKeys.INFO_ITEM);
