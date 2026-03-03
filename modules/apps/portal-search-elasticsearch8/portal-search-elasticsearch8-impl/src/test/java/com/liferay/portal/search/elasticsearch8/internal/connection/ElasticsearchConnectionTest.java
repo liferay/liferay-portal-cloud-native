@@ -36,7 +36,6 @@ public class ElasticsearchConnectionTest {
 	@Test
 	public void testConnectAndClose() {
 		Runnable postCloseRunnable = Mockito.mock(Runnable.class);
-
 		Runnable preConnectRunnable = Mockito.mock(Runnable.class);
 
 		_elasticsearchConnection = new ElasticsearchConnection.Builder(
