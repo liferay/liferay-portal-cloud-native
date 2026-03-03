@@ -41,7 +41,7 @@ function _generate_tfvars {
 
 	if ! jq --exit-status '.variables | objects' "${configuration_json_file}" > /dev/null
 	then
-		echo "The configuration JSON file must contain a root object named 'variables'."
+		echo "The configuration JSON file must contain a root object named \"variables\"."
 
 		exit 1
 	fi
