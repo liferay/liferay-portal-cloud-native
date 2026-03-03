@@ -155,7 +155,6 @@ public class WebDriverUtil {
 
 		chromeOptions.setCapability(
 			"selenium:sessionTimeout", poshiProperties.timeoutPageLoadWait);
-
 		chromeOptions.setPageLoadTimeout(
 			Duration.ofSeconds(poshiProperties.timeoutPageLoadWait));
 

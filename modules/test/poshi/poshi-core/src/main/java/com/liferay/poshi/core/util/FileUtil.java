@@ -208,11 +208,7 @@ public class FileUtil {
 	public static void move(String sourceFilePath, String newFilePath)
 		throws IOException {
 
-		File sourceFile = new File(sourceFilePath);
-
-		File newFile = new File(newFilePath);
-
-		FileUtils.moveFile(sourceFile, newFile);
+		FileUtils.moveFile(new File(sourceFilePath), new File(newFilePath));
 	}
 
 	public static String read(File file) throws IOException {
