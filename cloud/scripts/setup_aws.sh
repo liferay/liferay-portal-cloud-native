@@ -65,14 +65,14 @@ function _generate_tfvars {
 
 	if [ -z "${tfvars_content}" ]
 	then
-		echo "The 'variables' object in the JSON file is empty. You will be prompted for all required variables."
+		echo "The \"variables\" object in the configuration JSON file is empty. You will be prompted for all required variables."
 
 		> "${tfvars_file}"
 	else
 		echo "${tfvars_content}" > "${tfvars_file}"
 	fi
 
-	echo "${tfvars_file} generated successfully."
+	echo "${tfvars_file} was generated successfully."
 }
 
 function _popd {
