@@ -11,7 +11,7 @@ _ROOT_CLOUD_DIR=$(cd "${_SCRIPTS_DIR}/.." && pwd)
 function main {
 	if [ "${#}" -ne 1 ]
 	then
-		echo "Usage: ${0} <path_to_config_json_file>"
+		echo "Usage: ${0} <config-json>"
 
 		exit 1
 	fi
