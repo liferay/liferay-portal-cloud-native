@@ -34,7 +34,7 @@ function _generate_tfvars {
 
 	if [ ! -f "${json_file}" ]
 	then
-		echo "No JSON file ${json_file} found."
+		echo "JSON file ${json_file} does not exist."
 
 		exit 1
 	fi
