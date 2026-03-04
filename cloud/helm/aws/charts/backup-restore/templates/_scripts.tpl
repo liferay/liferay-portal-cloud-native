@@ -13,9 +13,7 @@ function main {
 			"{{ include "liferayAWSBackupRestore.liferayInfrastructureName" . }}" \
 			--output json)
 
-	local restore_phase
-
-	restore_phase=$(echo "${liferay_infrastructure_json}" | jq --raw-output ".spec.restorePhase")
+	local restore_phase=$(echo "${liferay_infrastructure_json}" | jq --raw-output ".spec.restorePhase")
 
 	if [ ${restore_phase} = "promoting" ] || [ ${restore_phase} = "provisioning" ]
 	then
@@ -24,9 +22,7 @@ function main {
 		exit 1
 	fi
 
-	local data_active
-
-	data_active=$(echo "${liferay_infrastructure_json}" | jq --raw-output ".spec.targetActiveDataPlane // \"blue\"")
+	local data_active=$(echo "${liferay_infrastructure_json}" | jq --raw-output ".spec.targetActiveDataPlane // \"blue\"")
 
 	echo "${data_active}" > /tmp/data-active.txt
 
@@ -243,22 +239,15 @@ function main {
 
 	while [ $(date +%s) -lt ${timeout} ]
 	do
-		local ready_condition
-
-		ready_condition=$( \
+		local ready_condition=$( \
 			kubectl \
 				get \
 				liferayinfrastructure \
 				"{{ include "liferayAWSBackupRestore.liferayInfrastructureName" . }}" \
 				--output jsonpath="{.status.conditions[?(@.type==\"Ready\")]}" 2>/dev/null || echo "{}")
 
-		local observed_generation
-
-		observed_generation=$(echo "${ready_condition}" | jq --raw-output ".observedGeneration // 0")
-
-		local status
-
-		status=$(echo "${ready_condition}" | jq --raw-output ".status // \"False\"")
+		local observed_generation=$(echo "${ready_condition}" | jq --raw-output ".observedGeneration // 0")
+		local status=$(echo "${ready_condition}" | jq --raw-output ".status // \"False\"")
 
 		if [ "${observed_generation}" -ge "${expected_generation}" ] && [ "${status}" = "True" ]
 		then
@@ -268,7 +257,7 @@ function main {
 		sleep 30
 	done
 
-	echo "The system timed out waiting for the LiferayInfrastructure to be ready." >&2
+	echo "The system timed out waiting for the Liferay Infrastructure to be ready." >&2
 
 	exit 1
 }
