@@ -106,7 +106,7 @@ public class MarketplaceTopicSubscriber {
 	private void _subscribe(
 		CredentialsProvider credentialsProvider, String topicName) {
 
-		if (_disabledTopics.contains(topicName)) {
+		if (_disabledTopicNames.contains(topicName)) {
 			return;
 		}
 
@@ -168,8 +168,8 @@ public class MarketplaceTopicSubscriber {
 	private static final Log _log = LogFactory.getLog(
 		MarketplaceTopicSubscriber.class);
 
-	@Value("${liferay.marketplace.pubsub.gcp.disabled.topics}")
-	private List<String> _disabledTopics;
+	@Value("${liferay.marketplace.pubsub.gcp.disabled.topic.names}")
+	private List<String> _disabledTopicNames;
 
 	@Autowired
 	private KoroneikiService _koroneikiService;
