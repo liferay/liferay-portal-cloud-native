@@ -42,8 +42,8 @@ public class UpgradeSourceCodeTask extends FormatSourceTask {
 			throw new GradleException(
 				StringBundler.concat(
 					"Unable to determine target Liferay version. Please use ",
-					"the '--to-version' option to set it, or set the ",
-					"'liferay.workspace.target.platform.version' property."));
+					"the \"--to-version\" option to set it, or set the ",
+					"\"liferay.workspace.target.platform.version\" property."));
 		}
 
 		List<String> toVersionValues = getToVersionValues();
@@ -52,7 +52,7 @@ public class UpgradeSourceCodeTask extends FormatSourceTask {
 			throw new GradleException(
 				StringBundler.concat(
 					toVersion, " is not a valid target Liferay version. Run ",
-					"'blade gw help --task upgradeSourceCode' to see a list ",
+					"\"blade gw help --task upgradeSourceCode\" to see a list ",
 					"of valid Liferay versions."));
 		}
 
