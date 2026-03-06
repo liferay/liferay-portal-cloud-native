@@ -195,7 +195,7 @@ export class NavigationMenusPage {
 			.click();
 
 		await this.documentsModal
-			.getByRole('link', {name: 'Liferay DXP'})
+			.getByRole('link', {name: 'Liferay DXP Site'})
 			.click();
 
 		await this.documentsModal
@@ -414,7 +414,7 @@ export class NavigationMenusPage {
 			.click();
 
 		await this.documentsModal
-			.getByRole('link', {name: 'Liferay DXP'})
+			.getByRole('link', {name: 'Liferay DXP Site'})
 			.click();
 
 		await this.documentsModal

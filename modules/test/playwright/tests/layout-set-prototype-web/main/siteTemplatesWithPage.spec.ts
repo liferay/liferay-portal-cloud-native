@@ -116,9 +116,7 @@ test(
 
 		await page.goto(href);
 
-		expect(await page.title()).toBe(
-			`${pageName} - ${siteName} - Liferay DXP`
-		);
+		expect(await page.title()).toBe(`${pageName} - ${siteName} - Liferay`);
 
 		await page
 			.locator('.control-menu-nav-item')
@@ -151,9 +149,7 @@ test(
 
 		await pageEditorPage.goto(layout, `/${siteName.toLowerCase()}`);
 
-		expect(await page.title()).toBe(
-			`${pageName} - ${siteName} - Liferay DXP`
-		);
+		expect(await page.title()).toBe(`${pageName} - ${siteName} - Liferay`);
 	}
 );
 

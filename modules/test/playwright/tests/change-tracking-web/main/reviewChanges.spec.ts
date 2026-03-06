@@ -240,7 +240,7 @@ test('LPD-29088 Assert Publication Overview panel is visible', async ({
 
 	await changeTrackingPage.goToReviewChanges(ctCollection.body.name);
 
-	await expect(page.getByText('Liferay DXP (1): Tag (1)')).toBeVisible();
+	await expect(page.getByText('Liferay DXP Site (1): Tag (1)')).toBeVisible();
 	await expect(
 		page.getByText(
 			site1.name +
@@ -257,7 +257,7 @@ test('LPD-29088 Assert Publication Overview panel is visible', async ({
 
 	await changeTrackingPage.goToReviewChangesHistory(ctCollection.body.name);
 
-	await expect(page.getByText('Liferay DXP (1): Tag (1)')).toBeVisible();
+	await expect(page.getByText('Liferay DXP Site (1): Tag (1)')).toBeVisible();
 	await expect(
 		page.getByText(
 			site1.name +
