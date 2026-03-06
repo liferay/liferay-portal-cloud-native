@@ -51,12 +51,10 @@ public class EnvironmentBuildPropertiesUtil {
 					"github.webhook.base.invocation.url",
 					environmentBuildProperties.getProperty(
 						"github.webhook.base.invocation.url[staging]"));
-
 				environmentBuildProperties.setProperty(
 					"github.webhook.url",
 					environmentBuildProperties.getProperty(
 						"github.webhook.url[aws-staging]"));
-
 				environmentBuildProperties.setProperty(
 					"github.webhook.url[aws]",
 					environmentBuildProperties.getProperty(
