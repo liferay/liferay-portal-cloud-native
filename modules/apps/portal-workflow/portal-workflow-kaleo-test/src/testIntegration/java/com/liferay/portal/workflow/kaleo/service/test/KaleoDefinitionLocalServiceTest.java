@@ -111,7 +111,7 @@ public class KaleoDefinitionLocalServiceTest
 		Assert.assertNotNull(
 			addKaleoDefinition(WorkflowDefinitionConstants.SCOPE_AI));
 
-		// Group ID as non-account entry group ID
+		// Group ID as nonaccount entry group ID
 
 		serviceContext.setScopeGroupId(TestPropsValues.getGroupId());
 
@@ -155,7 +155,7 @@ public class KaleoDefinitionLocalServiceTest
 		Assert.assertNotNull(
 			addKaleoDefinition(WorkflowDefinitionConstants.SCOPE_AI));
 
-		// Group ID as non account entry group ID
+		// Group ID as nonaccount entry group ID
 
 		serviceContext.setScopeGroupId(TestPropsValues.getGroupId());
 
