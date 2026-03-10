@@ -27,12 +27,6 @@ import java.io.IOException;
  */
 public interface PanelApp extends PanelEntry {
 
-	/**
-	 * Returns the icon that is displayed in the user interface when the panel
-	 * app is included.
-	 *
-	 * @return the icon name for the panel app
-	 */
 	public String getIcon();
 
 	/**
