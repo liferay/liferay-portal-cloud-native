@@ -832,12 +832,10 @@ public class GroupFinderImpl
 			}
 		}
 
-		DSLQuery finalQuery;
-
 		if (orderByComparator != null) {
 			GroupTable tempGroupTable = GroupTable.INSTANCE.as("tempGroup");
 
-			finalQuery = DSLQueryFactoryUtil.select(
+			dslQuery = DSLQueryFactoryUtil.select(
 				tempGroupTable.groupId
 			).from(
 				dslQuery.as("tempGroup")
@@ -845,16 +843,13 @@ public class GroupFinderImpl
 				_getOrderByExpressions(orderByComparator, tempGroupTable)
 			);
 		}
-		else {
-			finalQuery = dslQuery;
-		}
 
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(finalQuery);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(dslQuery);
 
 			sqlQuery.addScalar("groupId", Type.LONG);
 

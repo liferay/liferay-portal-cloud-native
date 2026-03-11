@@ -77,9 +77,8 @@ public class SQLServerLimitStringUtil {
 		StringBundler innerOrderBySB = new StringBundler();
 		StringBundler outerOrderBySB = new StringBundler();
 
-		List<String> orderByColumns = new ArrayList<>();
-
 		int depth = 0;
+		List<String> orderByColumns = new ArrayList<>();
 		int start = 0;
 
 		for (int i = 0; i < orderBy.length(); i++) {
