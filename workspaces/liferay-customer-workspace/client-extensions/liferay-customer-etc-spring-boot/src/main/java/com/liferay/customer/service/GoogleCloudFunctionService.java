@@ -45,9 +45,9 @@ public class GoogleCloudFunctionService {
 
 		return _handleRequest(
 			accountKey, _gcfCustomerServiceAccountKey,
-			_FUNCTION_CUSTOMER_USAGE_API_PATH,
+			_FUNCTION_PATH_CUSTOMER_USAGE_API,
 			StringBundler.concat(
-				_gcfBaseURL, _FUNCTION_CUSTOMER_USAGE_API_PATH,
+				_gcfBaseURL, _FUNCTION_PATH_CUSTOMER_USAGE_API,
 				"/api/v1/customer/usage/accounts/", accountKey));
 	}
 
@@ -57,9 +57,9 @@ public class GoogleCloudFunctionService {
 
 		return _handleRequest(
 			accountKey, _gcfComposableServiceAccountKey,
-			_FUNCTION_COMPOSABLE_USAGE_API_PATH,
+			_FUNCTION_PATH_COMPOSABLE_USAGE_API,
 			StringBundler.concat(
-				_gcfBaseURL, _FUNCTION_COMPOSABLE_USAGE_API_PATH,
+				_gcfBaseURL, _FUNCTION_PATH_COMPOSABLE_USAGE_API,
 				"/api/v1/accounts/", accountKey, "/usage/month/", month));
 	}
 
@@ -126,10 +126,10 @@ public class GoogleCloudFunctionService {
 		}
 	}
 
-	private static final String _FUNCTION_COMPOSABLE_USAGE_API_PATH =
+	private static final String _FUNCTION_PATH_COMPOSABLE_USAGE_API =
 		"/composable_usage_api";
 
-	private static final String _FUNCTION_CUSTOMER_USAGE_API_PATH =
+	private static final String _FUNCTION_PATH_CUSTOMER_USAGE_API =
 		"/customer_usage_api";
 
 	@Value("${liferay.customer.gcf.base.url}")
