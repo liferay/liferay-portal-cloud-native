@@ -87,13 +87,13 @@ public class CMSFileDLPortletToolbarContributorContext
 				return;
 			}
 
+			JavaScriptMenuItem javaScriptMenuItem = new JavaScriptMenuItem();
+
 			long repositoryId = themeDisplay.getScopeGroupId();
 
 			if (folder != null) {
 				repositoryId = folder.getRepositoryId();
 			}
-
-			JavaScriptMenuItem javaScriptMenuItem = new JavaScriptMenuItem();
 
 			javaScriptMenuItem.setData(
 				HashMapBuilder.<String, Object>put(
