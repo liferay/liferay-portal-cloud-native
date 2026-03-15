@@ -521,11 +521,10 @@ public class ObjectActionProductPurchaseRestController
 			return;
 		}
 
-		UserAccount userAccount = _marketplaceService.getUserAccount(
-			order.getCreatorEmailAddress());
-
 		Product product = _marketplaceService.getProductBySkuId(
 			orderItem.getSkuId());
+		UserAccount userAccount = _marketplaceService.getUserAccount(
+			order.getCreatorEmailAddress());
 
 		_salesforceService.postSalesforceOpportunity(
 			new SalesforceOpportunity(
