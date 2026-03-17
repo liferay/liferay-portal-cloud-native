@@ -24,9 +24,6 @@ variable "external_secret_store_provider_hcl" {
 variable "external_secrets_namespace" {
 	default="external-secrets-system"
 }
-variable "gateway_class_name" {
-	default="liferay-gateway-class"
-}
 variable "gateway_namespace" {
 	default="envoy-gateway-system"
 }

@@ -74,7 +74,7 @@ resource "kubernetes_manifest" "infrastructure_applicationset" {
 										},
 										{
 											name="gateway.className"
-											value=var.gateway_class_name
+											value=local.gateway_class_name
 										},
 										{
 											name="gateway.name"
@@ -253,7 +253,7 @@ resource "kubernetes_manifest" "infrastructure_provider_application" {
 								},
 								{
 									name="gateway.className"
-									value=var.gateway_class_name
+									value=local.gateway_class_name
 								},
 								{
 									name="gateway.envoyProxyRoleArn"
