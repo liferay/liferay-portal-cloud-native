@@ -101,7 +101,7 @@ public class DLFileEntryModelDocumentContributorTest {
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
-				"Unable to extract text content from file version " +
+				"Unable to extract text from file version " +
 					dlFileVersion.getFileVersionId(),
 				logEntry.getMessage());
 		}

@@ -230,7 +230,7 @@ public class DLFileEntryModelDocumentContributor
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to extract text content from file version " +
+					"Unable to extract text from file version " +
 						dlFileVersion.getFileVersionId());
 			}
 
