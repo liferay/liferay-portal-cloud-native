@@ -24,11 +24,11 @@ function main {
 
 	local terraform_args="$(_get_terraform_apply_args "${1}")"
 
-	_setup_aws_eks "${terraform_args}"
+	_set_up_aws_eks "${terraform_args}"
 
-	_setup_aws_grafana "${terraform_args}"
+	_set_up_aws_grafana "${terraform_args}"
 
-	_setup_aws_gitops "${terraform_args}"
+	_set_up_aws_gitops "${terraform_args}"
 
 	_port_forward_argo_cd
 }
@@ -143,7 +143,7 @@ function _pushd {
 	pushd "${1}" > /dev/null
 }
 
-function _setup_aws_eks {
+function _set_up_aws_eks {
 	_pushd "${_ROOT_CLOUD_DIR}/terraform/aws/eks"
 
 	echo "Setting up the AWS EKS cluster."
@@ -163,7 +163,7 @@ function _setup_aws_eks {
 	_popd
 }
 
-function _setup_aws_gitops {
+function _set_up_aws_gitops {
 	_pushd "${_ROOT_CLOUD_DIR}/terraform/aws/gitops"
 
 	echo "Setting up GitOps infrastructure."
@@ -177,7 +177,7 @@ function _setup_aws_gitops {
 	_popd
 }
 
-function _setup_aws_grafana {
+function _set_up_aws_grafana {
 	_pushd "${_ROOT_CLOUD_DIR}/terraform/aws/eks"
 
 	local grafana_enabled=$(terraform output -raw "grafana_enabled")
