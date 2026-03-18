@@ -255,10 +255,6 @@ export interface IHeader {
 	title?: string;
 }
 
-export interface IListTitleRenderer {
-	component: ({itemData}: {itemData: any}) => JSX.Element;
-}
-
 export interface IListSchema {
 	accessibleNameField?: string;
 	description: string;
@@ -266,7 +262,7 @@ export interface IListSchema {
 	sticker?: string;
 	symbol?: string;
 	title: string;
-	titleRenderer: IListTitleRenderer;
+	titleRenderer: string;
 	tooltip?: string;
 }
 
@@ -326,6 +322,7 @@ export interface IFrontendDataSetProps {
 	currentURL?: string;
 	customDataRenderers?: any;
 	customRenderers?: {
+		listSection?: Array<TRenderer>;
 		tableCell?: Array<TRenderer>;
 	};
 	defaultSelectedItems?: any[];
