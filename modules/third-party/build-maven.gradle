@@ -38,20 +38,9 @@ jarMVN {
 	dependsOn downloadSource
 
 	doLast {
-		String mvnJARInclude
-
-		if (project.hasProperty("mvnJARInclude")) {
-			mvnJARInclude = project.mvnJARInclude
-		}
-		else {
-			def pom = new XmlSlurper().parse(new File(mvnSourceDir, "pom.xml"))
-
-			mvnJARInclude = "${pom.artifactId.text()}-${pom.version.text()}.jar"
-		}
-
 		copy {
 			from new File(mvnSourceDir, mvnTargetDir)
-			include mvnJARInclude
+			include project.mvnJARInclude
 			into base.distsDirectory
 
 			rename {
