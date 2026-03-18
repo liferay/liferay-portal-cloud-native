@@ -182,9 +182,9 @@ public abstract class BaseSystemObjectRelatedModelsProviderTestCase {
 			long groupId)
 		throws Exception {
 
-		long[] primaryKeys = addBaseModels(3);
-
 		// Object relationship deletion type cascade
+
+		long[] primaryKeys = addBaseModels(3);
 
 		addObjectRelationship(
 			_systemObjectDefinition, _objectDefinition,

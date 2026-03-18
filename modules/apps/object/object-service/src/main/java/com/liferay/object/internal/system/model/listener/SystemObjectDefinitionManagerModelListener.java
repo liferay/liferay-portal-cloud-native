@@ -249,7 +249,7 @@ public class SystemObjectDefinitionManagerModelListener<T extends BaseModel<T>>
 
 		if (function == null) {
 			throw new IllegalArgumentException(
-				"Base model does not have a column: " + column.getName());
+				"Base model does not have column: " + column.getName());
 		}
 
 		return (Long)function.apply(baseModel);
