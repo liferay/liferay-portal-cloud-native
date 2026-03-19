@@ -1,5 +1,5 @@
 resource "aws_iam_role_policy" "aws_marketplace_metering_policy" {
-	count=local.aws_marketplace_enabled
+	count=local.aws_marketplace_enabled ? 1 : 0
 	name="${var.deployment_name}-marketplace-metering"
 	policy=jsonencode(
 		{
