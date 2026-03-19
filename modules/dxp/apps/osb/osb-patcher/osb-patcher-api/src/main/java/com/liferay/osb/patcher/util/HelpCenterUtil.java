@@ -171,7 +171,7 @@ public class HelpCenterUtil {
 
 		JSONObject itemJSONObject = itemsJSONArray.getJSONObject(0);
 
-		return itemJSONObject.getLong("id", 0);
+		return itemJSONObject.getLong("id");
 	}
 
 	protected static void completeUpload(
