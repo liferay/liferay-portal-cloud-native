@@ -227,7 +227,7 @@ function _set_up_aws_service_linked_roles {
 		"rds.amazonaws.com:AWSServiceRoleForRDS"
 	)
 
-	echo "Setting up AWS Service-Linked Roles."
+	echo "Setting up AWS service-linked roles."
 
 	for service_linked_role in "${service_linked_roles[@]}"
 	do
@@ -236,17 +236,17 @@ function _set_up_aws_service_linked_roles {
 
 		if ! aws iam get-role --role-name "${role_name}" >/dev/null 2>&1
 		then
-			echo "Setting up AWS Service-Linked Role for ${service_name}."
+			echo "Setting up AWS service-linked role for ${service_name}."
 
 			aws iam create-service-linked-role --aws-service-name "${service_name}" --no-cli-pager
 
-			echo "AWS Service-Linked Role for ${service_name} setup complete."
+			echo "AWS service-linked role for ${service_name} setup complete."
 		else
-			echo "AWS Service-Linked Role for ${service_name} already exists."
+			echo "AWS service-linked role for ${service_name} already exists."
 		fi
 	done
 
-	echo "AWS Service-Linked Roles setup complete."
+	echo "AWS service-linked roles setup complete."
 }
 
 function _terraform_init_and_apply {
