@@ -122,7 +122,7 @@ public class ObjectEntryImplTest {
 
 	private void _setUpObjectFieldBag() {
 		Mockito.when(
-			_objectFieldBag.getObjectField(1L)
+			_objectFieldBag.getObjectField(1)
 		).thenReturn(
 			_objectField
 		);
