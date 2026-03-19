@@ -284,7 +284,7 @@ public class ObjectDefinitionLocalServiceTest {
 					Collections.emptyList(), new ServiceContext());
 			});
 
-		// Depot-scoped object definitions cannot have a panel category key
+		// Depot scoped object definitions cannot have a panel category key
 
 		AssertUtils.assertFailure(
 			ObjectDefinitionScopeException.class,
