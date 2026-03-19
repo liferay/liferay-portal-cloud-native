@@ -3764,9 +3764,9 @@ public class ServiceBuilder {
 		for (String importValue : imports) {
 			String importLine = "import " + importValue + ";\n";
 
-			int x = importValue.lastIndexOf('.');
+			int index = importValue.lastIndexOf('.');
 
-			String simpleName = importValue.substring(x + 1);
+			String simpleName = importValue.substring(index + 1);
 
 			String contentWithoutImport = StringUtil.removeSubstring(
 				content, importLine);
