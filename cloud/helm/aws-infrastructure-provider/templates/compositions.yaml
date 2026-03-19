@@ -28,6 +28,7 @@ spec:
 
                         {{- $baseRegion := $xr.spec.region -}}
                         {{- $cmkEnabled := $xr.spec.cmk.enabled -}}
+                        {{- $forceDestroy := $xr.spec.forceDestroy -}}
 
                         {{- $environmentId := $xr.spec.environmentId -}}
                         {{- $projectId := $xr.spec.projectId -}}
@@ -62,6 +63,7 @@ spec:
                             name: {{ $baseName }}-argo-wf
                         spec:
                             forProvider:
+                                forceDestroy: {{ $forceDestroy }}
                                 region: {{ $backupRegion }}
                             managementPolicies: {{ $managementPolicies }}
                         ---
@@ -557,6 +559,7 @@ spec:
                             name: {{ $baseName }}-backup-vault
                         spec:
                             forProvider:
+                                forceDestroy: {{ $forceDestroy }}
                                 {{- if $cmkEnabled }}
                                 kmsKeyArnSelector:
                                     matchLabels:
@@ -745,6 +748,7 @@ spec:
                             namespace: {{ $namespace }}
                         spec:
                             forProvider:
+                                forceDestroy: {{ $forceDestroy }}
                                 region: {{ $overlayRegion }}
                                 tags:
                                     Name: {{ $overlayBucketName }}
@@ -956,6 +960,7 @@ spec:
                             namespace: {{ $namespace }}
                         spec:
                             forProvider:
+                                forceDestroy: {{ $forceDestroy }}
                                 region: {{ $storageRegion }}
                                 tags:
                                     Active: {{ printf "%t" (eq $dataPlane $activeDataPlane) | quote }}
