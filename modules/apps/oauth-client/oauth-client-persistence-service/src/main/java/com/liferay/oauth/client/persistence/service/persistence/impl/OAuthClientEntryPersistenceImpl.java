@@ -325,65 +325,6 @@ public class OAuthClientEntryPersistenceImpl
 	}
 
 	/**
-	 * Returns the last o auth client entry in the ordered set where uuid = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth client entry
-	 * @throws NoSuchOAuthClientEntryException if a matching o auth client entry could not be found
-	 */
-	@Override
-	public OAuthClientEntry findByUuid_Last(
-			String uuid, OrderByComparator<OAuthClientEntry> orderByComparator)
-		throws NoSuchOAuthClientEntryException {
-
-		OAuthClientEntry oAuthClientEntry = fetchByUuid_Last(
-			uuid, orderByComparator);
-
-		if (oAuthClientEntry != null) {
-			return oAuthClientEntry;
-		}
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		sb.append("uuid=");
-		sb.append(uuid);
-
-		sb.append("}");
-
-		throw new NoSuchOAuthClientEntryException(sb.toString());
-	}
-
-	/**
-	 * Returns the last o auth client entry in the ordered set where uuid = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth client entry, or <code>null</code> if a matching o auth client entry could not be found
-	 */
-	@Override
-	public OAuthClientEntry fetchByUuid_Last(
-		String uuid, OrderByComparator<OAuthClientEntry> orderByComparator) {
-
-		int count = countByUuid(uuid);
-
-		if (count == 0) {
-			return null;
-		}
-
-		List<OAuthClientEntry> list = findByUuid(
-			uuid, count - 1, count, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
 	 * Returns all the o auth client entries that the user has permission to view where uuid = &#63;.
 	 *
 	 * @param uuid the uuid
@@ -938,72 +879,6 @@ public class OAuthClientEntryPersistenceImpl
 
 		List<OAuthClientEntry> list = findByUuid_C(
 			uuid, companyId, 0, 1, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last o auth client entry in the ordered set where uuid = &#63; and companyId = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @param companyId the company ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth client entry
-	 * @throws NoSuchOAuthClientEntryException if a matching o auth client entry could not be found
-	 */
-	@Override
-	public OAuthClientEntry findByUuid_C_Last(
-			String uuid, long companyId,
-			OrderByComparator<OAuthClientEntry> orderByComparator)
-		throws NoSuchOAuthClientEntryException {
-
-		OAuthClientEntry oAuthClientEntry = fetchByUuid_C_Last(
-			uuid, companyId, orderByComparator);
-
-		if (oAuthClientEntry != null) {
-			return oAuthClientEntry;
-		}
-
-		StringBundler sb = new StringBundler(6);
-
-		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		sb.append("uuid=");
-		sb.append(uuid);
-
-		sb.append(", companyId=");
-		sb.append(companyId);
-
-		sb.append("}");
-
-		throw new NoSuchOAuthClientEntryException(sb.toString());
-	}
-
-	/**
-	 * Returns the last o auth client entry in the ordered set where uuid = &#63; and companyId = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @param companyId the company ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth client entry, or <code>null</code> if a matching o auth client entry could not be found
-	 */
-	@Override
-	public OAuthClientEntry fetchByUuid_C_Last(
-		String uuid, long companyId,
-		OrderByComparator<OAuthClientEntry> orderByComparator) {
-
-		int count = countByUuid_C(uuid, companyId);
-
-		if (count == 0) {
-			return null;
-		}
-
-		List<OAuthClientEntry> list = findByUuid_C(
-			uuid, companyId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1572,66 +1447,6 @@ public class OAuthClientEntryPersistenceImpl
 	}
 
 	/**
-	 * Returns the last o auth client entry in the ordered set where companyId = &#63;.
-	 *
-	 * @param companyId the company ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth client entry
-	 * @throws NoSuchOAuthClientEntryException if a matching o auth client entry could not be found
-	 */
-	@Override
-	public OAuthClientEntry findByCompanyId_Last(
-			long companyId,
-			OrderByComparator<OAuthClientEntry> orderByComparator)
-		throws NoSuchOAuthClientEntryException {
-
-		OAuthClientEntry oAuthClientEntry = fetchByCompanyId_Last(
-			companyId, orderByComparator);
-
-		if (oAuthClientEntry != null) {
-			return oAuthClientEntry;
-		}
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		sb.append("companyId=");
-		sb.append(companyId);
-
-		sb.append("}");
-
-		throw new NoSuchOAuthClientEntryException(sb.toString());
-	}
-
-	/**
-	 * Returns the last o auth client entry in the ordered set where companyId = &#63;.
-	 *
-	 * @param companyId the company ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth client entry, or <code>null</code> if a matching o auth client entry could not be found
-	 */
-	@Override
-	public OAuthClientEntry fetchByCompanyId_Last(
-		long companyId, OrderByComparator<OAuthClientEntry> orderByComparator) {
-
-		int count = countByCompanyId(companyId);
-
-		if (count == 0) {
-			return null;
-		}
-
-		List<OAuthClientEntry> list = findByCompanyId(
-			companyId, count - 1, count, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
 	 * Returns all the o auth client entries that the user has permission to view where companyId = &#63;.
 	 *
 	 * @param companyId the company ID
@@ -2106,65 +1921,6 @@ public class OAuthClientEntryPersistenceImpl
 
 		List<OAuthClientEntry> list = findByUserId(
 			userId, 0, 1, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last o auth client entry in the ordered set where userId = &#63;.
-	 *
-	 * @param userId the user ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth client entry
-	 * @throws NoSuchOAuthClientEntryException if a matching o auth client entry could not be found
-	 */
-	@Override
-	public OAuthClientEntry findByUserId_Last(
-			long userId, OrderByComparator<OAuthClientEntry> orderByComparator)
-		throws NoSuchOAuthClientEntryException {
-
-		OAuthClientEntry oAuthClientEntry = fetchByUserId_Last(
-			userId, orderByComparator);
-
-		if (oAuthClientEntry != null) {
-			return oAuthClientEntry;
-		}
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		sb.append("userId=");
-		sb.append(userId);
-
-		sb.append("}");
-
-		throw new NoSuchOAuthClientEntryException(sb.toString());
-	}
-
-	/**
-	 * Returns the last o auth client entry in the ordered set where userId = &#63;.
-	 *
-	 * @param userId the user ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth client entry, or <code>null</code> if a matching o auth client entry could not be found
-	 */
-	@Override
-	public OAuthClientEntry fetchByUserId_Last(
-		long userId, OrderByComparator<OAuthClientEntry> orderByComparator) {
-
-		int count = countByUserId(userId);
-
-		if (count == 0) {
-			return null;
-		}
-
-		List<OAuthClientEntry> list = findByUserId(
-			userId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -2686,73 +2442,6 @@ public class OAuthClientEntryPersistenceImpl
 
 		List<OAuthClientEntry> list = findByC_A(
 			companyId, authServerWellKnownURI, 0, 1, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last o auth client entry in the ordered set where companyId = &#63; and authServerWellKnownURI = &#63;.
-	 *
-	 * @param companyId the company ID
-	 * @param authServerWellKnownURI the auth server well known uri
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth client entry
-	 * @throws NoSuchOAuthClientEntryException if a matching o auth client entry could not be found
-	 */
-	@Override
-	public OAuthClientEntry findByC_A_Last(
-			long companyId, String authServerWellKnownURI,
-			OrderByComparator<OAuthClientEntry> orderByComparator)
-		throws NoSuchOAuthClientEntryException {
-
-		OAuthClientEntry oAuthClientEntry = fetchByC_A_Last(
-			companyId, authServerWellKnownURI, orderByComparator);
-
-		if (oAuthClientEntry != null) {
-			return oAuthClientEntry;
-		}
-
-		StringBundler sb = new StringBundler(6);
-
-		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		sb.append("companyId=");
-		sb.append(companyId);
-
-		sb.append(", authServerWellKnownURI=");
-		sb.append(authServerWellKnownURI);
-
-		sb.append("}");
-
-		throw new NoSuchOAuthClientEntryException(sb.toString());
-	}
-
-	/**
-	 * Returns the last o auth client entry in the ordered set where companyId = &#63; and authServerWellKnownURI = &#63;.
-	 *
-	 * @param companyId the company ID
-	 * @param authServerWellKnownURI the auth server well known uri
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth client entry, or <code>null</code> if a matching o auth client entry could not be found
-	 */
-	@Override
-	public OAuthClientEntry fetchByC_A_Last(
-		long companyId, String authServerWellKnownURI,
-		OrderByComparator<OAuthClientEntry> orderByComparator) {
-
-		int count = countByC_A(companyId, authServerWellKnownURI);
-
-		if (count == 0) {
-			return null;
-		}
-
-		List<OAuthClientEntry> list = findByC_A(
-			companyId, authServerWellKnownURI, count - 1, count,
-			orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -4423,4 +4112,4 @@ public class OAuthClientEntryPersistenceImpl
 	}
 
 }
-// LIFERAY-SERVICE-BUILDER-HASH:661927507
+// LIFERAY-SERVICE-BUILDER-HASH:-1912373086
