@@ -11,6 +11,7 @@ import com.liferay.headless.admin.user.client.dto.v1_0.RoleBrief;
 import com.liferay.headless.admin.user.client.dto.v1_0.UserAccount;
 import com.liferay.headless.admin.user.client.resource.v1_0.UserAccountResource;
 import com.liferay.headless.admin.workflow.client.dto.v1_0.ChangeTransition;
+import com.liferay.headless.admin.workflow.client.dto.v1_0.ObjectReviewed;
 import com.liferay.headless.admin.workflow.client.dto.v1_0.WorkflowTask;
 import com.liferay.headless.admin.workflow.client.dto.v1_0.WorkflowTaskAssignToMe;
 import com.liferay.headless.admin.workflow.client.dto.v1_0.WorkflowTasksBulkSelection;
@@ -48,20 +49,20 @@ public class DevCommandLineRunner
 			_liferayOAuth2AccessTokenManager.getAuthorization(
 				_liferayOAuthApplicationExternalReferenceCodes);
 
-		URL endpoint = new URL(lxcDXPServerProtocol + "://" + lxcDXPMainDomain);
+		URL url = new URL(lxcDXPServerProtocol + "://" + lxcDXPMainDomain);
 
 		BlogPostingResource blogPostingResource = BlogPostingResource.builder(
 		).header(
 			"Authorization", authorization
 		).endpoint(
-			endpoint
+			url
 		).build();
 
 		UserAccountResource userAccountResource = UserAccountResource.builder(
 		).header(
 			"Authorization", authorization
 		).endpoint(
-			endpoint
+			url
 		).build();
 
 		WorkflowTaskResource workflowTaskResource =
@@ -69,7 +70,7 @@ public class DevCommandLineRunner
 			).header(
 				"Authorization", authorization
 			).endpoint(
-				endpoint
+				url
 			).build();
 
 		WorkflowTasksBulkSelection workflowTasksBulkSelection =
@@ -87,51 +88,51 @@ public class DevCommandLineRunner
 		if (_log.isInfoEnabled()) {
 			_log.info(
 				StringBundler.concat(
-					"Found ", workflowTasks.size(), " pending blog tasks"));
+					"Found ", workflowTasks.size(), " workflow tasks"));
 		}
 
 		List<Long> approvedBlogPostingIds = new ArrayList<>();
 		List<Long> staffBlogPostingIds = new ArrayList<>();
 
 		for (WorkflowTask workflowTask : workflowTasks) {
+			ObjectReviewed objectReviewed = workflowTask.getObjectReviewed();
+
 			try {
 				boolean approved = _processWorkflowTask(
-					workflowTask, blogPostingResource, userAccountResource,
-					workflowTaskResource, staffBlogPostingIds);
+					blogPostingResource, staffBlogPostingIds,
+					userAccountResource, workflowTask, workflowTaskResource);
 
 				if (approved) {
-					approvedBlogPostingIds.add(
-						workflowTask.getObjectReviewed(
-						).getId());
+					approvedBlogPostingIds.add(objectReviewed.getId());
 				}
 			}
 			catch (Exception exception) {
 				_log.error(
 					StringBundler.concat(
-						"Failed to process workflow task ",
-						workflowTask.getId(), " for blog entry ",
-						workflowTask.getObjectReviewed(
-						).getId()),
+						"Unable to process workflow task ",
+						workflowTask.getId(), " for blog posting ",
+						objectReviewed.getId()),
 					exception);
 			}
 		}
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Staff blogs: " + staffBlogPostingIds);
-			_log.info("Updated blogs: " + approvedBlogPostingIds);
+			_log.info("Approved blog posting IDs: " + approvedBlogPostingIds);
+			_log.info("Staff blog posting IDs: " + staffBlogPostingIds);
 		}
 	}
 
 	private boolean _processWorkflowTask(
-			WorkflowTask workflowTask, BlogPostingResource blogPostingResource,
-			UserAccountResource userAccountResource,
-			WorkflowTaskResource workflowTaskResource,
-			List<Long> staffBlogPostingIds)
+			BlogPostingResource blogPostingResource,
+			List<Long> staffBlogPostingIds,
+			UserAccountResource userAccountResource, WorkflowTask workflowTask,
+			WorkflowTaskResource workflowTaskResource)
 		throws Exception {
 
+		ObjectReviewed objectReviewed = workflowTask.getObjectReviewed();
+
 		BlogPosting blogPosting = blogPostingResource.getBlogPosting(
-			workflowTask.getObjectReviewed(
-			).getId());
+			objectReviewed.getId());
 
 		Creator creator = blogPosting.getCreator();
 
