@@ -162,7 +162,7 @@ public class CompanyThreadLocal {
 
 		if (isLocked()) {
 			throw new UnsupportedOperationException(
-				"CompanyThreadLocal modification is not allowed");
+				"Unable to set company ID on locked company thread local");
 		}
 
 		_syncLastDBPartitionSessionState();
@@ -201,7 +201,7 @@ public class CompanyThreadLocal {
 		if (!companyId.equals(_companyId.get())) {
 			if (isLocked()) {
 				throw new UnsupportedOperationException(
-					"CompanyThreadLocal modification is not allowed");
+					"Unable to set company ID on locked company thread local");
 			}
 
 			_syncLastDBPartitionSessionState();

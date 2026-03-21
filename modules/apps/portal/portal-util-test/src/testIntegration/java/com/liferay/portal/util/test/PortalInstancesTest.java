@@ -163,7 +163,7 @@ public class PortalInstancesTest {
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
 			Assert.assertEquals(
-				"CompanyThreadLocal modification is not allowed",
+				"Unable to set company ID on locked company thread local",
 				unsupportedOperationException.getMessage());
 		}
 	}

@@ -109,7 +109,7 @@ public class PortalInstances {
 					 (companyId != PortalInstancePool.getDefaultCompanyId())) {
 
 				throw new UnsupportedOperationException(
-					"CompanyThreadLocal modification is not allowed");
+					"Unable to set company ID on locked company thread local");
 			}
 
 			return companyId;
@@ -175,7 +175,7 @@ public class PortalInstances {
 		}
 		else if (companyId != currentCompanyId) {
 			throw new UnsupportedOperationException(
-				"CompanyThreadLocal modification is not allowed");
+				"Unable to set company ID on locked company thread local");
 		}
 
 		if (Validator.isNotNull(PropsValues.VIRTUAL_HOSTS_DEFAULT_SITE_NAME) &&
