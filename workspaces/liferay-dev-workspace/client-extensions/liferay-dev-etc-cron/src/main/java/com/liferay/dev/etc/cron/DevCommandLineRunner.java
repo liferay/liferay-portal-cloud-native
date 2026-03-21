@@ -147,30 +147,32 @@ public class DevCommandLineRunner
 			return false;
 		}
 
+		boolean approve = false;
+
 		UserAccount userAccount = userAccountResource.getUserAccount(
 			creator.getId());
 
 		String emailAddress = userAccount.getEmailAddress();
 
-		String returnValue = "Review";
-
 		if ((emailAddress != null) && emailAddress.endsWith("@liferay.com")) {
-			returnValue = "AutoApprove";
+			approve = true;
 		}
 
-		RoleBrief[] roleBriefs = userAccount.getRoleBriefs();
+		if (!approve) {
+			RoleBrief[] roleBriefs = userAccount.getRoleBriefs();
 
-		if (roleBriefs != null) {
-			for (RoleBrief roleBrief : roleBriefs) {
-				if (Objects.equals(roleBrief.getName(), "Administrator")) {
-					returnValue = "AutoApprove";
+			if (roleBriefs != null) {
+				for (RoleBrief roleBrief : roleBriefs) {
+					if (Objects.equals(roleBrief.getName(), "Administrator")) {
+						approve = true;
 
-					break;
+						break;
+					}
 				}
 			}
 		}
 
-		if (Objects.equals(returnValue, "AutoApprove")) {
+		if (approve) {
 			staffBlogPostingIds.add(
 				workflowTask.getObjectReviewed(
 				).getId());
