@@ -95,10 +95,7 @@ public class JSONFactoryTest {
 
 		Class<?> clazz = values.getClass();
 
-		Assert.assertTrue(
-			"The actual type of the array is " + clazz.getName() +
-				" but the expected type is [Ljava.lang.Long; ",
-			values instanceof Long[]);
+		Assert.assertTrue(values instanceof Long[]);
 	}
 
 	@Test
