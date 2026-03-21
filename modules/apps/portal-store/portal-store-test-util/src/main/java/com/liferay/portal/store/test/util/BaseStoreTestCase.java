@@ -401,7 +401,7 @@ public abstract class BaseStoreTestCase {
 	}
 
 	@Test
-	public void testMoveFileEntryToTrashAndDelete() throws Exception {
+	public void testDeleteTrashEntry() throws Exception {
 		Store originalStore = ReflectionTestUtil.getFieldValue(
 			DLStoreImpl.class, "_wrappedStore");
 
