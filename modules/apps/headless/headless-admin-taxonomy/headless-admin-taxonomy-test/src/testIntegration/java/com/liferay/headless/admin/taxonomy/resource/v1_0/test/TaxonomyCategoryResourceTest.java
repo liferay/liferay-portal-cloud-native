@@ -1424,9 +1424,6 @@ public class TaxonomyCategoryResourceTest
 
 		TaxonomyCategory randomTaxonomyCategory = randomTaxonomyCategory();
 
-		randomTaxonomyCategory.setTaxonomyVocabularyId(
-			RandomTestUtil.randomLong());
-
 		randomTaxonomyCategory.setParentTaxonomyVocabulary(
 			new ParentTaxonomyVocabulary() {
 				{
@@ -1434,6 +1431,8 @@ public class TaxonomyCategoryResourceTest
 						_assetVocabulary.getExternalReferenceCode();
 				}
 			});
+		randomTaxonomyCategory.setTaxonomyVocabularyId(
+			RandomTestUtil.randomLong());
 
 		TaxonomyCategory postTaxonomyCategory =
 			taxonomyCategoryResource.postAssetLibraryTaxonomyCategory(
