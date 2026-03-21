@@ -44,19 +44,6 @@ public class DevCommandLineRunner
 
 	@Override
 	public void run(String... args) throws Exception {
-		try {
-			if (_log.isInfoEnabled()) {
-				_log.info("Running workflow approval cron job");
-			}
-
-			_approveStaffBlogs();
-		}
-		catch (Exception exception) {
-			_log.error("Error running workflow approval cron job", exception);
-		}
-	}
-
-	private void _approveStaffBlogs() throws Exception {
 		String authorization =
 			_liferayOAuth2AccessTokenManager.getAuthorization(
 				_liferayOAuthApplicationExternalReferenceCodes);
