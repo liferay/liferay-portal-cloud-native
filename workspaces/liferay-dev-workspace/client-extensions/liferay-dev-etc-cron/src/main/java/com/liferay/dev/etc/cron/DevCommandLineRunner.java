@@ -173,9 +173,7 @@ public class DevCommandLineRunner
 		}
 
 		if (approve) {
-			staffBlogPostingIds.add(
-				workflowTask.getObjectReviewed(
-				).getId());
+			staffBlogPostingIds.add(objectReviewed.getId());
 
 			workflowTaskResource.postWorkflowTaskAssignToMe(
 				workflowTask.getId(), new WorkflowTaskAssignToMe());
