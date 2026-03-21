@@ -63,9 +63,9 @@ public class DBResourceUtilTest {
 		URL url = Mockito.mock(URL.class);
 
 		String sql = StringBundler.concat(
-			"create table TestTable (testTableId LONG not null primary key);",
-			"create table TestTable2 (columnA LONG default 0 not null, ",
-			"columnB LONG not null, primary key (columnA, columnB));");
+			"create table TestTable1 (testTableId LONG not null primary key);",
+			"create table TestTable2 (column1 LONG default 0 not null, ",
+			"column2 LONG not null, primary key (column1, column2));");
 
 		Mockito.when(
 			url.openStream()
@@ -84,9 +84,9 @@ public class DBResourceUtilTest {
 
 		Assert.assertArrayEquals(
 			new String[] {"testTableId"},
-			moduleTablesPrimaryKeyColumnNames.get("TestTable"));
+			moduleTablesPrimaryKeyColumnNames.get("TestTable1"));
 		Assert.assertArrayEquals(
-			new String[] {"columnA", "columnB"},
+			new String[] {"column1", "column2"},
 			moduleTablesPrimaryKeyColumnNames.get("TestTable2"));
 	}
 
