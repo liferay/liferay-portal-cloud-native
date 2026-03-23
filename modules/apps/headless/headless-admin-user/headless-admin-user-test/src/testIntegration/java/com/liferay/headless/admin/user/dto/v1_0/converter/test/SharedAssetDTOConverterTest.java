@@ -149,39 +149,7 @@ public class SharedAssetDTOConverterTest {
 
 	@Test
 	public void testToDTOWithObjectEntry() throws Exception {
-		ObjectField objectField = _addBusinessTypeAttachmentObjectField();
-
-		ObjectFolder objectFolder = _getOrAddFileTypesObjectFolder();
-
-		ObjectDefinition objectDefinition = _addObjectDefinition(
-			objectField, objectFolder);
-
-		ObjectEntry objectEntry = _addObjectEntry(objectDefinition);
-
-		SharingEntry sharingEntry = _addSharingEntry(
-			ObjectEntry.class.getName(), objectEntry.getObjectEntryId());
-
-		DTOConverterContext dtoConverterContext =
-			new DefaultDTOConverterContext(
-				false, new HashMap<>(), null, sharingEntry.getSharingEntryId(),
-				LocaleUtil.getDefault(), null, TestPropsValues.getUser());
-
-		SharedAsset sharedAsset = _sharedAssetDTOConverter.toDTO(
-			dtoConverterContext, sharingEntry);
-
-		NestedFieldsContextThreadLocal.setNestedFieldsContext(
-			new NestedFieldsContext(
-				1, null, List.of("file"), null, null, null));
-
-		com.liferay.headless.admin.user.dto.v1_0.FileEntry file =
-			sharedAsset.getFile();
-
-		Assert.assertEquals((Long)_fileEntry.getFileEntryId(), file.getId());
-		Assert.assertEquals(_fileEntry.getFileName(), file.getName());
-	}
-
-	private ObjectField _addBusinessTypeAttachmentObjectField() {
-		return ObjectFieldUtil.createObjectField(
+		ObjectField objectField = ObjectFieldUtil.createObjectField(
 			ObjectFieldConstants.BUSINESS_TYPE_ATTACHMENT,
 			ObjectFieldConstants.DB_TYPE_LONG, true, false, null, "file",
 			"file",
@@ -205,11 +173,19 @@ public class SharedAssetDTOConverterTest {
 					"100"
 				).build()),
 			false);
-	}
 
-	private ObjectDefinition _addObjectDefinition(
-			ObjectField objectField, ObjectFolder objectFolder)
-		throws Exception {
+		ObjectFolder objectFolder =
+			_objectFolderLocalService.fetchObjectFolderByExternalReferenceCode(
+				ObjectFolderConstants.EXTERNAL_REFERENCE_CODE_FILE_TYPES,
+				TestPropsValues.getCompanyId());
+
+		if (objectFolder == null) {
+			objectFolder = _objectFolderLocalService.addObjectFolder(
+				ObjectFolderConstants.EXTERNAL_REFERENCE_CODE_FILE_TYPES,
+				TestPropsValues.getUserId(),
+				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
+				RandomTestUtil.randomString());
+		}
 
 		ObjectDefinition objectDefinition =
 			_objectDefinitionLocalService.addCustomObjectDefinition(
@@ -228,13 +204,7 @@ public class SharedAssetDTOConverterTest {
 			TestPropsValues.getUserId(),
 			objectDefinition.getObjectDefinitionId());
 
-		return objectDefinition;
-	}
-
-	private ObjectEntry _addObjectEntry(ObjectDefinition objectDefinition)
-		throws Exception {
-
-		return _objectEntryLocalService.addObjectEntry(
+		ObjectEntry objectEntry = _objectEntryLocalService.addObjectEntry(
 			_group.getGroupId(), TestPropsValues.getUserId(),
 			objectDefinition.getObjectDefinitionId(), 0,
 			LocaleUtil.toLanguageId(LocaleUtil.getDefault()),
@@ -242,6 +212,27 @@ public class SharedAssetDTOConverterTest {
 				"file", _fileEntry.getFileEntryId()
 			).build(),
 			_serviceContext);
+
+		SharingEntry sharingEntry = _addSharingEntry(
+			ObjectEntry.class.getName(), objectEntry.getObjectEntryId());
+
+		DTOConverterContext dtoConverterContext =
+			new DefaultDTOConverterContext(
+				false, new HashMap<>(), null, sharingEntry.getSharingEntryId(),
+				LocaleUtil.getDefault(), null, TestPropsValues.getUser());
+
+		SharedAsset sharedAsset = _sharedAssetDTOConverter.toDTO(
+			dtoConverterContext, sharingEntry);
+
+		NestedFieldsContextThreadLocal.setNestedFieldsContext(
+			new NestedFieldsContext(
+				1, null, List.of("file"), null, null, null));
+
+		com.liferay.headless.admin.user.dto.v1_0.FileEntry file =
+			sharedAsset.getFile();
+
+		Assert.assertEquals((Long)_fileEntry.getFileEntryId(), file.getId());
+		Assert.assertEquals(_fileEntry.getFileName(), file.getName());
 	}
 
 	private SharingEntry _addSharingEntry(String className, long classPK)
@@ -252,23 +243,6 @@ public class SharedAssetDTOConverterTest {
 			_classNameLocalService.getClassNameId(className), classPK,
 			_group.getGroupId(), true, Arrays.asList(SharingEntryAction.VIEW),
 			null, _serviceContext);
-	}
-
-	private ObjectFolder _getOrAddFileTypesObjectFolder() throws Exception {
-		ObjectFolder objectFolder =
-			_objectFolderLocalService.fetchObjectFolderByExternalReferenceCode(
-				ObjectFolderConstants.EXTERNAL_REFERENCE_CODE_FILE_TYPES,
-				TestPropsValues.getCompanyId());
-
-		if (objectFolder == null) {
-			objectFolder = _objectFolderLocalService.addObjectFolder(
-				ObjectFolderConstants.EXTERNAL_REFERENCE_CODE_FILE_TYPES,
-				TestPropsValues.getUserId(),
-				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
-				RandomTestUtil.randomString());
-		}
-
-		return objectFolder;
 	}
 
 	@Inject
