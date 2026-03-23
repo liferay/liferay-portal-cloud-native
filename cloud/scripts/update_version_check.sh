@@ -18,11 +18,11 @@ function main {
 }
 
 function _bump_bootstrap_version {
-	local versions_json="${_SCRIPTS_DIR}/versions.json"
+	local versions_json_file="${_SCRIPTS_DIR}/versions.json"
 
 	local current_version
 
-	current_version=$(jq --raw-output '."liferay-aws-bootstrap"' "${versions_json}")
+	current_version=$(jq --raw-output '."liferay-aws-bootstrap"' "${versions_json_file}")
 
 	local new_version
 
@@ -30,9 +30,9 @@ function _bump_bootstrap_version {
 
 	local git_blame_line
 
-	git_blame_line=$(_git_blame_line '"liferay-aws-bootstrap": ".*"$' "${versions_json}")
+	git_blame_line=$(_git_blame_line '"liferay-aws-bootstrap": ".*"$' "${versions_json_file}")
 
-	sed --in-place "${git_blame_line}s/\"${1}\": .*/\"${1}\": \"${new_version}\"/" "${versions_json}"
+	sed --in-place "${git_blame_line}s/\"${1}\": .*/\"${1}\": \"${new_version}\"/" "${versions_json_file}"
 }
 
 function _bump_chart_yaml_version {
@@ -56,11 +56,11 @@ function _bump_chart_yaml_version {
 }
 
 function _check_aws_bootstrap {
-	local versions_json="${_SCRIPTS_DIR}/versions.json"
+	local versions_json_file="${_SCRIPTS_DIR}/versions.json"
 
 	local git_blame_sha
 
-	git_blame_sha=$(_git_blame_sha '"liferay-aws-bootstrap": ".*"$' "${versions_json}")
+	git_blame_sha=$(_git_blame_sha '"liferay-aws-bootstrap": ".*"$' "${versions_json_file}")
 
 	local aws_bootstrap_sources=(
 		"${_ROOT_CLOUD_DIR}/scripts/setup_aws.sh"
@@ -80,7 +80,7 @@ function _check_aws_bootstrap {
 		if [[ "${commit_count}" -gt 0 ]]; then
 			git rev-list --oneline "${git_blame_sha}..HEAD" -- "${source}"
 
-			echo "The version in ${versions_json} is outdated. Updating liferay-aws-bootstrap version."
+			echo "The version in ${versions_json_file} is outdated. Updating liferay-aws-bootstrap version."
 			echo ""
 
 			_bump_bootstrap_version "liferay-aws-bootstrap"
@@ -116,7 +116,6 @@ function _check_chart_yaml {
 
 function _git_blame_line {
 	local pattern="${1}"
-
 	local git_path="${2}"
 
 	local blame_line
@@ -128,7 +127,6 @@ function _git_blame_line {
 
 function _git_blame_sha {
 	local pattern="${1}"
-
 	local git_path="${2}"
 
 	local git_blame_line

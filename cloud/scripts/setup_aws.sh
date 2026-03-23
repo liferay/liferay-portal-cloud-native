@@ -7,7 +7,6 @@ set -o pipefail
 _SCRIPTS_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 _ROOT_CLOUD_DIR=$(cd "${_SCRIPTS_DIR}/.." && pwd)
-
 _VERSIONS_TFVARS_FILE="${_SCRIPTS_DIR}/versions.tfvars"
 
 function main {
@@ -106,8 +105,7 @@ function _get_terraform_apply_args {
 
 	local apply_args=(
 		"-var-file=${_VERSIONS_TFVARS_FILE}"
-		"-var-file=${_SCRIPTS_DIR}/global_terraform.tfvars"
-	)
+		"-var-file=${_SCRIPTS_DIR}/global_terraform.tfvars")
 
 	if [[ "${auto_approve}" == "true" ]]
 	then
