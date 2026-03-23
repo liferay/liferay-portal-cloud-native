@@ -69,7 +69,7 @@ public class GroupModelListenerTest {
 	}
 
 	@Test
-	public void testAfterUpdate() throws Exception {
+	public void testOnAfterUpdate() throws Exception {
 		String name = StringUtil.toLowerCase(
 			"A" + RandomTestUtil.randomString());
 
