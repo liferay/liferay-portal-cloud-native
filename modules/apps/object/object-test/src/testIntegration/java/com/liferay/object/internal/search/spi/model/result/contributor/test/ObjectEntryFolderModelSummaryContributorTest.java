@@ -39,10 +39,13 @@ public class ObjectEntryFolderModelSummaryContributorTest {
 	@Test
 	public void testGetSummary() {
 		Document document = new DocumentImpl();
+
 		String title1 = RandomTestUtil.randomString();
-		String title2 = RandomTestUtil.randomString();
 
 		document.addText("localized_label_en_US", title1);
+
+		String title2 = RandomTestUtil.randomString();
+
 		document.addText("localized_label_es_ES", title2);
 
 		ModelSummaryContributor modelSummaryContributor =
@@ -58,11 +61,11 @@ public class ObjectEntryFolderModelSummaryContributorTest {
 
 		Assert.assertEquals(title1, summary.getTitle());
 
-		String name = RandomTestUtil.randomString();
-
 		_assertSummary(
 			title2, modelSummaryContributor, "snippet_title", title2, "title",
 			title1);
+
+		String name = RandomTestUtil.randomString();
 
 		_assertSummary(
 			title1, modelSummaryContributor, "name", name, "title", title1);
@@ -73,7 +76,6 @@ public class ObjectEntryFolderModelSummaryContributorTest {
 		_assertSummary(
 			upperCaseTitle, modelSummaryContributor, "localized_label_en_US",
 			lowerCaseTitle, "name", upperCaseTitle);
-
 		_assertSummary(
 			title2, modelSummaryContributor, "localized_label_en_US",
 			lowerCaseTitle, "name", upperCaseTitle, "snippet_title", title2);
