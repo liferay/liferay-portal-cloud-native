@@ -281,24 +281,18 @@ public class ObjectEntryModelListenerTest {
 					_objectDefinition.getClassName()),
 				objectEntry.getObjectEntryId());
 
-			Assert.assertNotNull(group);
-
 			Assert.assertEquals("/" + roomName, group.getFriendlyURL());
 			Assert.assertEquals(
 				GroupConstants.TYPE_SITE_RESTRICTED, group.getType());
-
 			Assert.assertTrue(group.isSite());
 
+			LayoutSet layoutSet = _layoutSetLocalService.getLayoutSet(
+				group.getGroupId(), false);
 			LayoutSetPrototype layoutSetPrototype =
 				_layoutSetPrototypeLocalService.
 					fetchLayoutSetPrototypeByUuidAndCompanyId(
 						"L_DSR_LAYOUT_SET_PROTOTYPE",
 						TestPropsValues.getCompanyId());
-
-			Assert.assertNotNull(layoutSetPrototype);
-
-			LayoutSet layoutSet = _layoutSetLocalService.getLayoutSet(
-				group.getGroupId(), false);
 
 			Assert.assertEquals(
 				layoutSetPrototype.getLayoutSetPrototypeId(),

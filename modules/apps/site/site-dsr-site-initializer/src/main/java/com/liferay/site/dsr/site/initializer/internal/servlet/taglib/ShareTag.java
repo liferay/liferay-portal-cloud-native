@@ -77,7 +77,7 @@ public class ShareTag extends IncludeTag {
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
-		_roomId = 0L;
+		_roomId = 0;
 
 		if (_groupId == 0) {
 			return;

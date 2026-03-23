@@ -126,10 +126,9 @@ public class ObjectEntryModelListener extends BaseModelListener<ObjectEntry> {
 
 		Company company = _companyLocalService.getCompany(
 			objectEntry.getCompanyId());
-		User user = _userLocalService.getUser(objectEntry.getUserId());
-
 		Group group;
-		LayoutSetPrototype layoutSetPrototype;
+		LayoutSetPrototype layoutSetPrototype = null;
+		User user = _userLocalService.getUser(objectEntry.getUserId());
 
 		try (AutoCloseable autoCloseable =
 				_layoutServiceContextHelper.getServiceContextAutoCloseable(
