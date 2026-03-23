@@ -145,7 +145,8 @@ public class SharingModelResourcePermissionConfiguratorImpl
 			throws PortalException {
 
 			if ((actionId != null) &&
-				actionId.startsWith(_DOWNLOAD_ACTION_ID_PREFIX)) {
+				actionId.startsWith(
+					ActionKeys.DOWNLOAD + StringPool.UNDERLINE)) {
 
 				actionId = ActionKeys.DOWNLOAD;
 			}
@@ -185,9 +186,6 @@ public class SharingModelResourcePermissionConfiguratorImpl
 		private SharingModelResourcePermissionLogic(long classNameId) {
 			_classNameId = classNameId;
 		}
-
-		private static final String _DOWNLOAD_ACTION_ID_PREFIX =
-			ActionKeys.DOWNLOAD + StringPool.UNDERLINE;
 
 		private final long _classNameId;
 

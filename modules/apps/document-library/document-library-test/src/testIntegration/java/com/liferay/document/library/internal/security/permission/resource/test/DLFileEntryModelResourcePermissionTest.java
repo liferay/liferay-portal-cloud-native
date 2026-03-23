@@ -238,7 +238,6 @@ public class DLFileEntryModelResourcePermissionTest {
 			ResourceConstants.SCOPE_INDIVIDUAL,
 			String.valueOf(dlFolder.getFolderId()), guestRole.getRoleId(),
 			ActionKeys.ACCESS);
-
 		_resourcePermissionLocalService.removeResourcePermission(
 			group.getCompanyId(), DLFolder.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,

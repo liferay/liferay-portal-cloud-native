@@ -110,8 +110,6 @@ public class SharedAssetDTOConverterTest {
 
 		Assert.assertNotNull(sharedAsset);
 
-		// Assert all fields
-
 		Assert.assertArrayEquals(
 			new String[] {"VIEW"}, sharedAsset.getActionIds());
 		Assert.assertNull(sharedAsset.getActions());
@@ -171,8 +169,6 @@ public class SharedAssetDTOConverterTest {
 		SharedAsset sharedAsset = _sharedAssetDTOConverter.toDTO(
 			dtoConverterContext, sharingEntry);
 
-		Assert.assertNotNull(sharedAsset);
-
 		NestedFieldsContextThreadLocal.setNestedFieldsContext(
 			new NestedFieldsContext(
 				1, null, List.of("file"), null, null, null));
@@ -180,7 +176,6 @@ public class SharedAssetDTOConverterTest {
 		com.liferay.headless.admin.user.dto.v1_0.FileEntry file =
 			sharedAsset.getFile();
 
-		Assert.assertNotNull(file);
 		Assert.assertEquals((Long)_fileEntry.getFileEntryId(), file.getId());
 		Assert.assertEquals(_fileEntry.getFileName(), file.getName());
 	}
