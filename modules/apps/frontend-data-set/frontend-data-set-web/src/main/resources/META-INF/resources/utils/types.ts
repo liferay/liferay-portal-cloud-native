@@ -322,7 +322,7 @@ export interface IFrontendDataSetProps {
 	currentURL?: string;
 	customDataRenderers?: any;
 	customRenderers?: {
-		listSection?: Array<TRenderer>;
+		listSection?: Array<IInternalRenderer>;
 		tableCell?: Array<TRenderer>;
 	};
 	defaultSelectedItems?: any[];
