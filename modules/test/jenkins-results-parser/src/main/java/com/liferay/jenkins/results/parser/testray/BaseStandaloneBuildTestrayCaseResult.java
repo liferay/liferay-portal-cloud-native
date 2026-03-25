@@ -126,7 +126,7 @@ public abstract class BaseStandaloneBuildTestrayCaseResult
 	public void recordTestrayCaseResult(Job job) {
 		TestrayBuild testrayBuild = getTestrayBuild();
 
-		TestrayRun testrayRun;
+		TestrayRun testrayRun = null;
 
 		if (job instanceof TestSuiteJob) {
 			TestSuiteJob testSuiteJob = (TestSuiteJob)job;

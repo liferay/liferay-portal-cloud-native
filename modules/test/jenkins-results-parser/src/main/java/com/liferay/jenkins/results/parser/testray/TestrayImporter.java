@@ -1386,7 +1386,7 @@ public class TestrayImporter {
 		TestrayBuild testrayBuild = getTestrayBuild(
 			axisTestClassGroup.getTestBaseDir());
 
-		TestrayRun testrayRun;
+		TestrayRun testrayRun = null;
 
 		String testSuiteName = _topLevelBuildReport.getTestSuiteName();
 
