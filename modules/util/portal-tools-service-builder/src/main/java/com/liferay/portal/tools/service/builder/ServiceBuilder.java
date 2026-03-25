@@ -2451,11 +2451,8 @@ public class ServiceBuilder {
 
 		Runtime runtime = Runtime.getRuntime();
 
-		int threadCount = Math.min(
-			serviceXmlPaths.size(), runtime.availableProcessors());
-
 		ExecutorService executorService = Executors.newFixedThreadPool(
-			threadCount);
+			Math.min(serviceXmlPaths.size(), runtime.availableProcessors()));
 
 		List<Future<String>> futures = new ArrayList<>();
 
