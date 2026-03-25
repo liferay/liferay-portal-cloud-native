@@ -81,7 +81,7 @@ public class GetLayoutContentChangesMVCResourceCommandTest {
 	}
 
 	@Test
-	public void testGetLayoutContentChanges() throws Exception {
+	public void testServeResource() throws Exception {
 		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionIdWithSafeCloseable(
 					_ctCollection.getCtCollectionId())) {
