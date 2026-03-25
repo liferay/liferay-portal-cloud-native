@@ -110,11 +110,13 @@ liferay-default:
                                 mkdir --parents /temp/liferay/deploy
 
                                 install_existing_opensearch_modules
+
                                 local exit_code=$?
 
                                 if [ "${exit_code}" -ne 0 ]
                                 then
                                     echo "Downloading OpenSearch modules."
+
                                     download_module "api"
                                     download_module "impl"
                                 fi
