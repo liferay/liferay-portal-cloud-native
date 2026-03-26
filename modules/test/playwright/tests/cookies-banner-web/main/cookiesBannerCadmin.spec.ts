@@ -31,7 +31,7 @@ test.afterEach(async ({systemSettingsPage}) => {
 	});
 
 	await test.step('Clear Consent Cookies if present', async () => {
-		await clearConsentCookies(systemSettingsPage);
+		await clearConsentCookies(systemSettingsPage.page);
 	});
 });
 
