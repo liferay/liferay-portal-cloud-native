@@ -52,7 +52,6 @@ public class VocabularyObjectDefinitionSelectionFDSFilterTest {
 		ReflectionTestUtil.setFieldValue(
 			_vocabularyObjectDefinitionSelectionFDSFilter,
 			"_objectDefinitionService", _objectDefinitionService);
-
 		ReflectionTestUtil.setFieldValue(
 			_vocabularyObjectDefinitionSelectionFDSFilter, "_portal", _portal);
 	}
