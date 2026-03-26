@@ -73,14 +73,14 @@ public class ExportImportMixedEnginesTest {
 	public void testExportImportAssetCategoriesReferencedByJournalArticle()
 		throws Exception {
 
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
+
 		AssetVocabulary assetVocabulary = AssetTestUtil.addVocabulary(
 			_group.getGroupId());
 
 		AssetCategory assetCategory1 = AssetTestUtil.addCategory(
 			_group.getGroupId(), assetVocabulary.getVocabularyId());
-
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
 		serviceContext.setAssetCategoryIds(
 			new long[] {assetCategory1.getCategoryId()});
@@ -127,7 +127,6 @@ public class ExportImportMixedEnginesTest {
 					assetCategory1.getExternalReferenceCode(),
 					_group.getGroupId());
 
-		Assert.assertNotNull(assetCategory2);
 		Assert.assertEquals(assetCategory1.getName(), assetCategory2.getName());
 
 		Assert.assertNotNull(
@@ -141,10 +140,10 @@ public class ExportImportMixedEnginesTest {
 	public void testExportImportAssetTagsReferencedByJournalArticle()
 		throws Exception {
 
-		AssetTag assetTag1 = AssetTestUtil.addTag(_group.getGroupId());
-
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
+
+		AssetTag assetTag1 = AssetTestUtil.addTag(_group.getGroupId());
 
 		serviceContext.setAssetTagNames(new String[] {assetTag1.getName()});
 
@@ -180,7 +179,6 @@ public class ExportImportMixedEnginesTest {
 			_assetTagLocalService.getAssetTagByExternalReferenceCode(
 				assetTag1.getExternalReferenceCode(), _group.getGroupId());
 
-		Assert.assertNotNull(assetTag2);
 		Assert.assertEquals(assetTag1.getName(), assetTag2.getName());
 
 		Assert.assertNotNull(
