@@ -185,13 +185,6 @@ public class TaxonomyCategoryResourceTest
 			ServiceContextTestUtil.getServiceContext(
 				testGroup.getGroupId(), TestPropsValues.getUserId()));
 
-		DepotEntry depotEntry2 = _depotEntryLocalService.addDepotEntry(
-			Collections.singletonMap(
-				LocaleUtil.getDefault(), RandomTestUtil.randomString()),
-			null, DepotConstants.TYPE_SPACE,
-			ServiceContextTestUtil.getServiceContext(
-				testGroup.getGroupId(), TestPropsValues.getUserId()));
-
 		Page<TaxonomyCategory> page =
 			taxonomyCategoryResource.getAssetLibraryTaxonomyCategoriesPage(
 				depotEntry1.getDepotEntryId(), null, null, null,
@@ -202,6 +195,14 @@ public class TaxonomyCategoryResourceTest
 		_assetVocabularyGroupRelLocalService.
 			deleteAssetVocabularyGroupRelsByVocabularyId(
 				assetVocabulary2.getVocabularyId());
+
+		DepotEntry depotEntry2 = _depotEntryLocalService.addDepotEntry(
+			Collections.singletonMap(
+				LocaleUtil.getDefault(), RandomTestUtil.randomString()),
+			null, DepotConstants.TYPE_SPACE,
+			ServiceContextTestUtil.getServiceContext(
+				testGroup.getGroupId(), TestPropsValues.getUserId()));
+
 		_assetVocabularyGroupRelLocalService.addAssetVocabularyGroupRel(
 			depotEntry2.getGroupId(), assetVocabulary2.getVocabularyId());
 
