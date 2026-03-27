@@ -94,13 +94,13 @@ public class CommentsTag extends IncludeTag {
 			return;
 		}
 
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
 		String addCommentURL = "";
 		String deleteCommentURL = "";
 		String editCommentURL = "";
+
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)httpServletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
 
 		try {
 			ModelResourcePermission<ObjectEntry> modelResourcePermission =
