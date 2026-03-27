@@ -7,6 +7,7 @@ import {Locator, expect, mergeTests} from '@playwright/test';
 import path from 'path';
 
 import {accountSettingsPagesTest} from '../../../fixtures/accountSettingsPagesTest';
+import {consentManagerConfigurationPageTest} from '../../../fixtures/consentManagerConfigurationPageTest';
 import {featureFlagsTest} from '../../../fixtures/featureFlagsTest';
 import {loginTest} from '../../../fixtures/loginTest';
 import {systemSettingsPageTest} from '../../../fixtures/systemSettingsPageTest';
@@ -32,6 +33,7 @@ const cookieKeys = [
 
 export const test = mergeTests(
 	accountSettingsPagesTest,
+	consentManagerConfigurationPageTest,
 	featureFlagsTest({
 		'LPD-36105': {enabled: true},
 		'LPD-51356': {enabled: true},
@@ -386,11 +388,8 @@ test(
 test(
 	'Verify Floating Icon can be selected',
 	{tag: '@LPD-78592'},
-	async ({page, systemSettingsPage}) => {
-		await systemSettingsPage.goToSystemSetting(
-			'Privacy',
-			'Consent Manager'
-		);
+	async ({consentManagerConfigurationPage, page}) => {
+		await consentManagerConfigurationPage.goTo();
 
 		const controlPanelIcon = page.locator(
 			'label:has(svg.lexicon-icon-control-panel)'
@@ -398,9 +397,12 @@ test(
 
 		await expect(controlPanelIcon).toBeVisible();
 
-		const acceptAllButton = systemSettingsPage.page.getByRole('button', {
-			name: 'Accept All',
-		});
+		const acceptAllButton = consentManagerConfigurationPage.page.getByRole(
+			'button',
+			{
+				name: 'Accept All',
+			}
+		);
 
 		await acceptAllButton.click();
 
@@ -408,9 +410,7 @@ test(
 
 		await controlPanelIcon.check();
 
-		await systemSettingsPage.page
-			.getByRole('button', {name: 'Update'})
-			.click();
+		await consentManagerConfigurationPage.updateButton.click();
 
 		await expect(controlPanelIcon).toBeChecked();
 	}
@@ -419,35 +419,35 @@ test(
 test(
 	'Verify Floating Icon Enabled is visible and can be disabled',
 	{tag: '@LPD-78592'},
-	async ({systemSettingsPage}) => {
-		await systemSettingsPage.goToSystemSetting(
-			'Privacy',
-			'Consent Manager'
+	async ({consentManagerConfigurationPage}) => {
+		await consentManagerConfigurationPage.goTo();
+
+		await consentManagerConfigurationPage.floatingIconEnabledCheckbox.waitFor(
+			{state: 'visible'}
 		);
 
-		const floatingIconButton = systemSettingsPage.page.getByLabel(
-			'Floating Icon Enabled'
+		await expect(
+			consentManagerConfigurationPage.floatingIconEnabledCheckbox
+		).toBeChecked();
+
+		const acceptAllButton = consentManagerConfigurationPage.page.getByRole(
+			'button',
+			{
+				name: 'Accept All',
+			}
 		);
-
-		await floatingIconButton.waitFor({state: 'visible'});
-
-		await expect(floatingIconButton).toBeChecked();
-
-		const acceptAllButton = systemSettingsPage.page.getByRole('button', {
-			name: 'Accept All',
-		});
 
 		await acceptAllButton.click();
 
 		await expect(acceptAllButton).not.toBeVisible();
 
-		await floatingIconButton.uncheck();
+		await consentManagerConfigurationPage.floatingIconEnabledCheckbox.uncheck();
 
-		await systemSettingsPage.page
-			.getByRole('button', {name: 'Update'})
-			.click();
+		await consentManagerConfigurationPage.updateButton.click();
 
-		await expect(floatingIconButton).not.toBeChecked();
+		await expect(
+			consentManagerConfigurationPage.floatingIconEnabledCheckbox
+		).not.toBeChecked();
 	}
 );
 
@@ -508,15 +508,15 @@ test(
 test(
 	'Verify Floating Icon use',
 	{tag: '@LPD-78593'},
-	async ({page, systemSettingsPage}) => {
-		await systemSettingsPage.goToSystemSetting(
-			'Privacy',
-			'Consent Manager'
-		);
+	async ({consentManagerConfigurationPage, page}) => {
+		await consentManagerConfigurationPage.goTo();
 
-		const acceptAllButton = systemSettingsPage.page.getByRole('button', {
-			name: 'Accept All',
-		});
+		const acceptAllButton = consentManagerConfigurationPage.page.getByRole(
+			'button',
+			{
+				name: 'Accept All',
+			}
+		);
 
 		await acceptAllButton.click();
 
@@ -543,19 +543,19 @@ test(
 test(
 	'Verify selected Floating Icon appears in button',
 	{tag: '@LPD-78593'},
-	async ({page, systemSettingsPage}) => {
-		await systemSettingsPage.goToSystemSetting(
-			'Privacy',
-			'Consent Manager'
-		);
+	async ({consentManagerConfigurationPage, page}) => {
+		await consentManagerConfigurationPage.goTo();
 
 		const controlPanelIcon = page.locator('label[for$="control-panel"]');
 
 		await expect(controlPanelIcon).toBeVisible();
 
-		const acceptAllButton = systemSettingsPage.page.getByRole('button', {
-			name: 'Accept All',
-		});
+		const acceptAllButton = consentManagerConfigurationPage.page.getByRole(
+			'button',
+			{
+				name: 'Accept All',
+			}
+		);
 
 		await acceptAllButton.click();
 
@@ -563,7 +563,10 @@ test(
 
 		await controlPanelIcon.click();
 
-		await saveOrUpdateConfiguration(true, systemSettingsPage.page);
+		await saveOrUpdateConfiguration(
+			true,
+			consentManagerConfigurationPage.page
+		);
 
 		await expect(controlPanelIcon).toBeChecked();
 
