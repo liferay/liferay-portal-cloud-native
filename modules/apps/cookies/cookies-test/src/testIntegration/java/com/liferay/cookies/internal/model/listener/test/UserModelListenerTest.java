@@ -53,7 +53,6 @@ public class UserModelListenerTest {
 	@Test
 	public void testOnBeforeRemove() throws Exception {
 		User user = UserTestUtil.addUser();
-
 		String domain = RandomTestUtil.randomString();
 
 		CookiesConsentPreference cookiesConsentPreference =
