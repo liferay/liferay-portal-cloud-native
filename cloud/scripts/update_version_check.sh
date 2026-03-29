@@ -7,11 +7,8 @@ set -o pipefail
 _SCRIPTS_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 _ROOT_CLOUD_DIR=$(cd "${_SCRIPTS_DIR}/.." && pwd)
-
 _VERSIONS_AWS_TFVARS_FILE="${_SCRIPTS_DIR}/versions_aws.tfvars"
-
 _VERSIONS_GCP_TFVARS_FILE="${_SCRIPTS_DIR}/versions_gcp.tfvars"
-
 _VERSIONS_JSON_FILE="${_SCRIPTS_DIR}/versions.json"
 
 function main {
