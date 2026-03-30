@@ -243,21 +243,8 @@ public class ImportMVCResourceCommandTest {
 			mockLiferayResourceRequest.getHttpServletRequest()
 		);
 
-		Mockito.when(
-			_portal.getOriginalServletRequest(
-				mockLiferayResourceRequest.getHttpServletRequest())
-		).thenReturn(
-			mockLiferayResourceRequest.getHttpServletRequest()
-		);
-
 		LiferayPortletRequest liferayPortletRequest = Mockito.mock(
 			LiferayPortletRequest.class);
-
-		Mockito.when(
-			_portal.getLiferayPortletRequest(mockLiferayResourceRequest)
-		).thenReturn(
-			liferayPortletRequest
-		);
 
 		Mockito.when(
 			liferayPortletRequest.getPlid()
@@ -269,6 +256,19 @@ public class ImportMVCResourceCommandTest {
 			liferayPortletRequest.getPortletName()
 		).thenReturn(
 			RandomTestUtil.randomString()
+		);
+
+		Mockito.when(
+			_portal.getLiferayPortletRequest(mockLiferayResourceRequest)
+		).thenReturn(
+			liferayPortletRequest
+		);
+
+		Mockito.when(
+			_portal.getOriginalServletRequest(
+				mockLiferayResourceRequest.getHttpServletRequest())
+		).thenReturn(
+			mockLiferayResourceRequest.getHttpServletRequest()
 		);
 	}
 
@@ -286,13 +286,13 @@ public class ImportMVCResourceCommandTest {
 		);
 
 		Mockito.when(
-			_themeDisplay.getUserId()
+			_themeDisplay.getScopeGroupId()
 		).thenReturn(
 			RandomTestUtil.randomLong()
 		);
 
 		Mockito.when(
-			_themeDisplay.getScopeGroupId()
+			_themeDisplay.getUserId()
 		).thenReturn(
 			RandomTestUtil.randomLong()
 		);
