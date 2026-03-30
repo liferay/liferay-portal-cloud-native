@@ -71,7 +71,7 @@ public class DBCopyTablesProcess {
 		_targetDataSource = targetDataSource;
 
 		if (partitionName == null) {
-			_partitionMessage = " in default schema";
+			_partitionMessage = " in the default schema";
 		}
 		else {
 			_partitionMessage = " in partition " + partitionName;
@@ -162,10 +162,9 @@ public class DBCopyTablesProcess {
 
 		_validateTables(sourceTableNames, targetTableNames);
 
+		AtomicInteger count = new AtomicInteger();
 		Iterator<String> sourceIterator = sourceTableNames.iterator();
 		Iterator<String> targetIterator = targetTableNames.iterator();
-
-		AtomicInteger processedTables = new AtomicInteger();
 
 		ThrowableCollector throwableCollector = new ThrowableCollector();
 
@@ -179,9 +178,7 @@ public class DBCopyTablesProcess {
 						try {
 							_copyTable(sourceTableName, targetTableName);
 
-							int count = processedTables.incrementAndGet();
-
-							if ((count % 10) == 0) {
+							if ((count.incrementAndGet() % 10) == 0) {
 								System.out.println(
 									StringBundler.concat(
 										"Copied ", count, " tables out of ",
