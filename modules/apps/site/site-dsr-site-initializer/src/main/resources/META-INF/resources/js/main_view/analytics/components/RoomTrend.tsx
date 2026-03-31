@@ -78,7 +78,7 @@ const OPTIONS: Record<string, TTrendOptions> = {
 	},
 	RE_IGNITED: {
 		icon: 'reload',
-		label: Liferay.Language.get('re-ignited'),
+		label: Liferay.Language.get('reignited'),
 		percentage: 25,
 		useSpritemap: true,
 	},
