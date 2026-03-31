@@ -524,13 +524,13 @@ public class GetLayoutReportsLayoutItemDataStrutsActionTest {
 
 		ThemeDisplay themeDisplay = _getThemeDisplay();
 
-		themeDisplay.setPermissionChecker(
-			PermissionThreadLocal.getPermissionChecker());
-		themeDisplay.setUser(TestPropsValues.getUser());
-
 		LayoutSet layoutSet = _group.getPublicLayoutSet();
 
 		themeDisplay.setLookAndFeel(layoutSet.getTheme(), null);
+
+		themeDisplay.setPermissionChecker(
+			PermissionThreadLocal.getPermissionChecker());
+		themeDisplay.setUser(TestPropsValues.getUser());
 
 		mockHttpServletRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, themeDisplay);
