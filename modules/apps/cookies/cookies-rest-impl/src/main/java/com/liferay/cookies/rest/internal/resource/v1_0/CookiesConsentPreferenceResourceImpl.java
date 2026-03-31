@@ -126,11 +126,12 @@ public class CookiesConsentPreferenceResourceImpl
 	}
 
 	private String _getDomain() {
-		URI uri = contextUriInfo.getRequestUri();
-
 		StringBuilder sb = new StringBuilder(3);
 
+		URI uri = contextUriInfo.getRequestUri();
+
 		sb.append(uri.getScheme());
+
 		sb.append("://");
 		sb.append(uri.getAuthority());
 
