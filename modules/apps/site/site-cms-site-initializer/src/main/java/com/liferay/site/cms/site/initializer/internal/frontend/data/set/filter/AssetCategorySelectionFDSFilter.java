@@ -75,10 +75,10 @@ public class AssetCategorySelectionFDSFilter extends BaseSelectionFDSFilter {
 			return Collections.emptyList();
 		}
 
-		List<SelectionFDSFilterItem> selectionFDSFilterItems =
-			new ArrayList<>();
-
 		try {
+			List<SelectionFDSFilterItem> selectionFDSFilterItems =
+				new ArrayList<>();
+
 			for (AssetVocabulary assetVocabulary :
 					_assetVocabularyLocalService.getGroupVocabularies(
 						group.getGroupId())) {
@@ -96,12 +96,12 @@ public class AssetCategorySelectionFDSFilter extends BaseSelectionFDSFilter {
 							assetCategory.getCategoryId()));
 				}
 			}
+
+			return selectionFDSFilterItems;
 		}
 		catch (Exception exception) {
 			throw new RuntimeException(exception);
 		}
-
-		return selectionFDSFilterItems;
 	}
 
 	@Override
