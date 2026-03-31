@@ -249,11 +249,6 @@ public class AnalyticsReportsProductNavigationControlMenuEntryTest {
 			MockHttpServletRequest mockHttpServletRequest =
 				(MockHttpServletRequest)_getHttpServletRequest();
 
-			mockHttpServletRequest.setAttribute(
-				AnalyticsReportsWebKeys.ANALYTICS_INFO_ITEM_REFERENCE,
-				new InfoItemReference(Layout.class.getName(), plid));
-			mockHttpServletRequest.setParameter("p_l_id", String.valueOf(plid));
-
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)mockHttpServletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
@@ -261,6 +256,11 @@ public class AnalyticsReportsProductNavigationControlMenuEntryTest {
 			themeDisplay.setPlid(plid);
 			themeDisplay.setSignedIn(true);
 			themeDisplay.setUser(user);
+
+			mockHttpServletRequest.setAttribute(
+				AnalyticsReportsWebKeys.ANALYTICS_INFO_ITEM_REFERENCE,
+				new InfoItemReference(Layout.class.getName(), plid));
+			mockHttpServletRequest.setParameter("p_l_id", String.valueOf(plid));
 
 			Assert.assertTrue(
 				_productNavigationControlMenuEntry.isShow(
