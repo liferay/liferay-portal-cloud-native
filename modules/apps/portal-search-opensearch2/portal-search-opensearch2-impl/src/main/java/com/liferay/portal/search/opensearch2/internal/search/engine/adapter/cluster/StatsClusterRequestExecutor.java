@@ -40,11 +40,11 @@ public class StatsClusterRequestExecutor {
 		StatsClusterRequest statsClusterRequest) {
 
 		try {
-			JsonObject jsonObject = _getClusterStatsJsonObject(
-				statsClusterRequest);
-
 			long availableInBytes = 0;
 			long totalInBytes = 0;
+
+			JsonObject jsonObject = _getClusterStatsJsonObject(
+				statsClusterRequest);
 
 			JsonObject nodesJsonObject = jsonObject.getJsonObject("nodes");
 
@@ -83,14 +83,15 @@ public class StatsClusterRequestExecutor {
 	private JsonObject _getClusterStatsJsonObject(
 		StatsClusterRequest statsClusterRequest) {
 
-		OpenSearchClient openSearchClient =
-			_openSearchConnectionManager.getOpenSearchClient(
-				statsClusterRequest.getConnectionId(),
-				statsClusterRequest.isPreferLocalCluster());
-
-		OpenSearchTransport openSearchTransport = openSearchClient._transport();
-
 		try {
+			OpenSearchClient openSearchClient =
+				_openSearchConnectionManager.getOpenSearchClient(
+					statsClusterRequest.getConnectionId(),
+					statsClusterRequest.isPreferLocalCluster());
+
+			OpenSearchTransport openSearchTransport =
+				openSearchClient._transport();
+
 			JsonValue jsonValue = openSearchTransport.performRequest(
 				statsClusterRequest,
 				new SimpleEndpoint<>(
