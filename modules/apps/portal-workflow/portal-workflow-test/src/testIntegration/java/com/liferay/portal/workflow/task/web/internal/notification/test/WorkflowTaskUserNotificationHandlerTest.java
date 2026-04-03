@@ -243,13 +243,14 @@ public class WorkflowTaskUserNotificationHandlerTest {
 	private void _setBackURL(
 		String backURL, String currentURL, String redirect) {
 
+		_serviceContext.setCurrentURL(currentURL);
+
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
 
 		mockHttpServletRequest.setParameter("backURL", backURL);
 		mockHttpServletRequest.setParameter("redirect", redirect);
 
-		_serviceContext.setCurrentURL(currentURL);
 		_serviceContext.setRequest(mockHttpServletRequest);
 	}
 
