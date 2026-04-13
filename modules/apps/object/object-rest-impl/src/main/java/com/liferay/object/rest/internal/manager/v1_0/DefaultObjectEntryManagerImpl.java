@@ -1912,9 +1912,6 @@ public class DefaultObjectEntryManagerImpl
 		ServiceContext serviceContext = _createServiceContext(
 			dtoConverterContext, objectDefinition, objectEntry, scopeKey);
 
-		com.liferay.object.model.ObjectEntry parentServiceBuilderObjectEntry =
-			_objectEntryService.fetchObjectEntry(objectEntryId);
-
 		return _toObjectEntry(
 			dtoConverterContext, objectDefinition,
 			_addOrUpdateNestedObjectEntries(
@@ -1930,7 +1927,7 @@ public class DefaultObjectEntryManagerImpl
 						objectEntry, scopeKey, serviceContext),
 					serviceContext),
 				scopeKey),
-			parentServiceBuilderObjectEntry);
+			_objectEntryService.fetchObjectEntry(objectEntryId));
 	}
 
 	private void _checkApprovedObjectEntry(
