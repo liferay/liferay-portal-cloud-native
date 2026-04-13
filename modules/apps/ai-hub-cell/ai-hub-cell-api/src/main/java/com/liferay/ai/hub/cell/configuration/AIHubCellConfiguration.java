@@ -14,7 +14,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  * @author Rafael Praxedes
  */
 @ExtendedObjectClassDefinition(
-	category = "ai-hub-cell", featureFlagKey = "LPD-62272",
+	category = "ai-hub", featureFlagKey = "LPD-62272",
 	scope = ExtendedObjectClassDefinition.Scope.COMPANY
 )
 @Meta.OCD(
