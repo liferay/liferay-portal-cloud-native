@@ -6342,14 +6342,14 @@ public class ServiceBuilder {
 	}
 
 	private boolean _hasLocalChanges(File propsFile) throws Exception {
-		List<String> localChangesFileNames;
+		List<String> localChangesFileNames = null;
 
 		try {
 			localChangesFileNames = GitUtil.getLocalChangesFileNames(
 				_gitSearchStartDirName);
 		}
 		catch (GitException gitException) {
-			System.out.println("Cannot get local changed file names from git");
+			System.out.println("Unable to get locally modified files from Git");
 
 			return false;
 		}
