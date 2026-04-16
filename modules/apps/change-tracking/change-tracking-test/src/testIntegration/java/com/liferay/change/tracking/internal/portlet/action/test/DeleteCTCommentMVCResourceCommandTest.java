@@ -62,12 +62,10 @@ public class DeleteCTCommentMVCResourceCommandTest {
 
 	@Test
 	public void testServeResource() throws Exception {
+		Company company = CompanyTestUtil.addCompany();
 		CTComment ctComment = _ctCommentLocalService.addCTComment(
 			TestPropsValues.getUserId(), _ctCollection.getCtCollectionId(), 0,
 			RandomTestUtil.randomString());
-
-		Company company = CompanyTestUtil.addCompany();
-
 		MockLiferayResourceResponse mockLiferayResourceResponse =
 			new MockLiferayResourceResponse();
 
